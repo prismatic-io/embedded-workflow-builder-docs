@@ -9,7 +9,16 @@ Manage records, tables and bases in Airtable
 
 ## Connections
 
-### Airtable OAuth 2.0
+### API Key and Base ID (Deprecated)
+
+Airtable API Key and Base ID. Will be deprecated on Feb 1, 2024
+
+| Input            | Comments                                                                                                        | Default |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
+| Airtable Base ID | Visit https://airtable.com/api and select your workspace. The ID of your base will be printed for you in green. |         |
+| API Key          | You can generate an API key from https://airtable.com/account.                                                  |         |
+
+### OAuth 2.0
 
 Connect your Airtable account using OAuth 2.0
 
@@ -22,22 +31,13 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Provide the Client ID you received from https://airtable.com/create/oauth.          |                                                                                                                                             |
 | Client Secret | Provide the Client Secret you received from https://airtable.com/create/oauth.      |                                                                                                                                             |
 
-### Airtable Personal Access Token
+### Personal Access Token
 
 Connect your Airtable account using a personal access token
 
 | Input   | Comments                                                            | Default |
 | ------- | ------------------------------------------------------------------- | ------- |
 | API Key | You can generate an API key from https://airtable.com/create/tokens |         |
-
-### [Legacy] Airtable API Key and Base ID
-
-Airtable API Key and Base ID. Will be deprecated on Feb 1, 2024
-
-| Input            | Comments                                                                                                        | Default |
-| ---------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Airtable Base ID | Visit https://airtable.com/api and select your workspace. The ID of your base will be printed for you in green. |         |
-| API Key          | You can generate an API key from https://airtable.com/account.                                                  |         |
 
 ## Triggers
 
@@ -63,12 +63,12 @@ Create a new record in the given table
 
 Create a new webhook for a base
 
-| Input            | Comments                                                                                                                                            | Default                                                                                                                                                                                                                      |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Base ID          | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection. |                                                                                                                                                                                                                              |
-| Connection       |                                                                                                                                                     |                                                                                                                                                                                                                              |
-| Notification URL | An optional URL that can receive notification pings.                                                                                                |                                                                                                                                                                                                                              |
-| Specification    | A JSON object that describe the types of changes the webhook is interested in.                                                                      | <code>{<br /> "options": {<br /> "filters": {<br /> "fromSources": [<br /> "publicApi"<br /> ],<br /> "dataTypes": [<br /> "tableData"<br /> ],<br /> "recordChangeScope": "tblMwMnUJpKoJUDzo"<br /> }<br /> }<br />}</code> |
+| Input            | Comments                                                                                                                                            | Default |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Base ID          | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection. |         |
+| Connection       |                                                                                                                                                     |         |
+| Notification URL | An optional URL that can receive notification pings.                                                                                                |         |
+| Specification    | A JSON object that describe the types of changes the webhook is interested in.                                                                      |         |
 
 ### Delete Record
 
@@ -166,7 +166,6 @@ Send raw HTTP request to Airtable
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                            |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                               | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                    |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                   | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                    | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                       | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                    | 0       |

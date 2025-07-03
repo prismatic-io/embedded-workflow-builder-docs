@@ -24,6 +24,22 @@ Web Service Authentication
 
 ## Actions
 
+### Create AR Advance
+
+Creates a new AR Advance.
+
+| Input                  | Comments                                                                                                                                                                   | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             |                                                                                                                                                                            |         |
+| Payment Date           | Date the advance payment was made, in the mm/dd/yyyy format.                                                                                                               |         |
+| Receipt Date           | Receipt date in the mm/dd/yyyy format. If automatic summaries are enabled, this is the date on which the advance will be posted to the General Ledger.                     |         |
+| Payment Method         | Payment method used for the advance.                                                                                                                                       |         |
+| AR Advance Items       | Advance lines, must have at least 1. Check [Documentation](https://developer.intacct.com/api/accounts-receivable/ar-advances/) for additional tags.                        |         |
+| Customer ID            | Unique ID. Required if company does not use document sequencing, or you can provide a value to use instead of the document sequence value.                                 |         |
+| Financial Entity       | ID of the checking or savings account to deposit the funds to. A create request must contain FINANCIALENTITY or UNDEPOSITEDACCOUNTNO when automatic summaries are enabled. |         |
+| Undeposited Account No | Undeposited funds account number. A create request must contain FINANCIALENTITY or UNDEPOSITEDACCOUNTNO when automatic summaries are enabled.                              |         |
+| Additional XML Tags    | Additional XML tags that might not be covered by the standard inputs.                                                                                                      |         |
+
 ### Create Bill
 
 Create a new bill.
@@ -46,7 +62,6 @@ Create a new bill.
 | Currency              | Transaction currency code                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Base Currency         | Base currency code                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | AP Bill Items         | AP bill items, must have at least 1. Each item must be wrapped in <APBILLITEM></APBILLITEM> tags. | <APBILLITEM><br /> <ACCOUNTNO>10000</ACCOUNTNO><br /> <TRX_AMOUNT>100.12</TRX_AMOUNT><br /> <ENTRYDESCRIPTION>Line 1 of my bill</ENTRYDESCRIPTION><br /> <LOCATIONID>Alder</LOCATIONID><br /> <DEPARTMENTID>12345</DEPARTMENTID><br /></APBILLITEM><br /><APBILLITEM><br /> <ACCOUNTNO>10000</ACCOUNTNO><br /> <TRX_AMOUNT>100.12</TRX_AMOUNT><br /> <ENTRYDESCRIPTION>Line 2 of my bill</ENTRYDESCRIPTION><br /> <LOCATIONID>Alder</LOCATIONID><br /> <DEPARTMENTID>12345</DEPARTMENTID><br /></APBILLITEM> |
-| Debug Request         | Enabling this flag will log out the current request.                                              | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ### Create Contact
 
@@ -81,7 +96,6 @@ Creates a new contact.
 | Tax ID                  | Tax identification number                        |         |
 | Taxable                 | Flag indicating if taxable                       |         |
 | ZIP/Postal Code         | ZIP or postal code.                              |         |
-| Debug Payload           | Prints the payload to the logs                   | false   |
 
 ### Create Customer
 
@@ -151,7 +165,6 @@ Creates a customer and specifies a display contact and a contact list (provided 
 | Restricted Location                      | Restricted location ID. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                                       |         |
 | Restricted Department                    | Restricted department IDs. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                                    |         |
 | Custom Fields                            | Custom field names and values as defined for this object                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Debug Payload                            | Prints the payload to the logs                                                                                                                                                                                                                                                                                                                                                                                                                       | false   |
 
 ### Create Invoice
 
@@ -180,7 +193,6 @@ Creates an invoice.
 | No GL                | Do not post to GL. Use false for No, true for Yes.                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Attachments ID       | Id of an attachment group of one or more supporting files                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Custom Fields        | Custom field names and values as defined for this object                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Debug Request        | Enabling this flag will log out the current request.                                          | false                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ### Create Project
 
@@ -199,7 +211,6 @@ Creates a new project.
 | Project Status      | Project status for the to-be-created object.                                                                                                               |         |
 | Status              | Use false for Inactive, true for Active. (Default: true)                                                                                                   | true    |
 | Additional Fields   | Additional fields that are not covered by the standard inputs.                                                                                             |         |
-| Debug Payload       | Prints the payload to the logs                                                                                                                             | false   |
 
 ### Create Vendor
 
@@ -273,22 +284,50 @@ Creates a new vendor.
 | Restricted Location                                  | Restricted location ID. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                            |         |
 | Restricted Department                                | Restricted department IDs. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                         |         |
 | Custom Fields                                        | Custom field names and values as defined for this object                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| Debug Payload                                        | Prints the payload to the logs                                                                                                                                                                                                                                                                                                                                                                                                            | false   |
 
 ### Delete Object
 
 Deletes different objects in Sage Intacct.
 
-| Input         | Comments                                                               | Default |
-| ------------- | ---------------------------------------------------------------------- | ------- |
-| Connection    |                                                                        |         |
-| Object        | Type of object to delete                                               |         |
-| Keys          | A key or comma-separated list (123,456) of keys (RECORDNO's) to delete |         |
-| Debug Request | Enabling this flag will log out the current request.                   | false   |
+| Input      | Comments                                                               | Default |
+| ---------- | ---------------------------------------------------------------------- | ------- |
+| Connection |                                                                        |         |
+| Object     | Type of object to delete                                               |         |
+| Keys       | A key or comma-separated list (123,456) of keys (RECORDNO's) to delete |         |
 
 ### Get AP Payment
 
 Retrieve a single AP Payment.
+
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection |                                          |         |
+| Field      | Field to retrieve, use \* for all fields |         |
+| Record No  | Record number                            |         |
+
+### Get AR Adjustment
+
+Retrieve a single AR Adjustment.
+
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection |                                          |         |
+| Field      | Field to retrieve, use \* for all fields |         |
+| Record No  | Record number                            |         |
+
+### Get AR Adjustment Line
+
+Retrieve a single AR Adjustment Line.
+
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection |                                          |         |
+| Field      | Field to retrieve, use \* for all fields |         |
+| Record No  | Record number                            |         |
+
+### Get AR Advance
+
+Retrieve a single AR Advance.
 
 | Input      | Comments                                 | Default |
 | ---------- | ---------------------------------------- | ------- |
@@ -370,12 +409,12 @@ Retrieve a single vendor.
 
 Lists specified criteria based on a query.
 
-| Input       | Comments                                                                               | Default |
-| ----------- | -------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                        |         |
-| Field       | Field to retrieve, use \* for all fields                                               |         |
-| Object Name | Name of the object to query. Possible values are: VENDOR, APBILL, APPYMT, ARPYMT, etc. |         |
-| Query       | Query to filter the records                                                            |         |
+| Input       | Comments                                                                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  |                                                                                                                                   |         |
+| Field       | Field to retrieve, use \* for all fields                                                                                          |         |
+| Object Name | Name of the object to query. Possible values are: VENDOR, APBILL, APPYMT, ARPYMT, ARADJUSTMENT, ARADJUSTMENTITEM, ARADVANCE, etc. |         |
+| Query       | Query to filter the records                                                                                                       |         |
 
 ### Raw Request
 
@@ -389,11 +428,46 @@ Send raw HTTP request to Sage Intacct
 | Response Type           | The type of data you expect in the response. You can request json or xml data.                                                                                                                                                                                                                                                                                                  | json                                                                                                                                            |
 | Array JSON Nodes        | Always put child nodes from XML in an array. If toggled off, an array is created only if there is more than one. Use this when 'Response Type' is set to 'JSON'.                                                                                                                                                                                                                | true                                                                                                                                            |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                             |                                                                                                                                                 |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                                                                                            | false                                                                                                                                           |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                             | 0                                                                                                                                               |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                | false                                                                                                                                           |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                             | 0                                                                                                                                               |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                                                   | false                                                                                                                                           |
+
+### Update AR Adjustment
+
+Update an existing AR Adjustment.
+
+| Input                    | Comments                                                                                                                         | Default |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               |                                                                                                                                  |         |
+| Record Number            | AR Adjustment RECORDNO of bill to update.                                                                                        |         |
+| Customer ID              | AR Adjustment CUSTOMERID to update.                                                                                              |         |
+| Date Created             | AR Adjustment DATECREATED to update.                                                                                             |         |
+| GL Date Posted           | AR Adjustment DATEPOSTED to update.                                                                                              |         |
+| Description              | AR Adjustment DESCRIPTION to update.                                                                                             |         |
+| Currency                 | AR Adjustment CURRENCY to update.                                                                                                |         |
+| Exchange Rate Type       | AR Adjustment EXCHRATETYPE to update.                                                                                            |         |
+| Adjustment Number        | AR Adjustment ADJUSTMENTNO to update.                                                                                            |         |
+| Invoice Number           | AR Adjustment INVOICENO to update.                                                                                               |         |
+| AR Adjustment Line Items | AR Adjustment LINEITEMS to update. Each item must be wrapped in <updatelineitem></updatelineitem> or <lineitem></lineitem> tags. |         |
+| Action                   | Action. Use Draft or Submit. (Default: Submit)                                                                                   |         |
+| Additional XML Tags      | Additional XML tags that might not be covered by the standard inputs.                                                            |         |
+
+### Update AR Advance
+
+Update an existing AR Advance.
+
+| Input                  | Comments                                                                                                                                                                                                                                                                                       | Default |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             |                                                                                                                                                                                                                                                                                                |         |
+| Record No              | AR Advance RECORDNO to update.                                                                                                                                                                                                                                                                 |         |
+| AR Advance Items       | AR Advance ARADVANCEITEMS to update. <strong>Note:</strong> To add an advance line, supply all the original lines along with the new one. To delete a line, supply only the lines that you want to keep. To modify a line, supply all the original lines and change the field values you want. |         |
+| Payment Date           | AR Advance PAYMENTDATE to update.                                                                                                                                                                                                                                                              |         |
+| Receipt Date           | AR Advance RECEIPTDATE to update.                                                                                                                                                                                                                                                              |         |
+| Payment Method         | AR Advance PAYMENTMETHOD to update.                                                                                                                                                                                                                                                            |         |
+| Financial Entity       | AR Advance FINANCIALENTITY to update.                                                                                                                                                                                                                                                          |         |
+| Undeposited Account No | AR Advance UNDEPOSITEDACCOUNTNO to update.                                                                                                                                                                                                                                                     |         |
+| Additional XML Tags    | Additional XML tags that might not be covered by the standard inputs.                                                                                                                                                                                                                          |         |
 
 ### Update Contact
 
@@ -428,7 +502,6 @@ Update an existing contact.
 | Tax ID                  | Tax identification number                        |         |
 | Taxable                 | Flag indicating if taxable                       |         |
 | ZIP/Postal Code         | ZIP or postal code.                              |         |
-| Debug Payload           | Prints the payload to the logs                   | false   |
 
 ### Update Customer
 
@@ -498,7 +571,6 @@ Updates an existing customer in Intacct. The customer is identified by the custo
 | Restricted Location                      | Restricted location ID. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                                       |         |
 | Restricted Department                    | Restricted department IDs. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                                    |         |
 | Custom Fields                            | Custom field names and values as defined for this object                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Debug Payload                            | Prints the payload to the logs                                                                                                                                                                                                                                                                                                                                                                                                                       | false   |
 
 ### Update Invoice
 
@@ -525,7 +597,6 @@ Updates an invoice.
 | Attachments ID     | Id of an attachment group of one or more supporting files                                                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Custom Fields      | Custom field names and values as defined for this object                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Invoice Line Items | To update an existing line use <updatelineitem></updatelineitem> otherwise to create a new line item use <lineitem></lineitem> instead.You can mix types in the array. | <lineitem><br /> <glaccountno>10016</glaccountno><br /> <amount>345.43</amount><br /> <locationid>oriongroup</locationid><br /> <departmentid>D200</departmentid><br /> <classid>C12</classid><br /></lineitem><br /><lineitem><br /> <glaccountno>10016</glaccountno><br /> <amount>345.43</amount><br /> <locationid>oriongroup</locationid><br /> <departmentid>D200</departmentid><br /> <classid>C12</classid><br /></lineitem> |
-| Debug Request      | Enabling this flag will log out the current request.                                                                                                                   | false                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ### Update Project
 
@@ -544,7 +615,6 @@ Updates an existing project.
 | Project Status      | Project status for the to-be-updated object.                   |         |
 | Status              |                                                                |         |
 | Additional Fields   | Additional fields that are not covered by the standard inputs. |         |
-| Debug Payload       | Prints the payload to the logs                                 | false   |
 
 ### Update Vendor
 
@@ -618,4 +688,3 @@ Updates an existing vendor.
 | Restricted Location                                  | Restricted location ID. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                            |         |
 | Restricted Department                                | Restricted department IDs. Use if OBJECTRESTRICTION is Restricted                                                                                                                                                                                                                                                                                                                                                                         |         |
 | Custom Fields                                        | Custom field names and values as defined for this object                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| Debug Payload                                        | Prints the payload to the logs                                                                                                                                                                                                                                                                                                                                                                                                            | false   |
