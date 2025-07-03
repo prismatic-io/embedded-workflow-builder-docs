@@ -33,4 +33,6 @@ Using the `key` of the connector you want to generate documentation for, run:
 npm run generate-private-connector-docs YOUR-COMPONENT-KEY
 ```
 
+**Note**: Make sure you can successfully run `prism me` before running the above command, as it relies on your Prismatic CLI being configured correctly.
+
 This will generate a markdown file in the `docs/connectors/` directory, and pull down the connector's icon into `docs/connectors/assets/`.

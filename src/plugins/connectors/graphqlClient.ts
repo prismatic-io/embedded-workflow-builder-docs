@@ -3,6 +3,7 @@
  * in order to pull metadata about existing connectors
  */
 import { Graffle } from "graffle";
+import { readConfig } from "./auth";
 
 export const getPrismaticConnection = () => {
   const { PRISMATIC_API_KEY, PRISMATIC_URL } = process.env;
@@ -11,12 +12,19 @@ export const getPrismaticConnection = () => {
     ? `${PRISMATIC_URL}/api`
     : "https://app.prismatic.io/api";
 
-  if (!PRISMATIC_API_KEY) {
-    throw new Error("You must set a PRISMATIC_API_KEY environment variable.");
+  // If the environment variable is set, use it to create the client
+  if (PRISMATIC_API_KEY) {
+    return {
+      PRISMATIC_API_KEY,
+      PRISMATIC_URL: PRISMATIC_URL || "https://app.prismatic.io",
+      API_ENDPOINT,
+    };
   }
 
+  // Otherwise, read the access token from the prism config file
+  const { accessToken } = readConfig();
   return {
-    PRISMATIC_API_KEY,
+    PRISMATIC_API_KEY: accessToken,
     PRISMATIC_URL: PRISMATIC_URL || "https://app.prismatic.io",
     API_ENDPOINT,
   };
