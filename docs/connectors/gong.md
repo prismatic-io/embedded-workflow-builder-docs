@@ -13,6 +13,12 @@ Captures customer interactions then delivers insights at scale, empowering teams
 
 Generate by visiting Company Settings > Ecosystem > API.
 
+To generate a Gong API key manually:
+
+1. Log in to Gong and click **Company Settings** > **Ecosystem** > **API**.
+1. Click **Create** to generate an access key and the access key secret.
+1. Take note of the API Base URL that is displayed next to the access key and access key secret.
+
 | Input             | Comments | Default |
 | ----------------- | -------- | ------- |
 | Base URL          |          |         |
@@ -22,6 +28,18 @@ Generate by visiting Company Settings > Ecosystem > API.
 ### Gong OAuth 2.0
 
 Authenticate using oauth flow.
+
+To Create an [OAuth app](https://help.gong.io/hc/en-us/articles/13944551222157-Create-an-app-for-Gong) for Gong:
+
+1. In your company's **Settings** page, click **API** and click the **Integrations** tab.
+2. Click **Create Integration**.
+3. In the **Integration details** area, enter your integration name and a description.
+4. In the **Required authorization scopes** area, select the scopes that your app needs.
+   You can check our [API documentation](https://app.gong.io/settings/api/documentation#overview) to see which APIs use which scopes.
+5. Add **Redirect URI** as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+6. Click **Save**.
+
+A new row appears in the table of apps, containing the **Client ID** and the **Client Secret**. Copy and paste these into the connection configuration of your workflow.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

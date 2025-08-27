@@ -13,6 +13,8 @@ Use the Toast component to manage Employees, Jobs, Cash Entries, and more.
 
 Connection for Toast Client Credentials
 
+To authenticate via OAuth 2.0 You must provide a client identifier (clientId) and client secret (clientSecret) to the connection configuration of the integration. These may be obtained by requesting them from your Toast support team. Follow [these](https://doc.toasttab.com/doc/devguide/authentication.html#apiAuthTokenStorage) guidelines when storing your API credentials.
+
 | Input         | Comments                 | Default |
 | ------------- | ------------------------ | ------- |
 | Client ID     | Client ID for Toast.     |         |

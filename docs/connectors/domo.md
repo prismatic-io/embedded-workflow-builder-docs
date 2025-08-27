@@ -13,6 +13,31 @@ The Domo platform includes a world class data warehouse, robust data pipeline fu
 
 OAuth Connectivity for Domo
 
+[Generating Client ID and Client Secret](https://developer.domo.com/portal/8ba9aedad3679-ap-is#step-1-create-client-id-and-secret)
+
+To generate a client ID and client secret for your Domo instance, follow these steps:
+
+1. Obtain your Domo Instance Name:
+   - Your Domo Instance Name is the part of the URL preceding "domo.com." For instance, if your Domo URL is `acmecompany.domo.com`, your instance name would be `acmecompany`.
+
+2. Log in to the Developer Portal:
+   - Click on the "Dev Portal Login" link to access the Developer Portal or follow this link [https://developer.domo.com/login](https://developer.domo.com/login).
+
+3. Enter Instance Name and User Credentials:
+   - Provide your Domo Instance Name and user credentials when prompted to log in.
+
+4. Access "Manage Clients" Page:
+   - After logging in successfully, you will be redirected to the Developer Portal's homepage.
+   - Click on the "My Account" dropdown, and you will find options to manage clients, create a new one, or logout.
+
+5. Create a New Client:
+   - Choose the option to create a new client from the "Manage Clients" page.
+
+6. Submit and Obtain Client ID and Secret:
+   - After submitting the required information, a newly provisioned client ID and client secret will be generated and displayed on the "Manage Clients" page.
+
+Now you have successfully generated a client ID and client secret for your Domo instance. These credentials will be used in the component's OAuth connection.
+
 | Input         | Comments                                            | Default |
 | ------------- | --------------------------------------------------- | ------- |
 | Client ID     | Client Identifier of your Domo app for the API      |         |

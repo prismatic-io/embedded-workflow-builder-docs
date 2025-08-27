@@ -11,6 +11,19 @@ Zendesk Sell is a sales force automation program.
 
 ### Zendesk Sell Oauth 2.0 Connection
 
+The Zendesk Sell component ensures secure request authentication using OAuth 2.0. To seamlessly configure an application within Zendesk Sell, simply adhere to the instructions outlined in this comprehensive guide.
+
+1. **Access Your Zendesk Sell Dashboard:** To begin, log in to your Zendesk Sell Dashboard. You can reach it via a URL similar to this: `https://{YOUR SUBDOMAIN HERE}.zendesk.com/sales/dashboards/main`.
+1. **Navigate to Settings:** On the left-hand side toolbar, locate and click on the "Settings" option.
+1. **Explore Integrations > OAuth:** Within the Settings section, delve into the "Integrations" category and then proceed to "OAuth."
+1. **Access OAuth2 Settings:** Under the OAuth section, find the "OAuth2 Settings" and access it.
+1. **Developer App Setup:** Within the OAuth2 Settings, locate the "Developer apps" section.
+1. **Add a Developer App:** To initiate the setup process, click on the "Add Developer App" button.
+1. **Provide App Details:** Complete the required fields for the app setup. Be sure to specify the Redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+1. **Retrieve Client ID and Secret:** Upon successful app addition, you can obtain the Client ID and Secret by selecting the "details" button associated with your app.
+
+Now that you've acquired the necessary credentials, the next step involves establishing a new Zendesk Sell connection, utilizing the obtained credentials. This integration will seamlessly link your systems, facilitating efficient data exchange and management.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

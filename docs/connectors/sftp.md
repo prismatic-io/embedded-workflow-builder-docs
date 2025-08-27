@@ -13,6 +13,9 @@ Read, write, move and delete files on an SFTP server
 
 Basic Username and Password connection
 
+The **basic auth** connection is used to connect to SFTP servers that support username / password login.
+Consult your SFTP server administrator to determine which login method the server supports.
+
 | Input                                      | Comments                                                                                                                                                  | Default |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Password                                   | Password for SFTP authentication                                                                                                                          |         |
@@ -28,6 +31,10 @@ Basic Username and Password connection
 ### Private Key
 
 Private Key connection
+
+The **private key** connection allows you to access an SFTP server via SSH [public/private key authentication](https://www.ssh.com/academy/ssh/public-key-authentication).
+You will need to generate a public/private key pair, and ensure that your public key is stored on the SFTP server that you are connecting to.
+Then, you can authenticate with the SFTP server using a username and corresponding private key.
 
 | Input                                      | Comments                                                                                                                                                  | Default |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

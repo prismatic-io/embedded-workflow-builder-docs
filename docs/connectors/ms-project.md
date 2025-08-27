@@ -13,6 +13,36 @@ Make queries to reporting data from a Project Web App instance
 
 OAuth 2.0 Connectivity for Microsoft Project
 
+To create an new Microsoft Project App Registration:
+
+1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
+
+- Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
+- Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+- Select Register to complete.
+
+2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection configuration.
+
+3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
+
+4. Navigate to **API Permissions** and select **Add Permission**, select the square labeled **Sharepoint**, and then **Delegated permissions**. Under the **Project** section select **Project.Read, Project.Write** in addition to any other permissions that will be required by your integration. You can use `ProjectWebApp.FullControl` to get started building and choose a more refined set at a later time.
+
+5. Finally, to retrieve the **Project Web App Site** value (also referred to as the **PWA site**). This can be found by navigating to [Microsoft Project 365](https://project.microsoft.com/), clicking the gear settings icon in the top right, and clicking on "PWA Site". You will need to copy the value from the `https://` protocol through to the first slash (do _not_ include the trailing slash or the path portion).
+
+6. Additionally, Depending on your PWA site's configuration, user's attempting to authenticate may need to be added as members of the site before authentication.
+
+To configure the OAuth 2.0 connection:
+
+7. Add an MS Project OAuth 2.0 connection config var:
+
+- Use the **Application (client) ID** value for the **Client ID** field.
+- Use the **Client Secret** for the same named field.
+- Use the default **Authorize URL**.
+- Replace `<pwaSite>` in the **Token URL** with the **PWA Site** value.
+- Use the same **PWA Site** value for that field.
+
+Save your integration and you should be able to authenticate a user through MS Project Online with Auth 2.0.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

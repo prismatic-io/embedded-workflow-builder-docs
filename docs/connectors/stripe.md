@@ -13,6 +13,8 @@ Manage objects connected to your Stripe platform
 
 Authenticate requests to Stripe using an API Key
 
+The **Stripe** component uses API keys to authenticate requests. You can view and manage your API keys in the Stripe Dashboard. For information on obtaining an API key from Stripe, refer to the [docs](https://stripe.com/docs/api/authentication)
+
 | Input   | Comments                                | Default |
 | ------- | --------------------------------------- | ------- |
 | API Key | Provide a string value for the API Key. |         |

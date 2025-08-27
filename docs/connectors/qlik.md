@@ -11,6 +11,21 @@ Qlik is a business analytics platform. Use the Qlik component to manage your Dat
 
 ### API Key
 
+[API keys](https://qlik.dev/authenticate/api-key/generate-your-first-api-key) must first be enabled by an Admin:
+
+1. Login to Qlik and navigate to Settings> API Keys and enable API keys
+
+Developer privileges must be given to users to use API keys:
+
+1. Navigate to the Management Console > Users > Edit Roles
+2. Check the box next to ‘Developer’ and save.
+
+Generate API Keys:
+
+1. Navigate to Management Console > API Keys and select ‘Generate new key’
+2. provide a description and expiration and Save.
+3. Once the key is generated enter the value in to the connection's configuration.
+
 | Input   | Comments                                                                                      | Default |
 | ------- | --------------------------------------------------------------------------------------------- | ------- |
 | API Key | API Key for your Qlik User                                                                    |         |
@@ -19,6 +34,14 @@ Qlik is a business analytics platform. Use the Qlik component to manage your Dat
 ### OAuth 2.0
 
 Allows a client application to use an OAuth flow to request user authorization.
+
+To set up [OAuth](https://qlik.dev/authenticate/oauth/) in Qlik:
+
+1. Login to Qlik and Navigate to Management Console > OAuth and select ‘Create New’
+2. Set ‘Web’ as the Client type and name the connection
+3. Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` to the ‘Add redirect URLs” field and select Add
+4. Select ‘Create’ Qlik will generate the client ID and client secret.
+5. Transfer these values to the connection's configuration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

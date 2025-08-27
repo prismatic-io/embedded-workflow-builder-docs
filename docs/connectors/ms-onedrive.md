@@ -13,6 +13,28 @@ Interact with files and drives inside your Microsoft OneDrive tenant
 
 OAuth 2.0 Connectivity for Microsoft One Drive
 
+Once you have an instance of Microsoft OneDrive licensed to your account, you will need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
+When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
+
+You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+
+Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+
+You will also need the **Application (client) ID** from the "Overview" page.
+
+The last step of configuring the "App Registration" is assigning "App Permissions". Click "Add Permission", click on the square labeled "Microsoft Graph", and then "Delegated permissions". You should select all permissions that are required for your desired integration.
+
+- Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+
+Now, configure the OAuth 2.0 connection.
+Add an MS OneDrive OAuth 2.0 connection config variable:
+
+- Use the **Application (client) ID** value for the **Client ID** field.
+- Use the **Client Secret** for the same named field.
+- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+
+Save your integration and you should be able to authenticate a user through MS OneDrive with OAuth 2.0.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

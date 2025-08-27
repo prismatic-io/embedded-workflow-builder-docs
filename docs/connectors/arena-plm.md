@@ -13,6 +13,10 @@ Interact with items and resources in Arena PLM
 
 Arena PLM Basic Auth
 
+Arena's API relies on basic authentication.
+They recommend that you create a user dedicated to integrations with an email address and password.
+In addition to email address and password, your customer will also need to know their **workspace ID**, which is a 9-digit number that they can find within Arena PLM.
+
 | Input                  | Comments | Default                        |
 | ---------------------- | -------- | ------------------------------ |
 | Email Address          |          |                                |

@@ -13,6 +13,14 @@ Use the Contentful component to manage Spaces, Environments, Organizations and m
 
 Connection to Contentful API using OAuth 2.0
 
+Create a new OAuth App:
+
+1. Login and navigate to the Developer [Account Settings](https://app.contentful.com/account/profile/developers/applications) for OAuth applications
+2. Create a New Application
+3. Enter the Redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Additionally check the boxes for the applicable scopes: Content management read, Content management manage, Confidential
+5. Upon saving the application note the Client ID and Client Secret and enter them in the connection configuration of the integration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

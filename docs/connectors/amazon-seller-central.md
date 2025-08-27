@@ -13,6 +13,33 @@ Amazon Seller Central is the portal for accessing your Amazon seller account. Us
 
 Authenticate requests to Amazon Seller Central.
 
+**To register your application (for all public applications and private seller applications)**
+
+1. Sign into Seller Central using your developer credentials and navigate to [Develop Apps](https://sellercentral.amazon.com/sellingpartner/developerconsole).
+2. On the **Developer Central** page, choose **Add new app client**.
+3. Enter the OAuth Redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` and save
+4. Viewing the LWA credentials will provide the client ID and client secret to enter into your credentials
+
+#### Amazon Seller Central Sandbox Environment
+
+When connecting to the Sandbox environment, it is important to know that some fields will require different value formats than Production in order to succeed.
+The expected values can be referenced under the [Selling Partner API Models](https://github.com/amzn/selling-partner-api-models/tree/f3b0bc6c3949f791589b079e78b341f13f954b41/models)
+
+**Orders Example**
+
+[Order Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/orders-api-model/ordersV0.json)
+
+    - Created After accepts **TEST_CASE_200** or **TEST_CASE_200_NEXT_TOKEN**
+    - Created Before accepts **TEST_CASE_200** or **TEST_CASE_200_NEXT_TOKEN**
+    - Order ID accepts **TEST_CASE_200**
+
+**Notifications Example**
+
+[Notifications Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/notifications-api-model/notifications.json)
+
+    - Subscription ID accepts **TEST_CASE_200_SUBSCRIPTION_ID**
+    - Created Before accepts **TEST_CASE_200_DESTINATION_ID**
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

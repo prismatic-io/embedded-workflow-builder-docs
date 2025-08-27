@@ -13,6 +13,48 @@ Manage subscriptions, topics, and messages within Amazon (AWS) SNS
 
 Connect to AWS using an assumed role
 
+To enable the IAM role authentication begin by logging into the [AWS Console](https://aws.amazon.com/) and navigate to Identity and Access Management (IAM).
+
+To create a user and generate credentials:
+
+1. Navigate to Users and select **Create User**.
+
+- Provide a User name and check the box providing them user access to the AWS Management Console if needed.
+- Once completed with the User creation, copy the ARN provided in the summary for a later step.
+
+2. To obtain the ARN for an existing User, click on the designated username from the Users page and the ARN will be provided in the summary section.
+
+3. From the summary section, select **Create access key**
+
+- Select **Third-party service** as the access key type and select next.
+- Set a description and select **create access key**.
+- Copy the **Access Key** and **Secret access key** and enter those into the connection configuration of your integration along with the ARN.
+
+To create and assign a user a role:
+
+1. Navigate to Roles and select **Create Role**.
+
+- Select **Custom Trust Policy** for the Trusted entity types
+- Copy the following statement into the statement console. Making sure to replace the **ARN** with the user's actual ARN from the previous section
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "ARN"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+- When adding permissions provide the **AmazonSNSFullAccess** permission
+- Complete remaining steps and select **Create Role**
+
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Role ARN          | An AWS IAM Role ARN                                                                                                                                                                                                                                           |         |
@@ -23,6 +65,10 @@ Connect to AWS using an assumed role
 ### AWS SNS Access Key and Secret
 
 Authenticates requests to Amazon SNS using an API Key and API Secret
+
+An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SNS.
+Make sure that the key pair you generate in AWS has proper permissions to the SNS resources you want to access.
+Read about Amazon SNS IAM policies in the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html).
 
 | Input             | Comments                     | Default |
 | ----------------- | ---------------------------- | ------- |

@@ -13,6 +13,14 @@ Create, read, and modify Google Spreadsheets
 
 Authenticate requests to Google Sheets using values obtained from the Google Cloud Platform.
 
+The Google Sheets component authenticates requests through Google's OAuth service.
+To create a Google Sheets developer account and authenticate using Google OAuth, follow directions [here](https://developers.google.com/sheets/api/quickstart/quickstarts-overview?hl=en)
+Now, you will have to configure OAuth 2.0 settings.
+Create a new Google Sheets connection.
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Google Cloud Platform auth settings.
+- For **Scopes** choose from the list found on the [Google docs](https://developers.google.com/identity/protocols/oauth2/scopes)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

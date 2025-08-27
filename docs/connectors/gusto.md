@@ -13,6 +13,10 @@ Manage payroll, benefits, and human resource within Gusto
 
 Connect to Gusto via OAuth 2.0
 
+To create an OAuth 2.0 app in Gusto, sign up for a Gusto developer account at [https://dev.gusto.com/](https://dev.gusto.com/) and create a new Gusto application.
+Take note of your applications's **Client ID** and **Secret** and enter those values when you add a Gusto connection to your integration.
+Under **Redirect URI**, add the callback URL, `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

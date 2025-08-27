@@ -13,6 +13,9 @@ Interact with the Smartsheet API
 
 Authenticate requests to Smartsheet using an API Key
 
+API keys can be used for development purposes, though you should use an OAuth 2.0 connection for production integrations.
+Information about getting started and creating API keys with [Smartsheet](https://help.smartsheet.com/articles/2482389-generate-API-key) can be found on their developer documentation site.
+
 | Input    | Comments                                                                                                                                | Default                         |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | Base URL | Most applications use Smartsheet commercial, but you can choose to use a government endpoint if your customers are government entities. | https://api.smartsheet.com/2.0/ |
@@ -21,6 +24,14 @@ Authenticate requests to Smartsheet using an API Key
 ### Smartsheet OAuth2
 
 Authenticate requests to Smartsheet using OAuth2
+
+OAuth 2.0 can be used to authenticate Smartsheet users with the click of a button.
+To create an OAuth 2.0 connection for Smartsheet:
+
+- Log in to [Smartsheet](https://app.smartsheet.com), and then click the profile icon on the bottom left of the page -> **Developer Tools**.
+- Create a "developer profile" if you have not previously and then click **Create New App**.
+- Give your app a name, description, logo. You do _not_ need to **Publish App?**. Under **App redirect URL**, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+- Take note of the **App client id** and **App secret** that are generated - you'll enter those when you configure your integration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

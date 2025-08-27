@@ -13,6 +13,19 @@ Square offers a suite of commerce products for retail stores.
 
 Authenticate requests to Square using values obtained from the Developer Console.
 
+Access Tokens are necessary for interacting with the Square API. Access tokens are unique to each application you create on Square.
+
+To generate an access token, you should log in to Square and navigate to your application's page. Within the application settings, you can find your access tokens.
+
+Square provides two types of access tokens:
+
+1. Application Token: This token is used to send requests and perform other application-related actions in Square.
+1. Personal Access Token: This token is used to perform account-level actions, such as creating and managing applications.
+
+For your integration, you will need both the Application Token and the Personal Access Token.
+
+For more information about access tokens, refer to the [Square Docs](https://developer.squareup.com/explorer/square).
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

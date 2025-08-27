@@ -13,6 +13,18 @@ Klaviyo is a cloud based email marketing solution that enables e-commerce busine
 
 Connection to Klaviyo using an API Key.
 
+Authentication was developed using the following **[Documentation](https://developers.klaviyo.com/en/docs/authenticate_)**
+
+Private keys will have the prefix `pk_` followed by a longer alphanumeric string. Klaviyo allows you to generate multiple private keys for your applications. See the [Obtain API credentials](https://developers.klaviyo.com/en/docs/retrieve_api_credentials) guide for more information
+
+To Generate a Private Key:
+
+1. Log into your [Klaviyo](https://www.klaviyo.com/settings/account/api-keys) account and navigate to settings
+2. Under the Account tab select API Keys
+3. Select Create Private API Key
+4. Name the Key, provide the proper scope level and select Create
+5. Save and copy the private key into your integration connection configuration.
+
 | Input   | Comments                 | Default |
 | ------- | ------------------------ | ------- |
 | API Key | Your API Key for Klaviyo |         |
@@ -20,6 +32,17 @@ Connection to Klaviyo using an API Key.
 ### OAuth 2.0
 
 Connection to Klaviyo using OAuth 2.0.
+
+Authentication was developed using the following **[Documentation](https://developers.klaviyo.com/en/docs/set_up_oauth)**
+
+OAuth configuration requires setting up an app in Klaviyo. See the [Set up OAuth](https://developers.klaviyo.com/en/docs/set_up_oauth) guide for more information:
+
+1. Log into your [Klaviyo](https://www.klaviyo.com/dashboard) account and navigate to the [Manage apps page](https://www.klaviyo.com/manage-apps).
+2. Select Create App
+3. Name the app and copy your Client ID and Client Secret and enter them into the connection configuration of your integration
+4. Save and continue to proceed
+5. Once creation has been completed enter the the following into the Redirect URL field: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` and save.
+6. Select Review Submission to submit the app for completion.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

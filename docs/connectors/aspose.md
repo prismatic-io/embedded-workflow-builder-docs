@@ -13,6 +13,12 @@ Aspose is a robust file manipulation service that can manage various document an
 
 Aspose Api Key Flow
 
+In order to use the apiKey connection of Aspose, you need to provide both
+the client_id and client_secret from your Aspose's application.
+To access the Aspose's REST API, you need to create an application.
+To register new applications, login into the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/) site using your Aspose Account,
+and go to the Applications view. Once you create a new application, Aspose will issue a client_id and client_secret.
+
 | Input                     | Comments                                  | Default |
 | ------------------------- | ----------------------------------------- | ------- |
 | Application Client ID     | Client ID of your Aspose Application.     |         |

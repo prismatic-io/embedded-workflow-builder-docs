@@ -13,6 +13,61 @@ Send messages to Slack channels and users
 
 Authenticate requests to Slack using values obtained from the developer console.
 
+The vast majority of actions in this component use OAuth 2.0 for authentication.
+To create a Slack OAuth 2.0 connection, first create and configure a Slack App by visiting the Slack [Developer App Portal](https://api.slack.com/apps):
+
+1. Click **Create New App**
+1. Choose to create the app **From scratch**
+1. Give your app a name and select your workspace. We'll configure it to be multi-workspace capable in a moment
+1. Select **OAuth & Permissions** from the sidebar
+   1. Under **Redirect URLs**, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+   1. At the bottom, add some **User Token Scopes** if you plan for this integration to send messages on behalf of customers, or **Bot Token Scopes** if a Slack "bot" will send the messages.
+      What [scopes](https://api.slack.com/scopes/) you need is dependent on what types of things your Slack integration will need to do (create channels, send messages, etc).
+      If you just need to send messages to a channel as a bot, add these scopes: `chat:write chat:write.public`. If you want to send messages as a user, see the section [below](#sending-messages-as-a-user).
+1. Next, select **Distribute App** under **Manage Distribution**. Confirm that you have "removed hard coded information" and select **Activate Public Distribution**.
+   Your app needs to be publicly distributed for your customers to install it in their Slack workspaces.
+1. Finally, open **Basic Information**. Take note of the **Client ID**, **Client Secret** and **Signing Secret**.
+
+Now it's time to configure your integration to use your Slack OAuth 2.0 app.
+Add a Slack step to your integration - that'll create a connection config variable for you.
+Open up that connection config variable.
+
+Enter **Client ID**, **Signing Secret** and **Client Secret** that you noted before.
+
+The **Scopes** that you need to enter depends on what Slack actions your integration includes:
+
+- If you're just sending messages to a channel, you can enter the scopes `chat:write chat:write.public` and that will assign you a bot token that can write messages to public channels. See [below](#sending-messages-to-private-channels) for information on sending messages to private channels.
+- Conversation and channel-related actions require `admin.conversations:write`.
+
+Enter scopes with spaces in between them (e.g. `chat:write users:read users:read.email`).
+
+A list of all Slack OAuth scopes and what each does are available in their [docs](https://api.slack.com/scopes/).
+
+#### Sending messages to private channels
+
+The `chat:write.public` scope allows your bot to send messages to public channels.
+If you would like to send messages to private channels, or would like to be more selective about what channels your bot can send messages to, your customer will need to invite the bot to specific channels.
+
+If a bot does not have `chat:write.public` or tries to write to a private channel it's not a part of, you'll receive a `not_in_channel` error from Slack when you attempt to send a message to that channel.
+
+#### Sending messages as a user
+
+Slack applications typically send messages as bot users.
+If you would instead like to send messages as a user, edit the `Auth URL` add `chat:write` to a user_scope query parameter on the Authorization URL to get a User token. To manage channels, add the `channels:write` scope.
+
+Your `Auth URL`, then, will look something like this: `https://slack.com/oauth/v2/authorize?user_scope=chat:write`
+
+#### Dynamically changing your bot's name
+
+Your bot's username and icon are things you set when you create your Slack app.
+If you would like to override your bot's username within your integration, you will need to request the `chat:write.customize` scope in addition to `chat:write`.
+
+#### GovSlack
+
+Slack offers [GovSlack](https://slack.com/solutions/govslack) for government organizations that require compliance with FIPS 140-2, FedRAMP, ITAR, etc.
+To use the Slack component with GovSlack, change the beginning of OAuth auth URL, token URL, and revoke URL from `https://slack.com` to `https://slack-gov.com`.
+The component will automatically point API requests towards the Slack Gov API endpoint.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -30,6 +85,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Slack Webhook URL
 
 Authenticate requests to Slack using a Webhook URL.
+
+The [Slack Message from Webhook](#slack-message-from-webhook) and the [Slack Block Message from Webhook](#slack-block-message-from-webhook) actions are the only Slack actions that do not authenticate with OAuth.
+Instead, it uses Slack [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
+For your customers to use this authorization method, they will need to create their own Slack apps and incoming webhooks.
+
+To generate a Slack incoming webhook URL:
+
+1. Navigate to https://api.slack.com/apps
+1. Click **Create New App**, adding an app to your workspace.
+1. Under **Add features and functionality** select **Incoming Webhooks**
+1. **Activate Incoming Webhooks** and then **Add New Webhook to Workspace**
+1. Take note of the Webhook URL. It should be of the form `https://hooks.slack.com/services/foo/bar/baz`
 
 | Input       | Comments                                                                                                           | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------ | ------- |

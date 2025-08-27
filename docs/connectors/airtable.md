@@ -13,6 +13,9 @@ Manage records, tables and bases in Airtable
 
 Airtable API Key and Base ID. Will be deprecated on Feb 1, 2024
 
+Airtable API keys will be [deprecated on Feb 1, 2024](https://support.airtable.com/docs/airtable-api-key-deprecation-notice).
+Please elect to use OAuth 2.0 or personal access tokens instead.
+
 | Input            | Comments                                                                                                        | Default |
 | ---------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
 | Airtable Base ID | Visit https://airtable.com/api and select your workspace. The ID of your base will be printed for you in green. |         |
@@ -21,6 +24,14 @@ Airtable API Key and Base ID. Will be deprecated on Feb 1, 2024
 ### OAuth 2.0
 
 Connect your Airtable account using OAuth 2.0
+
+To create an OAuth 2.0 app in Airtable, first log in to Airtable and then visit [airtable.com/create/oauth](https://airtable.com/create/oauth).
+
+Register a new OAuth integration, and enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the OAuth redirect URL.
+
+Under **Scopes**, select all scopes that you'll need.
+Note which scopes you selected, along with the **Client ID** and **Client secret** that Airtable provides you.
+Enter scopes, client ID and client secret into the config wizard designer.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -34,6 +45,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Personal Access Token
 
 Connect your Airtable account using a personal access token
+
+A **personal access token** can be used for testing an Airtable integration.
+You can create a personal access token at [airtable.com/create/tokens](https://airtable.com/create/tokens).
 
 | Input   | Comments                                                            | Default |
 | ------- | ------------------------------------------------------------------- | ------- |

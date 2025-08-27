@@ -13,6 +13,29 @@ Read and manage Microsoft Outlook calendars and email
 
 Authenticates actions in all Microsoft's Graph API services.
 
+You will first need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
+When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
+
+You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+
+Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+
+You will also need the **Application (client) ID** from the "Overview" page.
+
+Now, configure the OAuth 2.0 connection.
+Add an Microsoft Outlook OAuth 2.0 connection config variable:
+
+- Use the **Application (client) ID** value for the **Client ID** field.
+- Use the **Client Secret** for the same named field.
+- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+- The default scopes are as follows. You can remove scopes that you don't need:
+  - `https://graph.microsoft.com/User.Read` for reading basic user data
+  - `https://graph.microsoft.com/Calendars.ReadWrite` for managing Outlook calendar
+  - `https://graph.microsoft.com/Mail.ReadWrite` for managing email
+  - `https://graph.microsoft.com/Mail.Send` for sending email
+
+Save your integration and you should be able to authenticate a user with OAuth 2.0 to access their Microsoft Outlook data.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -27,6 +50,30 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Authorization Code (Deprecated)
 
 OAuth 2.0 Authorization Code Connectivity for Microsoft Outlook
+
+You will first need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
+When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
+
+You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+
+Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+
+You will also need the **Application (client) ID** from the "Overview" page.
+
+Now, configure the OAuth 2.0 connection.
+Add an Microsoft Outlook OAuth 2.0 connection config variable:
+
+- Use the **Application (client) ID** value for the **Client ID** field.
+- Use the **Client Secret** for the same named field.
+- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+- The default scopes are as follows. You can remove scopes that you don't need:
+  - `https://graph.microsoft.com/User.Read` for reading basic user data
+  - `https://graph.microsoft.com/Calendars.ReadWrite` for managing Outlook calendar
+  - `https://graph.microsoft.com/Mail.ReadWrite` for managing email
+  - `https://graph.microsoft.com/Mail.Send` for sending email
+  - Ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+
+Save your integration and you should be able to authenticate a user with OAuth 2.0 to access their Microsoft Outlook data.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -43,6 +90,25 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials
 
 Authenticates actions in all Microsoft's Graph API services.
+
+This Connection will require an App Registration:
+
+1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
+   1. Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
+   2. Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+   3. Select Register to complete.
+2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection's configuration.
+3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
+4. Navigate to **API Permissions** and select **Add Permission**, select **Microsoft Graph**, and then **Application permissions**.
+5. After applying all permissions relevant for your use-case, click on **Grant Admin Consent** in order to transfer permissions the client credentials flow after a successful connection.
+
+To configure the OAuth 2.0 connection:
+
+1. Add an OAuth 2.0 connection configuration variable:
+   1. All actions for the client credentials flow require authentication with your Tenant ID.
+   2. Use the **Application (client) ID** value for the **Client ID** field.
+   3. Use the **Client Secret** for the same named field.
+   4. Use the default scope that comes set up with the connection.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

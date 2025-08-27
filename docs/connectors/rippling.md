@@ -19,6 +19,19 @@ If you are using Rippling's API to access endpoints on behalf of your own compan
 
 ### OAuth 2.0
 
+To use OAuth 2.0 with Rippling you will need to coordinate with them in accordance with their [Partner Requirements](https://developer.rippling.com/documentation/distribute/getting-started/requirements). Additionally, you may also refer to the [Installation OAuth Guide](https://developer.rippling.com/documentation/distribute/guides/installation).
+
+Ensure to supply the callback URL: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
+You will need to collect a valid **Client ID**, **Client Secret**, and **Authorize URL** from this process.
+
+Once you have this information you can create a connection:
+
+- Enter the **Client ID**, **Client Secret**, and **Authorize URL** to the same named fields.
+- Add space delimited scopes to that field. Refer to [Rippling's scopes documentation](https://developer.rippling.com/documentation/base-api/scopes) for details.
+
+Save your integration and you should now be able to connect to Rippling.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

@@ -13,6 +13,45 @@ Manage Messages in Google&#x27;s email service
 
 OAuth2 Connection
 
+The Gmail component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
+You'll need to create a GCP OAuth 2.0 app so your integration can authenticate and perform Gmail tasks on your customers' behalf.
+
+To create a Gmail OAuth 2.0 app, first make sure you have a Google Developer account - you can sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/).
+Then:
+
+1. Open up the Gmail API console - [https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com](https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com)
+1. You will be prompted to enable **Gmail API** for your project. Click **ENABLE**.
+1. On the sidebar, select **APIs & Services** and then **Credentials**.
+1. An OAuth 2.0 app includes a "Consent Screen" (the page that asks "Do you want to allow (Your Company) to access Gmail on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
+   1. Your app will be externally available to your customers, so choose a **User Type** of **External**.
+   1. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
+   1. You can ignore domains for now.
+   1. On the next page, add any scopes relevant to your integration, like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/gmail.send`.
+   1. Enter some **test users** for your testing purposes.
+      Your app will only work for those testing users until it is "verified" by Google.
+      When you are ready for verification (they verify your privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
+      That'll allow your customers to authorize your integration to access their Gmail account.
+1. Once your "Consent Screen" is configured open the **Credentials** page from the sidebar again.
+1. Click **+CREATE CREDENTIALS** and select **OAuth Client ID**.
+   1. Under **Application type** select **Web application**.
+   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+   1. Click **CREATE**.
+1. Take note of the **Client ID** and **Client Secret** that are generated.
+
+:::info
+Make sure to **publish** your OAuth 2.0 app after you've tested it so users outside of your _test users_ can authorize your integration to interact with Gmail on their behalf.
+:::
+
+Now that you have a **Client ID** and **Client Secret**, add Gmail step to your workflow.
+Open the **Configuration Wizard Designer** by clicking **Configuration Wizard**, select your **Gmail Connection** and enter your client ID and secret.
+
+:::info A note on scopes
+You can keep the default [Gmail scope](https://developers.google.com/gmail/api/auth/scopes), `https://mail.google.com/`.
+This will grant you full permission over your users' Gmail accounts.
+
+If you would like to limit permissions, you can select a subset of scopes, like `https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send`.
+:::
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -25,6 +64,16 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Service Account
 
 Service Account Connection
+
+In order to use the **Service Account** Authentication method for Gmail, you'll need to:
+
+1. Create a Service Account in the Google Cloud Platform (GCP) Console.
+   This can be done [here](https://console.cloud.google.com/) and then navigating to **Service Accounts**
+2. Once a Service Account is created, you will need to generate a Service Account Key
+   This can be done by clicking on the Service Account's options, navigating to the **Key** tab, and clicking **Add Key** to create a new key.
+3. After creating the key, you will be able to download a JSON file that contains the key information. This key **contains sensible data** and should be used with caution.
+4. Use the key downloaded in the previous step as input for the Gmail 'Service Account' connection.
+5. Lastly, if needed, specify a granular scope, take into account that the connection defaults to the **https://mail.google.com/** scope, which gives full access to the Gmail API on your behalf.
 
 | Input                    | Comments                                                                                   | Default                  |
 | ------------------------ | ------------------------------------------------------------------------------------------ | ------------------------ |

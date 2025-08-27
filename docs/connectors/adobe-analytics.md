@@ -13,6 +13,17 @@ Manage companies, report suites, metrics, dimensions and more within Adobe Analy
 
 Connect to Adobe Analytics via OAuth 2.0
 
+To create an Adobe Analytics OAuth 2.0 app, first visit the [Adobe Developer Console](https://developer.adobe.com/console/).
+
+- Create a new project
+- Add the Adobe Analytics API to the project
+- Select **User Authentication, OAuth** for the type of authentication you need, and then select **Web** for the type of application you're trying to integrate with Adobe
+- For **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+- For **Redirect URI Pattern** enter your OAuth 2.0's base URL (minus the `/callback` portion).
+- Take note of your **Client ID** and **Client Secret**
+
+Enter your client ID and client secret when you create an Adobe Analytics connection.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

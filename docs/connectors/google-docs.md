@@ -16,6 +16,23 @@ Use the Google Docs component to create, and collaborate on online documents.
 
 Google Docs OAuth2 Connection
 
+All requests to the Google Docs API must be authorized by an authenticated user.
+
+The details of the authorization process, or "flow," for OAuth 2.0 vary somewhat depending on what kind of application you're writing. The following general process applies to all application types:
+
+1. When you create your application, you register it using the [Google API Console](https://console.cloud.google.com/). Google then provides information you'll need later, such as a client ID and a client secret.
+2. From APIs & Services > Library, enable the Google Docs API
+3. To create API Credentials navigate to Enabled APIs & Services > Credentials
+   1. Select Create Credentials > OAuth Client ID
+   2. Set the application type to ‘Web Application’
+   3. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
+   4. Select Add Or Remove scopes, search Content API for Shopping, and check the boxes for the following scopes
+      1. /auth/documents
+      2. /auth/drive
+      3. /auth/drive.file
+4. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   1. Take note of the **Client ID** and **Client Secret** that are generated, as you will enter them for authentication.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

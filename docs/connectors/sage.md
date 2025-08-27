@@ -13,6 +13,17 @@ Manage contacts and others connected to your Sage account.
 
 OAuth 2.0 Connection for Sage
 
+You will first need to create and configure a [Connected App](https://developer.sage.com/api/accounting/guides/client_app_registration/) within Sage Accounting.
+Be sure to enter the OAuth callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Callback URL**.
+Select **Require Secret for Web Server Flow** and **Require Secret for Refresh Token Flow**:
+
+Once the app has been created, you will be provided with a **Client Id** and **Client Secret**.
+
+Create a new connection for the Sage component and use the following values:
+
+- For **Client ID** and **Client Secret** enter the values that you received previously.
+- For **Scopes** enter either `full_access` or `readonly`. [Sage Authentication Documentation](https://developer.sage.com/api/accounting/guides/authentication/)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

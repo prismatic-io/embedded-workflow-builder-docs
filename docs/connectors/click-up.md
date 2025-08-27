@@ -13,6 +13,18 @@ Use the ClickUp component to manage users, projects, and teams in your ClickUp w
 
 ClickUp OAuth 2.0
 
+Oauth Configuration Instructions
+
+To make API requests of Clickup on behalf of your customers you will need to create an "App" within Clickup. https://clickup.com/api/developer-portal/authentication/#step-1-create-an-oauth-app
+
+1. Log into ClickUp.
+2. Click on your avatar in the lower-left corner and select
+   **Integrations.**
+3. Click on **ClickUp API.**
+4. Click **Create an App.**
+5. Give your app a name and provide the redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+6. Once your app is created, you'll be provided with a client ID and Secret that may be entered in the connection
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -24,6 +36,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### ClickUp Personal Access Token
 
 ClickUp Personal Access Token
+
+Personal API token Configuration Instructions
+
+To make API requests to ClickUp using a personal API token you may generate one using the following Personal API token [steps](https://help.clickup.com/hc/en-us/articles/6303426241687-Getting-Started-with-the-ClickUp-API#personal-api-key).
+
+1. Log into ClickUp.
+2. Click on your avatar in the lower-left corner and select **Apps.**
+3. Under API Token, click **Generate.**
+4. You can copy and paste your personal API token.
 
 | Input                 | Comments                                                                                                                                               | Default |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |

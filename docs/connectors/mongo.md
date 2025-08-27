@@ -13,6 +13,8 @@ Interact with documents in a MongoDB database
 
 Authenticate requests to a MongoDB server.
 
+Create a new MongoDB connection and enter [the connection string for your MongoDB server](https://www.mongodb.com/docs/manual/reference/connection-string/).
+
 | Input                     | Comments                                                                                                                                                                                                                                                                                            | Default |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Cluster Connection String | The connection string to use for connecting to a Mongo cluster. From the "Database Deployments" screen, click "Connect" next to a cluster to view the connection string. Refer to https://www.mongodb.com/docs/manual/reference/connection-string/ for details on format and configuration options. |         |

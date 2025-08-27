@@ -13,6 +13,50 @@ BigQuery is Google Cloud&#x27;s fully managed, petabyte-scale, and cost-effectiv
 
 Authenticate requests to Google Cloud BigQuery using OAuth2.
 
+The Google BigQuery component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service. You'll need to create a GCP OAuth 2.0 app so your integration can
+authenticate and perform Google Drive tasks on your customers' behalf.
+
+To create a Google Drive OAuth 2.0 app, first make sure you have a Google Developer account - you can sign up at https://console.cloud.google.com/.
+Then:
+
+1. Open up the [Google Drive API Console](https://console.cloud.google.com/bigquery)
+2. Click **CREATE PROJECT** if you would like to create a new GCP project, or select an existing project.
+3. You will be prompted to enable **Google BigQuery** for your project. Click **ENABLE**.
+4. On the sidebar, select **Credentials**.
+5. An OAuth 2.0 app includes a "Consent Screen" (the page that asks "Do you want to allow (Your Company) to access Google Drive on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
+   1. Your app will be externally available to your customers, so choose a **User Type** of **External**.
+   2. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
+   3. You can ignore domains for now.
+   4. On the next page, add these scopes to your app (these may not all be necessary, and should match the scopes you request in your connection definition):
+      - `https://www.googleapis.com/auth/bigquery`
+      - `https://www.googleapis.com/auth/bigquery.insertdata`
+      - `https://www.googleapis.com/auth/cloud-platform`
+      - `https://www.googleapis.com/auth/cloud-platform.read-only`
+      - `https://www.googleapis.com/auth/devstorage.full_control`
+      - `https://www.googleapis.com/auth/devstorage.read_only`
+      - `https://www.googleapis.com/auth/devstorage.read_write`
+   5. Enter some **test users** for your testing purposes. Your app will only work for those testing users until it is "verified" by Google.
+      When you are ready for verification (they verify your privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**. That'll allow your customers to authorize your integration to access their Google Drive.
+6. Once your "Consent Screen" is configured open the **Credentials** page from the sidebar again.
+7. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
+   1. Under **Application type** select **Web application**.
+   2. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   3. Click **CREATE**.
+8. Take note of the **Client ID** and **Client Secret** that are generated.
+
+INFO Make sure to **publish** your OAuth 2.0 app after you've tested it so users outside of your _test users_ can authorize your integration to interact with Google Drive on their behalf.
+
+Now that you have a **Client ID** and **Client Secret**, add Google Drive step to your flow. Open the **Configuration Wizard Designer** by clicking **Configuration Wizard**, select your **Google Drive Connection** and enter your client ID and secret. You will probably want to keep the default [Google BigQuery](https://developers.google.com/identity/protocols/oauth2/scopes#bigquery) scopes:
+
+| https://www.googleapis.com/auth/bigquery                 | View and manage your data in Google BigQuery and see the email address for your Google Account             |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| https://www.googleapis.com/auth/bigquery.insertdata      | Insert data into Google BigQuery                                                                           |
+| https://www.googleapis.com/auth/cloud-platform           | See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account. |
+| https://www.googleapis.com/auth/cloud-platform.read-only | View your data across Google Cloud services and see the email address of your Google Account               |
+| https://www.googleapis.com/auth/devstorage.full_control  | Manage your data and permissions in Cloud Storage and see the email address for your Google Account        |
+| https://www.googleapis.com/auth/devstorage.read_only     | View your data in Google Cloud Storage                                                                     |
+| https://www.googleapis.com/auth/devstorage.read_write    | Manage your data in Cloud Storage and see the email address of your Google Account                         |
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

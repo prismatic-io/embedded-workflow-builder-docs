@@ -13,6 +13,14 @@ Manage records and associations in the HubSpot CRM platform
 
 Authenticate requests to Hubspot using OAuth 2.0.
 
+The HubSpot component authenticates requests through a OAuth 2.0 credential.
+Information on how to generate an OAuth 2.0 credential with HubSpot can be found [here](https://developers.hubspot.com/docs/api/working-with-oauth)
+Now, you will have to configure a new OAuth 2.0 HubSpot connection.
+
+- For **Client ID** and **Client Secret** enter the values that you got from the HubSpot auth settings.
+- For **Scopes** choose from the list found on the HubSpot [docs](https://developers.hubspot.com/docs/api/working-with-oauth)
+- Under the **Redirect URLs** section add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

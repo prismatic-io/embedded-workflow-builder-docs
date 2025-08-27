@@ -13,6 +13,16 @@ Use the Esri ArcGIS component to manage map layers, and update locations.
 
 OAuth 2.0 connection for ArcGIS
 
+ArcGIS requires a Developer Account to create applications for OAuth.
+
+To obtain Oauth credentials:
+
+1. Navigate to https://developers.arcgis.com/dashboard/.
+2. Navigate to the Oauth 2.0 section and select + New Application.
+3. Once application is created document your Client ID, Client Secret, and Temporary Token.
+4. In the Redirect URLs section select + Add URI and enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+5. Enter the Client ID, Client Secret, and Temporary Token in the designated fields of your integration connection configuration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

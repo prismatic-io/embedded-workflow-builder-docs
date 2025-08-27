@@ -11,6 +11,21 @@ SAP S/4HANA is a multi-faceted cloud based ERP solution. Use the S/4HANA compone
 
 ### API Key
 
+You can create an API key within a single environment and use the API key to execute different public endpoints bound to this specific environment.
+
+While creating an API key, you will be able to see the complete API key and copy/paste into your connection. As a best practice, you must store the API key in a safe place so that you can retrieve it in the future. You won’t be able to copy/paste the key once it is added to your environment. Refer to [SAP Help Portal](https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment) for additional Information.
+
+Perform the following steps to create API keys within a single environment.
+
+- Go to the **Environments** tab and click an environment to open it.
+- Go to the **API Keys** section and click Add **API Key**.
+- In the **General** section of **Generate New API Key** window, enter API key name on the Name field and description (optional) on the **Description** field. Click Next.
+- In the **Scope** section of **Generate New API Key** window, click the toggle button(s) to choose single or multiple scopes of your API key. Click **Next**.
+- In the **Review** section of **Generate New API Key** window, you can review your API key. Click **Add**. The **Generated Key** dialog box is displayed.
+- Click **Copy**. The API key will be copied to the clipboard and you can paste it into the connection. You can also select the API key manually and copy it.
+
+[Detailed Info Here](https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment)
+
 | Input       | Comments                                                                                                                                                | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | SAP API Key | Follow the next steps to get an API key https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment |         |

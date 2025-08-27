@@ -11,6 +11,16 @@ Manage users, projects, and teams in your Asana workspace
 
 ### Asana OAuth 2.0 Connection
 
+To make API requests of Asana on behalf of your customers you need to create an "OAuth app" within Asana.
+Log in to Asana and then visit [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps).
+
+- Click **Create new app**
+- Give your app a name and agree to Asana's terms and conditions
+- Open **OAuth** from the left-hand menu and take note of the generated **Client ID** and **Client secret**
+- Click **+ Add redirect URL** and enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+
+Finally, when creating your Asana integration update your Asana connection with the **Client ID** and **Client secret** that you noted.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -20,6 +30,13 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client secret | Generate from https://app.asana.com/0/my-apps/ |         |
 
 ### Asana Personal Access Token
+
+Developer **personal access tokens** can be used for development purposes, but you should use an [OAuth 2.0 connection](#asana-oauth-20-connection) when you deploy your integration (so your users can log in with their accounts).
+
+To generate an **personal access token**, log in to Asana and open [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps).
+Then, click **+ Create new token**.
+
+For more information on access tokens, refer to the [Asana Docs](https://developers.asana.com/docs/personal-access-token).
 
 | Input                 | Comments                                                                                            | Default |
 | --------------------- | --------------------------------------------------------------------------------------------------- | ------- |

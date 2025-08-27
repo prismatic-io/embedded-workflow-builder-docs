@@ -13,6 +13,23 @@ The Google Content API for Shopping can be used to manage and automate Google Me
 
 OAuth2 Connection
 
+All requests to the Google Content API for Shopping must be authorized by an authenticated user.
+
+The details of the authorization process, or "flow," for OAuth 2.0 vary somewhat depending on what kind of application you're writing. The following general process applies to all application types:
+
+1. When you create your application, you register it using the [Google API Console](https://console.cloud.google.com/). Google then provides information you'll need later, such as a client ID and a client secret.
+2. From APIs & Services > Library, activate the Google Content API for Shopping
+3. To create API Credentials navigate to Enabled APIs & Services and select Content API for Shopping
+   1. Select Create Credentials
+   2. Ensure Content API for Shopping is set for Select an API
+   3. Choose User Data and select Next
+   4. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
+   5. Select Add Or Remove scopes, search Content API for Shopping, and check the boxes for the following scopes
+      1. https://capture.dropbox.com/yONkE7x1vw9doIJ9
+   6. For OAuth Client ID, under **Application type** select **Web application**. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` and then click **CREATE**.
+      1. Take note of the **Client ID** and **Client Secret** that are generated, as you will enter them for authentication.
+   7. Client Id and Secret can also be obtained in the Credentials Page under the OAuth 2.0 Client IDs section by selecting the name of the OAuth client created.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

@@ -13,6 +13,14 @@ SAP Business One is an integrated enterprise resource planning (ERP) solution de
 
 Authentication for SAP Business One
 
+To start a Business One API session:
+
+1. Enter the following information into the connection configuration of the integration
+   1. Server Address - Including Server Name, IP Address, Port Number. Server address must be like `https://<Server Name/IP>:<Port>`
+   1. Username
+   1. Password
+   1. Company DB
+
 | Input             | Comments                                                                                                                                 | Default |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Username          | SAP Business One Username.                                                                                                               |         |

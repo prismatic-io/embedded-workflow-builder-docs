@@ -11,6 +11,19 @@ Interact with OpenAI models, including Chat GPT and DALL·E
 
 ### OpenAI API Key
 
+If you'd like to use an Azure OpenAI resource, you must have an [Azure subscription](https://azure.microsoft.com/free/dotnet/) and [Azure OpenAI access](https://learn.microsoft.com/azure/cognitive-services/openai/overview#how-do-i-get-access-to-azure-openai). This will allow you to create an Azure OpenAI resource and get both a connection URL as well as API keys. For more information, see [Quickstart: Get started generating text using Azure OpenAI Service](https://learn.microsoft.com/azure/cognitive-services/openai/quickstart).
+
+Integrations can authenticate with OpenAI using API keys or Microsoft Entra Tokens:
+
+To generate an API key from OpenAI:
+
+1. Navigate to[platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys) and generate a new key.
+   a. If your user is associate with one organization, you can leave the connection's organization field blank. Otherwise, specify your organization's ID.
+
+To generate a token using Microsoft Entra authentication refer to the following [authentication with Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/managed-identity) guide for detailed prerequisites and configuration.
+
+If you'd like to use the Azure OpenAI JS client library to connect to non-Azure OpenAI, you'll need an API key from a developer account at https://platform.openai.com/.
+
 | Input         | Comments                                                                                                       | Default |
 | ------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
 | API Key       | This API KEY Generate an API key at https://platform.openai.com/account/api-keys or your Azure OpenAI API KEY. |         |

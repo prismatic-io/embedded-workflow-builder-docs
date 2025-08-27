@@ -13,6 +13,28 @@ Interact with the Microsoft Graph API
 
 OAuth 2.0 Authorization Code Connectivity for Microsoft Graph API
 
+To use the Microsoft Graph API component, configure an OAuth 2.0 application through Active Directory in the [Microsoft Azure Portal](https://portal.azure.com/#home).
+
+When creating the application you will be prompted to select the **Supported account types**.
+Under this section, be sure to select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
+You will need to go to **Platforms** and add the **Web** platform.
+In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+
+Next, go to **Certificates & Secrets** for the app and add a new **Client Secret**.
+Copy the **value** (not ID) of the secret for future use.
+
+You will also need the **Application (client) ID** from the "Overview" page.
+
+Next, supply the following values to the **OAuth 2.0** connection:
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Microsoft Azure Portal.
+- The **Scopes** your integration requires.
+  You can find scopes on [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference), or by making test calls in the [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer).
+- Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+- If you didn't select Multi-tenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+
+For more information regarding authenticating against the Microsoft Graph API refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

@@ -13,6 +13,15 @@ Confluence is an open and shared workspace platform provided by Atlassian. Use t
 
 Confluence Basic
 
+If you select Basic Auth and you are using Confluence cloud, you will need to supply your Confluence email and an API token to the connection. If you are on a locally hosted instance of Confluence, you will need to supply your Confluence email and password to the connection.
+
+1. Log in to [Atlassian](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click Create API token.
+3. From the dialog that appears, enter a memorable and concise Label for your token and click Create.
+4. Click Copy to clipboard, then paste the token to the connection configuration of your integration.
+
+For additional information on generating an API token from Confluence Cloud, refer to the [Atlassian docs](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+
 | Input     | Comments                                                                                                          | Default |
 | --------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
 | Email     | Provide a valid email for the given Confluence account you want to connect.                                       |         |
@@ -22,6 +31,27 @@ Confluence Basic
 ### Confluence OAuth 2.0
 
 Confluence OAuth 2.0
+
+1. Navigate to the Atlassian [Developer Console](https://developer.atlassian.com/console/myapps/) and create a new **Oauth 2.0 integration** and give it a name. Under the app details section, take note of your client Id and client secret values that were generated.
+1. After you have saved those values, find the Authorization section and click configure on Oauth 2.0 (3LO).
+   There you will be prompted to enter your **Redirect URL** `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+1. Next navigate to the permissions.
+   It is important that you remain consistent with the scopes you supply in both Confluence, and your connection.
+
+The default scopes on a new connection will be as follows (Classic Scopes):
+`read:confluence-user` `read:confluence-space.summary read:confluence-props` `read:confluence-content.all` `read:confluence-content.summary` `read:confluence-content.permission` `read:confluence-groups readonly:content.attachment:confluence` `write:confluence-content` `write:confluence-spacewrite:confluence-file` `write:confluence-props` `manage:confluence-configuration` `search:confluence write:confluence-groups`
+These scopes will provide access to the most of the actions in the Component component, but you may have to modify the scopes in both locations (here and Atlassian Developer Console) to meet your needs.
+
+For more information on developing Confluence applications, follow the guide [here.](https://developer.atlassian.com/cloud/confluence/security-overview/#oauth-2-0--3lo-) Next, you can configure an OAuth 2.0 connection.
+
+Add a Confluence step to your integration. This will automatically create a Confluence connection config variable.
+
+Ensure the connection is of type `Confluence OAuth 2.0 Connection` and enter the following details:
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Atlassian Developer Console
+- As stated previously **Scopes** will default to the following:
+  `read:confluence-user` `read:confluence-space.summary read:confluence-props` `read:confluence-content.all` `read:confluence-content.summary` `read:confluence-content.permission` `read:confluence-groups readonly:content.attachment:confluence` `write:confluence-content` `write:confluence-spacewrite:confluence-file` `write:confluence-props` `manage:confluence-configuration` `search:confluence write:confluence-groups`
+- From here you can do any [additional configuration](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) to match your use case using the Granular scopes tab.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

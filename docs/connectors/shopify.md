@@ -13,6 +13,11 @@ Manage customers, products, and orders in your Shopify platform
 
 Authenticate requests to Shopify using an access token.
 
+An **admin API access token** can be used for testing purposes as you develop your integration.
+You can create an access token from the **API credentials** tab of a private Shopify app that you create.
+
+Before publishing an integration for customers, we recommend you switch to OAuth 2.0 authentication to give your users a single button-click experience.
+
 | Input                  | Comments                                                                      | Default                           |
 | ---------------------- | ----------------------------------------------------------------------------- | --------------------------------- |
 | Admin API Access Token | Generate from the 'API credentials' tab of a private Shopify app that you own |                                   |
@@ -21,6 +26,13 @@ Authenticate requests to Shopify using an access token.
 ### OAuth 2.0
 
 Authenticate requests to Shopify using values obtained from the Developer Console. Allows for using a single `domain` input instead of entering separate authorization URL's.
+
+The Shopify component authenticates requests through OAuth 2.0.
+Information on how to generate an OAuth 2.0 app with Shopify can be found [in their documentation](https://shopify.dev/apps/auth/oauth)
+
+1. Navigate to the **Configuration** section of your created app. In the **Allowed redirection URL(s)** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
+For information on what **Scopes** you should request, see the [Shopify documentation](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

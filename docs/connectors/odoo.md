@@ -11,6 +11,18 @@ Manage records in an Odoo database
 
 ### Odoo Connection
 
+Customers can use Odoo's cloud service to access an Odoo database, or they can run Odoo on their own servers.
+Either way, Odoo uses basic auth to connect to an Odoo database.
+
+- For **Base URL**, you can enter the URL you visit when you log in to Odoo (something like `https://example-company.odoo.com`).
+- You can likely ignore **Server Port**, unless your customer uses a non-traditional port for accessing their Odoo installation.
+- The **Database Name** can be found by clicking the user icon on the top-right within Odoo, and then selecting **My Databases**.
+- **Username** is the email address the user uses to log in.
+  We recommend they create a system account for integrations (i.e. not a specific user's account).
+- **Password or API Key** can either be the password your customer uses to log in to Odoo, or they can generate an API key.
+  To generate an API key, your customer will need to go into settings, enable developer mode, and then from their user preferences they can generate an API key.
+  See [https://www.odoo.com/documentation/14.0/developer/api/external_api.html#api-keys](https://www.odoo.com/documentation/14.0/developer/api/external_api.html#api-keys).
+
 | Input               | Comments                                                                        | Default |
 | ------------------- | ------------------------------------------------------------------------------- | ------- |
 | Odoo Base URL       | Enter the URL you visit when you log in to Odoo                                 |         |

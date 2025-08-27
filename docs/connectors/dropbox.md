@@ -13,6 +13,22 @@ Manage files stored in Dropbox
 
 OAuth 2.0 Connectivity for Dropbox
 
+This component uses OAuth 2.0 to connect to Dropbox's API.
+To create a Dropbox OAuth 2.0 app, log in to Dropbox and open [https://www.dropbox.com/developers/apps](https://www.dropbox.com/developers/apps):
+
+1. Select **Create app**.
+1. Select that you want **Scoped access**.
+1. Choose the type of access you want:
+   1. **App folder** access gives you access to a single folder in the user's `Apps/` directory. A folder will be created with the same name as your OAuth app.
+   1. **Full Dropbox** access gives you access to all files and folders in a user's Dropbox account.
+1. Give your app a name and click **Create app**.
+   1. Take note of the **App key** and **App secret** - you'll enter these in a Dropbox connection config variable.
+1. Under the **OAuth2** section add the **Redirect URI** as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
+Under the **Permissions** tab, choose the permissions your app will need.
+The actions supported in this component relate to files, so you should grant the `files.metadata.read` and `files.content.read` permissions if you need read-only access, and also include the `files.metadata.write` and `files.content.write` permissions if you need to write files to a user's Dropbox account.
+You can safely ignore permissions listed under **Collaboration** and **Account Info**.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

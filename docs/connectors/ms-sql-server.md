@@ -13,6 +13,8 @@ Query and manage data in a Microsoft SQL Server (MSSQL) Database
 
 Authenticate requests to a Microsoft SQL Server.
 
+The MS SQL Server **username** and **password** can be put directly into a connection, alongside the database host, port, and database name.
+
 | Input              | Comments                                                                       | Default |
 | ------------------ | ------------------------------------------------------------------------------ | ------- |
 | Host               | Provide a string value for the address that your database server is hosted on. |         |

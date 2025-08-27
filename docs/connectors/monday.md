@@ -13,6 +13,11 @@ Manage boards, tasks and workflows within Monday.
 
 API Key connection
 
+For testing purposes, you can use an **API key** to authenticate requests to the Monday GraphQL API.
+You can configure a Monday Personal API token from your user admin settings.
+For more information refer to the [Monday documentation](https://developer.monday.com/apps/docs/choosing-auth).
+We recommend using OAuth when you deploy your integration to customers.
+
 | Input   | Comments | Default |
 | ------- | -------- | ------- |
 | API Key | API Key  |         |
@@ -20,6 +25,14 @@ API Key connection
 ### OAuth 2.0
 
 OAuth 2.0 connection
+
+To configure OAuth 2.0 you will first need to [register a Monday app](https://developer.monday.com/apps/docs/oauth).
+Ensure that the callback URL is added to the app in Monday.
+
+Now you will need to add the Monday component's **OAuth 2.0** connection to your integration and configure it with:
+
+- For **Client ID** and **Client Secret** enter the values that you got from your Monday app.
+- For **Scopes** refer to [Monday's OAuth 2.0 documentation](https://developer.monday.com/apps/docs/oauth#set-up-permission-scopes).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

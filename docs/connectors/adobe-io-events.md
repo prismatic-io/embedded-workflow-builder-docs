@@ -13,6 +13,24 @@ Adobe I/O Events notifies you when changes occur. Use the Adobe I/O Events compo
 
 Adobe I/O Connection
 
+To establish an OAuth connection for your Adobe integration, follow these steps:
+
+1. Visit the Adobe Developer Console projects page by navigating to [https://developer.adobe.com/console/projects](https://developer.adobe.com/console/projects).
+
+2. Create a new project by clicking the appropriate option.
+
+3. Click on "Add to project" to start configuring your project.
+
+4. Add the "I/O Management API" to your project. This API enables access to Adobe I/O services.
+
+5. Select "OAuth Server-to-Server authentication" as your preferred authentication method.
+
+6. Generate an access token from the connected credentials section. This step will also provide you with the Client ID required for your integration.
+
+7. In the Project overview view, you can download the project configuration JSON file. This file contains various values such as Organization ID, Project ID, and Workspace ID, which are essential for using the actions within your integration.
+
+With these steps, you'll have set up an OAuth connection and obtained the necessary credentials for your Adobe I/O Events Component.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

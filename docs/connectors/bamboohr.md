@@ -13,6 +13,11 @@ Manage Employees in BambooHR
 
 Bamboo API Key
 
+Bamboo HR API keys can be used for testing an integration, but for production integrations, please use OAuth 2.0.
+
+To generate an API key, log in to Bamboo HR, click your user profile image on the upper-right and then click **API Keys**.
+Click **Add New Key**, and take note of the API key that is generated - it will be a ~40 character alphanumeric string.
+
 | Input          | Comments                                                              | Default |
 | -------------- | --------------------------------------------------------------------- | ------- |
 | API Key        | Bamboo API Key                                                        |         |

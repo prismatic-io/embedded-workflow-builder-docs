@@ -13,6 +13,32 @@ Manage Notion pages, databases, and users
 
 Connect to Notion using an Internal Integration Secret
 
+To create an internal integration for Notion, you'll set up a private integration that works within the own workspace.
+
+1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion
+2. Click **Create new integration**
+3. Fill in the integration details:
+4. Under **Capabilities**, select the permissions needed:
+   - **Read content**: To read pages, databases, and other content
+   - **Update content**: To modify existing content
+   - **Insert content**: To create new content
+5. Under **Content Capabilities**, choose specific content types if needed
+6. Save the integration settings
+
+##### Get the Integration Token:
+
+1. In the **Secrets** tab, copy the **Internal Integration Token**
+2. Enter this token when configuring the Notion connection
+
+#### Connect to Content:
+
+After creating the integration, you'll need to connect it to specific pages or databases:
+
+1. Go to the Notion page or database you want to access
+2. Click the **...** menu in the top right corner
+3. Select **Connect to** and choose the integration
+4. The integration will now have access to that content based on the capabilities you selected
+
 | Input                       | Comments                                | Default |
 | --------------------------- | --------------------------------------- | ------- |
 | Internal Integration Secret | Your Notion Internal Integration Secret |         |
@@ -20,6 +46,40 @@ Connect to Notion using an Internal Integration Secret
 ### OAuth 2.0
 
 Connect to Notion via OAuth 2.0
+
+To create an OAuth 2.0 integration for Notion, you'll set up a public integration that allows users to authenticate with their Notion workspaces.
+
+1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion
+2. Click **Create new integration**
+3. Fill in the integration details:
+4. Under **Capabilities**, select the permissions needed:
+   - **Read content**: To read pages, databases, and other content
+   - **Update content**: To modify existing content
+   - **Insert content**: To create new content
+5. Under **Content Capabilities**, choose specific content types if needed
+6. Save the integration settings
+
+#### Configure OAuth Settings:
+
+1. Navigate to the **Distribution** page in the integration settings
+2. Select **Public integration** to enable OAuth
+3. Add the callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Configure additional OAuth settings as needed
+
+#### Get OAuth Credentials:
+
+1. In the **Secrets** tab, find the OAuth credentials:
+   - **OAuth client ID**: Copy this value
+   - **OAuth client secret**: Copy this value
+2. Enter these values when you add a Notion connection to the flow
+
+#### User Authorization Flow:
+
+When users connect their Notion workspace:
+
+1. They'll be redirected to Notion's OAuth authorization page
+2. Users select which pages/databases to share with the integration
+3. After authorization, the integration will have access to the selected content based on the capabilities you configured
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

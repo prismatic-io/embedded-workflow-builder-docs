@@ -13,6 +13,10 @@ BigCommerce is a SaaS ecommerce platform. Use the Bigcommerce component to manag
 
 BigCommerce OAuth 2.0
 
+1. To create an OAuth 2.0 app in BigCommerce, sign up for a BigCommerce developer account at https://developer.bigcommerce.com/ and create a new BigCommerce application.
+2. Take note of your application's Client ID and Secret and enter those values when you add a BigCommerce connection to your integration.
+3. Under Redirect URI, add the callback URL, `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

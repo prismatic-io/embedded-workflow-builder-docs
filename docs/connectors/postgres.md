@@ -13,6 +13,9 @@ Query and manage data in a PostgreSQL database
 
 Authenticate requests to a PostgreSQL server.
 
+Create a new PostgreSQL connection and enter the host, port, and database for your PostgreSQL server.
+The **username** and **password** are optional inputs that can be put directly into a PostgreSQL connection.
+
 | Input              | Comments                                                                                                              | Default |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- | ------- |
 | Host               | Provide the string value for the host of the server.                                                                  |         |

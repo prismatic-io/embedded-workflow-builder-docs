@@ -13,6 +13,17 @@ Calendly is an industry leading scheduling solution for businesses. Use the Cale
 
 OAuth 2.0 Connection
 
+Calendly requires a Developer Account to create applications for OAuth. Refer to the following [guide](https://developer.calendly.com/create-a-developer-account) for more information.
+
+To Set up OAuth App:
+
+1. Login to your Calendly Developer Account and navigate to the [Apps Portal](https://developer.calendly.com/console/apps)
+2. Follow the Steps and enter the following information:
+   1. Kind of app - Web
+   2. Environment type - Production or Sandbox. You will likely need separate apps for each.
+   3. Redirect URI - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+3. Continue and copy your Client ID, Client Secret, and Webhook signing key for the connection configuration of your Integration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

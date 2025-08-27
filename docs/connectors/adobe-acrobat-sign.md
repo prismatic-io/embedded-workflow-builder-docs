@@ -13,6 +13,28 @@ Adobe Acrobat Sign is an e-signature management solution. Use the Adobe Acrobat 
 
 OAuth 2.0 flow
 
+To configure OAuth for Sign, begin by [creating an App:](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#get-the-app-id-and-secret)
+
+1. [Log in to Acrobat Sign](https://secure.adobesign.com/public/login).
+2. Select **API** from the top menu. If you do not see the **API** link, select **Account**
+3. Select **API Applications.**
+4. Select the **Create** (+) icon at the top right of the table and provide details about your app.
+5. Choose a domain based on the intended use:
+6. **CUSTOMER**: Apps that only access your account or are used for internal use and testing.
+7. **PARTNER**: Select this type if you're developing an application for other users and your app needs access to other Acrobat Sign accounts.
+   Note: PARTNER applications [must be certified](https://www.adobe.com/go/esign-dev-cert) to have full access to other accounts.
+
+To Retrieve the OAuth [Client ID and Secret:](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#configure-oauth)
+
+1. In the API Applications menu, select the application.
+2. Click **Configure OAuth for the Application** link to configure your OAuth integration.
+3. For the redirect URI enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+4. check the boxes for the necessary scopes needed with the modifier set to `account` for the integration and save.
+5. in the API Applications menu, select the application and select View / Edit.
+6. Enter the Application ID/Client ID and Client Secret Values into the connection configuration of the integration.
+7. Client ID and Application ID are the same value and can be used interchangeably.
+8. Enter the scopes
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

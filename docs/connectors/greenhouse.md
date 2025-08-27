@@ -11,6 +11,26 @@ Interact with the Greenhouse API
 
 ### API Key
 
+The Greenhouse Harvest API uses Basic Auth over HTTPS for authentication. The username is your Greenhouse API token and the password should be blank. Unauthenticated requests will return an HTTP 401 response.
+
+1. Harvest API keys can be obtained in Greenhouse. In order to create a Harvest API key, a user must be granted the “Can manage ALL organization’s API Credentials” in the “Developer permission” section.
+2. That user can then go Configure >> Dev Center >> API Credential Management.
+3. From there, you can create a Harvest API key and choose which endpoints it may access
+   a. API Type - Harvest
+   b. Partner - Custom
+4. Select “Manage Permissions” to Continue
+5. Enter Your API key into your flow and/or another secure location.
+6. Select “I have stored the API key” to continue”
+7. You may now choose which actions the user will be allowed to submit:
+   a. Recommended sections for getting started
+   I. Users
+   II. Applications
+   III. Jobs
+   IV. Candidates
+   V. Custom Field Options
+   b. You may also choose granular permissions for each section
+   I. Select Save when complete.
+
 | Input   | Comments                         | Default |
 | ------- | -------------------------------- | ------- |
 | API Key | API Key for your Greenhouse User |         |

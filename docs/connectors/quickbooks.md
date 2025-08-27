@@ -13,6 +13,17 @@ Create and manage customers and invoices within Intuit QuickBooks
 
 Authenticate requests to QuickBooks using values obtained from the Developer Console.
 
+QuickBooks uses OAuth 2.0 to authenticate requests against the QuickBooks Online API.
+
+1. To configure an OAuth 2.0 credential through QuickBooks, you will need to [create an app](https://www.developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0-playground#get-the-access-token) within the Intuit developer portal.
+1. When you create your app, be sure to enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+   1. Consult QuickBooks to determine the proper OAuth Scopes to assign.
+1. Once the app has been created, you will be provided with a **Client ID** and **Client Secret**.
+1. Now, configure OAuth 2.0 settings.
+1. Create a new credential of type **OAuth 2.0 - Authorization Code**.
+1. Enter the **Client ID** and **Client Secret** that you received from the Intuit developer portal.
+1. Set **Scopes** to any of the values in [this list.](https://developer.intuit.com/app/developer/qbo/docs/learn/scopes)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

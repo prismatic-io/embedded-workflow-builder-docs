@@ -13,6 +13,8 @@ Manage the teams, groups, channels, and messages associated with your Microsoft 
 
 Use Incoming Webhooks to send messages to Microsoft Teams.
 
+[Incoming Webhooks](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) can be used for sending [adaptive cards](https://adaptivecards.io/) or plain text messages to individual chats or channels.
+
 | Input       | Comments                                      | Default |
 | ----------- | --------------------------------------------- | ------- |
 | Webhook URL | The Incoming Webhook URL for a Teams channel. |         |
@@ -20,6 +22,61 @@ Use Incoming Webhooks to send messages to Microsoft Teams.
 ### OAuth 2.0 Admin Consent Client Credentials
 
 OAuth 2.0 Client Credentials Connectivity with admin consent screen for Microsoft Teams
+
+This authentication method may be used when an App requires granting admin consent to API permissions, in addition to authorizing the integration with the App's configured client credentials.
+
+The Microsoft Teams component authenticates requests through the [Microsoft Graph API](https://docs.microsoft.com/en-us/graph/use-the-api).
+
+#### Creating an App Registration
+
+To configure OAuth 2.0 you must first create an App through Active Directory in the [Microsoft Entra Admin Center](https://entra.microsoft.com/#home) or [Microsoft Azure Portal](https://portal.azure.com/#home).
+
+1. Navigate to **App Registrations**
+1. When creating the application you will be prompted to select **Supported account types**.
+1. Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**.
+1. Navigate to **Redirect URI** and add the **Web** platform. Now enter the redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` for US based integrations.
+1. Select **Register** to complete.
+1. In the App, navigate to **Certificates & Secrets** and select **New client secret**. Copy/save the **Value** for use in the connection configuration of your integration (the value will not be shown again).
+1. Next, navigate to the **Overview** section and copy the **Application (client) ID**
+1. Navigate to the **API Permissions** section to assign the proper permissions for the integration. Select **Add Permission**, select all permissions that are required for your desired integration and save these values for later. A full list of scopes can be found on the [Microsoft Graph API documentation](https://learn.microsoft.com/en-us/graph/permissions-reference)
+   1. Recommended scopes for Teams can be found in Microsoft Graph > Application permissions:
+      `AppCatalog.Read.All`
+      `TeamsAppInstallation.Read.Group`
+      `TeamsAppInstallation.ReadWriteSelfForTeam.All`
+      `TeamsAppInstallation.ReadWriteForTeam.All`
+      `TeamsAppInstallation.ReadWriteAndConsentForTeam.All`
+      `TeamsAppInstallation.ReadWriteAndConsentSelfForTeam.All`
+      `Group.ReadWrite.All`
+      `Directory.ReadWrite.All`
+      `ChannelSettings.Read.Group`
+      `Channel.ReadBasic.All`
+      `Channel.Delete.Group`
+      `Channel.Create.Group`
+      `ChannelSettings.ReadWrite.Group`
+      `Teamwork.Migrate.All`
+      `ChannelMessage.Read.Group`
+      `GroupMember.Read.All`
+      `Team.ReadBasic.All`
+      `TeamMember.Read.Group`
+      `TeamMember.ReadWrite.All`
+      `TeamSettings.ReadWrite.Group`
+      `Team.Create`
+      `TeamSettings.Read.Group`
+      `User.Read.All`
+      `User.ReadWrite.All`
+
+For more information regarding authenticating against the Microsoft Graph API refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+
+#### Configuring the Integration
+
+Supply the following values to the **OAuth 2.0 Admin Consent Client Credentials** connection:
+
+- **Client ID** enter the **Application (client) ID**
+- **Client Secret** enter the **Value** provided (Do not use **Secret ID**)
+- In the **Admin Consent URL** `https://login.microsoftonline.com/{tenant}/adminconsent`, replace `{tenant}` with the **Directory (tenant) ID** from the App.
+- In the **Token URL** `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token?grant_type=client_credentials`, replace `{tenant}` with the **Directory (tenant) ID** from the App.
+- Provide the assigned API permissions as **Scopes** you assigned to your App. The default value will be set to `https://graph.microsoft.com/.default` which will use all admin consented permissions assigned to the App.
+- If you didn't select Multitenant when creating the App, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -36,6 +93,26 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 OAuth 2.0 Authorization Code Connectivity for Microsoft Teams
 
+Begin by following the steps in [Creating an App Registration](#creating-an-app-registration).
+
+Recommended API permissions for Authorization Code Authentication:
+
+1. Navigate to the **API Permissions** section. Select **Add Permission**, select all permissions that are required for your desired integration. A full list of scopes can be found on the [Microsoft Graph API documentation](https://learn.microsoft.com/en-us/graph/permissions-reference).
+   1. Recommended scopes for Teams can be found in Microsoft Graph > Delegated permissions:
+      `Team.ReadBasic.All`
+      `Team.Create`
+      `TeamMember.ReadWrite.All`
+      `ChannelMessage.Read.All`
+      `offline_access`
+
+When an App is created, supply the following values to the **OAuth 2.0 Authorization Code** connection:
+
+- **Client ID** enter the **Application (client) ID**
+- **Client Secret** enter the **Value** provided (Do not use **Secret ID**)
+- Provide the **Scopes** you assigned to your Azure application permissions. The default value will match the recommended scopes. `https://graph.microsoft.com/Team.ReadBasic.All https://graph.microsoft.com/Team.Create https://graph.microsoft.com/Group.ReadWrite.All https://graph.microsoft.com/TeamMember.ReadWrite.All https://graph.microsoft.com/ChannelMessage.Read.All offline_access`
+- Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+- If you didn't select Multitenant when creating the App, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -50,6 +127,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Teams
+
+Begin by following the steps in [Creating an App Registration](#creating-an-app-registration).
+
+When App is created, supply the following values to the **OAuth 2.0 Client Credentials** connection:
+
+- **Client ID** enter the **Application (client) ID**
+- **Client Secret** enter the **Value** provided (Do not use **Secret ID**)
+- If you didn't select Multitenant when creating the App, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

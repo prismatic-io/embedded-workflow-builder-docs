@@ -13,6 +13,14 @@ GoTo Webinar is a platform for hosting, managing, and attending live or pre-reco
 
 GoTo Webinar OAuth2 Connection
 
+Creating an [OAuth](https://developer.goto.com/Authentication) Client:
+
+1. In the GoTo Developer portal, navigate to [**OAuth Clients**](https://developer.logmeininc.com/clients) . Choose **Create a client** to create a new client.
+2. If you already have clients, they are listed here. Scroll to the bottom of this listing and select **Create a New Client**.
+3. On the Details page, enter a Client name, an optional Description, and enter the Redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+4. On the next page, select the proper scopes needed for a Goto Webinar integration.
+5. The next page will provide the Client ID and Client Secret. Along with the assigned scopes from the previous page, enter these into the connection configuration of the integration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

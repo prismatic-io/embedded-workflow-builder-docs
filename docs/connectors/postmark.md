@@ -13,6 +13,20 @@ The Postmark component is used as a developer friendly email delivery service
 
 Authenticate requests to Postmark using values obtained from the developer console.
 
+**Access Tokens** are necessary for interacting with the Postmark API. Access tokens are unique to each server you create in Postmark.
+
+To generate an **Access Token**, you should log in to Postmark and navigate to your server page. Within the server settings, you can find your access tokens.
+
+Postmark provides two types of access tokens:
+
+1. **Server Token**: This token is used to send emails and perform other server-related actions in Postmark.
+
+2. **Account Token**: This token is used to perform account-level actions, such as creating and managing servers.
+
+For your integration, you will need both the Server Token and the Account Token.
+
+For more information about access tokens, refer to the [Postmark Docs](https://postmarkapp.com/developer/user-guide/getting-started/api-overview).
+
 | Input         | Comments | Default |
 | ------------- | -------- | ------- |
 | Account Token |          |         |

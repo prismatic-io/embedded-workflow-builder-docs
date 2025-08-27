@@ -13,6 +13,33 @@ Azure Event Grid is an event routing service that can be used to build event dri
 
 Connect to Microsoft Event Grid
 
+This authentication method may be used when an App requires granting admin consent to API permissions, in addition to authorizing the integration with the App's configured client credentials.
+
+The Microsoft Event Grid component authenticates requests through the [Microsoft Graph API](https://docs.microsoft.com/en-us/graph/use-the-api).
+
+### Creating an App Registration
+
+To configure OAuth 2.0 you must first create an App through Active Directory in the [Microsoft Azure Portal](https://portal.azure.com/#home).
+
+1. Navigate to **App Registrations**
+2. When creating the application you will be prompted to select **Supported account types**.
+3. Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**.
+4. Navigate to **Redirect URI** and add the **Web** platform. Now enter the redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+5. Select **Register** to complete.
+6. In the App, navigate to **Certificates & Secrets** and select **New client secret**. Copy/save the **Value** for use in the connection configuration of your integration (the value will not be shown again).
+7. Next, navigate to the **Overview** section and copy the **Application (client) ID**
+8. Navigate to the **API Permissions** section to assign the proper permissions for the integration. Select **Add Permission**, select all permissions that are required for your desired integration
+   and save these values for later. A full list of scopes can be found on
+   the [Microsoft Graph API documentation](https://learn.microsoft.com/en-us/graph/permissions-reference) 1. Recommended scopes for Active Directory can be found in Microsoft Graph > Delegated permissions: 1. `Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access`
+
+### Configuring the Integration
+
+Supply the following values to the **OAuth 2.0 Authorization Code** connection in your integration:
+
+- **Client ID** enter the **Application (client) ID**
+- **Client Secret** enter the **Value** provided (Do not use **Secret ID**)
+- If you didn't select Multitenant when creating the App, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

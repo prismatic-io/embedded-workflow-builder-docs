@@ -13,6 +13,35 @@ Manage NetSuite records
 
 NetSuite OAuth 2.0 Connection
 
+:::warning Netsuite OAuth 2.0 Auth Code Flow expiration
+Tokens retrieved using Netsuite's OAuth 2.0 Auth Code flow expire after 7 days, and are not able to be refreshed.
+This requires a user to re-authenticate every 7 days, which is not a good user experience.
+We recommend using the OAuth 2.0 Client Credentials flow (described below) instead.
+:::
+
+To make API requests to NetSuite on behalf of your customers, your customer will need to create an OAuth 2.0 app.
+[NetSuite's OAuth 2.0](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_157769826287.html) documentation details the steps that need to be taken.
+
+As an administrator, your customer will need to:
+
+1. Enable SuiteTalk
+   - Click **Setup** -> **Company** -> **Enable Features**
+   - Under the **Suite Cloud** tab, ensure **REST WEB SERVICES** and **OAUTH 2.0** are both checked
+
+1. Create an OAuth 2.0 app
+   - Click **Setup** -> **Integration** -> **Manage Integrations** -> **New**
+   - Give your integration a name and description
+   - Un-check **TOKEN-BASED AUTHENTICATION** and **TBA: AUTHORIZATION FLOW** under **Token-based Authentication**
+   - Ensure **AUTHORIZATION CODE GRANT**" and **REST WEB SERVICES** are checked under **OAuth 2.0**
+   - Enable **REST WEB SERVICES** under **SCOPE**
+   - Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as your **REDIRECT URI**
+   - Take note of your **CONSUMER KEY** and **CONSUMER SECRET**
+
+1. Create OAuth 2.0 Roles
+   - Ensure that any user who wishes to log in via OAuth has been assigned a [proper role](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771510070.html).
+
+As an integration developer, you will need to mark **Consumer Key**, **Consumer Secret**, and **Token URL** organization- and customer-visible, as your end user will need to edit them with their own values.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -25,6 +54,50 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Netsuite OAuth Client Credentials
 
 Netsuite OAuth 2.0 Client Credentials Connection
+
+Connecting to NetSuite using Client Credentials (JWT)
+To make API requests to NetSuite on behalf of your customers, your customer will need to configure an OAuth 2.0 app with JWT option. NetSuite's OAuth 2.0 documentation provides detailed steps for setting this up.
+[OAuth Client Credentials Setup](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html#subsect_162686947286) documentation details the steps that need to be taken.
+
+As an administrator, your customer will need to:
+
+1. Enable SuiteTalk
+   - Navigate to **Setup** > **Company** > **Enable Features**
+   - Under the **Suite Cloud** tab, ensure that both **REST WEB SERVICES** and **OAUTH 2.0** are checked.
+
+1. To Create an OAuth 2.0 app with JWT Option
+   - Go to Setup > Integration > Manage Integrations > New
+   - Give your integration a name and a description.
+   - Un-check **TOKEN-BASED AUTHENTICATION** and **TBA: AUTHORIZATION FLOW** under Token-based Authentication
+   - Ensure the following are checked under OAuth 2.0
+     - **REST WEB SERVICES**
+     - **CLIENT CREDENTIALS (MACHINE TO MACHINE) GRANT**
+   - Enable **REST WEB SERVICES** under SCOPE
+   - Take note of and save your **CONSUMER KEY** and **CONSUMER SECRET** as it will not be shown again in Netsuite after this step
+
+1. Generating the Certificate ID and Private Key for JWT
+   - A private key is required for JWT-based authentication. Follow the steps below or refer to the [NetSuite Documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html#Related-Topics) for generating or importing a private key.
+   - On your machine create a valid certificate abiding by the Netsuite requirements using OpenSSL in a terminal. This will generate .pem files on your local machine containing key used as the **Private Key for JWT** information and the certificate for the next step
+
+     ```
+     openssl req -new -x509 -newkey rsa:4096 -keyout private.pem -sigopt rsa_padding_mode:pss -sha256 -sigopt rsa_pss_saltlen:64 -out public.pem -nodes -days 730
+     ```
+
+   - In Netsuite, navigate to Setup > Integration > OAUTH 2.0 CLIENT (M2M) SETUP and select **Create New**
+   - Choose the proper **Entity**, **Role**, and select the **Application** created in the previous section.
+   - For **Certificate** choose the the public key you create - that is the `public.pem` file that was generated in the above `openssl` steps.
+   - Once saved, a **Certificate ID** is generated. Save this for the workflow.
+
+1. In your connection configuration select the **Netsuite OAuth 2.0 Client Credentials** connection type and enter the following:
+   - Certificate ID from OAUTH 2.0 CLIENT (M2M) SETUP
+   - Private Key from the `private.pem` file you created above. Copy the entire text including the `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----` text
+   - Consumer Key (Client ID) from the Netsuite integration
+   - Consumer Secret (Client Secret) from the Netsuite integration
+
+1. Create OAuth 2.0 Roles
+
+Ensure that any user who wishes to log in via OAuth has been assigned a proper role.
+As an integration developer, you will need to mark Consumer Key, Consumer Secret, Token URL, and Certificate ID as organization- and customer-visible, as your end user will need to edit them with their own values.
 
 | Input                    | Comments                                                                                                                                                                                           | Default                                                                            |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |

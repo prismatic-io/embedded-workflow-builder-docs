@@ -11,6 +11,18 @@ Manage users, repositories, licenses, and more on GitHub
 
 ### OAuth 2.0
 
+To connect to GitHub you will need to [create a new OAuth 2.0 application](https://github.com/settings/applications/new).
+Fill in the required fields and supply the callback URL as the **Authorization callback URL**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+
+Next click "Generate a new client secret" and copy the values of both the **Client ID** and **Client Secret**.
+
+You are now ready to create the OAuth 2.0 connection to GitHub:
+
+- Enter the **Client ID** and **Client Secret** values into the same named fields.
+- Determine [what scopes your use case requires](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) and add those to **Scopes** separating each with a space.
+
+Save your integration and you should now be able to connect and authenticate to GitHub.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

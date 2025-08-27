@@ -11,6 +11,11 @@ Segment is a customer data platform (CDP) service that simplifies collecting and
 
 ### API Key
 
+1. Log in to the Segment App, and choose the Workspace you want to generate a token for. Each Segment Workspace requires a separate token.
+2. Click **Settings** in the left menu to access Workspace Settings. Navigate to the **Access Management** tab, and click **Tokens**. This tab lists any existing tokens created for the Workspace.
+3. Click **+Create Token** , and follow the prompts to generate a new token. Be sure to select a Public API token.
+4. Enter the API key into the connection's configuration. the Subdomain will be the name of the Workspace.
+
 | Input     | Comments                                   | Default |
 | --------- | ------------------------------------------ | ------- |
 | API Key   | API Key for your Segment account           |         |

@@ -13,6 +13,9 @@ Manage orders within Fluent Commerce
 
 Authenticate requests to Fluent Commerce using a username and password
 
+Fluent uses OAuth 2.0 password grant type for authentication.
+To authenticate with Fluent, you will need a **Client ID** and **Client Secret** from Fluent, and your end users will need to enter their username and password.
+
 | Input                   | Comments                                     | Default |
 | ----------------------- | -------------------------------------------- | ------- |
 | Fluent Host             | The retailer's Fluent API endpoint           |         |

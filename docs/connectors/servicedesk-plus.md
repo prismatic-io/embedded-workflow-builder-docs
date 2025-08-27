@@ -13,6 +13,28 @@ ServiceDesk Plus is a comprehensive service desk software that offers a suite of
 
 This connection allows you to authenticate with ServiceDesk Plus using OAuth 2.0.
 
+Self Client Applications are stand-alone applications that perform only back-end jobs (without any manual intervention) like data sync.
+
+To register a new app as a Self Client Application for Configuration OAuth credential:
+
+1. Navigate to [Zoho API Console](https://accounts.zoho.com/developerconsole) and select **GET STARTED.**
+2. Find the Self Client Applications box and select **CREATE NOW.**
+3. In the Generate Code tab enter the Scopes, Time Duration needed for the code, and a brief description and select CREATE
+   1. Example scopes: SDPOnDemand.cmdb.READ,SDPOnDemand.assets.READ
+4. When the Generated Code is provided, copy and/or download the code and enter in the connection configuration of the integration.
+5. In the Client Secret tab, copy and enter the Client ID, and Client Secret into the connection configuration of the integration.
+
+Additionally, Server Based Applications may be used for setting up applications running on a dedicated HTTP server.
+
+To register a new app as a Server-based Application for configuring OAuth credentials:
+
+1. Navigate to [Zoho API Console](https://accounts.zoho.com/developerconsole) and select **GET STARTED.**
+2. Find the Server-based Applications box and select **CREATE NOW.**
+3. Provide a Client Name, Homepage URL, and enter the Authorized Redirect URI as - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Select **CREATE** and the Client ID and Client Secret credentials will be provided and can be entered into the connection configuration of the integration.
+
+Please refer to the following [Client OAuth Setup Guide](https://www.zoho.com/accounts/protocol/oauth-setup.html) for further information on OAuth setup.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

@@ -13,6 +13,13 @@ Expensify provides an industry leading expense management system. Use the Expens
 
 Basic connection for Expensify
 
+Create a new authentication connection. Refer to the following [guide](https://integrations.expensify.com/Integration-Server/doc/#authentication) for more information.
+
+1. Navigate to https://www.expensify.com/tools/integrations/ and select the option that creates a new set of credentials
+2. A pair of credentials: `partnerUserID` and `partnerUserSecret` will be generated and shown on the page.
+   1. Make sure to store the `partnerUserID` and `partnerUserSecret` pair you're given in a secure location, as you won't be shown them again.
+3. Enter the `partnerUserID` and `partnerUserSecret` into your connection's configuration
+
 | Input               | Comments                                                                    | Default |
 | ------------------- | --------------------------------------------------------------------------- | ------- |
 | Partner User ID     | Provide a string value for the partnerUserID of your Expensify account.     |         |

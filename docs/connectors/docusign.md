@@ -13,6 +13,38 @@ Use the DocuSign component to manage signature collection and document distribut
 
 OAuth 2.0 connection for DocuSign
 
+Docusign requires a Developer Account to create applications for integrations. Create an account at [Developers.docusign.com](https://developers.docusign.com/) for more information.
+
+To Create an App for Docusign for your Developer Account:
+
+1. Login to your [DocuSign Developer Account](https://developers.docusign.com/auth/docusign-demo/)
+2. Click on your profile icon in the top right hand corner and select **My Apps & Keys**
+3. Select Add App and Integration Key to create a new application
+4. Note your Integration Key and under the Secret Keys section select **Add Secret Key** and copy your generated secret key
+5. In Additional settings under **Redirect URI’s** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the value
+6. Save the App and enter the Integration Key and Secret Key values into the designated fields of your integration’s connection configuration.
+
+The DocuSign Oauth connection requires you to add an Authorization Header with a combination of your integration and secret keys concatenated by a colon character, converted into base64, and prefixed with the word Basic.\
+If your integration key is
+7c2b8d7e-xxxx-xxxx-xxxx-cda8a50dd73f
+and the secret key is
+d7014634-xxxx-xxxx-xxxx-6842b7aa8861,
+
+You may use the following [Base64 Encoder](https://www.base64encode.org/). In the first box enter in the format of `<integration key>:<secret key>` 'example: 7c2b8d7e-xxxx-xxxx-xxxx-cda8a50dd73f:d7014634-xxxx-xxxx-xxxx-6842b7aa8861' and select the ENCODE button.
+The encoded results will appear below `example: NWMyYjhkN2.....hODg2MQ==`
+Enter the Authorization Header value in your connection configuration as `Basic <encoded results>` example: `Basic NWMyYjhkN2.....hODg2MQ==`
+
+You may also get the base64 value in a JavaScript console with the following method call:
+
+```javascript
+btoa(
+  "7c2b8d7e-xxxx-xxxx-xxxx-cda8a50dd73f:d7014634-xxxx-xxxx-xxxx-6842b7aa8861",
+);
+```
+
+This method call results in a new authorization header value: `NWMyYjhkN2.....hODg2MQ==`.\
+The final header value will be `Basic NWMyYjhkN2.....hODg2MQ==`.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

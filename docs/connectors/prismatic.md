@@ -13,6 +13,11 @@ Interact with the Prismatic internal API
 
 Prismatic Refresh Token
 
+To start using the Prismatic component you need to use your authenticated prism client to call the `prism me:token --type refresh` command.
+Running this command will give you a refresh token, which you can use to make requests to the Prismatic API.
+
+Now that you have your token, create a new Prismatic connection and enter the token you received from the Prism CLI.
+
 | Input         | Comments                                                                                                 | Default |
 | ------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Refresh Token | Provide the Refresh Token obtained from the prism command line by calling prism me:token --type refresh. |         |

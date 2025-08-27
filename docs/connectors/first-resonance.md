@@ -13,6 +13,8 @@ Interact with ION&#x27;s data and services through ION&#x27;s GraphQL API.
 
 Get an access token for the ION API
 
+You can get your OAuth Client Credentials from the ION API following the instructions [here](https://manual.firstresonance.io/api/access-tokens).
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

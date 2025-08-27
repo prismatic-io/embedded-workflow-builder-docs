@@ -13,6 +13,10 @@ Manage customers on the Customer.io platform
 
 Authenticate requests to Customer.io using an API key & secret
 
+An API key and SiteID are both required to interact with Customer.io.
+The Customer.io **API Key** serves as the **API Key**, and the **Site ID** serves as the **API Secret**.
+Read more about authentication in the [Customer.io docs](https://customer.io/docs/managing-credentials/).
+
 | Input   | Comments                                                 | Default |
 | ------- | -------------------------------------------------------- | ------- |
 | API Key | Provide the API key from the developer console.          |         |

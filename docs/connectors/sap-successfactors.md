@@ -13,6 +13,10 @@ SAP SuccessFactors is a human resources platform that provides cloud-based solut
 
 API Key Authentication for SAP SuccessFactors Connection
 
+- Log into your instance as an administrator.
+- Go to `Admin Center` API Center OAuth Configuration for OData and choose Register Client Application.
+  You can also access the tool by searching `Manage OAuth2 Client Applications` in Action Search.
+
 | Input                   | Comments                                                                                                                                                                           | Default |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Company ID              | SAP SuccessFactors Company ID                                                                                                                                                      |         |

@@ -13,6 +13,8 @@ Send emails through SendGrid
 
 Authenticate requests to SendGrid using values obtained from the SendGrid Developer Console.
 
+Information about getting started and creating API keys with [SendGrid](https://sendgrid.com/docs/for-developers/sending-email/api-getting-started/) can be found on their developer documentation site.
+
 | Input   | Comments                                                 | Default |
 | ------- | -------------------------------------------------------- | ------- |
 | API Key | Provide the API Key obtained from the developer console. |         |

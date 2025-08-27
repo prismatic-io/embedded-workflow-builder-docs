@@ -36,6 +36,20 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Oauth 2.0 connectivity for Meta Ads.
 
+This component uses OAuth 2.0 to connect to the Meta Ads Marketing API.
+To get started with [Meta Ads](https://developers.facebook.com/docs/marketing-apis/get-started), you first need to [create a developer account](https://developers.facebook.com/).
+
+1. Select **Create app**, take note of the App Id and App Secret under the basic tab.
+1. Navigate to the Facebook Login Section:
+   1. Under the **Valid OAuth Redirect URIs** section add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Redirect URI**.
+1. Now add a new Meta Ads action to your flow, and you will see a new connection.
+1. Enter the values that you previously saved from your Facebook Developer App.
+1. All the scopes you need should already exist in the connection. However if you need to enter additional scopes you can refer to [Meta Ads Docs](https://developers.facebook.com/docs/permissions/reference/) to find the correct ones.
+
+Now you can make a new Meta Ads connection, and provide the values you obtained earlier.
+
+For any additional setup information, refer to the [Meta Ads Docs](https://developers.facebook.com/docs/marketing-apis/overview)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -50,6 +64,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Sandbox Ad Account Token
 
 Use this connection to connect to a sandbox ad account.
+
+This component may also use the Sandbox Ad token to connect a Meta Ad's Sandbox Ad Account
+To get started with [Meta Ads](https://developers.facebook.com/docs/marketing-apis/get-started), you first need to [create a developer account](https://developers.facebook.com/).
+
+1. Select **Create app**, take note of the App Id and App Secret under the basic tab.
+1. Navigate and expand the Marketing API Section and select the Tools section.
+   1. In the **Sandbox Ad Account Management** section, create and name a new Sandbox Ad Account.
+   1. Under Actions select the button with a key icon and in the Generate Access Token window Select **Generate**
+   1. Add this Access Token to the Sandbox Ad Token Connection Type.
+1. All the scopes you need should already exist in the connection. However if you need to enter additional scopes you can refer to [Meta Ads Docs](https://developers.facebook.com/docs/permissions/reference/) to find the correct ones.
+
+For any additional setup information, refer to the [Meta Ads Docs](https://developers.facebook.com/docs/marketing-apis/overview)
 
 | Input         | Comments                               | Default |
 | ------------- | -------------------------------------- | ------- |

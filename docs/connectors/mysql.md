@@ -13,6 +13,9 @@ Query and manage data in a MySQL Database
 
 Authenticate requests to a MySQL server
 
+Create a new MySQL connection and enter the host, port, and database for your MySQL server.
+The **username** and **password** are optional inputs that can be put directly into a MySQL connection.
+
 | Input    | Comments                                              | Default               |
 | -------- | ----------------------------------------------------- | --------------------- |
 | Host     | The publicly-accessible address of your MySQL server. | my-server.example.com |

@@ -11,6 +11,17 @@ Manage files in a Google Cloud Platform (GCP) Cloud Storage bucket
 
 ### Google Cloud Storage Private Key
 
+The Google Cloud Storage component requires a username / private key pair for authentication.
+To create a GCP service account, follow directions on https://cloud.google.com/docs/authentication/getting-started.
+
+Be sure to assign the user you just created with the correct permissions.
+To access Google Cloud Storage resources, you will need to assign either a resource specific permission, or the Cloud Storage Admin role.
+After creating a service account, you will have an option to create a key for the account.
+If you are not greeted with this option, click on the service account you just created, and navigate to the 'keys' section.
+Here you can click 'Add Key'
+This will generate a .json file with **type**, **project_id**, and a dozen other fields.
+Use these fields along with your GCP Project Id to create a new connection.
+
 | Input        | Comments                                                   | Default |
 | ------------ | ---------------------------------------------------------- | ------- |
 | Client Email | The email address of the client you would like to connect. |         |

@@ -13,6 +13,15 @@ Manage Google Analytics GA4 accounts and data
 
 Authenticate requests to Google Analytics using values obtained from the Google Cloud Platform.
 
+The Google Analytics component authenticates requests through Google's OAuth 2.0 service.
+
+To create a Google Analytics developer account and authenticate, follow their [Configure OAuth Consent guide](https://developers.google.com/workspace/guides/configure-oauth-consent)
+
+Now, you will have to configure OAuth 2.0 settings. Create a new Google Analytics connection of type **OAuth 2.0**.
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Google Cloud Platform auth settings.
+- For **Scopes** choose from the list found on [Google's service scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#analytics)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

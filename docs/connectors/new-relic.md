@@ -13,6 +13,9 @@ Easily manage metrics, logs, and events
 
 Authenticate requests to New Relic using an API key.
 
+After you obtain an **API key** from your [New Relic Account Settings](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
+The New Relic **API key** can be put directly into a New Relic connection.
+
 | Input   | Comments                                        | Default |
 | ------- | ----------------------------------------------- | ------- |
 | API Key | Provide the API key from the developer console. |         |

@@ -11,12 +11,50 @@ Manage compute, workflow jobs, ML models, SQL queries and more within a Databric
 
 ### Databricks Personal Access Token
 
+While service principal authentication is the recommended method for authenticating with the Databricks REST API, you can also use personal access tokens (which are tied to specific users).
+To generate a personal access token:
+
+1. Open https://accounts.cloud.databricks.com/workspaces and select your workspace. Open the URL for your workspace (e.g., `https://dbc-00000000-aaaa.cloud.databricks.com`) and log in.
+1. From the top-right click your user icon and select **Settings**.
+1. Under the **User > Developer** tab, select **Manage** under **Access tokens**.
+1. Click the **Generate New Token** button. Enter a description for the token and click **Generate**. Omit _Lifetime (days)_ to create a token that never expires.
+
+Your token will look similar to `dap000000000000000000000000000000000`. Copy this token and use it as the `token` input for the Databricks components.
+
+When configuring an instance, enter the personal access token along with your workspace's endpoint (like `dbc-REPLACE-ME.cloud.databricks.com`).
+
+See https://docs.databricks.com/en/dev-tools/auth/pat.html for more information on personal access token authentication.
+
 | Input                 | Comments                                                                                                                         | Default |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Host                  | The hostname of your Databricks instance. Include the entire domain name. For example, dbc-1234567890123456.cloud.databricks.com |         |
 | Personal Access Token | From DataBricks, go to User Settings > Developer > Access Tokens > Manage > Generate New Token                                   |         |
 
 ### Databricks Workspace Service Principal
+
+With service principal authentication, you create a service user within your account, grant the user permissions to a workspace, and then generate a client ID and secret pair for that service user.
+This component uses that key pair to authenticate with workspaces that the service account has been granted permissions to.
+This is the best practice for authenticating with the Databricks REST API.
+
+To set up service principal authentication, you need to:
+
+1. Create the service principal
+   1. Open https://accounts.cloud.databricks.com/users. Under the **Service principals** tab select **Add service principal**.
+   1. Give the service principal any name and click **Add**.
+1. Grant the service principal permission to your workspace
+   1. Navigate to https://accounts.cloud.databricks.com/workspaces and select your workspace
+   1. Under the **Permissions** tab select **Add permissions**
+   1. Search for the service principal you created and grant the permission **Admin**.
+1. Generate a key pair for the service principal
+   1. Navigate to the service principal and open the **Principal information** tab.
+   2. Under **OAuth secrets** select **Generate secret**.
+   3. Take note of the **Secret** (i.e. "Client Secret") and **Client ID** you receive. The client ID should be a UUID like `00000000-0000-0000-0000-000000000000`. The client secret will look like `dose00000000000000000000000000000000`.
+
+When configuring an instance, enter the client ID and client secret along with your workspace's token URL endpoint (like `https://dbc-REPLACE-ME.cloud.databricks.com/oidc/v1/token`) if you need workspace-level API access.
+
+If you need account-level access to the API (i.e. you need to manage workspaces using this service principal), you will need to grant the service principal administrative access to your account, and your token URL will look like `https://accounts.cloud.databricks.com/oidc/accounts/<my-account-id>/v1/token`.
+
+See https://docs.databricks.com/en/dev-tools/auth/oauth-m2m.html for more information on service principal OAuth client credential authentication.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

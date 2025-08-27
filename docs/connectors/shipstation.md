@@ -11,6 +11,28 @@ ShipStation is an ecommerce shipping software solution.
 
 ### ShipStation API Key
 
+Prerequisites
+Before setting up a ShipStation connection, ensure you have:
+
+ShipStation API Key
+ShipStation API Secret
+To acquire these, navigate to your ShipStation account dashboard and generate a new API Key and API Secret pair.
+
+Setting up a ShipStation Connection in Your Application
+To interface with ShipStation, an API Key and API Secret are required for authentication.
+
+Assign the User with Correct Permissions
+Make sure the API key you are using has the correct permissions to interact with the ShipStation API.
+
+Generating API Credentials
+Go to your ShipStation account settings.
+Navigate to the 'API Settings' section.
+Generate or note down your API Key and API Secret.
+Adding API Credentials to Connection
+Once you have the API Key and API Secret, add these to your application’s ShipStation connection settings.
+
+This will enable authenticated requests to ShipStation.
+
 | Input      | Comments                                                    | Default |
 | ---------- | ----------------------------------------------------------- | ------- |
 | API Key    | Get your API Key from your ShipStation account settings.    |         |

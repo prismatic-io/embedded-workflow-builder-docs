@@ -13,6 +13,22 @@ Manage conversational interactions across platforms using Microsoft Bot Framewor
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Bot Framework
 
+The Microsoft Bot Framework component authenticates using OAuth 2.0 Client Credentials associated with your Azure Bot's App Registration.
+
+To begin you will need to [create a new Azure Bot](https://learn.microsoft.com/en-us/composer/quickstart-create-bot-with-azure) or retrieve the app id and app password (client secret) for an existing bot. If creating a new bot you will likely want to set its type to "Multi Tenant" to allow using your bot across tenants.
+
+Open the Azure Bot and ensure that [appropriate Channels are enabled and configured](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels) for your intended use case. Each will require additional configuration - [Microsoft Teams](https://learn.microsoft.com/en-us/azure/bot-service/channel-connect-teams), for example, will require a [Teams app](https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/deploy-and-publish/apps-publish-overview) containing a manifest file specifying your bot's configuration with Teams.
+
+Next, navigate to the "Configuration" blade of the bot and click "Manage" next to "Microsoft App ID". This will take you to the Azure AD App Registration for the bot. From here you are able to create a new **Client Secret** from the "Certificates & Secrets" blade. This will be your "Client secret" (some Microsoft documentation also refers to this as the "app password").
+
+The Client ID and Tenant ID (for Single Tenant bots) can be retrieved from the "Overview" blade.
+
+Next supply the following values to the **OAuth 2.0 Client Credentials** connection in your flow:
+
+- For **Client ID** enter the value for "Microsoft App ID" or the "Client ID" from the app registration.
+- For **Client Secret** enter the value from "Certificates & Secrets" of the app registration.
+- If your bot is configured as "Single Tenant" you will need to use the conventional **Token URL** for Azure: `https://login.microsoftonline.com/tenantId/oauth2/v2.0/token` and replace `tenantId` with the ID of your tenant.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

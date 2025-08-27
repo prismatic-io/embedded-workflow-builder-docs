@@ -13,6 +13,33 @@ Microsoft Dynamics 365 Business Central is a comprehensive enterprise resource p
 
 Microsoft Business Central OAuth Connection
 
+The OAuth 2.0 auth code flow allows your user grant permission to your integration to interact with Business Central on their behalf. Please refer to the following [Documentation](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/authenticate-web-services-using-oauth) for more information
+
+1. Log in to [Azure Portal](https://portal.azure.com/)
+2. Select **App registrations**
+3. Click **+ New registration**
+   - **Supported account types** should be **Multi-tenant** if you intend for customers to authenticate with their own Business Central instance, or **Single-tenant** if you intend to authenticate with your own Business Central instance.
+   - Under **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   - Click **Register**
+
+4. Under **API permissions** click **+Add a permission**
+   - Select **Business Central**
+   - Check the following permissions
+     - user_impersonation
+     - offline_access
+     - Financials.ReadWrite.All
+   - Click **Add permissions**
+
+5. Under **Certificates & secrets** click **+ New client secret**
+   - Give your certificate a description and expiration date
+   - Take note of the **value** (not the Secret ID) of the client secret.
+
+6. Returning to the **Overview** page, take note of **Application (client) ID**
+
+Create a connection of type **OAuth 2.0 Auth Code**.
+
+- Enter the **Client ID** and **Secret Value** you noted above.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -26,6 +53,62 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Business Central
+
+The OAuth 2.0 client credentials flow allows your user to create an **Application User** to send requests to Business Central on their behalf. Refer to the following [Documentation](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/authenticate-web-services-using-oauth) for more information.
+Setting up a client credentials connection is a two-step process:
+
+1. Create an "App" in Azure
+2. Create an "Application User" in Business Central
+
+Create an app in Microsoft Azure
+
+1. Log in to [Azure Portal](https://portal.azure.com/)
+2. Select **App registrations**
+3. Click **+ New registration**
+
+- **Supported account types** can be **Single tenant**
+- No **Redirect URI** is necessary
+- Click **Register**
+
+4. Under **API permissions** click **+Add a permission**
+
+- Select Business Central
+- Check the following permissions
+- user_impersonation
+- offline_access
+- Financials.ReadWrite.All
+- Click **Add permissions**
+
+5. Under **API permissions** click **Grant admin concent for (your org)**
+6. Under **Certificates & secrets** click **+ New client secret**
+
+- Give your certificate a description and expiration date
+- Take note of the **value** (not the Secret ID) of the client secret.
+
+7. Returning to the **Overview** page, take note of **Application (client) ID**
+8. From the **Overview** page, click **Endpoints** and take note of the **OAuth 2.0 token endpoint (v2)**
+
+You will use the **Secret Value**, **Client ID** and **Token Endpoint** in a moment.
+
+Add the app as an App User to Business Central
+
+1. Log in to [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
+2. Select **Environments** and choose your Business Central Environments
+3. Select **S2S Apps**
+4. Click **+New app user**
+
+- Click **+Add an app**
+- Choose the app you created in Azure portal (above). You can search for your app by entering the client ID you noted.
+- Select your Business Central tenant as your **Business unit**
+- Under **Security Roles** select **System Administrator**
+- Click **Create**
+
+Configure the connection
+
+Create a connection of type **MS** Business Central **OAuth 2.0 Client Credentials**.
+
+- Enter the **Token Endpoint** you noted as your **Token URL**.
+- Enter the **Client ID** and **Secret Value** you noted above.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

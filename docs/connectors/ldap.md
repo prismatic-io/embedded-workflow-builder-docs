@@ -13,6 +13,15 @@ Connect to an Active Directory server.
 
 Connection to an LDAP server
 
+To connect to an Active Directory server, you must provide the following details:
+
+- **URL**: The Active Directory server URL (e.g., `ldap://ldap.example.com`).
+- **DN**: The Distinguished Name (DN) used to bind to the server (e.g., `uid=example,dc=example,dc=com`).
+- **Password**: The password associated with the DN.
+- **Certificate** (optional): A certificate for secure connections if required by the server.
+
+Ensure these details are correctly configured in the connection settings to establish a successful connection.
+
 | Input             | Comments                                                               | Default |
 | ----------------- | ---------------------------------------------------------------------- | ------- |
 | URL               | LDAP server URL. Required when not using the on-prem connection.       |         |

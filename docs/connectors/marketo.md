@@ -13,6 +13,10 @@ Manage Marketo records
 
 Marketo OAuth 2.0 Connection
 
+To make API requests of Marketo on behalf of your customers you need to create a Custom Service using the Marketo Admin Portal.
+Follow the steps outlined in the [Marketo Documentation](https://developers.marketo.com/rest-api/authentication/).
+Be sure to note the Client ID and Client Secret values, as these will be important when using the Marketo Connection as part of your Integration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

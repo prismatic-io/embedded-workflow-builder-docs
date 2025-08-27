@@ -13,6 +13,14 @@ Manage calendars and events in Google Calendar
 
 Authenticate requests to Google Calendar using values obtained from the Google Cloud Platform.
 
+The Google Calendar component authenticates requests through Google's OAuth service.
+To create a Google Calendar developer account and authenticate using Google OAuth, follow the directions [here](https://developers.google.com/calendar/api/guides/auth)
+Now, you will have to configure OAuth 2.0 settings.
+Create a new Google Calendar connection of type **OAuth 2.0**.
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Google Cloud Platform auth settings.
+- For **Scopes** choose from the list found on the [Google docs](https://developers.google.com/identity/protocols/oauth2/scopes)
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

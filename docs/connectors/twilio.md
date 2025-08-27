@@ -13,6 +13,19 @@ Send SMS messages through Twilio
 
 Authenticate requests to Twilio using an API key
 
+This component authenticates with Twilio using API key/secret pairs that can be generated from Twilio's app console.
+To create a Twilio API key and secret pair:
+
+- Go to the Twilio [console](https://console.twilio.com/)
+- On the top-right of the screen click **Account** -> **API Keys & Tokens**
+- Select **Create API Key**
+- Give your key a name and select **Standard** for **Key type**
+- Take note of the API key's **SID** and **Secret** - you will enter those in a moment
+
+Now, when you create an integration that uses Twilio, a "Twilio API Key Connection" will automatically be generated.
+Enter your **API Key SID** (starts with "SK..."), and its **Secret**.
+Go back to your Twilio console to find your **Account SID** (starts with "AC..."), and enter that as well.
+
 | Input          | Comments                                                      | Default |
 | -------------- | ------------------------------------------------------------- | ------- |
 | Account SID    | Your account SID (starts with AC)                             |         |
@@ -22,6 +35,14 @@ Authenticate requests to Twilio using an API key
 ### Twilio Auth Token Connection
 
 Authenticate requests using account SID and auth token
+
+When you create a Twilio account, an **Account String Identifier** (Account SID) and **Auth Token** are generated.
+You can use the account SID and auth token to authenticate with Twilio and to send SMS messages.
+
+:::caution Consider API Keys instead
+For security reasons, we recommend using an [API Key Connection](#twilio-api-key-connection) instead.
+API keys can be revoked and auth tokens generated using API keys are short-lived.
+:::
 
 | Input       | Comments                                    | Default |
 | ----------- | ------------------------------------------- | ------- |

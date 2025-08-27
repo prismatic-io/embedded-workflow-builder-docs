@@ -13,6 +13,61 @@ Interact with your IMAP email account
 
 Provide the details of your IMAP server.
 
+To configure a connection to an IMAP server you will need a few properties:
+
+- The host and port of your IMAP server
+- A set of login credentials for a user that exists on the IMAP server
+- The version of encryption the IMAP server is compatible with.
+
+The setup can vary widely depending on the email service you are using.
+We have provided a bit of context around some popular services to get you started.
+
+#### Connecting to Gmail
+
+To set up an IMAP connection to your Gmail account, you need to create a [Google App Password](https://support.google.com/accounts/answer/185833?hl=en).
+Go to your [Google Account](https://myaccount.google.com/) and select 'Security'.
+Under "Signing in to Google," select App Passwords. You may need to sign in.
+
+If you don't have this option, it might be because:
+
+- 2 Step Verification is not set up for your account.
+- 2 Step Verification is only set up for security keys.
+- Your account is through work, school, or other organization.
+- You turned on Advanced Protection.
+
+At the bottom, click **Select App** and choose **Mail**, and then click **Select device** and choose **Other (Custom name)**.
+Then, click **GENERATE**.
+You'll be given a 16-character code, which is your **app password**.
+Copy that somewhere safe.
+
+Finally, create a connection and provide these values:
+
+- Enter `imap.gmail.com` for the host
+- The default values for port and security are fine
+- Enter the username or email of your Gmail account
+- Enter the **app password** you created earlier
+
+If you run into authentication problems, ensure that your account has [IMAP enabled](https://support.google.com/mail/answer/7126229).
+
+#### Connecting to Microsoft Office 365
+
+If your Office 365 domain does not use multi-factor authentication (this is rare), then you can use your username and password to authenticate.
+
+If MFA is enabled, you will need to create an **app password** to authenticate.
+To create an app password, log in to the [Microsoft Security Center](https://mysignins.microsoft.com/security-info) and open the **Security info** tab.
+Click **+Add method** and choose **App password**.
+
+If you don't have an **app password** option, you'll need to contact your Office 365 administrator and have them [enable it](https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9).
+
+Give your app password a name, and copy the password that is generated.
+
+Now, create a connection and provide these values:
+
+- Enter `outlook.office365.com` for the host
+- The default values for port and security are fine
+- Enter the username or email of your Outlook account
+- Enter your password or the app password you generated
+
 | Input               | Comments                                                                                   | Default |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------- |
 | Host                | Provide the host address for the desired IMAP server.                                      |         |

@@ -13,6 +13,9 @@ DeepSeek is an AI developer of large language models (LLM) focused on providing 
 
 The DeepSeek API Key to use in order to authenticate with the DeepSeek API.
 
+1. Login to [DeepSeek](https://www.deepseek.com/) and navigate to the [API Keys](https://platform.deepseek.com/api_keys) section.
+2. Select **Create New API Key** and enter into the connection configuration of the integration.
+
 | Input   | Comments          | Default |
 | ------- | ----------------- | ------- |
 | API Key | DeepSeek API Key. |         |

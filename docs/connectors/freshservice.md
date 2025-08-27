@@ -13,6 +13,11 @@ Use the Freshservice component to manage tickets, problems, agents, and more.
 
 Connect to Freshservice using an API key.
 
+1. Login to your Support Portal
+2. Click on your profile picture on the top right corner of your portal
+3. Go to Profile settings Page
+4. Your API key will be available below the change password section to your right
+
 | Input               | Comments                                                                                                                                         | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Freshservice Domain | Add only the domain name of your Freshservice account. For example, if your Freshservice URL is https://example.freshservice.com, enter example. |         |

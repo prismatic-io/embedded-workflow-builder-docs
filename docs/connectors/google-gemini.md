@@ -13,6 +13,9 @@ Google Gemini is an offering of advanced AI models developed by Google&#x27;s De
 
 Connect to Google Generative AI (Gemini) using an API key.
 
+Navigate to [Google AI Studio](https://aistudio.google.com/app/apikey?authuser=1) and generate an API key.
+Enter the key value into the connection configuration of the integration.
+
 | Input   | Comments                                                                                           | Default |
 | ------- | -------------------------------------------------------------------------------------------------- | ------- |
 | API Key | Your Google AI Studio API key. Generate API keys [here](https://makersuite.google.com/app/apikey). |         |
@@ -20,6 +23,21 @@ Connect to Google Generative AI (Gemini) using an API key.
 ### Vertex AI API
 
 Connect to Google Generative AI (Gemini) using Vertex AI.
+
+In order to Authenticate using **Vertex**:
+
+1. A **Service Account** is needed. One may be created in the [Google Cloud Platform GCP Console](https://console.cloud.google.com/) from the **IAM & Admin** section.
+   1. From the Service Account, use the **Email** value as the **Client Email** input value in the connection configuration.
+1. Add the following roles to the Service Account:
+   1. Vertex AI User or Vertex AI Administrator
+   1. Storage Object Viewer
+1. Once a Service Account is created, you will need to generate a **Service Account Key**
+   1. Select the Service Account's options, navigate to the **Key** tab, and select **Add Key** to create a new key.
+   1. After creating the key, you will be able to download a JSON file that contains the key information. This key **contains sensible data** and should be used with caution.
+   1. Use the key downloaded in the previous step as the **Private Key** input value in the connection configuration.
+1. The top section of the console will show the current project. Select this to display all projects and \*Project IDs\*\*.
+1. Regions will be listed [here](https://cloud.google.com/vertex-ai/docs/general/locations) or by navigating to **Vertex AI Dashboard** from the console.
+1. Enable the **Vertex API** by navigating to the **Library** section of **APIs & Services**. Search 'Vertex' and select enable for the **Vertex AI API**.
 
 | Input        | Comments                                                                                                                           | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |

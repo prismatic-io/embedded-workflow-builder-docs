@@ -13,6 +13,18 @@ Manage files and directories on an FTP server
 
 Basic auth username and password and endpoint
 
+This component supports basic authentication, meaning that you can enter a **username** and **password** for authentication, or if your FTP server allows anonymous access you can leave those values blank.
+
+You can enter either an IP address (e.g. `1.2.3.4`) or FQDN (e.g. `ftp.example.com`) for the FTP's **host** name.
+Most FTP servers run on **port** 21 and most FTPS (secure) servers run on port 990, though ports are configurable and server administrators can choose to operate on different ports.
+
+Some FTP servers are **secure** (indicating that they use FTPS rather than FTP).
+If you are using plain, unsecured FTP select **false** for **secure** (though, we recommend encrypting your connection if possible).
+If your FTP server is set up to use SSL/TLS, you can select **true** (meaning use "explicit" FTPS) or **implicit** to use "implicit" FTPS.
+For information on "implicit" and "explicit" FTPS, see [this documentation](https://www.ssh.com/academy/ssh/ftp/ftps).
+
+If your component fails to connect, verify the hostname, port and security information with your server's administrator.
+
 | Input             | Comments                                                                                                    | Default |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- | ------- |
 | Username          |                                                                                                             |         |

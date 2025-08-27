@@ -13,6 +13,15 @@ ADP Workforce Now is a comprehensive solution for managing HR, payroll, and labo
 
 This connection allows you to authenticate with ADP Workforce Now using OAuth 2.0.
 
+In order to complete an OAuth 2.0 connection to ADP Workforce Now, a Client ID and Client Secret must be provided in the integration. These credentials may be obtained by contacting your ADP client representative.
+
+This will also require access to the [Developer Self Service Portal](https://adpapps.adp.com/self-service)
+
+1.  From this page a project may be created to house the OAuth credentials needed for a successful connection
+2.  Navigate to the **Development Credentials** tab and you should see your **Client ID** and **Client Secret** values.
+3.  Switch from the **Data Connector** tab to the **End-user/SSO** and in the App redirect URI field enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4.  **Certificate File** and **Key File** may be obtained by following this [Certificate Signing Request Guide](https://developers.adp.com/learn/how-to-articles/generate-a-certificate-signing-request#overview)
+
 | Input                       | Comments                                                                                                                                                                                                                     | Default                                      |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | API Endpoint                | The endpoint to use for the ADP Workforce Now API                                                                                                                                                                            | https://api.adp.com/                         |

@@ -11,6 +11,21 @@ Use the Bill component to manage Bank Accounts, Invoices, Bills, and more.
 
 ### Client Credentials
 
+The following credentials are needed to authenticate with the BILL API:
+
+- **Username**: Your username is the email address used to sign in to your API sandbox developer account.
+- **Password**: Your password is used to sign in to your API sandbox developer account.
+- **Organization ID**: Your API sandbox developer account represents your organization in BILL. The organization ID is a unique alphanumeric value that begins with 008.
+- **Developer key**: Your developer key is used to uniquely identify your developer account in your API requests.
+
+#### Instructions
+
+1. **Retrieve Credentials**
+   Ensure you have received an email from the BILL team containing your API login information: username, password, organization ID, and developer key.
+
+2. **Configure Component**
+   Open the configuration settings for your Bill connection and input the credentials.
+
 | Input              | Comments                                                                                     | Default |
 | ------------------ | -------------------------------------------------------------------------------------------- | ------- |
 | Username           | Your username is the email address used to sign in to your API sandbox developer account.    |         |

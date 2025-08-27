@@ -13,6 +13,24 @@ Manage companies, contacts and tags on the Intercom platform
 
 Connection to Intercom
 
+To connect to Intercom you will need to create a new app in their [Developer Hub](https://developers.intercom.com/).
+
+Click "New App" and select "Public app" (you can use "Internal integration" if you do not need to connect to customer Intercom workspaces).
+
+To enable OAuth you need to navigate to "Authentication", click the "Edit" button, and check "Use OAuth". Click "Add redirect URL" and enter the callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+
+You can also use this opportunity to reduce the selected Permissions (scopes) if desired. Once complete, click "Save".
+
+Next, collect the **Client ID** and **Client secret** from the "Basic information" page.
+
+You are now ready to create the OAuth 2.0 connection to Intercom:
+
+- Enter the **Client ID** and **Client secret** values into the same named fields.
+
+Save your integration and you should now be able to authenticate to Intercom.
+
+Note that you will need to submit your Intercom app for review when it is ready for production.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -24,6 +42,23 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Intercom Access Token
 
 Connection to Intercom using an Access Token
+
+You should use the given access Access Token if:
+
+- You want to use the API to interact with your own Intercom app
+- You have scripts to push or extract data from your Intercom app
+- You want to use the API to programmatically automate certain actions in your own Intercom app
+- The data you interact with programmatically is your own customer data
+
+## How to get your Access Token
+
+Intercom provide you with an Access Token as soon as you [create an app](https://app.intercom.com/a/developer-signup) on your workspace. You can find your Access Token in the Configure > Authentication section in your app within the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages).
+
+You will also see it in your Test & Publish > Your Workspaces page of your app in the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages). This lists out all of your workspaces that have the app installed. More about how this works can be found in their [Installing & Uninstalling Apps guide](https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/installing-uninstalling-apps/).
+
+### Never give your Access Token to a third party
+
+Your Access Token can give access to your private Intercom data and should be treated like a password. If an app provider asks you for your Access Token, please do not provide it. Instead, let us know - apps are required to use OAuth rather than asking users for Access Tokens.
 
 | Input        | Comments                  | Default |
 | ------------ | ------------------------- | ------- |

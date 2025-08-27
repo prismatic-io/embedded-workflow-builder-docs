@@ -13,6 +13,21 @@ Typeform is an online form builder that enables users to create interactive and 
 
 This connection allows you to authenticate with Typeform using OAuth 2.0.
 
+To Generate an OAuth App:
+
+1. Log in to your account at [Typeform](https://www.typeform.com/).
+2. In the upper-left corner, click icon drop-down menu next to your organization name.
+3. Under **Organization** section, click **Developer Apps**.
+4. Click **Register a new app**.
+5. In the _App Name_ field, type the name for your new app.
+6. In the _App website_ field, type the complete URL for your app's homepage.
+7. In the _Redirect URI(s)_ field, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+8. Click **Register app**.
+9. Enter the following into the connection configuration of your integration
+   1. Scopes (Recommended): `offline accounts:read forms:write forms:read images:write images:write images:read themes:write themes:read responses:read responses:write webhooks:read webhooks:write workspaces:read workspaces:write`
+   1. Client ID
+   1. Client Secret
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -25,6 +40,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Personal Token
 
 Personal Token for Typeform
+
+To Generate a Personal Access Token:
+
+1. Log in to your account at [Typeform](https://www.typeform.com/).
+2. In the upper-left corner, in the drop-down menu next to your username, click **Account**.
+3. In the left menu, click **Personal tokens** or [here](https://admin.typeform.com/user/tokens).
+4. Click **Generate a new token**.
+5. In the _Token name_ field, type a name for the token to help you identify it.
+6. Choose needed scopes (API actions this token can perform - or permissions it has). See [here](https://www.typeform.com/developers/get-started/scopes/) for more details on scopes.
+7. Click **Generate token**.
+8. Enter the token value into the Personal Token field of the connection in your integration.
 
 | Input          | Comments                    | Default |
 | -------------- | --------------------------- | ------- |

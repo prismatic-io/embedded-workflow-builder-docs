@@ -13,6 +13,19 @@ Interact with and modify Power BI datasets
 
 OAuth 2.0 Connectivity for Microsoft Power BI
 
+The Microsoft Power BI component authenticates requests through the Microsoft Graph API.
+To configure OAuth 2.0 you must first [create an application](https://docs.microsoft.com/en-us/power-bi/developer/embedded/register-app?tabs=customers%2CAzure) through Active Directory in the Microsoft Azure portal.
+For more information regarding authenticating against the Microsoft Graph API refer to [Microsoft's documentation](https://docs.microsoft.com/en-us/power-bi/developer/automation/walkthrough-push-data-get-token).
+
+Next, supply the following values to the **OAuth 2.0** connection:
+
+- For **Client ID** and **Client Secret** enter the values that you got from the Microsoft Azure Portal.
+- For **Scopes** choose from the options found on the [Microsoft Graph API documentation](https://docs.microsoft.com/en-us/graph/permissions-reference).
+- Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+- For **Authorize URL** and **Token URL** you will need to identify your Azure Tenant ID to include in the URLs or configure your app for multi-tenant which allows using the `common` endpoints.
+
+Refer to the [Microsoft Power BI REST API documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/) for more information.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

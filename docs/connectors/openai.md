@@ -13,6 +13,12 @@ Interact with OpenAI&#x27;s models and build AI Agents
 
 Connect to OpenAI using an API key
 
+Integrations can authenticate with OpenAI using API keys.
+Generate an API key at [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
+
+If your user is associate with one organization, you can leave the connection's organization field blank.
+Otherwise, specify your organization's ID.
+
 | Input        | Comments                                                                         | Default |
 | ------------ | -------------------------------------------------------------------------------- | ------- |
 | API Key      | Generate an API key at https://platform.openai.com/account/api-keys              |         |

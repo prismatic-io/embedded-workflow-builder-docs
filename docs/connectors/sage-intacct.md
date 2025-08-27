@@ -13,6 +13,14 @@ Use the Sage Intacct component to manage Invoices, Payments, Vendors, and more.
 
 Web Service Authentication
 
+Web Service Authentication
+
+1. Web Services credentials consist of a sender ID and password. These are provisioned by Sage Intacct for customers/partners with an active Web Services developer license.
+2. Company credentials consist of either:
+   1. A company ID, user ID, and password - this is called **login authentication**.
+   2. A temporary session ID - this is called **session authentication**.
+3. To Authenticate through Sage Intacct you must establish an API session that provides you with a session ID. The session timeout is calculated based on the [session duration](https://www.intacct.com/ia/docs/en_US/help_action/Company/Company_setup/Company_Information/Security/company-sign-in-settings.htm?cshid=Company_sign_in_settings) specified for the user or company plus the current time.
+
 | Input           | Comments                                        | Default |
 | --------------- | ----------------------------------------------- | ------- |
 | Sender ID       | Sender ID for Web Services Authentication       |         |

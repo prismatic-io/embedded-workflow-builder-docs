@@ -13,6 +13,42 @@ Manage Google Ad and Local Ad campaigns
 
 OAuth 2.0 connection
 
+This component uses OAuth 2.0 to connect to the Google Ads API.
+To begin working with Google Ads you will need a [Developer Token](https://developers.google.com/google-ads/api/docs/first-call/dev-token).
+You will also need to make note of the Customer ID of the Ads Manager account (the hyphenated number in the top-left corner of the Ads app).
+
+Next, you will need to create a GCP OAuth 2.0 app. To create one you will need to ensure you have a [Google Developer account](https://console.cloud.google.com/).
+Then:
+
+1. Access the project selector in the top-left and select an existing project or create a new one.
+1. Select **APIs & Services** -> **Enabled APIs & services** from the left hand menu
+1. Click **Enable APIs and Services** towards the top of the screen
+1. Search for "google ads api" and select **Google Ads API** in the results (avoid selecting AdWords as that is deprecated)
+1. Click the **Enable** button to add the API to your project
+1. On the sidebar, select **Credentials**.
+1. An OAuth 2.0 app includes a "Consent Screen" (the page that asks "Do you want to allow (Your Company) to access Google Drive on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
+   1. Your app will be externally available to your customers, so choose a **User Type** of **External**.
+   1. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
+   1. You can ignore domains for now.
+   1. On the next page, add the `https://www.googleapis.com/auth/adwords` scope to your app.
+   1. Enter some **test users** for your testing purposes.
+      Your app will only work for those testing users until it is "verified" by Google.
+      When you are ready for verification (they verify your privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
+      That'll allow your customers to authorize your integration to access their Google Drive.
+1. Once your "Consent Screen" is configured open the **Credentials** page from the sidebar again.
+1. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
+   1. Under **Application type** select **Web application**.
+   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   1. Click **CREATE**.
+1. Take note of the **Client ID** and **Client Secret** that are generated.
+
+:::info
+Make sure to **publish** your OAuth 2.0 app after you've tested it so users outside of your _test users_ can authorize your integration to interact with Google Drive on their behalf.
+:::
+
+Now that you have a **Client ID** and **Client Secret**, add Google Ads step to your flow.
+Open the **Configuration Wizard Designer** by clicking **Configuration Wizard**, select your **Google Ads Connection** and enter your client ID and secret.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

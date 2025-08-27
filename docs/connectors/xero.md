@@ -13,6 +13,30 @@ Manage invoices, items, accounts, payments and more objects from your Xero accou
 
 Authenticate requests to Xero using values obtained from the developer console.
 
+**Xero** uses OAuth 2.0 to authorize requests made to the API.
+In order for your integration to authenticate with your customers' Xero accounts, you will need to create a Xero OAuth 2.0 app:
+
+- Log on to Xero's [developer portal](https://developer.xero.com/app/manage/)
+- Click **New app**
+  - Give your app a name
+  - Select **Web app** for **Integration type**
+  - Enter _your company's_ URL for **Company or application URL**
+  - Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` for the **Redirect URI**
+- Next, open the **Configuration** page
+  - Click **Generate Secret** and take note of the **Client id** and **Client secret** - you'll enter those in a moment
+
+When you add a Xero step to an integration, a Xero OAuth 2.0 connection config variable will be created automatically for you:
+
+- For **Scopes**, enter the scopes from [this list](https://developer.xero.com/documentation/guides/oauth2/scopes/) that are relevant to your integration.
+  Always include the `offline_access` scope in order for authentication tokens to refresh automatically.
+- For **Client ID** and **Client Secret**, enter the values you noted above.
+- A single customer might be logged in to multiple tenants, and **Tenant Name** is unique for each customer.
+  Leave that input blank, and click the gear icon next to **Tenant Name**.
+  Adjust **Input Visibility** and select **Customer** to make that input visible to your customers.
+  That way, your customers will be prompted for their tenant name when they enable this integration.
+
+For additional information regarding authentication, please refer to the [Xero docs](https://developer.xero.com/documentation/guides/oauth2/auth-flow/#2-users-are-redirected-back-to-you-with-a-code).
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -26,6 +50,33 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Xero OAuth 2.0 Client Credentials
 
 Authenticate requests to Xero using client credentials (Custom Connection).
+
+**Xero** uses OAuth 2.0 to authorize requests made to the API.
+You can use client credentials grant type to access data from a single Xero organization using Custom Connections.
+
+Custom Connections are a premium integration option that utilize the client credentials grant type to access data from a single Xero organization.
+
+**Setting up a Custom Connection**
+
+1. **Create the Custom Connection**
+   - Log in to [My Apps](https://developer.xero.com/app/manage) and click “New App”.
+   - Give the integration a name and select “Custom connection” as the integration type.
+
+2. **Select scopes and the authorizing user**
+   - Next, select the API scopes your integration will need and who will authorize the connection.
+   - That user will then be emailed a link that takes them to the authorization step.
+   - Once authorization is complete you will receive an email to let you know the connection has been authorized.
+
+3. **Authorize the connection**
+   - After clicking the Connect button in the email, the authorizing user will be taken to a consent screen where they can see which scopes are being requested and select the organization to connect.
+   - Note that an organization needs to have purchased a subscription with sufficient Custom Connections to be authorized and connected.
+   - The only exception is the Xero Demo Company, which can be used for free for development purposes.
+
+4. **Retrieve your client id and client secret**
+   - Once the custom connection has been authorized, the client id will be available on the app details page and you can generate the client secret.
+   - You'll enter those into your connection.
+
+For more information, check the [documentation here](https://developer.xero.com/documentation/guides/oauth2/custom-connections/).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

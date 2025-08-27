@@ -13,6 +13,8 @@ Interact with email campaign lists and e-commerce resources.
 
 Authenticate requests to Mailchimp using an API Key
 
+This component can be configured to use an API Key to authenticate the request. An API key can be obtained by following Mailchimp's [quickstart guide](https://mailchimp.com/developer/marketing/guides/quick-start/)
+
 | Input         | Comments                                                                      | Default |
 | ------------- | ----------------------------------------------------------------------------- | ------- |
 | API Key       | Provide a string value for the API Key.                                       |         |

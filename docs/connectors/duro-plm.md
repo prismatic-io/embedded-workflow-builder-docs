@@ -11,6 +11,16 @@ Manage Products, Components, Change Orders, and more with Duro.
 
 ### Duro API Key
 
+### How to retrieve an API key
+
+To retrieve an API key in your Duro app, follow these steps:
+
+1. Log in to your Duro account.
+2. Click on your avatar and select **Account settings**.
+3. In the **Settings** menu, select the **Integrations** tab.
+4. Click on the **Get API Key** button below the Integrations table.
+5. Your API key will be displayed. Highlight and copy it to use as the "Duro API Key".
+
 | Input            | Comments                           | Default |
 | ---------------- | ---------------------------------- | ------- |
 | Duro API Key     | The API key for your Duro account. |         |

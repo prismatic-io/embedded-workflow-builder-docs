@@ -13,6 +13,8 @@ Make GraphQL requests (queries and mutations) to a GraphQL-based API
 
 API Key connection
 
+If an API Key connection is supplied, an `Authorization: Basic ${APIKEY}` header is used in the HTTP request.
+
 | Input                 | Comments                         | Default |
 | --------------------- | -------------------------------- | ------- |
 | API Key               | API Key                          |         |
@@ -22,6 +24,8 @@ API Key connection
 
 Basic Username and Password connection
 
+If a Basic Auth connection is supplied, an `Authorization: Basic ${base64(USERNAME:PASSWORD)}` header is used in the HTTP request.
+
 | Input    | Comments | Default |
 | -------- | -------- | ------- |
 | Username | Username |         |
@@ -30,6 +34,8 @@ Basic Username and Password connection
 ### OAuth 2.0 Authorization Code
 
 OAuth 2.0 Authorization Code flow
+
+If an OAuth 2.0 connection are supplied, an `Authorization: Bearer ${KEY}` header is used in the HTTP request, where `KEY` is the client key that is fetched from the OAuth provider.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

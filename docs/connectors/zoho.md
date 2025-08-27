@@ -13,6 +13,29 @@ Manage records, users, and more in your Zoho CRM and Books apps
 
 OAuth 2.0 Connection
 
+To make API requests of Zoho CRM or Zoho Books on behalf of your customers you need to create a Client using the [Zoho Developer Console](https://api-console.zoho.com/).
+
+- Log in to the [Zoho Developer Console](https://api-console.zoho.com/)
+- Click **ADD CLIENT**
+- Choose `Server-based Applications` as the type of client
+- Fill out the Client Name and Homepage URL fields with the relevant details
+- Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` under **Authorized Redirect URIs**
+- Note the Client ID and Client Secret values, as these will be important when using the Zoho Connection as part of your Integration
+
+For more information please see the [Zoho documentation](https://www.zoho.com/crm/developer/docs/api/v3/register-client.html) for creating a new Client.
+
+#### Zoho in Multiple Regions
+
+Zoho offers data centers in various locations:
+If you develop an integration for users in a single region, you can set the [Region URL](https://accounts.zoho.com/oauth/serverinfo) to a specified region.
+If you plan to deploy your integration to users in multiple regions, be sure that your app is set up to support multiple data centers.
+Then, configure your connection's **Region URL** to be visible to customer deployers, so they can update those values to the region they use.
+
+<Screenshot
+  filename="components/zoho/visible.png"
+  maxWidth="500px"
+/>
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

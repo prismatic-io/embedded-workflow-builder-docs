@@ -13,6 +13,11 @@ Interact with Anthropic&#x27;s Claude models
 
 Connection to Anthropic's Claude API
 
+To generate an API key:
+
+1. Navigate to [API Keys](https://console.anthropic.com/settings/keys) and select **create key**
+2. Enter the API key value into the connection configuration of the integration.
+
 | Input   | Comments                | Default |
 | ------- | ----------------------- | ------- |
 | API Key | Your Anthropic API key. |         |

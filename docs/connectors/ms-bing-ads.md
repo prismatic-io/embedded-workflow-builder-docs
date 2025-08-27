@@ -13,6 +13,41 @@ Manage Microsoft Bing Ad Customer Services
 
 OAuth 2.0 Authorization Code Connectivity for Microsoft Bing Ads
 
+This component uses OAuth 2.0 to connect to the Microsoft Bing Ads API.
+
+To use Bing Ads APIs, you must have a developer token and valid user credentials. If you do not yet have a Microsoft Advertising account, you can sign up via the [Microsoft Advertising web application](https://ads.microsoft.com/).
+
+You can follow these steps to get a developer token for production.
+
+1. Sign in with [Super Admin](https://learn.microsoft.com/en-us/advertising/guides/account-hierarchy-permissions?view=bingads-13#user-roles-permissions) credentials at the [Microsoft Advertising Developer Portal](https://developers.ads.microsoft.com/Account) account tab.
+2. Choose the user that you want associated with the developer token. Typically an application only needs one universal token regardless how many users will be supported.
+3. Click on the Request Token button.
+
+Microsoft Advertising leverages the Microsoft identity platform endpoint for developers and the OAuth 2.0 protocol to authenticate work or school accounts from Azure Active Directory (AAD) and personal Microsoft accounts (MSA), such as `hotmail.com`, outlook.com, and msn.com.
+
+Before your application can authenticate Microsoft Advertising users, you must register your application and get the corresponding client ID and client secret.
+
+1. Navigate to the Microsoft identity platform for developers in the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page. You can login using either a personal Microsoft Account or a Work or School Account.
+
+2. Select **New registration**.
+
+3. When the Register an application page appears, enter your application's registration information:
+   - In the Name section, enter a meaningful application name that will be displayed to users of the app, for example My browserless client.
+   - In the Supported account types section, select Accounts in any organizational directory and personal Microsoft accounts.
+
+4. Select Register to create the application.
+
+5. On the app Overview page, find the Application (client) ID value and record it for later. You will use it as the client_id when you request user consent and get an access token.
+
+6. Select the Add a Redirect URI link and then you should see the Redirect URIs page.
+   - For web applications, provide the base URL of your application. Use callback url `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`. Users would use this URL to sign into a web client application.
+
+7. For web applications, select Certificates & secrets under Manage. Select the New client secret button. Enter a value in Description, select any option for Expires and choose Add. Copy the client secret value before leaving the page. You will use it later as the client_secret to [get an access token](https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth-get-tokens?view=bingads-13).
+
+Now that you have a **Client ID** and **Client Secret**, add Microsoft Bing Ads step to your flow.
+
+Open the **Configuration Wizard Designer** by clicking **Configuration Wizard**, select your **Microsoft Bing Ads Connection** and enter your client ID and secret.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

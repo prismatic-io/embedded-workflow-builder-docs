@@ -13,6 +13,17 @@ Bynder is a leading digital asset management software that allows users to easil
 
 Client Credentials OAuth 2.0
 
+To create a new [OAuth App](https://support.bynder.com/hc/en-us/articles/360013875180-Create-OAuth-Apps):
+
+1. Sign into Bynder and navigate to **Settings > Advanced Settings > Portal Settings** and select **OAuth Apps**
+2. Select **Register new application** to create an OAuth App.
+3. Set Grant Type:
+   1. **Client Credentials - Assigned user**
+      1. Choose the user for which tokens will be issued. Enter the name of the user and click one of the returned search results. We advise creating a dedicated user in the portal if one doesn't exist.
+4. Add at least the following scopes: asset:read, asset:write, collection:read, collection:write,
+5. Select **Register application** to retrieve a **Client ID** and **Client Secret.**
+6. Enter the **Client ID** and **Client Secret** into the connection configuration of the integration.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -26,6 +37,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0
 
 OAuth 2.0
+
+To create a new [OAuth App](https://support.bynder.com/hc/en-us/articles/360013875180-Create-OAuth-Apps):
+
+1. Sign into Bynder and navigate to **Settings > Advanced Settings > Portal Settings** and select **OAuth Apps**
+2. Select **Register new application** to create an OAuth App.
+3. Set Grant Type:
+   1. **Authorization Code - Authorization redirect URLs**
+      1. Set the redirect URI to `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   2. **Client Credentials - Assigned user**
+      1. Choose the user for which tokens will be issued. Enter the name of the user and click one of the returned search results. We advise creating a dedicated user in the portal if one doesn't exist.
+4. Add at least the following scopes: asset:read, asset:write, collection:read, collection:write,
+5. Select **Register application** to retrieve a **Client ID** and **Client Secret.**
+6. Enter the **Client ID** and **Client Secret** into the connection configuration of the integration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

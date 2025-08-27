@@ -13,6 +13,26 @@ Use the Microsoft Intune component to manage users, devices, and applications.
 
 OAuth 2.0 Connectivity for Microsoft Intune
 
+To create an new Microsoft Intune App Registration:
+
+1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
+   1. Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
+   2. Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+   3. Select Register to complete.
+2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection's configuration.
+3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
+4. Navigate to **API Permissions** and select **Add Permission**, select the square labeled **Microsoft Graph**, and then **Delegated permissions**. Under the DeviceManagementManagedDevices section select **DeviceManagementManagedDevices.PrivilegedOperations, DeviceManagementManagedDevices.Read.All. I**n addition to any other permissions that will be required by your integration. You can use DeviceManagementManagedDevices.ReadWrite.All to get started building and choose a more refined set at a later time.
+
+To configure the OAuth 2.0 connection:
+
+1. Add a Microsoft Intune OAuth 2.0 connection configuration variable:
+   1. Use the **Application (client) ID** value for the **Client ID** field.
+   2. Use the **Client Secret** for the same named field.
+   3. Use the default **Authorize URL**.
+   4. Additionally, some actions may require authentication with your Tenant ID. To complete, replace the **common** portion of the Token URL with your Tenant ID.
+      1. Example: **https://login.microsoftonline.com/common/oauth2/v2.0/token**
+         becomes **https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token**
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -27,6 +47,28 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 (Client Credentials)
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Intune
+
+To create an new Microsoft Intune App Registration:
+
+1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
+   1. Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
+   2. Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+   3. Select Register to complete.
+2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection's configuration.
+3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
+4. Navigate to **API Permissions** and select **Add Permission**, select the square labeled **Microsoft Graph**, and then **Application permissions**. Now apply all permissions relevant for your use-case.
+5. After applying all permissions relevant for your use-case, click on **Grant Admin Consent** in order to transfer permissions the client credentials flow after a successful connection.
+
+To configure the OAuth 2.0 connection:
+
+1. Add a Microsoft Intune OAuth 2.0 connection configuration variable:
+   1. Use the **Application (client) ID** value for the **Client ID** field.
+   2. Use the **Client Secret** for the same named field.
+   3. Use the default **Authorize URL**.
+   4. Use the default scope that comes set up with the connection.
+   5. All actions for the client credentials flow require authentication with your Tenant ID. To complete authentication, replace the **common** portion of the Token URL with your Tenant ID.
+      1. Example: **https://login.microsoftonline.com/common/oauth2/v2.0/token**
+         becomes **https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token**
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

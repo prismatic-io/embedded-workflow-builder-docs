@@ -13,6 +13,10 @@ Manage Jira issues, comments, projects and users
 
 Jira Basic Connection
 
+If you select Basic Auth and you are using Jira Cloud, you will need to supply your Jira email and an API token to the connection.
+If you are on a locally hosted instance of Jira, you will need to supply your Jira email and password to the connection.
+For information on generating an API token from Jira Cloud, refer to the [Atlassian docs](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+
 | Input    | Comments                                                                                                          | Default |
 | -------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
 | Username | Provide a valid username for the given jira account you want to connect.                                          |         |
@@ -23,6 +27,47 @@ Jira Basic Connection
 ### Jira OAuth 2.0 Connection
 
 Jira OAuth 2.0 Connection
+
+While Jira's Cloud API has support for legacy OAuth 1.0, we only offer support for [Jira's OAuth 2.0 (3LO) flows](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/#enabling-oauth-2-0--3lo-).
+If you select OAuth 2.0, you need to enable it for your app using the [Atlassian developer console](https://developer.atlassian.com/console).
+
+1. Create a new "Oauth 2.0 integration" and give it a name.
+1. Under the app details section, take note of your client Id and client secret values that were generated.
+1. After you have saved those values, find the Authorization section and click configure on Oauth 2.0 (3LO).
+1. You will now be prompted to enter your redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+1. Next, navigate to the permissions. It is important that you remain consistent with the scopes you supply in both Jira, and your connection.
+1. The default scopes on a new connection will be as follows:
+   1. `read:project:jira`
+      `read:user:jira`
+      `write:issue:jira`
+      `read:issue:jira`
+      `read:issue-link:jira`
+      `write:issue-link:jira`
+      `read:issue-link-type:jira`
+      `write:issue-link-type:jira`
+      `read:issue.transition:jira`
+      `delete:issue:jira`
+   1. These scopes will provide access to the most of the actions in the Jira component, but you may have to modify the scopes in both locations (here and Atlassian Console) to meet your needs.
+1. For more information on developing Jira applications, follow the guide [here](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/).
+1. Next, configure an OAuth 2.0 connection.
+1. Add a Jira step to your integration.
+   1. This will automatically create a Jira connection config variable.
+1. Ensure the connection is of type `Jira OAuth 2.0 Connection` and enter the following details:
+1. For **Client ID** and **Client Secret** enter the values that you got from the Atlassian Developer Console
+1. As stated previously **Scopes** will default to the following:
+   1. `read:project:jira`
+      `read:user:jira`
+      `write:issue:jira`
+      `read:issue:jira`
+      `read:issue-link:jira`
+      `write:issue-link:jira`
+      `read:issue-link-type:jira`
+      `write:issue-link-type:jira`
+      `read:issue.transition:jira`
+      `delete:issue:jira`.
+1. With the addition of `offline_access` on the connection side to obtain a refresh token. From here you can do any [additional configuration](https://developer.atlassian.com/cloud/jira/platform/scopes-for-connect-and-oauth-2-3LO-apps/#oauth-2-0-authorization-code-only-scopes) to match your use case. For example, you might assign the scopes `manage:jira-project read:jira-user` if you plan to work with Users and Projects. You will need to enable these scopes on the [Atlassian Developer Console](https://developer.atlassian.com/apps) page for your OAuth 2.0 Jira app. It is important to include `offline_access` in your scopes, or you will not be given a refresh token.
+1. For **Version** enter the version of Jira you use (you likely use version **2**).
+   1. Jira API: manage:jira-configuration, manage:jira-project, write:jira-work, read:jira-work.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

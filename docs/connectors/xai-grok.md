@@ -13,6 +13,9 @@ xAI Grok is an AI-powered component that provides advanced chat and image genera
 
 Connection to xAI Grok API using API key authentication
 
+Navigate to [xAI Grok API](https://x.ai/api) and generate an API key.
+Enter the key value into the connection configuration of the integration.
+
 | Input   | Comments               | Default |
 | ------- | ---------------------- | ------- |
 | API Key | Your xAI Grok API key. |         |

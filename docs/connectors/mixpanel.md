@@ -11,6 +11,17 @@ Mixpanel is a SaaS event analytics platform that can track user interactions wit
 
 ### API Key
 
+Setting up a Service Account:
+
+1. In Mixpanel, navigate to the Service accounts tab in your [Organization Settings] (https://mixpanel.com/settings/org#serviceaccounts)
+2. You will be asked to select the role and granted projects of the when creating a service account from the organization's settings page. Select “Add” when completed.
+3. Once completed a Username and Secret are provided. Copy the values into their respective fields in the connection configuration.
+
+Obtaining your Project Token:
+
+1. A project's token can be found in the Access Keys section of a [project's settings overview page] (https://mixpanel.com/settings/project/)
+   1. Copy the value into its respective fields in the connection configuration.
+
 | Input         | Comments                                  | Default |
 | ------------- | ----------------------------------------- | ------- |
 | Username      | Username of your Mixpanel Service Account |         |

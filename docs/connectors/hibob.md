@@ -13,6 +13,34 @@ HiBob is an HR platform for people management, performance, and engagement.
 
 HiBob Basic Authentication Connection
 
+To use the HiBob component, you'll need to obtain API credentials (Service User ID and Token) from your HiBob account.
+
+#### Obtaining API Credentials
+
+1. **Access HiBob Admin Panel**
+   - Log in to your HiBob account
+   - Navigate to the Service Users configuration page
+
+2. **Create a New Service User**
+   - Create a new API service user
+   - You'll receive a Service User ID and Token
+   - Make sure to copy these credentials immediately as the token can only be viewed once
+
+3. **Set Up Permissions**
+   - Create a dedicated permission group for your service user
+   - Add the service user to this group
+   - Configure the necessary permissions based on the API operations you plan to perform
+   - For basic employee data access, ensure you have the "Default Employee Fields" permissions enabled
+
+> **Note**: If you don't have direct access to HiBob's admin panel, you'll need to contact your HiBob administrator to generate these credentials for you.
+
+#### Required Permissions
+
+For basic functionality, ensure your service user has the following permissions:
+
+- View access to employee data sections
+- Access to the specific features you plan to use via the API
+
 | Input           | Comments                        | Default |
 | --------------- | ------------------------------- | ------- |
 | Service User ID | Your HiBob API Service User ID. |         |

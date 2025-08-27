@@ -13,6 +13,14 @@ Manage files stored in Box
 
 Box Developer Token
 
+A **Developer Token** is a short-lived (60-minute) token that you can use for testing purposes.
+A developer token allows you to use the Box API to access your personal Box account only.
+
+:::note
+When your integration is ready for production, you'll need an [OAuth 2.0](#box-oauth-20-connection) connection to authenticate your customers' Box accounts.
+You can also do your testing with OAuth.
+:::
+
 | Input           | Comments                                           | Default |
 | --------------- | -------------------------------------------------- | ------- |
 | Developer Token | A short-lived developer token for testing purposes |         |
@@ -20,6 +28,22 @@ Box Developer Token
 ### Box OAuth 2.0 Connection
 
 Box OAuth 2.0 Connection
+
+This component authenticates with Box using OAuth 2.0.
+You will need to create a Box OAuth 2.0 app in order to authorize your integration to access your customers' Box accounts.
+
+You can follow along with Box's OAuth 2.0 setup documentation [here](https://developer.box.com/guides/authentication/oauth2/oauth2-setup/). Note:
+
+- Be sure to select **User Authentication (OAuth 2.0)** when creating a **Custom App**
+- Take note of your **Client ID** and **Client Secret** - you'll enter those in a moment
+- Under **OAuth 2.0 Redirect URI**, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+- Under **Application Scopes**, select **Write all files and folders stored in Box**
+- Leave **CORS Domains** blank
+
+When you add a Box step to an integration, a Box OAuth 2.0 connection will be created for you.
+Enter the **Client ID** and **Client Secret** that you noted earlier.
+You can leave **Scopes** blank to use the **Application Scopes** that you set up previously.
+Or, you can pare down scopes as desired (reference Box's [scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/)).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

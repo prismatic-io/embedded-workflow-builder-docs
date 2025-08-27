@@ -13,6 +13,14 @@ PagerDuty is a platform for managing on-call operations. This component supports
 
 Your PagerDuty API Key
 
+Steps to generate and use an API Key for PagerDuty:
+
+1. [Log in to PagerDuty](https://app.pagerduty.com/) and navigate to [Integrations | API Access Keys](https://support.pagerduty.com/main/docs/api-access-keys#section-generate-a-user-token-rest-api-key).
+2. Click the "Create New API Key" button.
+3. Enter a description for the API key. Check "Read-only API Key" if read-only behavior is desired.
+4. Click Create Key.
+5. Copy the provided API Key into the connection's configuration.
+
 | Input | Comments | Default |
 | ----- | -------- | ------- |
 | Token |          |         |
@@ -20,6 +28,22 @@ Your PagerDuty API Key
 ### OAuth 2.0
 
 OAuth 2.0 flow
+
+Steps to generate app credentials for [OAuth 2.0 for PagerDuty](https://developer.pagerduty.com/docs/b2a19cce2867a-classic-user-o-auth):
+
+1. [Log in to PagerDuty](https://app.pagerduty.com/) and navigate to [Integrations | App Registration](https://developer.pagerduty.com/docs/dd91fbd09a1a1-register-an-app).
+2. From the top menu, select **Integrations**.
+3. Select **App Registration** from the menu to navigate to the **My Apps** page.
+4. On the **My Apps** page, select **New App**. Enter a name for your app and a brief description.
+5. Check the box next to **OAuth2.0** and/or **Events Integration.**
+6. For Authorization select one of the following:
+   1. [**Scoped OAuth**](https://developer.pagerduty.com/docs/f59fdbd94ceab-o-auth-functionality#scoped-oauth) - New OAuth client that allows granular read or write access to PagerDuty resources like incidents, services, users, with other benefits.
+      1. Use the table below to select Read or Write access to each Resource your integration will need access to.
+   2. [**Classic User OAuth**](https://developer.pagerduty.com/docs/f59fdbd94ceab-o-auth-functionality#scoped-oauth) - Existing OAuth client that allows apps to act on behalf of users, with read or write to all PagerDuty resources.
+      1. Assign a permission scope of **Read** or **Read and Write**
+7. In the Redirect URL field enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+8. Select **Register App**
+9. Copy and save the Client ID and Client Secret into your integration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

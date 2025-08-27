@@ -13,6 +13,14 @@ Query, create, update or delete Salesforce records
 
 Authenticate requests to Salesforce using basic auth.
 
+If you select Basic Auth, you will need to supply your Salesforce username and a password.
+Depending on your Salesforce setup, your password may have a security token attached to it.
+If security tokens in your Salesforce account are _disabled_, the password you need to supply is simply your Salesforce password.
+If security tokens are _enabled_ in your Salesforce account, then the password you need to enter is the concatenation of your password and your security token.
+
+For example, if your Salesforce password is `p@$sw0rD` and the security token that Salesforce provides is `ExAmPlE0000000000ExAmPlE`, then you should enter `p@$sw0rDExAmPlE0000000000ExAmPlE` as your password.
+You can manage security tokens by clicking your profile picture on the top-right of _Salesforce_, select **My Settings**, and then open **Personal** -> **Reset My Security Token**.
+
 | Input     | Comments                                            | Default |
 | --------- | --------------------------------------------------- | ------- |
 | Username  | The username of the Salesforce account              |         |
@@ -22,6 +30,43 @@ Authenticate requests to Salesforce using basic auth.
 ### Salesforce OAuth 2.0
 
 Authenticate requests to Salesforce using values obtained from the developer console.
+
+If you select OAuth 2.0, you will need to create and configure a [Connected App](https://help.salesforce.com/s/articleView?id=sf.connected_app_create.htm&type=5) within Salesforce.
+
+- When you create your "Connected App" be sure to check **Enable OAuth Settings**, and enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Callback URL**.
+- Consult Salesforce to determine the proper OAuth Scopes to assign - to grant your integrations the same permissions that the user authenticating through OAuth has, select **Full access (full)**.
+  Also select **Perform requests at any time**.
+  Select **Require Secret for Web Server Flow** and **Require Secret for Refresh Token Flow**:
+
+<Screenshot
+  filename="components/salesforce/create-connected-app.png"
+  alt="Manage Connected Apps in Salesforce Platform Tools"
+/>
+
+Once the app has been created, you will be provided with a **Consumer Key** and **Consumer Secret**.
+Take note of these keys:
+
+<Screenshot
+  filename="components/salesforce/get-keys.png"
+  alt="Manage Connected Apps in Salesforce Platform Tools with Consumer and Secret Keys"
+/>
+
+If you need to return to this screen, click **PLATFORM TOOLS** -> **Apps** -> **App Manager**, click the dropdown menu to the right of your app and select **Edit**.
+From there you can manage callback URLs.
+Click **Save** and then **Manage Consumer Details** to view the consumer key and secret again.
+
+Now, configure OAuth 2.0 settings.
+
+Add a Salesforce action to your integration.
+This will automatically create a connection config variable for Salesforce.
+Enter the **Consumer Key** and **Consumer Secret** that you noted previously.
+
+You should now be able to authenticate a user through Salesforce using OAuth 2.0.
+
+:::note Connecting to a Salesforce Sandbox Account
+If you would like to connect to a Salesforce sandbox organization for testing purposes, edit your connection's Authorize URL, Token URL and Revoke URLs to read `test.salesforce.com` instead of `login.salesforce.com`.
+Be sure to change these values back when your testing is done.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
