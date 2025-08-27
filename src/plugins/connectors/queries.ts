@@ -4,7 +4,7 @@ export interface Component {
   description: string;
   category: string;
   iconUrl: string;
-  connections: { nodes: Connection };
+  connections: { nodes: Connection[] };
   triggers: { nodes: Trigger[] };
   dataSources: { nodes: DataSource[] };
   actions: { nodes: Action[] };
@@ -16,6 +16,7 @@ interface Connection {
   type: string;
   default: string;
   comments: string;
+  connectionDocs?: string;
 }
 
 interface Trigger {

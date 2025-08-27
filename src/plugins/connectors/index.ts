@@ -24,6 +24,9 @@ handlebars.registerPartial(
   }),
 );
 
+// We skip importing certain connectors' connection docs because they are too Prismatic-specific
+const IGNORED_CONNECTOR_CONNECTION_DOCS = ["pipedrive"];
+
 const writeConnectorDocsFile = (
   connector: Component,
   connectorTemplate: HandlebarsTemplateDelegate<unknown>,
@@ -58,6 +61,33 @@ async function generateConnectorDocs({
       JSON.stringify(connectors, null, 2),
     );
     for (const connector of connectors) {
+      for (const connection of connector.connections.nodes) {
+        const docsPath = path.join(
+          __dirname,
+          "..",
+          "..",
+          "..",
+          "..",
+          "components",
+          "components",
+          connector.key,
+          "documentation",
+          "connections",
+          `${connection.key}.mdx`,
+        );
+        if (
+          fs.existsSync(docsPath) &&
+          !IGNORED_CONNECTOR_CONNECTION_DOCS.includes(connector.key)
+        ) {
+          connection.connectionDocs = fs
+            .readFileSync(docsPath, { encoding: "utf-8" })
+            .replaceAll(
+              /<OauthCallbackUrl \/>/g,
+              "`https://oauth2.%WHITE_LABEL_BASE_URL%/callback`",
+            );
+        }
+      }
+
       fetchConnectorIcon(connector);
       writeConnectorDocsFile(connector, connectorTemplate);
     }
