@@ -94,7 +94,7 @@ Retrieve a single CRM Attribute
 | -------------------- | ------------------------------------------------------------------------- | ------- |
 | Connection           |                                                                           |         |
 | Entity ID            | The ID of a specific Entity record                                        |         |
-| Attribute Type       | The type of Attribute to query                                            |         |
+| Attribute Key        | The Attribute Metadata id                                                 |         |
 | Field Name           | The names of the fields to retrieve                                       |         |
 | Expand Property Name | The names of entity properties to linked entities that should be included |         |
 
@@ -134,11 +134,33 @@ Retrieve a single Microsoft Dynamics 365 CRM entity record.
 
 Get definition of Microsoft Dynamics 365 CRM entity.
 
-| Input                       | Comments                                                                | Default |
-| --------------------------- | ----------------------------------------------------------------------- | ------- |
-| Entity Type                 | The type of Entity to retrieve metadata for. Use the singular name here |         |
-| Connection                  |                                                                         |         |
-| Use Logical Name for Lookup |                                                                         | true    |
+| Input                       | Comments                                               | Default |
+| --------------------------- | ------------------------------------------------------ | ------- |
+| Connection                  |                                                        |         |
+| Entity Type                 | The type of Entity to query, usually a pluralized name |         |
+| Use Logical Name for Lookup |                                                        | true    |
+
+### [CRM] List Attributes
+
+Get a list of all attributes for a specific entity in your Dynamics 365 CRM instance
+
+| Input                     | Comments                                                                               | Default |
+| ------------------------- | -------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                        |         |
+| Entity ID                 | The ID of a specific Entity record                                                     |         |
+| Attribute Type Filter     | Filter by attribute type (e.g., 'String', 'Integer', 'Boolean', 'DateTime', 'Decimal') |         |
+| Include Attribute Details | Include additional attribute metadata like schema name, security settings, etc.        | false   |
+
+### [CRM] List Entities
+
+Get a list of all available entities in your Dynamics 365 CRM instance with detailed metadata
+
+| Input                   | Comments                                                                  | Default |
+| ----------------------- | ------------------------------------------------------------------------- | ------- |
+| Connection              |                                                                           |         |
+| Include Custom Entities | Include custom entities in the list.                                      | true    |
+| Top Level Only          | Include only top-level entities (exclude child entities).                 | false   |
+| Include Entity Details  | Include additional entity metadata like description, ownership type, etc. | false   |
 
 ### [CRM] Query Attributes
 
@@ -238,6 +260,16 @@ Upsert a Microsoft Dynamics 365 CRM entity record.
 | Field Value    | The names of the fields and their values to use when creating/updating a record |         |
 | Dynamic Values |                                                                                 |         |
 | Connection     |                                                                                 |         |
+
+### List Entity Types
+
+Retrieve a list of entity types available in your Microsoft Dynamics 365 environment with pagination support
+
+| Input         | Comments                                                                                   | Default |
+| ------------- | ------------------------------------------------------------------------------------------ | ------- |
+| Connection    |                                                                                            |         |
+| Max Page Size | Maximum number of entities to return per page (1-5000). Defaults to 5000 if not specified. | 5000    |
+| Next Link     | The @odata.nextLink URL from a previous response to get the next page of results           |         |
 
 ### Raw Request
 

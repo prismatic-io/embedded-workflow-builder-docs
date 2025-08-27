@@ -9,7 +9,15 @@ Manage Notion pages, databases, and users
 
 ## Connections
 
-### Notion OAuth 2.0 Connection
+### Internal Integration Secret
+
+Connect to Notion using an Internal Integration Secret
+
+| Input                       | Comments                                | Default |
+| --------------------------- | --------------------------------------- | ------- |
+| Internal Integration Secret | Your Notion Internal Integration Secret |         |
+
+### OAuth 2.0
 
 Connect to Notion via OAuth 2.0
 
@@ -141,20 +149,20 @@ Query a Notion database
 
 Send raw HTTP request to Notion
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | Input the path only (/pages), The base URL is already included (https://api.notion.com/v1). For example, to connect to https://api.notion.com/v1/pages, only /pages is entered in this field.    |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                               | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection              |                                                                                                                                                                                                        |         |
+| URL                     | Input the path only (/users/me), The base URL is already included (https://api.notion.com/v1). For example, to connect to https://api.notion.com/v1/users/me, only /users/me is entered in this field. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                              |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                   |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                       |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                 |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                    |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                            |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                               | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                    |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                    | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.       | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                    | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                          | false   |

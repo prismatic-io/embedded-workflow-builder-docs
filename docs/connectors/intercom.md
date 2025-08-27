@@ -38,7 +38,7 @@ Archive an existing Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 
 ### Attach Company to Contact
 
@@ -47,7 +47,7 @@ Attach Company to Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 | Company ID | Identifier of Company                              |         |
 
 ### Attach Tag to Contact
@@ -57,7 +57,7 @@ Attach a Tag to a Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 | Tag ID     | Identifier of Tag                                  |         |
 
 ### Create Company
@@ -130,7 +130,7 @@ Delete an existing Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 
 ### Delete Tag
 
@@ -148,7 +148,7 @@ Detach Company from Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 | Company ID | Identifier of Company                              |         |
 
 ### Detach Tag from Contact
@@ -158,7 +158,7 @@ Detach a Tag from a Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 | Tag ID     | Identifier of Tag                                  |         |
 
 ### Get Company
@@ -177,7 +177,7 @@ Retrieves an existing Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 
 ### List Companies
 
@@ -242,11 +242,19 @@ Send a raw request to Intercom
 | Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+
+### Retrieve a ticket
+
+Retrieve a ticket by ID
+
+| Input      | Comments                      | Default |
+| ---------- | ----------------------------- | ------- |
+| Ticket ID  | ID of the ticket to retrieve. |         |
+| Connection |                               |         |
 
 ### Search Contacts
 
@@ -268,7 +276,7 @@ Unarchive an archived Contact
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection |                                                    |         |
-| ID         | Unique identifier for the entity given by Intercom |         |
+| Contact ID | Unique identifier for the entity given by Intercom |         |
 
 ### Update Company
 
@@ -293,7 +301,7 @@ Update an existing Contact
 | Input                    | Comments                                               | Default |
 | ------------------------ | ------------------------------------------------------ | ------- |
 | Connection               |                                                        |         |
-| ID                       | Unique identifier for the entity given by Intercom     |         |
+| Contact ID               | Unique identifier for the entity given by Intercom     |         |
 | Role                     | The role of the contact                                |         |
 | External ID              | Unique identifier for the entity from external systems |         |
 | Email                    | Email of the contact                                   |         |
