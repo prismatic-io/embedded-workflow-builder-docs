@@ -52,7 +52,7 @@
     "jimp": "^1.6.0",
     "js-yaml": "^4.1.0",
     "markdownlint-cli": "^0.45.0",
-    "netlify-cli": "^23.0.0",
+    "netlify-cli": "^23.7.3",
     "prettier": "^3.6.1",
     "rimraf": "^6.0.1",
     "typescript": "~5.8.3"
@@ -71,5 +71,8 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "tmp": "0.2.4"
   }
 }
