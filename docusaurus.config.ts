@@ -22,7 +22,6 @@ const config: Config = {
   url: siteConfig.docsSite.url,
   baseUrl: siteConfig.docsSite.baseUrl,
   onBrokenLinks: "throw", // Throw errors during the build process when links are broken
-  onBrokenMarkdownLinks: "throw",
   onBrokenAnchors: "throw",
   i18n: {
     defaultLocale: "en",
@@ -67,6 +66,9 @@ const config: Config = {
     format: "md",
     parseFrontMatter: frontMatterProcessPhrases,
     preprocessor: contentProcessPhrases,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
   plugins: [
     path.resolve(__dirname, "src/plugins/connectors/index.ts"),
