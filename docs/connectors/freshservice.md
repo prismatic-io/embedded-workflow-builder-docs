@@ -9,7 +9,7 @@ Use the Freshservice component to manage tickets, problems, agents, and more.
 
 ## Connections
 
-### Freshservice API Key Connection
+### API Key
 
 Connect to Freshservice using an API key.
 
@@ -367,6 +367,7 @@ View List of Tickets.
 | Input                       | Comments                                                                                   | Default |
 | --------------------------- | ------------------------------------------------------------------------------------------ | ------- |
 | Connection                  |                                                                                            |         |
+| Filter                      | Filter the tickets.                                                                        |         |
 | Fetch All                   | Set to true to retrieve all results.                                                       | true    |
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |

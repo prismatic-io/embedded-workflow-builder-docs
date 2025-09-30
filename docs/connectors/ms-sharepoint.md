@@ -9,31 +9,89 @@ Interact with sites, drives, and items connected to your instance of Microsoft S
 
 ## Connections
 
-### Client Credentials
+### Certificate Credentials
 
-Authenticates actions in the Microsoft SharePoint component.
+Authenticates actions in all Microsoft's Graph API services.
 
-This Connection will require an App Registration:
+#### App Registration Requirements
 
-1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
-   1. Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
-   2. Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
-   3. Select Register to complete.
-2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection's configuration.
-3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
-4. Navigate to **API Permissions** and select **Add Permission**, select the square labeled **Microsoft Graph**, and then **Application permissions**.
-5. After applying all permissions relevant for your use-case, click on **Grant Admin Consent** in order to transfer permissions the client credentials flow after a successful connection.
+First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration). Then configure the following **Microsoft Graph Application permissions**:
 
-To configure the OAuth 2.0 connection:
+**Site Operations:**
 
-1. Add an OAuth 2.0 connection configuration variable:
-   1. All actions for the client credentials flow require authentication with your Tenant ID.
-   2. Use the **Application (client) ID** value for the **Client ID** field.
-   3. Use the **Client Secret** for the same named field.
-   4. Use the default scope that comes set up with the connection.
+- `Sites.Read.All` - Read items in all site collections
+- `Sites.ReadWrite.All` - Read and write items in all site collections
+- `Sites.Manage.All` - Create, edit, and delete items and lists in all site collections
+- `Sites.FullControl.All` - Full control of all site collections
 
-This connection uses OAuth 2.0, a common authentication mechanism for integrations.
-Read about how OAuth 2.0 works [here](../oauth2.md).
+**File Operations:**
+
+- `Files.Read.All` - Read files in all site collections
+- `Files.ReadWrite.All` - Read and write files in all site collections
+
+**List Operations:**
+
+- `Sites.ReadWrite.All` - Required for list operations
+- `Sites.Manage.All` - For creating and managing lists
+
+**User and Group Access:**
+
+- `User.Read.All` - Read all users' profiles
+- `Group.Read.All` - Read all groups
+
+#### Certificate Requirements
+
+Before configuring certificate credentials, ensure:
+
+- Certificate issued by a Certificate Authority (CA) for production, or self-signed for development
+- RSA key size: minimum 2048 bits (4096 bits recommended)
+- Certificate in X.509 format
+- Public key formats: .cer, .pem, or .crt
+- Private key in PEM or PKCS#12 format
+
+#### Registering Certificate with Azure
+
+1. Ensure app registration is complete with required permissions
+2. Navigate to **Certificates & Secrets** in the app registration
+3. Select the **Certificates** tab
+4. Click **Upload certificate**
+5. Select the public certificate file (.cer, .pem, or .crt)
+6. Add an optional description
+7. Click **Add** to upload
+
+After upload, note these values:
+
+- **Certificate Thumbprint** - SHA-1 hash (e.g., "931E8F84B98A4B5F93AD609FD5E8D0BA1AB90F87")
+- **Start Date** and **Expiration Date**
+- **Certificate ID** - Automatically generated
+
+#### Connection Configuration
+
+Configure the following fields:
+
+- **Tenant ID**: Azure AD Directory ID from app registration
+- **Client ID**: Application ID from app registration
+- **Certificate Thumbprint**: SHA-1 thumbprint from uploaded certificate (remove spaces)
+- **Private Key**: Certificate private key in PEM format
+- **Scope**: `https://graph.microsoft.com/.default` for application permissions
+
+#### Private Key Format
+
+The private key must be in PEM format with appropriate headers:
+
+```
+-----BEGIN PRIVATE KEY-----
+[base64 encoded private key]
+-----END PRIVATE KEY-----
+```
+
+Or for RSA keys:
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+[base64 encoded RSA private key]
+-----END RSA PRIVATE KEY-----
+```
 
 | Input                       | Comments                                                                                                                                                                                                                             | Default                              |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
@@ -41,34 +99,96 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Microsoft Entra ID Endpoint | The Microsoft Entra ID endpoint for the Microsoft Graph API. You can find this in the Azure portal or [here](https://learn.microsoft.com/en-us/graph/deployments#app-registration-and-token-service-root-endpoints).                 | https://login.microsoftonline.com    |
 | Tenant                      | The tenant ID or name for the Microsoft Graph API. This is the ID or name of the tenant that you are connecting to.                                                                                                                  |                                      |
 | Client ID                   | Client Id of your Azure application.                                                                                                                                                                                                 |                                      |
-| Client Secret               | Client Secret generated under 'Certificates & Secrets' in your Azure application.                                                                                                                                                    |                                      |
-| Scopes                      | Microsoft SharePoint Scopes.                                                                                                                                                                                                         | https://graph.microsoft.com/.default |
+| Private Certificate         | Your X.509 private certificate.                                                                                                                                                                                                      |                                      |
+| Certificate Thumbprint      | Thumbprint of the certificate.                                                                                                                                                                                                       |                                      |
+| Scopes                      | Microsoft Graph API Scopes.                                                                                                                                                                                                          | https://graph.microsoft.com/.default |
 
 ### Microsoft SharePoint OAuth 2.0 (Deprecated)
 
 Authenticates actions in the Microsoft SharePoint component.
 
+#### Creating an App Registration
+
 Once you have an instance of Microsoft SharePoint licensed to your account, you will need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
-When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
 
-You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations**
+2. Select **New registration**
+3. Configure the basic settings:
+   - **Name**: Provide a descriptive name for the application
+   - **Supported account types**: Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**
+   - **Redirect URI**: Select **Web** platform and add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Click **Register** to create the app registration
 
-Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+#### Obtaining Application Credentials
 
-You will also need the **Application (client) ID** from the "Overview" page.
+After registration, navigate to the **Overview** page and note:
 
-The last step of configuring the "App Registration" is assigning "App Permissions". Click "Add Permission", click on the square labeled "SharePoint", and then "Delegated permissions". You should select all permissions that are required for your desired integration.
+- **Application (client) ID** - This will be the Client ID
+- **Directory (tenant) ID** - Required for certain connection types
 
-- Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+#### API Permissions Configuration
 
-Now, configure the OAuth 2.0 connection.
-Add an MS SharePoint OAuth 2.0 connection config variable:
+1. Navigate to **API Permissions**
+2. Click **Add a permission**
+3. Select **SharePoint** for SharePoint-specific operations
+4. Choose **Delegated permissions** for user-authenticated flows
+5. Select the following permissions:
 
-- Use the **Application (client) ID** value for the **Client ID** field.
-- Use the **Client Secret** for the same named field.
-- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
+**Essential Scopes:**
 
-Save your integration and you should be able to authenticate a user through MS SharePoint with OAuth 2.0.
+- `offline_access` - **Required** for refresh tokens (without this, users re-authenticate every hour)
+
+**Site Operations:**
+
+- `AllSites.Read` - Read items in all site collections
+- `AllSites.Write` - Edit or delete items in all site collections
+- `AllSites.Manage` - Create, edit and delete items and lists in all site collections
+- `AllSites.FullControl` - Full control of all site collections
+
+**File Operations:**
+
+- `MyFiles.Read` - Read user files
+- `MyFiles.Write` - Read and write user files
+- `AllSites.Read` - Read files in all sites
+- `AllSites.Write` - Read and write files in all sites
+
+**List Operations:**
+
+- `AllSites.Write` - Required for list item operations
+- `AllSites.Manage` - For creating and managing lists
+
+**User Profile:**
+
+- `User.Read.All` - Read all users' profiles
+- `User.ReadBasic.All` - Read all users' basic profiles
+
+6. Click **Add permissions**
+7. **Important**: Click **Grant admin consent** to activate the permissions
+
+#### Creating Client Secret
+
+1. Navigate to **Certificates & Secrets** in the app registration
+2. Select the **Client secrets** tab
+3. Click **New client secret**
+4. Provide a description and select expiration period
+5. Click **Add**
+6. **Important**: Copy the secret **Value** immediately - it cannot be retrieved later
+
+#### Connection Configuration
+
+Configure the following fields:
+
+- **Client ID**: Application ID from app registration
+- **Client Secret**: Secret value created above
+- **Authorize URL**: Default provided, or tenant-specific URL if not using multitenant
+- **Token URL**: Default provided, or tenant-specific URL if not using multitenant
+
+#### Tenant-Specific URLs
+
+If the app registration is not configured as multitenant, replace the default URLs with tenant-specific versions:
+
+- **Authorize URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize`
+- **Token URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -84,36 +204,41 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### OAuth 2.0 Authorization Code
 
-OAuth 2.0 Authorization Code Connectivity for Microsoft Outlook.
+Authenticates actions in all Microsoft's Graph API services.
 
-The OAuth 2.0 templated flow allows your user to authenticate with SharePoint to access their data on their behalf.
-Setting up a templated OAuth connection is a single-step process:
+The templated OAuth flow enables user authentication with SharePoint to access data on their behalf.
 
-To create an "App Registration" in Azure:
+#### App Registration
 
-1. Log in to [Azure Portal](https://portal.azure.com/)
-1. Select **App registrations**
-1. Click **+ New registration**
-   - **Name**: Give your application a descriptive name
-   - **Supported account types**: Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**
-   - **Redirect URI**: Select **Web** and enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **Register**
-1. Under **API permissions** click **+ Add a permission**
-   - Select **SharePoint**
-   - Click **Delegated permissions**
-   - Select all permissions that are required for your desired integration
-   - Click **Add permissions**
-1. Under **API permissions** click **Grant admin consent for (your org)**
-1. Under **Certificates & secrets** click **+ New client secret**
-   - Give your client secret a description and expiration date
-   - Take note of the **Value** (not the Secret ID) of the client secret
-1. Returning to the **Overview** page, take note of **Application (client) ID**
+First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration).
 
-You will use the **Client Secret Value** and **Client ID** in the connection configuration.
+#### Permissions
 
-- Enter the **Client ID** you noted above
-- Enter the **Client Secret Value** you noted above
-- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant
+Configure **SharePoint Delegated permissions** in the app registration:
+
+- Select all permissions required for the integration
+- Grant admin consent for the organization
+- Include `offline_access` scope for refresh token support
+
+#### Creating Client Secret
+
+1. Navigate to **Certificates & Secrets** in the app registration
+2. Click **New client secret**
+3. Provide a description and select expiration period
+4. Click **Add**
+5. Copy the secret **Value** (not the Secret ID)
+
+#### Connection Configuration
+
+Configure the following fields:
+
+- **Client ID**: Application ID from app registration
+- **Client Secret**: Secret value created above
+
+For non-multitenant applications, replace the default URLs:
+
+- **Authorize URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize`
+- **Token URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -122,11 +247,92 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | Base URL            | The base URL for the Microsoft Graph API. Depending on your cloud environment, you can choose the correct one [here](https://learn.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints).                                                     | https://graph.microsoft.com                         |
 | Tenant URL          | The tenant URL for the Microsoft Graph API. This is the URL of the tenant that you are connecting to. You can find this in the Azure portal or [here](https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud#microsoft-entra-authentication-endpoints). | login.microsoftonline.com/common                    |
-| Scopes              | Microsoft SharePoint permission scopes are set on the OAuth application.                                                                                                                                                                                                                 | Sites.ReadWrite.All Sites.Manage.All offline_access |
+| Scopes              | Microsoft Graph API permission scopes are set on the OAuth application.                                                                                                                                                                                                                  | Sites.ReadWrite.All Sites.Manage.All offline_access |
 | Client ID           | Client Id of your Azure application.                                                                                                                                                                                                                                                     |                                                     |
 | Client secret value | Client Secret generated under 'Certificates & Secrets' in your Azure application.                                                                                                                                                                                                        |                                                     |
 
+### OAuth 2.0 Client Credentials
+
+Authenticates actions in all Microsoft's Graph API services.
+
+#### App Registration
+
+First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration). Then configure the following **Microsoft Graph Application permissions** for app only authentication:
+
+**Site Operations:**
+
+- `Sites.Read.All` - Read items in all site collections
+- `Sites.ReadWrite.All` - Read and write items in all site collections
+- `Sites.Manage.All` - Create, edit, and delete items and lists in all site collections
+- `Sites.FullControl.All` - Full control of all site collections
+
+**File Operations:**
+
+- `Files.Read.All` - Read files in all site collections
+- `Files.ReadWrite.All` - Read and write files in all site collections
+
+**List Operations:**
+
+- `Sites.ReadWrite.All` - Required for list operations
+- `Sites.Manage.All` - For creating and managing lists
+
+**User and Group Access:**
+
+- `User.Read.All` - Read all users' profiles
+- `Group.Read.All` - Read all groups
+
+**Important**: Grant admin consent for all configured permissions.
+
+#### Creating Client Secret
+
+1. Navigate to **Certificates & Secrets** in the app registration
+2. Select the **Client secrets** tab
+3. Click **New client secret**
+4. Provide a description and select expiration period
+5. Click **Add**
+6. **Important**: Copy the secret **Value** immediately - it cannot be retrieved later
+
+#### Connection Configuration
+
+Configure the following fields:
+
+- **Tenant ID**: Azure AD Directory ID from app registration
+- **Client ID**: Application ID from app registration
+- **Client Secret**: Secret value created above
+- **Scope**: `https://graph.microsoft.com/.default` for application permissions
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input                       | Comments                                                                                                                                                                                                                             | Default                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| Base URL                    | The base URL for the Microsoft Graph API. Depending on your cloud environment, you can choose the correct one [here](https://learn.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints). | https://graph.microsoft.com          |
+| Microsoft Entra ID Endpoint | The Microsoft Entra ID endpoint for the Microsoft Graph API. You can find this in the Azure portal or [here](https://learn.microsoft.com/en-us/graph/deployments#app-registration-and-token-service-root-endpoints).                 | https://login.microsoftonline.com    |
+| Tenant                      | The tenant ID or name for the Microsoft Graph API. This is the ID or name of the tenant that you are connecting to.                                                                                                                  |                                      |
+| Client ID                   | Client Id of your Azure application.                                                                                                                                                                                                 |                                      |
+| Client Secret               | Client Secret generated under 'Certificates & Secrets' in your Azure application.                                                                                                                                                    |                                      |
+| Scopes                      | Microsoft Graph API Scopes.                                                                                                                                                                                                          | https://graph.microsoft.com/.default |
+
 ## Triggers
+
+### Drive Changes
+
+Periodically retrieves changes from a specified drive of a site on a configured schedule.
+
+| Input      | Comments                                             | Default |
+| ---------- | ---------------------------------------------------- | ------- |
+| Connection |                                                      |         |
+| Drive      | Provide the unique identifier of a SharePoint drive. |         |
+
+### Folder Changes
+
+Periodically retrieves changes from a specified folder of a drive on a configured schedule.
+
+| Input      | Comments                                             | Default |
+| ---------- | ---------------------------------------------------- | ------- |
+| Connection |                                                      |         |
+| Drive      | Provide the unique identifier of a SharePoint drive. |         |
+| Folder ID  | The ID of the folder to monitor for changes.         |         |
 
 ### Site Changes
 

@@ -11,6 +11,8 @@ Manage users, projects, and teams in your Asana workspace
 
 ### Asana OAuth 2.0 Connection
 
+Asana OAuth 2.0 Connection
+
 To make API requests of Asana on behalf of your customers you need to create an "OAuth app" within Asana.
 Log in to Asana and then visit [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps).
 
@@ -30,6 +32,8 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client secret | Generate from https://app.asana.com/0/my-apps/ |         |
 
 ### Asana Personal Access Token
+
+Asana Personal Access Token
 
 Developer **personal access tokens** can be used for development purposes, but you should use an [OAuth 2.0 connection](#asana-oauth-20-connection) when you deploy your integration (so your users can log in with their accounts).
 
@@ -80,15 +84,15 @@ Receive and validate webhook requests from Asana for webhooks you configure.
 
 Get notified when a project is created, updated, or deleted in a workspace.
 
-| Input                  | Comments                                                            | Default |
-| ---------------------- | ------------------------------------------------------------------- | ------- |
-| Connection             |                                                                     |         |
-| Workspace ID           | The gid of the workspace                                            |         |
-| Trigger When Added     | Determines if the webhook will trigger when a project is added.     | true    |
-| Trigger When Changed   | Determines if the webhook will trigger when a project is changed.   | true    |
-| Trigger When Deleted   | Determines if the webhook will trigger when a project is deleted.   | true    |
-| Trigger When Removed   | Determines if the webhook will trigger when a project is removed.   | true    |
-| Trigger When Undeleted | Determines if the webhook will trigger when a project is undeleted. | true    |
+| Input                  | Comments                                                                 | Default |
+| ---------------------- | ------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                          |         |
+| Workspace ID           | The gid of the workspace. Required when account has multiple workspaces. |         |
+| Trigger When Added     | Determines if the webhook will trigger when a project is added.          | true    |
+| Trigger When Changed   | Determines if the webhook will trigger when a project is changed.        | true    |
+| Trigger When Deleted   | Determines if the webhook will trigger when a project is deleted.        | true    |
+| Trigger When Removed   | Determines if the webhook will trigger when a project is removed.        | true    |
+| Trigger When Undeleted | Determines if the webhook will trigger when a project is undeleted.      | true    |
 
 ## Actions
 
@@ -184,11 +188,11 @@ Add an existing user to the given team
 
 Add a new user to the given workspace
 
-| Input        | Comments                 | Default |
-| ------------ | ------------------------ | ------- |
-| Workspace ID | The gid of the workspace |         |
-| User ID      | The global ID of a user  |         |
-| Connection   |                          |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
+| User ID      | The global ID of a user                                                  |         |
+| Connection   |                                                                          |         |
 
 ### Attach File to Task
 
@@ -211,7 +215,7 @@ Create a new portfolio
 | Color          | Provide a value for the color of the object.                                                                          | light-green |
 | Members        | For each value, provide the user id of a member. These can either be the string 'me', an email, or the gid of a user. |             |
 | Portfolio Name | Give a name to the portfolio                                                                                          |             |
-| Workspace ID   | The gid of the workspace                                                                                              |             |
+| Workspace ID   | The gid of the workspace. Required when account has multiple workspaces.                                              |             |
 | Public         | True if the object is public to its team.                                                                             | false       |
 
 ### Create Project
@@ -269,7 +273,7 @@ Create a new tag
 | Input          | Comments                                                                                                                | Default     |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Connection     |                                                                                                                         |             |
-| Workspace ID   | The gid of the workspace                                                                                                |             |
+| Workspace ID   | The gid of the workspace. Required when account has multiple workspaces.                                                |             |
 | Followers List | For each item, provide the unique identifier of an existing userId.                                                     |             |
 | Color          | Provide a value for the color of the object.                                                                            | light-green |
 | Name           | Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. |             |
@@ -288,7 +292,7 @@ Create a new task inside a workspace or organization
 | Assignee ID                                                                                   | Provide the unique identifier of the assignee.                                                                                                                                                               |         |
 | Assignee Section ID                                                                           | Provide the unique identifier of the section to assign the task to. The assignee section is a subdivision of a project that groups tasks together in the assignee's 'My Tasks' list.                         |         |
 | Assignee Status                                                                               | Provide a string value representing the status the task has in relation to its assignee. This field is deprecated, you can still use it to form requests but it is not recommended for creating new records. |         |
-| Workspace ID                                                                                  | The gid of the workspace                                                                                                                                                                                     |         |
+| Workspace ID                                                                                  | The gid of the workspace. Required when account has multiple workspaces.                                                                                                                                     |         |
 | Start On                                                                                      | The day on which work for this project begins, or null if the project has no start date. This takes a date with YYYY-MM-DD format                                                                            |         |
 | Start At                                                                                      | Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with start_on.                             |
 | Note: due_at must be present in the request when setting or unsetting the start_at parameter. |                                                                                                                                                                                                              |
@@ -338,10 +342,10 @@ Delete an existing attachment
 
 Delete all Asana webhooks that point to a flow in this instance
 
-| Input        | Comments                 | Default |
-| ------------ | ------------------------ | ------- |
-| Connection   |                          |         |
-| Workspace ID | The gid of the workspace |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Connection   |                                                                          |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
 
 ### Delete Portfolio
 
@@ -412,21 +416,21 @@ Delete a webhook by ID
 
 Find a tag of a given name within a workspace
 
-| Input        | Comments                                                            | Default |
-| ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
-| Tag Name     | Note: if multiple tags share a name, only one tag will be returned. |         |
-| Workspace ID | The gid of the workspace                                            |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Connection   |                                                                          |         |
+| Tag Name     | Note: if multiple tags share a name, only one tag will be returned.      |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
 
 ### Find Team by Name
 
 Find a team of a given name within a workspace
 
-| Input        | Comments                                                              | Default |
-| ------------ | --------------------------------------------------------------------- | ------- |
-| Connection   |                                                                       |         |
-| Team Name    | Note: if multiple teams share a name, only one team will be returned. |         |
-| Workspace ID | The gid of the workspace                                              |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Connection   |                                                                          |         |
+| Team Name    | Note: if multiple teams share a name, only one team will be returned.    |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
 
 ### Find User by Name or Email
 
@@ -437,7 +441,7 @@ Find a user with the given name or email address in your workspace
 | Connection       |                                                                                 |         |
 | User's Full Name | Note: if multiple users share a name, only one user will be returned.           |         |
 | User's Email     | Note: if multiple users share an email address, only one user will be returned. |         |
-| Workspace ID     | The gid of the workspace                                                        |         |
+| Workspace ID     | The gid of the workspace. Required when account has multiple workspaces.        |         |
 
 ### Find Workspace by Name
 
@@ -561,10 +565,10 @@ Get the information and metadata of a user
 
 Get the information and metadata of the given Workspace
 
-| Input        | Comments                 | Default |
-| ------------ | ------------------------ | ------- |
-| Workspace ID | The gid of the workspace |         |
-| Connection   |                          |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
+| Connection   |                                                                          |         |
 
 ### List Custom Fields
 
@@ -573,7 +577,7 @@ List all custom fields in a workspace
 | Input        | Comments                                                                     | Default |
 | ------------ | ---------------------------------------------------------------------------- | ------- |
 | Connection   |                                                                              |         |
-| Workspace ID | The gid of the workspace                                                     |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces.     |         |
 | Limit        | The maximum number of items you would like returned (between 1 and 100)      |         |
 | Offset       | An offset token returned from a previous query that had a next_page property |         |
 
@@ -595,7 +599,7 @@ List portfolios that the authenticated user owns
 | Input        | Comments                                                                     | Default |
 | ------------ | ---------------------------------------------------------------------------- | ------- |
 | Connection   |                                                                              |         |
-| Workspace ID | The gid of the workspace                                                     |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces.     |         |
 | Limit        | The maximum number of items you would like returned (between 1 and 100)      |         |
 | Offset       | An offset token returned from a previous query that had a next_page property |         |
 
@@ -608,7 +612,7 @@ Return a list of all projects connected to your account
 | Connection   |                                                                              |         |
 | Offset       | An offset token returned from a previous query that had a next_page property |         |
 | Limit        | The maximum number of items you would like returned (between 1 and 100)      |         |
-| Workspace ID | The gid of the workspace                                                     |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces.     |         |
 
 ### List Sections
 
@@ -640,7 +644,7 @@ List all tags in your account
 | Input        | Comments                                                                     | Default |
 | ------------ | ---------------------------------------------------------------------------- | ------- |
 | Connection   |                                                                              |         |
-| Workspace ID | The gid of the workspace                                                     |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces.     |         |
 | Limit        | The maximum number of items you would like returned (between 1 and 100)      |         |
 | Offset       | An offset token returned from a previous query that had a next_page property |         |
 
@@ -672,7 +676,7 @@ Return a list of tasks
 
 | Input        | Comments                                                                     | Default |
 | ------------ | ---------------------------------------------------------------------------- | ------- |
-| Workspace ID | The gid of the workspace                                                     |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces.     |         |
 | Assignee ID  | Provide the unique identifier of the assignee.                               |         |
 | Project ID   | Provide the unique identifier of the project.                                |         |
 | Limit        | The maximum number of items you would like returned (between 1 and 100)      |         |
@@ -683,10 +687,10 @@ Return a list of tasks
 
 List all teams in the given workspace
 
-| Input        | Comments                 | Default |
-| ------------ | ------------------------ | ------- |
-| Connection   |                          |         |
-| Workspace ID | The gid of the workspace |         |
+| Input        | Comments                                                                 | Default |
+| ------------ | ------------------------------------------------------------------------ | ------- |
+| Connection   |                                                                          |         |
+| Workspace ID | The gid of the workspace. Required when account has multiple workspaces. |         |
 
 ### List Users
 
@@ -716,7 +720,7 @@ List all webhooks configured in Asana, including those for other integrations
 | Input                       | Comments                                                                     | Default |
 | --------------------------- | ---------------------------------------------------------------------------- | ------- |
 | Connection                  |                                                                              |         |
-| Workspace ID                | The gid of the workspace                                                     |         |
+| Workspace ID                | The gid of the workspace. Required when account has multiple workspaces.     |         |
 | Show only instance webhooks | Show only webhooks that point to this instance                               | true    |
 | Limit                       | The maximum number of items you would like returned (between 1 and 100)      |         |
 | Offset                      | An offset token returned from a previous query that had a next_page property |         |
@@ -738,7 +742,6 @@ Send raw HTTP request to Asana
 | Header                  | A list of headers to send with the request.                                                                                                                                                           |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                              | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                   |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                  | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                   | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.      | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                   | 0       |
@@ -817,14 +820,14 @@ Remove existing users from the given portfolio
 
 Update the information and metadata of the given portfolio
 
-| Input          | Comments                                        | Default     |
-| -------------- | ----------------------------------------------- | ----------- |
-| Connection     |                                                 |             |
-| Portfolio ID   | Provide the unique identifier of the portfolio. |             |
-| Color          | Provide a value for the color of the object.    | light-green |
-| Portfolio Name | Give a name to the portfolio                    |             |
-| Workspace ID   | The gid of the workspace                        |             |
-| Public         | True if the object is public to its team.       | false       |
+| Input          | Comments                                                                 | Default     |
+| -------------- | ------------------------------------------------------------------------ | ----------- |
+| Connection     |                                                                          |             |
+| Portfolio ID   | Provide the unique identifier of the portfolio.                          |             |
+| Color          | Provide a value for the color of the object.                             | light-green |
+| Portfolio Name | Give a name to the portfolio                                             |             |
+| Workspace ID   | The gid of the workspace. Required when account has multiple workspaces. |             |
+| Public         | True if the object is public to its team.                                | false       |
 
 ### Update Project
 
@@ -885,7 +888,7 @@ Update the information and metadata of the given task
 | Assignee ID                                                                                   | Provide the unique identifier of the assignee.                                                                                                                                                               |         |
 | Assignee Section ID                                                                           | Provide the unique identifier of the section to assign the task to. The assignee section is a subdivision of a project that groups tasks together in the assignee's 'My Tasks' list.                         |         |
 | Assignee Status                                                                               | Provide a string value representing the status the task has in relation to its assignee. This field is deprecated, you can still use it to form requests but it is not recommended for creating new records. |         |
-| Workspace ID                                                                                  | The gid of the workspace                                                                                                                                                                                     |         |
+| Workspace ID                                                                                  | The gid of the workspace. Required when account has multiple workspaces.                                                                                                                                     |         |
 | Start At                                                                                      | Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with start_on.                             |
 | Note: due_at must be present in the request when setting or unsetting the start_at parameter. |                                                                                                                                                                                                              |
 | Start On                                                                                      | The day on which work for this project begins, or null if the project has no start date. This takes a date with YYYY-MM-DD format                                                                            |         |

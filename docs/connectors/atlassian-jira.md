@@ -1,17 +1,17 @@
 ---
 title: Jira Connector
 sidebar_label: Jira
-description: Manage Jira issues, comments, projects and users
+description: Manage issues, comments, projects and users in the Jira platform
 ---
 
 ![Jira](./assets/atlassian-jira.png#connector-icon)
-Manage Jira issues, comments, projects and users
+Manage issues, comments, projects and users in the Jira platform
 
 ## Connections
 
-### Jira Basic Connection
+### Basic Authentication
 
-Jira Basic Connection
+Authenticate with Jira using username and API key
 
 If you select Basic Auth and you are using Jira Cloud, you will need to supply your Jira email and an API token to the connection.
 If you are on a locally hosted instance of Jira, you will need to supply your Jira email and password to the connection.
@@ -24,9 +24,9 @@ For information on generating an API token from Jira Cloud, refer to the [Atlass
 | Host     | Provide a string value for the URL of your Jira account.                                                          |         |
 | Version  | Select an API version for your Jira API request                                                                   | 3       |
 
-### Jira OAuth 2.0 Connection
+### OAuth 2.0
 
-Jira OAuth 2.0 Connection
+Authenticate with Jira using OAuth 2.0 for secure access
 
 While Jira's Cloud API has support for legacy OAuth 1.0, we only offer support for [Jira's OAuth 2.0 (3LO) flows](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/#enabling-oauth-2-0--3lo-).
 If you select OAuth 2.0, you need to enable it for your app using the [Atlassian developer console](https://developer.atlassian.com/console).
@@ -451,14 +451,25 @@ Returns a list of all versions
 
 List all webhooks configured, including those for other integrations
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection |                                    |         |
-| Fetch All  | Turn this On to fetch all results. | false   |
+| Input      | Comments                                                | Default |
+| ---------- | ------------------------------------------------------- | ------- |
+| Connection |                                                         |         |
+| Fetch All  | Turn on to fetch more than the default limit of results | false   |
 
 ### Query
 
-Search your entire Jira site using a JQL query
+Search your entire Jira site using a JQL query.
+
+| Input       | Comments                                                                                                                | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  |                                                                                                                         |         |
+| Search      | Provide a string value to search on.                                                                                    |         |
+| Expand      | The response may contain a list under the \_expandable property; you can specify any of its values separated by commas. |         |
+| Max Results | Provide a value for the maximum amount of results to be returned in the request.                                        |         |
+
+### Query (Deprecated)
+
+Search your entire Jira site using a JQL query.
 
 | Input       | Comments                                                                                                                | Default |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |

@@ -9,7 +9,7 @@ Manage records and associations in the HubSpot CRM platform
 
 ## Connections
 
-### HubSpot OAuth 2.0
+### OAuth 2.0
 
 Authenticate requests to Hubspot using OAuth 2.0.
 
@@ -37,9 +37,51 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate requests to Hubspot using a private app access token.
 
+Private app access tokens are recommended for testing purposes only. For production integrations, use OAuth 2.0.
+Private app access tokens do not expire but can be revoked at any time from your HubSpot account settings.
+
+1. Log into [HubSpot](https://app.hubspot.com)
+2. Navigate to **Settings > Integrations > Private Apps**
+3. Click **Create a private app**
+4. Enter a name for the app and configure the required scopes
+5. After creating the app, navigate to the **Auth** tab
+6. Copy the **Access Token** displayed
+7. From the integration connection, fill in the required field:
+   - **Access Token**: The token obtained from your HubSpot private app settings
+
 | Input        | Comments                                                                                                                        | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Access Token | An access token generated when you create a private app. For testing purposes only - use OAuth 2.0 for production integrations. |         |
+
+### Webhook Authentication
+
+Authenticate HubSpot webhooks using Client Secret for signature verification only.
+
+The Webhook Authentication connection is used specifically for verifying HubSpot webhook signatures to ensure webhook requests are legitimate.
+This connection is only used for webhook triggers and does not grant API access. It solely validates that incoming webhooks are from HubSpot by verifying the request signature.
+
+1. Log into [HubSpot](https://app.hubspot.com)
+2. Navigate to **Settings > Integrations > Private Apps**.
+3. If creating a new app:
+   - Click **Create a private app** or **Create an app**
+   - Configure the required webhook subscriptions
+4. Navigate to the **Auth** or **App Credentials** section
+5. Copy the **Client Secret** value
+6. From the integration connection, fill in the required field:
+   - **Client Secret**: The client secret from your HubSpot app, used to verify webhook signatures
+7. In the integration, ensure the trigger is configured to use the Webhook Authentication connection.
+
+## Webhook Subscriptions
+
+1. In your app settings, navigate to the **Webhooks** section
+2. Click **Configure** or **Set up webhooks**
+3. You'll need to provide:
+   - **Target URL**: This is where HubSpot will send webhook events. This can be found in the **Test Configuration > Trigger Payload** section of the integration
+   - **Events to subscribe to**: Select the specific events you want to monitor
+
+| Input         | Comments                                                                    | Default |
+| ------------- | --------------------------------------------------------------------------- | ------- |
+| Client Secret | The Client Secret from your HubSpot app, used to verify webhook signatures. |         |
 
 ## Triggers
 

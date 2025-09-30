@@ -1,11 +1,11 @@
 ---
 title: Gong Connector
 sidebar_label: Gong
-description: Captures customer interactions then delivers insights at scale, empowering teams to make decisions based on data instead of opinions. Use the Gong Component to manage calls, users, libraries, and more.
+description: Manage calls, users, and workspaces in the Gong revenue intelligence platform.
 ---
 
 ![Gong](./assets/gong.png#connector-icon)
-Captures customer interactions then delivers insights at scale, empowering teams to make decisions based on data instead of opinions. Use the Gong Component to manage calls, users, libraries, and more.
+Manage calls, users, and workspaces in the Gong revenue intelligence platform.
 
 ## Connections
 
@@ -25,7 +25,7 @@ To generate a Gong API key manually:
 | Access Key        |          |         |
 | Access Key Secret |          |         |
 
-### Gong OAuth 2.0
+### OAuth 2.0
 
 Authenticate using oauth flow.
 
@@ -358,7 +358,6 @@ Send raw HTTP request to Gong
 | Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |

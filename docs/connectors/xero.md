@@ -368,6 +368,7 @@ List all contacts
 | Input          | Comments                                                                                                                                                                                  | Default |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     | The connection to use.                                                                                                                                                                    |         |
+| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
 | Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
 | Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
 | Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
@@ -379,6 +380,7 @@ List all invoices
 | Input          | Comments                                                                                                                                                                                  | Default |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     | The connection to use.                                                                                                                                                                    |         |
+| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
 | Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
 | Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
 | Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
@@ -387,12 +389,11 @@ List all invoices
 
 List all items
 
-| Input          | Comments                                                                                                                                                                                  | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                                                                                                    |         |
-| Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
+| Input          | Comments                                                                                                | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The connection to use.                                                                                  |         |
+| Modified After | Only contacts created or modified since this timestamp will be returned.                                |         |
+| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters. |         |
 
 ### List Payments
 
@@ -401,6 +402,7 @@ List all payments
 | Input          | Comments                                                                                                                                                                                  | Default |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     | The connection to use.                                                                                                                                                                    |         |
+| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
 | Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
 | Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
 | Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
@@ -434,11 +436,10 @@ Send raw HTTP request to Xero
 | Header                  | A list of headers to send with the request.                                                                                                                                                                          |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                             | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                  |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                 | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                           | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                      | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                     | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                  | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                     | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                  | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                        | false   |
 
 ### Reverse Payment
 

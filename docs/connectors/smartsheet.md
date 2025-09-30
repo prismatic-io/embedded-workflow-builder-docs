@@ -1,15 +1,15 @@
 ---
 title: Smartsheet Connector
 sidebar_label: Smartsheet
-description: Interact with the Smartsheet API
+description: Manage sheets, rows, and workspaces in the Smartsheet platform
 ---
 
 ![Smartsheet](./assets/smartsheet.png#connector-icon)
-Interact with the Smartsheet API
+Manage sheets, rows, and workspaces in the Smartsheet platform
 
 ## Connections
 
-### Smartsheet API Key
+### API Key
 
 Authenticate requests to Smartsheet using an API Key
 
@@ -21,17 +21,56 @@ Information about getting started and creating API keys with [Smartsheet](https:
 | Base URL | Most applications use Smartsheet commercial, but you can choose to use a government endpoint if your customers are government entities. | https://api.smartsheet.com/2.0/ |
 | API Key  | Provide a string value for the API Key.                                                                                                 |                                 |
 
-### Smartsheet OAuth2
+### OAuth 2.0
 
-Authenticate requests to Smartsheet using OAuth2
+Authenticate requests to Smartsheet using OAuth 2.0.
 
-OAuth 2.0 can be used to authenticate Smartsheet users with the click of a button.
-To create an OAuth 2.0 connection for Smartsheet:
+To authenticate Smartsheet users through OAuth 2.0, you will need to create and configure an app within your Smartsheet account.
 
-- Log in to [Smartsheet](https://app.smartsheet.com), and then click the profile icon on the bottom left of the page -> **Developer Tools**.
-- Create a "developer profile" if you have not previously and then click **Create New App**.
-- Give your app a name, description, logo. You do _not_ need to **Publish App?**. Under **App redirect URL**, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-- Take note of the **App client id** and **App secret** that are generated - you'll enter those when you configure your integration.
+1. Log in to [Smartsheet](https://app.smartsheet.com)
+2. Navigate to your profile icon (bottom left) and select **Developer Tools**
+3. Create a developer profile if you haven't already
+4. Click **Create New App**
+5. Configure your app:
+   - **App Name**: Enter your application name
+   - **App Description**: Add a brief description
+   - **App Logo**: Optional - add a logo for your app
+   - **Publish App**: Leave unchecked (not required)
+   - **App Redirect URL**: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+6. Save your app and note the generated credentials:
+   - **App Client ID**
+   - **App Secret**
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input         | Comments                                                                                                                                                                                                   | Default                                                                                                                                                                                                                           |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| API Domain    | Select the Smartsheet API domain. Most applications use commercial, but government entities should use the government endpoint.                                                                            | api.smartsheet.com                                                                                                                                                                                                                |
+| App Domain    | Select the Smartsheet application domain. This should match your API domain selection.                                                                                                                     | app.smartsheet.com                                                                                                                                                                                                                |
+| Scopes        | A space-separated list of permissions to request. You can remove any permissions that you do not use. Descriptions of each permission is available at https://smartsheet.redoc.ly/#section/Authentication. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
+| App client id | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
+| App secret    | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
+
+### OAuth 2.0 (Deprecated)
+
+Authenticate requests to Smartsheet using OAuth 2.0. Please replace this with the latest OAuth 2.0 connection.
+
+To authenticate Smartsheet users through OAuth 2.0, you will need to create and configure an app within your Smartsheet account.
+
+1. Log in to [Smartsheet](https://app.smartsheet.com)
+2. Navigate to your profile icon (bottom left) and select **Developer Tools**
+3. Create a developer profile if you haven't already
+4. Click **Create New App**
+5. Configure your app:
+   - **App Name**: Enter your application name
+   - **App Description**: Add a brief description
+   - **App Logo**: Optional - add a logo for your app
+   - **Publish App**: Leave unchecked (not required)
+   - **App Redirect URL**: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+6. Save your app and note the generated credentials:
+   - **App Client ID**
+   - **App Secret**
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -41,7 +80,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Base URL          | Most applications use Smartsheet commercial, but you can choose to use a government endpoint if your customers are government entities.                                                                    | https://api.smartsheet.com/2.0/                                                                                                                                                                                                   |
 | Authorization URL | Authorization URL                                                                                                                                                                                          | https://app.smartsheet.com/b/authorize                                                                                                                                                                                            |
 | Token URL         | Token URL                                                                                                                                                                                                  | https://api.smartsheet.com/2.0/token                                                                                                                                                                                              |
-| Scopes            | A space-separated list of permissions to request. You can remove any permissions that you do not use. Descriptions of each permission is available at https://smartsheet.redoc.ly/#section/Authentication. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
+| Scopes            | A space separated list of permissions to request. You can remove any permissions that you do not use. Descriptions of each permission is available at https://smartsheet.redoc.ly/#section/Authentication. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
 | App client id     | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
 | App secret        | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
 
@@ -436,7 +475,7 @@ List attachments on a row of a sheet
 | Row ID               |                                                |         |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 
 ### List Attachments on Sheet
 
@@ -448,7 +487,7 @@ List attachments on a sheet
 | Sheet ID             |                                                |         |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 
 ### List Columns
 
@@ -460,7 +499,7 @@ List the columns of a sheet
 | Sheet ID             |                                                |         |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 
 ### List Contacts
 
@@ -469,7 +508,7 @@ List Contacts
 | Input                | Comments                                       | Default |
 | -------------------- | ---------------------------------------------- | ------- |
 | Connection           |                                                |         |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
 
@@ -484,7 +523,7 @@ List Discussion Attachments
 | Discussion ID        |                                                |         |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 
 ### List Discussions
 
@@ -497,7 +536,7 @@ List discussions on a sheet or row
 | Row ID (Optional)    |                                                |         |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 
 ### List Events
 
@@ -517,7 +556,7 @@ List Favorites
 | Input                | Comments                                       | Default |
 | -------------------- | ---------------------------------------------- | ------- |
 | Connection           |                                                |         |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
 
@@ -530,7 +569,7 @@ List folders, subfolders or workspace folders
 | Connection              |                                                                                                 |         |
 | Folder ID               | Enter the ID of a folder to list subfolders, or omit this value to list top-level home folders. |         |
 | Workspace ID (Optional) | Create in this workspace. Optional.                                                             |         |
-| Include All             | If true, include all results. Do not paginate.                                                  | true    |
+| Fetch All               | Turn on to fetch all results using pagination                                                   | true    |
 | Pagination Page         | Which page to return                                                                            | 1       |
 | Pagination Page Size    | The maximum number of items to return per page                                                  | 100     |
 
@@ -541,7 +580,7 @@ List Org Groups
 | Input                | Comments                                                                                                                                | Default |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           |                                                                                                                                         |         |
-| Include All          | If true, include all results. Do not paginate.                                                                                          | true    |
+| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
 | Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
 | Pagination Page      | Which page to return                                                                                                                    | 1       |
 | Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
@@ -561,7 +600,7 @@ List Sheets
 | Input                | Comments                                                                                                                                | Default |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           |                                                                                                                                         |         |
-| Include All          | If true, include all results. Do not paginate.                                                                                          | true    |
+| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
 | Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
 | Pagination Page      | Which page to return                                                                                                                    | 1       |
 | Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
@@ -574,7 +613,7 @@ List Users
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           |                                                                                                                                         |         |
 | Email                | Find a user with this email address                                                                                                     |         |
-| Include All          | If true, include all results. Do not paginate.                                                                                          | true    |
+| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
 | Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
 | Pagination Page      | Which page to return                                                                                                                    | 1       |
 | Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
@@ -595,7 +634,7 @@ List Workspaces
 | Input                | Comments                                       | Default |
 | -------------------- | ---------------------------------------------- | ------- |
 | Connection           |                                                |         |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
 
@@ -704,7 +743,7 @@ List User-Created Templates
 | Input                | Comments                                       | Default |
 | -------------------- | ---------------------------------------------- | ------- |
 | Connection           |                                                |         |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
 
@@ -715,7 +754,7 @@ List Public Templates
 | Input                | Comments                                       | Default |
 | -------------------- | ---------------------------------------------- | ------- |
 | Connection           |                                                |         |
-| Include All          | If true, include all results. Do not paginate. | true    |
+| Fetch All            | Turn on to fetch all results using pagination  | true    |
 | Pagination Page      | Which page to return                           | 1       |
 | Pagination Page Size | The maximum number of items to return per page | 100     |
 

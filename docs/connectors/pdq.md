@@ -9,7 +9,7 @@ PDQ provides a suite of management tools to automate software deployment, manage
 
 ## Connections
 
-### PDQ Connection
+### API Key
 
 Connection to the PDQ API
 

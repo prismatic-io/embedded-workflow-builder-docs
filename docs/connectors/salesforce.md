@@ -81,6 +81,21 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### Flow Outbound Message Webhook
+
+Trigger for handling Flow-based outbound message webhooks from Salesforce. Creates a complete record-triggered Flow with outbound message action and webhook receiver.
+
+| Input          | Comments                                                                                                                                                         | Default         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version        | Salesforce API Version Number.                                                                                                                                   | 63.0            |
+| Prefix         | Sets a prefix to the Flow Name and Outbound Messages created. Must start with a letter, can contain letters, numbers, underscores, and be at most 15 characters. |                 |
+| Trigger Object | The Salesforce object to trigger on.                                                                                                                             |                 |
+| Trigger On     | When to trigger the flow (record creation, update, or both).                                                                                                     | CreateAndUpdate |
+| Fields         | Fields to include in the Outbound Message.                                                                                                                       |                 |
+| Flow Metadata  | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                  |                 |
+| Filter Formula | Optional formula to filter which records trigger the flow.                                                                                                       |                 |
+| Connection     |                                                                                                                                                                  |                 |
+
 ### New and Updated Records
 
 Checks for new and updated records in Salesforce.
@@ -101,9 +116,9 @@ Checks for new and updated records in Salesforce.
 
 Trigger for handling webhook requests from the Salesforce platform. Returns the expected response to Salesforce and converts the XML payload to an object for more convenient use in the rest of the flow.
 
-### Workflow Outbound Message Webhook
+### Workflow Outbound Message Webhook (Deprecated)
 
-Trigger for handling workflow rule triggers from the Salesforce platform. Creates a Workflow Outbound Message and a Workflow Rule. Returns the expected response to Salesforce and converts the XML payload to an object for more convenient use in the rest of the flow.
+Trigger for handling workflow rule triggers from the Salesforce platform. Creates a Workflow Outbound Message and a Workflow Rule. Salesforce is ending support for Workflow Rules December 25th, 2025. It is recommended to migrate to actions and triggers going forward.
 
 | Input                 | Comments                                                                                                                                                                                                                                                                                | Default      |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
@@ -137,6 +152,16 @@ Aborts a query job.
 | Connection   |                                  |         |
 | Version      | Salesforce API Version Number.   | 63.0    |
 | Query Job Id | The ID of the query job to abort |         |
+
+### Activate Flow
+
+Activate a Flow in Salesforce by name
+
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Version    | Salesforce API Version Number.                                                                                                                            | 63.0    |
+| Flow Name  | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is. |         |
+| Connection |                                                                                                                                                           |         |
 
 ### Add Attachment
 
@@ -313,6 +338,19 @@ Create a Salesforce customer
 | Total Lifetime Value | The total revenue amount gained from this customer.                                                                                                                        |         |
 | Connection           |                                                                                                                                                                            |         |
 
+### Create Flow
+
+Create a draft flow in Salesforce
+
+| Input         | Comments                                                                                                                                                                              | Default     |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Version       | Salesforce API Version Number.                                                                                                                                                        | 63.0        |
+| Flow Name     | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is.                             |             |
+| Description   | Provide a string value for the description of the object.                                                                                                                             |             |
+| Run In Mode   | The context user mode the Flow runs as. DefaultMode respects user permissions and sharing rules. SystemModeWithoutSharing grants broad data access but may lead to security warnings. | DefaultMode |
+| Flow Metadata | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                                       |             |
+| Connection    |                                                                                                                                                                                       |             |
+
 ### Create Lead
 
 Create a Salesforce Lead Record
@@ -384,6 +422,22 @@ Create a Salesforce Opportunity Record, which is a sale or pending deal
 | Name             | The name of the object                                                                                        |         |
 | Connection       |                                                                                                               |         |
 
+### Create Outbound Message
+
+Create a new Outbound Message.
+
+| Input                  | Comments                                                                                              | Default |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| Version                | Salesforce API Version Number.                                                                        | 63.0    |
+| Record Type            | The type of Salesforce Record.                                                                        |         |
+| Outbound Message Name  | Name of the Outbound Message                                                                          |         |
+| Description            | Provide a string value for the description of the object.                                             |         |
+| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                            |         |
+| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used |         |
+| Fields                 | Fields to include in the Outbound Message.                                                            |         |
+| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message      |         |
+| Connection             |                                                                                                       |         |
+
 ### Create Profile
 
 Create a Salesforce Profile
@@ -427,30 +481,14 @@ Create a Salesforce User
 | Email Address  | The email address for the object                                                                              |         |
 | Connection     |                                                                                                               |         |
 
-### Create Workflow Outbound Message
+### Create Workflow Rule (Deprecated)
 
-Create a Workflow Outbound Message
-
-| Input                  | Comments                                                                                              | Default |
-| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Version                | Salesforce API Version Number.                                                                        | 63.0    |
-| Workflow Record Type   | The type of Salesforce Record for the Workflow                                                        |         |
-| Outbound Message Name  | Name of the Outbound Message                                                                          |         |
-| Description            | Provide a string value for the description of the object.                                             |         |
-| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                            |         |
-| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used |         |
-| Fields                 | Fields to include in the Outbound Message.                                                            |         |
-| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message      |         |
-| Connection             |                                                                                                       |         |
-
-### Create Workflow Rule
-
-Create a Workflow Rule
+Create a Workflow Rule. Workflow Rules are being deprecated by Salesforce. Please migrate to using Flow based actions
 
 | Input                    | Comments                                                                                                                                                                                                                                                                                | Default      |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
 | Version                  | Salesforce API Version Number.                                                                                                                                                                                                                                                          | 63.0         |
-| Workflow Record Type     | The type of Salesforce Record for the Workflow                                                                                                                                                                                                                                          |              |
+| Record Type              | The type of Salesforce Record.                                                                                                                                                                                                                                                          |              |
 | Rule Name                | Name of the Workflow Rule                                                                                                                                                                                                                                                               |              |
 | Trigger Type             | Conditions in which the trigger fires. On All Changes: The workflow rule is considered on all changes. On Create Only: Considered on creation. On Create or Meets Rule Criteria: Considered on create and when it is updated to meet any Rule Criteria configured to the workflow rule. | onAllChanges |
 | Active                   | Determines if this Rule is active                                                                                                                                                                                                                                                       | true         |
@@ -459,6 +497,16 @@ Create a Workflow Rule
 | Formula                  | Formula to evaluate. Use this input or Filter Criteria                                                                                                                                                                                                                                  |              |
 | Outbound Message Actions | Full Names of the Outbound Message Actions for this Rule to fire                                                                                                                                                                                                                        |              |
 | Connection               |                                                                                                                                                                                                                                                                                         |              |
+
+### Deactivate Flow
+
+Deactivate a Flow in Salesforce by name
+
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Version    | Salesforce API Version Number.                                                                                                                            | 63.0    |
+| Flow Name  | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is. |         |
+| Connection |                                                                                                                                                           |         |
 
 ### Delete a Bulk Job
 
@@ -510,6 +558,16 @@ Delete an existing customer record
 | Version    | Salesforce API Version Number. | 63.0    |
 | Record ID  | The ID of a Salesforce Record  |         |
 | Connection |                                |         |
+
+### Delete Flow
+
+Delete a Flow from Salesforce by name
+
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Version    | Salesforce API Version Number.                                                                                                                            | 63.0    |
+| Flow Name  | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is. |         |
+| Connection |                                                                                                                                                           |         |
 
 ### Delete Lead
 
@@ -567,21 +625,21 @@ Delete an existing Salesforce Record
 
 Delete a Workflow Outbound Message
 
-| Input                | Comments                                        | Default |
-| -------------------- | ----------------------------------------------- | ------- |
-| Version              | Salesforce API Version Number.                  | 63.0    |
-| Full Name Identifier | Unique identifier for Metadata/Workflow objects |         |
-| Connection           |                                                 |         |
+| Input                | Comments                               | Default |
+| -------------------- | -------------------------------------- | ------- |
+| Version              | Salesforce API Version Number.         | 63.0    |
+| Full Name Identifier | Unique identifier for Metadata objects |         |
+| Connection           |                                        |         |
 
-### Delete Workflow Rule
+### Delete Workflow Rule (Deprecated)
 
-Delete a Workflow Rule
+Delete a Workflow Rule. Workflow Rules are being deprecated by Salesforce. Please migrate to using Flow based actions.
 
-| Input                | Comments                                        | Default |
-| -------------------- | ----------------------------------------------- | ------- |
-| Version              | Salesforce API Version Number.                  | 63.0    |
-| Full Name Identifier | Unique identifier for Metadata/Workflow objects |         |
-| Connection           |                                                 |         |
+| Input                | Comments                               | Default |
+| -------------------- | -------------------------------------- | ------- |
+| Version              | Salesforce API Version Number.         | 63.0    |
+| Full Name Identifier | Unique identifier for Metadata objects |         |
+| Connection           |                                        |         |
 
 ### Describe Customer SObject
 
@@ -712,6 +770,16 @@ Retrieves a file from Salesforce ContentVersion
 | Version            | Salesforce API Version Number.                       | 63.0    |
 | Connection         |                                                      |         |
 
+### Get Flow
+
+Get details of a specific Flow by name
+
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Version    | Salesforce API Version Number.                                                                                                                            | 63.0    |
+| Flow Name  | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is. |         |
+| Connection |                                                                                                                                                           |         |
+
 ### Get Information About a Bulk Query Job
 
 Gets information about one query job.
@@ -813,6 +881,15 @@ List all customer records
 | Max Records To Fetch | If Fetch All is enabled, you can specify the maximum records to fetch, by default it will fetch up to 20,000 records.                                                                                                                                    | 20000   |
 | Connection           |                                                                                                                                                                                                                                                          |         |
 
+### List Flows
+
+List all Flows in the Salesforce org
+
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Version    | Salesforce API Version Number. | 63.0    |
+| Connection |                                |         |
+
 ### List Leads
 
 List all lead records
@@ -857,6 +934,15 @@ List all opportunity records
 | Max Records To Fetch | If Fetch All is enabled, you can specify the maximum records to fetch, by default it will fetch up to 20,000 records.                                                                                                                                    | 20000   |
 | Connection           |                                                                                                                                                                                                                                                          |         |
 
+### List Outbound Messages
+
+Retrieve all Outbound Messages.
+
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Version    | Salesforce API Version Number. | 63.0    |
+| Connection |                                |         |
+
 ### List Profiles
 
 List all profile records
@@ -891,18 +977,9 @@ List all user records
 | Max Records To Fetch | If Fetch All is enabled, you can specify the maximum records to fetch, by default it will fetch up to 20,000 records.                                                                                                                                    | 20000   |
 | Connection           |                                                                                                                                                                                                                                                          |         |
 
-### List Workflow Outbound Messages
+### List Workflow Rules (Deprecated)
 
-List all Workflow Outbound Messages
-
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Version    | Salesforce API Version Number. | 63.0    |
-| Connection |                                |         |
-
-### List Workflow Rules
-
-List all Workflow Rules
+List all Workflow Rules. Workflow Rules are being deprecated by Salesforce. Please migrate to using Flow based actions
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -979,15 +1056,15 @@ Sends a message to a single recipient via Salesforce
 | Connection            |                                            |         |
 | Version               | Salesforce API Version Number.             | 63.0    |
 
-### Subscribe to Record Change
+### Subscribe to Record Change (Deprecated)
 
-Create a workflow rule to subscribe to Record Changes in Salesforce.
+Create a Workflow Rule to subscribe to Record Changes in Salesforce. Workflow Rules are being deprecated by Salesforce. Please migrate to using Flow based actions
 
 | Input                  | Comments                                                                                                                                                                          | Default      |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
 | Version                | Salesforce API Version Number.                                                                                                                                                    | 63.0         |
 | Outbound Message Name  | Name of the Outbound Message                                                                                                                                                      |              |
-| Workflow Record Type   | The type of Salesforce Record for the Workflow                                                                                                                                    |              |
+| Record Type            | The type of Salesforce Record.                                                                                                                                                    |              |
 | Trigger Event          |                                                                                                                                                                                   | onAllChanges |
 | Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                                                                                                        |              |
 | Rule Criteria Filter   | Filter criteria data structure to use with the rule, use this or Formula. See https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem |              |
@@ -997,6 +1074,23 @@ Create a workflow rule to subscribe to Record Changes in Salesforce.
 | Fields                 | Fields to include in the Outbound Message.                                                                                                                                        |              |
 | Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message                                                                                  |              |
 | Connection             |                                                                                                                                                                                   |              |
+
+### Subscribe to Record Changes
+
+Subscribe to Record Changes in Salesforce using an outbound message action.
+
+| Input          | Comments                                                                                                                                                         | Default         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version        | Salesforce API Version Number.                                                                                                                                   | 63.0            |
+| Prefix         | Sets a prefix to the Flow Name and Outbound Messages created. Must start with a letter, can contain letters, numbers, underscores, and be at most 15 characters. |                 |
+| Endpoint URL   | The endpoint URL to send the outbound message / webhook to                                                                                                       |                 |
+| Trigger Object | The Salesforce object to trigger on.                                                                                                                             |                 |
+| Trigger On     | When to trigger the flow (record creation, update, or both).                                                                                                     | CreateAndUpdate |
+| Fields         | Fields to include in the Outbound Message.                                                                                                                       |                 |
+| Dynamic Fields | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message                                                                 |                 |
+| Flow Metadata  | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                  |                 |
+| Filter Formula | Optional formula to filter which records trigger the flow.                                                                                                       |                 |
+| Connection     |                                                                                                                                                                  |                 |
 
 ### Update Account
 
@@ -1078,6 +1172,19 @@ Update an existing customer record
 | Owner Id             | The ID of the user who owns the record.                                                                                                                                    |         |
 | Total Lifetime Value | The total revenue amount gained from this customer.                                                                                                                        |         |
 | Connection           |                                                                                                                                                                            |         |
+
+### Update Flow
+
+Update an existing Flow in Salesforce by name
+
+| Input         | Comments                                                                                                                                                  | Default |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Version       | Salesforce API Version Number.                                                                                                                            | 63.0    |
+| Flow Name     | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is. |         |
+| Description   | Updated description for the Flow.                                                                                                                         |         |
+| Flow Status   | The status of the Flow.                                                                                                                                   |         |
+| Flow Metadata | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                           |         |
+| Connection    |                                                                                                                                                           |         |
 
 ### Update Lead
 

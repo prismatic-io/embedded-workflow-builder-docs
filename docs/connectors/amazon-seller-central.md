@@ -110,13 +110,13 @@ Updates the shipment confirmation status for a specified order.
 
 Creates a destination resource to receive notifications.
 
-| Input      | Comments                                                                                                                                    | Default   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Connection |                                                                                                                                             |           |
-| Name       | A developer-defined name to help identify this destination.                                                                                 |           |
-| arn        | The Amazon Resource Name (ARN) associated with the SQS queue.                                                                               |           |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-east-1. AWS region indicates the region in which your bucket(s) are stored. | us-east-1 |
-| Account Id | The identifier for the AWS account that is responsible for charges related to receiving notifications.                                      |           |
+| Input      | Comments                                                                                               | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ------- |
+| Connection |                                                                                                        |         |
+| Name       | A developer-defined name to help identify this destination.                                            |         |
+| arn        | The Amazon Resource Name (ARN) associated with the SQS queue.                                          |         |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                |         |
+| Account Id | The identifier for the AWS account that is responsible for charges related to receiving notifications. |         |
 
 ### Create Feed
 
@@ -359,8 +359,8 @@ Returns feed details for the feeds that match the filters that you specify.
 | Marketplace Ids     | list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces. See (https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values.                              |                          |
 | Page Size           | The maximum number of feeds to return in a single call.                                                                                                                                                                                           | 10                       |
 | Processing Statuses | A list of processing statuses used to filter feeds.                                                                                                                                                                                               |                          |
-| Created Since       | The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                         | 2024-12-19T15:14:05.395Z |
-| Created Until       | The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.                                                                                                                                | 2025-03-19T15:14:05.395Z |
+| Created Since       | The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                         | 2025-06-27T22:03:01.384Z |
+| Created Until       | The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.                                                                                                                                | 2025-09-25T22:03:01.384Z |
 | Next Token          | A string token returned in the response of your previous request.                                                                                                                                                                                 |                          |
 
 ### List Orders
