@@ -15,6 +15,20 @@ handlebars.registerHelper("cleanDefaultForTable", (value: string) => {
   return value.replaceAll("\n", "<br />");
 });
 
+handlebars.registerHelper("cleanModelForTable", (value: string) => {
+  if (!value) return;
+  const options = JSON.parse(JSON.parse(value)) as { label: string; value: string }[];
+  return (
+    "<ul>" +
+    options
+      .map(({ label, value }) =>
+        label === value ? `<li>${label}</li>` : `<li>${label} (${value})</li>`,
+      )
+      .join("") +
+    "</ul>"
+  );
+});
+
 handlebars.registerHelper("lowerCase", (value: string) => value.toLowerCase());
 
 handlebars.registerPartial(
@@ -88,7 +102,7 @@ async function generateConnectorDocs({
         }
       }
 
-      fetchConnectorIcon(connector);
+      if (!fromManifest) fetchConnectorIcon(connector);
       writeConnectorDocsFile(connector, connectorTemplate);
     }
   }

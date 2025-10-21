@@ -1,7 +1,7 @@
 {{#if inputs }}
-| Input  | Comments | Default |
-|---|---|--|
+| Input  | Comments | Required? | Type | Default | Options |
+|---|---|--|---|---|---|
 {{#each inputs}}
-| {{{label}}} | {{{comments}}} | {{{cleanDefaultForTable default}}} |
-{{/each}} 
-{{/if}} 
+| {{{label}}} | {{{comments}}} | {{{required}}} | {{{type}}} | {{{cleanDefaultForTable default}}} | {{{cleanModelForTable model}}} |
+{{/each}}
+{{/if}}

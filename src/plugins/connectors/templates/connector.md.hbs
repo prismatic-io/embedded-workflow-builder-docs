@@ -67,3 +67,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 {{/each}} {{!-- actions.nodes --}}
 
 {{/if}} {{!-- actions.nodes --}}
+
+{{#if dataSources.nodes}}
+
+## Data Sources
+
+{{#each dataSources.nodes}}
+### {{{label}}}
+
+{{{description}}}
+
+{{>inputsTable inputs=inputs.nodes}}
+
+{{/each}} {{!-- dataSources.nodes --}}
+
+{{/if}} {{!-- dataSources.nodes --}}

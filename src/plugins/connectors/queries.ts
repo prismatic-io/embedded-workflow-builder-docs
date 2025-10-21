@@ -71,8 +71,11 @@ const componentFragment = `
             key
             label
             type
+            required
             default
             comments
+            collection
+            model
           }
         }
       }
@@ -91,6 +94,7 @@ const componentFragment = `
             label
             type
             collection
+            model
             default
             comments
             required
@@ -115,6 +119,7 @@ const componentFragment = `
             label
             type
             collection
+            model
             default
             comments
             required
@@ -139,6 +144,7 @@ const componentFragment = `
             label
             type
             collection
+            model
             default
             comments
             required
