@@ -46,6 +46,29 @@ Webhooks are configured automatically when you [enable](./enabling.md) your work
 When you enable your %WORKFLOW%, the runner will automatically create a webhook in the third-party application to listen for events.
 When an event occurs, the third-party application will send a request to your %WORKFLOW%'s webhook URL, triggering the %WORKFLOW% to run.
 
+### Testing webhook-based app event triggers
+
+After configuring a trigger that uses webhooks, you can test and capture webhook requests using the **Test** tab in the trigger's configuration drawer.
+You can see your %WORKFLOW%'s unique test webhook URLs, by clicking **Webhook URLs**.
+
+![Testing webhook-based app event triggers](./assets/triggering/test-webhook-drawer.png)
+
+Click **Enter Listening Mode** to have your %WORKFLOW% listen for incoming webhook requests at the test URL.
+
+Some triggers will automatically configure webhooks in the third-party app when **listening mode** is enabled.
+Other third-party apps may require you to manually configure the webhook in their settings.
+
+Once the webhook is configured, you can generate a test event in the third-party application to send a webhook request to your %WORKFLOW%'s test URL.
+In the example here, we marked a task as complete in Asana, which caused Asana to send a webhook request to our %WORKFLOW%'s test URL.
+
+![Captured webhook request](./assets/triggering/test-webhook-listening-mode.png)
+
+We can save the captured webhook request for use in testing our %WORKFLOW% by giving it a name and clicking **Save**.
+We can then use that saved webhook request and use it later in our testing.
+Saved payloads are available in the **Test** tab of the trigger's configuration drawer under **Saved Payloads**, and you can run your %WORKFLOW% using that payload by clicking **Run** button that appears when your mouse overs over the payload.
+
+If you would like to test your %WORKFLOW% with a custom webhook payload, you can click **Configure Payload** to edit the payload data.
+
 ### App event triggers with polling
 
 Some applications do not support webhooks, or webhook configuration is tedious.
