@@ -15,6 +15,8 @@ jobs:
         run: ./scripts/check-prismatic-references.sh
       - name: Install dependencies
         run: npm ci
+      - name: Install Netlify CLI
+        run: npm install --global netlify-cli
       - name: Check spelling
         run: npm run check-spelling
       - name: Check markdown formatting
@@ -27,7 +29,7 @@ jobs:
         run: npm run build
       - name: Deploy preview
         run: |
-          ./node_modules/.bin/netlify \
+          netlify \
             deploy ${PROD_FLAG} \
             --dir ./build \
             --no-build \
