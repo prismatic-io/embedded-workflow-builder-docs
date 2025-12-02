@@ -11,7 +11,7 @@ Choose which step to execute next based on a condition or value
 
 ### If Condition is Met
 
-Choose which step to execute next based on a condition
+Branch on Expression. Choose which step to execute next based on a condition.
 
 | Input     | Comments                                             | Default |
 | --------- | ---------------------------------------------------- | ------- |
@@ -19,7 +19,7 @@ Choose which step to execute next based on a condition
 
 ### If Value Equals
 
-Choose which step to execute next based on a value.
+Branch on value. Choose which step to execute next based on a value.
 
 | Input                | Comments                                                                                                        | Default |
 | -------------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
