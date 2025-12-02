@@ -58,7 +58,7 @@ If you select the **Get Users** step in your test results, you will see the user
 ### Loop over the users
 
 Now that we're fetching a list of users, we need to loop over each user to process their information.
-Add another step under your **Get Users** step, this time searching for the **Loop** > **Loop Over Items** action.
+Add another step under your **Get Users** step, this time searching for the **Loop** > **Repeat for Each** action.
 
 Name your step **Loop Over Users**.
 Configure your loop step to iterate over the user data from the previous step.
@@ -78,7 +78,7 @@ Now that we're looping over each user, we need to check their address to see if 
 Looking at the user data, each user has an `address` object with a `geo` property containing latitude and longitude coordinates.
 We'll use the latitude to determine if they live south of the equator (latitude < 0).
 
-Add a step within your loop, this time selecting **Branch** > **Branch on Expression**.
+Add a step within your loop, this time selecting **Branch** > **If Condition is Met**.
 Name the step **Check User Location**.
 
 Configure the branch step to have a condition called **Is Southern User?**.

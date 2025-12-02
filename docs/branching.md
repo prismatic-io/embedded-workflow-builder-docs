@@ -33,7 +33,7 @@ If your %WORKFLOW% receives a `widget-created` event header, it will follow the 
 
 ## Branching on an expression
 
-The [Branch on Expression](./connectors/branch.md#branch-on-expression) action allows you to create branches within your %WORKFLOW% based on more complex inputs.
+The [If Condition is Met](./connectors/branch.md#if-condition-is-met) action allows you to create branches within your %WORKFLOW% based on more complex inputs.
 You can compare step results or static values using [comparison operators](#branch-on-expression-comparison-operators) (like "does not equal" or "less than") and follow a branch based on the results of the comparisons.
 
 ![Branch on expression](./assets/branching/branch-on-expression.png)
@@ -261,6 +261,6 @@ Take, for example, this programming expression:
 if ((foo > 500 and bar <= 20) or ("b" in ["a","b","c"]))
 ```
 
-The same logic can be represented with a group of conditionals in a **Branch on Expression** action:
+The same logic can be represented with a group of conditionals in an **If Condition is Met** action:
 
 ![Combining comparison operators](./assets/branching/combining-comparison-operators.png)

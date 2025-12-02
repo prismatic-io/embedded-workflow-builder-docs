@@ -9,7 +9,7 @@ Choose which step to execute next based on a condition or value
 
 ## Actions
 
-### Branch on Expression
+### If Condition is Met
 
 Choose which step to execute next based on a condition
 
@@ -17,7 +17,7 @@ Choose which step to execute next based on a condition
 | --------- | ---------------------------------------------------- | ------- |
 | Condition | The set of conditions to satisfy in order to branch. |         |
 
-### Branch on Value
+### If Value Equals
 
 Choose which step to execute next based on a value.
 

@@ -63,9 +63,9 @@ module.exports = async (
 ## Looping a certain number of times
 
 Sometimes you'll want to loop a set number of times.
-For those situations, a [loop N times](./connectors/loop.md#loop-n-times) action can help.
+For those situations, a [Repeat X Times](./connectors/loop.md#repeat-x-times) action can help.
 
-Programmatically, the **Loop N Times** action is similar to a `for` loop like this:
+Programmatically, the **Repeat X Times** action is similar to a `for` loop like this:
 
 ```js
 for (let index = 0; index < SOME_NUMBER; index++) {
@@ -73,7 +73,7 @@ for (let index = 0; index < SOME_NUMBER; index++) {
 }
 ```
 
-Like [looping over arrays](#looping-over-arrays-of-records), **Loop N Times** provides a `currentItem` and `index`, which both represent the same thing (a [zero-indexed](https://en.wikipedia.org/wiki/Zero-based_numbering) count of the current loop iteration).
+Like [looping over arrays](#looping-over-arrays-of-records), **Repeat X Times** provides a `currentItem` and `index`, which both represent the same thing (a [zero-indexed](https://en.wikipedia.org/wiki/Zero-based_numbering) count of the current loop iteration).
 So, the first loop iteration `index` will be `0`, the second iteration will have an `index` of `1`, etc.
 
 ## Return values of loops

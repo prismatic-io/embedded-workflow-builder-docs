@@ -13,15 +13,15 @@ Repeat a set of steps by iterating over items in a dataset or a fixed number of 
 
 Breaks out of the current Loop, causing execution to resume after the containing Loop.
 
-### Loop N Times
+### Repeat X Times
 
-Loops over the the steps in the loop N times, or until a loop break occurs.
+Loops over the the steps in the loop X times, or until a loop break occurs.
 
 | Input                | Comments                                              | Default |
 | -------------------- | ----------------------------------------------------- | ------- |
 | Number of Iterations | The number of times to execute the steps in the loop. | 1000    |
 
-### Loop Over Items
+### Repeat for Each
 
 Loops over items, applies each step in sequence, and returns a new collection of the results. Items must be an Array or Object.
 
