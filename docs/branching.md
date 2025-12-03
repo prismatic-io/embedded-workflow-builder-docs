@@ -16,7 +16,7 @@ You need to execute a series of steps depending on which event type was received
 **Example 2:** You want to [upsert](https://www.sqlite.org/lang_upsert.html) data into a system that doesn't support upsert.
 You can check if a record exists and branch into "add a new record" or "update the existing record" branches depending on whether the record exists.
 
-## Branching on a value
+## Branching based on a value
 
 A simple branch action branches on a **value**.
 If you've done any programming, it's very similar to the `switch`/`case` construct present in many programming languages.
@@ -27,18 +27,18 @@ Consider **Example 1** above.
 Suppose the webhook request you receive has an HTTP header, `event`, that can be one of three values: `widget-created`, `widget-updated`, or `widget-deleted`.
 You can look at that value and branch accordingly.
 
-![Branch on value](./assets/branching/branch-on-value.png)
+![Branch if value equals](./assets/branching/branch-if-value-equals.png)
 
 If your %WORKFLOW% receives a `widget-created` event header, it will follow the "Created" branch, etc.
 
-## Branching on an expression
+## Branching based on a condition
 
 The [If Condition is Met](./connectors/branch.md#if-condition-is-met) action allows you to create branches within your %WORKFLOW% based on more complex inputs.
-You can compare step results or static values using [comparison operators](#branch-on-expression-comparison-operators) (like "does not equal" or "less than") and follow a branch based on the results of the comparisons.
+You can compare step results or static values using [comparison operators](#comparison-operators) (like "does not equal" or "less than") and follow a branch based on the results of the comparisons.
 
-![Branch on expression](./assets/branching/branch-on-expression.png)
+![Branch if condition is met](./assets/branching/branch-if-condition-met.png)
 
-### Branch on expression comparison operators
+### Comparison operators
 
 Comparison operators allow you to compare two properties to one another.
 You can test if the two values are [equal](#equals), if one value is [contained](#contained-in) within the other (assuming the second value is a list), if one timestamp is [before](#is-before-datetime) another timestamp, etc.

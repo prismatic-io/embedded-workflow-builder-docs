@@ -62,7 +62,7 @@ Add another step under your **Get Users** step, this time searching for the **Lo
 
 Name your step **Loop Over Users**.
 Configure your loop step to iterate over the user data from the previous step.
-In the **Items** field, click **Configure Reference** and select the `data` property (or `body` property) of the **Get Request** step.
+In the **Items** field, click **Configure Reference** and select the `data` property (or `body` property) of the **Get Users** step.
 
 ![Configure loop step](./assets/get-started/loop-step-configure.png)
 

@@ -7,7 +7,7 @@ For many %WORKFLOW_PLURAL%, it's useful to be able to loop over an array of item
 If your %WORKFLOW% processes files on an SFTP server, for example, you might want to loop over an array of files on the server.
 If your %WORKFLOW% sends alerts to users, you might want to loop over an array of users.
 
-The [loop](./connectors/loop.md) connector allows you to loop over an array of items, or you can loop a predetermined number of times.
+The [loop](./connectors/loop.md) connector allows you to loop over each item in an array, or you can loop a predetermined number of times.
 After adding a **loop** step to your %WORKFLOW%, you can then add steps within the loop that will execute repeatedly.
 
 ## Looping over arrays of records
@@ -22,7 +22,7 @@ Imagine you have a step that returns an array of records:
 ]
 ```
 
-A loop step can then be configured to loop over those records by referencing the `results` of the **List Contacts** step:
+A loop step can then be configured to loop for each record by referencing the `results` of the **List Contacts** step:
 
 ![Loop step reference results](./assets/looping/loop-step-reference-results.png)
 
