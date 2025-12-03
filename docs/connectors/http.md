@@ -86,6 +86,7 @@ Issue a HTTP DELETE request
 | Include Full Response               | Enabling this flag will include the full response instead of only the returned data.                                                                                                             | false   |
 | Debug Request                       | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Ignore SSL Errors (Not Recommended) | When this flag is enabled, SSL certificate errors will be ignored. Use this flag with caution - ignoring SSL errors presents security issues. This should only be used for testing purposes.     | false   |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |
 
 ### GET Request
 
@@ -98,6 +99,7 @@ Issue a HTTP GET request
 | Response Type                       | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Header                              | A list of headers to send with the request.                                                                                                                                                      |         |
 | Query Parameter                     | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |
 | Max Retry Count                     | The maximum number of retries to attempt.                                                                                                                                                        | 0       |
 | Retry Delay (ms)                    | The delay in milliseconds between retries.                                                                                                                                                       | 0       |
 | Use Exponential Backoff             | Specifies whether to use a pre-defined exponential backoff strategy for retries. If this is set to true, 'Retry Delay (ms)' is ignored.                                                          | false   |
@@ -127,6 +129,7 @@ Issue a HTTP PATCH request
 | Include Full Response               | Enabling this flag will include the full response instead of only the returned data.                                                                                                             | false   |
 | Debug Request                       | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Ignore SSL Errors (Not Recommended) | When this flag is enabled, SSL certificate errors will be ignored. Use this flag with caution - ignoring SSL errors presents security issues. This should only be used for testing purposes.     | false   |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |
 
 ### POST/PUT Form Data Request
 
@@ -151,6 +154,7 @@ POST/PUT data as multipart/form-data. Often useful for uploading binary data.
 | Include Full Response               | Enabling this flag will include the full response instead of only the returned data.                                                                                                             | false   |
 | Debug Request                       | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Ignore SSL Errors (Not Recommended) | When this flag is enabled, SSL certificate errors will be ignored. Use this flag with caution - ignoring SSL errors presents security issues. This should only be used for testing purposes.     | false   |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |
 
 ### POST Request
 
@@ -172,6 +176,7 @@ Issue a HTTP POST request
 | Include Full Response               | Enabling this flag will include the full response instead of only the returned data.                                                                                                             | false   |
 | Debug Request                       | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Ignore SSL Errors (Not Recommended) | When this flag is enabled, SSL certificate errors will be ignored. Use this flag with caution - ignoring SSL errors presents security issues. This should only be used for testing purposes.     | false   |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |
 
 ### PUT request
 
@@ -193,3 +198,4 @@ Issue a HTTP PUT request
 | Include Full Response               | Enabling this flag will include the full response instead of only the returned data.                                                                                                             | false   |
 | Debug Request                       | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Ignore SSL Errors (Not Recommended) | When this flag is enabled, SSL certificate errors will be ignored. Use this flag with caution - ignoring SSL errors presents security issues. This should only be used for testing purposes.     | false   |
+| Max Redirects                       | The maximum number of redirects to follow.                                                                                                                                                       | 5       |

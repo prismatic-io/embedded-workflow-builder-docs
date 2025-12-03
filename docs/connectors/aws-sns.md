@@ -1,11 +1,11 @@
 ---
 title: Amazon SNS Connector
 sidebar_label: Amazon SNS
-description: Manage subscriptions, topics, and messages within Amazon (AWS) SNS
+description: Manage topics, subscriptions, and messages in Amazon SNS.
 ---
 
 ![Amazon SNS](./assets/aws-sns.png#connector-icon)
-Manage subscriptions, topics, and messages within Amazon (AWS) SNS
+Manage topics, subscriptions, and messages in Amazon SNS.
 
 ## Connections
 
@@ -13,29 +13,39 @@ Manage subscriptions, topics, and messages within Amazon (AWS) SNS
 
 Connect to AWS using an assumed role
 
-To enable the IAM role authentication begin by logging into the [AWS Console](https://aws.amazon.com/) and navigate to Identity and Access Management (IAM).
+AWS IAM role assumption enables secure, temporary access to Amazon SNS resources without embedding long-term credentials.
+This authentication method uses an IAM user's access key pair to assume an IAM role with specific SNS permissions.
 
-To create a user and generate credentials:
+#### Prerequisites
 
-1. Navigate to Users and select **Create User**.
+- An active AWS account
+- IAM permissions to create users, access keys, and roles
 
-- Provide a User name and check the box providing them user access to the AWS Management Console if needed.
-- Once completed with the User creation, copy the ARN provided in the summary for a later step.
+#### Create IAM User and Access Key
 
-2. To obtain the ARN for an existing User, click on the designated username from the Users page and the ARN will be provided in the summary section.
+1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
+2. Select **Users** from the left sidebar
+3. Select **Create User**
+4. Provide a **User name** and optionally enable AWS Management Console access
+5. Complete the user creation process
+6. From the user list, select the newly created user
+7. Copy the **ARN** (Amazon Resource Name) from the summary section - this will be needed for the role trust policy
+8. Navigate to the **Security credentials** tab
+9. Under **Access Keys**, select **Create access key**
+10. Select **Third-party service** as the access key type
+11. Select **Next**, add an optional description tag, then select **Create access key**
+12. Copy both the **Access Key ID** and **Secret Access Key** for later use
 
-3. From the summary section, select **Create access key**
+:::warning Secure Storage Required
+The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later.
+:::
 
-- Select **Third-party service** as the access key type and select next.
-- Set a description and select **create access key**.
-- Copy the **Access Key** and **Secret access key** and enter those into the connection configuration of your integration along with the ARN.
+#### Create IAM Role with Trust Policy
 
-To create and assign a user a role:
-
-1. Navigate to Roles and select **Create Role**.
-
-- Select **Custom Trust Policy** for the Trusted entity types
-- Copy the following statement into the statement console. Making sure to replace the **ARN** with the user's actual ARN from the previous section
+1. In the IAM console, select **Roles** from the left sidebar
+2. Select **Create Role**
+3. For **Trusted entity type**, select **Custom trust policy**
+4. Replace the default policy with the following trust policy statement, substituting the actual user ARN copied from the previous section:
 
 ```json
 {
@@ -44,7 +54,7 @@ To create and assign a user a role:
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "ARN"
+        "AWS": "arn:aws:iam::123456789012:user/YourUserName"
       },
       "Action": "sts:AssumeRole"
     }
@@ -52,8 +62,38 @@ To create and assign a user a role:
 }
 ```
 
-- When adding permissions provide the **AmazonSNSFullAccess** permission
-- Complete remaining steps and select **Create Role**
+5. Select **Next** to proceed to permissions
+6. Under **Permissions policies**, search for and attach **AmazonSNSFullAccess** or create a custom policy with specific SNS permissions
+7. Select **Next** and provide a **Role name** and optional description
+8. Review the configuration and select **Create Role**
+9. From the roles list, select the newly created role
+10. Copy the **Role ARN** from the summary section
+
+#### Configure the Connection
+
+- Enter the **Access Key ID** from the IAM user into the connection configuration
+- Enter the **Secret Access Key** from the IAM user into the connection configuration
+- Enter the **Role ARN** from the IAM role into the connection configuration
+
+The connection will use the IAM user credentials to assume the specified role when accessing Amazon SNS resources.
+
+#### Required Permissions
+
+The IAM role must have appropriate Amazon SNS permissions attached via IAM policies.
+
+Common required permissions include:
+
+- `sns:Publish` - Send messages to topics
+- `sns:Subscribe` - Subscribe endpoints to topics
+- `sns:CreateTopic` - Create new SNS topics
+- `sns:DeleteTopic` - Delete SNS topics
+- `sns:ListTopics` - List available topics
+- `sns:GetTopicAttributes` - Retrieve topic details
+- `sns:SetTopicAttributes` - Modify topic settings
+
+For production use, consider creating a custom IAM policy with least-privilege permissions instead of using **AmazonSNSFullAccess**.
+
+Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -67,23 +107,79 @@ To create and assign a user a role:
 Authenticates requests to Amazon SNS using an API Key and API Secret
 
 An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SNS.
-Make sure that the key pair you generate in AWS has proper permissions to the SNS resources you want to access.
+Ensure the key pair generated in AWS has proper permissions to the SNS resources to access.
 Read about Amazon SNS IAM policies in the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html).
 
-| Input             | Comments                     | Default |
-| ----------------- | ---------------------------- | ------- |
-| Access Key ID     | An AWS IAM Access Key ID     |         |
-| Secret Access Key | An AWS IAM Secret Access Key |         |
+#### Prerequisites
+
+- An active AWS account
+- IAM permissions to create access keys
+
+#### Setup Steps
+
+To create an IAM access key pair:
+
+1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
+2. Select **Users** from the left sidebar
+3. Choose an existing user or create a new one by selecting **Create User**
+4. If creating a new user, provide a username and configure console access if needed
+5. Navigate to the **Security credentials** tab for the selected user
+6. Under **Access Keys**, select **Create access key**
+7. Choose the use case (select **Third-party service** or **Application running outside AWS** as appropriate)
+8. Add an optional description tag for the key
+9. Select **Create access key**
+10. Copy both the **Access Key ID** and **Secret Access Key** values
+
+:::warning Secure Storage Required
+The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later. If lost, a new access key pair must be generated.
+:::
+
+#### Configure the Connection
+
+- Enter the **Access Key ID** into the corresponding field in the connection configuration
+- Enter the **Secret Access Key** into the corresponding field in the connection configuration
+
+#### Required Permissions
+
+The IAM user or role associated with the access key pair must have appropriate permissions for Amazon SNS operations.
+
+Common required permissions include:
+
+- `sns:Publish` - Send messages to topics
+- `sns:Subscribe` - Subscribe endpoints to topics
+- `sns:CreateTopic` - Create new SNS topics
+- `sns:DeleteTopic` - Delete SNS topics
+- `sns:ListTopics` - List available topics
+- `sns:GetTopicAttributes` - Retrieve topic details
+- `sns:SetTopicAttributes` - Modify topic settings
+
+Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
+
+| Input             | Comments                                                                                                                                                        | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Access Key ID     | An AWS IAM Access Key ID for authenticating with Amazon SNS. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)     |         |
+| Secret Access Key | An AWS IAM Secret Access Key corresponding to the Access Key ID. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) |         |
 
 ## Triggers
 
-### Subscription Trigger
+### Manual Subscription
 
-Confirm subscription and unsubscribe requests and validate SNS messages
+Receive and validate webhook requests from SNS for manually configured webhook subscriptions.
 
-| Input         | Comments                                                                                                          | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Parse Message | When enabled the message from SNS will be parsed as JSON and returned. If disabled it will be passed as received. | false   |
+| Input         | Comments                                                                                                              | Default |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
+| Parse Message | When enabled, the message from SNS will be parsed as JSON and returned. When disabled, it will be passed as received. | false   |
+
+### Topic Webhook
+
+Receive notifications from an SNS topic. Automatically creates and manages a topic subscription when the instance is deployed, and removes the subscription when the instance is deleted.
+
+| Input         | Comments                                                                                                                       | Default |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Parse Message | When enabled, the message from SNS will be parsed as JSON and returned. When disabled, it will be passed as received.          | false   |
+| Connection    | The Amazon SNS connection to use.                                                                                              |         |
+| AWS Region    | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                        |         |
+| Topic ARN     | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html) |         |
 
 ## Actions
 
@@ -94,114 +190,114 @@ Create an Amazon SNS Topic
 | Input      | Comments                                                                | Default |
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string for the name of the topic.                             |         |
-| Connection |                                                                         |         |
+| Name       | The name of the SNS topic to create.                                    |         |
+| Connection | The Amazon SNS connection to use.                                       |         |
 
 ### Delete Topic
 
 Delete an Amazon SNS Topic
 
-| Input      | Comments                                                                            | Default |
-| ---------- | ----------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.             |         |
-| Topic Arn  | An Amazon SNS topic is a logical access point that acts as a communication channel. |         |
-| Connection |                                                                                     |         |
+| Input      | Comments                                                                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                        |         |
+| Topic ARN  | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html) |         |
+| Connection | The Amazon SNS connection to use.                                                                                              |         |
 
 ### Get Topic Attributes
 
 Retrieves the attributes of an Amazon SNS Topic.
 
-| Input      | Comments                                                                            | Default |
-| ---------- | ----------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.             |         |
-| Topic Arn  | An Amazon SNS topic is a logical access point that acts as a communication channel. |         |
-| Connection |                                                                                     |         |
+| Input      | Comments                                                                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                        |         |
+| Topic ARN  | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html) |         |
+| Connection | The Amazon SNS connection to use.                                                                                              |         |
 
 ### List Opt Out Numbers
 
 List all opt out numbers
 
-| Input      | Comments                                                                                                 | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                  |         |
-| Next Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results. |         |
-| Connection |                                                                                                          |         |
+| Input      | Comments                                                                                  | Default |
+| ---------- | ----------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                   |         |
+| Next Token | The pagination token returned by a previous request to retrieve the next page of results. |         |
+| Connection | The Amazon SNS connection to use.                                                         |         |
 
 ### List Subscriptions
 
 Retrieve the subscriptions of an Amazon SNS Topic
 
-| Input      | Comments                                                                                                   | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                            |         |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                    |         |
-| Topic Arn  | An Amazon SNS topic is a logical access point that acts as a communication channel.                        |         |
-| Fetch All  | Turn this on to fetch all paginated subscriptions. If turned off, only 100 subscriptions will be returned. | false   |
-| Next Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results.   |         |
+| Input      | Comments                                                                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Amazon SNS connection to use.                                                                                              |         |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                        |         |
+| Topic ARN  | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html) |         |
+| Fetch All  | When set to true, fetches all paginated subscriptions. When false, only 100 subscriptions will be returned.                    | false   |
+| Next Token | The pagination token returned by a previous request to retrieve the next page of results.                                      |         |
 
 ### List Topics
 
 List available Amazon SNS Topics
 
-| Input      | Comments                                                                                                 | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                          |         |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                  |         |
-| Fetch All  | Turn this on to fetch all paginated topics. If turned off, only 100 topics will be returned.             | false   |
-| Next Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results. |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Amazon SNS connection to use.                                                             |         |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Fetch All  | When set to true, fetches all paginated topics. When false, only 100 topics will be returned. | false   |
+| Next Token | The pagination token returned by a previous request to retrieve the next page of results.     |         |
 
 ### Publish Batch Messages
 
 Publishes up to ten messages to the specified Amazon SNS Topic
 
-| Input           | Comments                                                                                                                                                                                                                          | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AWS Region      | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Topic Arn       | An Amazon SNS topic is a logical access point that acts as a communication channel.                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Message Entries | To add a Binary Message add a Template Field containing a Buffer from a previous field to the BinaryValue attribute. For MessageAttributes data types, see: https://docs.aws.amazon.com/sns/latest/dg/sns-message-attributes.html | <code>[<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "Number",<br /> "StringValue": "123"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "String.Array",<br /> "StringValue": "[\"test\", true, 123]"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "String",<br /> "StringValue": "test"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "Binary",<br /> "BinaryValue": "ADD A BUFFER HERE WITH A TEMPLATE FIELD"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> }<br />]</code> |
-| Connection      |                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Input           | Comments                                                                                                                                                                                                                                                                    | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AWS Region      | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Topic ARN       | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html)                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Message Entries | An array of message entries to publish in batch. Each entry must include an Id and Message. For binary messages, add a Template Field containing a Buffer to the BinaryValue attribute. [Learn more](https://docs.aws.amazon.com/sns/latest/dg/sns-message-attributes.html) | <code>[<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "Number",<br /> "StringValue": "123"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "String.Array",<br /> "StringValue": "[\"test\", true, 123]"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "String",<br /> "StringValue": "test"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> },<br /> {<br /> "Id": "AN_ID",<br /> "Message": "A_MESSAGE",<br /> "Subject": "A_SUBJECT",<br /> "MessageStructure": "A_MESSAGE_STRUCTURE",<br /> "MessageAttributes": {<br /> "<keys>": {<br /> "DataType": "Binary",<br /> "BinaryValue": "ADD A BUFFER HERE WITH A TEMPLATE FIELD"<br /> }<br /> },<br /> "MessageDeduplicationId": "A_MESSAGE_DEDUPLICATION_ID",<br /> "MessageGroupId": "A_MESSAGE_GROUP_ID"<br /> }<br />]</code> |
+| Connection      | The Amazon SNS connection to use.                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Publish Message
 
 Publish a message to an Amazon SNS Topic
 
-| Input              | Comments                                                                                                                                                                                                                                                                                                                                       | Default |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region         | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                                                                                                                                                                                        |         |
-| Message            | Provide a string for the message you would like to send.                                                                                                                                                                                                                                                                                       |         |
-| Topic Arn          | An Amazon SNS topic is a logical access point that acts as a communication channel.                                                                                                                                                                                                                                                            |         |
-| Message Attributes | For each item, provide a key value pair representing a message attribute, to supply a binary you must provide a Buffer to the key value. When determining your message attributes, it is important that you follow the specifications listed in the Amazon SNS docs: https://docs.aws.amazon.com/sns/latest/api/API_MessageAttributeValue.html |         |
-| Connection         |                                                                                                                                                                                                                                                                                                                                                |         |
+| Input              | Comments                                                                                                                                                                                                                                                                                    | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| AWS Region         | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                                                                                                                                     |         |
+| Message            | The message content to send to the topic or endpoint. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html)                                                                                                                                                             |         |
+| Topic ARN          | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html)                                                                                                                                                              |         |
+| Message Attributes | Optional message attributes as key-value pairs. The value will be automatically typed (String, Number, String.Array, or Binary for Buffer). For binary data, provide a Buffer from a previous step. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_MessageAttributeValue.html) |         |
+| Connection         | The Amazon SNS connection to use.                                                                                                                                                                                                                                                           |         |
 
 ### Publish SMS
 
 Publish an SMS message to an Amazon SNS Topic
 
-| Input        | Comments                                                                | Default |
-| ------------ | ----------------------------------------------------------------------- | ------- |
-| AWS Region   | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Message      | Provide a string for the message you would like to send.                |         |
-| Phone Number | Provide a phone number that you would like to subscribe to your topic.  |         |
-| Connection   |                                                                         |         |
+| Input        | Comments                                                                                                                                                         | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| AWS Region   | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                          |         |
+| Message      | The message content to send to the topic or endpoint. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html)                                  |         |
+| Phone Number | The phone number in E.164 format (e.g., +12065551234) to receive SMS messages. [Learn more](https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html) |         |
+| Connection   | The Amazon SNS connection to use.                                                                                                                                |         |
 
 ### Subscribe to Topic
 
 Subscribe to an Amazon SNS Topic
 
-| Input      | Comments                                                                                                                                        | Default |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                         |         |
-| Topic Arn  | An Amazon SNS topic is a logical access point that acts as a communication channel.                                                             |         |
-| protocol   | When you subscribe an endpoint to a topic, you must specify which protocol to use when this topic receives messages.                            | https   |
-| Endpoint   | The endpoint that you want to receive notifications. This could be an email address, URL, phone number, or SQS/application/Lambda/Firehose ARN. |         |
-| Connection |                                                                                                                                                 |         |
+| Input      | Comments                                                                                                                                                                                                                                                                                       | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                                                                                                                                        |         |
+| Topic ARN  | The Amazon Resource Name (ARN) of the SNS topic. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html)                                                                                                                                                                 |         |
+| Protocol   | The protocol to use for delivering messages to the endpoint (application, email, email-json, firehose, http, https, lambda, sms, or sqs). [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html)                                                                          | https   |
+| Endpoint   | The endpoint to receive notifications. Format depends on protocol: email address (email@example.com), URL (https://example.com), phone number (+12065551234), or ARN (arn:aws:sqs:us-east-1:123456789012:MyQueue). [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html) |         |
+| Connection | The Amazon SNS connection to use.                                                                                                                                                                                                                                                              |         |
 
 ### Unsubscribe from a Topic
 
 Unsubscribe from an Amazon SNS Topic
 
-| Input            | Comments                                                                | Default |
-| ---------------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region       | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Subscription Arn | The unique identifier for a topic subscription                          |         |
-| Connection       |                                                                         |         |
+| Input            | Comments                                                                                                                          | Default |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| AWS Region       | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                           |         |
+| Subscription ARN | The Amazon Resource Name (ARN) of the subscription. [Learn more](https://docs.aws.amazon.com/sns/latest/api/API_Unsubscribe.html) |         |
+| Connection       | The Amazon SNS connection to use.                                                                                                 |         |

@@ -16,7 +16,7 @@
     "check-spelling": "cspell --config cspell.jsonc",
     "format": "npm run format-markdown && npm run format-js",
     "format-js": "biome format --write",
-    "format-markdown": "prettier --log-level warn --write \"docs/**/*.md\"",
+    "format-markdown": "prettier --log-level warn --write \"docs/**/*.md\" && eslint --config eslint.markdown.config.mjs --fix",
     "lint": "biome lint",
     "generate-branded-markdown": "docusaurus generate-branded-markdown",
     "generate-public-connector-docs": "docusaurus generate-connector-docs --public-connectors",

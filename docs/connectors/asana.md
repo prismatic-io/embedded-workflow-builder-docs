@@ -13,34 +13,89 @@ Manage users, projects, and teams in your Asana workspace
 
 Asana OAuth 2.0 Connection
 
-To make API requests of Asana on behalf of your customers you need to create an "OAuth app" within Asana.
-Log in to Asana and then visit [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps).
+To connect to Asana using OAuth 2.0, create an OAuth application within Asana's developer portal. This allows users to authenticate with their Asana credentials.
 
-- Click **Create new app**
-- Give your app a name and agree to Asana's terms and conditions
-- Open **OAuth** from the left-hand menu and take note of the generated **Client ID** and **Client secret**
-- Click **+ Add redirect URL** and enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+#### Prerequisites
 
-Finally, when creating your Asana integration update your Asana connection with the **Client ID** and **Client secret** that you noted.
+- An active Asana account
+- Permissions to create OAuth applications in Asana
+
+#### Setup Steps
+
+1. Log in to Asana and navigate to [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps)
+2. Click **Create new app**
+3. Enter a name for the application and agree to Asana's terms and conditions
+4. Open **OAuth** from the left-hand menu
+5. Click **+ Add redirect URL** and enter the OAuth callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+6. Copy the generated **Client ID** and **Client secret** values
+
+#### Configure the Connection
+
+- Enter the **Client ID** and **Client secret** from the OAuth application
+- For **Scopes**, specify the required permissions using the format `<resource>:<action>`:
+  - Leave blank to request full access (all available scopes)
+  - Refer to [Asana's OAuth scopes documentation](https://developers.asana.com/docs/oauth-scopes) for a complete list of available scopes
+
+#### Recommended Scopes
+
+| Scope               | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| `default`           | Basic access to user identity and workspace membership |
+| `tasks:read`        | Read tasks, subtasks, and task details                 |
+| `tasks:write`       | Create, update, and delete tasks                       |
+| `projects:read`     | Read projects and project details                      |
+| `projects:write`    | Create, update, and delete projects                    |
+| `users:read`        | Read user profiles and team membership                 |
+| `workspaces:read`   | Read workspace and organization details                |
+| `attachments:read`  | Read file attachments on tasks                         |
+| `attachments:write` | Upload and manage attachments                          |
+| `webhooks:read`     | Read webhook subscriptions                             |
+| `webhooks:write`    | Create and manage webhooks                             |
+
+**Example scope configurations:**
+
+- **Read-only access**: `default tasks:read projects:read users:read workspaces:read`
+- **Task management**: `default tasks:read tasks:write projects:read users:read`
+- **Full project access**: `default tasks:read tasks:write projects:read projects:write users:read workspaces:read`
+- **Webhook-enabled**: `default tasks:read projects:read webhooks:read webhooks:write`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                       | Default |
-| ------------- | ---------------------------------------------- | ------- |
-| Client ID     | Generate from https://app.asana.com/0/my-apps/ |         |
-| Client secret | Generate from https://app.asana.com/0/my-apps/ |         |
+| Input         | Comments                                                                                                                                                                                | Default |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Scopes        | Space separated OAuth scopes using the format `<resource>:<action>` (e.g., tasks:read, projects:write). Leave blank for full access. See https://developers.asana.com/docs/oauth-scopes |         |
+| Client ID     | Generate from https://app.asana.com/0/my-apps/                                                                                                                                          |         |
+| Client secret | Generate from https://app.asana.com/0/my-apps/                                                                                                                                          |         |
 
 ### Asana Personal Access Token
 
 Asana Personal Access Token
 
-Developer **personal access tokens** can be used for development purposes, but you should use an [OAuth 2.0 connection](#asana-oauth-20-connection) when you deploy your integration (so your users can log in with their accounts).
+A personal access token can be used for development and testing purposes. For production deployments, use the OAuth 2.0 connection to allow users to authenticate with their own Asana credentials.
 
-To generate an **personal access token**, log in to Asana and open [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps).
-Then, click **+ Create new token**.
+#### Prerequisites
 
-For more information on access tokens, refer to the [Asana Docs](https://developers.asana.com/docs/personal-access-token).
+- An active Asana account with permissions to create personal access tokens
+
+#### Setup Steps
+
+To generate a personal access token:
+
+1. Log in to Asana and navigate to [app.asana.com/0/my-apps](https://app.asana.com/0/my-apps)
+2. Click **+ Create new token**
+3. Enter a description for the token and click **Create token**
+4. Copy the generated token value
+
+:::warning Security Note
+Personal access tokens are tied to the user account that created them and inherit that user's permissions. Store tokens securely and rotate them regularly.
+:::
+
+#### Configure the Connection
+
+- Enter the **Personal Access Token** value into the connection configuration
+
+For more information on personal access tokens, refer to the [Asana Docs](https://developers.asana.com/docs/personal-access-token).
 
 | Input                 | Comments                                                                                            | Default |
 | --------------------- | --------------------------------------------------------------------------------------------------- | ------- |

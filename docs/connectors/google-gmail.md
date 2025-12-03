@@ -1,11 +1,11 @@
 ---
 title: Gmail Connector
 sidebar_label: Gmail
-description: Manage Messages in Google's email service
+description: Manage messages, labels, and drafts in Gmail.
 ---
 
 ![Gmail](./assets/google-gmail.png#connector-icon)
-Manage Messages in Google&#x27;s email service
+Manage messages, labels, and drafts in Gmail.
 
 ## Connections
 
@@ -14,78 +14,168 @@ Manage Messages in Google&#x27;s email service
 OAuth2 Connection
 
 The Gmail component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
-You'll need to create a GCP OAuth 2.0 app so your integration can authenticate and perform Gmail tasks on your customers' behalf.
 
-To create a Gmail OAuth 2.0 app, first make sure you have a Google Developer account - you can sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/).
-Then:
+To create a Gmail OAuth 2.0 app, a Google Developer account is required. Sign up at [console.cloud.google.com](https://console.cloud.google.com/).
 
-1. Open up the Gmail API console - [https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com](https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com)
-1. You will be prompted to enable **Gmail API** for your project. Click **ENABLE**.
-1. On the sidebar, select **APIs & Services** and then **Credentials**.
-1. An OAuth 2.0 app includes a "Consent Screen" (the page that asks "Do you want to allow (Your Company) to access Gmail on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
-   1. Your app will be externally available to your customers, so choose a **User Type** of **External**.
-   1. Fill out the OAuth consent screen with an app name (your company or product's name), support email, app logo, domain, etc.
-   1. You can ignore domains for now.
-   1. On the next page, add any scopes relevant to your integration, like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/gmail.send`.
-   1. Enter some **test users** for your testing purposes.
-      Your app will only work for those testing users until it is "verified" by Google.
-      When you are ready for verification (they verify your privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
-      That'll allow your customers to authorize your integration to access their Gmail account.
-1. Once your "Consent Screen" is configured open the **Credentials** page from the sidebar again.
-1. Click **+CREATE CREDENTIALS** and select **OAuth Client ID**.
-   1. Under **Application type** select **Web application**.
-   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-   1. Click **CREATE**.
-1. Take note of the **Client ID** and **Client Secret** that are generated.
+#### Prerequisites
 
-:::info
-Make sure to **publish** your OAuth 2.0 app after you've tested it so users outside of your _test users_ can authorize your integration to interact with Gmail on their behalf.
+- Google Cloud Platform account with billing enabled
+- Access to create and configure GCP projects
+
+#### Setup Steps
+
+1. Open the [Gmail API console](https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com)
+2. Click **ENABLE** to enable the Gmail API for the project
+3. From the sidebar, select **APIs & Services** → **Credentials**
+4. Configure the OAuth consent screen:
+   1. Click **CONFIGURE CONSENT SCREEN**
+   2. Select **External** as the **User Type** (for customer-facing integrations)
+   3. Fill in the required fields:
+      - App name (company or product name)
+      - Support email
+      - App logo (optional but recommended)
+      - Application domain
+   4. Click **Save and Continue**
+   5. On the Scopes page, add required scopes for the integration:
+      - `https://mail.google.com/` for full Gmail access, or
+      - Specific scopes like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/gmail.send`
+   6. Click **Save and Continue**
+   7. Add test users for testing purposes (required before publishing)
+   8. Review the summary and click **Back to Dashboard**
+5. Create OAuth 2.0 credentials:
+   1. Navigate to **Credentials** from the sidebar
+   2. Click **+ CREATE CREDENTIALS** → **OAuth Client ID**
+   3. Select **Web application** as the **Application type**
+   4. Under **Authorized redirect URIs**, add the OAuth callback URL: callback
+   5. Click **CREATE**
+6. Copy the **Client ID** and **Client Secret** that are generated
+
+#### Configure the Connection
+
+- Enter the **Client ID** and **Client Secret** from the GCP Console
+- For **Scopes**, use one of the following configurations:
+  - Full access (default):
+    ```
+    https://mail.google.com/ https://www.googleapis.com/auth/pubsub
+    ```
+  - Limited access (example):
+    ```
+    https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/pubsub
+    ```
+
+:::note Pub/Sub Scope Requirement
+The `https://www.googleapis.com/auth/pubsub` scope is required for push notification features. Include this scope if using the Push Notification Webhook trigger.
 :::
 
-Now that you have a **Client ID** and **Client Secret**, add Gmail step to your workflow.
-Open the **Configuration Wizard Designer** by clicking **Configuration Wizard**, select your **Gmail Connection** and enter your client ID and secret.
+- Refer to [Gmail API Scopes](https://developers.google.com/gmail/api/auth/scopes) for additional scope options
 
-:::info A note on scopes
-You can keep the default [Gmail scope](https://developers.google.com/gmail/api/auth/scopes), `https://mail.google.com/`.
-This will grant you full permission over your users' Gmail accounts.
+:::info Publishing the OAuth App
+The OAuth app will initially only work for test users added during setup. To allow all users to authenticate:
 
-If you would like to limit permissions, you can select a subset of scopes, like `https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send`.
+1. Navigate to the **OAuth consent screen** in the GCP Console
+2. Click **PUBLISH APP**
+3. Follow Google's verification process if prompted (required for production use)
+
+Without publishing, only test users will be able to authorize the integration.
 :::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                   | Default                  |
-| ------------- | ------------------------------------------------------------------------------------------ | ------------------------ |
-| Scopes        | Space delimited listing of scopes. See https://developers.google.com/gmail/api/auth/scopes | https://mail.google.com/ |
-| Client ID     | Your Gmail app's Client ID                                                                 |                          |
-| Client Secret | Your Gmail app's Client Secret                                                             |                          |
+| Input         | Comments                                                                                                                                                                    | Default                                                         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Scopes        | Space-separated list of OAuth permission scopes. See <a href="https://developers.google.com/gmail/api/auth/scopes">Gmail API Scopes documentation</a> for available scopes. | https://mail.google.com/ https://www.googleapis.com/auth/pubsub |
+| Client ID     | The Client ID from the Google Cloud Console. Navigate to APIs & Services > Credentials to find this value.                                                                  |                                                                 |
+| Client Secret | The Client Secret from the Google Cloud Console. Navigate to APIs & Services > Credentials to find this value.                                                              |                                                                 |
 
 ### Service Account
 
 Service Account Connection
 
-In order to use the **Service Account** Authentication method for Gmail, you'll need to:
+The **Service Account** authentication method allows Gmail actions to run on behalf of Google Workspace users without requiring individual user authorization. This method is ideal for serve to server integrations and automated workflows.
 
-1. Create a Service Account in the Google Cloud Platform (GCP) Console.
-   This can be done [here](https://console.cloud.google.com/) and then navigating to **Service Accounts**
-2. Once a Service Account is created, you will need to generate a Service Account Key
-   This can be done by clicking on the Service Account's options, navigating to the **Key** tab, and clicking **Add Key** to create a new key.
-3. After creating the key, you will be able to download a JSON file that contains the key information. This key **contains sensible data** and should be used with caution.
-4. Use the key downloaded in the previous step as input for the Gmail 'Service Account' connection.
-5. Lastly, if needed, specify a granular scope, take into account that the connection defaults to the **https://mail.google.com/** scope, which gives full access to the Gmail API on your behalf.
+:::info When to Use Service Account
+Service accounts are best suited for:
 
-| Input                    | Comments                                                                                   | Default                  |
-| ------------------------ | ------------------------------------------------------------------------------------------ | ------------------------ |
-| Service Account Key File | The Key File for your Google Service Account.                                              |                          |
-| User                     | The Workspace User to impersonate.                                                         |                          |
-| Scopes                   | Space delimited listing of scopes. See https://developers.google.com/gmail/api/auth/scopes | https://mail.google.com/ |
+- Server-to-server integrations within a Google Workspace organization
+- Automated workflows that need to access multiple users' Gmail accounts
+- Scenarios where individual user OAuth consent is not feasible
+
+For customer facing integrations where each end user needs to authorize access, the OAuth 2.0 connection is recommended.
+:::
+
+#### Prerequisites
+
+- Google Cloud Platform (GCP) project with billing enabled
+- Google Workspace administrator access
+- Gmail API enabled in the GCP project
+
+#### Setup Steps
+
+**1. Create a Service Account**
+
+1. Navigate to the [Google Cloud Platform Console](https://console.cloud.google.com/)
+2. Go to **IAM & Admin** > **Service Accounts**
+3. Click **Create Service Account**
+4. Enter a name and description for the service account
+5. Click **Create and Continue**
+6. Click **Done** (no roles are required for Gmail API access)
+
+**2. Generate a Service Account Key**
+
+1. Click on the newly created service account
+2. Navigate to the **Keys** tab
+3. Click **Add Key** > **Create new key**
+4. Select **JSON** as the key type
+5. Click **Create**
+6. A JSON file will be downloaded. This key **contains sensitive data** and should be stored securely
+7. Take note of the **Client ID** from the JSON file (required for domain wide delegation)
+
+**3. Enable Domain Wide Delegation**
+
+Service accounts require domain wide delegation to access Gmail data. Without this configuration, authentication will fail
+
+1. Login to the [Google Workspace](https://workspace.google.com/) domain's Admin console and navigate to **Main menu** > **Security** > **Access and data control** > **API Controls**
+2. In the **Domain wide delegation** pane, select **Manage Domain Wide Delegation**
+3. Click **Add new**
+4. In the **Client ID** field, enter the service account's Client ID (found in the JSON key file)
+5. In the **OAuth scopes (comma delimited)** field, enter the scopes the application needs:
+   - For full Gmail access: `https://mail.google.com/`
+   - For read only access: `https://www.googleapis.com/auth/gmail.readonly`
+   - For multiple scopes: `https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/gmail.send`
+6. Click **Authorize**
+
+For more information on Gmail API scopes, refer to the [Gmail API documentation](https://developers.google.com/gmail/api/auth/scopes).
+
+#### Configure the Connection
+
+1. Add a Gmail action to the integration that uses the **Service Account** connection
+2. In the **Service Account Key File** field, paste the entire contents of the JSON file downloaded in the setup steps
+3. In the **User** field, enter the email address of the Google Workspace user to impersonate (e.g., `support@company.com`)
+4. (Optional) In the **Scopes** field, specify custom scopes if needed. The default is `https://mail.google.com/` which provides full Gmail API access
+
+| Input                    | Comments                                                                                                                                                                    | Default                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Service Account Key File | The JSON key file for the Google Service Account. Paste the entire contents of the downloaded JSON file including the BEGIN and END markers.                                |                                                                 |
+| User                     | The Google Workspace user email address to impersonate. This must be a valid user in the Workspace domain.                                                                  |                                                                 |
+| Scopes                   | Space-separated list of OAuth permission scopes. See <a href="https://developers.google.com/gmail/api/auth/scopes">Gmail API Scopes documentation</a> for available scopes. | https://mail.google.com/ https://www.googleapis.com/auth/pubsub |
 
 ## Triggers
 
-### Push Notification Webhook
+### New and Updated Emails
 
-Receive and validate webhook requests from Gmail for webhooks you configure.
+Checks for new and updated email messages on a configured schedule.
+
+| Input                    | Comments                                                                                          | Default |
+| ------------------------ | ------------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                    |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default).   |         |
+| Label ID                 | The label ID to filter history messages by.                                                       |         |
+| Get Message Details      | When true, includes the message details in the response. <b>This will increase response time.</b> | false   |
+
+### Push Notifications
+
+Receive and validate webhook requests from Gmail for manually configured Push Notification subscriptions.
 
 ## Actions
 
@@ -93,83 +183,86 @@ Receive and validate webhook requests from Gmail for webhooks you configure.
 
 Enables the ability to send update notifications like new messages received.
 
-| Input                    | Comments                                                                                                 | Default |
-| ------------------------ | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               | The Connection to use for authorization.                                                                 |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user)                                 |         |
-| Topic Name               |                                                                                                          |         |
-| Label ID                 | System labels typically correspond to pre-defined elements in the Gmail web interface such as the inbox. |         |
+| Input                    | Comments                                                                                                                                  | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                                                            |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                           |         |
+| Topic Name               | The full Pub/Sub topic name in the format: projects/{project-id}/topics/{topic-id}                                                        |         |
+| Label ID                 | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface. |         |
 
 ### Delete Push Notification (Stop Mailbox Updates)
 
 Calls a stop notification.
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### Get Current User
 
 Get metadata about the authenticated user
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Connection to use for authorization. |         |
+| Input      | Comments                                       | Default |
+| ---------- | ---------------------------------------------- | ------- |
+| Connection | The Connection to use for Gmail Authorization. |         |
 
 ### Get Event History
 
 Fetch events that have occurred in the mailbox since the specified startHistoryId.
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
-| History ID               | The history ID to start history from.                                    |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
+| History ID               | The history ID to start retrieving history records from.                                        |         |
+| Page Token               | Page token from the previous response when looping through paginated history results.           |         |
+| Fetch All                | When true, fetches all pages of results using pagination.                                       | false   |
+| Max Results              | The maximum number of results to return per page.                                               |         |
 
 ### Get Label by Name
 
 Get a label (including ID) by its name
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Label Name               |                                                                          |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Label Name               |                                                                                                 |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### Get Message
 
 Get a message by ID
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Message ID               |                                                                          |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Message ID               | The unique identifier of the Gmail message.                                                     |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### List Labels
 
 List all labels within this account
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### List Messages
 
 Get a list of messages
 
-| Input                    | Comments                                                                                                              | Default |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               | The Connection to use for authorization.                                                                              |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user)                                              |         |
-| Page Token               | If you're looping over pages of results, this is the page token from the result of the previous 'list messages' step. |         |
-| Fetch All                | Turn this On to fetch all pages of results.                                                                           | false   |
-| Query String             | Only return messages matching the specified query. Supports the same query format as the Gmail search box.            |         |
-| Max Results              | The maximum number of results to return.                                                                              |         |
-| Labels                   | Show only messages with labels that match these label IDs                                                             |         |
-| Add Metadata             | Turn this On to add metadata to the messages. This will slow down the response time.                                  | false   |
+| Input                    | Comments                                                                                           | Default |
+| ------------------------ | -------------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                     |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default).    |         |
+| Page Token               | Page token from the previous response when looping through paginated results.                      |         |
+| Fetch All                | When true, fetches all pages of results using pagination.                                          | false   |
+| Query String             | Filter messages using Gmail search syntax. Supports the same query format as the Gmail search box. |         |
+| Max Results              | The maximum number of results to return per page.                                                  |         |
+| Labels                   | Filter messages by Gmail label IDs.                                                                |         |
+| Add Metadata             | When true, includes additional metadata for each message. This will increase response time.        | false   |
 
 ### Raw Request
 
@@ -177,7 +270,7 @@ Send raw HTTP request to Google Gmail
 
 | Input                   | Comments                                                                                                                                                                                                                                                                       | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Connection to use for authorization.                                                                                                                                                                                                                                       |         |
+| Connection              | The Connection to use for Gmail Authorization.                                                                                                                                                                                                                                 |         |
 | URL                     | Input the path only (/v1/users/{userId}/messages), The base URL is already included (https://gmail.googleapis.com/gmail). For example, to connect to https://gmail.googleapis.com/gmail/v1/users/{userId}/messages, only /v1/users/{userId}/messages is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                                        |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                      |         |
@@ -188,7 +281,6 @@ Send raw HTTP request to Google Gmail
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                    |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                       | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                            |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                           | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                            | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                               | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                            | 0       |
@@ -200,46 +292,46 @@ Send a new message
 
 | Input                    | Comments                                                                                                                                                                                                                                                                                                             | Default |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               | The Connection to use for authorization.                                                                                                                                                                                                                                                                             |         |
-| To                       |                                                                                                                                                                                                                                                                                                                      |         |
-| From                     | Alias of the sender email address. This is the email address that will be used to send the email.                                                                                                                                                                                                                    |         |
-| CC                       |                                                                                                                                                                                                                                                                                                                      |         |
-| BCC                      |                                                                                                                                                                                                                                                                                                                      |         |
-| Subject                  |                                                                                                                                                                                                                                                                                                                      |         |
-| Plain text body          | For email clients that do not support HTML                                                                                                                                                                                                                                                                           |         |
-| HTML body                | For email clients that support HTML                                                                                                                                                                                                                                                                                  |         |
-| Attachments              | Specify a file name as the key (i.e. 'my-file.pdf'), and the file as the value                                                                                                                                                                                                                                       |         |
+| Connection               | The Connection to use for Gmail Authorization.                                                                                                                                                                                                                                                                       |         |
+| To                       | Recipient email addresses.                                                                                                                                                                                                                                                                                           |         |
+| From                     | The sender email address or alias. This is the email address that will appear in the From field.                                                                                                                                                                                                                     |         |
+| CC                       | Carbon copy (CC) email addresses.                                                                                                                                                                                                                                                                                    |         |
+| BCC                      | Blind carbon copy (BCC) email addresses.                                                                                                                                                                                                                                                                             |         |
+| Subject                  | The subject line of the email.                                                                                                                                                                                                                                                                                       |         |
+| Plain Text Body          | Plain text version of the email body. Used as fallback for email clients that do not support HTML.                                                                                                                                                                                                                   |         |
+| HTML Body                | HTML version of the email body. For email clients that support HTML.                                                                                                                                                                                                                                                 |         |
+| Attachments              | Email attachments as key-value pairs. The key is the file name (e.g., 'document.pdf') and the value is the file data.                                                                                                                                                                                                |         |
 | Dynamic Attachments      | An array of objects with 'key' and 'value' properties, where 'key' is the file name and 'value' is the binary file data. Typically used as a reference from a previous step. Ex. [{key: "my-attachment.pdf", value: <BINARY FILE DATA TO ATTACH>},{key: "another-attachment.xlsx", value: <BINARY EXCEL FILE DATA>}] |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user)                                                                                                                                                                                                                                             |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                                                                                      |         |
 
 ### Trash Message
 
 Send a message to the trash
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Message ID               |                                                                          |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Message ID               | The unique identifier of the Gmail message.                                                     |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### Untrash Message
 
 Remove a message from the trash
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Message ID               |                                                                          |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Message ID               | The unique identifier of the Gmail message.                                                     |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
 
 ### Update Message Labels
 
 Add or remove labels from a message
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The Connection to use for authorization.                                 |         |
-| Message ID               |                                                                          |         |
-| Gmail User ID (optional) | A user whose account to query (defaults to currently authenticated user) |         |
-| Labels to Add            | A list of labels to add (optional)                                       |         |
-| Labels to Remove         | A list of labels to add (optional)                                       |         |
+| Input                    | Comments                                                                                        | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Connection to use for Gmail Authorization.                                                  |         |
+| Message ID               | The unique identifier of the Gmail message.                                                     |         |
+| Gmail User ID (optional) | The user ID or email address to query. Use 'me' for the currently authenticated user (default). |         |
+| Labels to Add            | Gmail labels to add to the message.                                                             |         |
+| Labels to Remove         | Gmail labels to remove from the message.                                                        |         |

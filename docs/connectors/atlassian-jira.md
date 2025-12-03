@@ -72,15 +72,15 @@ If you select OAuth 2.0, you need to enable it for your app using the [Atlassian
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input          | Comments                                                                                                                                                                                                              | Default                                                                                                                                                                                                                       |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Authorize URL  | The OAuth 2.0 Authorization URL for Jira                                                                                                                                                                              | https://auth.atlassian.com/authorize?audience=api.atlassian.com&prompt=consent                                                                                                                                                |
-| Token URL      | The OAuth 2.0 Token URL for Jira                                                                                                                                                                                      | https://auth.atlassian.com/oauth/token                                                                                                                                                                                        |
-| Scopes         | A space-delimited set of one or more scopes to get the user's permission to access.                                                                                                                                   | read:project:jira read:user:jira write:issue:jira read:issue:jira read:issue-link:jira write:issue-link:jira read:issue-link-type:jira write:issue-link-type:jira read:issue.transition:jira delete:issue:jira offline_access |
-| Client ID      |                                                                                                                                                                                                                       |                                                                                                                                                                                                                               |
-| Client Secret  |                                                                                                                                                                                                                       |                                                                                                                                                                                                                               |
-| Jira Site Name | By default this connector connects to the first Jira site this user has access to. If you have multiple Jira sites, please specify which one you would like to connect to, you can use the site name or the full url. |                                                                                                                                                                                                                               |
-| Version        | Select an API version for your Jira API request                                                                                                                                                                       | 3                                                                                                                                                                                                                             |
+| Input          | Comments                                                                                                                                                                                                                              | Default                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Authorize URL  | The OAuth 2.0 Authorization URL for Jira                                                                                                                                                                                              | https://auth.atlassian.com/authorize?audience=api.atlassian.com&prompt=consent                                                 |
+| Token URL      | The OAuth 2.0 Token URL for Jira                                                                                                                                                                                                      | https://auth.atlassian.com/oauth/token                                                                                         |
+| Scopes         | A space-delimited set of one or more scopes to get the user's permission to access. For more information on scopes, see [Jira V3 Scopes](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/). | read:jira-user read:jira-work write:jira-work manage:jira-project manage:jira-configuration manage:jira-webhook offline_access |
+| Client ID      |                                                                                                                                                                                                                                       |                                                                                                                                |
+| Client Secret  |                                                                                                                                                                                                                                       |                                                                                                                                |
+| Jira Site Name | By default this connector connects to the first Jira site this user has access to. If you have multiple Jira sites, please specify which one you would like to connect to, you can use the site name or the full url.                 |                                                                                                                                |
+| Version        | Select an API version for your Jira API request                                                                                                                                                                                       | 3                                                                                                                              |
 
 ## Actions
 
@@ -215,11 +215,12 @@ Download the attachments data connected to an issue
 
 Find Issue by attribute
 
-| Input        | Comments            | Default |
-| ------------ | ------------------- | ------- |
-| Connection   |                     |         |
-| Search Type  | Attribute to search |         |
-| Search Value | Value to search for |         |
+| Input        | Comments                                                                                                                                                                                                                           | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   |                                                                                                                                                                                                                                    |         |
+| Search Type  | Attribute to search                                                                                                                                                                                                                |         |
+| Search Value | Value to search for                                                                                                                                                                                                                |         |
+| Fields       | Comma-separated list of fields to return. Defaults to common navigable fields (summary, status, assignee, reporter, priority, issuetype, project, created, updated). Use '\*all' for all fields or specify individual field names. |         |
 
 ### Find Project
 
@@ -380,15 +381,17 @@ List all available issue link types
 | ---------- | -------- | ------- |
 | Connection |          |         |
 
-### List Issues
+### List Issues by Project
 
-Returns a list of issues
+Returns a list of issues for a specific project
 
-| Input       | Comments                                                                         | Default |
-| ----------- | -------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                  |         |
-| Start At    | Provide the index of the first item to return (to start from)                    | 0       |
-| Max Results | Provide a value for the maximum amount of results to be returned in the request. |         |
+| Input           | Comments                                                                                                                                                                                                                           | Default |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                                                                                                                    |         |
+| Project ID      | Provide the ID or Name of the Project.                                                                                                                                                                                             |         |
+| Next Page Token | Token for cursor-based pagination. Use the token returned from the previous response to get the next page of results. Leave empty for the first page.                                                                              |         |
+| Max Results     | Provide a value for the maximum amount of results to be returned in the request.                                                                                                                                                   |         |
+| Fields          | Comma-separated list of fields to return. Defaults to common navigable fields (summary, status, assignee, reporter, priority, issuetype, project, created, updated). Use '\*all' for all fields or specify individual field names. |         |
 
 ### List Issue Transitions
 
@@ -467,18 +470,6 @@ Search your entire Jira site using a JQL query.
 | Expand      | The response may contain a list under the \_expandable property; you can specify any of its values separated by commas. |         |
 | Max Results | Provide a value for the maximum amount of results to be returned in the request.                                        |         |
 
-### Query (Deprecated)
-
-Search your entire Jira site using a JQL query.
-
-| Input       | Comments                                                                                                                | Default |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                         |         |
-| Search      | Provide a string value to search on.                                                                                    |         |
-| Expand      | The response may contain a list under the \_expandable property; you can specify any of its values separated by commas. |         |
-| Start At    | Provide the index of the first item to return (to start from)                                                           | 0       |
-| Max Results | Provide a value for the maximum amount of results to be returned in the request.                                        |         |
-
 ### Raw Request
 
 Send raw HTTP request to Jira
@@ -514,11 +505,12 @@ Refresh webhook expiration by ID
 
 Returns a list of issues that match the given string of text
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Search      | Provide a string value to search on.               |         |
-| Project Key | Provide a string value for the key of the project. |         |
+| Input       | Comments                                                                                                                                                                                                                           | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  |                                                                                                                                                                                                                                    |         |
+| Search      | Provide a string value to search on.                                                                                                                                                                                               |         |
+| Project Key | Provide a string value for the key of the project.                                                                                                                                                                                 |         |
+| Fields      | Comma-separated list of fields to return. Defaults to common navigable fields (summary, status, assignee, reporter, priority, issuetype, project, created, updated). Use '\*all' for all fields or specify individual field names. |         |
 
 ### Search Projects
 

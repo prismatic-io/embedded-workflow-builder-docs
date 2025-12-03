@@ -25,7 +25,7 @@ To create an internal integration for Notion, you'll set up a private integratio
 5. Under **Content Capabilities**, choose specific content types if needed
 6. Save the integration settings
 
-##### Get the Integration Token:
+#### Get the Integration Token:
 
 1. In the **Secrets** tab, copy the **Internal Integration Token**
 2. Enter this token when configuring the Notion connection

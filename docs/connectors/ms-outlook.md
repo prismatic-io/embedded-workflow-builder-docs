@@ -1,11 +1,11 @@
 ---
 title: Microsoft Outlook Connector
 sidebar_label: Microsoft Outlook
-description: Read and manage Microsoft Outlook calendars and email
+description: Manage emails, calendar events, and subscriptions in Microsoft Outlook.
 ---
 
 ![Microsoft Outlook](./assets/ms-outlook.png#connector-icon)
-Read and manage Microsoft Outlook calendars and email
+Manage emails, calendar events, and subscriptions in Microsoft Outlook.
 
 ## Connections
 
@@ -13,28 +13,48 @@ Read and manage Microsoft Outlook calendars and email
 
 Authenticates actions in all Microsoft's Graph API services.
 
-You will first need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
-When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
+To connect to Microsoft Outlook using OAuth 2.0, create an App Registration in Microsoft Entra (formerly Azure Active Directory).
 
-You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+#### Prerequisites
 
-Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+- Access to a [Microsoft Entra admin center](https://entra.microsoft.com/) or [Azure Portal](https://portal.azure.com/#home)
+- Permissions to create App Registrations
 
-You will also need the **Application (client) ID** from the "Overview" page.
+#### Setup Steps
 
-Now, configure the OAuth 2.0 connection.
-Add an Microsoft Outlook OAuth 2.0 connection config variable:
+1. Navigate to [Azure Active Directory tenant](https://portal.azure.com/#home) and create a new **App Registration**
+2. When creating the application, select **Supported account types**:
+   - Choose **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow users from other organizations to authenticate
+3. Under **Platforms**, add the **Web** platform:
+   - Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Redirect URI**
+4. Navigate to **Certificates & Secrets** and create a new **Client Secret**:
+   - Copy the **Value** of the client secret (this will only be shown once)
+5. Navigate to the **Overview** page and copy the **Application (client) ID**
 
-- Use the **Application (client) ID** value for the **Client ID** field.
-- Use the **Client Secret** for the same named field.
-- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
-- The default scopes are as follows. You can remove scopes that you don't need:
-  - `https://graph.microsoft.com/User.Read` for reading basic user data
-  - `https://graph.microsoft.com/Calendars.ReadWrite` for managing Outlook calendar
-  - `https://graph.microsoft.com/Mail.ReadWrite` for managing email
-  - `https://graph.microsoft.com/Mail.Send` for sending email
+#### Configure the Connection
 
-Save your integration and you should be able to authenticate a user with OAuth 2.0 to access their Microsoft Outlook data.
+- Enter the **Application (client) ID** value into the **Client ID** field
+- Enter the **Client Secret** value into the same named field
+- The default scopes are pre-configured for common use cases:
+
+  ```
+  https://graph.microsoft.com/User.Read https://graph.microsoft.com/Calendars.ReadWrite https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access
+  ```
+
+  - `https://graph.microsoft.com/User.Read` - Read basic user data
+  - `https://graph.microsoft.com/Calendars.ReadWrite` - Manage Outlook calendar
+  - `https://graph.microsoft.com/Mail.ReadWrite` - Manage email
+  - `https://graph.microsoft.com/Mail.Send` - Send email
+  - `offline_access` - Maintain OAuth connection and receive refresh tokens
+  - Refer to [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) for additional scope information
+
+:::note Single-Tenant Applications
+For single-tenant applications (not Multitenant), tenant-specific URLs are required. The connection will automatically handle tenant-specific configuration when a Tenant ID is provided.
+:::
+
+:::info Cloud Environments
+The connection supports different Microsoft cloud environments (Commercial, Government, China). The Base URL will automatically adjust based on the selected cloud environment.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -78,37 +98,59 @@ Save your integration and you should be able to authenticate a user with OAuth 2
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input               | Comments                                                                                                                                                                                                                                     | Default                                                                                                                                                                               |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Base URL            | The base URL for the Microsoft Graph API. Depending on your cloud environment, you can choose the correct one [on this page](https://learn.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints). | https://graph.microsoft.com                                                                                                                                                           |
-| Authorize URL       | The OAuth 2.0 Authorization URL for Microsoft Outlook                                                                                                                                                                                        | https://login.microsoftonline.com/common/oauth2/v2.0/authorize?prompt=consent                                                                                                         |
-| Token URL           | The OAuth 2.0 Token URL for Microsoft Outlook                                                                                                                                                                                                | https://login.microsoftonline.com/common/oauth2/v2.0/token                                                                                                                            |
-| Scopes              | Microsoft Outlook permission scopes are set on the OAuth application                                                                                                                                                                         | https://graph.microsoft.com/User.Read https://graph.microsoft.com/Calendars.ReadWrite https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access |
-| Client ID           |                                                                                                                                                                                                                                              |                                                                                                                                                                                       |
-| Client secret value |                                                                                                                                                                                                                                              |                                                                                                                                                                                       |
+| Input               | Comments                                                                                                                                                                                                                                                                   | Default                                                                                                                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Base URL            | Base URL for the Microsoft Graph API. Depending on the cloud environment, choose the correct endpoint from the [Microsoft Graph deployments documentation](https://learn.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints). | https://graph.microsoft.com                                                                                                                                                           |
+| Authorize URL       | OAuth 2.0 Authorization URL for Microsoft Outlook authentication.                                                                                                                                                                                                          | https://login.microsoftonline.com/common/oauth2/v2.0/authorize?prompt=consent                                                                                                         |
+| Token URL           | OAuth 2.0 Token URL for Microsoft Outlook authentication.                                                                                                                                                                                                                  | https://login.microsoftonline.com/common/oauth2/v2.0/token                                                                                                                            |
+| Scopes              | List of OAuth permission scopes. These scopes should be configured in the Microsoft Entra App Registration.                                                                                                                                                                | https://graph.microsoft.com/User.Read https://graph.microsoft.com/Calendars.ReadWrite https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access |
+| Client ID           | Application (client) ID from the Microsoft Entra App Registration.                                                                                                                                                                                                         |                                                                                                                                                                                       |
+| Client secret value | Client secret value from the Microsoft Entra App Registration. This value is only shown once when created.                                                                                                                                                                 |                                                                                                                                                                                       |
 
 ### OAuth 2.0 Client Credentials
 
 Authenticates actions in all Microsoft's Graph API services.
 
-This Connection will require an App Registration:
+To connect to Microsoft Outlook using OAuth 2.0 Client Credentials flow, create an App Registration with application permissions in Microsoft Entra.
 
-1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
-   1. Set the Supported Account types to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** so that users outside of your organization (i.e. your customers) can authenticate.
-   2. Set the Redirect URI dropdown as a "Web" platform. In that section add the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
-   3. Select Register to complete.
-2. From the App menu navigate to **Certificates & Secrets** for the app and add a new **Client Secret**. Save the **Value** for the **Client Secret** in the connection's configuration.
-3. Navigate to the **Overview** page save the value listed as the **Application (client) ID**. This will be your **Client ID** for the connection configuration.
-4. Navigate to **API Permissions** and select **Add Permission**, select **Microsoft Graph**, and then **Application permissions**.
-5. After applying all permissions relevant for your use-case, click on **Grant Admin Consent** in order to transfer permissions the client credentials flow after a successful connection.
+The Client Credentials flow is used for server-to-server authentication without user interaction, requiring application-level permissions and admin consent.
 
-To configure the OAuth 2.0 connection:
+#### Prerequisites
 
-1. Add an OAuth 2.0 connection configuration variable:
-   1. All actions for the client credentials flow require authentication with your Tenant ID.
-   2. Use the **Application (client) ID** value for the **Client ID** field.
-   3. Use the **Client Secret** for the same named field.
-   4. Use the default scope that comes set up with the connection.
+- Access to [Microsoft Entra admin center](https://entra.microsoft.com/)
+- Permissions to create App Registrations and grant admin consent
+- Tenant ID for the organization
+
+#### Setup Steps
+
+1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**:
+   - Set **Supported Account types** to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow access from other organizations
+   - Set the **Redirect URI** dropdown to **Web** platform and add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Redirect URI**
+   - Select **Register** to complete
+2. From the App menu, navigate to **Certificates & Secrets** and add a new **Client Secret**:
+   - Copy the **Value** for the **Client Secret** (this will only be shown once)
+3. Navigate to the **Overview** page and copy the **Application (client) ID**
+4. Navigate to **API Permissions** and configure application permissions:
+   - Select **Add Permission** > **Microsoft Graph** > **Application permissions**
+   - Add all permissions required for the use case (e.g., `Mail.ReadWrite`, `Calendars.ReadWrite`, `User.Read.All`)
+   - Refer to [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) for available permissions
+5. After applying all relevant permissions, select **Grant Admin Consent** to authorize the application permissions
+
+#### Configure the Connection
+
+- Enter the **Tenant ID** for the organization being accessed
+- Enter the **Application (client) ID** value into the **Client ID** field
+- Enter the **Client Secret** value into the same named field
+- Enter the **User ID** of the user whose data will be accessed (required for user-specific endpoints)
+- The default scope `https://graph.microsoft.com/.default` is pre-configured for the connection
+
+:::note Client Credentials vs Authorization Code
+The Client Credentials flow uses application permissions and does not require user login. This is ideal for background services and automated processes. For user-delegated permissions, use the **OAuth 2.0 Authorization Code** connection instead.
+:::
+
+:::warning User ID Required
+All actions using the client credentials flow require a **User ID** to specify which user's data to access. This is required because application permissions operate on behalf of the application, not a signed-in user.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -121,13 +163,23 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID                   | Client Id of your Azure application.                                                                                                                                                                                                 |                                      |
 | Client Secret               | Client Secret generated under 'Certificates & Secrets' in your Azure application.                                                                                                                                                    |                                      |
 | Scopes                      | Microsoft Graph API Scopes.                                                                                                                                                                                                          | https://graph.microsoft.com/.default |
-| User ID                     | User ID to specify which user's data to access. Required for client credentials authentication to work with user-specific endpoints.                                                                                                 |                                      |
+| User ID                     | Unique identifier of the user whose data will be accessed. Required for client credentials authentication to work with user-specific endpoints.                                                                                      |                                      |
 
 ## Triggers
 
+### Calendar Event Webhook
+
+Receive calendar event notifications from Outlook. Automatically creates and manages a webhook subscription for calendar events when the instance is deployed, and removes the subscription when the instance is deleted.
+
+| Input                | Comments                                                                                                                                                                                          | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Outlook connection to use.                                                                                                                                                                    |         |
+| Expiration Date/Time | Expiration date and time for the webhook subscription in ISO 8601 format. If unspecified, defaults to the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
+| Allow Duplicates     | When true, allows more than one webhook subscription per endpoint.                                                                                                                                | false   |
+
 ### Webhook
 
-Receive and validate webhook requests from Outlook for webhooks you configure.
+Receive and validate webhook requests from Outlook for manually configured webhook subscriptions.
 
 ## Actions
 
@@ -137,48 +189,48 @@ Cancel an Event
 
 | Input      | Comments                                             | Default |
 | ---------- | ---------------------------------------------------- | ------- |
-| Connection |                                                      |         |
-| Event ID   | The unique identifier of the event.                  |         |
+| Connection | The Outlook connection to use.                       |         |
+| Event ID   | Unique identifier of the calendar event.             |         |
 | Comment    | Comment about the cancellation sent to all attendees |         |
 
 ### Create Calendar
 
 Create a new Calendar
 
-| Input      | Comments                                                                                                                                        | Default |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                 |         |
-| Name       | The name of the calendar.                                                                                                                       |         |
-| Color      | Color of the calendar; see 'color' at https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0#properties for details | auto    |
+| Input      | Comments                                                                                                                                                                                               | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Outlook connection to use.                                                                                                                                                                         |         |
+| Name       | The name of the calendar.                                                                                                                                                                              |         |
+| Color      | Color of the calendar; see 'color' in the [Microsoft Graph calendar resource documentation](https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0#properties) for details | auto    |
 
 ### Create Event
 
 Create an Event on a Calendar
 
-| Input                     | Comments                                                                                                                             | Default |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection                |                                                                                                                                      |         |
-| Calendar ID               | Calendar ID to list events of. Will list all events for current user if unspecified.                                                 |         |
-| Location Name             | The name of the location.                                                                                                            |         |
-| Subject                   | The subject of the event.                                                                                                            |         |
-| Body (HTML)               | The HTML body of the event.                                                                                                          |         |
-| Attendees Data Collection | Reference to data structures representing attendees. Will be merged with Attendees if both are specified.                            |         |
-| Type                      | Attendees of the event.                                                                                                              |         |
-| Start At                  | ISO formatted timestamp without timezone information.                                                                                |         |
-| Start Timezone            | Timezone for the start time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user. | UTC     |
-| End At                    | ISO formatted timestamp without timezone information.                                                                                |         |
-| End Timezone              | Timezone for the end time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.   | UTC     |
+| Input                     | Comments                                                                                                                                       | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                | The Outlook connection to use.                                                                                                                 |         |
+| Calendar ID               | Unique identifier of the calendar to list events from. Lists all events for the current user if unspecified.                                   |         |
+| Location Name             | Name of the event location.                                                                                                                    |         |
+| Subject                   | Subject of the calendar event.                                                                                                                 |         |
+| Body (HTML)               | HTML body content of the event.                                                                                                                |         |
+| Attendees Data Collection | Reference to data structures representing attendees. Will be merged with Attendees if both are specified.                                      |         |
+| Type                      | Event attendees as key-value pairs. Specify the email address as the key and the attendee type (required, optional, or resource) as the value. |         |
+| Start At                  | ISO 8601 formatted timestamp without timezone information.                                                                                     |         |
+| Start Timezone            | Timezone for the start time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.           | UTC     |
+| End At                    | ISO 8601 formatted timestamp without timezone information.                                                                                     |         |
+| End Timezone              | Timezone for the end time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.             | UTC     |
 
 ### Create Event Subscription
 
 Create an Event subscription for Microsoft Outlook
 
-| Input                | Comments                                                                                                                                                               | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                        |         |
-| Notification URL     | The URL where notification events will be sent.                                                                                                                        |         |
-| Expiration Date/Time | Expiration date/time for subscription. If unspecified, the default will be the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
-| Allow Duplicates     | Enable to allow more than one webhook per endpoint.                                                                                                                    | false   |
+| Input                | Comments                                                                                                                                                                                          | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Outlook connection to use.                                                                                                                                                                    |         |
+| Notification URL     | URL where notification events will be sent.                                                                                                                                                       |         |
+| Expiration Date/Time | Expiration date and time for the webhook subscription in ISO 8601 format. If unspecified, defaults to the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
+| Allow Duplicates     | When true, allows more than one webhook subscription per endpoint.                                                                                                                                | false   |
 
 ### Create Mail Folder
 
@@ -186,7 +238,7 @@ Create a new mail folder
 
 | Input            | Comments                                                                      | Default |
 | ---------------- | ----------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                               |         |
+| Connection       | The Outlook connection to use.                                                |         |
 | Parent Folder ID | Create a folder under this parent folder. Omit to create a root-level folder. |         |
 | Display name     | The display name of the folder.                                               |         |
 
@@ -194,20 +246,20 @@ Create a new mail folder
 
 Create a Mail Folder subscription for Microsoft Outlook
 
-| Input                | Comments                                                                                                                                                               | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                        |         |
-| Mail Change Types    | The type of change to listen for.                                                                                                                                      |         |
-| Notification URL     | The URL where notification events will be sent.                                                                                                                        |         |
-| Expiration Date/Time | Expiration date/time for subscription. If unspecified, the default will be the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
+| Input                | Comments                                                                                                                                                                                          | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Outlook connection to use.                                                                                                                                                                    |         |
+| Mail Change Types    | Types of changes to listen for on mail messages.                                                                                                                                                  |         |
+| Notification URL     | URL where notification events will be sent.                                                                                                                                                       |         |
+| Expiration Date/Time | Expiration date and time for the webhook subscription in ISO 8601 format. If unspecified, defaults to the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
 
 ### Delete All Instance Subscriptions
 
 Delete all subscriptions pointed at this instance
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Outlook connection to use. |         |
 
 ### Delete Calendar
 
@@ -215,17 +267,17 @@ Delete an existing Calendar
 
 | Input       | Comments                                         | Default |
 | ----------- | ------------------------------------------------ | ------- |
-| Connection  |                                                  |         |
+| Connection  | The Outlook connection to use.                   |         |
 | Calendar ID | The unique identifier of the calendar to modify. |         |
 
 ### Delete Event
 
 Delete an Event
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Event ID   | The unique identifier of the event. |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Outlook connection to use.           |         |
+| Event ID   | Unique identifier of the calendar event. |         |
 
 ### Delete Mail Folder
 
@@ -233,52 +285,52 @@ Delete the specified mail folder
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
-| Connection |                                      |         |
+| Connection | The Outlook connection to use.       |         |
 | Folder ID  | The unique identifier of the folder. |         |
 
 ### Delete Message
 
 Delete message by ID
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Message ID | The unique identifier of the message. |         |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Outlook connection to use.    |         |
+| Message ID | Unique identifier of the message. |         |
 
 ### Delete Subscription
 
 Delete existing subscription for Microsoft Outlook
 
-| Input           | Comments                                   | Default |
-| --------------- | ------------------------------------------ | ------- |
-| Connection      |                                            |         |
-| Subscription ID | The unique identifier of the subscription. |         |
+| Input           | Comments                                       | Default |
+| --------------- | ---------------------------------------------- | ------- |
+| Connection      | The Outlook connection to use.                 |         |
+| Subscription ID | Unique identifier of the webhook subscription. |         |
 
 ### Get Calendar Event
 
 Gets information about a specific calendar event
 
-| Input      | Comments                                     | Default |
-| ---------- | -------------------------------------------- | ------- |
-| Connection |                                              |         |
-| Event ID   | The unique identifier of the calendar event. |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Outlook connection to use.           |         |
+| Event ID   | Unique identifier of the calendar event. |         |
 
 ### Get Current User
 
 Get the information and metadata of the user that is currently logged in
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Outlook connection to use. |         |
 
 ### Get Mail Message
 
 Fetch and parse a raw message by ID
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Message ID | The unique identifier of the message. |         |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Outlook connection to use.    |         |
+| Message ID | Unique identifier of the message. |         |
 
 ### Get Schedule Availability
 
@@ -286,36 +338,36 @@ Get the free/busy availability information for a collection of users
 
 | Input                      | Comments                                                                                                                             | Default |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection                 |                                                                                                                                      |         |
+| Connection                 | The Outlook connection to use.                                                                                                       |         |
 | Availability View Interval | Duration of time slot to check availability for in minutes                                                                           | 30      |
 | Schedules                  | Collection of SMTP addresses of users, distribution lists, or resources to get availability information for                          |         |
-| Start At                   | ISO formatted timestamp without timezone information.                                                                                |         |
+| Start At                   | ISO 8601 formatted timestamp without timezone information.                                                                           |         |
 | Start Timezone             | Timezone for the start time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user. | UTC     |
-| End At                     | ISO formatted timestamp without timezone information.                                                                                |         |
+| End At                     | ISO 8601 formatted timestamp without timezone information.                                                                           |         |
 | End Timezone               | Timezone for the end time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.   | UTC     |
 
 ### List Calendars
 
 List all Calendars for the user
 
-| Input      | Comments                                                | Default |
-| ---------- | ------------------------------------------------------- | ------- |
-| Connection |                                                         |         |
-| Page Limit | The maximum number of results to return per page.       |         |
-| Page Skip  | The number of records to skip before returning results. |         |
-| Fetch All  | Fetch all records using pagination.                     | false   |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Outlook connection to use.                            |         |
+| Page Limit | Maximum number of results to return per page.             |         |
+| Page Skip  | Number of records to skip before returning results.       |         |
+| Fetch All  | When true, fetches all pages of results using pagination. | false   |
 
 ### List Events
 
 List all Events for the user
 
-| Input       | Comments                                                                             | Default |
-| ----------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection  |                                                                                      |         |
-| Calendar ID | Calendar ID to list events of. Will list all events for current user if unspecified. |         |
-| Page Limit  | The maximum number of results to return per page.                                    |         |
-| Page Skip   | The number of records to skip before returning results.                              |         |
-| Fetch All   | Fetch all records using pagination.                                                  | false   |
+| Input       | Comments                                                                                                     | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection  | The Outlook connection to use.                                                                               |         |
+| Calendar ID | Unique identifier of the calendar to list events from. Lists all events for the current user if unspecified. |         |
+| Page Limit  | Maximum number of results to return per page.                                                                |         |
+| Page Skip   | Number of records to skip before returning results.                                                          |         |
+| Fetch All   | When true, fetches all pages of results using pagination.                                                    | false   |
 
 ### List Mail Folders
 
@@ -323,25 +375,25 @@ Get the mail folder collection directly under the root folder of the signed-in u
 
 | Input            | Comments                                                                        | Default |
 | ---------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                                 |         |
+| Connection       | The Outlook connection to use.                                                  |         |
 | Parent Folder ID | List all folders contained within this folder. Omit to list root-level folders. |         |
-| Page Limit       | The maximum number of results to return per page.                               |         |
-| Page Skip        | The number of records to skip before returning results.                         |         |
-| Fetch All        | Fetch all records using pagination.                                             | false   |
+| Page Limit       | Maximum number of results to return per page.                                   |         |
+| Page Skip        | Number of records to skip before returning results.                             |         |
+| Fetch All        | When true, fetches all pages of results using pagination.                       | false   |
 
 ### List Mail Messages
 
 List mail messages in a user's mailbox
 
-| Input      | Comments                                                        | Default |
-| ---------- | --------------------------------------------------------------- | ------- |
-| Connection |                                                                 |         |
-| Folder ID  | The unique identifier of the folder. Omit to list all messages. |         |
-| Search     | A search query to filter messages. Cannot be used with Filter.  |         |
-| Filter     | A filter to apply to the messages. Cannot be used with Search.  |         |
-| Page Limit | The maximum number of results to return per page.               |         |
-| Page Skip  | The number of records to skip before returning results.         |         |
-| Fetch All  | Fetch all records using pagination.                             | false   |
+| Input      | Comments                                                                                                                                                                                                                   | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Outlook connection to use.                                                                                                                                                                                             |         |
+| Folder ID  | Unique identifier of the folder. Omit to list all messages.                                                                                                                                                                |         |
+| Search     | Search query to filter messages. Cannot be used with Filter. Refer to [Microsoft Graph search parameter documentation](https://learn.microsoft.com/en-us/graph/search-query-parameter) for query syntax.                   |         |
+| Filter     | OData filter expression to apply to the messages. Cannot be used with Search. Refer to [Microsoft Graph filter parameter documentation](https://learn.microsoft.com/en-us/graph/filter-query-parameter) for filter syntax. |         |
+| Page Limit | Maximum number of results to return per page.                                                                                                                                                                              |         |
+| Page Skip  | Number of records to skip before returning results.                                                                                                                                                                        |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                                                                                                                                                  | false   |
 
 ### List Subscriptions
 
@@ -349,7 +401,7 @@ List all subscriptions for Microsoft Outlook
 
 | Input                  | Comments                                              | Default |
 | ---------------------- | ----------------------------------------------------- | ------- |
-| Connection             |                                                       |         |
+| Connection             | The Outlook connection to use.                        |         |
 | Show Instance Webhooks | Show only subscriptions for this instance's webhooks. | true    |
 | Fetch All              | Turn on to fetch all pages of results.                | true    |
 
@@ -357,17 +409,17 @@ List all subscriptions for Microsoft Outlook
 
 List supported languages for current user
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Outlook connection to use. |         |
 
 ### List Supported Timezones
 
 List supported timezones for current user
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Outlook connection to use. |         |
 
 ### Raw Request
 
@@ -395,53 +447,53 @@ Send raw HTTP request to Microsoft Outlook
 
 Send a new message
 
-| Input               | Comments                                                                                                                                                                     | Default |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                                                              |         |
-| To                  | You can specify multiple addresses separated by commas. i.e. 'john@example.com' or 'john@example.com,sally@example.com'                                                      |         |
-| CC                  | You can specify multiple addresses separated by commas. i.e. 'john@example.com' or 'john@example.com,sally@example.com'                                                      |         |
-| BCC                 | You can specify multiple addresses separated by commas. i.e. 'john@example.com' or 'john@example.com,sally@example.com'                                                      |         |
-| Subject             |                                                                                                                                                                              |         |
-| Message Body        | Plain text or HTML body                                                                                                                                                      |         |
-| Body Content Type   |                                                                                                                                                                              | html    |
-| Attachments         | Specify a file name as the key (e.g., my-file.pdf) and the file as the value.                                                                                                |         |
-| Dynamic Attachments | An array of objects with "key" and "value" properties, where "key" is the file name and "value" is the binary file data. Typically used as a reference from a previous step. |         |
+| Input               | Comments                                                                                                                                                                  | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Outlook connection to use.                                                                                                                                            |         |
+| To                  | Recipient email addresses. Multiple addresses can be specified as a comma-separated list.                                                                                 |         |
+| CC                  | Carbon copy email addresses. Multiple addresses can be specified as a comma-separated list.                                                                               |         |
+| BCC                 | Blind carbon copy email addresses. Multiple addresses can be specified as a comma-separated list.                                                                         |         |
+| Subject             | Subject line of the email message.                                                                                                                                        |         |
+| Message Body        | Plain text or HTML body content of the email message.                                                                                                                     |         |
+| Body Content Type   | Format of the message body content.                                                                                                                                       | html    |
+| Attachments         | File attachments as key-value pairs. Specify the file name as the key (e.g., my-file.pdf) and the file data as the value.                                                 |         |
+| Dynamic Attachments | Array of objects with "key" and "value" properties, where "key" is the file name and "value" is the binary file data. Typically used as a reference from a previous step. |         |
 
 ### Update Calendar
 
 Update an existing Calendar
 
-| Input       | Comments                                                                                                                                        | Default |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                                                 |         |
-| Calendar ID | The unique identifier of the calendar to modify.                                                                                                |         |
-| Name        | The name of the calendar.                                                                                                                       |         |
-| Color       | Color of the calendar; see 'color' at https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0#properties for details | auto    |
+| Input       | Comments                                                                                                                                                                                               | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection  | The Outlook connection to use.                                                                                                                                                                         |         |
+| Calendar ID | The unique identifier of the calendar to modify.                                                                                                                                                       |         |
+| Name        | The name of the calendar.                                                                                                                                                                              |         |
+| Color       | Color of the calendar; see 'color' in the [Microsoft Graph calendar resource documentation](https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0#properties) for details | auto    |
 
 ### Update Event
 
 Update an existing Event
 
-| Input                     | Comments                                                                                                                             | Default |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection                |                                                                                                                                      |         |
-| Event ID                  | The unique identifier of the event.                                                                                                  |         |
-| Location Name             | The name of the location.                                                                                                            |         |
-| Subject                   | The subject of the event.                                                                                                            |         |
-| Body (HTML)               | The HTML body of the event.                                                                                                          |         |
-| Attendees Data Collection | Reference to data structures representing attendees. Will be merged with Attendees if both are specified.                            |         |
-| Type                      | Attendees of the event.                                                                                                              |         |
-| Start At                  | ISO formatted timestamp without timezone information.                                                                                |         |
-| Start Timezone            | Timezone for the start time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user. | UTC     |
-| End At                    | ISO formatted timestamp without timezone information.                                                                                |         |
-| End Timezone              | Timezone for the end time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.   | UTC     |
+| Input                     | Comments                                                                                                                                       | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                | The Outlook connection to use.                                                                                                                 |         |
+| Event ID                  | Unique identifier of the calendar event.                                                                                                       |         |
+| Location Name             | Name of the event location.                                                                                                                    |         |
+| Subject                   | Subject of the calendar event.                                                                                                                 |         |
+| Body (HTML)               | HTML body content of the event.                                                                                                                |         |
+| Attendees Data Collection | Reference to data structures representing attendees. Will be merged with Attendees if both are specified.                                      |         |
+| Type                      | Event attendees as key-value pairs. Specify the email address as the key and the attendee type (required, optional, or resource) as the value. |         |
+| Start At                  | ISO 8601 formatted timestamp without timezone information.                                                                                     |         |
+| Start Timezone            | Timezone for the start time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.           | UTC     |
+| End At                    | ISO 8601 formatted timestamp without timezone information.                                                                                     |         |
+| End Timezone              | Timezone for the end time of the event. Use the List Supported Timezones action for details on valid aliases/values for this user.             | UTC     |
 
 ### Update Event Subscription Expiration
 
 Update existing Event subscription expiration for Microsoft Outlook
 
-| Input                | Comments                                                                                                                                                               | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                        |         |
-| Subscription ID      | The unique identifier of the subscription.                                                                                                                             |         |
-| Expiration Date/Time | Expiration date/time for subscription. If unspecified, the default will be the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
+| Input                | Comments                                                                                                                                                                                          | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Outlook connection to use.                                                                                                                                                                    |         |
+| Subscription ID      | Unique identifier of the webhook subscription.                                                                                                                                                    |         |
+| Expiration Date/Time | Expiration date and time for the webhook subscription in ISO 8601 format. If unspecified, defaults to the current date/time plus 10070 minutes (close to the maximum permitted by the Graph API). |         |
