@@ -46,6 +46,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### Event Webhook {#eventwebhook}
+
+Automatically create and manage GitHub webhooks for specified events. Webhooks are created on deployment and removed when the instance is deleted.
+
+| Input           | Comments                                                                                                                  | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                           |         |
+| Owner           | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
+| Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
+| Events          | The list of event types that will trigger the webhook.                                                                    |         |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from Github for webhooks you configure.

@@ -67,8 +67,6 @@ For integrations that will be deployed to users in multiple Zoho regions, config
 
 To make the Region URL field visible to deployers, enable the field visibility in the connection configuration:
 
-./assets
-
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -242,10 +240,10 @@ Add an attachment to a Zoho CRM record (Lead, etc).
 
 Run a COQL Query for Zoho CRM
 
-| Input      | Comments                                                                                                                   | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Zoho connection to use.                                                                                                |         |
-| Query      | COQL query to execute. See [Zoho COQL documentation](https://www.zoho.com/crm/developer/docs/api/v8/COQL.html) for syntax. |         |
+| Input      | Comments                                                                                                                            | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Zoho connection to use.                                                                                                         |         |
+| Query      | COQL query to execute. See [Zoho COQL documentation](https://www.zoho.com/crm/developer/docs/api/v8/COQL-Overview.html) for syntax. |         |
 
 ### CRM - Create Record {#crmcreaterecord}
 

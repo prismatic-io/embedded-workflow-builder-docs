@@ -45,13 +45,9 @@ To use OAuth 2.0, you will need to create and configure a [Connected App](https:
      Also select **Perform requests at any time (refresh_token, offline_access)**.
      Select **Require Secret for Web Server Flow** and **Require Secret for Refresh Token Flow**:
 
-./assets
-
 Next select **Save** and **Continue**.
 Then, get the app's **Consumer Key** and **Consumer Secret** by selecting **Manage Consumer Details**.
 Take note of these keys:
-
-./assets
 
 If you need to return to this screen, select **Apps** > **App Manager**, click the dropdown menu to the right of your app and select **Edit**.
 From there you can manage callback URLs.

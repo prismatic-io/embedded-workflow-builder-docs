@@ -13,14 +13,58 @@ Interact with the Prismatic internal API
 
 Prismatic Refresh Token
 
-To start using the Prismatic component you need to use your authenticated prism client to call the `prism me:token --type refresh` command.
-Running this command will give you a refresh token, which you can use to make requests to the Prismatic API.
+To authenticate with this component, a refresh token obtained from the Prism Command Line Interface (CLI) is required.
 
-Now that you have your token, create a new Prismatic connection and enter the token you received from the Prism CLI.
+For users with multiple tenants in a single region, a Tenant ID can optionally be provided to specify which tenant to authenticate with.
 
-| Input         | Comments                                                                                                 | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Refresh Token | Provide the Refresh Token obtained from the prism command line by calling prism me:token --type refresh. |         |
+#### Prerequisites
+
+- [Prism CLI](https://prismatic.io/docs/cli/cli-usage/) installed, configured and authenticated
+
+#### Setup Steps
+
+To obtain a refresh token:
+
+1. Ensure the Prism CLI is authenticated by running:
+   ```
+   prism login
+   ```
+2. Generate a refresh token by running:
+   ```
+   prism me:token --type refresh
+   ```
+3. Copy the generated JWT token from the command output
+
+The token will be in JWT format, similar to:
+
+```
+qWu7twYOhI0q2KWtf6LLs80bnN8Hp6K1HhwHW7rlpNiOF
+```
+
+**For multi tenant scenarios:**
+
+If the organization has multiple tenants in a single region:
+
+1. Verify available tenants by running:
+   ```
+   prism me
+   ```
+2. Copy the Tenant ID (UUID format) from the command output
+3. Use this Tenant ID when configuring the connection
+
+:::note Multi Tenant Configuration
+If no Tenant ID is provided, the connection will default to the first tenant associated with the region. Only provide a Tenant ID if explicit tenant selection is required for the use case.
+:::
+
+#### Configure the Connection
+
+- Enter the **Refresh Token** obtained from the `prism me:token --type refresh` command
+- **Optional**: Enter the **Tenant ID** (UUID format) if authenticating with a specific tenant in a multi tenant setup
+
+| Input         | Comments                                                                                                                                                                                                                                                                                             | Default |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Refresh Token | Provide the Refresh Token obtained from the prism command line by calling prism me:token --type refresh.                                                                                                                                                                                             |         |
+| Tenant ID     | If you have multiple tenants in a single region, you can specify which tenant you want to authenticate with by including the tenant_id (UUID). You can verify your tenant ID by running prism me. If no tenant ID is provided, the first tenant associated with your region will be used by default. |         |
 
 ## Actions
 

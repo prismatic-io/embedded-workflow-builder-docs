@@ -47,6 +47,8 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 | Input         | Comments                                                      | Default                                                                                              |
 | ------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Authorize URL | The OAuth 2.0 Authorization URL for Microsoft Entra ID        | https://login.microsoftonline.com/common/oauth2/v2.0/authorize                                       |
+| Token URL     | The OAuth 2.0 Token URL for Microsoft Entra ID                | https://login.microsoftonline.com/common/oauth2/v2.0/token                                           |
 | Scopes        | Microsoft Entra ID Scopes.                                    | Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access |
 | Client ID     | Get this value from your App Registration in the Azure Portal |                                                                                                      |
 | Client Secret | Get this value from your App Registration in the Azure Portal |                                                                                                      |

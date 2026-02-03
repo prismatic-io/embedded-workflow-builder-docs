@@ -1,35 +1,183 @@
 ---
 title: SAP S/4HANA Cloud Connector
 sidebar_label: SAP S/4HANA Cloud
-description: SAP S/4HANA is a multi-faceted cloud based ERP solution. Use the S/4HANA component to manage records within the SAP database.
+description: Manage business partners, sales orders, materials, and other enterprise resources in SAP S/4HANA Public Cloud.
 ---
 
 ![SAP S/4HANA Cloud](./assets/saps4hana.png#connector-icon)
-SAP S/4HANA is a multi-faceted cloud based ERP solution. Use the S/4HANA component to manage records within the SAP database.
+Manage business partners, sales orders, materials, and other enterprise resources in SAP S/4HANA Public Cloud.
 
 ## Connections
 
-### API Key {#apikey}
+### API Key (Sandbox) {#apikey}
 
-You can create an API key within a single environment and use the API key to execute different public endpoints bound to this specific environment.
+Connect to SAP S/4HANA Cloud APIs via SAP API Business Hub sandbox for testing and development. This connection provides read-only access to sample data.
 
-While creating an API key, you will be able to see the complete API key and copy/paste into your connection. As a best practice, you must store the API key in a safe place so that you can retrieve it in the future. You won’t be able to copy/paste the key once it is added to your environment. Refer to [SAP Help Portal](https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment) for additional Information.
+This connection authenticates with SAP S/4HANA Cloud APIs via the SAP API Business Hub sandbox environment. It is designed for testing and development purposes only and provides read-only access to sample data.
 
-Perform the following steps to create API keys within a single environment.
+:::note Sandbox Environment Only
+This connection is intended for **testing and development** using the SAP API Business Hub sandbox. For production access to real SAP S/4HANA Cloud data, use the Basic Auth connection instead.
+:::
 
-- Go to the **Environments** tab and click an environment to open it.
-- Go to the **API Keys** section and click Add **API Key**.
-- In the **General** section of **Generate New API Key** window, enter API key name on the Name field and description (optional) on the **Description** field. Click Next.
-- In the **Scope** section of **Generate New API Key** window, click the toggle button(s) to choose single or multiple scopes of your API key. Click **Next**.
-- In the **Review** section of **Generate New API Key** window, you can review your API key. Click **Add**. The **Generated Key** dialog box is displayed.
-- Click **Copy**. The API key will be copied to the clipboard and you can paste it into the connection. You can also select the API key manually and copy it.
+#### Prerequisites
 
-[Detailed Info Here](https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment)
+- An SAP account with access to [SAP API Business Hub](https://api.sap.com/)
+- API key generated from SAP API Business Hub
 
-| Input       | Comments                                                                                                                                                | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| SAP API Key | Follow the next steps to get an API key https://help.sap.com/docs/intelligent-robotic-process-automation/factory-user-guide/add-api-keys-to-environment |         |
-| Base URL    | Provide the Base URL for the organization. Example https://{company-url}.api.sap.com/s4hanacloud                                                        |         |
+#### Setup Steps
+
+To create an API key for the sandbox:
+
+1. Navigate to [SAP API Business Hub](https://api.sap.com/) and log in with SAP credentials.
+2. Click on the user profile icon in the top right corner.
+3. Select **Settings** or **API Keys** from the menu.
+4. Click **Show API Key** to reveal the existing key, or generate a new one if needed.
+5. Copy the API key and store it securely.
+
+#### Configure the Connection
+
+- **SAP API Key**: Enter the API key obtained from SAP API Business Hub.
+- **Base URL**: Use the default sandbox URL: `https://sandbox.api.sap.com/s4hanacloud`
+
+| Input       | Comments                                                                                                                              | Default                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| SAP API Key | API key from SAP API Business Hub. Log in at https://api.sap.com and access your API key from your account settings.                  |                                         |
+| Base URL    | SAP API Business Hub sandbox URL. Use the default sandbox URL for testing. This connection is intended for sandbox environments only. | https://sandbox.api.sap.com/s4hanacloud |
+
+### Basic Auth {#sapbasicauth}
+
+Basic Authentication connection for direct access to SAP S/4HANA Cloud Public Edition. Requires a Communication User configured in SAP.
+
+This connection authenticates directly with an SAP S/4HANA Cloud Public Edition tenant using Basic Authentication.
+
+:::note Production Access
+This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator.
+:::
+
+#### Prerequisites
+
+- SAP S/4HANA Cloud Public Edition tenant
+- Administrator access to configure Communication Arrangements
+- A Communication Scenario enabled for the required APIs (e.g., `SAP_COM_0008` for Business Partner API)
+
+#### Setup Steps in SAP S/4HANA Cloud
+
+To configure Basic Authentication access, an SAP administrator must complete these steps:
+
+1. **Create a Communication User**
+   - Navigate to the **Maintain Communication Users** app
+   - Create a new user for API access
+   - Set a secure password and note the credentials
+
+2. **Create a Communication System**
+   - Navigate to the **Communication Systems** app
+   - Create a new system representing the external integration
+   - Under **Users for Inbound Communication**, add the Communication User created above
+   - Ensure **User ID and Password** (Basic Authentication) is enabled
+
+3. **Create a Communication Arrangement**
+   - Navigate to the **Communication Arrangements** app
+   - Create a new arrangement based on the required Communication Scenario
+   - Select the Communication System created above
+   - Verify the inbound services are enabled
+
+#### Configure the Connection
+
+- **Tenant URL**: The SAP S/4HANA Cloud tenant URL
+  - Example: `https://my123456-api.s4hana.cloud.sap`
+
+- **Communication User**: The Communication User name created in SAP S/4HANA Cloud
+  - Example: `Username`
+
+- **Password**: The Communication User password
+
+| Input              | Comments                                                                         | Default |
+| ------------------ | -------------------------------------------------------------------------------- | ------- |
+| Tenant URL         | SAP S/4HANA Cloud API tenant URL (include -api in the hostname).                 |         |
+| Communication User | Communication User name from the Communication Arrangement in SAP S/4HANA Cloud. |         |
+| Password           | Communication User password.                                                     |         |
+
+### OAuth 2.0 Authorization Code {#sapoauth}
+
+Authenticate with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Authorization Code flow. Provides full read/write access to business data.
+
+This connection authenticates with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Authorization Code flow. It provides full read/write access to business data and is recommended for production integrations.
+
+:::note Production Access
+This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator with OAuth 2.0 enabled.
+:::
+
+#### Prerequisites
+
+- SAP S/4HANA Cloud Public Edition tenant
+- Administrator access to configure Communication Arrangements
+- A Communication Scenario enabled for the required APIs (e.g., `SAP_COM_0008` for Business Partner API)
+- An SAP user account with permissions to access the required APIs
+
+#### Setup Steps in SAP S/4HANA Cloud
+
+To configure OAuth 2.0 access, an SAP administrator must complete these steps:
+
+1. **Create a Communication System**
+   - Navigate to **Communication Systems** app
+   - Create a new system representing the external integration (e.g., `ACME`)
+   - Under **Users for Inbound Communication**, configure OAuth 2.0:
+     - Authentication Method: **OAuth 2.0**
+     - OAuth 2.0 Client ID: Enter a client identifier (e.g., `ACME`)
+     - Client Type: **Public Client** (recommended) or Confidential Client
+
+2. **Create a Communication Arrangement**
+   - Navigate to **Communication Arrangements** app
+   - Create a new arrangement based on the required Communication Scenario
+   - Select the Communication System created above
+   - Note the **OAuth 2.0 Details** from Inbound Communication:
+     - Client ID
+
+#### Configure the Connection
+
+Only two fields are required to configure this connection:
+
+- **Tenant ID**: The SAP S/4HANA Cloud tenant identifier
+  - This is the prefix in your SAP URL (e.g., `my123456` from `my123456.s4hana.cloud.sap`)
+  - Find this in your browser address bar when logged into SAP
+
+- **Client ID**: The OAuth 2.0 Client ID from the Communication Arrangement
+  - Navigate to Inbound Communication and click **OAuth 2.0 Details** to view the Client ID
+
+- **Scopes** _(optional)_: Space-separated OAuth scopes
+  - Leave empty to use default scopes
+  - Specify API-specific scopes if required by your Communication Arrangement
+
+:::info Finding OAuth 2.0 Details
+In the Communication Arrangement, navigate to **Inbound Communication** and click **OAuth 2.0 Details** to view the Client ID.
+:::
+
+#### Authorization Flow
+
+When you connect using this method:
+
+1. Enter your **Tenant ID** and **Client ID** in the connection form
+2. Click **Connect** - you will be redirected to SAP's login page
+3. Log in with your **SAP user credentials** (your personal SAP username and password)
+4. Grant authorization for the integration to access SAP on your behalf
+5. You will be redirected back to complete the connection setup
+
+:::tip SAP Login Credentials
+During the OAuth flow, you log in with your **SAP user account** credentials - not the Communication System credentials. Your SAP user must have the appropriate authorizations to access the APIs defined in the Communication Arrangement.
+:::
+
+For detailed setup instructions, refer to:
+
+- [SAP Help: Communication Management](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/2e84a10c430645a88bdbfaaa23ac9ff7.html)
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input     | Comments                                                                                                                                                                                                                                                                     | Default |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Tenant ID | The SAP S/4HANA Cloud tenant identifier. This is the prefix in your SAP URL (e.g., 'my123456' from my123456.s4hana.cloud.sap). [Learn more](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/2e84a10c430645a88bdbfaaa23ac9ff7.html)               |         |
+| Client ID | The OAuth Client ID from the Communication Arrangement. Navigate to Inbound Communication and click OAuth 2.0 Details to view the Client ID. [Learn more](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/2e84a10c430645a88bdbfaaa23ac9ff7.html) |         |
+| Scopes    | Space-separated OAuth scopes. Leave empty to use default scopes, or specify API scopes from your Communication Arrangement.                                                                                                                                                  |         |
 
 ## Actions
 
@@ -82,7 +230,7 @@ Creates a purchase requisition with one or more items.
 
 ### Create Record {#createrecord}
 
-Creates a new record in SAP S/4HANA.
+Creates a new record in SAP S/4HANA OData V2. For OData V4 APIs, use Raw Request.
 
 | Input       | Comments                                     | Default                                                                                                                                                                                                             |
 | ----------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -117,7 +265,7 @@ Deletes the attachment associated with the business object using the document ty
 
 ### Delete Record {#deleterecord}
 
-Deletes an existing record in SAP S/4HANA.
+Deletes an existing record in SAP S/4HANA OData V2. For OData V4 APIs, use Raw Request.
 
 | Input       | Comments                                     | Default     |
 | ----------- | -------------------------------------------- | ----------- |
@@ -192,7 +340,7 @@ Gets the item details of all the items in a purchase requisition
 
 ### Get Record {#getrecord}
 
-Retrieve a single record from SAP S/4HANA
+Retrieve a single record from SAP S/4HANA OData V2. For OData V4 APIs, use Raw Request.
 
 | Input        | Comments                                     | Default     |
 | ------------ | -------------------------------------------- | ----------- |
@@ -263,7 +411,7 @@ Gets the header details of all the purchase requisitions in the system.
 
 ### List Records {#listrecords}
 
-Retrieve a list of records from SAP S/4HANA.
+Retrieve a list of records from SAP S/4HANA OData V2. For OData V4 APIs, use Raw Request.
 
 | Input        | Comments                                     | Default     |
 | ------------ | -------------------------------------------- | ----------- |
@@ -310,55 +458,40 @@ Reads data for all workforce’s timesheet entries. It retrieves information abo
 
 Send raw HTTP request to SAP S/4HANA
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
-| URL                     | Input the path only (/sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50), The base URL is already included (https://{company-url}.api.sap.com/s4hanacloud). For example, to connect to https://{company-url}.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50, only /sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50 is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection              |                                                                                                                                                                                                  |         |
+| URL                     | Input the path only. The base URL from your connection is automatically prepended. For example: /sap/opu/odata4/sap/api_purchaseorder_2/srvd_a2x/sap/purchaseorder/0001/PurchaseOrder            |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
 
-### Raw Request - ODATA {#rawrequestodata}
+### Raw Request - OData {#rawrequestodata}
 
-Send an ODATA raw HTTP request to SAP S/4HANA
+Send an OData GET request to SAP S/4HANA with query parameters
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
-| URL                     | Input the path only (/sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50), The base URL is already included (https://{company-url}.api.sap.com/s4hanacloud). For example, to connect to https://{company-url}.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50, only /sap/opu/odata/sap/API_CHANGE_RECORD/A_ChangeRecord(guid'01234567-89ab-cdef-0123-456789abcdef')/to_ChangeRecordRefClass?%24inlinecount=allpages&%24top=50 is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | false   |
-| Top                     | Show only the first n items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Skip                    | Skip the first n items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |         |
-| Search                  | Search items by search phrases                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
-| Filter                  | Filter items by property values                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
-| Inline Count            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
-| Order By                | Order by property                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |         |
-| Select                  | Select property to be returned                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
-| Expand                  | Expand property to be returned                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Input        | Comments                                                                                                                                                               | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   |                                                                                                                                                                        |         |
+| URL Path     | Input the path only. The base URL from your connection is automatically prepended. Example: /sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader |         |
+| Top          | Show only the first n items                                                                                                                                            |         |
+| Skip         | Skip the first n items                                                                                                                                                 |         |
+| Search       | Search items by search phrases                                                                                                                                         |         |
+| Filter       | Filter items by property values                                                                                                                                        |         |
+| Inline Count |                                                                                                                                                                        |         |
+| Order By     | Order by property                                                                                                                                                      |         |
+| Select       | Select property to be returned                                                                                                                                         |         |
+| Expand       | Expand property to be returned                                                                                                                                         |         |
 
 ### Update Change Record {#updatechangerecord}
 

@@ -16,7 +16,7 @@ If you're building a single-user custom integration, you can use the Personal Ac
 You can generate credentials from the ShipBob dashboard.
 
 For Production Environment, [click here](https://web.shipbob.com/app/merchant/#/Integrations/token-management).
-For Sandbox Environment, [click here](https://webstage.shipbob.com/app/merchant/#/Integrations/token-management).
+For Sandbox Environment, [click here](https://webstage.shipbob.dev/app/merchant/#/Integrations/token-management).
 
 When you request your first PAT, ShipBob automatically generates an application (called "SMA" or single-merchant application) and [channel](https://developer.shipbob.com/api-docs/#tag/Channels) to house all your future PATs. You can request as many as you like, and revoke them at any time.
 

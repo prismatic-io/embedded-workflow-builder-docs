@@ -366,15 +366,6 @@ Read one attachable
 | Attachable Id     | The unique identifier of the attachment               |         |
 | API Minor Version | Provide the version of the API you would like to use. | 75      |
 
-### Send a refund receipt {#sendrefundreceipt}
-
-send an existing Refund Receipt to the email saved in QuickBooks
-
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Connection |                                            |         |
-| Receipt Id | Provide a value for the Id of the receipt. |         |
-
 ### Send a refund receipt {#sendrefundreceipttoemail}
 
 Send an existing Refund Receipt in QuickBooks to any email
@@ -384,6 +375,15 @@ Send an existing Refund Receipt in QuickBooks to any email
 | Connection |                                               |         |
 | Receipt Id | Provide a value for the Id of the receipt.    |         |
 | Email      | Provide a valid email to send the receipt to. |         |
+
+### Send a refund receipt {#sendrefundreceipt}
+
+send an existing Refund Receipt to the email saved in QuickBooks
+
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| Connection |                                            |         |
+| Receipt Id | Provide a value for the Id of the receipt. |         |
 
 ### Update Attachable {#updateattachable}
 

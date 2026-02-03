@@ -18,10 +18,11 @@ You can create an access token from the **API credentials** tab of a private Sho
 
 Before publishing an integration for customers, we recommend you switch to OAuth 2.0 authentication to give your users a single button-click experience.
 
-| Input                  | Comments                                                                      | Default                           |
-| ---------------------- | ----------------------------------------------------------------------------- | --------------------------------- |
-| Admin API Access Token | Generate from the 'API credentials' tab of a private Shopify app that you own |                                   |
-| Host                   | The domain of your Shopify platform, without the https://                     | YOUR-SHOPIFY-DOMAIN.myshopify.com |
+| Input                  | Comments                                                                                                                                                     | Default                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Admin API Access Token | Generate from the 'API credentials' tab of a private Shopify app. Learn more at [Shopify Admin API](https://shopify.dev/docs/api/admin-rest#authentication). |                                   |
+| Host                   | The domain of your Shopify store without https:// (e.g., my-store.myshopify.com)                                                                             | YOUR-SHOPIFY-DOMAIN.myshopify.com |
+| API Version            | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                              | 2024-10                           |
 
 ### OAuth 2.0 {#oauth2-dynamic-inputs}
 
@@ -37,12 +38,13 @@ For information on what **Scopes** you should request, see the [Shopify document
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input      | Comments                                                                                                                                                                                              | Default                                                                                                                                                                                                                      |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shop Name  | The Shopify **shop name** (domain). **SHOPIFY-SHOP-NAME**.myshopify.com                                                                                                                               |                                                                                                                                                                                                                              |
-| Scopes     | A space-delimited set of one or more scopes to get the user's permission to access. A list of all scopes is available [here](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
-| API Key    | Obtain this by creating an app at [Shopify Partners](https://partners.shopify.com/)                                                                                                                   |                                                                                                                                                                                                                              |
-| API Secret | Obtain this by creating an app at [Shopify Partners](https://partners.shopify.com/)                                                                                                                   |                                                                                                                                                                                                                              |
+| Input       | Comments                                                                                                                                                                            | Default                                                                                                                                                                                                                      |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Shop Name   | The Shopify shop name (e.g., for my-store.myshopify.com, enter my-store)                                                                                                            |                                                                                                                                                                                                                              |
+| Scopes      | Space-separated list of scopes for user permissions. See [Shopify access scopes](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
+| API Key     | API Key from your Shopify app. Obtain by creating an app at [Shopify Partners](https://partners.shopify.com/).                                                                      |                                                                                                                                                                                                                              |
+| API Secret  | API Secret from your Shopify app. Obtain by creating an app at [Shopify Partners](https://partners.shopify.com/).                                                                   |                                                                                                                                                                                                                              |
+| API Version | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                     | 2024-10                                                                                                                                                                                                                      |
 
 ### OAuth 2.0 (Deprecated) {#oauth2}
 
@@ -51,20 +53,21 @@ Authenticate requests to Shopify using values obtained from the Developer Consol
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                              | Default                                                                                                                                                                                                                      |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Authorize URL | The OAuth 2.0 Authorization URL for Shopify                                                                                                                                                           | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/authorize                                                                                                                                                              |
-| Token URL     | The OAuth 2.0 Token URL for Shopify                                                                                                                                                                   | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/access_token                                                                                                                                                           |
-| Scopes        | A space-delimited set of one or more scopes to get the user's permission to access. A list of all scopes is available [here](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
-| API Key       | Obtain this by creating an app at [Shopify Partners](https://partners.shopify.com/)                                                                                                                   |                                                                                                                                                                                                                              |
-| API Secret    | Obtain this by creating an app at [Shopify Partners](https://partners.shopify.com/)                                                                                                                   |                                                                                                                                                                                                                              |
-| Host          | The domain of your Shopify platform, without the https://                                                                                                                                             | YOUR-SHOPIFY-DOMAIN.myshopify.com                                                                                                                                                                                            |
+| Input         | Comments                                                                                                                                                                            | Default                                                                                                                                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorize URL | The OAuth 2.0 Authorization URL for Shopify                                                                                                                                         | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/authorize                                                                                                                                                              |
+| Token URL     | The OAuth 2.0 Token URL for Shopify                                                                                                                                                 | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/access_token                                                                                                                                                           |
+| Scopes        | Space-separated list of scopes for user permissions. See [Shopify access scopes](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
+| API Key       | API Key from your Shopify app. Obtain by creating an app at [Shopify Partners](https://partners.shopify.com/).                                                                      |                                                                                                                                                                                                                              |
+| API Secret    | API Secret from your Shopify app. Obtain by creating an app at [Shopify Partners](https://partners.shopify.com/).                                                                   |                                                                                                                                                                                                                              |
+| Host          | The domain of your Shopify store without https:// (e.g., my-store.myshopify.com)                                                                                                    | YOUR-SHOPIFY-DOMAIN.myshopify.com                                                                                                                                                                                            |
+| API Version   | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                     | 2024-10                                                                                                                                                                                                                      |
 
 ## Triggers
 
 ### Event Topic Webhook {#eventtopicwebhookgql}
 
-Set event based webhooks and get notified when these event types are created, updated, or deleted.
+Receive event notifications from Shopify. Automatically creates and manages webhook subscriptions for selected event topics when the instance is deployed, and removes the subscription when the instance is deleted.
 
 | Input         | Comments                                                                    | Default |
 | ------------- | --------------------------------------------------------------------------- | ------- |
@@ -79,8 +82,32 @@ Set event based webhooks and get notified when these event types are created, up
 | Input            | Comments                                                             | Default |
 | ---------------- | -------------------------------------------------------------------- | ------- |
 | Secret Key       | The Shopify app's client secret, viewable from the Partner Dashboard |         |
-| Connection       |                                                                      |         |
+| Connection       | The Shopify connection to use.                                       |         |
 | Event Topic Name | Event that triggers the webhook.                                     |         |
+
+### New and Updated Customers {#customerspollingtrigger}
+
+Checks for new and updated customers on a configured schedule. Returns all customers on first run.
+
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
+
+### New and Updated Orders {#orderspollingtrigger}
+
+Checks for new and updated orders on a configured schedule. Returns all orders on first run.
+
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
+
+### New and Updated Products {#productspollingtrigger}
+
+Checks for new and updated products on a configured schedule. Returns all products on first run.
+
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### Webhook {#webhook}
 
@@ -154,10 +181,9 @@ Retrieve a count of all the customers connected to your platform.
 
 Returns a count of all draft orders. Note: This action currently utilizes an unstable version of the Shopify Admin GraphQL API and is subject to change.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### Count Location {#countlocationsgql}
 
@@ -188,9 +214,9 @@ Count all product images connected to your platform.
 
 Count all Products in your account.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Shopify connection to use. |         |
 
 ### Count Variants {#countvariantsgql}
 
@@ -213,21 +239,21 @@ Create an account activation URL for an existing customer.
 
 Create a new customer.
 
-| Input           | Comments                                                                                                                                              | Default |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                       |         |
-| First Name      | Provide a string value for the first name                                                                                                             |         |
-| Last Name       | Provide a string value for the last name of the customer.                                                                                             |         |
-| Email           | Provide a string value for the email of the customer.                                                                                                 |         |
-| Phone           | Provide a value for the phone number of the customer.                                                                                                 |         |
-| Notes           | Provide a value for a note on the customer.                                                                                                           |         |
-| Verified Email  | This flag will enable emails to be sent to the customer.                                                                                              | false   |
-| Address List    | Provide a JSON array containing address objects                                                                                                       |         |
-| Values          | The names of the fields and their values to use when creating/updating a record. You can use this input to specify the key and value of any property. |         |
-| Currency Format | Provide a valid currency format                                                                                                                       |         |
-| Tags            | For each list item, provide a string you would like to tag the product with.                                                                          |         |
-| Tax Exempt      | Determines if the customer is tax exempt.                                                                                                             | false   |
-| Metafields      | Provide a JSON array containing metadata objects.                                                                                                     |         |
+| Input           | Comments                                                                               | Default |
+| --------------- | -------------------------------------------------------------------------------------- | ------- |
+| Connection      | The Shopify connection to use.                                                         |         |
+| First Name      | The first name of the customer.                                                        |         |
+| Last Name       | The last name of the customer.                                                         |         |
+| Email           | The email address of the customer.                                                     |         |
+| Phone           | The phone number of the customer in E.164 format.                                      |         |
+| Notes           | Additional notes about the customer.                                                   |         |
+| Verified Email  | When true, emails will be sent to the customer.                                        | false   |
+| Address List    | Provide a JSON array containing address objects                                        |         |
+| Values          | Key-value pairs for creating or updating a record. Specify any property key and value. |         |
+| Currency Format | The currency format code.                                                              |         |
+| Tags            | Tags for the product. Each list item is a tag string.                                  |         |
+| Tax Exempt      | When true, the customer is tax exempt.                                                 | false   |
+| Metafields      | JSON array containing metadata objects.                                                |         |
 
 ### Create Draft Orders {#createdraftordergql}
 
@@ -307,12 +333,12 @@ Create a new variant of the provided product.
 
 Creates a webhook for the desired topic in your Shopify store.
 
-| Input          | Comments                                                                                                                                                                                                            | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                     |         |
-| Webhook Topic  | Provide a string value for the topic you would like to point your webhook at. You can chose from the list found in the Shopify docs: https://shopify.dev/docs/api/admin-rest/2023-04/resources/webhook#event-topics |         |
-| Post URL       | Provide a string value for the URL the newly created webhook will post to. You can use this input to configure your Shopify trigger.                                                                                |         |
-| Webhook Format | Provide a string value for the format you would like your webhook to return.                                                                                                                                        | json    |
+| Input          | Comments                                                                                                                                                                | Default |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                                                                                                          |         |
+| Webhook Topic  | The event topic for the webhook. See [Shopify webhook topics](https://shopify.dev/docs/api/admin-rest/2023-04/resources/webhook#event-topics) for all available topics. |         |
+| Post URL       | The URL where the newly created webhook will post to. Used to configure your Shopify trigger.                                                                           |         |
+| Webhook Format | The format for the webhook response.                                                                                                                                    | json    |
 
 ### Delete Collection {#deletecollectiongql}
 
@@ -354,9 +380,9 @@ Deletes an existing fulfillment service.
 
 Delete all webhooks related to this instance.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Shopify connection to use. |         |
 
 ### Delete Inventory Levels {#deleteinventorylevelsgql}
 
@@ -420,10 +446,10 @@ Delete an existing variant by Id.
 
 Delete a webhook by ID.
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection |                               |         |
-| Webhook ID | The ID of an existing webhook |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Shopify connection to use. |         |
+| Webhook ID | The ID of an existing webhook. |         |
 
 ### Get Collection {#getcollectiongql}
 
@@ -438,10 +464,10 @@ Get a collection by Id.
 
 Get a customers information and metadata by Id.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Customer   | Provide a value for the unique ID of the customer. |         |
-| Connection |                                                    |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Customer   | The unique ID of the customer. |         |
+| Connection | The Shopify connection to use. |         |
 
 ### Get Draft Order {#getdraftordergql}
 
@@ -467,7 +493,7 @@ Retrieve a specific fulfillment order.
 
 | Input                | Comments                                   | Default |
 | -------------------- | ------------------------------------------ | ------- |
-| Connection           |                                            |         |
+| Connection           | The Shopify connection to use.             |         |
 | Fulfillment Order ID | Provide a unique ID of a fulfillment order |         |
 
 ### Get Fulfillment Service {#getfulfillmentservicegql}
@@ -492,11 +518,10 @@ Get the information and metadata of an Inventory Item enabled on your platform.
 
 Get the information and metadata of an Inventory Level.
 
-| Input              | Comments                                             | Default |
-| ------------------ | ---------------------------------------------------- | ------- |
-| Connection         |                                                      |         |
-| Inventory Level Id | Provide a unique ID of an Inventory Level.           |         |
-| Debug Request      | Enabling this flag will log out the current request. | false   |
+| Input              | Comments                                   | Default |
+| ------------------ | ------------------------------------------ | ------- |
+| Connection         |                                            |         |
+| Inventory Level Id | Provide a unique ID of an Inventory Level. |         |
 
 ### Get Location {#getlocationsgql}
 
@@ -520,19 +545,19 @@ Get the information and metadata about an order.
 
 Get the information and metadata about an order. This version of the action is being deprecated. Please replace action with Get Order.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Order ID   | Provide the unique ID of the order. |         |
-| Connection |                                     |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Order ID   | The unique ID of the order.    |         |
+| Connection | The Shopify connection to use. |         |
 
 ### Get Product {#getproduct}
 
 Get the information and metadata of a product by Id.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Product ID | Provide a value for the product Id. |         |
-| Connection |                                     |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Product ID | The unique ID of the product.  |         |
+| Connection | The Shopify connection to use. |         |
 
 ### Get Product Image {#getproductimagegql}
 
@@ -548,9 +573,9 @@ Get the information and metadata of a product image connected to your platform.
 
 Retrieve the shop's current configuration.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Shopify connection to use. |         |
 
 ### Get Variant {#getvariantgql}
 
@@ -571,7 +596,6 @@ List all collections enabled on your platform.
 | Limit              | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. To get more than 250 results, turn the 'Fetch All' toggle ON. | 50      |
 | Fetch All          | API is limited to 250 records per page max, turn this ON to get all data from all pages. When turned ON, the 'Limit' and 'Page Offset Cursor' inputs are ignored.              | false   |
 | Page Offset Cursor | Provide a cursor to offset the results. This is used to get the next page of results.                                                                                          |         |
-| Debug Request      | Enabling this flag will log out the current request.                                                                                                                           | false   |
 
 ### List Currencies {#listcurrenciesgql}
 
@@ -588,44 +612,44 @@ List all currencies enabled on your platform.
 
 List all customers connected to your platform.
 
-| Input             | Comments                                                                                                                                                                                                                    | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Get All Data      | API is limited to 250 records per page max, turn this on to get all data from all pages. When turned on, the limit input will be ignored.                                                                                   | false   |
-| Limit             | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. If not provided, the default limit is 50. To get more than 250 results, turn the 'Get All Data' toggle on. | 50      |
-| Page Offset Token | Provide the page offset token for the given object's results. This is a unique ID used to access a certain page of results.                                                                                                 |         |
-| Connection        |                                                                                                                                                                                                                             |         |
+| Input             | Comments                                                                                                                               | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Get All Data      | When true, fetches all data from all pages (API is limited to 250 records per page max). The limit input will be ignored when enabled. | false   |
+| Limit             | Maximum number of results to return (1-250). Default is 50. To retrieve more than 250 results, enable the 'Get All Data' option.       | 50      |
+| Page Offset Token | Cursor for pagination to retrieve a specific page of results.                                                                          |         |
+| Connection        | The Shopify connection to use.                                                                                                         |         |
 
 ### List Draft Orders {#listdraftorders}
 
 List all draft orders.
 
-| Input             | Comments                                                                                                                                                                                                                    | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Get All Data      | API is limited to 250 records per page max, turn this on to get all data from all pages. When turned on, the limit input will be ignored.                                                                                   | false   |
-| Limit             | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. If not provided, the default limit is 50. To get more than 250 results, turn the 'Get All Data' toggle on. | 50      |
-| Page Offset Token | Provide the page offset token for the given object's results. This is a unique ID used to access a certain page of results.                                                                                                 |         |
-| Connection        |                                                                                                                                                                                                                             |         |
+| Input             | Comments                                                                                                                               | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Get All Data      | When true, fetches all data from all pages (API is limited to 250 records per page max). The limit input will be ignored when enabled. | false   |
+| Limit             | Maximum number of results to return (1-250). Default is 50. To retrieve more than 250 results, enable the 'Get All Data' option.       | 50      |
+| Page Offset Token | Cursor for pagination to retrieve a specific page of results.                                                                          |         |
+| Connection        | The Shopify connection to use.                                                                                                         |         |
 
 ### List Fulfillment Orders {#listfulfillmentorders}
 
 Retrieves a list of fulfillment orders for a specific order.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Order ID   | Provide the unique ID of the order. |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The Shopify connection to use. |         |
+| Order ID   | The unique ID of the order.    |         |
 
 ### List Fulfillments {#listfulfillments}
 
 List all fulfillments enabled on your platform.
 
-| Input             | Comments                                                                                                                                                                                                                    | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Order ID          | Provide the unique ID of the order.                                                                                                                                                                                         |         |
-| Get All Data      | API is limited to 250 records per page max, turn this on to get all data from all pages. When turned on, the limit input will be ignored.                                                                                   | false   |
-| Limit             | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. If not provided, the default limit is 50. To get more than 250 results, turn the 'Get All Data' toggle on. | 50      |
-| Page Offset Token | Provide the page offset token for the given object's results. This is a unique ID used to access a certain page of results.                                                                                                 |         |
-| Connection        |                                                                                                                                                                                                                             |         |
+| Input             | Comments                                                                                                                               | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Order ID          | The unique ID of the order.                                                                                                            |         |
+| Get All Data      | When true, fetches all data from all pages (API is limited to 250 records per page max). The limit input will be ignored when enabled. | false   |
+| Limit             | Maximum number of results to return (1-250). Default is 50. To retrieve more than 250 results, enable the 'Get All Data' option.       | 50      |
+| Page Offset Token | Cursor for pagination to retrieve a specific page of results.                                                                          |         |
+| Connection        | The Shopify connection to use.                                                                                                         |         |
 
 ### List Fulfillment Services {#listfulfillmentservicesgql}
 
@@ -698,45 +722,45 @@ List all orders.
 
 List all orders. This version of the action is being deprecated. Please replace action with List Orders.
 
-| Input              | Comments                                                                                                                                                                                                                    | Default |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                                                                                             |         |
-| Get All Data       | API is limited to 250 records per page max, turn this on to get all data from all pages. When turned on, the limit input will be ignored.                                                                                   | false   |
-| Page Offset Token  | Provide the page offset token for the given object's results. This is a unique ID used to access a certain page of results.                                                                                                 |         |
-| Limit              | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. If not provided, the default limit is 50. To get more than 250 results, turn the 'Get All Data' toggle on. | 50      |
-| Attribution App ID | Show orders attributed to a certain app, specified by the app ID.                                                                                                                                                           |         |
-| Created At Max     | Show orders created at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                         |         |
-| Created At Min     | Show orders created at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                          |         |
-| Fields             | Retrieve only certain fields, specified by a comma-separated list of fields names.                                                                                                                                          |         |
-| Financial Status   | Filter orders by their financial status.                                                                                                                                                                                    |         |
-| Fulfillment Status | Filter orders by their fulfillment status.                                                                                                                                                                                  |         |
-| Ids                | Retrieve only orders specified by a comma-separated list of order IDs.                                                                                                                                                      |         |
-| Processed At Max   | Show orders imported at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                        |         |
-| Processed At Min   | Show orders imported at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                         |         |
-| Since Id           | Show orders after the specified ID.                                                                                                                                                                                         |         |
-| Status             | Filter orders by their status.                                                                                                                                                                                              |         |
-| Updated At Max     | Show orders last updated at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                    |         |
-| Updated At Min     | Show orders last updated at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                                                                                                     |         |
+| Input              | Comments                                                                                                                               | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Shopify connection to use.                                                                                                         |         |
+| Get All Data       | When true, fetches all data from all pages (API is limited to 250 records per page max). The limit input will be ignored when enabled. | false   |
+| Page Offset Token  | Cursor for pagination to retrieve a specific page of results.                                                                          |         |
+| Limit              | Maximum number of results to return (1-250). Default is 50. To retrieve more than 250 results, enable the 'Get All Data' option.       | 50      |
+| Attribution App ID | Show orders attributed to a certain app, specified by the app ID.                                                                      |         |
+| Created At Max     | Show orders created at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                    |         |
+| Created At Min     | Show orders created at or after this date. Use ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss-HH:mm).                              |         |
+| Fields             | Retrieve only certain fields, specified by a comma-separated list of fields names.                                                     |         |
+| Financial Status   | Filter orders by their financial status.                                                                                               |         |
+| Fulfillment Status | Filter orders by their fulfillment status.                                                                                             |         |
+| Ids                | Retrieve only orders specified by a comma-separated list of order IDs.                                                                 |         |
+| Processed At Max   | Show orders imported at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                   |         |
+| Processed At Min   | Show orders imported at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                    |         |
+| Since Id           | Show orders after the specified ID.                                                                                                    |         |
+| Status             | Filter orders by their status.                                                                                                         |         |
+| Updated At Max     | Show orders last updated at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.               |         |
+| Updated At Min     | Show orders last updated at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                |         |
 
 ### List Product Images {#listproductimages}
 
 List all product images connected to your platform.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Product ID | Provide a value for the product Id. |         |
-| Connection |                                     |         |
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Product ID | The unique ID of the product.  |         |
+| Connection | The Shopify connection to use. |         |
 
 ### List Products {#listproducts}
 
 List all products connected to your platform.
 
-| Input             | Comments                                                                                                                                                                                                                    | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Limit             | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. If not provided, the default limit is 50. To get more than 250 results, turn the 'Get All Data' toggle on. | 50      |
-| Get All Data      | API is limited to 250 records per page max, turn this on to get all data from all pages. When turned on, the limit input will be ignored.                                                                                   | false   |
-| Page Offset Token | Provide the page offset token for the given object's results. This is a unique ID used to access a certain page of results.                                                                                                 |         |
-| Connection        |                                                                                                                                                                                                                             |         |
+| Input             | Comments                                                                                                                               | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Limit             | Maximum number of results to return (1-250). Default is 50. To retrieve more than 250 results, enable the 'Get All Data' option.       | 50      |
+| Get All Data      | When true, fetches all data from all pages (API is limited to 250 records per page max). The limit input will be ignored when enabled. | false   |
+| Page Offset Token | Cursor for pagination to retrieve a specific page of results.                                                                          |         |
+| Connection        | The Shopify connection to use.                                                                                                         |         |
 
 ### List Variants {#listvariantsgql}
 
@@ -756,20 +780,20 @@ List all webhooks or webhooks for this instance.
 
 | Input                       | Comments                                       | Default |
 | --------------------------- | ---------------------------------------------- | ------- |
-| Connection                  |                                                |         |
+| Connection                  | The Shopify connection to use.                 |         |
 | Show only instance webhooks | Show only webhooks that point to this instance | true    |
 
 ### Raw Request {#graphqlrawrequest}
 
 Send raw GraphQL request to Shopify.
 
-| Input             | Comments                                                                                                   | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                            |         |
-| API Version       | Shopify versions its API. See https://shopify.dev/docs/api/release-notes for a list of available versions. | 2024-10 |
-| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }     |         |
-| Variables         | Variables to pass to the query or mutation.                                                                |         |
-| Variables Object  | Variables to pass to the query or mutation.                                                                |         |
+| Input             | Comments                                                                                                                                | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Shopify connection to use.                                                                                                          |         |
+| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2024-10 |
+| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                  |         |
+| Variables         | Variables to pass to the query or mutation.                                                                                             |         |
+| Variables Object  | Variables to pass to the query or mutation.                                                                                             |         |
 
 ### Raw Request (Deprecated) {#rawrequest}
 
@@ -777,7 +801,7 @@ Send raw HTTP request to Shopify. This version of the action uses REST and is be
 
 | Input                   | Comments                                                                                                                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                  |         |
+| Connection              | The Shopify connection to use.                                                                                                                                                                                                                                                                   |         |
 | URL                     | Input the path only (/users/current.json), The base URL is already included (https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION). For example, to connect to https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION/users/current.json, only /users/current.json is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |         |
@@ -793,8 +817,8 @@ Send raw HTTP request to Shopify. This version of the action uses REST and is be
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0       |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false   |
-| API Version             | Shopify versions its API. See https://shopify.dev/docs/api/release-notes for a list of available versions.                                                                                                                                                                                       | 2024-10 |
-| Return Headers          | Return response headers in the output object.                                                                                                                                                                                                                                                    | false   |
+| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2024-10 |
+| Return Headers          | When true, response headers will be included in the output object.                                                                                                                                                                                                                               | false   |
 
 ### Set Metafield {#setmetafieldgql}
 
@@ -840,7 +864,6 @@ Modify an existing fulfillment service.
 | Callback URL             | The callback URL that the fulfillment service has registered for request.                  |         |
 | Inventory Management     | Whether the fulfillment services tracks product inventory and provides updates to Shopify. |         |
 | Tracking Support         | Whether the fulfillment service supports tracking numbers for packages.                    |         |
-| Debug Request            | Enabling this flag will log out the current request.                                       | false   |
 
 ### Update Inventory Item {#updateinventoryitemsgql}
 

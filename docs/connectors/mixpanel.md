@@ -15,7 +15,7 @@ API Key for a Mixpanel Account
 
 To authenticate with Mixpanel, a service account is required for API access, along with a project token for project-specific operations.
 
-For more information, refer to [Mixpanel's Service Account documentation](https://docs.mixpanel.com/docs/orgs-and-projects/service-accounts).
+For more information, refer to [Mixpanel's Service Account documentation](https://developer.mixpanel.com/reference/service-accounts).
 
 #### Prerequisites
 

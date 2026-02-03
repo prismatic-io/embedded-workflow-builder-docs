@@ -13,22 +13,80 @@ Manage calendars and events in Google Calendar
 
 Authenticate requests to Google Calendar using values obtained from the Google Cloud Platform.
 
-The Google Calendar component authenticates requests through Google's OAuth service.
-To create a Google Calendar developer account and authenticate using Google OAuth, follow the directions [here](https://developers.google.com/calendar/api/guides/auth)
-Now, you will have to configure OAuth 2.0 settings.
-Create a new Google Calendar connection of type **OAuth 2.0**.
+The Google Calendar component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
+A GCP OAuth 2.0 app is required for the integration to authenticate and perform Google Calendar tasks on behalf of users.
 
-- For **Client ID** and **Client Secret** enter the values that you got from the Google Cloud Platform auth settings.
-- For **Scopes** choose from the list found on the [Google docs](https://developers.google.com/identity/protocols/oauth2/scopes)
+#### Prerequisites
+
+- A Google Developer account (sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/))
+
+#### Setup Steps
+
+To create a Google Calendar OAuth 2.0 app:
+
+1. Open the Google Calendar API console at [https://console.cloud.google.com/apis/api/calendar-json.googleapis.com](https://console.cloud.google.com/apis/api/calendar-json.googleapis.com)
+1. Click **CREATE PROJECT** to create a new GCP project, or select an existing project.
+1. Enable the **Google Calendar API** for the project by clicking **ENABLE**.
+1. On the sidebar, select **Credentials**.
+1. Configure the OAuth 2.0 Consent Screen (the page that asks "Do you want to allow (Your Company) to access Google Calendar on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
+   1. Choose a **User Type** of **External** so the app will be available to customers.
+   1. Fill out the OAuth consent screen with an app name (company or product name), support email, app logo, domain, etc.
+   1. Domains can be ignored for now.
+   1. On the next page, add the scope `https://www.googleapis.com/auth/calendar`.
+   1. Enter some **test users** for testing purposes.
+      The app will only work for those testing users until it is "verified" by Google.
+      When ready for verification (Google verifies privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
+      This will allow customers to authorize the integration to access their Google Calendar.
+1. Once the "Consent Screen" is configured, open the **Credentials** page from the sidebar again.
+1. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
+   1. Under **Application type** select **Web application**.
+   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   1. Click **CREATE**.
+1. Copy the **Client ID** and **Client Secret** that are generated.
+
+:::info Publishing the OAuth App
+Make sure to **publish** the OAuth 2.0 app after testing so users outside of the test users can authorize the integration to interact with Google Calendar on their behalf.
+:::
+
+#### Configure the Connection
+
+- Enter the **Client ID** and **Client Secret** from the OAuth app credentials.
+- For **Scopes**, use the default [Google Calendar scope](https://developers.google.com/identity/protocols/oauth2/scopes#calendar):
+
+  ```
+  https://www.googleapis.com/auth/calendar
+  ```
+
+  - Refer to [Google Calendar API scopes](https://developers.google.com/calendar/api/auth) for additional scope information.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                            | Default                                  |
-| ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------- |
-| Scopes        | A space-delimited set of one or more scopes to get the user's permission to access. | https://www.googleapis.com/auth/calendar |
-| Client ID     | Provide a string value for the client Id of your OAuth 2.0 application.             |                                          |
-| Client Secret | Provide a string value for the client secret of your OAuth 2.0 application.         |                                          |
+| Input         | Comments                                                                                                                                           | Default                                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Scopes        | Space-delimited list of OAuth 2.0 scopes. See [Google Calendar API scopes](https://developers.google.com/calendar/api/auth) for available options. | https://www.googleapis.com/auth/calendar |
+| Client ID     | Client ID from your Google Cloud Platform OAuth 2.0 credentials.                                                                                   |                                          |
+| Client Secret | Client Secret from your Google Cloud Platform OAuth 2.0 credentials.                                                                               |                                          |
+
+## Triggers
+
+### Calendar Change Events {#calendarchangeevents}
+
+Receive change notifications for a Google Calendar. Automatically creates and manages a Google Calendar push notification subscription when the instance is deployed, and removes the subscription when the instance is deleted.
+
+| Input       | Comments                               | Default |
+| ----------- | -------------------------------------- | ------- |
+| Connection  | The Google Calendar connection to use. |         |
+| Calendar ID | The calendar to monitor for changes.   |         |
+
+### New and Updated Events {#polleventstrigger}
+
+Checks for new and updated calendar events on a configured schedule.
+
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The Google Calendar connection to use.  |         |
+| Calendar ID | The calendar to poll for event changes. |         |
 
 ## Actions
 
@@ -36,106 +94,106 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Create a new calendar
 
-| Input       | Comments                                                                                                        | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Summary     | Provide a string value for the summary.                                                                         |         |
-| Description | Provide a string value for the description.                                                                     |         |
-| Time Zone   | Provide a valid value for the timezone of the event. For a complete list of timezones refer to the google docs. |         |
-| Connection  |                                                                                                                 |         |
+| Input       | Comments                                                                                                                | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Summary     | The title or summary of the event.                                                                                      |         |
+| Description | A detailed description of the event.                                                                                    |         |
+| Time Zone   | The timezone of the event in IANA Time Zone Database format. See [IANA timezone list](https://www.iana.org/time-zones). |         |
+| Connection  | The Google Calendar connection to use.                                                                                  |         |
 
 ### Create Event {#createevent}
 
 Create a new event in a given calendar
 
-| Input                   | Comments                                                                                                                            | Default                                                                                                                                                                       |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Calendar Id             | Provide a string value for the id of the calendar.                                                                                  |                                                                                                                                                                               |
-| Summary                 | Provide a string value for the summary.                                                                                             |                                                                                                                                                                               |
-| Description             | Provide a string value for the description.                                                                                         |                                                                                                                                                                               |
-| Time Zone               | Provide a valid value for the timezone of the event. For a complete list of timezones refer to the google docs.                     |                                                                                                                                                                               |
-| Start Time              | Provide a date time value for the starting time of the event.                                                                       |                                                                                                                                                                               |
-| End Time                | Provide a date time value for the ending time of the event.                                                                         |                                                                                                                                                                               |
-| Event Location          | Provide a string value for the location of the event.                                                                               |                                                                                                                                                                               |
-| Attendees               | Provide an array of attendee objects as described at https://developers.google.com/calendar/api/v3/reference/events/insert          | <code>[<br /> {<br /> "email": "lpage@example.com",<br /> "optional": true<br /> },<br /> {<br /> "email": "sbrin@example.com",<br /> "optional": false<br /> }<br />]</code> |
-| Remind Method           | This field is only required if useDefaultReminder is set to false.                                                                  |                                                                                                                                                                               |
-| Default Reminder        | If this field is true, the event will use the default reminder settings.                                                            | false                                                                                                                                                                         |
-| Remind Before (minutes) | This field is only required if useDefaultReminder is set to false.                                                                  |                                                                                                                                                                               |
-| Add Conference Event    | Creates a Google Meet link when set to true.                                                                                        | false                                                                                                                                                                         |
-| Connection              |                                                                                                                                     |                                                                                                                                                                               |
-| Send Updates            | Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false. |                                                                                                                                                                               |
+| Input                   | Comments                                                                                                                                                                                    | Default                                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Calendar ID             | The unique identifier of the calendar. Use 'primary' for the user's primary calendar.                                                                                                       |                                                                                                                                                                                       |
+| Summary                 | The title or summary of the event.                                                                                                                                                          |                                                                                                                                                                                       |
+| Description             | A detailed description of the event.                                                                                                                                                        |                                                                                                                                                                                       |
+| Time Zone               | The timezone of the event in IANA Time Zone Database format. See [IANA timezone list](https://www.iana.org/time-zones).                                                                     |                                                                                                                                                                                       |
+| Start Time              | The start time of the event in ISO 8601 format with timezone offset.                                                                                                                        |                                                                                                                                                                                       |
+| End Time                | The end time of the event in ISO 8601 format with timezone offset.                                                                                                                          |                                                                                                                                                                                       |
+| Event Location          | The physical or virtual location of the event.                                                                                                                                              |                                                                                                                                                                                       |
+| Attendees               | Array of attendee objects with email addresses and optional flags. See [Google Calendar Events API](https://developers.google.com/calendar/api/v3/reference/events/insert) for full schema. | <code>[<br /> {<br /> "email": "john.doe@example.com",<br /> "optional": false<br /> },<br /> {<br /> "email": "jane.smith@example.com",<br /> "optional": true<br /> }<br />]</code> |
+| Remind Method           | How to send the event reminder. Only used when 'Default Reminder' is false.                                                                                                                 |                                                                                                                                                                                       |
+| Default Reminder        | When true, the event uses the default reminder settings from the calendar.                                                                                                                  | false                                                                                                                                                                                 |
+| Remind Before (minutes) | Number of minutes before the event to send the reminder. Only used when 'Default Reminder' is false.                                                                                        |                                                                                                                                                                                       |
+| Add Conference Event    | When true, creates a Google Meet conference link for the event.                                                                                                                             | false                                                                                                                                                                                 |
+| Connection              | The Google Calendar connection to use.                                                                                                                                                      |                                                                                                                                                                                       |
+| Send Updates            | Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.                                                         |                                                                                                                                                                                       |
 
 ### Delete Calendar {#deletecalendar}
 
 Delete an existing calendar by Id
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Calendar Id | Provide a string value for the id of the calendar. |         |
-| Connection  |                                                    |         |
+| Input       | Comments                                                                              | Default |
+| ----------- | ------------------------------------------------------------------------------------- | ------- |
+| Calendar ID | The unique identifier of the calendar. Use 'primary' for the user's primary calendar. |         |
+| Connection  | The Google Calendar connection to use.                                                |         |
 
 ### Delete Event {#deleteevent}
 
 Delete an event by an Id
 
-| Input        | Comments                                                                 | Default |
-| ------------ | ------------------------------------------------------------------------ | ------- |
-| Calendar Id  | Provide a string value for the id of the calendar.                       |         |
-| Event Id     | Provide the unique identifier of the event.                              |         |
-| Connection   |                                                                          |         |
-| Send Updates | Guests who should receive notifications about the deletion of the event. |         |
+| Input        | Comments                                                                              | Default |
+| ------------ | ------------------------------------------------------------------------------------- | ------- |
+| Calendar ID  | The unique identifier of the calendar. Use 'primary' for the user's primary calendar. |         |
+| Event ID     | The unique identifier of the event.                                                   |         |
+| Connection   | The Google Calendar connection to use.                                                |         |
+| Send Updates | Guests who should receive notifications about the deletion of the event.              |         |
 
 ### Get Calendar {#getcalendar}
 
 Get the information and metadata of a calendar by Id
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Calendar Id | Provide a string value for the id of the calendar. |         |
+| Input       | Comments                                                                              | Default |
+| ----------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Google Calendar connection to use.                                                |         |
+| Calendar ID | The unique identifier of the calendar. Use 'primary' for the user's primary calendar. |         |
 
 ### Get Event {#getevent}
 
 Get the information and metadata of an event by Id
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Calendar Id | Provide a string value for the id of the calendar. |         |
-| Event Id    | Provide the unique identifier of the event.        |         |
-| Connection  |                                                    |         |
+| Input       | Comments                                                                              | Default |
+| ----------- | ------------------------------------------------------------------------------------- | ------- |
+| Calendar ID | The unique identifier of the calendar. Use 'primary' for the user's primary calendar. |         |
+| Event ID    | The unique identifier of the event.                                                   |         |
+| Connection  | The Google Calendar connection to use.                                                |         |
 
 ### List Calendars {#listcalendar}
 
 List all calendars
 
-| Input       | Comments                                                                                                         | Default |
-| ----------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| Page Token  | Specify the pagination token that's returned by a previous request to retrieve the next page of results          |         |
-| Max Results | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250. |         |
-| Connection  |                                                                                                                  |         |
-| Fetch All   | If true, fetches all pages of results, ignoring the 'Max Results' and 'Page Token' inputs.                       | false   |
+| Input       | Comments                                                                                     | Default |
+| ----------- | -------------------------------------------------------------------------------------------- | ------- |
+| Page Token  | Pagination token returned from a previous request to retrieve the next page of results.      |         |
+| Max Results | Maximum number of results to return (1-250).                                                 |         |
+| Connection  | The Google Calendar connection to use.                                                       |         |
+| Fetch All   | When true, fetches all pages of results, ignoring the 'Max Results' and 'Page Token' inputs. | false   |
 
 ### List Events {#listevents}
 
 List all events in a given calendar
 
-| Input                   | Comments                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                |         |
-| Calendar Id             | Provide a string value for the id of the calendar.                                                                                                                                                                                                             |         |
-| Fetch All               | If true, fetches all pages of results, ignoring the 'Max Results' and 'Page Token' inputs.                                                                                                                                                                     | false   |
-| Max Results             | Provide an integer value for the maximum amount of results that will be returned. Provide a value from 1 to 250.                                                                                                                                               |         |
-| Page Token              | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                                                                                                                        |         |
-| Sync Token              | Specify the token for syncing the latest resources that have been modified since the last sync request                                                                                                                                                         |         |
-| Max Attendees           | The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.                                                                                              |         |
-| Order By                | The order of the events returned in the result. Optional. The default is an unspecified, stable order.                                                                                                                                                         |         |
-| Query                   | Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email                                                                                                 |         |
-| Show Deleted            |                                                                                                                                                                                                                                                                | false   |
-| Show Hidden Invitations |                                                                                                                                                                                                                                                                | false   |
-| Single Events           | Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.                                                 | false   |
-| Time Min                | Lower bound for an event's end time to filter by.                                                                                                                                                                                                              |         |
-| Time Max                | Upper bound for an event's start time to filter by. Must be a timestamp with timezone offset, 2011-06-03T10:00:00-07:00                                                                                                                                        |         |
-| Updated Min             | Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time. |         |
-| Time Zone               | Time zone used in the response. Optional.                                                                                                                                                                                                                      |         |
+| Input                   | Comments                                                                                                                                                         | Default |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Google Calendar connection to use.                                                                                                                           |         |
+| Calendar ID             | The unique identifier of the calendar. Use 'primary' for the user's primary calendar.                                                                            |         |
+| Fetch All               | When true, fetches all pages of results, ignoring the 'Max Results' and 'Page Token' inputs.                                                                     | false   |
+| Max Results             | Maximum number of results to return (1-250).                                                                                                                     |         |
+| Page Token              | Pagination token returned from a previous request to retrieve the next page of results.                                                                          |         |
+| Sync Token              | Token for retrieving only resources modified since the last sync request.                                                                                        |         |
+| Max Attendees           | Maximum number of attendees to include in the response. If there are more attendees, only the participant is returned.                                           |         |
+| Order By                | The order of events returned in the result. Default is an unspecified, stable order.                                                                             |         |
+| Query                   | Free text search terms to find events matching in summary, description, location, or attendee fields.                                                            |         |
+| Show Deleted            | When true, includes deleted events in the response.                                                                                                              | false   |
+| Show Hidden Invitations | When true, includes hidden invitations in the response.                                                                                                          | false   |
+| Single Events           | When true, expands recurring events into instances and returns only single one-off events and instances, not the underlying recurring events.                    | false   |
+| Time Min                | Lower bound for filtering events by end time. Must be in ISO 8601 format with timezone offset.                                                                   |         |
+| Time Max                | Upper bound for filtering events by start time. Must be in ISO 8601 format with timezone offset.                                                                 |         |
+| Updated Min             | Lower bound for filtering by last modification time (RFC 3339 format). Deleted entries since this time are always included regardless of 'Show Deleted' setting. |         |
+| Time Zone               | Time zone used in the response.                                                                                                                                  |         |
 
 ### Raw Request {#rawrequest}
 
@@ -143,7 +201,7 @@ Send raw HTTP request to Google Calendar
 
 | Input                   | Comments                                                                                                                                                                                                                   | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                            |         |
+| Connection              | The Google Calendar connection to use.                                                                                                                                                                                     |         |
 | URL                     | Input the path only (/colors), The base URL is already included (https://www.googleapis.com/calendar/v3). For example, to connect to https://www.googleapis.com/calendar/v3/colors, only /colors is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                    |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                  |         |
@@ -163,19 +221,19 @@ Send raw HTTP request to Google Calendar
 
 Update the information and metadata of an existing event
 
-| Input                   | Comments                                                                                                                   | Default                                                                                                                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Calendar Id             | Provide a string value for the id of the calendar.                                                                         |                                                                                                                                                                               |
-| Event Id                | Provide the unique identifier of the event.                                                                                |                                                                                                                                                                               |
-| Summary                 | Provide a string value for the summary.                                                                                    |                                                                                                                                                                               |
-| Description             | Provide a string value for the description.                                                                                |                                                                                                                                                                               |
-| Time Zone               | Provide a valid value for the timezone of the event. For a complete list of timezones refer to the google docs.            |                                                                                                                                                                               |
-| Start Time              | Provide a date time value for the starting time of the event.                                                              |                                                                                                                                                                               |
-| End Time                | Provide a date time value for the ending time of the event.                                                                |                                                                                                                                                                               |
-| Event Location          | Provide a string value for the location of the event.                                                                      |                                                                                                                                                                               |
-| Attendees               | Provide an array of attendee objects as described at https://developers.google.com/calendar/api/v3/reference/events/insert | <code>[<br /> {<br /> "email": "lpage@example.com",<br /> "optional": true<br /> },<br /> {<br /> "email": "sbrin@example.com",<br /> "optional": false<br /> }<br />]</code> |
-| Default Reminder        | If this field is true, the event will use the default reminder settings.                                                   | false                                                                                                                                                                         |
-| Remind Method           | This field is only required if useDefaultReminder is set to false.                                                         |                                                                                                                                                                               |
-| Remind Before (minutes) | This field is only required if useDefaultReminder is set to false.                                                         |                                                                                                                                                                               |
-| Connection              |                                                                                                                            |                                                                                                                                                                               |
-| Send Updates            | Guests who should receive notifications about the event update (for example, title changes, etc.).                         |                                                                                                                                                                               |
+| Input                   | Comments                                                                                                                                                                                    | Default                                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Calendar ID             | The unique identifier of the calendar. Use 'primary' for the user's primary calendar.                                                                                                       |                                                                                                                                                                                       |
+| Event ID                | The unique identifier of the event.                                                                                                                                                         |                                                                                                                                                                                       |
+| Summary                 | The title or summary of the event.                                                                                                                                                          |                                                                                                                                                                                       |
+| Description             | A detailed description of the event.                                                                                                                                                        |                                                                                                                                                                                       |
+| Time Zone               | The timezone of the event in IANA Time Zone Database format. See [IANA timezone list](https://www.iana.org/time-zones).                                                                     |                                                                                                                                                                                       |
+| Start Time              | The start time of the event in ISO 8601 format with timezone offset.                                                                                                                        |                                                                                                                                                                                       |
+| End Time                | The end time of the event in ISO 8601 format with timezone offset.                                                                                                                          |                                                                                                                                                                                       |
+| Event Location          | The physical or virtual location of the event.                                                                                                                                              |                                                                                                                                                                                       |
+| Attendees               | Array of attendee objects with email addresses and optional flags. See [Google Calendar Events API](https://developers.google.com/calendar/api/v3/reference/events/insert) for full schema. | <code>[<br /> {<br /> "email": "john.doe@example.com",<br /> "optional": false<br /> },<br /> {<br /> "email": "jane.smith@example.com",<br /> "optional": true<br /> }<br />]</code> |
+| Default Reminder        | When true, the event uses the default reminder settings from the calendar.                                                                                                                  | false                                                                                                                                                                                 |
+| Remind Method           | How to send the event reminder. Only used when 'Default Reminder' is false.                                                                                                                 |                                                                                                                                                                                       |
+| Remind Before (minutes) | Number of minutes before the event to send the reminder. Only used when 'Default Reminder' is false.                                                                                        |                                                                                                                                                                                       |
+| Connection              | The Google Calendar connection to use.                                                                                                                                                      |                                                                                                                                                                                       |
+| Send Updates            | Guests who should receive notifications about the event update (for example, title changes, etc.).                                                                                          |                                                                                                                                                                                       |

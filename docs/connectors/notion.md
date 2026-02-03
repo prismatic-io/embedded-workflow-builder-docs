@@ -13,197 +13,309 @@ Manage Notion pages, databases, and users
 
 Connect to Notion using an Internal Integration Secret
 
-To create an internal integration for Notion, you'll set up a private integration that works within the own workspace.
+To create an internal integration for Notion, set up a private integration that works within a single Notion workspace. Internal integrations are ideal for testing or for integrations that will only be used within one workspace.
 
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion
-2. Click **Create new integration**
-3. Fill in the integration details:
-4. Under **Capabilities**, select the permissions needed:
-   - **Read content**: To read pages, databases, and other content
-   - **Update content**: To modify existing content
-   - **Insert content**: To create new content
-5. Under **Content Capabilities**, choose specific content types if needed
-6. Save the integration settings
+For detailed information about Notion integrations, refer to the [Notion Integration Documentation](https://developers.notion.com/docs/authorization).
 
-#### Get the Integration Token:
+#### Prerequisites
 
-1. In the **Secrets** tab, copy the **Internal Integration Token**
-2. Enter this token when configuring the Notion connection
+- A Notion account with permission to create integrations in the workspace
+- Access to the [Notion integration settings](https://notion.so/my-integrations)
+- Permission to connect the integration to specific pages or databases in the workspace
 
-#### Connect to Content:
+#### Setup Steps
 
-After creating the integration, you'll need to connect it to specific pages or databases:
+1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
+2. Click **Create new integration**.
+3. Fill in the required integration details:
+   - **Name**: Enter a descriptive name for the integration
+   - **Logo**: Optionally upload a logo
+   - **Associated workspace**: Select the workspace where the integration will be created
+4. Under **Capabilities**, select the permissions needed for the integration:
+   - **Read content**: Allows reading pages, databases, and other content
+   - **Update content**: Allows modifying existing content
+   - **Insert content**: Allows creating new content
+5. Under **Content Capabilities**, choose specific content types if needed (pages, databases, comments, etc.).
+6. Save the integration settings.
 
-1. Go to the Notion page or database you want to access
-2. Click the **...** menu in the top right corner
-3. Select **Connect to** and choose the integration
-4. The integration will now have access to that content based on the capabilities you selected
+#### Get the Integration Token
 
-| Input                       | Comments                                | Default |
-| --------------------------- | --------------------------------------- | ------- |
-| Internal Integration Secret | Your Notion Internal Integration Secret |         |
+1. Navigate to the **Secrets** tab in the integration settings.
+2. Copy the **Internal Integration Token** value.
+   - The token format is: `secret_` followed by a series of alphanumeric characters
+   - Example format: `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+#### Configure the Connection
+
+- Enter the **Internal Integration Token** into the connection configuration.
+
+#### Connect to Content
+
+After creating the integration and configuring the connection, the integration must be explicitly connected to specific pages or databases in Notion:
+
+1. Navigate to the Notion page or database that the integration should access.
+2. Click the **...** (more) menu in the top right corner of the page.
+3. Select **Connect to** from the menu.
+4. Choose the integration from the list.
+
+The integration will now have access to that content based on the capabilities configured during setup. Repeat this process for each page or database that the integration needs to access.
+
+| Input                       | Comments                                                                                                                                                            | Default |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Internal Integration Secret | Your Notion Internal Integration Secret. Create an integration in your [Notion integrations settings](https://www.notion.com/my-integrations) to obtain this token. |         |
 
 ### OAuth 2.0 {#notionoauth}
 
 Connect to Notion via OAuth 2.0
 
-To create an OAuth 2.0 integration for Notion, you'll set up a public integration that allows users to authenticate with their Notion workspaces.
+To create an OAuth 2.0 integration for Notion, set up a public integration that allows users to authenticate with their Notion workspaces.
 
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion
-2. Click **Create new integration**
-3. Fill in the integration details:
-4. Under **Capabilities**, select the permissions needed:
-   - **Read content**: To read pages, databases, and other content
-   - **Update content**: To modify existing content
-   - **Insert content**: To create new content
-5. Under **Content Capabilities**, choose specific content types if needed
-6. Save the integration settings
+For detailed information about Notion integrations, refer to the [Notion Integration Documentation](https://developers.notion.com/docs/authorization).
 
-#### Configure OAuth Settings:
+#### Prerequisites
 
-1. Navigate to the **Distribution** page in the integration settings
-2. Select **Public integration** to enable OAuth
-3. Add the callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Configure additional OAuth settings as needed
+- A Notion account with permission to create integrations
+- Access to the [Notion integration settings](https://notion.so/my-integrations)
 
-#### Get OAuth Credentials:
+#### Setup Steps
 
-1. In the **Secrets** tab, find the OAuth credentials:
-   - **OAuth client ID**: Copy this value
-   - **OAuth client secret**: Copy this value
-2. Enter these values when you add a Notion connection to the flow
+1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
+2. Click **Create new integration**.
+3. Fill in the required integration details:
+   - **Name**: Enter a descriptive name for the integration
+   - **Logo**: Optionally upload a logo
+   - **Associated workspace**: Select the workspace where the integration will be created
+4. Under **Capabilities**, select the permissions needed for the integration:
+   - **Read content**: Allows reading pages, databases, and other content
+   - **Update content**: Allows modifying existing content
+   - **Insert content**: Allows creating new content
+5. Under **Content Capabilities**, choose specific content types if needed (pages, databases, comments, etc.).
+6. Save the integration settings.
 
-#### User Authorization Flow:
+#### Configure OAuth Settings
 
-When users connect their Notion workspace:
+1. Navigate to the **Distribution** tab in the integration settings.
+2. Select **Public integration** to enable OAuth 2.0 authentication.
+3. Under **Redirect URIs**, add the OAuth callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Configure any additional OAuth settings as needed.
+5. Review and save the distribution settings.
 
-1. They'll be redirected to Notion's OAuth authorization page
-2. Users select which pages/databases to share with the integration
-3. After authorization, the integration will have access to the selected content based on the capabilities you configured
+#### Get OAuth Credentials
+
+1. Navigate to the **Secrets** tab in the integration settings.
+2. Locate the OAuth credentials section.
+3. Copy the **OAuth client ID** value.
+4. Copy the **OAuth client secret** value.
+
+#### Configure the Connection
+
+- Enter the **OAuth client ID** into the **Client ID** field.
+- Enter the **OAuth client secret** into the **Client Secret** field.
+
+When users authenticate through OAuth 2.0, they will be redirected to Notion's authorization page where they can select which pages and databases to share with the integration. The integration will have access only to the content explicitly shared by the user, within the capabilities configured during integration setup.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                  | Default |
-| ------------- | ----------------------------------------- | ------- |
-| Client ID     | Client Identifier of your app for the API |         |
-| Client Secret | Client Secret of your app for the API     |         |
+| Input         | Comments                                                                                                                    | Default |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Client ID     | Client ID of your Notion app. Find this in your [Notion integrations settings](https://www.notion.com/my-integrations).     |         |
+| Client Secret | Client Secret of your Notion app. Find this in your [Notion integrations settings](https://www.notion.com/my-integrations). |         |
+
+## Triggers
+
+### New and Updated Database Items {#datasourceitemspollingtrigger}
+
+Checks for new and updated items in a Notion database on a configured schedule.
+
+| Input          | Comments                                                                                                                                                                                   | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                              |         |
+| Data Source ID | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases). |         |
+
+### New and Updated Databases {#datasourcespollingtrigger}
+
+Checks for new and updated databases in Notion on a configured schedule.
+
+| Input      | Comments                      | Default |
+| ---------- | ----------------------------- | ------- |
+| Connection | The Notion connection to use. |         |
+
+### New and Updated Pages {#pagespollingtrigger}
+
+Checks for new and updated pages in Notion on a configured schedule.
+
+| Input      | Comments                      | Default |
+| ---------- | ----------------------------- | ------- |
+| Connection | The Notion connection to use. |         |
 
 ## Actions
 
-### Create Database {#createdatabase}
+### Create Database {#updatedcreatedatabase}
+
+Creates a database as a subpage in the specified parent page, with the specified properties schema set on its initial data source.
+
+| Input                          | Comments                                                                                                                                                                                    | Default |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Notion connection to use.                                                                                                                                                               |         |
+| Parent                         | The parent page where the database will be created. Format: {"type": "page_id", "page_id": "..."} or {"type": "workspace", "workspace": true} for workspace-level.                          |         |
+| Title                          | The title of the database as it appears in Notion, formatted as a rich text array.                                                                                                          |         |
+| Initial Data Source Properties | Property schema for the initial data source. The keys are the names of properties as they appear in Notion.                                                                                 |         |
+| Icon                           | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object). |         |
+| Description                    | The description of the data source formatted as a rich text array. See [Notion Rich Text Reference](https://developers.notion.com/reference/rich-text).                                     |         |
+| Cover Image                    | The cover image of the new page, represented as a [file object](https://developers.notion.com/reference/file-object).                                                                       |         |
+
+### Create Database (Deprecated) {#createdatabase}
 
 Creates a database as a subpage in the specified parent page, with the specified properties schema. Currently, the parent of a new database must be a Notion page or a wiki database.
 
-| Input      | Comments                                                                                    | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection |                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Parent     | A page parent                                                                               | <code>{<br /> "database_id": "d9824bdc84454327be8b5b47500af6ce"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Title      | Title of database as it appears in Notion.                                                  | <code>[<br /> {<br /> "type": "text",<br /> "text": {<br /> "content": "Some words ",<br /> "link": null<br /> },<br /> "annotations": {<br /> "bold": false,<br /> "italic": false,<br /> "strikethrough": false,<br /> "underline": false,<br /> "code": false,<br /> "color": "default"<br /> },<br /> "plain_text": "Some words ",<br /> "href": null<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Properties | Property schema of database. The keys are the names of properties as they appear in Notion. | <code>{<br /> "Name": {<br /> "title": {}<br /> },<br /> "Description": {<br /> "rich_text": {}<br /> },<br /> "In stock": {<br /> "checkbox": {}<br /> },<br /> "Food group": {<br /> "select": {<br /> "options": [<br /> {<br /> "name": "🥦Vegetable",<br /> "color": "green"<br /> },<br /> {<br /> "name": "🍎Fruit",<br /> "color": "red"<br /> },<br /> {<br /> "name": "💪Protein",<br /> "color": "yellow"<br /> }<br /> ]<br /> }<br /> },<br /> "Price": {<br /> "number": {<br /> "format": "dollar"<br /> }<br /> },<br /> "Last ordered": {<br /> "date": {}<br /> },<br /> "Meals": {<br /> "relation": {<br /> "database_id": "668d797c-76fa-4934-9b05-ad288df2d136",<br /> "single_property": {}<br /> }<br /> },<br /> "Number of meals": {<br /> "rollup": {<br /> "rollup_property_name": "Name",<br /> "relation_property_name": "Meals",<br /> "function": "count"<br /> }<br /> },<br /> "Store availability": {<br /> "type": "multi_select",<br /> "multi_select": {<br /> "options": [<br /> {<br /> "name": "Duc Loi Market",<br /> "color": "blue"<br /> },<br /> {<br /> "name": "Rainbow Grocery",<br /> "color": "gray"<br /> },<br /> {<br /> "name": "Nijiya Market",<br /> "color": "purple"<br /> },<br /> {<br /> "name": "Gus'''s Community Market",<br /> "color": "yellow"<br /> }<br /> ]<br /> }<br /> },<br /> "+1": {<br /> "people": {}<br /> },<br /> "Photo": {<br /> "files": {}<br /> }<br />}</code> |
+| Input      | Comments                                                                                                                                                        | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Notion connection to use.                                                                                                                                   |         |
+| Parent     | The parent page where the database will be created. Format: {"type": "page_id", "page_id": "..."}                                                               |         |
+| Title      | The title of the database as it appears in Notion, formatted as a rich text array.                                                                              |         |
+| Properties | Property schema of database. The keys are the names of properties as they appear in Notion. For relation properties, use data_source_id instead of database_id. |         |
 
 ### Create Database Item {#createdatabaseitem}
 
 Creates an Item on a database.
 
-| Input       | Comments                                                                                                                                                                                         | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection  |                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Parent      | The parent database where the new page is inserted, represented as a JSON object with a database_id key, and the corresponding ID.                                                               | <code>{<br /> "database_id": "d9824bdc84454327be8b5b47500af6ce"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Properties  | The values of the page's properties. If the parent is a database, then the schema must match the parent database's properties. If the parent is a page, then the only valid object key is title. | <code>{<br /> "Name": {<br /> "title": [<br /> {<br /> "text": {<br /> "content": "Tuscan kale"<br /> }<br /> }<br /> ]<br /> },<br /> "Description": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "A dark green leafy vegetable"<br /> }<br /> }<br /> ]<br /> },<br /> "Food group": {<br /> "select": {<br /> "name": "🥬 Vegetable"<br /> }<br /> }<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                       |
-| Children    | The content to be rendered on the new page, represented as an array of block objects. https://developers.notion.com/reference/block                                                              | <code>[<br /> {<br /> "object": "block",<br /> "heading_2": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "Lacinato kale"<br /> }<br /> }<br /> ]<br /> }<br /> },<br /> {<br /> "object": "block",<br /> "paragraph": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany. It is also known as Tuscan kale, Italian kale, dinosaur kale, kale, flat back kale, palm tree kale, or black Tuscan palm.",<br /> "link": {<br /> "url": "https://en.wikipedia.org/wiki/Lacinato_kale"<br /> }<br /> },<br /> "href": "https://en.wikipedia.org/wiki/Lacinato_kale"<br /> }<br /> ],<br /> "color": "default"<br /> }<br /> }<br />]</code> |
-| Icon        | The icon of the new page. Either an emoji object (https://developers.notion.com/reference/emoji-object) or an external file object (https://developers.notion.com/reference/file-object)         | <code>{<br /> "type": "external",<br /> "external": {<br /> "url": "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80"<br /> }<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Cover Image | The cover image of the new page, represented as a file object.                                                                                                                                   | <code>{<br /> "type": "file",<br /> "file": {<br /> "url": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7b8b0713-dbd4-4962-b38b-955b6c49a573/My_test_image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221024%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221024T205211Z&X-Amz-Expires=3600&X-Amz-Signature=208aa971577ff05e75e68354e8a9488697288ff3fb3879c2d599433a7625bf90&X-Amz-SignedHeaders=host&x-id=GetObject",<br /> "expiry_time": "2022-10-24T22:49:22.765Z"<br /> }<br />}</code>                                                                                                                                                                                         |
+| Input       | Comments                                                                                                                                                                                                                                                                         | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                                                    |         |
+| Parent      | The parent database where the new page is inserted. Recommended format: {"type": "data_source_id", "data_source_id": "..."}. Legacy format {"database_id": "..."} is supported for single-source databases.                                                                      |         |
+| Properties  | The values of the page's properties. <strong>Important:</strong> If the parent is a database, the schema must match the parent database's properties. If the parent is a page, only 'title' is valid. [Learn more](https://developers.notion.com/reference/page-property-values) |         |
+| Children    | The content to be rendered on the new page, represented as an array of block objects. [Block reference](https://developers.notion.com/reference/block)                                                                                                                           |         |
+| Icon        | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object).                                                                                      |         |
+| Cover Image | The cover image of the new page, represented as a [file object](https://developers.notion.com/reference/file-object).                                                                                                                                                            |         |
+
+### Create Data Source {#createdatasource}
+
+Add an additional data source to an existing database. A standard table view is created alongside the new data source.
+
+| Input       | Comments                                                                                                                                                                                                                                           | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                      |         |
+| Database ID | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
+| Properties  | Property schema of the data source. The keys are the names of properties as they appear in Notion.                                                                                                                                                 |         |
+| Title       | The title of the database as it appears in Notion, formatted as a rich text array.                                                                                                                                                                 |         |
+| Icon        | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object).                                                        |         |
 
 ### Create Page {#createpage}
 
 Creates a new page that is a child of an existing page or database.
 
-| Input       | Comments                                                                                                                                                                                         | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection  |                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Parent      | The parent page where the new page is inserted, represented as a JSON object with a page_id and the corresponding ID.                                                                            | <code>{<br /> "page_id": "d9824bdc84454327be8b5b47500af6ce"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Properties  | The values of the page's properties. If the parent is a database, then the schema must match the parent database's properties. If the parent is a page, then the only valid object key is title. | <code>{<br /> "Name": {<br /> "title": [<br /> {<br /> "text": {<br /> "content": "Tuscan kale"<br /> }<br /> }<br /> ]<br /> },<br /> "Description": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "A dark green leafy vegetable"<br /> }<br /> }<br /> ]<br /> },<br /> "Food group": {<br /> "select": {<br /> "name": "🥬 Vegetable"<br /> }<br /> }<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                       |
-| Children    | The content to be rendered on the new page, represented as an array of block objects. https://developers.notion.com/reference/block                                                              | <code>[<br /> {<br /> "object": "block",<br /> "heading_2": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "Lacinato kale"<br /> }<br /> }<br /> ]<br /> }<br /> },<br /> {<br /> "object": "block",<br /> "paragraph": {<br /> "rich_text": [<br /> {<br /> "text": {<br /> "content": "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany. It is also known as Tuscan kale, Italian kale, dinosaur kale, kale, flat back kale, palm tree kale, or black Tuscan palm.",<br /> "link": {<br /> "url": "https://en.wikipedia.org/wiki/Lacinato_kale"<br /> }<br /> },<br /> "href": "https://en.wikipedia.org/wiki/Lacinato_kale"<br /> }<br /> ],<br /> "color": "default"<br /> }<br /> }<br />]</code> |
-| Icon        | The icon of the new page. Either an emoji object (https://developers.notion.com/reference/emoji-object) or an external file object (https://developers.notion.com/reference/file-object)         | <code>{<br /> "type": "external",<br /> "external": {<br /> "url": "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80"<br /> }<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Cover Image | The cover image of the new page, represented as a file object.                                                                                                                                   | <code>{<br /> "type": "file",<br /> "file": {<br /> "url": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7b8b0713-dbd4-4962-b38b-955b6c49a573/My_test_image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221024%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221024T205211Z&X-Amz-Expires=3600&X-Amz-Signature=208aa971577ff05e75e68354e8a9488697288ff3fb3879c2d599433a7625bf90&X-Amz-SignedHeaders=host&x-id=GetObject",<br /> "expiry_time": "2022-10-24T22:49:22.765Z"<br /> }<br />}</code>                                                                                                                                                                                         |
+| Input       | Comments                                                                                                                                                                                                                                                                                                      | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                                                                                 |         |
+| Parent      | The parent where the new page is inserted. <strong>For page parents:</strong> {"type": "page_id", "page_id": "..."}. <strong>For database parents (recommended):</strong> {"type": "data_source_id", "data_source_id": "..."}. Legacy format {"database_id": "..."} is supported for single-source databases. |         |
+| Properties  | The values of the page's properties. <strong>Important:</strong> If the parent is a database, the schema must match the parent database's properties. If the parent is a page, only 'title' is valid. [Learn more](https://developers.notion.com/reference/page-property-values)                              |         |
+| Children    | The content to be rendered on the new page, represented as an array of block objects. [Block reference](https://developers.notion.com/reference/block)                                                                                                                                                        |         |
+| Icon        | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object).                                                                                                                   |         |
+| Cover Image | The cover image of the new page, represented as a [file object](https://developers.notion.com/reference/file-object).                                                                                                                                                                                         |         |
 
 ### Get Current User {#getcurrentuser}
 
 Get the currently logged in user
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                      | Default |
+| ---------- | ----------------------------- | ------- |
+| Connection | The Notion connection to use. |         |
 
-### Get Database {#getdatabase}
+### Get Database (Deprecated) {#getdatabase}
 
 Retrieve a database by ID
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Connection  |          |         |
-| Database ID |          |         |
+| Input       | Comments                                                                                                                                                                                                                                           | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                      |         |
+| Database ID | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
 
 ### Get Page {#getpage}
 
 Retrieve a page by ID with optional property filters
 
-| Input             | Comments                                                                                                           | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        |                                                                                                                    |         |
-| Page ID           |                                                                                                                    |         |
-| Filter Properties | A list of page property value IDs separated by commas. Use this to limit the response to specific page properties. |         |
+| Input             | Comments                                                                                                                                               | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection        | The Notion connection to use.                                                                                                                          |         |
+| Page ID           | The unique identifier of the page in Notion. Find this in the page URL. See [Notion API Page Reference](https://developers.notion.com/reference/page). |         |
+| Filter Properties | Comma-separated list of page property IDs to include in the response. Use this to limit the response to specific page properties.                      |         |
 
 ### Get User by ID {#getuser}
 
 Get a user by their ID
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| User ID    |          |         |
+| Input      | Comments                                                                                                                    | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Notion connection to use.                                                                                               |         |
+| User ID    | The unique identifier of the user in Notion. See [Notion API User Reference](https://developers.notion.com/reference/user). |         |
 
-### List Databases {#listdatabases}
+### List Databases (Deprecated) {#listdatabases}
 
-List all databases
+List all databases or data sources
 
-| Input        | Comments                                                                                                        | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                 |         |
-| Start Cursor | The start cursor is returned from a previous 'list' action when at least one more page of records is available. |         |
-| Fetch All    | Turn this on to fetch all pages. This will ignore the start cursor input.                                       | false   |
+| Input        | Comments                                                                                                                                 | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Notion connection to use.                                                                                                            |         |
+| Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
+| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
+
+### List Data Sources {#listdatasources}
+
+List all data sources accessible to the integration.
+
+| Input        | Comments                                                                                                                                 | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Notion connection to use.                                                                                                            |         |
+| Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
+| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
 
 ### List Pages {#listpages}
 
 List all pages
 
-| Input        | Comments                                                                                                        | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                 |         |
-| Start Cursor | The start cursor is returned from a previous 'list' action when at least one more page of records is available. |         |
-| Fetch All    | Turn this on to fetch all pages. This will ignore the start cursor input.                                       | false   |
+| Input        | Comments                                                                                                                                 | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Notion connection to use.                                                                                                            |         |
+| Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
+| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
 
 ### List Users {#listusers}
 
 List all users in the workspace with optional page size
 
-| Input        | Comments                                                                                                        | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                 |         |
-| Start Cursor | The start cursor is returned from a previous 'list' action when at least one more page of records is available. |         |
-| Page Size    | The number of items from the full list desired in the response. Maximum: 100.                                   | 50      |
-| Fetch All    | Turn this on to fetch all pages. This will ignore the start cursor and page size inputs.                        | false   |
+| Input        | Comments                                                                                                                                 | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Notion connection to use.                                                                                                            |         |
+| Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
+| Page Size    | The number of items to return per page. Maximum: 100.                                                                                    | 50      |
+| Fetch All    | Turn this on to fetch all pages. This will ignore the start cursor and page size inputs.                                                 | false   |
 
-### Query Database {#querydatabase}
+### Query Database (Deprecated) {#querydatabase}
 
-Query a Notion database
+Query a Notion database or data source
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Database ID   |          |         |
-| Filter Object |          |         |
+| Input         | Comments                                                                                                                                                                                                                                           | Default |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection    | The Notion connection to use.                                                                                                                                                                                                                      |         |
+| Database ID   | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
+| Filter Object | Filter conditions to apply to the database query. Supports compound filters using 'and' and 'or' operators. See [Notion API Filter Documentation](https://developers.notion.com/reference/post-database-query-filter).                             |         |
+
+### Query Data Source {#querydatasource}
+
+Query a data source to retrieve pages with optional filtering and sorting.
+
+| Input             | Comments                                                                                                                                                                                                               | Default  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Connection        | The Notion connection to use.                                                                                                                                                                                          |          |
+| Data Source ID    | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases).                             |          |
+| Fetch All         | When true, fetches all pages using pagination. This ignores the start cursor input.                                                                                                                                    | false    |
+| Sort              | Array of sort objects defining the order of query results. Earlier sorts take precedence. See [Notion API Sort Documentation](https://developers.notion.com/reference/post-database-query-sort).                       |          |
+| Filter Object     | Filter conditions to apply to the database query. Supports compound filters using 'and' and 'or' operators. See [Notion API Filter Documentation](https://developers.notion.com/reference/post-database-query-filter). |          |
+| Start Cursor      | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination.                                                                               |          |
+| Page Size         | The number of items to return per page. Maximum: 100.                                                                                                                                                                  | 50       |
+| Result Type       | Type of results to return. Use 'data_source' (recommended) for the new API or 'database' for legacy support.                                                                                                           | database |
+| Filter Properties | Limit the properties included in the response. Provide an object where keys are property names and values are property values or arrays of values.                                                                     |          |
 
 ### Raw Request {#rawrequest}
 
@@ -211,7 +323,7 @@ Send raw HTTP request to Notion
 
 | Input                   | Comments                                                                                                                                                                                               | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                        |         |
+| Connection              | The Notion connection to use.                                                                                                                                                                          |         |
 | URL                     | Input the path only (/users/me), The base URL is already included (https://api.notion.com/v1). For example, to connect to https://api.notion.com/v1/users/me, only /users/me is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                              |         |
@@ -226,3 +338,48 @@ Send raw HTTP request to Notion
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.       | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                    | 0       |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                          | false   |
+
+### Retrieve Database {#retrievedatabase}
+
+Retrieve a database object by ID. Returns database-level information including child data sources.
+
+| Input       | Comments                                                                                                                                                                                                                                           | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                      |         |
+| Database ID | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
+
+### Retrieve Data Source {#retrievedatasource}
+
+Retrieve a data source object containing structural information about columns and configuration.
+
+| Input          | Comments                                                                                                                                                                                   | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                              |         |
+| Data Source ID | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases). |         |
+
+### Update Database {#updatedupdatedatabase}
+
+Update database-level attributes such as title, icon, cover, and inline status. To update data source properties, use the Update Data Source action.
+
+| Input       | Comments                                                                                                                                                                                                                                           | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Notion connection to use.                                                                                                                                                                                                                      |         |
+| Database ID | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
+| Parent      | If provided, the parent of the database will be changed to the specified page ID or workspace.                                                                                                                                                     |         |
+| Title       | The title of the database as it appears in Notion, formatted as a rich text array.                                                                                                                                                                 |         |
+| Is Inline   | Whether the database should be displayed inline in the parent page. If not provided, the inline status will not be updated.                                                                                                                        |         |
+| Icon        | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object).                                                        |         |
+| Cover Image | The cover image of the new page, represented as a [file object](https://developers.notion.com/reference/file-object).                                                                                                                              |         |
+
+### Update Data Source {#updatedatasource}
+
+Update a data source object including its properties (schema), title, description, and trash status.
+
+| Input          | Comments                                                                                                                                                                                    | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                               |         |
+| Data Source ID | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases).  |         |
+| Properties     | Property schema of the data source. The keys are the names of properties as they appear in Notion.                                                                                          |         |
+| Title          | The title of the database as it appears in Notion, formatted as a rich text array.                                                                                                          |         |
+| Icon           | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object). |         |
+| Database ID    | If provided, the parent of the data source will be changed to the specified database ID.                                                                                                    |         |

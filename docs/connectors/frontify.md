@@ -38,8 +38,8 @@ Personal Developer Tokens are used for private applications or during developmen
 
 [Documentation](https://developer.frontify.com/document/1367#/access-control/authentication)
 
-1. To generate a Personal Developer token, navigate to https://company-domain/api/developer/token in your browser.
-   1. Replace 'company-domain' in URL with the domain name of your company's site.
+1. To generate a Personal Developer token, navigate to `https://company-domain/api/developer/token` in your browser.
+   1. Replace `company-domain` in URL with the domain name of your company's site.
 2. Once generated, a developer can use the token until it is manually revoked.
 3. When creating a new token, give it a meaningful name. This is helpful if you later need to revoke a token and for you to keep track of where a given token is used.
 

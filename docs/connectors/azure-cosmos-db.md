@@ -20,7 +20,7 @@ To authenticate this component using your Cosmos DB **Core (SQL) API** master ke
 3. In the left menu, under **Settings**, select **Keys**.
 4. Copy the **Primary Key** or **Secondary Key**.
 
-You will also need the **Cosmos DB account name** (subdomain). For example, if your endpoint is: https://your-cosmos-account.documents.azure.com:443/
+You will also need the **Cosmos DB account name** (subdomain). For example, if your endpoint is: `https://your-cosmos-account.documents.azure.com/`
 
 Then your account name is: `your-cosmos-account`
 

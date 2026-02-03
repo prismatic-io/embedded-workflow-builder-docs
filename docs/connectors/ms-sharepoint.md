@@ -341,11 +341,12 @@ Checks for new and updated items in a specified SharePoint drive on a configured
 
 Checks for new and updated items in a specified folder within a SharePoint drive on a configured schedule.
 
-| Input      | Comments                                     | Default |
-| ---------- | -------------------------------------------- | ------- |
-| Connection | The Microsoft SharePoint connection to use.  |         |
-| Drive      | The unique identifier of a SharePoint drive. |         |
-| Folder ID  | The ID of the folder to monitor for changes. |         |
+| Input              | Comments                                                              | Default |
+| ------------------ | --------------------------------------------------------------------- | ------- |
+| Connection         | The Microsoft SharePoint connection to use.                           |         |
+| Drive              | The unique identifier of a SharePoint drive.                          |         |
+| Folder ID          | The ID of the folder to monitor for changes.                          |         |
+| Include Subfolders | When enabled, changes in subfolders will also be tracked recursively. | false   |
 
 ### New and Updated Site Items {#pollsitechanges}
 
