@@ -5,7 +5,12 @@ description: Use the DocuSign component to manage signature collection and docum
 ---
 
 ![DocuSign](./assets/docusign.png#connector-icon)
-Use the DocuSign component to manage signature collection and document distribution.
+[DocuSign](https://www.docusign.com/) is an electronic signature and digital transaction management platform.
+This component allows you to create and manage envelopes, send documents for signature, track signature status, manage templates, and configure webhooks for event notifications.
+
+## API Documentation
+
+This component was built using the [DocuSign eSignature REST API Reference](https://developers.docusign.com/docs/esign-rest-api/reference/) currently utilizing v2.1.
 
 ## Connections
 

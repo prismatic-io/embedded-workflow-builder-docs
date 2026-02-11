@@ -7,6 +7,12 @@ description: Frontify is a comprehensive brand management platform that enables 
 ![Frontify](./assets/frontify.png#connector-icon)
 Frontify is a comprehensive brand management platform that enables organizations to create, manage, and distribute brand assets, guidelines, and digital content across teams and channels, streamlining brand consistency and collaboration.
 
+Use the Frontify Component to create, manage, and distribute brand assets, guidelines, and digital content across teams and channels, streamlining brand consistency and collaboration.
+
+## API Documentation:
+
+This component was built using the [Frontify GraphQL API Reference](https://frontify.github.io/graphql-reference/).
+
 ## Connections
 
 ### OAuth 2.0 {#frontifyoauth2}

@@ -5,7 +5,7 @@ description: Manage companies, contacts and tags on the Intercom platform
 ---
 
 ![Intercom](./assets/intercom.png#connector-icon)
-Manage companies, contacts and tags on the Intercom platform
+[Intercom](https://intercom.com) is a tool purpose-built for sales, marketing, and support to use together.
 
 ## Connections
 

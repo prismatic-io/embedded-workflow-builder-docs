@@ -5,7 +5,9 @@ description: xAI Grok is an AI-powered component that provides advanced chat and
 ---
 
 ![xAI Grok](./assets/xai-grok.png#connector-icon)
-xAI Grok is an AI-powered component that provides advanced chat and image generation capabilities.
+[xAI Grok](https://x.ai/) is an advanced AI model developed by xAI, offering powerful chat completions and image generation capabilities.
+
+Use the component to generate AI-powered text responses and create images from text prompts.
 
 ## Connections
 

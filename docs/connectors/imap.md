@@ -5,7 +5,10 @@ description: Interact with your IMAP email account
 ---
 
 ![IMAP](./assets/imap.png#connector-icon)
-Interact with your IMAP email account
+[IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) or Internet Message Access Protocol is an Internet standard protocol used by email clients to retrieve email messages from a mail server over a TCP/IP connection.
+This component allows you to interact with mailboxes and messages on any IMAP server.
+
+Further information can be found in the [underlying Node.js library's documentation](https://imapflow.com/docs/).
 
 ## Connections
 

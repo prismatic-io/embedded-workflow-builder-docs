@@ -5,7 +5,7 @@ description: Search and extract data from PDF documents
 ---
 
 ![PDF](./assets/pdf.png#connector-icon)
-Search and extract data from PDF documents
+The **pdf** component provides some actions for interacting with PDF documents, like finding text in a PDF document, listing page numbers, or extracting a specific page of a document.
 
 ## Actions
 

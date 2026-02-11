@@ -5,7 +5,12 @@ description: Manage sheets, rows, and workspaces in the Smartsheet platform
 ---
 
 ![Smartsheet](./assets/smartsheet.png#connector-icon)
-Manage sheets, rows, and workspaces in the Smartsheet platform
+[Smartsheet](https://www.smartsheet.com) is a software as a service offering for collaboration and work management, developed and marketed by Smartsheet Inc.
+This component allows you to manage and interact with a Smartsheet sheets.
+
+## API Documentation
+
+This component was built using the [Smartsheet API Documentation](https://smartsheet.redoc.ly/)
 
 ## Connections
 

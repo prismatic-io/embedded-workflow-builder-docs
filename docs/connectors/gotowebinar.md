@@ -5,7 +5,13 @@ description: GoTo Webinar is a platform for hosting, managing, and attending liv
 ---
 
 ![GoTo Webinar](./assets/gotowebinar.png#connector-icon)
-GoTo Webinar is a platform for hosting, managing, and attending live or pre-recorded webinars.
+**GoTo Webinar** is a platform for hosting, managing, and attending live or pre-recorded webinars.
+
+Use the component to schedule, manage, and subscribe to webinars, registrants, attendees, and more.
+
+## API Documentation:
+
+The component was built using the [GoTo Webinar 2.0 REST API](https://developer.goto.com/GoToWebinarV2).
 
 ## Connections
 

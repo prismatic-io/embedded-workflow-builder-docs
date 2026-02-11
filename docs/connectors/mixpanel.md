@@ -5,7 +5,11 @@ description: Manage events, profiles, and analytics data in Mixpanel.
 ---
 
 ![Mixpanel](./assets/mixpanel.png#connector-icon)
-Manage events, profiles, and analytics data in Mixpanel.
+[Mixpanel](https://mixpanel.com/) is a product analytics platform that tracks user interactions with web and mobile applications. This component allows you to track events, manage user profiles, query analytics data, and create custom funnels.
+
+## API Documentation
+
+This component was built using the [Mixpanel HTTP API](https://developer.mixpanel.com/reference/overview).
 
 ## Connections
 

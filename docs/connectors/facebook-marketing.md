@@ -5,7 +5,12 @@ description: Interact with ads and adsets in your Meta Ads account.
 ---
 
 ![Meta Ads](./assets/facebook-marketing.png#connector-icon)
-Interact with ads and adsets in your Meta Ads account.
+[Meta Ads](https://developers.facebook.com/docs/marketing-apis/get-started) (Formerly known as Facebook Marketing) is a digital advertising platform that allows
+businesses to create, manage, and optimize ads across Meta products, including Facebook, Instagram, and WhatsApp.
+
+## API Documentation
+
+This component was built using the [Meta Ads Marketing API Reference](https://developers.facebook.com/docs/marketing-api/reference) utilizing version [V22.0](https://developers.facebook.com/docs/marketing-api/marketing-api-changelog/version22.0)
 
 ## Connections
 

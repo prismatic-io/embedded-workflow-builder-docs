@@ -5,7 +5,8 @@ description: Qlik is a business analytics platform. Use the Qlik component to ma
 ---
 
 ![Qlik](./assets/qlik.png#connector-icon)
-Qlik is a business analytics platform. Use the Qlik component to manage your Data Sets, Assets, and Apps.
+[Qlik](https://www.qlik.com) is a business analytics platform.
+Use the Qlik component to manage your Data Sets, Assets, and Apps.
 
 ## Connections
 

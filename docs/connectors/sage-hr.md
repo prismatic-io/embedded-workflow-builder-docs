@@ -5,7 +5,7 @@ description: Sage HR is all inclusive Human Resource management solution. Use th
 ---
 
 ![Sage HR](./assets/sage-hr.png#connector-icon)
-Sage HR is all inclusive Human Resource management solution. Use the Sage HR component to manage Employees, Teams, Projects, and more.
+[Sage HR](https://sage.hr/) Sage HR is all inclusive Human Resource management solution. Use the Sage HR component to manage Employees, Teams, Projects, and more.
 
 ## Connections
 

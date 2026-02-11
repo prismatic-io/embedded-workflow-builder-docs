@@ -5,7 +5,11 @@ description: Manage Notion pages, databases, and users
 ---
 
 ![Notion](./assets/notion.png#connector-icon)
-Manage Notion pages, databases, and users
+[Notion](https://www.notion.so) is a productivity and collaboration platform that combines note taking, project management, and database capabilities. This component allows you to manage pages, databases, and users within your Notion workspace.
+
+## API Documentation
+
+This component was built using the [Notion API](https://developers.notion.com/reference/intro).
 
 ## Connections
 

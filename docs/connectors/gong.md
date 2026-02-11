@@ -5,7 +5,13 @@ description: Manage calls, users, and workspaces in the Gong revenue intelligenc
 ---
 
 ![Gong](./assets/gong.png#connector-icon)
-Manage calls, users, and workspaces in the Gong revenue intelligence platform.
+[Gong](https://www.gong.io/) is a revenue intelligence platform that captures customer interactions and delivers insights at scale, empowering sales teams to make data driven decisions and improve their performance.
+
+This component allows you to interact with the Gong REST API to manage calls, users, workspaces, and engagement data.
+
+## API Documentation
+
+This component was built using the [Gong API Documentation](https://app.gong.io/settings/api/documentation)
 
 ## Connections
 

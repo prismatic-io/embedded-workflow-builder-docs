@@ -5,7 +5,13 @@ description: Manage files stored in Dropbox
 ---
 
 ![Dropbox](./assets/dropbox.png#connector-icon)
-Manage files stored in Dropbox
+[Dropbox](https://www.dropbox.com/) is a file sharing platform that allows teams to collaborate and share files with one another.
+The Dropbox component allows you to interact with the Dropbox API.
+You can upload, download, list, and move files within a Dropbox account.
+
+## API Documentation
+
+This component was built using the [Dropbox API Documentation](https://www.dropbox.com/developers/documentation/http/overview)
 
 ## Connections
 

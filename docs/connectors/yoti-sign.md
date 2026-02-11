@@ -5,7 +5,12 @@ description: Yoti Sign is a digital identity and e-signature solution that allow
 ---
 
 ![Yoti Sign](./assets/yoti-sign.png#connector-icon)
-Yoti Sign is a digital identity and e-signature solution that allows users to verify their identity and sign documents electronically and securely.
+[Yoti Sign](https://www.yotisign.com/) is a digital identity and e-signature solution that allows users to verify their identity and sign documents electronically and securely.
+
+Use the Yoti Sign component to send, sign, track, and manage the signature process.
+
+API Documentation:
+[Yoti eSignatures](https://developers.yoti.com/eSignatures/overview),
 
 ## Connections
 

@@ -5,7 +5,8 @@ description: Interact with an MQTT Queue
 ---
 
 ![MQTT](./assets/mqtt.png#connector-icon)
-Interact with an MQTT Queue
+[Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) is a light-weight, efficient _publish-subscribe_ network protocol for sending messages between devices.
+This component allows you to publish messages to an MQTT queue topic.
 
 ## Connections
 

@@ -5,7 +5,8 @@ description: Manage invoices, items, accounts, payments and more objects from yo
 ---
 
 ![Xero](./assets/xero.png#connector-icon)
-Manage invoices, items, accounts, payments and more objects from your Xero account.
+[Xero](https://www.xero.com/us/) is a cloud-based accounting software platform for small and medium-sized businesses.
+The Xero component allows you to manage your invoices, payments, items, and contacts through the Xero Rest API.
 
 ## Connections
 

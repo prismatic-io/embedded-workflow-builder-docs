@@ -5,7 +5,8 @@ description: Common collection operations
 ---
 
 ![Collection Tools](./assets/collection-tools.png#connector-icon)
-Common collection operations
+The collection tools component contains actions that let you perform common tasks on collections of data (objects and arrays).
+You can do things like concatenate objects, filter items of lists (arrays), map functions on items, and more.
 
 ## Actions
 

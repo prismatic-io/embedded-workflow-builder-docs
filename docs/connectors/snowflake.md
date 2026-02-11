@@ -5,13 +5,17 @@ description: Execute SQL queries and manage statements in Snowflake.
 ---
 
 ![Snowflake](./assets/snowflake.png#connector-icon)
-Execute SQL queries and manage statements in Snowflake.
+[Snowflake](https://www.snowflake.com/) is a cloud data platform. This component allows executing SQL queries and managing statement operations within Snowflake databases.
+
+## API Documentation
+
+This component utilizes the [Snowflake SQL API](https://docs.snowflake.com/en/developer-guide/sql-api/index).
 
 ## Connections
 
-### Snowflake Key Pair Authentication {#snowflakekeypairconnection}
+### Key Pair Authentication {#snowflakekeypairconnection}
 
-Use this connection if you want to connect to Snowflake via their Key Pair Authentication.
+Authenticate using key pair authentication
 
 Snowflake supports key-pair authentication using a public-private key pair. This authentication method provides enhanced security for programmatic access to Snowflake resources.
 
@@ -57,25 +61,27 @@ In the output, verify that the **RSA_PUBLIC_KEY_FP** property displays the finge
 
 #### Configure the Connection
 
-- Enter the **Account Name** (e.g., `myorg-account123`)
-- Enter the **Username** associated with the public key
-- Enter the **Private Key** content from the `rsa_key.p8` file (include the full private key, including the header and footer lines)
-- If the private key is encrypted, enter the **Private Key Passphrase**
+Create a connection of type **Key Pair Authentication** and enter:
+
+- **Account Identifier**: The Snowflake account identifier (e.g., `myorg-account123`)
+- **Snowflake Username**: The username associated with the public key
+- **Private Key**: The full content from the `rsa_key.p8` file (include the header and footer lines)
+- **Passphrase**: The private key passphrase (if the key is encrypted)
 
 :::note Private Key Security
-It is highly recommended to use private key encryption for live integrations and should be kept secure and never shared.
+Private key encryption is highly recommended for production integrations. Keep keys secure and never share them.
 :::
 
-| Input              | Comments                                                                                                                                                                                                                  | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Private Key        | The private key in PEM format for Snowflake Key Pair Authentication. Generate a key pair and register the public key with your Snowflake user. [Learn more](https://docs.snowflake.com/en/user-guide/key-pair-auth)       |         |
-| Snowflake Username | Your Snowflake username. This is typically your login name in uppercase.                                                                                                                                                  |         |
-| Account Identifier | Your Snowflake account identifier. Format: [organization]-[account] or [account].[region]. Find this in the organization's account panel. [Learn more](https://docs.snowflake.com/en/user-guide/admin-account-identifier) |         |
-| Passphrase         | The passphrase for the provided private key. Leave blank if your key is not encrypted.                                                                                                                                    |         |
+| Input              | Comments                                                                                                                                                                                                                                                                                                                                                                                                     | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Private Key        | The private key in PEM format for Snowflake Key Pair Authentication. Generate a key pair and register the public key with the Snowflake user. [Learn more](https://docs.snowflake.com/en/user-guide/key-pair-auth)                                                                                                                                                                                           |         |
+| Snowflake Username | The Snowflake username for authentication. This is typically the login name in uppercase.                                                                                                                                                                                                                                                                                                                    |         |
+| Account Identifier | The Snowflake account identifier. Format: [organization]-[account]. Find this in the organization's account panel. [Learn more](https://docs.snowflake.com/en/user-guide/admin-account-identifier). For the JWT token generation, account identifiers need follow snowflake's [iss format requirements](https://docs.snowflake.com/en/developer-guide/sql-api/authenticating#using-key-pair-authentication). |         |
+| Passphrase         | The passphrase for the provided private key. Leave blank if the key is not encrypted.                                                                                                                                                                                                                                                                                                                        |         |
 
-### Snowflake OAuth 2.0 {#snowflakeoauth2}
+### OAuth 2.0 {#snowflakeoauth2}
 
-Snowflake OAuth 2.0 Authentication.
+Authenticate using OAuth 2.0
 
 Snowflake uses OAuth 2.0 for authentication and making API calls. This connection type requires creating a security integration within Snowflake and configuring OAuth settings.
 
@@ -84,7 +90,7 @@ For additional details, refer to the [Snowflake OAuth custom client documentatio
 #### Prerequisites
 
 - Active Snowflake account with appropriate permissions to create security integrations
-- User account with roles other than `ACCOUNTADMIN`, `SECURITYADMIN`, or `ORGADMIN` (these roles are blocked from OAuth authentication by default)
+- User account with roles excluding `ACCOUNTADMIN`, `SECURITYADMIN`, or `ORGADMIN` (these roles are blocked from OAuth authentication by default)
 
 #### Setup Steps
 
@@ -133,7 +139,7 @@ Scopes control which Snowflake role is used during the OAuth session. If no scop
 
 | Scope                    | Description                                             |
 | ------------------------ | ------------------------------------------------------- |
-| `session:role:PUBLIC`    | Use the PUBLIC role (available to all users)            |
+| `session:role:PUBLIC`    | Use the PUBLIC role                                     |
 | `session:role:SYSADMIN`  | Use the SYSADMIN role for database/warehouse management |
 | `session:role:USERADMIN` | Use the USERADMIN role for user/role management         |
 | `session:role:ANALYST`   | Use a custom ANALYST role (if configured)               |
@@ -145,22 +151,25 @@ Scopes control which Snowflake role is used during the OAuth session. If no scop
 
 #### Configure the Connection
 
-- Enter the **Authorization URL** from step 3
-- Enter the **Token URL** from step 3
-- Enter the **Client ID** from step 3
-- Enter the **Client Secret** from step 4
-- Optionally configure **Scopes**
+Create a connection of type **OAuth 2.0** and enter:
+
+- **Authorization URL**: From step 3
+- **Token URL**: From step 3
+- **Client ID**: From step 3
+- **Client Secret**: From step 4
+- **Scopes**: Optionally configure scopes to control the Snowflake role
+- **Headers**: Optionally add additional authorization request headers
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
 | Input         | Comments                                                                                                                                                                                                                                           | Default |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Authorize URL | The OAuth 2.0 Authorization URL for your Snowflake account. Format: https://[account-identifier].snowflakecomputing.com/oauth/authorize. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-snowflake-overview)                           |         |
-| Token URL     | The OAuth 2.0 Token URL for your Snowflake account. Format: https://[account-identifier].snowflakecomputing.com/oauth/token-request. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-snowflake-overview)                               |         |
+| Authorize URL | The OAuth 2.0 Authorization URL for the Snowflake account. Format: https://[account-identifier].snowflakecomputing.com/oauth/authorize. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-snowflake-overview)                            |         |
+| Token URL     | The OAuth 2.0 Token URL for the Snowflake account. Format: https://[account-identifier].snowflakecomputing.com/oauth/token-request. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-snowflake-overview)                                |         |
 | Scopes        | Controls which Snowflake role is used during the session. Format: session:role:<ROLE_NAME>. If not specified, the user's default role is used. Space separate multiple scopes. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-custom) |         |
-| Client ID     | Client ID of your Snowflake OAuth integration. Obtain this from your security integration configuration. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-custom)                                                                       |         |
-| Client Secret | Client Secret of your Snowflake OAuth integration. Generated when creating the security integration. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-custom)                                                                           |         |
+| Client ID     | The Client ID of the Snowflake OAuth integration. Obtain this from the security integration configuration. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-custom)                                                                     |         |
+| Client Secret | The Client Secret of the Snowflake OAuth integration. Generated when creating the security integration. [Learn more](https://docs.snowflake.com/en/user-guide/oauth-custom)                                                                        |         |
 | Headers       | Additional headers to supply to authorization requests.                                                                                                                                                                                            |         |
 
 ## Actions

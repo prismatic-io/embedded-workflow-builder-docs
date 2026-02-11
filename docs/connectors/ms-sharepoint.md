@@ -5,7 +5,12 @@ description: Manage sites, drives, files, and lists in Microsoft SharePoint.
 ---
 
 ![Microsoft SharePoint](./assets/ms-sharepoint.png#connector-icon)
-Manage sites, drives, files, and lists in Microsoft SharePoint.
+[Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration?ms.officeurl=sharepoint&rtc=1) is a web-based document management and collaboration platform that integrates with Microsoft 365.
+This component allows you to manage sites, drives, files, and lists within SharePoint.
+
+## API Documentation
+
+This component was built using the [Microsoft Graph Rest API v1.0](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint?view=graph-rest-1.0)
 
 ## Connections
 

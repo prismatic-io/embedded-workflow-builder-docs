@@ -5,7 +5,12 @@ description: Manage messages, labels, and drafts in Gmail.
 ---
 
 ![Gmail](./assets/google-gmail.png#connector-icon)
-Manage messages, labels, and drafts in Gmail.
+[Gmail](https://workspace.google.com/products/gmail/) is Google's email service for personal and business use.
+This component allows you to send, read, filter, and manage messages, labels, and drafts in Gmail accounts, as well as configure push notifications for real-time mailbox updates.
+
+## API Documentation
+
+This component was built using the [Gmail API Documentation](https://developers.google.com/gmail/api/guides).
 
 ## Connections
 

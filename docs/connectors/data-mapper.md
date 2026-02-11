@@ -5,7 +5,8 @@ description: Map input values to output values using a specified mapping
 ---
 
 ![Data Mapper](./assets/data-mapper.png#connector-icon)
-Map input values to output values using a specified mapping
+The **data mapper** component allows you to apply a _map_ to a value or list of values.
+This is handy if you have a list of items, and would like to categorize each item.
 
 ## Actions
 

@@ -5,7 +5,11 @@ description: Manage applicants, workers, and payroll data in ADP Workforce Now.
 ---
 
 ![ADP Workforce Now](./assets/adp-workforce-now.png#connector-icon)
-Manage applicants, workers, and payroll data in ADP Workforce Now.
+[ADP Workforce Now](https://www.adp.com/what-we-offer/products/adp-workforce-now.aspx) is a human capital management (HCM) platform. This component allows you to manage applicants, workers, and payroll data within ADP Workforce Now.
+
+## API Documentation
+
+This component was built using the [ADP Workforce Now API Reference](https://developers.adp.com/build/api-explorer/hcm-offrg-wfn).
 
 ## Connections
 

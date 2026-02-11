@@ -5,7 +5,8 @@ description: ShipStation is an ecommerce shipping software solution.
 ---
 
 ![ShipStation](./assets/shipstation.png#connector-icon)
-ShipStation is an ecommerce shipping software solution.
+ShipStation is an e-commerce shipping solution that streamlines the order fulfillment process.
+This component allows you to list, create, update, and delete orders and shipments in your ShipStation account.
 
 ## Connections
 

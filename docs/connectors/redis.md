@@ -5,7 +5,8 @@ description: Manage items in a Redis database
 ---
 
 ![Redis](./assets/redis.png#connector-icon)
-Manage items in a Redis database
+[Redis](https://redis.io/) is an in-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker.
+The **Redis** component provides the ability to create, read, update, and delete data inside a Redis database.
 
 ## Connections
 

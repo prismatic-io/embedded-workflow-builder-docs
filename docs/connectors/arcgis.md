@@ -5,7 +5,13 @@ description: Use the Esri ArcGIS component to manage map layers, and update loca
 ---
 
 ![ArcGIS](./assets/arcgis.png#connector-icon)
+Esri ArcGIS is an online geographic information system providing and maintaining detailed information and tools for maps and locations.
+
 Use the Esri ArcGIS component to manage map layers, and update locations.
+
+## API Documentation
+
+This component was built using the [ArcGIS API Reference](https://developers.arcgis.com/rest/services-reference/enterprise/get-started-with-the-services-directory.htm)
 
 ## Connections
 

@@ -5,7 +5,8 @@ description: Manage AWS Glue crawlers, jobs and triggers
 ---
 
 ![AWS Glue](./assets/aws-glue.png#connector-icon)
-Manage AWS Glue crawlers, jobs and triggers
+[AWS Glue](https://aws.amazon.com/glue) is a serverless data integration service from Amazon Web Services.
+The AWS Glue component allows you to interact with jobs, triggers, and crawlers in your AWS Glue account.
 
 ## Connections
 

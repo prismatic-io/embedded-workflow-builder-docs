@@ -5,7 +5,12 @@ description: Generate completions and images using Azure OpenAI Service or OpenA
 ---
 
 ![Azure OpenAI Service](./assets/azure-openai-service.png#connector-icon)
-Generate completions and images using Azure OpenAI Service or OpenAI API.
+[Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service) is Microsoft's cloud service that provides REST API access to OpenAI's language models including GPT-4, GPT-3.5-Turbo, and DALL·E.
+This component allows you to create chat completions, generate images, and perform text completions using Azure-hosted OpenAI models or directly through the OpenAI API.
+
+## API Documentation
+
+This component supports both the [Azure OpenAI Service REST API](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference) and the [OpenAI Platform API](https://platform.openai.com/docs/api-reference).
 
 ## Connections
 

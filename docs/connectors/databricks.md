@@ -5,7 +5,12 @@ description: Manage compute, workflow jobs, ML models, SQL queries and more with
 ---
 
 ![Databricks](./assets/databricks.png#connector-icon)
-Manage compute, workflow jobs, ML models, SQL queries and more within a Databricks workspace.
+**Databricks** is an analytics and artificial intelligence platform where you can build, scale and govern data and AI, including generative AI and other machine learning models.
+This component lets you interact with the Databricks REST API to manage clusters, jobs, libraries, and other resources.
+
+## API Documentation
+
+This component was built using the [Databricks REST API Reference](https://docs.databricks.com/api/workspace/introduction).
 
 ## Connections
 

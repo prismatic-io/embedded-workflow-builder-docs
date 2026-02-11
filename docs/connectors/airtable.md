@@ -5,7 +5,12 @@ description: Manage records, tables and bases in Airtable
 ---
 
 ![Airtable](./assets/airtable.png#connector-icon)
-Manage records, tables and bases in Airtable
+[Airtable](https://airtable.com/) is a spreadsheet-database hybrid, with the features of a database but applied to a spreadsheet.
+This component allows you to list, create, delete, and update records in an Airtable Base.
+
+## API Documentation
+
+This component was built using the [Airtable Web API](https://airtable.com/developers/web/api/introduction).
 
 ## Connections
 

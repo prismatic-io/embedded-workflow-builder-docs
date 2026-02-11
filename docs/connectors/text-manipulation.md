@@ -5,7 +5,8 @@ description: Perform common operations on strings and arrays of strings
 ---
 
 ![Text Manipulation](./assets/text-manipulation.png#connector-icon)
-Perform common operations on strings and arrays of strings
+The **text manipulation** component allows you to perform common operations on some text.
+For example, you can join two or more text strings together with the **join** action, find text with the **match** action, replace strings with other strings within a piece of text with the **replace** function, and more.
 
 ## Actions
 

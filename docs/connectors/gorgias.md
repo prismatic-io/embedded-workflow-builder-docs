@@ -5,7 +5,13 @@ description: Gorgias is a customer support platform designed to help e-commerce 
 ---
 
 ![Gorgias](./assets/gorgias.png#connector-icon)
-Gorgias is a customer support platform designed to help e-commerce businesses manage customer inquiries and support tickets efficiently.
+[Gorgias](https://www.gorgias.com/) is a customer service platform that helps e-commerce businesses provide support for their online stores. It allows businesses to offer multichannel customer service from a single app, including email, voice, SMS, live chat, and social media. Gorgias is known for its deep integration with e-commerce platforms like Shopify, Magento, and Big Commerce. This integration allows customer service teams to review, edit, or refund customer orders directly from within the Gorgias ticket window.
+
+Use the Gorgias component to create and manage tickets, customers, and associated events.
+
+## API Documentation
+
+This component was built using the [Gorgias REST API](https://developers.gorgias.com/reference/introduction).
 
 ## Connections
 

@@ -5,7 +5,12 @@ description: Manage email delivery and contacts in SendGrid.
 ---
 
 ![SendGrid](./assets/sendgrid.png#connector-icon)
-Manage email delivery and contacts in SendGrid.
+[SendGrid](https://sendgrid.com/) is a cloud-based email delivery platform owned by Twilio.
+This component allows you to send transactional and marketing emails, manage contacts, and track email analytics.
+
+## API Documentation
+
+This component was built using the [SendGrid API v3](https://www.twilio.com/docs/sendgrid/api-reference).
 
 ## Connections
 
@@ -13,7 +18,31 @@ Manage email delivery and contacts in SendGrid.
 
 Authenticate requests to SendGrid using values obtained from the SendGrid Developer Console.
 
-Information about getting started and creating API keys with [SendGrid](https://sendgrid.com/docs/for-developers/sending-email/api-getting-started/) can be found on their developer documentation site.
+To authenticate with SendGrid, an API key is required.
+
+#### Setup Steps
+
+To generate an API key:
+
+1. Log in to the [SendGrid Console](https://app.sendgrid.com/)
+2. Navigate to **Settings** > **API Keys**
+3. Click **Create API Key**
+4. Enter a name for the API key
+5. Select the appropriate access level:
+   - **Full Access** - Grants all permissions (recommended for integration use)
+   - **Restricted Access** - Grants specific permissions based on requirements
+6. Click **Create & View**
+7. Copy the API key value (it will only be displayed once)
+
+For more information about creating API keys, refer to the [SendGrid API Keys documentation](https://docs.sendgrid.com/ui/account-and-settings/api-keys).
+
+#### Configure the Connection
+
+- Enter the API key into the **API Key** field in the connection configuration
+
+:::warning API Key Security
+The API key is only displayed once upon creation. Store it securely. If the key is lost, a new one must be generated.
+:::
 
 | Input   | Comments                                                                                                                                          | Default |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

@@ -5,7 +5,12 @@ description: Manage records and associations in the HubSpot CRM platform
 ---
 
 ![HubSpot](./assets/hubspot.png#connector-icon)
-Manage records and associations in the HubSpot CRM platform
+[HubSpot](https://www.hubspot.com/) is a Customer Relationship Management software for inbound marketing, sales, and customer service.
+This component allows you to manage contacts, companies, deals, products, engagements, and custom objects in HubSpot.
+
+## API Documentation
+
+This component was built using the [HubSpot API Documentation](https://developers.hubspot.com/docs/api/overview) currently utilizing v3
 
 ## Connections
 

@@ -5,7 +5,11 @@ description: Use the Microsoft Intune component to manage users, devices, and ap
 ---
 
 ![Microsoft Intune](./assets/ms-intune.png#connector-icon)
-Use the Microsoft Intune component to manage users, devices, and applications.
+[Microsoft Intune](https://www.microsoft.com/en-us/security/business/microsoft-intune) is a cloud-based service that focuses on device management and application management. This component allows you to manage users, devices, groups, mobile applications, and device compliance policies within Microsoft Intune.
+
+## API Documentation
+
+This component was built using the [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0&preserve-view=true).
 
 ## Connections
 

@@ -5,7 +5,9 @@ description: Use the ClickUp component to manage users, projects, and teams in y
 ---
 
 ![ClickUp](./assets/click-up.png#connector-icon)
-Use the ClickUp component to manage users, projects, and teams in your ClickUp workspace.
+[ClickUp](https://clickup.com/) ClickUp is a CRM, collaboration, knowledge base, and project management tool.
+
+Use the Clickup component to manage users, projects, and teams in your Clickup workspace.
 
 ## Connections
 

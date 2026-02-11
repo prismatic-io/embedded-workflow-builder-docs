@@ -5,7 +5,13 @@ description: Manage spreadsheets, sheets, and rows in Google Sheets.
 ---
 
 ![Google Sheets](./assets/google-sheets.png#connector-icon)
-Manage spreadsheets, sheets, and rows in Google Sheets.
+[Google Sheets](https://www.google.com/sheets/about/) is a cloud-based spreadsheet service from Google.
+This component allows you to create and manage spreadsheets, manipulate sheets and rows, and read cell data within Google Drive.
+
+## API Documentation
+
+This component was built using the [Google Sheets API](https://developers.google.com/sheets/api/reference/rest) v4.
+Additional information can be found in the [Google Sheets API Guides](https://developers.google.com/sheets/api/guides/concepts).
 
 ## Connections
 

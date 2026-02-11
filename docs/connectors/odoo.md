@@ -5,7 +5,8 @@ description: Manage records in an Odoo database
 ---
 
 ![Odoo](./assets/odoo.png#connector-icon)
-Manage records in an Odoo database
+Odoo is a suite of open source business apps that include CRM, eCommerce, accounting, inventory, project management, etc.
+This component allows you to query and manage records in an Odoo database.
 
 ## Connections
 

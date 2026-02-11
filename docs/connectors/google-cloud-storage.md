@@ -5,7 +5,12 @@ description: Manage files in a Google Cloud Platform (GCP) Cloud Storage bucket
 ---
 
 ![Google Cloud Storage](./assets/google-cloud-storage.png#connector-icon)
-Manage files in a Google Cloud Platform (GCP) Cloud Storage bucket
+[Google Cloud Storage](https://cloud.google.com/storage) is Google's cloud file/blob storage system.
+The Google Cloud Storage component allows you to create, download, modify, list, and delete files stored in a Google Cloud Storage bucket.
+
+## API Documentation
+
+This component was built using the [Google Cloud Storage JSON API](https://cloud.google.com/storage/docs/json_api)
 
 ## Connections
 

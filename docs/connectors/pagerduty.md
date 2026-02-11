@@ -5,7 +5,13 @@ description: PagerDuty is a platform for managing on-call operations. This compo
 ---
 
 ![PagerDuty](./assets/pagerduty.png#connector-icon)
-PagerDuty is a platform for managing on-call operations. This component supports PagerDuty REST API V2.
+PagerDuty is an industry leading incident management tool.
+
+Use the component to create and manage Incidents, events, and more.
+
+## API Documentation:
+
+The component was built using the [PagerDuty REST API](https://developer.pagerduty.com/api-reference/e65c5833eeb07-pager-duty-api)
 
 ## Connections
 

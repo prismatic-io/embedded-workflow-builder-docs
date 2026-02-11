@@ -5,7 +5,8 @@ description: Create records and incidents within ServiceNow
 ---
 
 ![ServiceNow](./assets/servicenow.png#connector-icon)
-Create records and incidents within ServiceNow
+[ServiceNow](https://www.servicenow.com/) is platform that helps you manage digital workflows.
+The ServiceNow component gives you the ability to insert table records and incidents on the platform.
 
 ## Connections
 

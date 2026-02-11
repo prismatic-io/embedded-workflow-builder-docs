@@ -5,7 +5,7 @@ description: Read, write, move and delete files on an SFTP server
 ---
 
 ![SFTP](./assets/sftp.png#connector-icon)
-Read, write, move and delete files on an SFTP server
+The SFTP (_SSH File Transfer Protocol_) component lets you upload, download, move and delete files on an SFTP server.
 
 ## Connections
 

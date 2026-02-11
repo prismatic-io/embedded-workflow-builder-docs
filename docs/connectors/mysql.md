@@ -5,7 +5,8 @@ description: Query and manage data in a MySQL Database
 ---
 
 ![MySQL](./assets/mysql.png#connector-icon)
-Query and manage data in a MySQL Database
+[MySQL](https://www.mysql.com/) is a popular relational database system.
+This component allows you to query a MySQL database.
 
 ## Connections
 

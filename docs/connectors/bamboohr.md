@@ -5,7 +5,12 @@ description: Manage employees and HR data in the BambooHR platform
 ---
 
 ![BambooHR](./assets/bamboohr.png#connector-icon)
-Manage employees and HR data in the BambooHR platform
+[BambooHR](https://www.bamboohr.com/) is a comprehensive human resources software platform that helps companies manage their HR processes effectively. BambooHR's services include an applicant tracking system, employee benefits tracker, time tracking, and employee records management.
+This component allows you to interact with the BambooHR API.
+
+## API Documentation
+
+This component was built using the [BambooHR API Documentation](https://documentation.bamboohr.com/reference/)
 
 ## Connections
 

@@ -5,7 +5,11 @@ description: Send transactional emails and manage delivery settings in Postmark.
 ---
 
 ![Postmark](./assets/postmark.png#connector-icon)
-Send transactional emails and manage delivery settings in Postmark.
+[Postmark](https://postmarkapp.com/) is a transactional email delivery service. This component allows you to send emails, manage sender signatures, and analyze email delivery and engagement.
+
+## API Documentation
+
+This component was built using the [Postmark API Documentation](https://postmarkapp.com/developer).
 
 ## Connections
 

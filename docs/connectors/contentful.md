@@ -5,7 +5,12 @@ description: Use the Contentful component to manage Spaces, Environments, Organi
 ---
 
 ![Contentful](./assets/contentful.png#connector-icon)
+[Contentful](https://www.contentful.com/) is a content management system (CMS) that allows developers to manage and deliver content across multiple platforms and devices.
+
 Use the Contentful component to manage Spaces, Environments, Organizations and more.
+
+API Reference Documentation:
+[Contentful API Reference Documentation](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction)
 
 ## Connections
 

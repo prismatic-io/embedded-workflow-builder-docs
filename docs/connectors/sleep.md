@@ -5,7 +5,8 @@ description: Pause execution for a specific amount of time
 ---
 
 ![Sleep](./assets/sleep.png#connector-icon)
-Pause execution for a specific amount of time
+The **sleep** component temporarily stops the execution of an integration for a specified amount of time.
+This is handy if your integration needs to wait for a known amount of time while a third party service performs some task.
 
 ## Actions
 

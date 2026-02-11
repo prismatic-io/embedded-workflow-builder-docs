@@ -5,7 +5,11 @@ description: Interact with items and resources in Arena PLM
 ---
 
 ![Arena PLM](./assets/arena-plm.png#connector-icon)
-Interact with items and resources in Arena PLM
+Arena PLM (Product Lifecycle Management) software brings product information, people, and processes together into a single enterprise platform to speed product design and development.
+
+## API Documentation
+
+This component was built using the [Arena PLM API Reference](https://app-arena.readthedocs.io/en/1.2.1/api/001-index.html).
 
 ## Connections
 

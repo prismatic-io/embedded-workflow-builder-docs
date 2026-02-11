@@ -5,7 +5,12 @@ description: Create and manage customers and invoices within Intuit QuickBooks
 ---
 
 ![QuickBooks](./assets/quickbooks.png#connector-icon)
-Create and manage customers and invoices within Intuit QuickBooks
+[QuickBooks](https://quickbooks.intuit.com/) is an accounting and payment platform for individuals and businesses.
+This component allows you to generate invoices, manage customers, and more within the QuickBooks platform.
+
+## API Documentation
+
+This component was built using the [QuickBooks Online API Documentation](https://developer.intuit.com/app/developer/qbo/docs/get-started)
 
 ## Connections
 

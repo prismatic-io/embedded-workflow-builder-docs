@@ -5,7 +5,8 @@ description: Manage Google Analytics
 ---
 
 ![Google Analytics - UA](./assets/google-analytics.png#connector-icon)
-Manage Google Analytics
+[Google Analytics](https://analytics.google.com/) is Google's platform of analytics tooling.
+This component provides actions related to the Universal Analytics (UA) API.
 
 ## Connections
 

@@ -5,7 +5,13 @@ description: Adobe Commerce (Magento) is an open-source e-commerce platform. Use
 ---
 
 ![Adobe Commerce Magento](./assets/adobe-commerce-magento.png#connector-icon)
-Adobe Commerce (Magento) is an open-source e-commerce platform. Use the Adobe Commerce component to manage your Products, Orders, Customers, and Transactions.
+[Adobe Commerce (Magento)](https://business.adobe.com/products/magento/magento-commerce.html#) is an open-source e-commerce platform.
+
+Use the Adobe Commerce component to manage your Products, Orders, Customers, and Transactions.
+
+## API Documentation
+
+This component was built using the [Adobe Commerce REST API Overview](https://developer.adobe.com/commerce/webapi/rest/).
 
 ## Connections
 

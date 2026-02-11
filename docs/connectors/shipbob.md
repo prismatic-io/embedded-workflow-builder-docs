@@ -5,7 +5,9 @@ description: Shipbob offers an end to end fulfillment services for Ecommerce ven
 ---
 
 ![ShipBob](./assets/shipbob.png#connector-icon)
-Shipbob offers an end to end fulfillment services for Ecommerce vendors.
+[Shipbob](https://www.shipbob.com/) offers an end to end fulfillment services for Ecommerce vendors.
+
+Use the Shipbob component to manage orders, shipments, labels, and more.
 
 ## Connections
 

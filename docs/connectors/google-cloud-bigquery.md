@@ -5,7 +5,7 @@ description: BigQuery is Google Cloud's fully managed, petabyte-scale, and cost-
 ---
 
 ![Google Cloud BigQuery](./assets/google-cloud-bigquery.png#connector-icon)
-BigQuery is Google Cloud&#x27;s fully managed, petabyte-scale, and cost-effective analytics data warehouse that lets you run analytics over vast amounts of data in near real time.
+[The Google Cloud BigQuery](https://cloud.google.com/bigquery/docs/reference/libraries-overview) is Google Cloud's fully managed, petabyte-scale, and cost-effective analytics data warehouse that lets you run analytics over vast amounts of data in near real time.
 
 ## Connections
 

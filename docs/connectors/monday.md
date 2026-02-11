@@ -5,7 +5,8 @@ description: Manage boards, tasks and workflows within Monday.
 ---
 
 ![Monday](./assets/monday.png#connector-icon)
-Manage boards, tasks and workflows within Monday.
+[Monday](https://www.monday.com/) is a Cloud-based platform that allows companies to create their own applications and work management software.
+The **Monday** component allows you to manage columns, items, and subscribers in a Monday board.
 
 ## Connections
 

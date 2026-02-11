@@ -5,7 +5,13 @@ description: Algolia is an advanced AI search platform.
 ---
 
 ![Algolia](./assets/algolia.png#connector-icon)
-Algolia is an advanced AI search platform.
+[Algolia](https://www.algolia.com/es/) is a powerful and flexible search and discovery API, trusted by thousands of developers for delivering relevant search results in real-time.
+
+Use the Algolia component to interact with your Algolia indexes, manage records, and perform search operations in your Algolia account.
+
+## API Documentation
+
+This component was built using the [Algolia API Reference](https://www.algolia.com/doc/api-reference/rest-api/).
 
 ## Connections
 

@@ -5,7 +5,8 @@ description: Interact with email campaign lists and e-commerce resources.
 ---
 
 ![Mailchimp](./assets/mailchimp.png#connector-icon)
-Interact with email campaign lists and e-commerce resources.
+[Mailchimp](https://www.mailchimp.com/) is a marketing automation platform and email marketing service.
+The Mailchimp component allows you to interact with your mailchimp email campaigns and your e-commerce site.
 
 ## Connections
 

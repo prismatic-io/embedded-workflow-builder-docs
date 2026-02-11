@@ -5,7 +5,8 @@ description: Send emails through an SMTP server
 ---
 
 ![SMTP](./assets/smtp.png#connector-icon)
-Send emails through an SMTP server
+[SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) or **Simple Mail Transfer Protocol** is an internet standard for email transmission.
+This component allows you to send emails via any SMTP server.
 
 ## Connections
 

@@ -5,7 +5,13 @@ description: ServiceDesk Plus is a comprehensive service desk software that offe
 ---
 
 ![ServiceDesk Plus](./assets/servicedesk-plus.png#connector-icon)
-ServiceDesk Plus is a comprehensive service desk software that offers a suite of IT Service management, IT asset management, CBDM, and more.
+ServiceDesk Plus is a comprehensive service desk software that offers a suite of IT Service management, IT asset management, CMDB, and more.
+
+Use the ServiceDesk Plus to efficiently manage Assets and Configuration Items for integrations.
+
+## API Documentation
+
+This component was built using the [ServiceDesk Plus V3 API Reference](https://www.manageengine.com/products/service-desk/sdpod-v3-api/SDPOD-V3-API.html).
 
 ## Connections
 

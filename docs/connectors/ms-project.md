@@ -5,7 +5,8 @@ description: Make queries to reporting data from a Project Web App instance
 ---
 
 ![Microsoft Project](./assets/ms-project.png#connector-icon)
-Make queries to reporting data from a Project Web App instance
+[Microsoft Project](https://project.microsoft.com/en-US/) is a project management software product, developed and sold by Microsoft.
+This component allows you to interact with your projects, tasks, and assignments by making queries to reporting data from a Project Web App instance.
 
 ## Connections
 
