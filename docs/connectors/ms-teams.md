@@ -5,7 +5,8 @@ description: Manage the teams, groups, channels, and messages associated with yo
 ---
 
 ![Microsoft Teams](./assets/ms-teams.png#connector-icon)
-Manage the teams, groups, channels, and messages associated with your Microsoft Teams account
+[Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) is a business communication platform developed by Microsoft, as part of the Microsoft 365 family of products.
+This component allows you to easily manage teams, groups, channels, and messages inside of your Microsoft Teams account.
 
 ## Connections
 

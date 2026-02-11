@@ -5,7 +5,13 @@ description: DeepSeek is an AI developer of large language models (LLM) focused 
 ---
 
 ![DeepSeek](./assets/deepseek.png#connector-icon)
-DeepSeek is an AI developer of large language models (LLM) focused on providing high performance models.
+[DeepSeek](https://www.deepseek.com/) is an AI developer of large language models (LLM) focused on providing high performance models.
+
+Use the component to create chat completions with available models.
+
+## API Documentation:
+
+The component was built using the [DeepSeek API Documentation](https://api-docs.deepseek.com/).
 
 ## Connections
 

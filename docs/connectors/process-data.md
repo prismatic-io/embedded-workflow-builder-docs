@@ -5,7 +5,8 @@ description: Process data sets
 ---
 
 ![Process Data](./assets/process-data.png#connector-icon)
-Process data sets
+The **process data** component allows your integrations to "remember" what data they have processed, so they don't process the same data over and over.
+The deduplicate action tracks the data that is processed each execution, and returns only items that it didn't previously process.
 
 ## Actions
 

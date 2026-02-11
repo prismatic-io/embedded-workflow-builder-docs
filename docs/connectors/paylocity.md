@@ -5,7 +5,7 @@ description: Paylocity provides a comprehensive product suite and delivers a uni
 ---
 
 ![Paylocity](./assets/paylocity.png#connector-icon)
-Paylocity provides a comprehensive product suite and delivers a unified platform for the areas of benefits, core HR, payroll, talent, and workforce management. Use the Paylocity component to connect your workforce management, payroll, and other HR tasks with a variety of applications.
+[Paylocity](https://www.paylocity.com/) provides a comprehensive product suite and delivers a unified platform for the areas of benefits, core HR, payroll, talent, and workforce management. Use the Paylocity component to connect your workforce management, payroll, and other HR tasks with a variety of applications.
 
 ## Connections
 

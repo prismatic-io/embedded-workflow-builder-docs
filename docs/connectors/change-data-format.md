@@ -5,7 +5,7 @@ description: Change data from one format to another
 ---
 
 ![Change Data Format](./assets/change-data-format.png#connector-icon)
-Change data from one format to another
+The **change data format** component allows you to convert data between common formats, like JSON, XML, CSV, and YAML, and to serialize (turn an object into a string) or deserialize (turn a string into an object) each supported format.
 
 ## Actions
 

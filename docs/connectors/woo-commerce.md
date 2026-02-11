@@ -5,7 +5,8 @@ description: Easily manage your customers, orders, and products in your WooComme
 ---
 
 ![WooCommerce](./assets/woo-commerce.png#connector-icon)
-Easily manage your customers, orders, and products in your WooCommerce platform
+[WooCommerce](https://woocommerce.com/) is an open-source eCommerce plugin for WordPress.
+The **Woo Commerce** component allows you to interact with customers, products, and orders in your eCommerce wordpress site.
 
 ## Connections
 

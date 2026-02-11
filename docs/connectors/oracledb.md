@@ -5,7 +5,12 @@ description: Query and manage data in an OracleDB database
 ---
 
 ![Oracle Database](./assets/oracledb.png#connector-icon)
-Query and manage data in an OracleDB database
+[Oracle Database](https://www.oracle.com/database/) is a popular relational database system.
+This component allows you to query an Oracle database.
+
+## API Documentation
+
+This component was built using [Node.js for Oracle Database](https://node-oracledb.readthedocs.io/en/latest/user_guide/introduction.html#getting-started)
 
 ## Connections
 

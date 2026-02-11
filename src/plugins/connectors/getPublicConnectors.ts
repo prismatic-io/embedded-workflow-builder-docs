@@ -6,7 +6,12 @@ import { createPrismaticApiClient } from "./graphqlClient";
 import { type Component, GET_PUBLIC_COMPONENTS } from "./queries";
 
 // Connectors to omit from docs, as they aren't relevant to embedded workflow builder users
-const filteredConnectors = ["customHttp", "jsonforms", "management-triggers"];
+const filteredConnectors = [
+  "customHttp",
+  "jsonforms",
+  "management-triggers",
+  "cross-flow",
+];
 
 interface GetPublicConnectorsParams {
   fromManifest: boolean;

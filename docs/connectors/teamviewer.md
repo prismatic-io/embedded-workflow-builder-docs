@@ -5,7 +5,13 @@ description: Connect to TeamViewer to automate your remote support tasks.
 ---
 
 ![TeamViewer](./assets/teamviewer.png#connector-icon)
-Connect to TeamViewer to automate your remote support tasks.
+[TeamViewer](https://www.teamviewer.com) is support software that allows users to connect to and control devices remotely for troubleshooting, collaboration, and management purposes.
+
+Use the component to manage your devices, groups, contacts, patches, and more.
+
+## API Documentation
+
+The TeamViewer component was built using the [TeamViewer WEB API](https://webapi.teamviewer.com/api/v1/docs/index#/)
 
 ## Connections
 

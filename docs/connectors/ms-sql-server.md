@@ -5,7 +5,8 @@ description: Query and manage data in a Microsoft SQL Server (MSSQL) Database
 ---
 
 ![Microsoft SQL Server](./assets/ms-sql-server.png#connector-icon)
-Query and manage data in a Microsoft SQL Server (MSSQL) Database
+[Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server) (MSSQL) is a popular relational database system.
+This component allows you to query an MSSQL database.
 
 ## Connections
 

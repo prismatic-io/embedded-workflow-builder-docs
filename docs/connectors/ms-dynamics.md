@@ -5,7 +5,8 @@ description: Query, create, update or delete Microsoft Dynamics 365 API records
 ---
 
 ![Microsoft Dynamics 365](./assets/ms-dynamics.png#connector-icon)
-Query, create, update or delete Microsoft Dynamics 365 API records
+[Microsoft Dynamics 365](https://dynamics.microsoft.com/) is a product line of enterprise resource planning (ERP) and customer relationship management (CRM) intelligent business applications.
+This component gives you the ability to query and modify records within the Microsoft Dynamics 365 platform.
 
 ## Connections
 

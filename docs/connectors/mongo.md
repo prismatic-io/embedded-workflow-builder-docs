@@ -5,7 +5,8 @@ description: Interact with documents in a MongoDB database
 ---
 
 ![MongoDB](./assets/mongo.png#connector-icon)
-Interact with documents in a MongoDB database
+[MongoDB](https://www.mongodb.com/) is a NoSQL database program that uses JSON-like documents with optional schemas.
+This component allows you to create, read, update, and delete documents inside a MongoDB collection.
 
 ## Connections
 

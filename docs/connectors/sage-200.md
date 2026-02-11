@@ -7,6 +7,12 @@ description: Sage 200 is an online business management solution designed to help
 ![Sage 200](./assets/sage-200.png#connector-icon)
 Sage 200 is an online business management solution designed to help businesses manage their finances, customers, and business insight in one solution.
 
+Use the Sage 200 component to manage Customers, Products, and Pricing.
+
+## API Documentation
+
+This component is built to the [Sage 200 Professional/Extra Online API Reference](https://developer.sage.com/200/reference/).
+
 ## Connections
 
 ### Sage 200 OAuth 2.0 Connection {#sage200oauth2connection}

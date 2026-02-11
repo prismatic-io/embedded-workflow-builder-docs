@@ -5,7 +5,8 @@ description: Parse and build .xlsx files (spreadsheets)
 ---
 
 ![Microsoft Excel](./assets/ms-excel.png#connector-icon)
-Parse and build .xlsx files (spreadsheets)
+[Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel) is a spreadsheet application developed by Microsoft. It features calculation, graphing tools, pivot tables, and a macro programming language called Visual Basic for Applications.
+This component allows you to read and build .xlsx files. (spreadsheets)
 
 ## Connections
 

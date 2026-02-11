@@ -5,7 +5,9 @@ description: Interact with the Greenhouse API
 ---
 
 ![Greenhouse](./assets/greenhouse.png#connector-icon)
-Interact with the Greenhouse API
+[Greenhouse](https://www.greenhouse.com/) is a platform designed for recruiting and talent management.
+
+Use the Greenhouse component to connect to the Harvest API for managing Candidate information, User information, Applications, and more.
 
 ## Connections
 

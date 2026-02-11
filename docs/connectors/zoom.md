@@ -5,7 +5,12 @@ description: Manage meetings, recordings, users, and webinars in Zoom.
 ---
 
 ![Zoom](./assets/zoom.png#connector-icon)
-Manage meetings, recordings, users, and webinars in Zoom.
+[Zoom](https://zoom.us/) is a video teleconferencing software program developed by Zoom Video Communications.
+The Zoom component allows you to manage meetings, recordings, users, and webinars.
+
+## API Documentation
+
+This component was built using the [Zoom API](https://developers.zoom.us/docs/api/).
 
 ## Connections
 

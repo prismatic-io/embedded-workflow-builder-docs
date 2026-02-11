@@ -5,7 +5,7 @@ description: Manage leads, companies, activities, and more on the Pipedrive plat
 ---
 
 ![Pipedrive](./assets/pipedrive.png#connector-icon)
-Manage leads, companies, activities, and more on the Pipedrive platform
+[Pipedrive](https://www.pipedrive.com/) is a sales-focused customer relationship management tool. This component allows you to manage leads, companies, activities, and more.
 
 ## Connections
 

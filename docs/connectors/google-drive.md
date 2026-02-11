@@ -5,7 +5,12 @@ description: Manage files in Google Drive
 ---
 
 ![Google Drive](./assets/google-drive.png#connector-icon)
-Manage files in Google Drive
+[Google Drive](https://www.google.com/drive/) is Google's cloud storage for work and home.
+This component allows you to create, copy, download, update, list, and delete files stored in a Google Drive Account.
+
+## API Documentation
+
+This component was built using the [Google Drive API v3](https://developers.google.com/drive/api/v3/reference)
 
 ## Connections
 

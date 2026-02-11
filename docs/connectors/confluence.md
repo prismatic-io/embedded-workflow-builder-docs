@@ -5,7 +5,7 @@ description: Confluence is an open and shared workspace platform provided by Atl
 ---
 
 ![Confluence](./assets/confluence.png#connector-icon)
-Confluence is an open and shared workspace platform provided by Atlassian. Use the Confluence component to manage spaces, pages, and content properties.
+[Confluence](https://www.atlassian.com/es/software/confluence) is an open and shared workspace platform provided by Atlassian. Use the Confluence component to manage spaces, pages, and content properties.
 
 ## Connections
 
@@ -13,14 +13,45 @@ Confluence is an open and shared workspace platform provided by Atlassian. Use t
 
 Confluence Basic
 
-If you select Basic Auth and you are using Confluence cloud, you will need to supply your Confluence email and an API token to the connection. If you are on a locally hosted instance of Confluence, you will need to supply your Confluence email and password to the connection.
+Basic Authentication can be used to connect to both Confluence Cloud and self-hosted Confluence instances.
 
-1. Log in to [Atlassian](https://id.atlassian.com/manage-profile/security/api-tokens).
-2. Click Create API token.
-3. From the dialog that appears, enter a memorable and concise Label for your token and click Create.
-4. Click Copy to clipboard, then paste the token to the connection configuration of your integration.
+- For **Confluence Cloud**: Use the account email and an API token
+- For **Self-hosted Confluence**: Use the account email and password
 
-For additional information on generating an API token from Confluence Cloud, refer to the [Atlassian docs](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+:::info API Token vs Password
+For Confluence Cloud, API tokens are required. Passwords are only accepted for self-hosted instances.
+:::
+
+#### Prerequisites
+
+- A Confluence account (Cloud or self-hosted)
+- For Cloud: Access to [Atlassian account management](https://id.atlassian.com/manage-profile/security/api-tokens)
+- The Confluence site URL
+
+#### Setup Steps
+
+To generate an API token for Confluence Cloud:
+
+1. Log in to [Atlassian API Token Management](https://id.atlassian.com/manage-profile/security/api-tokens)
+2. Select **Create API token**
+3. Enter a descriptive **Label** for the token and select **Create**
+4. Select **Copy to clipboard** to copy the generated token
+
+For additional information on generating an API token, refer to the [Atlassian documentation](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+
+#### Configure the Connection
+
+Add a Confluence action to the integration to automatically create a connection configuration variable.
+
+Configure the Basic Auth connection:
+
+- **Email**: Enter the email address associated with the Confluence account (e.g., `example.user@confluence.com`)
+- **API Token**: Enter the API token generated from the Atlassian account management page, or for self-hosted instances, enter the account password
+- **Host**: Enter the Confluence site URL (e.g., `your-domain.atlassian.net` for Cloud or the server hostname for self-hosted instances)
+
+:::warning Self-Hosted Credentials
+For self-hosted Confluence instances, API tokens may not be available. Use the account password instead.
+:::
 
 | Input     | Comments                                                                                                                                                         | Default |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -32,26 +63,47 @@ For additional information on generating an API token from Confluence Cloud, ref
 
 Confluence OAuth 2.0
 
-1. Navigate to the Atlassian [Developer Console](https://developer.atlassian.com/console/myapps/) and create a new **Oauth 2.0 integration** and give it a name. Under the app details section, take note of your client Id and client secret values that were generated.
-1. After you have saved those values, find the Authorization section and click configure on Oauth 2.0 (3LO).
-   There you will be prompted to enter your **Redirect URL** `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-1. Next navigate to the permissions.
-   It is important that you remain consistent with the scopes you supply in both Confluence, and your connection.
+To connect to Confluence using OAuth 2.0, create an OAuth 2.0 integration in the Atlassian Developer Console and configure the appropriate scopes.
 
-The default scopes on a new connection will be as follows (Classic Scopes):
-`read:confluence-user` `read:confluence-space.summary read:confluence-props` `read:confluence-content.all` `read:confluence-content.summary` `read:confluence-content.permission` `read:confluence-groups readonly:content.attachment:confluence` `write:confluence-content` `write:confluence-spacewrite:confluence-file` `write:confluence-props` `manage:confluence-configuration` `search:confluence write:confluence-groups`
-These scopes will provide access to the most of the actions in the Component component, but you may have to modify the scopes in both locations (here and Atlassian Developer Console) to meet your needs.
+For more information on developing Confluence applications, refer to the [Confluence Security Overview](https://developer.atlassian.com/cloud/confluence/security-overview/#oauth-2-0--3lo-).
 
-For more information on developing Confluence applications, follow the guide [here.](https://developer.atlassian.com/cloud/confluence/security-overview/#oauth-2-0--3lo-) Next, you can configure an OAuth 2.0 connection.
+#### Prerequisites
 
-Add a Confluence step to your integration. This will automatically create a Confluence connection config variable.
+- An Atlassian account with access to the [Developer Console](https://developer.atlassian.com/console/myapps/)
+- Admin access to the Confluence site to be connected
 
-Ensure the connection is of type `Confluence OAuth 2.0 Connection` and enter the following details:
+#### Setup Steps
 
-- For **Client ID** and **Client Secret** enter the values that you got from the Atlassian Developer Console
-- As stated previously **Scopes** will default to the following:
-  `read:confluence-user` `read:confluence-space.summary read:confluence-props` `read:confluence-content.all` `read:confluence-content.summary` `read:confluence-content.permission` `read:confluence-groups readonly:content.attachment:confluence` `write:confluence-content` `write:confluence-spacewrite:confluence-file` `write:confluence-props` `manage:confluence-configuration` `search:confluence write:confluence-groups`
-- From here you can do any [additional configuration](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) to match your use case using the Granular scopes tab.
+1. Navigate to the Atlassian [Developer Console](https://developer.atlassian.com/console/myapps/) and select **Create** to create a new **OAuth 2.0 (3LO)** integration
+2. Provide a name for the integration
+3. Under the **Settings** tab, locate the **Client ID** and **Client Secret** values - copy these for later use
+4. Navigate to the **Authorization** section and select **Configure** under **OAuth 2.0 (3LO)**
+5. Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the **Callback URL**
+6. Navigate to the **Permissions** section and configure the required scopes:
+   - Select the **Confluence API** tab
+   - Choose either **Classic scopes** or **Granular scopes** based on requirements
+   - Add the necessary scopes for the actions to be used (see scope recommendations below)
+7. Save the integration configuration
+
+#### Configure the Connection
+
+Add a Confluence action to the integration to automatically create a connection configuration variable.
+
+Configure the OAuth 2.0 connection:
+
+- Enter the **Client ID** and **Client Secret** obtained from the Atlassian Developer Console
+- For **Scopes**, enter the space-separated list of scopes. The default scopes (Granular) provide access to most Confluence actions:
+  ```
+  offline_access delete:attachment:confluence read:attachment:confluence write:attachment:confluence read:custom-content:confluence write:custom-content:confluence delete:custom-content:confluence read:page:confluence write:page:confluence delete:page:confluence read:space:confluence
+  ```
+- Refer to the [Confluence Scopes Documentation](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information
+- **(Optional)** If connecting to a specific Confluence site when multiple sites are available, enter the site name or full URL in **API Site Override** (e.g., `example` or `https://example.atlassian.net`)
+
+:::note Scope Consistency
+Ensure the scopes configured in the connection match the scopes granted in the Atlassian Developer Console. Mismatched scopes will result in authentication failures.
+:::
+
+Save the integration to connect and authenticate to Confluence.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

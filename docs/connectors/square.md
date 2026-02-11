@@ -5,7 +5,12 @@ description: Manage payments, customers, orders, invoices, and team members in S
 ---
 
 ![Square](./assets/square.png#connector-icon)
-Manage payments, customers, orders, invoices, and team members in Square.
+[Square](https://squareup.com/) is a comprehensive commerce platform that provides payment processing, point-of-sale systems, online store capabilities, and business management tools.
+This component allows you to manage payments, customers, orders, inventory, invoices, team members, and webhooks in a Square account.
+
+## API Documentation
+
+This component was built using the [Square API Documentation](https://developer.squareup.com/reference/square)
 
 ## Connections
 

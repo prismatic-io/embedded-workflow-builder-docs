@@ -5,7 +5,8 @@ description: Manage Google Analytics GA4 accounts and data
 ---
 
 ![Google Analytics - GA4](./assets/google-analytics-ga4.png#connector-icon)
-Manage Google Analytics GA4 accounts and data
+[Google Analytics](https://analytics.google.com/) is Google's platform of analytics tooling.
+This component allows you to manage Analytics GA4 data.
 
 ## Connections
 

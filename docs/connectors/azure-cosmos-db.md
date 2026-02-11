@@ -5,7 +5,13 @@ description: Manage databases, collections, and documents within Azure Cosmos DB
 ---
 
 ![Azure Cosmos DB](./assets/azure-cosmos-db.png#connector-icon)
+[Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) is a Microsoft database service designed for handling various applications.
+
 Manage databases, collections, and documents within Azure Cosmos DB.
+
+## API Documentation
+
+This component was built using the [Azure Cosmos DB (SQL) REST API](https://learn.microsoft.com/en-us/rest/api/cosmos-db/).
 
 ## Connections
 

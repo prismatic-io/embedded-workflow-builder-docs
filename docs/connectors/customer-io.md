@@ -5,7 +5,8 @@ description: Manage customers on the Customer.io platform
 ---
 
 ![Customer.io](./assets/customer-io.png#connector-icon)
-Manage customers on the Customer.io platform
+**Customer.io** is an automated messaging platform for marketing departments.
+This component allows you to create, delete and track customers on the Customer.io platform through the Track API.
 
 ## Connections
 

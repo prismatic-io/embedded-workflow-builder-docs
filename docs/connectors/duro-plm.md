@@ -5,7 +5,11 @@ description: Manage products, components, and change orders in Duro PLM.
 ---
 
 ![Duro PLM](./assets/duro-plm.png#connector-icon)
-Manage products, components, and change orders in Duro PLM.
+[Duro PLM](https://durolabs.co/) is a cloud based Product Lifecycle Management (PLM) platform for managing part data, change orders, and product development workflows. This component allows you to manage products, components, change orders, and other resources in a Duro workspace.
+
+## API Documentation
+
+This component was built using the [Duro GraphQL API Reference](https://mfg-core-api.duro.app/docs/).
 
 ## Connections
 

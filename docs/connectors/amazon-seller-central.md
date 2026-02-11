@@ -5,7 +5,11 @@ description: Manage product listings, orders, inventory, and fulfillment in Amaz
 ---
 
 ![Amazon Seller Central](./assets/amazon-seller-central.png#connector-icon)
-Manage product listings, orders, inventory, and fulfillment in Amazon Seller Central.
+[Amazon Seller Central](https://sellercentral.amazon.com/) is Amazon's platform for managing third-party seller businesses on the Amazon marketplace. This component allows you to retrieve and update product listings, process orders, manage inventory, and handle fulfillment information.
+
+## API Documentation
+
+This component was built using the [Amazon Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/welcome).
 
 ## Connections
 
@@ -13,32 +17,51 @@ Manage product listings, orders, inventory, and fulfillment in Amazon Seller Cen
 
 Authenticate requests to Amazon Seller Central.
 
-**To register your application (for all public applications and private seller applications)**
+To connect to Amazon Seller Central, register an application in the Developer Central console and configure OAuth 2.0 authentication.
 
-1. Sign into Seller Central using your developer credentials and navigate to [Develop Apps](https://sellercentral.amazon.com/sellingpartner/developerconsole).
-2. On the **Developer Central** page, choose **Add new app client**.
-3. Enter the OAuth Redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` and save
-4. Viewing the LWA credentials will provide the client ID and client secret to enter into your credentials
+For detailed information, refer to the [Amazon Selling Partner API documentation](https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api).
 
-#### Amazon Seller Central Sandbox Environment
+#### Prerequisites
 
-When connecting to the Sandbox environment, it is important to know that some fields will require different value formats than Production in order to succeed.
-The expected values can be referenced under the [Selling Partner API Models](https://github.com/amzn/selling-partner-api-models/tree/f3b0bc6c3949f791589b079e78b341f13f954b41/models)
+- An Amazon Seller Central account with developer access
+- Access to the [Developer Central console](https://sellercentral.amazon.com/sellingpartner/developerconsole)
 
-**Orders Example**
+#### Setup Steps
 
-[Order Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/orders-api-model/ordersV0.json)
+To register the application for public or private seller use:
 
-    - Created After accepts **TEST_CASE_200** or **TEST_CASE_200_NEXT_TOKEN**
-    - Created Before accepts **TEST_CASE_200** or **TEST_CASE_200_NEXT_TOKEN**
-    - Order ID accepts **TEST_CASE_200**
+1. Sign into Seller Central using developer credentials and navigate to [Developer Central](https://sellercentral.amazon.com/sellingpartner/developerconsole).
+2. On the **Developer Central** page, select **Add new app client**.
+3. Enter the OAuth Redirect URI: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+4. Save the application configuration.
+5. View the **LWA Credentials** section to access the **Client ID** and **Client Secret**.
 
-**Notifications Example**
+#### Configure the Connection
 
-[Notifications Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/notifications-api-model/notifications.json)
+- Enter the **Client ID** and **Client Secret** from the LWA Credentials section
+- Select the appropriate **Region** for the Seller Central account
+- Configure the **Authorize URL** based on the Seller Central region:
+  - For the Seller Central URL, refer to [Amazon's region URLs](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls)
+  - Replace `{YOUR_APPLICATION_ID}` with the application ID from the Developer Central page
+  - For applications not yet in production, add `version=beta` to the URL parameter
+- If connecting to a Sandbox environment, select **Yes** for the **Is Sandbox Environment** field
 
-    - Subscription ID accepts **TEST_CASE_200_SUBSCRIPTION_ID**
-    - Created Before accepts **TEST_CASE_200_DESTINATION_ID**
+For information on required scopes and permissions, refer to the [SP-API authorization documentation](https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications).
+
+:::note Amazon Seller Central Sandbox Environment
+When connecting to the Sandbox environment, some fields require different value formats than Production to succeed. The expected values can be referenced in the [Selling Partner API Models](https://github.com/amzn/selling-partner-api-models/tree/f3b0bc6c3949f791589b079e78b341f13f954b41/models).
+
+**Orders Example** ([Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/orders-api-model/ordersV0.json)):
+
+- **Created After**: `TEST_CASE_200` or `TEST_CASE_200_NEXT_TOKEN`
+- **Created Before**: `TEST_CASE_200` or `TEST_CASE_200_NEXT_TOKEN`
+- **Order ID**: `TEST_CASE_200`
+
+**Notifications Example** ([Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/notifications-api-model/notifications.json)):
+
+- **Subscription ID**: `TEST_CASE_200_SUBSCRIPTION_ID`
+- **Created Before**: `TEST_CASE_200_DESTINATION_ID`
+  :::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,7 +5,10 @@ description: Interact with a SOAP-based API
 ---
 
 ![SOAP](./assets/soap.png#connector-icon)
-Interact with a SOAP-based API
+**Simple Object Access Protocol** ([SOAP](https://en.wikipedia.org/wiki/SOAP)) is a messaging protocol specification for exchanging structured information with web services.
+
+This component allows you to interact with a SOAP API.
+You can fetch WSDL definitions, describe the methods that a SOAP API supports, and make requests of the API's methods.
 
 ## Connections
 

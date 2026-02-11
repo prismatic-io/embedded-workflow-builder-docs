@@ -5,7 +5,12 @@ description: Manage repositories, issues, pull requests, and workflows in GitHub
 ---
 
 ![GitHub](./assets/github.png#connector-icon)
-Manage repositories, issues, pull requests, and workflows in GitHub.
+[GitHub](https://github.com) is a development platform that provides Git repository hosting, code collaboration, and project management tools.
+This component allows you to manage repositories, issues, pull requests, workflows, and users within your GitHub organization.
+
+## API Documentation
+
+This component was built using the [GitHub REST API Documentation](https://docs.github.com/en/rest) currently utilizing version 2022-11-28.
 
 ## Connections
 

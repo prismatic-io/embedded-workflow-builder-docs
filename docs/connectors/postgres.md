@@ -5,7 +5,8 @@ description: Query and manage data in a PostgreSQL database
 ---
 
 ![PostgreSQL](./assets/postgres.png#connector-icon)
-Query and manage data in a PostgreSQL database
+[PostgreSQL](https://www.postgresql.org/) is a popular relational database system.
+This component allows you to query a PostgreSQL database.
 
 ## Connections
 

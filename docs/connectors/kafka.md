@@ -5,7 +5,8 @@ description: Publish messages to an Apache Kafka event stream
 ---
 
 ![Kafka](./assets/kafka.png#connector-icon)
-Publish messages to an Apache Kafka event stream
+[Apache Kafka](https://kafka.apache.org/) is an event streaming platform to implement high-performance data pipelines, streaming analytics, data integration, and other applications.
+This component allows you to publish messages to an Apache Kafka event stream.
 
 ## Connections
 

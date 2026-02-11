@@ -5,7 +5,9 @@ description: Google Gemini is an offering of advanced AI models developed by Goo
 ---
 
 ![Google Gemini](./assets/google-gemini.png#connector-icon)
-Google Gemini is an offering of advanced AI models developed by Google&#x27;s DeepMind. Use the component to generate chats, images, and videos.
+[Google Gemini](https://gemini.google.com/) is a family of advanced multimodal AI models developed by Google DeepMind.
+
+Use the component to generate chats, images, and videos.
 
 ## Connections
 

@@ -5,7 +5,11 @@ description: Manage records, contacts, and transactions in Zoho CRM and Books
 ---
 
 ![Zoho](./assets/zoho.png#connector-icon)
-Manage records, contacts, and transactions in Zoho CRM and Books
+[Zoho](https://www.zoho.com/) is a business software suite that includes CRM, accounting, and business management applications. This component allows you to manage records, contacts, deals, invoices, and bills in Zoho CRM and Zoho Books.
+
+## API Documentation
+
+This component was built using the [Zoho CRM API Documentation](https://www.zoho.com/crm/developer/docs/) currently utilizing v8 and the [Zoho Books API Documentation](https://www.zoho.com/books/api/v3/introduction/) utilizing v3.
 
 ## Connections
 

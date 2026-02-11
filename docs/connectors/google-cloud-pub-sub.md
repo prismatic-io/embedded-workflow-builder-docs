@@ -5,7 +5,12 @@ description: Manage topics, subscriptions, and messages in Google Cloud Pub/Sub.
 ---
 
 ![Google Cloud Pub/Sub](./assets/google-cloud-pub-sub.png#connector-icon)
-Manage topics, subscriptions, and messages in Google Cloud Pub/Sub.
+[Google Cloud Pub/Sub](https://cloud.google.com/pubsub) is a messaging service from Google Cloud Platform for asynchronous communication between applications.
+The Google Cloud Pub/Sub component allows you to create, update, delete, and list topics and subscriptions, as well as publish and pull messages.
+
+## API Documentation
+
+This component was built using the [Google Cloud Pub/Sub REST API](https://cloud.google.com/pubsub/docs/reference/rest) currently utilizing v1.
 
 ## Connections
 

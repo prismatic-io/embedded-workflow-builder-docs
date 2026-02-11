@@ -5,7 +5,8 @@ description: Send Emails through Amazon (AWS) SES
 ---
 
 ![Amazon SES](./assets/aws-ses.png#connector-icon)
-Send Emails through Amazon (AWS) SES
+[Amazon SES](https://aws.amazon.com/ses/) is a service that enables developers to send mail from within any application.
+The Amazon SES component allows you to list identities, and send emails to those identities.
 
 ## Connections
 

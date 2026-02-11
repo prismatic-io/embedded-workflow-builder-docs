@@ -5,7 +5,13 @@ description: Manage financial data including invoices, payments, vendors, and cu
 ---
 
 ![Sage Intacct](./assets/sage-intacct.png#connector-icon)
-Manage financial data including invoices, payments, vendors, and customers in Sage Intacct.
+[Sage Intacct](https://www.sage.com/en-us/sage-business-cloud/intacct/) is an industry-leading financial accounting software system with a broad set of functionalities for businesses across a number of different verticals.
+
+This component allows you to create, update, and query financial data including invoices, payments, vendors, and customers.
+
+## API Documentation
+
+This component was built using the [Sage Intacct API](https://developer.intacct.com/api/).
 
 ## Connections
 

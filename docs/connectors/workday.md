@@ -5,7 +5,19 @@ description: Workday HCM is a single, cloud-based solution for workforce plannin
 ---
 
 ![Workday (Beta)](./assets/workday.png#connector-icon)
+:::note This component connector is currently in BETA.
+BETA component connections and actions may not always work as expected. Please provide any feedback to the our support team.
+:::
+
 Workday HCM is a single, cloud-based solution for workforce planning, talent management, and payroll processes.
+
+Use the Workday component to manage Organizations, People, Workers, and more.
+
+This component is currently in Beta and its features are still in the testing phase. This component has been made available to users for the purpose of testing and evaluating the current features. Functionality is subject to change while in Beta. Please report any feedback to your account manager.
+
+## API Documentation
+
+This component is built to the [Workday REST Services](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html) API reference
 
 ## Connections
 

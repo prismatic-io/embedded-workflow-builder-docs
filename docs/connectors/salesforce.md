@@ -5,7 +5,15 @@ description: Query, create, update or delete Salesforce records
 ---
 
 ![Salesforce](./assets/salesforce.png#connector-icon)
-Query, create, update or delete Salesforce records
+[Salesforce](https://www.salesforce.com/) is a customer relationship management (CRM) platform.
+This component gives you the ability to manage sales leads and records within the Salesforce platform.
+
+## API Documentation
+
+This component was built using the following API References currently utilizing v63.0 by default.
+
+- [Salesforce REST API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm)
+- [Salesforce Bulk API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm)
 
 ## Connections
 

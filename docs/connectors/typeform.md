@@ -5,7 +5,13 @@ description: Typeform is an online form builder that enables users to create int
 ---
 
 ![Typeform](./assets/typeform.png#connector-icon)
-Typeform is an online form builder that enables users to create interactive and engaging surveys, forms, and quizzes.
+[Typeform](https://www.typeform.com/) is an online form builder that enables users to create interactive and engaging surveys, forms, and quizzes.
+
+Use the component to deploy forms and manage the responses in real time.
+
+## API Documentation
+
+The component was built using the [Typeform API References](https://www.typeform.com/developers/get-started/)
 
 ## Connections
 

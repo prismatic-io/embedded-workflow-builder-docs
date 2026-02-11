@@ -5,7 +5,7 @@ description: Rippling makes it easy to manage your company's Payroll, Benefits, 
 ---
 
 ![Rippling](./assets/rippling.png#connector-icon)
-Rippling makes it easy to manage your company&#x27;s Payroll, Benefits, HR, and IT—all in one, modern platform
+[Rippling](https://rippling.com) makes it easy to manage your company's Payroll, Benefits, HR, and IT—all in one, modern platform.
 
 ## Connections
 

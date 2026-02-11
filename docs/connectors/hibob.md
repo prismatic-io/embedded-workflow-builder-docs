@@ -7,6 +7,12 @@ description: HiBob is an HR platform for people management, performance, and eng
 ![HiBob](./assets/hibob.png#connector-icon)
 HiBob is an HR platform for people management, performance, and engagement.
 
+Use the HiBob component to manage employee data using the HiBob API, including employee profiles, work history, salary information, and bank account details.
+
+## API Documentation:
+
+The component was built using the [HiBob API Reference](https://apidocs.hibob.com/reference/getting-started-with-bob-api)
+
 ## Connections
 
 ### Basic Authentication {#hibob-connection}

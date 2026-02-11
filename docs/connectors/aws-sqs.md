@@ -5,7 +5,8 @@ description: Send, receive and manage messages within an Amazon (AWS) SQS queue
 ---
 
 ![Amazon SQS](./assets/aws-sqs.png#connector-icon)
-Send, receive and manage messages within an Amazon (AWS) SQS queue
+[Amazon SQS](https://aws.amazon.com/sqs/) is a message queueing service from Amazon Web Services.
+The Amazon SQS component allows you to send and receive messages within an Amazon SQS queue.
 
 ## Connections
 

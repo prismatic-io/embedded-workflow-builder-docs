@@ -5,7 +5,8 @@ description: BigCommerce is a SaaS ecommerce platform. Use the Bigcommerce compo
 ---
 
 ![BigCommerce](./assets/bigcommerce.png#connector-icon)
-BigCommerce is a SaaS ecommerce platform. Use the Bigcommerce component to manage your Products, Brands, Categories and more.
+[BigCommerce](https://www.bigcommerce.com/) is a leading SaaS eCommerce platform that allows businesses to build, innovate, and grow their online stores.
+This component allows you to manage products, brands, categories, and other essential e-commerce features in a BigCommerce store.
 
 ## Connections
 

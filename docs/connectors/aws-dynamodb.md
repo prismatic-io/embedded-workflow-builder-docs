@@ -5,7 +5,12 @@ description: Manage tables and items in Amazon DynamoDB.
 ---
 
 ![Amazon DynamoDB](./assets/aws-dynamodb.png#connector-icon)
-Manage tables and items in Amazon DynamoDB.
+[Amazon DynamoDB](https://aws.amazon.com/dynamodb) is a key-value and document database from Amazon Web Services (AWS).
+This component allows you to create, read, update, and delete items within an Amazon DynamoDB database.
+
+## API Documentation
+
+This component was built using the [AWS DynamoDB API](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/).
 
 ## Connections
 

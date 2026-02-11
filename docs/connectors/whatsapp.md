@@ -7,6 +7,12 @@ description: WhatsApp is a messaging app that allows users to send texts, make v
 ![WhatsApp](./assets/whatsapp.png#connector-icon)
 WhatsApp is a messaging app that allows users to send texts, make voice and video calls, and share media.
 
+Use the component to send messages and configure webhook subscriptions.
+
+API Documentation:
+
+The component was built using the [WhatsApp Business Platform Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/reference).
+
 ## Connections
 
 ### WhatsApp Access Token {#whatsapp-access-token}

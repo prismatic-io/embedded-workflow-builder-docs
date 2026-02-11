@@ -2,6 +2,7 @@ export interface Component {
   key: string;
   label: string;
   description: string;
+  docsDescription?: string;
   category: string;
   iconUrl: string;
   connections: { nodes: Connection[] };

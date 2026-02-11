@@ -5,7 +5,8 @@ description: Interact with OpenAI's models and build AI Agents
 ---
 
 ![OpenAI](./assets/openai.png#connector-icon)
-Interact with OpenAI&#x27;s models and build AI Agents
+[OpenAI](https://openai.com/) is an artificial intelligence research laboratory that develops AI models and APIs.
+It has produced models including [GPT-4](https://openai.com/research/gpt-4) and [GPT-3.5 Turbo](https://platform.openai.com/docs/models/gpt-3-5) for text generation, and [DALL·E 3](https://openai.com/dall-e-3) for image generation.
 
 ## Connections
 

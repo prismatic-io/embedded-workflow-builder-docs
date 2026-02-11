@@ -5,7 +5,7 @@ description: Manage orders within Fluent Commerce
 ---
 
 ![Fluent Commerce](./assets/fluent-commerce.png#connector-icon)
-Manage orders within Fluent Commerce
+Fluent Commerce is an order management system that allows you to track customers, orders and inventory.
 
 ## Connections
 

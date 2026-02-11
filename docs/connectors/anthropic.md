@@ -5,7 +5,12 @@ description: Interact with Anthropic's Claude models
 ---
 
 ![Anthropic](./assets/anthropic.png#connector-icon)
-Interact with Anthropic&#x27;s Claude models
+[Anthropic](https://www.anthropic.com/) is an artificial intelligence research company that provides various AI systems and large language models.
+Use the component to generate chat responses from the models offered from Anthropic.
+
+## API Documentation
+
+This component was built using the [Anthropic Typescript SDK](https://github.com/anthropics/anthropic-sdk-typescript).
 
 ## Connections
 

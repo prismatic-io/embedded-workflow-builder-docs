@@ -5,7 +5,8 @@ description: Transform data using a provided Liquid Template
 ---
 
 ![Liquid Template](./assets/liquid-template.png#connector-icon)
-Transform data using a provided Liquid Template
+The [LiquidJS Templating Engine](https://liquidjs.com/) is a simple, expressive and safe templating system.
+This component takes a template and data as inputs, and outputs a rendered document formatted by the template and populated with the data provided.
 
 ## Actions
 

@@ -5,7 +5,7 @@ description: Manage Marketo records
 ---
 
 ![Adobe Marketo Engage](./assets/marketo.png#connector-icon)
-Manage Marketo records
+[Adobe Marketo](https://www.marketo.com/) allows you to leverage rich behavioral data, built-in intelligence, and sophisticated journey flows to identify, engage, and accelerate your best opportunities to orchestrate your buyer's journeys.
 
 ## Connections
 

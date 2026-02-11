@@ -7,6 +7,10 @@ description: Klaviyo is a cloud based email marketing solution that enables e-co
 ![Klaviyo](./assets/klaviyo.png#connector-icon)
 Klaviyo is a cloud based email marketing solution that enables e-commerce businesses to create, send, and analyze email and SMS campaigns.
 
+Use the component to manage Templates, Campaigns, Events, and more.
+
+API Documentation: The component was built using the [Klaviyo API Reference](https://developers.klaviyo.com/en/reference/api_overview)
+
 ## Connections
 
 ### API Key {#klaviyoapikeyconnection}

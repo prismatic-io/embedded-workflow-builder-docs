@@ -5,7 +5,11 @@ description: Convert and manipulate documents and PDFs in Aspose.
 ---
 
 ![Aspose](./assets/aspose.png#connector-icon)
-Convert and manipulate documents and PDFs in Aspose.
+[Aspose](https://www.aspose.cloud/) is a cloud-based file manipulation platform that provides APIs for document processing and format conversion. This component allows you to convert documents between formats (PDF, DOCX, HTML), merge and split documents, and extract text and metadata from files.
+
+## API Documentation
+
+This component was built using the [Aspose Words Cloud API](https://reference.aspose.cloud/words/#/) and [Aspose PDF Cloud API](https://reference.aspose.cloud/pdf/#/).
 
 ## Connections
 
@@ -13,11 +17,27 @@ Convert and manipulate documents and PDFs in Aspose.
 
 Authenticate with Aspose using Client ID and Client Secret.
 
-In order to use the apiKey connection of Aspose, you need to provide both
-the client_id and client_secret from your Aspose's application.
-To access the Aspose's REST API, you need to create an application.
-To register new applications, login into the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/) site using your Aspose Account,
-and go to the Applications view. Once you create a new application, Aspose will issue a client_id and client_secret.
+To authenticate with Aspose, an application must be created in the Aspose Developer Dashboard to obtain a **Client ID** and **Client Secret**.
+
+#### Prerequisites
+
+- An Aspose account with access to the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/)
+
+#### Setup Steps
+
+1. Log in to the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/) using an Aspose account
+2. Navigate to the **Applications** view
+3. Click **Create New Application** or **Add Application**
+4. Fill in the required application details and save
+5. After creating the application, Aspose will generate a **Client ID** and **Client Secret**
+6. Copy both the **Client ID** and **Client Secret** values
+
+#### Configure the Connection
+
+- Enter the **Client ID** into the **Application Client ID** field
+- Enter the **Client Secret** into the **Application Client Secret** field
+
+For more information about the Aspose REST API, refer to the [Aspose API documentation](https://docs.aspose.cloud/).
 
 | Input                     | Comments                                  | Default |
 | ------------------------- | ----------------------------------------- | ------- |

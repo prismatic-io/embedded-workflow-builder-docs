@@ -5,7 +5,11 @@ description: Manage Microsoft Bing Ad Customer Services
 ---
 
 ![Microsoft Bing Ads](./assets/ms-bing-ads.png#connector-icon)
-Manage Microsoft Bing Ad Customer Services
+[Microsoft Advertising](https://learn.microsoft.com/en-us/advertising/guides/?view=bingads-13) is a pay-per-click (PPC) advertising platform used to display ads based on the keywords used in a user's search query. For advertisers placing a large number of ads or developers building advertising tools, the Bing Ads API provides programmatic access to Microsoft Advertising.
+
+Using the Bing Ads API is the most efficient way to manage many large campaigns or to integrate your marketing with other in-house systems. Some organizations may choose a hybrid approach; using the web UI for most tasks but automating reporting or campaign optimization with the API.
+
+This component allows you to add external conversions to Ads campaigns.
 
 ## Connections
 

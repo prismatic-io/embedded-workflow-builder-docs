@@ -5,7 +5,12 @@ description: Manage topics, subscriptions, and messages in Amazon SNS.
 ---
 
 ![Amazon SNS](./assets/aws-sns.png#connector-icon)
-Manage topics, subscriptions, and messages in Amazon SNS.
+[Amazon SNS](https://aws.amazon.com/sns/) (Simple Notification Service) is a fully managed messaging service from Amazon Web Services (AWS) for both application-to-application (A2A) and application-to-person (A2P) communication.
+This component allows you to publish messages to topics, manage subscriptions, create and configure topics, and send SMS messages through the SNS service.
+
+## API Documentation
+
+This component is built using the [AWS SNS API](https://docs.aws.amazon.com/sns/latest/api/welcome.html).
 
 ## Connections
 

@@ -5,7 +5,13 @@ description: PDQ provides a suite of management tools to automate software deplo
 ---
 
 ![PDQ](./assets/pdq.png#connector-icon)
-PDQ provides a suite of management tools to automate software deployment, manage patches, and track inventory across a company’s networks. Use the PDQ component to manage deployments, devices, groups, and packages.
+[PDQ](https://www.pdq.com/) provides a suite of management tools to automate software deployment, manage patches, and track inventory across a company’s networks.
+
+Use the PDQ component to manage deployments, devices, groups, and packages.
+
+## API Documentation:
+
+The component was built using the [PDQ V1 API](https://app.pdq.com/v1/docs)
 
 ## Connections
 

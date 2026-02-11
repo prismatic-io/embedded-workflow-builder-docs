@@ -7,7 +7,7 @@ description:
 ---
 
 ![Google Docs](./assets/google-docs.png#connector-icon)
-Google Docs is an online word processor included as part of the free, web-based Google Docs Editors suite.
+[Google Docs](https://doc.google.com/) is an online word processor included as part of the free, web-based Google Docs Editors suite.
 Use the Google Docs component to create, and collaborate on online documents.
 
 ## Connections

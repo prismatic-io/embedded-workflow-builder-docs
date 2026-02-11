@@ -5,7 +5,8 @@ description: Manage contacts and others connected to your Sage account.
 ---
 
 ![Sage Accounting](./assets/sage.png#connector-icon)
-Manage contacts and others connected to your Sage account.
+[Sage](https://www.sage.com/en-us/) is software for managing your small business's accounting.
+This component allows you to generate and track invoices, manage accounts, contacts and more.
 
 ## Connections
 

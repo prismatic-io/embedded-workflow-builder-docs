@@ -5,7 +5,8 @@ description: Easily manage metrics, logs, and events
 ---
 
 ![New Relic](./assets/new-relic.png#connector-icon)
-Easily manage metrics, logs, and events
+[New Relic](https://newrelic.com) is a San Francisco, California-based technology company which develops cloud-based software to help website and application owners track the performances of their services.
+This component allows you to send events, logs and metrics to your New Relic Account.
 
 ## Connections
 

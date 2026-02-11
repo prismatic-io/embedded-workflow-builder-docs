@@ -5,7 +5,12 @@ description: Manage objects and buckets in Amazon S3.
 ---
 
 ![Amazon S3](./assets/aws-s3.png#connector-icon)
-Manage objects and buckets in Amazon S3.
+[Amazon S3](https://aws.amazon.com/s3/) is an object storage service from Amazon Web Services (AWS).
+This component allows you to create, read, update, move, list, and delete objects (files) within an Amazon S3 bucket.
+
+## API Documentation
+
+This component was built using the [Amazon S3 API Reference](https://docs.aws.amazon.com/AmazonS3/latest/API/Type_API_Reference.html).
 
 ## Connections
 

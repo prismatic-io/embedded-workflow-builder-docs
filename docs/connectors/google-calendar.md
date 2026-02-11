@@ -5,7 +5,8 @@ description: Manage calendars and events in Google Calendar
 ---
 
 ![Google Calendar](./assets/google-calendar.png#connector-icon)
-Manage calendars and events in Google Calendar
+[Google Calendar](https://calendar.google.com/calendar/) is a time-management and scheduling calendar service developed by Google.
+This component allows you to create, read, update and delete events and calendars connected to your Google account.
 
 ## Connections
 

@@ -5,7 +5,12 @@ description: Manage cards, collections, and folders in the Guru knowledge manage
 ---
 
 ![Guru](./assets/guru.png#connector-icon)
-Manage cards, collections, and folders in the Guru knowledge management platform.
+[Guru](https://www.getguru.com/) is a knowledge management platform that helps teams capture, organize, and share information effectively.
+This component allows you to interact with the Guru REST API.
+
+## API Documentation
+
+This component was built using the [Guru API Documentation](https://developer.getguru.com/reference)
 
 ## Connections
 

@@ -5,7 +5,12 @@ description: Manage customers, products, and orders in your Shopify platform
 ---
 
 ![Shopify](./assets/shopify.png#connector-icon)
-Manage customers, products, and orders in your Shopify platform
+[Shopify](https://www.shopify.com/) is a multinational e-commerce company. They offer a subscription-based software that allows anyone to set up an online store and sell their products.
+This component allows you to manage the products and customers connected to your Shopify account.
+
+## API Documentation
+
+This component was built using the [Shopify GraphQL Admin API Reference](https://shopify.dev/docs/api/admin-graphql).
 
 ## Connections
 
@@ -13,10 +18,42 @@ Manage customers, products, and orders in your Shopify platform
 
 Authenticate requests to Shopify using an access token.
 
-An **admin API access token** can be used for testing purposes as you develop your integration.
-You can create an access token from the **API credentials** tab of a private Shopify app that you create.
+An **admin API access token** can be used for testing purposes during integration development.
 
-Before publishing an integration for customers, we recommend you switch to OAuth 2.0 authentication to give your users a single button-click experience.
+Personal access tokens are recommended for testing only. For production integrations, use OAuth 2.0 to allow users to authenticate with their own credentials.
+
+#### Prerequisites
+
+- A Shopify store (for testing purposes)
+
+#### Setup Steps
+
+To generate an admin API access token:
+
+1. Log in to the Shopify admin dashboard.
+2. Navigate to **Settings** > **Apps and sales channels**.
+3. Click **Develop apps for your store**.
+4. If prompted, click **Allow custom app development**.
+5. Click **Create an app** and provide a name for the app.
+6. Click **Configure Admin API scopes** and select the required scopes for the integration.
+7. Click **Save**.
+8. Navigate to the **API credentials** tab.
+9. Under **Admin API access token**, click **Install app** to generate the token.
+10. Copy the **Admin API access token** value.
+
+The token will have a format similar to `shpat_00000000000000000000000000000000`.
+
+Refer to [Shopify's Admin API access token documentation](https://shopify.dev/docs/apps/auth/admin-app-access-tokens) for more information.
+
+#### Configure the Connection
+
+- Enter the **Admin API access token** into the connection configuration.
+- Enter the **Host** (the Shopify domain, e.g., `YOUR-SHOPIFY-DOMAIN.myshopify.com`).
+- Optionally configure the **API Version** (defaults to latest version).
+
+:::warning Production Use
+Admin API access tokens are tied to custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
+:::
 
 | Input                  | Comments                                                                                                                                                     | Default                           |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
@@ -29,11 +66,47 @@ Before publishing an integration for customers, we recommend you switch to OAuth
 Authenticate requests to Shopify using values obtained from the Developer Console. Allows for using a single `domain` input instead of entering separate authorization URL's.
 
 The Shopify component authenticates requests through OAuth 2.0.
-Information on how to generate an OAuth 2.0 app with Shopify can be found [in their documentation](https://shopify.dev/apps/auth/oauth)
 
-1. Navigate to the **Configuration** section of your created app. In the **Allowed redirection URL(s)** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+Shopify uses OAuth 2.0 for app authentication. This connection type simplifies configuration by using a single **Shop Name** input to automatically construct the authorization and token URLs.
 
-For information on what **Scopes** you should request, see the [Shopify documentation](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes).
+#### Prerequisites
+
+- A [Shopify Partners account](https://partners.shopify.com/)
+- Access to create apps in the Shopify Partner Dashboard
+
+#### Setup Steps
+
+To create an OAuth 2.0 app for Shopify:
+
+1. Log in to the [Shopify Partner Dashboard](https://partners.shopify.com/).
+2. Click **Apps** in the left sidebar.
+3. Click **Create app**.
+4. Select **Create app manually** and provide an app name.
+5. Navigate to the **Configuration** section of the created app.
+6. Under **App URL**, enter a valid URL (this is required but can be a placeholder).
+7. Under **Allowed redirection URL(s)**, enter: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+8. Click **Save**.
+9. Scroll to the **Client credentials** section.
+10. Copy the **Client ID** (labeled as **API key** in Shopify).
+11. Copy the **Client secret** (labeled as **API secret key** in Shopify).
+
+Refer to [Shopify's OAuth documentation](https://shopify.dev/apps/auth/oauth) for detailed information on OAuth app creation.
+
+#### Configure the Connection
+
+- Enter the **API Key** (Client ID) from the Shopify app into the **Client ID** field.
+- Enter the **API Secret** (Client Secret) from the Shopify app into the **Client Secret** field.
+- Enter the **Shop Name** (the Shopify domain without `.myshopify.com`, e.g., `example-store`).
+- Configure **Scopes** based on the required permissions.
+  - Default scopes include: `read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations`
+  - Refer to [Shopify's access scopes documentation](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for a complete list of available scopes.
+- Optionally configure the **API Version** (defaults to latest version).
+
+Save the integration to connect and authenticate to Shopify.
+
+:::info Shop Name Format
+The **Shop Name** should be the subdomain portion of the Shopify store URL. For example, if the store URL is `example-store.myshopify.com`, enter `example-store` as the Shop Name.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,7 +5,11 @@ description: Manage objects connected to your Stripe platform
 ---
 
 ![Stripe](./assets/stripe.png#connector-icon)
-Manage objects connected to your Stripe platform
+The **Stripe** component provides functionality for interacting with the Stripe API.
+
+## API Documentation
+
+This component was built using the [Stripe REST API Reference](https://docs.stripe.com/api)
 
 ## Connections
 

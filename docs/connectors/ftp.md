@@ -5,7 +5,7 @@ description: Manage files and directories on an FTP server
 ---
 
 ![FTP](./assets/ftp.png#connector-icon)
-Manage files and directories on an FTP server
+The **FTP** (_File Transfer Protocol_) component lets you upload, download, move and delete files on an FTP server.
 
 ## Connections
 

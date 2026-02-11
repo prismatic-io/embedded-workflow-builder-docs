@@ -5,7 +5,9 @@ description: Manage files and folders within Azure Files
 ---
 
 ![Azure Files](./assets/azure-files.png#connector-icon)
-Manage files and folders within Azure Files
+[Azure Files](https://azure.microsoft.com/en-us/services/storage/files/) is Microsoft's cloud file sharing platform.
+While similar to Azure Blob Storage, Azure Files is geared towards creating SMB file shares that groups of users (rather than applications) can use.
+This component lets you manage files and shares within Azure Files.
 
 ## Connections
 

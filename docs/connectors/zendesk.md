@@ -5,7 +5,9 @@ description: Manage Tickets and users in Zendesk
 ---
 
 ![Zendesk](./assets/zendesk.png#connector-icon)
-Manage Tickets and users in Zendesk
+**Zendesk** is a public company headquartered in San Francisco, California.
+It provides software-as-a-service products related to customer support, sales, and other customer communications.
+The **Zendesk** component allows you to manage Users and Tickets inside your Zendesk domain.
 
 ## Connections
 

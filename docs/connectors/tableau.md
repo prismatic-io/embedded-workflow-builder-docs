@@ -5,7 +5,8 @@ description: Manage projects and workbooks in your Tableau site
 ---
 
 ![Tableau](./assets/tableau.png#connector-icon)
-Manage projects and workbooks in your Tableau site
+[Tableau](https://www.tableau.com/) is an interactive data visualization software company focused on business intelligence.
+The Tableau component allows you to manage your users, projects, workbooks, and connections through the Tableau Rest API.
 
 ## Connections
 

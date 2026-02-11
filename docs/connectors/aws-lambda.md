@@ -5,7 +5,11 @@ description: List and invoke AWS Lambda functions
 ---
 
 ![AWS Lambda](./assets/aws-lambda.png#connector-icon)
-List and invoke AWS Lambda functions
+[AWS Lambda](https://aws.amazon.com/lambda/) is an event-driven, serverless computing platform provided by Amazon as a part of Amazon Web Services.
+The AWS Lambda component allows you to manage and interact with AWS Lambda functions.
+
+API Documentation:
+[AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/?icmpid=docs_homepage_featuredsvcs)
 
 ## Connections
 

@@ -5,7 +5,12 @@ description: Adobe I/O Events notifies you when changes occur. Use the Adobe I/O
 ---
 
 ![Adobe I/O Events](./assets/adobe-io-events.png#connector-icon)
-Adobe I/O Events notifies you when changes occur. Use the Adobe I/O Events component to easily integrate events into your applications using Webhooks.
+[Adobe I/O Events](https://developer.adobe.com/events/) trigger when changes to content and data on Adobe's Experience Platform occur; or when predefined rules or thresholds have been met.
+Use the Adobe I/O Events Component to build reactive, near real-time event-driven applications with Adobe I/O Events.
+
+## API Documentation
+
+This component was built using the [Adobe I/O Events API](https://developer.adobe.com/events/docs/guides/api/).
 
 ## Connections
 

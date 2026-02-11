@@ -5,7 +5,7 @@ description: Perform common math operations on numbers or lists of numbers
 ---
 
 ![Math](./assets/math.png#connector-icon)
-Perform common math operations on numbers or lists of numbers
+The **math** component implements common mathematical functions that are available in JavaScript's built-in [Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) library.
 
 ## Actions
 

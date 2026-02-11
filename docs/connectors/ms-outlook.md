@@ -5,7 +5,12 @@ description: Manage emails, calendar events, and subscriptions in Microsoft Outl
 ---
 
 ![Microsoft Outlook](./assets/ms-outlook.png#connector-icon)
-Manage emails, calendar events, and subscriptions in Microsoft Outlook.
+[Microsoft Outlook](https://outlook.live.com) is a productivity suite for managing email and calendar.
+This component allows you to read, send, and manage emails, as well as create, update, and manage calendar events and subscriptions.
+
+## API Documentation
+
+This component was built using the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/api/overview) currently utilizing v1.0
 
 ## Connections
 

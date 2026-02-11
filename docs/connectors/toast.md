@@ -5,7 +5,13 @@ description: Use the Toast component to manage Employees, Jobs, Cash Entries, an
 ---
 
 ![Toast](./assets/toast.png#connector-icon)
-Use the Toast component to manage Employees, Jobs, Cash Entries, and more.
+Toast is a cloud-based point-of-sale system designed specifically for the restaurant industry, offering tools for order management, payments, and business insights.
+
+Use the component to manage Employees, Jobs, Cash Entries, and more.
+
+## API Documentation:
+
+The component was built using the [Toast API Reference](https://doc.toasttab.com/openapi/).
 
 ## Connections
 

@@ -5,7 +5,11 @@ description: Make HTTP requests to APIs and endpoints.
 ---
 
 ![HTTP](./assets/http.png#connector-icon)
-Make HTTP requests to APIs and endpoints.
+**HTTP** (Hypertext Transfer Protocol) is the foundational protocol for transferring data on the web. This component allows you to make HTTP requests to any HTTP-based API or endpoint, supporting GET, POST, PUT, PATCH, and DELETE methods, as well as form data submissions.
+
+## Additional Information
+
+For more information on the HTTP protocol, see the [HTTP specification](https://developer.mozilla.org/en-US/docs/Web/HTTP).
 
 ## Connections
 

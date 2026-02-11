@@ -5,7 +5,7 @@ description: Manage payroll, benefits, and human resource within Gusto
 ---
 
 ![Gusto](./assets/gusto.png#connector-icon)
-Manage payroll, benefits, and human resource within Gusto
+[Gusto](https://gusto.com) is a company that provides a cloud-based payroll, benefits, and human resource management software for businesses based in the United States.
 
 ## Connections
 

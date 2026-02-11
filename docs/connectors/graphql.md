@@ -5,7 +5,11 @@ description: Make GraphQL requests (queries and mutations) to a GraphQL-based AP
 ---
 
 ![GraphQL](./assets/graphql.png#connector-icon)
-Make GraphQL requests (queries and mutations) to a GraphQL-based API
+The **GraphQL** component allows you to make requests to a [GraphQL](https://graphql.org/)-based API.
+
+## API Documentation
+
+For further information on GraphQL please refer to the following guide: [Introduction to GraphQL](https://graphql.org/learn/)
 
 ## Connections
 

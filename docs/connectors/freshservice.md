@@ -5,7 +5,13 @@ description: Use the Freshservice component to manage tickets, problems, agents,
 ---
 
 ![Freshservice](./assets/freshservice.png#connector-icon)
-Use the Freshservice component to manage tickets, problems, agents, and more.
+**Freshservice** is a cloud based IT service management software that streamlines IT operations, automates workflows, and improves service delivery for organizations.
+
+Use the component to manage tickets, problems, agents, and more.
+
+## API Documentation:
+
+The component was built using the [Freshservice v2.0 API Reference](https://api.freshservice.com/#intro).
 
 ## Connections
 

@@ -5,7 +5,12 @@ description: Manage companies, report suites, metrics, dimensions and more withi
 ---
 
 ![Adobe Analytics](./assets/adobe-analytics.png#connector-icon)
-Manage companies, report suites, metrics, dimensions and more within Adobe Analytics.
+Adobe Analytics lets you mix, match, and analyze data from any digital point in the customer journey.
+This component lets you manage Adobe Analytics report suites and generate reports from data gathered.
+
+## API Documentation
+
+This component was built using the [Adobe Analytics 2.0 API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/).
 
 ## Connections
 

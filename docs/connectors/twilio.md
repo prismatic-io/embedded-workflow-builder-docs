@@ -5,7 +5,8 @@ description: Send SMS messages through Twilio
 ---
 
 ![Twilio](./assets/twilio.png#connector-icon)
-Send SMS messages through Twilio
+[Twilio](https://www.twilio.com/) is a platform that allows you to send SMS text messages.
+You can use the Twilio component to send messages to your end users or to your team.
 
 ## Connections
 

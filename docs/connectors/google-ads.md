@@ -5,7 +5,11 @@ description: Manage campaigns, conversions, customers, and local services in Goo
 ---
 
 ![Google Ads](./assets/google-ads.png#connector-icon)
-Manage campaigns, conversions, customers, and local services in Google Ads.
+[Google Ads](https://ads.google.com/) is an online advertising platform that allows businesses to create and manage ad campaigns across Google Search, YouTube, and partner websites. This component gives you the ability to manage campaigns, upload conversions, handle customer accounts, and work with Local Services ads.
+
+## API Documentation
+
+This component was built using the [Google Ads API v22](https://developers.google.com/google-ads/api/docs/get-started/introduction) currently supporting versions v19,v20,v21,v22.
 
 ## Connections
 
