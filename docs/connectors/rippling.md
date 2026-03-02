@@ -1,7 +1,7 @@
 ---
 title: Rippling Connector
 sidebar_label: Rippling
-description: Rippling makes it easy to manage your company's Payroll, Benefits, HR, and IT—all in one, modern platform
+description: Rippling makes it easy to manage your company's Payroll, Benefits, HR, and IT—all in one, modern platform.
 ---
 
 ![Rippling](./assets/rippling.png#connector-icon)
@@ -11,285 +11,727 @@ description: Rippling makes it easy to manage your company's Payroll, Benefits, 
 
 ### Bearer API Key {#bearerapikey}
 
-If you are using Rippling's API to access endpoints on behalf of your own company, please use your API key
+If using Rippling's API to access endpoints on behalf of your own company, use your API key.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Authorization |          |         |
+To authenticate with Rippling using a bearer API key, generate an API key from the Rippling admin console and enter it into the connection configuration.
+
+#### Prerequisites
+
+- Access to the Rippling admin console
+- Authority to generate API keys
+
+#### Setup Steps
+
+To generate an API key:
+
+1. Navigate to the Rippling admin console
+2. Open the **Settings** or **API** section
+3. Locate the **API Keys** area
+4. Click **Generate New API Key** or **Create API Key**
+5. Copy the generated API key value
+
+:::note
+The API key is used for authenticating API requests on behalf of the organization. Keep the API key secure and do not share it publicly.
+:::
+
+#### Configure the Connection
+
+- Enter the API key into the **API Key** field in the connection configuration
+
+Refer to [Rippling's API documentation](https://developer.rippling.com/documentation/) for additional information on API key management and API authentication.
+
+#### Verify Connection
+
+After saving the connection, the API key is ready for use in integration actions.
+
+| Input   | Comments                                                                                                                                                                                               | Default |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| API Key | API key from the Rippling admin console. Navigate to <strong>Admin > Settings > API</strong> in Rippling to generate your API key. [Learn more](https://developer.rippling.com/documentation/rest-api) |         |
 
 ### OAuth 2.0 {#authorizationcode}
 
-To use OAuth 2.0 with Rippling you will need to coordinate with them in accordance with their [Partner Requirements](https://developer.rippling.com/documentation/distribute/getting-started/requirements). Additionally, you may also refer to the [Installation OAuth Guide](https://developer.rippling.com/documentation/distribute/guides/installation).
+Authenticate using OAuth 2.0 Authorization Code flow for partner apps requiring user delegation.
 
-Ensure to supply the callback URL: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+To authenticate with Rippling using OAuth 2.0, create and deploy an App Listing in the Rippling partner company dashboard. Refer to the [Developer Portal documentation](https://developer.rippling.com/documentation/developer-portal) for detailed guidance, including the [Partner Requirements](https://developer.rippling.com/documentation/distribute/getting-started/requirements) and [Installation OAuth Guide](https://developer.rippling.com/documentation/distribute/guides/installation).
 
-You will need to collect a valid **Client ID**, **Client Secret**, and **Authorize URL** from this process.
+#### Prerequisites
 
-Once you have this information you can create a connection:
+- A Rippling partner account (apply via [Partner Requirements](https://developer.rippling.com/documentation/developer-portal/getting-started/process))
+- Access to the partner company dashboard at [app.rippling.com](https://app.rippling.com)
 
-- Enter the **Client ID**, **Client Secret**, and **Authorize URL** to the same named fields.
-- Add space delimited scopes to that field. Refer to [Rippling's scopes documentation](https://developer.rippling.com/documentation/base-api/scopes) for details.
+#### Setup Steps
 
-Save your integration and you should now be able to connect to Rippling.
+1. Log in to the Rippling partner company at [app.rippling.com](https://app.rippling.com) and navigate to **Partner > Client Command Center**
+2. [Create an App Listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/create) with the following configuration:
+   - Set the **Redirect URI** to: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   - Note the **Authorization URL** (typically in the format `https://app.rippling.com/apps/PLATFORM/{AppName}`)
+3. [Deploy the App Listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/deploy) (sandbox first for testing)
+4. Retrieve the **Client ID** and **Client Secret** from the deployed App Listing
+5. Determine the required [scopes](https://developer.rippling.com/documentation/base-api/scopes) for the integration (space-delimited values like `employees:read departments:read`)
+
+#### Configure the Connection
+
+- Enter the **Client ID** and **Client Secret** from the deployed App Listing
+- Enter the **Authorization URL** from step 2
+- For **Scopes**, enter the space-delimited scopes determined in step 5. Refer to [Rippling's scopes documentation](https://developer.rippling.com/documentation/base-api/scopes) for available scope values
+- The **Token URL** is automatically set to `https://app.rippling.com/api/o/token/` and does not require modification
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input             | Comments                                            | Default |
-| ----------------- | --------------------------------------------------- | ------- |
-| Authorization URL | Authorization URL from Rippling                     |         |
-| Scopes            | Space-delimited scopes                              |         |
-| Client ID         | Client identifier for your app supplied by Rippling |         |
-| Client Secret     | Client secret for your app supplied by Rippling     |         |
+| Input             | Comments                                                                                                                                                                | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Authorization URL | The OAuth 2.0 authorization URL for your Rippling app. Replace {AppName} with your actual app name. [Learn more](https://developer.rippling.com/documentation/rest-api) |         |
+| Scopes            | Space-separated list of OAuth permission scopes. Scopes are configured in your Rippling app settings and determine which resources your integration can access.         |         |
+| Client ID         | The OAuth 2.0 client ID for your Rippling partner app. Found in your app configuration in the Rippling admin console.                                                   |         |
+| Client Secret     | The OAuth 2.0 client secret for your Rippling partner app. Keep this value secure and do not share it.                                                                  |         |
 
 ## Actions
 
-### Delete Groups Group Id {#deletegroupsgroupid}
+### Create Business Partner Group (V2) {#createbusinesspartnergroup}
 
-DELETE Group
+Create a new business partner group.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection |                                                 |         |
-| Group Id   | Unique identifier for the group within Rippling |         |
+| Input                       | Comments                                                              | Default |
+| --------------------------- | --------------------------------------------------------------------- | ------- |
+| Connection                  | The Rippling connection to use.                                       |         |
+| Name                        | The name of the business partner group.                               |         |
+| Default Business Partner ID | The unique identifier of the default business partner for this group. |         |
 
-### Get Companies {#getcompanies}
+### Create Business Partner (V2) {#createbusinesspartner}
 
-GET Current Company
+Create a new business partner.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input                     | Comments                                                               | Default |
+| ------------------------- | ---------------------------------------------------------------------- | ------- |
+| Connection                | The Rippling connection to use.                                        |         |
+| Worker ID                 | The ID of the worker to associate with the business partner.           |         |
+| Business Partner Group ID | The unique identifier of the business partner group to associate with. |         |
 
-### Get Company Activity {#getcompanyactivity}
+### Create Custom Object (V2) {#createcustomobject}
 
-GET Company Activity
+Create a new custom object.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| Connection |                                                                         |         |
-| Start Date | Timestamp to list activity after (inclusive)                            |         |
-| End Date   | Timestamp to list activity before (inclusive)                           |         |
-| Next       | Specifies the pagination cursor to the next page                        |         |
-| Limit      | Specifies the number of results to page (maximum: 1000) (default: 1000) |         |
+| Input       | Comments                            | Default |
+| ----------- | ----------------------------------- | ------- |
+| Connection  | The Rippling connection to use.     |         |
+| Name        | The name of the custom object.      |         |
+| Description | A description of the custom object. |         |
+| Category    | The category for the custom object. |         |
 
-### Get Custom Fields {#getcustomfields}
+### Create Object Category (V2) {#createobjectcategory}
 
-GET Custom Fields
+Create a new object category.
+
+| Input       | Comments                              | Default |
+| ----------- | ------------------------------------- | ------- |
+| Connection  | The Rippling connection to use.       |         |
+| Name        | The name of the object category.      |         |
+| Description | A description of the object category. |         |
+
+### Delete Business Partner Group (V2) {#deletebusinesspartnergroup}
+
+Delete a business partner group by ID.
+
+| Input                     | Comments                                                    | Default |
+| ------------------------- | ----------------------------------------------------------- | ------- |
+| Connection                | The Rippling connection to use.                             |         |
+| Business Partner Group ID | Unique identifier for the business partner group to delete. |         |
+
+### Delete Business Partner (V2) {#deletebusinesspartner}
+
+Delete a business partner by ID.
+
+| Input               | Comments                                              | Default |
+| ------------------- | ----------------------------------------------------- | ------- |
+| Connection          | The Rippling connection to use.                       |         |
+| Business Partner ID | Unique identifier for the business partner to delete. |         |
+
+### Delete Custom Object (V2) {#deletecustomobject}
+
+Delete a custom object by API name.
+
+| Input                  | Comments                                     | Default |
+| ---------------------- | -------------------------------------------- | ------- |
+| Connection             | The Rippling connection to use.              |         |
+| Custom Object API Name | The API name of the custom object to delete. |         |
+
+### Delete Groups Group Id (V1) {#deletegroupsgroupid}
+
+DELETE Group.
+
+| Input      | Comments                                         | Default |
+| ---------- | ------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                  |         |
+| Group ID   | The unique identifier for the group in Rippling. |         |
+
+### Delete Object Category (V2) {#deleteobjectcategory}
+
+Delete an object category by ID.
+
+| Input              | Comments                                             | Default |
+| ------------------ | ---------------------------------------------------- | ------- |
+| Connection         | The Rippling connection to use.                      |         |
+| Object Category ID | Unique identifier for the object category to delete. |         |
+
+### Get Business Partner Group (V2) {#getbusinesspartnergroup}
+
+Retrieve a specific business partner group by ID.
+
+| Input                     | Comments                                                    | Default |
+| ------------------------- | ----------------------------------------------------------- | ------- |
+| Connection                | The Rippling connection to use.                             |         |
+| Business Partner Group ID | The unique identifier for the business partner group.       |         |
+| Expand                    | Comma-separated fields to expand: default_business_partner. |         |
+
+### Get Business Partner (V2) {#getbusinesspartner}
+
+Retrieve a specific business partner by ID.
+
+| Input               | Comments                                                                        | Default |
+| ------------------- | ------------------------------------------------------------------------------- | ------- |
+| Connection          | The Rippling connection to use.                                                 |         |
+| Business Partner ID | The unique identifier for the business partner.                                 |         |
+| Expand              | Comma-separated fields to expand: business_partner_group, worker, client_group. |         |
+
+### Get Companies (V1) {#getcompanies}
+
+GET Current Company.
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
+
+### Get Company Activity (V1) {#getcompanyactivity}
+
+GET Company Activity.
+
+| Input      | Comments                                                          | Default |
+| ---------- | ----------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                   |         |
+| Start Date | ISO 8601 timestamp to list activity after (inclusive).            |         |
+| End Date   | ISO 8601 timestamp to list activity before (inclusive).           |         |
+| Next       | Pagination cursor token for retrieving the next page of results.  |         |
+| Limit      | Maximum number of results per page. Maximum: 1000. Default: 1000. |         |
+
+### Get Custom Fields (V1) {#getcustomfields}
+
+GET Custom Fields.
+
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
+
+### Get Custom Object (V2) {#getcustomobject}
+
+Retrieve a specific custom object by API name.
+
+| Input                  | Comments                           | Default |
+| ---------------------- | ---------------------------------- | ------- |
+| Connection             | The Rippling connection to use.    |         |
+| Custom Object API Name | The API name of the custom object. |         |
+
+### Get Departments (V1) {#getdepartments}
+
+GET Departments.
+
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
+
+### Get Department (V2) {#getdepartment}
+
+Retrieve a specific department by ID.
+
+| Input         | Comments                                                        | Default |
+| ------------- | --------------------------------------------------------------- | ------- |
+| Connection    | The Rippling connection to use.                                 |         |
+| Department ID | The unique identifier for the department.                       |         |
+| Expand        | Comma-separated fields to expand: parent, department_hierarchy. |         |
+
+### Get Employees Employee Id (V1) {#getemployeesemployeeid}
+
+GET Employee.
+
+| Input       | Comments                                            | Default |
+| ----------- | --------------------------------------------------- | ------- |
+| Connection  | The Rippling connection to use.                     |         |
+| Employee ID | The unique identifier for the employee in Rippling. |         |
+
+### Get Employees Include Terminated (V1) {#getemployeesincludeterminated}
+
+GET Employees (Including Terminated).
+
+| Input      | Comments                                                                                                                             | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                                                                      |         |
+| Limit      | Sets a limit on the number of returned values.                                                                                       |         |
+| Offset     | Number of results to skip before returning values.                                                                                   |         |
+| EIN        | Employer Identification Number (EIN), also known as the Federal Employer Identification Number or Federal Tax Identification Number. |         |
+
+### Get Employees (V1) {#getemployees}
+
+GET Employees.
+
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
+
+### Get Employment Type (V2) {#getemploymenttype}
+
+Retrieve a specific employment type by ID.
+
+| Input              | Comments                                       | Default |
+| ------------------ | ---------------------------------------------- | ------- |
+| Connection         | The Rippling connection to use.                |         |
+| Employment Type ID | The unique identifier for the employment type. |         |
+
+### Get Groups (V1) {#getgroups}
+
+GET Groups.
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
+
+### Get Job Function (V2) {#getjobfunction}
+
+Retrieve a specific job function by ID.
+
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Rippling connection to use.             |         |
+| Job Function ID | The unique identifier for the job function. |         |
+
+### Get Leave Requests (V1) {#getleaverequests}
+
+GET Leave Requests.
+
+| Input        | Comments                                                                       | Default |
+| ------------ | ------------------------------------------------------------------------------ | ------- |
+| Connection   | The Rippling connection to use.                                                |         |
+| ID           | The unique identifier of the leave request.                                    |         |
+| Role         | The role associated with the leave request.                                    |         |
+| Requested By | The identifier or email of the person who requested the leave.                 |         |
+| Status       | The status of the leave request.                                               |         |
+| Start Date   | The start date of the leave in YYYY-MM-DD format.                              |         |
+| End Date     | The end date of the leave in YYYY-MM-DD format.                                |         |
+| Leave Policy | The leave policy identifier or name.                                           |         |
+| Processed By | The identifier or email of the person who processed the leave request.         |         |
+| From         | Filter start date to capture leave requests that overlap with this date range. |         |
+| To           | Filter end date to capture leave requests that overlap with this date range.   |         |
+
+### Get Levels (V1) {#getlevels}
+
+GET Levels.
+
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
+
+### Get Me (V1) {#getme}
+
+GET Current User.
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
+
+### Get Object Category (V2) {#getobjectcategory}
+
+Retrieve a specific object category by ID.
+
+| Input              | Comments                                       | Default |
+| ------------------ | ---------------------------------------------- | ------- |
+| Connection         | The Rippling connection to use.                |         |
+| Object Category ID | The unique identifier for the object category. |         |
+
+### Get Saml Idp Metadata (V1) {#getsamlidpmetadata}
+
+GET SAML Metadata.
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
+
+### Get SSO Me (V2) {#getssome}
+
+Retrieve SSO information of the current user.
+
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.            |         |
+| Expand     | Comma-separated fields to expand: company. |         |
+
+### Get Supergroup (V2) {#getsupergroup}
+
+Retrieve a specific supergroup by ID.
+
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Rippling connection to use.           |         |
+| Supergroup ID | The unique identifier for the supergroup. |         |
+
+### Get Teams (V1) {#getteams}
+
+GET Teams.
+
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
+
+### Get Team (V2) {#getteam}
+
+Retrieve a specific team by ID.
+
+| Input      | Comments                                  | Default |
+| ---------- | ----------------------------------------- | ------- |
+| Connection | The Rippling connection to use.           |         |
+| Team ID    | The unique identifier for the team.       |         |
+| Expand     | Comma-separated fields to expand: parent. |         |
+
+### Get User (V2) {#getuser}
+
+Retrieve a specific user by ID.
 
 | Input      | Comments                            | Default |
 | ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Connection | The Rippling connection to use.     |         |
+| User ID    | The unique identifier for the user. |         |
 
-### Get Departments {#getdepartments}
+### Get Worker (V2) {#getworker}
 
-GET Departments
+Retrieve a specific worker by ID.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                                                                                                           |         |
+| Worker ID  | The unique identifier for the worker.                                                                                                                     |         |
+| Expand     | Comma-separated fields to expand: user, manager, legal_entity, employment_type, compensation, department, teams, level, custom_fields, business_partners. |         |
 
-### Get Employees {#getemployees}
+### Get Work Locations (V1) {#getworklocations}
 
-GET Employees
+GET Work Locations.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                    |         |
+| Limit      | Sets a limit on the number of returned values.     |         |
+| Offset     | Number of results to skip before returning values. |         |
 
-### Get Employees Employee Id {#getemployeesemployeeid}
+### Get Work Location (V2) {#getworklocation}
 
-GET Employee
+Retrieve a specific work location by ID.
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Employee Id | Unique identifier for the employee within Rippling |         |
+| Input            | Comments                                     | Default |
+| ---------------- | -------------------------------------------- | ------- |
+| Connection       | The Rippling connection to use.              |         |
+| Work Location ID | The unique identifier for the work location. |         |
 
-### Get Employees Include Terminated {#getemployeesincludeterminated}
+### List Business Partner Groups (V2) {#listbusinesspartnergroups}
 
-GET Employees (Including Terminated)
+Retrieve a list of business partner groups.
 
-| Input      | Comments                                                                                                                          | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                   |         |
-| Limit      | Sets a limit on the returned values                                                                                               |         |
-| Offset     | Offsets the returned values                                                                                                       |         |
-| EIN        | Employer identification number, also known as the Federal Emplower Identification Number or the Federal Tax Identification Number |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Expand     | Comma-separated fields to expand: default_business_partner.                    |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Get Groups {#getgroups}
+### List Business Partners (V2) {#listbusinesspartners}
 
-GET Groups
+Retrieve a list of business partners.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                                          |         |
+| Filter     | Filterable fields: worker_id, business_partner_group_id. Example: worker_id eq 'abc123'. |         |
+| Expand     | Comma-separated fields to expand: business_partner_group, worker, client_group.          |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                   |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response.           |         |
 
-### Get Leave Requests {#getleaverequests}
+### List Companies (V2) {#listcompanies}
 
-GET Leave Requests
+Retrieve a list of companies.
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
-| Id           |                                                                        |         |
-| Role         |                                                                        |         |
-| Requested By |                                                                        |         |
-| Status       |                                                                        |         |
-| Start Date   | Start date of leave                                                    |         |
-| End Date     | End date of leave                                                      |         |
-| Leave Policy |                                                                        |         |
-| Processed By |                                                                        |         |
-| From         | Filter to capture whether the leave request overlaps with a date range |         |
-| To           | Filter to capture whether the leave request overlaps with a date range |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Expand     | Comma-separated fields to expand: parent_legal_entity, legal_entities.         |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Get Levels {#getlevels}
+### List Custom Fields (V2) {#listcustomfields}
 
-GET Levels
+Retrieve a list of custom fields.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Get Me {#getme}
+### List Custom Objects (V2) {#listcustomobjects}
 
-GET Current User
+Retrieve a list of custom objects.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
 
-### Get Saml Idp Metadata {#getsamlidpmetadata}
+### List Departments (V2) {#listdepartments}
 
-GET SAML Metadata
+Retrieve a list of departments.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Expand     | Comma-separated fields to expand: parent, department_hierarchy.                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Get Teams {#getteams}
+### List Employment Types (V2) {#listemploymenttypes}
 
-GET Teams
+Retrieve a list of employment types.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Get Work Locations {#getworklocations}
+### List Entitlements (V2) {#listentitlements}
 
-GET Work Locations
+Retrieve a list of entitlements.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection |                                     |         |
-| Limit      | Sets a limit on the returned values |         |
-| Offset     | Offsets the returned values         |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
 
-### Patch Groups Group Id {#patchgroupsgroupid}
+### List Job Functions (V2) {#listjobfunctions}
 
-PATCH Group
+Retrieve a list of job functions.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection |                                                 |         |
-| Group Id   | Unique identifier for the group within Rippling |         |
-| Name       | The name of the Group                           |         |
-| Spoke Id   | The external identifier of the Group            |         |
-| Users      | The array of users within the Group             |         |
-| Version    | The version identifier of the Group             |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Post Ats Candidates Push Candidate {#postatscandidatespushcandidate}
+### List Object Categories (V2) {#listobjectcategories}
 
-POST New Candidate
+Retrieve a list of object categories.
 
-| Input           | Comments                                                                                                | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                         |         |
-| Name            | The candidate's name                                                                                    |         |
-| Email           | The candidate's email                                                                                   |         |
-| Phone Number    | The candidate's phone number                                                                            |         |
-| Job Title       | The candidate's job title                                                                               |         |
-| Candidate Id    | The unique identifier of the candidate from the ATS                                                     |         |
-| Start Date      | The would-be start date of the candidate                                                                |         |
-| Department      | The department name as a string                                                                         |         |
-| Salary Unit     | An ENUM string value, denoting the frequency at which the candidate should be paid once the role begins |         |
-| Salary Per Unit | The decimal value that the candidate gets paid every salaryUnit time period                             |         |
-| Signing Bonus   | The bonus cash given to the candidate as a part of a one time payment, with two decimal digit precision |         |
-| Equity Shares   | The number of shares that will be given to the candidate                                                |         |
-| Currency        | A string field of the ofifcial currency doe as listed in ISO 4217                                       |         |
-| Employment Type | The ENUM type of employment the user will have within Rippling                                          |         |
-| Attachments     |                                                                                                         |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
 
-### Post Groups {#postgroups}
+### List Supergroups (V2) {#listsupergroups}
 
-POST Groups
+Retrieve supergroups matching the input parameters.
 
-| Input      | Comments                                                                                                           | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                                    |         |
-| Name       | User-readable name of the group                                                                                    |         |
-| Spoke Id   | The unique ID for the group, this can be the unique identifier for the group entity object within your application |         |
-| Users      | An array of Rippling IDs that will be in the group                                                                 |         |
+| Input      | Comments                                                                        | Default |
+| ---------- | ------------------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                                 |         |
+| Filter     | Filterable fields: app_owner_id, group_type. Example: app_owner_id eq 'abc123'. |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.          |         |
 
-### Post Mark App Installed {#postmarkappinstalled}
+### List Teams (V2) {#listteams}
 
-Mark App Installed
+Retrieve a list of teams.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Expand     | Comma-separated fields to expand: parent.                                      |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Process Leave Requests {#processleaverequests}
+### List Users (V2) {#listusers}
 
-POST Process Leave Request
+Retrieve a list of users.
 
-| Input      | Comments                                               | Default |
-| ---------- | ------------------------------------------------------ | ------- |
-| Connection |                                                        |         |
-| Id         | Unique identifier of the leave request being processed |         |
-| Action     | The action to be taken on the leave request            |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
-### Put Groups Group Id {#putgroupsgroupid}
+### List Workers (V2) {#listworkers}
 
-PUT Group
+Retrieve a list of workers with filtering, expansion, and sorting support.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection |                                                 |         |
-| Group Id   | Unique identifier for the group within Rippling |         |
-| Name       | The name of the Group                           |         |
-| Spoke Id   | The external identifier of the Group            |         |
-| Users      | The array of users within the Group             |         |
-| Version    | The version identifier of the Group             |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                                                                                                           |         |
+| Filter     | Filter expression. Filterable fields: status, work_email, user_id, created_at, updated_at. Example: status eq 'ACTIVE'.                                   |         |
+| Expand     | Comma-separated fields to expand: user, manager, legal_entity, employment_type, compensation, department, teams, level, custom_fields, business_partners. |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                                                                                    |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response.                                                                            |         |
 
-### Raw Request {#rawrequest}
+### List Work Locations (V2) {#listworklocations}
 
-Send raw HTTP request to Rippling
+Retrieve a list of work locations.
+
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
+
+### Patch Groups Group Id (V1) {#patchgroupsgroupid}
+
+PATCH Group.
+
+| Input      | Comments                                         | Default |
+| ---------- | ------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                  |         |
+| Group ID   | The unique identifier for the group in Rippling. |         |
+| Name       | The name of the Group.                           |         |
+| Spoke ID   | The external identifier of the Group.            |         |
+| Users      | The array of users within the Group.             |         |
+| Version    | The version identifier of the group.             |         |
+
+### Post Ats Candidates Push Candidate (V1) {#postatscandidatespushcandidate}
+
+POST New Candidate.
+
+| Input           | Comments                                                                                              | Default |
+| --------------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| Connection      | The Rippling connection to use.                                                                       |         |
+| Name            | The candidate's full name.                                                                            |         |
+| Email           | The candidate's email address.                                                                        |         |
+| Phone Number    | The candidate's phone number.                                                                         |         |
+| Job Title       | The job title for the candidate's position.                                                           |         |
+| Candidate ID    | The unique identifier of the candidate from your ATS (Applicant Tracking System).                     |         |
+| Start Date      | The expected start date for the candidate in YYYY-MM-DD format.                                       |         |
+| Department      | The name of the department the candidate will join.                                                   |         |
+| Salary Unit     | The frequency at which the candidate will be paid.                                                    |         |
+| Salary Per Unit | The monetary amount the candidate will be paid per salary unit.                                       |         |
+| Signing Bonus   | The one-time signing bonus amount given to the candidate.                                             |         |
+| Equity Shares   | The number of equity shares to be granted to the candidate.                                           |         |
+| Currency        | The currency code in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format (e.g., USD, EUR, GBP). |         |
+| Employment Type | The type of employment for the candidate.                                                             |         |
+| Attachments     | URLs or identifiers for attachments related to the candidate.                                         |         |
+
+### Post Groups (V1) {#postgroups}
+
+POST Groups.
+
+| Input      | Comments                                                                 | Default |
+| ---------- | ------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                          |         |
+| Name       | The name of the group.                                                   |         |
+| Spoke ID   | The external unique identifier for the group entity in your application. |         |
+| Users      | An array of Rippling user IDs to include in the group.                   |         |
+
+### Post Mark App Installed (V1) {#postmarkappinstalled}
+
+Mark App Installed.
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Rippling connection to use. |         |
+
+### Process Leave Requests (V1) {#processleaverequests}
+
+POST Process Leave Request.
+
+| Input      | Comments                                                    | Default |
+| ---------- | ----------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                             |         |
+| ID         | The unique identifier of the leave request to be processed. |         |
+| Action     | The action to take on the leave request.                    |         |
+
+### Put Groups Group Id (V1) {#putgroupsgroupid}
+
+PUT Group.
+
+| Input      | Comments                                         | Default |
+| ---------- | ------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                  |         |
+| Group ID   | The unique identifier for the group in Rippling. |         |
+| Name       | The name of the Group.                           |         |
+| Spoke ID   | The external identifier of the Group.            |         |
+| Users      | The array of users within the Group.             |         |
+| Version    | The version identifier of the group.             |         |
+
+### Raw Request (V1) {#rawrequest}
+
+Send raw HTTP request to Rippling API.
 
 | Input                   | Comments                                                                                                                                                                                                                                                  | Default |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                           |         |
+| Connection              | The Rippling connection to use.                                                                                                                                                                                                                           |         |
 | URL                     | Input the path only (/companies/current), The base URL is already included (https://api.rippling.com/platform/api). For example, to connect to https://api.rippling.com/platform/api/companies/current, only /companies/current is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                   |         |
-| Data                    | The HTTP body payload to send to the URL. Must be a string or a reference to output from a previous step.                                                                                                                                                 |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                 |         |
 | Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                      |         |
 | File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                          |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                    |         |
 | Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                       |         |
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                               |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                  | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                       |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                      | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                                                                | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                                                           | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                                                                 | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                                                          | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                       | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                          | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                       | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                             | false   |
+
+### Raw Request (V2) {#rawrequestv2}
+
+Send raw HTTP request to Rippling API.
+
+| Input                   | Comments                                                                                                                                                                                                    | Default |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Rippling connection to use.                                                                                                                                                                             |         |
+| URL                     | Input the path only (/workers), The base URL is already included (https://rest.ripplingapis.com). For example, to connect to https://rest.ripplingapis.com/workers, only /workers is entered in this field. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                     |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                   |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                        |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                            |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                      |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                         |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                 |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                    | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                         |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                         | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.            | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                         | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                               | false   |
+
+### Update Custom Object (V2) {#updatecustomobject}
+
+Update an existing custom object.
+
+| Input                  | Comments                                     | Default |
+| ---------------------- | -------------------------------------------- | ------- |
+| Connection             | The Rippling connection to use.              |         |
+| Custom Object API Name | The API name of the custom object to update. |         |
+| Name                   | The new name for the custom object.          |         |
+| Description            | The new description for the custom object.   |         |
+| Category               | The new category for the custom object.      |         |
+| Plural Label           | The plural label for the custom object.      |         |
+| Owner Role             | The owner role for the custom object.        |         |
+
+### Update Object Category (V2) {#updateobjectcategory}
+
+Update an existing object category.
+
+| Input              | Comments                                             | Default |
+| ------------------ | ---------------------------------------------------- | ------- |
+| Connection         | The Rippling connection to use.                      |         |
+| Object Category ID | Unique identifier for the object category to update. |         |
+| Name               | The new name for the object category.                |         |
+| Description        | The new description for the object category.         |         |

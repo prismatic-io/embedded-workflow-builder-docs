@@ -221,7 +221,7 @@ Read properties of a group object.
 | Input         | Comments                                             | Default |
 | ------------- | ---------------------------------------------------- | ------- |
 | Connection    |                                                      |         |
-| Group Id      |                                                      |         |
+| Group Id      | The unique identifier of the group.                  |         |
 | Select        | Filters properties (columns).                        |         |
 | Debug Request | Enabling this flag will log out the current request. | false   |
 
@@ -304,7 +304,7 @@ Get the direct members of this group from the members navigation property.
 | Input                             | Comments                                                                                                         | Default |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        |                                                                                                                  |         |
-| Group Id                          |                                                                                                                  |         |
+| Group Id                          | The unique identifier of the group.                                                                              |         |
 | Filter                            | Filters results (rows).                                                                                          |         |
 | Count                             | Retrieves the total count of matching resources. Requires 'Eventual Consistency Level Header' turned on to work. | false   |
 | Select                            | Filters properties (columns).                                                                                    |         |

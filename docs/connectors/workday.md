@@ -23,6 +23,8 @@ This component is built to the [Workday REST Services](https://community.workday
 
 ### Workday OAuth 2.0 Connection {#workdayoauth2connection}
 
+OAuth 2.0 connection for Workday
+
 # Register an API Client
 
 You can register the API client in the Workday portal based on the category and locate all the necessary information for setting up the Workday REST Access Token account.

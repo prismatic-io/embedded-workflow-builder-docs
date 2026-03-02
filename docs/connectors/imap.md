@@ -5,10 +5,12 @@ description: Interact with your IMAP email account
 ---
 
 ![IMAP](./assets/imap.png#connector-icon)
-[IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) or Internet Message Access Protocol is an Internet standard protocol used by email clients to retrieve email messages from a mail server over a TCP/IP connection.
-This component allows you to interact with mailboxes and messages on any IMAP server.
+[IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) (Internet Message Access Protocol) is an Internet standard protocol used by email clients to retrieve email messages from a mail server over a TCP/IP connection.
+This component gives you the ability to list mailboxes, search and fetch emails, manage message flags, and copy or move messages on any IMAP server.
 
-Further information can be found in the [underlying Node.js library's documentation](https://imapflow.com/docs/).
+## API Documentation
+
+This component was built using the [ImapFlow Node.js library](https://imapflow.com/docs/).
 
 ## Connections
 
@@ -16,60 +18,61 @@ Further information can be found in the [underlying Node.js library's documentat
 
 Provide the details of your IMAP server.
 
-To configure a connection to an IMAP server you will need a few properties:
+To configure a connection to an IMAP server, the server's host address, port, login credentials, and TLS settings are required.
 
-- The host and port of your IMAP server
-- A set of login credentials for a user that exists on the IMAP server
-- The version of encryption the IMAP server is compatible with.
+The setup can vary widely depending on the email service in use. Context for some popular services is provided below.
 
-The setup can vary widely depending on the email service you are using.
-We have provided a bit of context around some popular services to get you started.
+#### Prerequisites
 
-#### Connecting to Gmail
+- Access to an IMAP-enabled email account
+- The IMAP server host address and port
+- Valid login credentials (username and password or app password)
 
-To set up an IMAP connection to your Gmail account, you need to create a [Google App Password](https://support.google.com/accounts/answer/185833?hl=en).
-Go to your [Google Account](https://myaccount.google.com/) and select 'Security'.
-Under "Signing in to Google," select App Passwords. You may need to sign in.
+#### Setup Steps
 
-If you don't have this option, it might be because:
+#### Gmail
 
-- 2 Step Verification is not set up for your account.
-- 2 Step Verification is only set up for security keys.
-- Your account is through work, school, or other organization.
-- You turned on Advanced Protection.
+To set up an IMAP connection to a Gmail account, create a [Google App Password](https://support.google.com/accounts/answer/185833?hl=en):
 
-At the bottom, click **Select App** and choose **Mail**, and then click **Select device** and choose **Other (Custom name)**.
-Then, click **GENERATE**.
-You'll be given a 16-character code, which is your **app password**.
-Copy that somewhere safe.
+1. Navigate to the [Google Account](https://myaccount.google.com/) page and select **Security**.
+2. Under **Signing in to Google**, select **App Passwords**. Sign-in may be required.
+3. If the **App Passwords** option is not available, possible reasons include:
+   - 2-Step Verification is not set up for the account
+   - 2-Step Verification is only set up for security keys
+   - The account is through work, school, or another organization
+   - Advanced Protection is enabled
+4. At the bottom, click **Select App** and choose **Mail**, then click **Select device** and choose **Other (Custom name)**.
+5. Click **GENERATE**.
+6. A 16-character code will be generated — this is the **app password**. Copy it to a safe location.
 
-Finally, create a connection and provide these values:
+If authentication problems occur, ensure the account has [IMAP enabled](https://support.google.com/mail/answer/7126229).
 
-- Enter `imap.gmail.com` for the host
-- The default values for port and security are fine
-- Enter the username or email of your Gmail account
-- Enter the **app password** you created earlier
+#### Microsoft Office 365
 
-If you run into authentication problems, ensure that your account has [IMAP enabled](https://support.google.com/mail/answer/7126229).
+If the Office 365 domain does not use multi-factor authentication (this is rare), the username and password can be used to authenticate directly.
 
-#### Connecting to Microsoft Office 365
+If MFA is enabled, an **app password** is required to authenticate. To create an app password:
 
-If your Office 365 domain does not use multi-factor authentication (this is rare), then you can use your username and password to authenticate.
+1. Log in to the [Microsoft Security Center](https://mysignins.microsoft.com/security-info) and open the **Security info** tab.
+2. Click **+Add method** and choose **App password**.
+3. Enter a name for the app password, and copy the password that is generated.
 
-If MFA is enabled, you will need to create an **app password** to authenticate.
-To create an app password, log in to the [Microsoft Security Center](https://mysignins.microsoft.com/security-info) and open the **Security info** tab.
-Click **+Add method** and choose **App password**.
+If the **App password** option is unavailable, contact the Office 365 administrator to [enable it](https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9).
 
-If you don't have an **app password** option, you'll need to contact your Office 365 administrator and have them [enable it](https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9).
+#### Configure the Connection
 
-Give your app password a name, and copy the password that is generated.
+Create a connection of type **IMAP Connection** and enter the following values:
 
-Now, create a connection and provide these values:
-
-- Enter `outlook.office365.com` for the host
-- The default values for port and security are fine
-- Enter the username or email of your Outlook account
-- Enter your password or the app password you generated
+| Input                   | Description                                                                                         | Default   |
+| ----------------------- | --------------------------------------------------------------------------------------------------- | --------- |
+| **Host**                | The IMAP server hostname (e.g., `imap.gmail.com` for Gmail, `outlook.office365.com` for Office 365) | —         |
+| **Port**                | The IMAP server port                                                                                | `993`     |
+| **Secure**              | Whether to use a secure (TLS) connection                                                            | `true`    |
+| **Username**            | The email address or username for the IMAP account                                                  | —         |
+| **Password**            | The account password or app password                                                                | —         |
+| **Minimum TLS Version** | The minimum TLS version accepted by the connection                                                  | `TLSv1.1` |
+| **Maximum TLS Version** | The maximum TLS version accepted by the connection                                                  | `TLSv1.3` |
+| **Min DH Size**         | Minimum key size (in bits) to accept in a TLS connection                                            | `1024`    |
 
 | Input               | Comments                                                                                   | Default |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------- |
@@ -82,59 +85,72 @@ Now, create a connection and provide these values:
 | Maximum TLS Version | Provide a valid TLS version to be used in the connection.                                  | TLSv1.3 |
 | Min DH Size         | Minimum size of bits to accept in a TLS connection                                         | 1024    |
 
+## Triggers
+
+### New Emails {#newemailspollingtrigger}
+
+Fetches new emails from a specified mailbox on a recurring schedule.
+
+| Input         | Comments                                                                     | Default |
+| ------------- | ---------------------------------------------------------------------------- | ------- |
+| Connection    | The IMAP connection to use.                                                  |         |
+| Mailbox       | Provide a string value for the name of the mailbox.                          |         |
+| Fetch Content | When enabled, downloads and parses the full message body for each new email. | false   |
+| Mark as Read  | When enabled, sets the Seen flag on new emails after polling.                | false   |
+
 ## Actions
 
 ### Add Flags {#addflags}
 
 Add new flags to an existing message
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                         |         |
-| Mailbox    | Provide a string value for the name of the mailbox                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                              |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
+| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.                |         |
 
 ### Append Message {#appendmessage}
 
 Appends a new message to an existing mailbox
 
-| Input           | Comments                                           | Default |
-| --------------- | -------------------------------------------------- | ------- |
-| Connection      |                                                    |         |
-| Mailbox         | Provide a string value for the name of the mailbox |         |
-| Path            | Mailbox path to upload the message to              |         |
-| Message Content | Mailbox path to upload the message to              |         |
+| Input           | Comments                                             | Default |
+| --------------- | ---------------------------------------------------- | ------- |
+| Connection      | The IMAP connection to use.                          |         |
+| Mailbox         | Provide a string value for the name of the mailbox.  |         |
+| Path            | Mailbox path to upload the message to.               |         |
+| Message Content | The raw RFC 822 formatted message content to append. |         |
 
 ### Copy Message {#copymessage}
 
 Copies a message from one mailbox to another.
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                         |         |
-| Mailbox    | Provide a string value for the name of the mailbox                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message |         |
-| New Path   | Mailbox path to upload the message to                                                   |         |
+| Input      | Comments                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                              |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
+| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
+| New Path   | Mailbox path to upload the message to.                                                   |         |
 
 ### Create Mailbox {#createmailbox}
 
 Creates a new mailbox folder and sets up subscription for the created mailbox
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Path       | Mailbox path to upload the message to |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The IMAP connection to use.            |         |
+| Path       | Mailbox path to upload the message to. |         |
 
 ### Delete Message {#deletemessage}
 
 Delete an existing message
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Mailbox     | Provide a string value for the name of the mailbox |         |
-| Message UID | The UID of the message.                            |         |
+| Input       | Comments                                            | Default |
+| ----------- | --------------------------------------------------- | ------- |
+| Connection  | The IMAP connection to use.                         |         |
+| Mailbox     | Provide a string value for the name of the mailbox. |         |
+| Message UID | The UID of the message.                             |         |
 
 ### Download Message {#downloadmessage}
 
@@ -142,68 +158,68 @@ Download either full RFC-822 formatted message or a specific body structure part
 
 | Input               | Comments                                                                                                                            | Default |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                     |         |
-| Mailbox             | Provide a string value for the name of the mailbox                                                                                  |         |
+| Connection          | The IMAP connection to use.                                                                                                         |         |
+| Mailbox             | Provide a string value for the name of the mailbox.                                                                                 |         |
 | Message Index or ID | The index of the message you would like to download (1 for the oldest message, 2 for second oldest, etc), or the ID of the message. |         |
 
 ### Get Mailbox Status {#getstatus}
 
 Returns the status of a mailbox's properties
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection |                                                    |         |
-| Mailbox    | Provide a string value for the name of the mailbox |         |
+| Input      | Comments                                            | Default |
+| ---------- | --------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                         |         |
+| Mailbox    | Provide a string value for the name of the mailbox. |         |
 
 ### List Mailboxes {#listmailboxes}
 
 Returns a list of available mailboxes
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                    | Default |
+| ---------- | --------------------------- | ------- |
+| Connection | The IMAP connection to use. |         |
 
 ### Remove Flags From Message {#removeflags}
 
 Remove existing flags from an existing message
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                         |         |
-| Mailbox    | Provide a string value for the name of the mailbox                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                              |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
+| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.                |         |
 
 ### Rename Mailbox {#renamemailbox}
 
 Change the name of an existing mailbox
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Path       | Mailbox path to upload the message to |         |
-| New Path   | Mailbox path to upload the message to |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The IMAP connection to use.            |         |
+| Path       | Mailbox path to upload the message to. |         |
+| New Path   | Mailbox path to upload the message to. |         |
 
 ### Search / List Mailbox Messages {#searchmailbox}
 
 Returns all messages in the given mailbox
 
-| Input                | Comments                                           | Default |
-| -------------------- | -------------------------------------------------- | ------- |
-| Connection           |                                                    |         |
-| Mailbox              | Provide a string value for the name of the mailbox |         |
-| From                 | Filter email messages by sender                    |         |
-| To                   | Filter email messages by recipient                 |         |
-| Read / Unread Filter |                                                    | all     |
-| Filter Options       | Extra parameters to filter the search results      |         |
+| Input                | Comments                                            | Default |
+| -------------------- | --------------------------------------------------- | ------- |
+| Connection           | The IMAP connection to use.                         |         |
+| Mailbox              | Provide a string value for the name of the mailbox. |         |
+| From                 | Filter email messages by sender.                    |         |
+| To                   | Filter email messages by recipient.                 |         |
+| Read / Unread Filter | Filter messages by read or unread status.           | all     |
+| Filter Options       | Extra parameters to filter the search results.      |         |
 
 ### Set Flags {#setflags}
 
 Set a value for an existing message flag
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                         |         |
-| Mailbox    | Provide a string value for the name of the mailbox                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                              |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
+| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.                |         |

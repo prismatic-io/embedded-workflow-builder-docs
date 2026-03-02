@@ -5,7 +5,7 @@ description: Manage products, inventory, and orders in Google Merchant Center.
 ---
 
 ![Google Shopping](./assets/google-content-shopping.png#connector-icon)
-[The Google Content API for Shopping](https://developers.google.com/shopping-content/reference/rest) is a RESTful service for managing product listings, inventory, and orders in Google Merchant Center. This component enables you to upload products, manage inventory levels, and handle orders and returns.
+[The Google Content API for Shopping](https://developers.google.com/shopping-content/guides/rel-notes) is a RESTful service for managing product listings, inventory, and orders in Google Merchant Center. This component enables you to upload products, manage inventory levels, and handle orders and returns.
 
 ## API Documentation
 

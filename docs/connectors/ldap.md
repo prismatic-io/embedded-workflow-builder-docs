@@ -5,7 +5,7 @@ description: Connect to an Active Directory server.
 ---
 
 ![Active Directory](./assets/ldap.png#connector-icon)
-Active Directory for LDAP (Lightweight Directory Access Protocol) is a protocol for accessing and managing directory information. This component provides tools for operations such as authentication, querying, and managing directory entries.
+[LDAP (Lightweight Directory Access Protocol)](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ldap/lightweight-directory-access-protocol-ldap-api) is a protocol for accessing and managing directory information. This component provides tools for operations such as authentication, querying, and managing directory entries.
 
 ## Library Reference
 
@@ -17,14 +17,20 @@ The component was built using the [`ldapts` library](https://www.npmjs.com/packa
 
 Authenticate using username and password
 
-To connect to an Active Directory server, you must provide the following details:
+#### Prerequisites
 
-- **URL**: The Active Directory server URL (e.g., `ldap://ldap.example.com`).
-- **DN**: The Distinguished Name (DN) used to bind to the server (e.g., `uid=example,dc=example,dc=com`).
-- **Password**: The password associated with the DN.
-- **Certificate** (optional): A certificate for secure connections if required by the server.
+- An LDAP server instance (e.g., Active Directory, OpenLDAP)
+- Distinguished Name (DN) credentials with appropriate permissions
 
-Ensure these details are correctly configured in the connection settings to establish a successful connection.
+#### Configure the Connection
+
+Create a connection of type **LDAP** and enter:
+
+- **URL**: The LDAP server URL (e.g., `ldap://ldap.example.com`)
+- **DN**: The Distinguished Name (DN) used to bind to the server (e.g., `uid=example,dc=example,dc=com`)
+- **Password**: The password associated with the DN
+- **Certificate** (optional): A certificate for secure connections if required by the server
+- **Use on-prem LDAPS** (optional): When enabled, uses LDAPS (LDAP over SSL/TLS) for secure connections to private LDAP servers
 
 | Input             | Comments                                                                  | Default |
 | ----------------- | ------------------------------------------------------------------------- | ------- |

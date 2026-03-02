@@ -114,7 +114,7 @@ Authenticates actions in the Microsoft SharePoint component.
 
 #### Creating an App Registration
 
-Once you have an instance of Microsoft SharePoint licensed to your account, you will need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
+With a licensed instance of Microsoft SharePoint, create and configure a new App Registration in the [Microsoft Entra admin center](https://entra.microsoft.com/).
 
 1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations**
 2. Select **New registration**

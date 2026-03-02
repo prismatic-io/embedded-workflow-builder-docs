@@ -17,17 +17,9 @@ API Documentation: The component was built using the [Klaviyo API Reference](htt
 
 Connection to Klaviyo using an API Key.
 
-Authentication was developed using the following **[Documentation](https://developers.klaviyo.com/en/docs/authenticate_)**
-
-Private keys will have the prefix `pk_` followed by a longer alphanumeric string. Klaviyo allows you to generate multiple private keys for your applications. See the [Obtain API credentials](https://developers.klaviyo.com/en/docs/retrieve_api_credentials) guide for more information
-
-To Generate a Private Key:
-
-1. Log into your [Klaviyo](https://www.klaviyo.com/settings/account/api-keys) account and navigate to settings
-2. Under the Account tab select API Keys
-3. Select Create Private API Key
-4. Name the Key, provide the proper scope level and select Create
-5. Save and copy the private key into your integration connection configuration.
+Authentication via API key is now deprecated.
+Please use OAuth 2.0 for authentication instead.
+See [Klaviyo documentation](https://developers.klaviyo.com/en/docs/migrate_to_oauth_from_private_key_authentication).
 
 | Input   | Comments                 | Default |
 | ------- | ------------------------ | ------- |

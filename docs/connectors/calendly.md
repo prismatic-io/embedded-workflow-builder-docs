@@ -7,7 +7,11 @@ description: Calendly is an industry leading scheduling solution for businesses.
 ![Calendly](./assets/calendly.png#connector-icon)
 [Calendly](https://calendly.com/) is an industry leading scheduling solution for businesses.
 
-Use the Calendly component to manage the scheduling of events; attendee availability; and retrieve pertinent data on users and attendees.
+The Calendly component allows managing the scheduling of events, attendee availability, and retrieving pertinent data on users and attendees.
+
+## API Documentation
+
+This component was built using the [Calendly API Documentation](https://developer.calendly.com/api-docs)
 
 ## Connections
 
@@ -15,16 +19,30 @@ Use the Calendly component to manage the scheduling of events; attendee availabi
 
 Authenticate using OAuth 2.0
 
-Calendly requires a Developer Account to create applications for OAuth. Refer to the following [guide](https://developer.calendly.com/create-a-developer-account) for more information.
+A Calendly Developer Account is required to create applications for OAuth. Refer to the following [guide](https://developer.calendly.com/create-a-developer-account) for more information.
 
-To Set up OAuth App:
+#### Prerequisites
 
-1. Login to your Calendly Developer Account and navigate to the [Apps Portal](https://developer.calendly.com/console/apps)
-2. Follow the Steps and enter the following information:
-   1. Kind of app - Web
-   2. Environment type - Production or Sandbox. You will likely need separate apps for each.
-   3. Redirect URI - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-3. Continue and copy your Client ID, Client Secret, and Webhook signing key for the connection configuration of your Integration.
+- A Calendly Developer Account
+
+#### Setup Steps
+
+1. Log in to the Calendly Developer Account and navigate to the [Apps Portal](https://developer.calendly.com/console/apps)
+2. Follow the steps and enter the following information:
+   1. **Kind of app** - Web
+   2. **Environment type** - Production or Sandbox. Separate apps will be needed for each environment.
+   3. **Redirect URI** - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+3. Continue and copy the **Client ID**, **Client Secret**, and **Webhook signing key**
+
+#### Configure the Connection
+
+Create a connection of type **OAuth 2.0** and enter:
+
+- **Authorize URL**: The OAuth 2.0 Authorization URL (default: `https://auth.calendly.com/oauth/authorize`)
+- **Token URL**: The OAuth 2.0 Token URL (default: `https://auth.calendly.com/oauth/token`)
+- **Scopes**: Set the desired scopes (default: `default`)
+- **Client ID**: Enter the Client ID from the Calendly application
+- **Client Secret**: Enter the Client Secret from the Calendly application
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

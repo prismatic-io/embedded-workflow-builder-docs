@@ -5,7 +5,7 @@ description: SAP SuccessFactors is a human resources platform that provides clou
 ---
 
 ![SAP SuccessFactors](./assets/sap-successfactors.png#connector-icon)
-[SAP SuccessFactors](https://www.sap.com/products/hcm/successfactors.html) is a cloud based human capital management (HCM) platform that helps organizations manage HR processes including recruiting, onboarding, performance management, and employee development.
+[SAP SuccessFactors](https://www.sap.com/products/hcm.html) is a cloud based human capital management (HCM) platform that helps organizations manage HR processes including recruiting, onboarding, performance management, and employee development.
 This component allows you to interact with the SAP SuccessFactors OData API.
 
 ## API Documentation

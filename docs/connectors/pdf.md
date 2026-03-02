@@ -5,64 +5,65 @@ description: Search and extract data from PDF documents
 ---
 
 ![PDF](./assets/pdf.png#connector-icon)
-The **pdf** component provides some actions for interacting with PDF documents, like finding text in a PDF document, listing page numbers, or extracting a specific page of a document.
+PDF (Portable Document Format) is a file format developed by Adobe for presenting documents independently of software, hardware, or operating systems.
+The **pdf** component allows finding text in PDF documents, listing page numbers, and extracting specific pages from a document.
 
 ## Actions
 
 ### Extract All Text {#extractalltext}
 
-Extracts all the text from the specified PDF document and returns it as an array of texts.
+Extracts all text from the specified PDF document and returns it as an array of text strings.
 
-| Input    | Comments                                                       | Default |
-| -------- | -------------------------------------------------------------- | ------- |
-| PDF data | This must refer to a buffer containing the raw bytes of a PDF. |         |
+| Input    | Comments                                                                         | Default |
+| -------- | -------------------------------------------------------------------------------- | ------- |
+| PDF Data | The PDF file data to process. This can be a file reference from a previous step. |         |
 
 ### Extract Page {#extractpage}
 
-Returns the specified page in the given PDF document as a new separate PDF document.
+Extracts the specified page from the PDF document and returns it as a new separate PDF document.
 
-| Input       | Comments                                                       | Default |
-| ----------- | -------------------------------------------------------------- | ------- |
-| PDF data    | This must refer to a buffer containing the raw bytes of a PDF. |         |
-| Page Number | This specifies a page in a PDF document by number.             |         |
+| Input       | Comments                                                                         | Default |
+| ----------- | -------------------------------------------------------------------------------- | ------- |
+| PDF Data    | The PDF file data to process. This can be a file reference from a previous step. |         |
+| Page Number | The page number to extract from the PDF.                                         |         |
 
 ### Extract Page Text {#extractpagetext}
 
-Locates and extracts pages text from the specified PDF document that matches the specified page range.
+Extracts text from the specified page range in the PDF document.
 
-| Input      | Comments                                                                                                                            | Default |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| PDF data   | This must refer to a buffer containing the raw bytes of a PDF.                                                                      |         |
-| Page Start | This specifies the starting page to extract from the PDF document.                                                                  |         |
-| Page End   | This specifies the ending page to extract from the PDF document. If not defined, will only extract the page on the pageStart input. |         |
+| Input      | Comments                                                                                  | Default |
+| ---------- | ----------------------------------------------------------------------------------------- | ------- |
+| PDF Data   | The PDF file data to process. This can be a file reference from a previous step.          |         |
+| Page Start | The starting page number for extraction.                                                  |         |
+| Page End   | The ending page number for extraction. If not provided, only the start page is extracted. |         |
 
 ### Extract Text by Pattern {#extracttextbypattern}
 
 Extracts text from the specified PDF document that matches the search text.
 
-| Input            | Comments                                                                                                                                                | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| PDF data         | This must refer to a buffer containing the raw bytes of a PDF.                                                                                          |         |
-| Search Pattern   | This is the text to search for in the PDF document.                                                                                                     |         |
-| Characters After | This specifies the number of characters to extract from the PDF document after the search pattern found. If not specified, the entire page is returned. |         |
-| Case Sensitive   | This specifies whether searching should be case-sensitive. You can choose true or false.                                                                | false   |
+| Input            | Comments                                                                                                    | Default |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- | ------- |
+| PDF Data         | The PDF file data to process. This can be a file reference from a previous step.                            |         |
+| Search Pattern   | This is the text to search for in the PDF document.                                                         |         |
+| Characters After | The number of characters to extract after the search pattern. If not provided, the entire page is returned. |         |
+| Case Sensitive   | When true, the search is case-sensitive.                                                                    | false   |
 
 ### Find Pattern {#findpattern}
 
-Searches the PDF document and returns a list of page numbers containing text that satisfies the search criteria.
+Searches the PDF document and returns page numbers containing text that matches the search criteria.
 
-| Input          | Comments                                                                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| PDF data       | This must refer to a buffer containing the raw bytes of a PDF.                                                                   |         |
-| Search Pattern | This is the pattern to search for in the PDF document.                                                                           |         |
-| Case Sensitive | This specifies whether searching should be case-sensitive. You can choose true or false.                                         | false   |
-| Use Regex      | This specifies whether the search pattern is a regular expression.                                                               | false   |
-| Contains?      | This specifies whether to return page numbers that either contain or don't contain the search pattern. Options are true or false | true    |
+| Input          | Comments                                                                                        | Default |
+| -------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| PDF Data       | The PDF file data to process. This can be a file reference from a previous step.                |         |
+| Search Pattern | The text pattern to search for in the PDF document.                                             |         |
+| Case Sensitive | When true, the search is case-sensitive.                                                        | false   |
+| Use Regex      | When true, treats the search pattern as a regular expression.                                   | false   |
+| Contains       | When true, returns pages containing the pattern; when false, returns pages without the pattern. | true    |
 
 ### Page Numbers {#pagenumbers}
 
-Returns a sequence of page numbers for the specified PDF document, from 1 to the last page number.
+Returns a sequence of page numbers for the PDF document, from 1 to the last page.
 
-| Input    | Comments                                                       | Default |
-| -------- | -------------------------------------------------------------- | ------- |
-| PDF data | This must refer to a buffer containing the raw bytes of a PDF. |         |
+| Input    | Comments                                                                         | Default |
+| -------- | -------------------------------------------------------------------------------- | ------- |
+| PDF Data | The PDF file data to process. This can be a file reference from a previous step. |         |

@@ -9,7 +9,7 @@ description: Manage applicants, workers, and payroll data in ADP Workforce Now.
 
 ## API Documentation
 
-This component was built using the [ADP Workforce Now API Reference](https://developers.adp.com/build/api-explorer/hcm-offrg-wfn).
+This component was built using the [ADP Workforce Now API Reference](https://developers.adp.com/build/api-explorer/hcm-offrg-wfn) currently utilizing HCM API v2.
 
 ## Connections
 
@@ -106,18 +106,18 @@ Removes a worker’s personal contact.
 | Input               | Comments                                           | Default |
 | ------------------- | -------------------------------------------------- | ------- |
 | Associate OID       | The unique Associate OID identifier of the worker. |         |
-| Personal Contact ID | The ID of the personal contact to delete.          |         |
+| Personal Contact ID | The unique identifier of the personal contact.     |         |
 | Connection          | The ADP Workforce Now connection to use.           |         |
 
 ### Get Applicant Onboard Metadata {#getapplicantonboardmetadata}
 
-Retrieve a single asset
+Retrieves metadata for the applicant onboarding process, including available fields, templates, and configuration options.
 
-| Input             | Comments                                                                                                                                                                                                                                 | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Context Templates | The geopolitical context template for the onboarding process.                                                                                                                                                                            | US      |
-| Filter            | Specifies an expression that an item must match to be included in a response. Various criteria could be combined using and/or operands and () to set the operand precedence. e.g. /mobileUserAccounts/associateOID eq 'G4O73G9Z62SL2NFM' |         |
-| Connection        | The ADP Workforce Now connection to use.                                                                                                                                                                                                 |         |
+| Input             | Comments                                                                                                                             | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Context Templates | The geopolitical context template for the onboarding process.                                                                        | US      |
+| Filter            | Specifies an expression to filter onboarding metadata results. Use OData filter syntax to match specific template codes or criteria. |         |
+| Connection        | The ADP Workforce Now connection to use.                                                                                             |         |
 
 ### Get Clocking Transaction {#getclockingtransaction}
 
@@ -135,7 +135,7 @@ Returns a personal contact
 | Input               | Comments                                                                                  | Default |
 | ------------------- | ----------------------------------------------------------------------------------------- | ------- |
 | Associate OID       | The unique Associate OID identifier of the worker.                                        |         |
-| Personal Contact ID | The ID of the personal contact to retrieve.                                               |         |
+| Personal Contact ID | The unique identifier of the personal contact.                                            |         |
 | Select              | Comma-separated list of properties to include in the response using OData property paths. |         |
 | Connection          | The ADP Workforce Now connection to use.                                                  |         |
 
@@ -296,7 +296,6 @@ Send raw HTTP request to the ADP Workforce Now API
 | Header                  | A list of headers to send with the request.                                                                                                                                                                |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                   | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                        |         |
-| Debug Request           | Enable this to log the request and response                                                                                                                                                                | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                        | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.           | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                        | 0       |
@@ -310,7 +309,7 @@ Updates an existing worker’s personal contact
 | Input               | Comments                                                                                                                                                                                                                              | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Associate OID       | The unique Associate OID identifier of the worker.                                                                                                                                                                                    |         |
-| Personal Contact ID | The unique identifier of the personal contact to update.                                                                                                                                                                              |         |
+| Personal Contact ID | The unique identifier of the personal contact.                                                                                                                                                                                        |         |
 | Personal Contact    | The personal contact data structure. [View data dictionary](https://developers.adp.com/build/guides/product-integration-guides/personal-contacts-api-guide-for-adp-workforce-now/chapter/3#data-dictionary) for all available fields. |         |
 | Connection          | The ADP Workforce Now connection to use.                                                                                                                                                                                              |         |
 

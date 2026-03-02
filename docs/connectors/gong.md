@@ -25,11 +25,11 @@ To generate a Gong API key manually:
 1. Click **Create** to generate an access key and the access key secret.
 1. Take note of the API Base URL that is displayed next to the access key and access key secret.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Base URL          |          |         |
-| Access Key        |          |         |
-| Access Key Secret |          |         |
+| Input             | Comments                                  | Default |
+| ----------------- | ----------------------------------------- | ------- |
+| Base URL          | The base URL for your Gong instance API.  |         |
+| Access Key        | The access key for authentication.        |         |
+| Access Key Secret | The access key secret for authentication. |         |
 
 ### OAuth 2.0 {#oauth2}
 

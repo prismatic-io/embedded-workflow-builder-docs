@@ -13,6 +13,8 @@ Use the Greenhouse component to connect to the Harvest API for managing Candidat
 
 ### API Key {#apitoken}
 
+Authenticate with your Greenhouse API key.
+
 The Greenhouse Harvest API uses Basic Auth over HTTPS for authentication. The username is your Greenhouse API token and the password should be blank. Unauthenticated requests will return an HTTP 401 response.
 
 1. Harvest API keys can be obtained in Greenhouse. In order to create a Harvest API key, a user must be granted the “Can manage ALL organization’s API Credentials” in the “Developer permission” section.
@@ -393,7 +395,7 @@ Send raw HTTP request to Greenhouse
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                        | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                             |         |
 | Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                            | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                      | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                 | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                       | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                             | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                             | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                   | false   |

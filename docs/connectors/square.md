@@ -54,7 +54,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Scopes             | Space separated list of OAuth permission scopes. These scopes should be configured in your Square Application. See [Square OAuth Permissions](https://developer.squareup.com/docs/oauth-api/square-permissions) for available scopes. | MERCHANT_PROFILE_READ PAYMENTS_READ PAYMENTS_WRITE |
 | Application ID     | The Application ID from the Square Developer Dashboard. Navigate to Applications > Your App > Credentials to find this value.                                                                                                         |                                                    |
 | Application Secret | The Application Secret from the Square Developer Dashboard. Keep this value secure and never share it publicly.                                                                                                                       |                                                    |
-| API Version        | Override the default Square API version (2025-08-20). Leave blank to use the default version. See [Square API Versioning](https://developer.squareup.com/docs/api/versioning) for version details.                                    |                                                    |
+| API Version        | Override the default Square API version (2025-08-20). Leave blank to use the default version. See [Square API Versioning](https://developer.squareup.com/docs/build-basics/versioning-overview) for version details.                  |                                                    |
 
 ## Triggers
 
