@@ -72,5 +72,11 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "@docusaurus/bundler": {
+      "copy-webpack-plugin": "14.0.0",
+      "css-minimizer-webpack-plugin": "8.0.0"
+    }
   }
 }
