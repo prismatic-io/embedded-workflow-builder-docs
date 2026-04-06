@@ -14,6 +14,64 @@ This component is built using the [AWS SNS API](https://docs.aws.amazon.com/sns/
 
 ## Connections
 
+### Access Key {#apikeysecret}
+
+Access Key connection for AWS SNS
+
+An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SNS.
+Ensure the key pair generated in AWS has proper permissions to the SNS resources to access.
+Read about Amazon SNS IAM policies in the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html).
+
+#### Prerequisites
+
+- An active AWS account
+- IAM permissions to create access keys
+
+#### Setup Steps
+
+To create an IAM access key pair:
+
+1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
+2. Select **Users** from the left sidebar
+3. Choose an existing user or create a new one by selecting **Create User**
+4. If creating a new user, provide a username and configure console access if needed
+5. Navigate to the **Security credentials** tab for the selected user
+6. Under **Access Keys**, select **Create access key**
+7. Choose the use case (select **Third-party service** or **Application running outside AWS** as appropriate)
+8. Add an optional description tag for the key
+9. Select **Create access key**
+10. Copy both the **Access Key ID** and **Secret Access Key** values
+
+:::warning Secure Storage Required
+The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later. If lost, a new access key pair must be generated.
+:::
+
+#### Configure the Connection
+
+- Enter the **Access Key ID** into the corresponding field in the connection configuration
+- Enter the **Secret Access Key** into the corresponding field in the connection configuration
+
+#### Required Permissions
+
+The IAM user or role associated with the access key pair must have appropriate permissions for Amazon SNS operations.
+
+Common required permissions include:
+
+- `sns:Publish` - Send messages to topics
+- `sns:Subscribe` - Subscribe endpoints to topics
+- `sns:CreateTopic` - Create new SNS topics
+- `sns:DeleteTopic` - Delete SNS topics
+- `sns:ListTopics` - List available topics
+- `sns:GetTopicAttributes` - Retrieve topic details
+- `sns:SetTopicAttributes` - Modify topic settings
+
+Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
+
+| Input             | Comments                                                                                                                                                        | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Access Key ID     | An AWS IAM Access Key ID for authenticating with Amazon SNS. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)     |         |
+| Secret Access Key | An AWS IAM Secret Access Key corresponding to the Access Key ID. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) |         |
+
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
@@ -106,64 +164,6 @@ Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/s
 | Access Key ID     | An AWS IAM Access Key ID                                                                                                                                                                                                                                      |         |
 | Secret Access Key | An AWS IAM Secret Access Key                                                                                                                                                                                                                                  |         |
 | External ID       | Provides enhanced security measures to the connection. Optional, but recommended. Please check [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id) for more information. |         |
-
-### AWS SNS Access Key and Secret {#apikeysecret}
-
-Authenticates requests to Amazon SNS using an API Key and API Secret
-
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SNS.
-Ensure the key pair generated in AWS has proper permissions to the SNS resources to access.
-Read about Amazon SNS IAM policies in the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html).
-
-#### Prerequisites
-
-- An active AWS account
-- IAM permissions to create access keys
-
-#### Setup Steps
-
-To create an IAM access key pair:
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Select **Users** from the left sidebar
-3. Choose an existing user or create a new one by selecting **Create User**
-4. If creating a new user, provide a username and configure console access if needed
-5. Navigate to the **Security credentials** tab for the selected user
-6. Under **Access Keys**, select **Create access key**
-7. Choose the use case (select **Third-party service** or **Application running outside AWS** as appropriate)
-8. Add an optional description tag for the key
-9. Select **Create access key**
-10. Copy both the **Access Key ID** and **Secret Access Key** values
-
-:::warning Secure Storage Required
-The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later. If lost, a new access key pair must be generated.
-:::
-
-#### Configure the Connection
-
-- Enter the **Access Key ID** into the corresponding field in the connection configuration
-- Enter the **Secret Access Key** into the corresponding field in the connection configuration
-
-#### Required Permissions
-
-The IAM user or role associated with the access key pair must have appropriate permissions for Amazon SNS operations.
-
-Common required permissions include:
-
-- `sns:Publish` - Send messages to topics
-- `sns:Subscribe` - Subscribe endpoints to topics
-- `sns:CreateTopic` - Create new SNS topics
-- `sns:DeleteTopic` - Delete SNS topics
-- `sns:ListTopics` - List available topics
-- `sns:GetTopicAttributes` - Retrieve topic details
-- `sns:SetTopicAttributes` - Modify topic settings
-
-Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
-
-| Input             | Comments                                                                                                                                                        | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Access Key ID     | An AWS IAM Access Key ID for authenticating with Amazon SNS. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)     |         |
-| Secret Access Key | An AWS IAM Secret Access Key corresponding to the Access Key ID. [Learn more](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) |         |
 
 ## Triggers
 

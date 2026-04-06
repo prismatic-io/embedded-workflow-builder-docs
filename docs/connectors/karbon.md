@@ -15,9 +15,9 @@ This components was built using the [Karbon API Reference](https://karbonhq.gith
 
 ## Connections
 
-### Karbon API Key {#karbonapikey}
+### API Key {#karbonapikey}
 
-Your Karbon API Key
+API Key connection for Karbon
 
 ## Karbon API Keys
 
@@ -55,27 +55,27 @@ Get notified to this flow when a Karbon entity changes
 
 Create a new contact
 
-| Input                | Comments                                                                                                                                                    | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                             |         |
-| Contact's First Name | The first name of the Contact.                                                                                                                              |         |
-| Contact's Last Name  | The last name of the Contact.                                                                                                                               |         |
-| Additional Fields    | Additional fields that are not covered by the standard inputs. See https://karbonhq.github.io/karbon-api-reference/#post-/v3/Contacts for more information. |         |
+| Input                | Comments                                                                                                                                                                                | Default |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                         |         |
+| Contact's First Name | The first name of the Contact.                                                                                                                                                          |         |
+| Contact's Last Name  | The last name of the Contact.                                                                                                                                                           |         |
+| Additional Fields    | Additional fields that are not covered by the standard inputs. See [Karbon API documentation](https://karbonhq.github.io/karbon-api-reference/#post-/v3/Contacts) for more information. |         |
 
 ### Create a Work Item {#createworkitem}
 
 Create a new Work Item
 
-| Input                    | Comments                                                                                                                                                     | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               |                                                                                                                                                              |         |
-| Assignee Email Address   | The email address of the user to whom the Work Item is going to be assigned.                                                                                 |         |
-| Title                    | The title of the Work Item.                                                                                                                                  |         |
-| Client Key               | A Karbon-generated value used to identify the existing Client (Contact, Organization or ClientGroup) for whom the Work Item is prepared.                     |         |
-| Client Type              | The type of the Client.                                                                                                                                      |         |
-| Related Client Group Key | A Karbon-generated value used to identify the Client Group of the Client.                                                                                    |         |
-| Start Date               | The date and time at which the Work Item should start.                                                                                                       |         |
-| Additional Fields        | Additional fields that are not covered by the standard inputs. See https://karbonhq.github.io/karbon-api-reference/#post-/v3/WorkItems for more information. |         |
+| Input                    | Comments                                                                                                                                                                                 | Default |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               |                                                                                                                                                                                          |         |
+| Assignee Email Address   | The email address of the user to whom the Work Item is going to be assigned.                                                                                                             |         |
+| Title                    | The title of the Work Item.                                                                                                                                                              |         |
+| Client Key               | A Karbon-generated value used to identify the existing Client (Contact, Organization or ClientGroup) for whom the Work Item is prepared.                                                 |         |
+| Client Type              | The type of the Client.                                                                                                                                                                  |         |
+| Related Client Group Key | A Karbon-generated value used to identify the Client Group of the Client.                                                                                                                |         |
+| Start Date               | The date and time at which the Work Item should start.                                                                                                                                   |         |
+| Additional Fields        | Additional fields that are not covered by the standard inputs. See [Karbon API documentation](https://karbonhq.github.io/karbon-api-reference/#post-/v3/WorkItems) for more information. |         |
 
 ### Create User {#createuser}
 
@@ -149,7 +149,7 @@ List all Contacts
 | Input        | Comments                                                                                                                                                                                         | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection   |                                                                                                                                                                                                  |         |
-| Filter       | A filter expression to apply to the results. See https://karbonhq.github.io/karbon-api-reference/#get-/v3/Contacts for more information.                                                         |         |
+| Filter       | A filter expression to apply to the results. See [Karbon API documentation](https://karbonhq.github.io/karbon-api-reference/#get-/v3/Contacts) for more information.                             |         |
 | Top          | The number of records to return at once.                                                                                                                                                         |         |
 | Skip         | The number of records to skip when looping over pages of results. If you fetch 100 results, you should skip 0 the first iteration, then 100, 200, 300, etc. until no more records are available. |         |
 | Order By     | The property to order the results by.                                                                                                                                                            |         |
@@ -172,7 +172,7 @@ Get a list of Users
 | Input        | Comments                                                                                                                                                                                         | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection   |                                                                                                                                                                                                  |         |
-| Filter       | A filter expression to apply to the results. See https://karbonhq.github.io/karbon-api-reference/#get-/v3/Users for more information.                                                            |         |
+| Filter       | A filter expression to apply to the results. See [Karbon API documentation](https://karbonhq.github.io/karbon-api-reference/#get-/v3/Users) for more information.                                |         |
 | Top          | The number of records to return at once.                                                                                                                                                         |         |
 | Skip         | The number of records to skip when looping over pages of results. If you fetch 100 results, you should skip 0 the first iteration, then 100, 200, 300, etc. until no more records are available. |         |
 | Get All Data | Turn this on to retrieve all pages of data. $top and $skip will be ignored.                                                                                                                      | false   |
@@ -184,7 +184,7 @@ Receive a list of work items from your tenant
 | Input        | Comments                                                                                                                                                                                         | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection   |                                                                                                                                                                                                  |         |
-| Filter       | A filter expression to apply to the results. See https://karbonhq.github.io/karbon-api-reference/#get-/v3/WorkItems for more information.                                                        |         |
+| Filter       | A filter expression to apply to the results. See [Karbon API documentation](https://karbonhq.github.io/karbon-api-reference/#get-/v3/WorkItems) for more information.                            |         |
 | Top          | The number of records to return at once.                                                                                                                                                         |         |
 | Skip         | The number of records to skip when looping over pages of results. If you fetch 100 results, you should skip 0 the first iteration, then 100, 200, 300, etc. until no more records are available. |         |
 | Order By     | The property to order the results by.                                                                                                                                                            |         |

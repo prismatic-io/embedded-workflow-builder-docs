@@ -13,9 +13,9 @@ This component was built using the [ION GraphQL API](https://manual.firstresonan
 
 ## Connections
 
-### OAuth Client Credentials {#firstresonanceoauthclientcredentials}
+### OAuth 2.0 Client Credentials {#firstresonanceoauthclientcredentials}
 
-Get an access token for the ION API
+OAuth 2.0 Client Credentials connection for First Resonance ION
 
 To connect to First Resonance ION using OAuth 2.0 Client Credentials, an API key consisting of a Client ID and Client Secret is required.
 

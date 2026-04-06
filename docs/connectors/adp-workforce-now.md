@@ -13,9 +13,9 @@ This component was built using the [ADP Workforce Now API Reference](https://dev
 
 ## Connections
 
-### ADP Workforce Now OAuth 2.0 {#adpoauth2}
+### OAuth 2.0 {#adpoauth2}
 
-This connection allows you to authenticate with ADP Workforce Now using OAuth 2.0.
+OAuth 2.0 connection for ADP Workforce Now
 
 To connect to ADP Workforce Now using OAuth 2.0, several credentials and certificate files are required. ADP's OAuth implementation uses client certificates for enhanced security in addition to standard OAuth credentials.
 
@@ -161,7 +161,6 @@ Get a worker's team's timecards. That is all the time cards for the worker's tea
 | Filter        | Specifies an expression that an item must match to be included in a response. Various criteria could be combined using and/or operands and () to set the operand precedence. e.g. /mobileUserAccounts/associateOID eq 'G4O73G9Z62SL2NFM' |         |
 | Expand        | The related resources to include inline in the response using OData expand syntax.                                                                                                                                                       |         |
 | Connection    | The ADP Workforce Now connection to use.                                                                                                                                                                                                 |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                     | false   |
 
 ### Get Worker {#getworker}
 
@@ -244,7 +243,6 @@ Request the list of all available worker demographics that the requester is auth
 | Select           | Comma-separated list of properties to include in the response using OData property paths.                                                                                                                                                |         |
 | Query Parameters | The query parameters that will be appended to the URL. The parameters should be in key-value pairs.                                                                                                                                      |         |
 | Connection       | The ADP Workforce Now connection to use.                                                                                                                                                                                                 |         |
-| Debug Request    | Enabling this flag will log out the current request.                                                                                                                                                                                     | false   |
 
 ### List Workers {#listworkers}
 
@@ -260,7 +258,6 @@ Retrieves all available workers that the requester is authorized to view.
 | Select           | Comma-separated list of properties to include in the response using OData property paths.                                                                                                                                                |         |
 | Query Parameters | The query parameters that will be appended to the URL. The parameters should be in key-value pairs.                                                                                                                                      |         |
 | Connection       | The ADP Workforce Now connection to use.                                                                                                                                                                                                 |         |
-| Debug Request    | Enabling this flag will log out the current request.                                                                                                                                                                                     | false   |
 
 ### Modify Time Entries {#modifytimeentries}
 

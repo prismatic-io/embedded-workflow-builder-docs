@@ -1,7 +1,7 @@
 ---
 title: Contentful Connector
 sidebar_label: Contentful
-description: Use the Contentful component to manage Spaces, Environments, Organizations and more.
+description: Manage spaces, environments, entries, assets, and organizations in Contentful
 ---
 
 ![Contentful](./assets/contentful.png#connector-icon)
@@ -17,7 +17,7 @@ This component was built using the [Contentful Content Management API Reference]
 
 ### OAuth 2.0 {#contentfuloauth2connection}
 
-Authenticate using OAuth 2.0
+Authenticate using OAuth 2.0.
 
 To connect to Contentful, create a new OAuth application.
 
@@ -83,22 +83,33 @@ Receive and validate webhook requests from Contentful for webhooks you configure
 
 ## Actions
 
+### Archive Entry {#archiveentry}
+
+Archives an existing entry.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
+
 ### Create Asset {#createasset}
 
-Create a new asset
+Creates a new asset.
 
 | Input          | Comments                                                                              | Default                                                                                                                                                               |
 | -------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection     | The Contentful connection to use.                                                     |                                                                                                                                                                       |
-| Environment ID | The unique identifier for the Contentful environment.                                 |                                                                                                                                                                       |
 | Space ID       | The unique identifier for the Contentful space.                                       |                                                                                                                                                                       |
+| Environment ID | The unique identifier for the Contentful environment.                                 |                                                                                                                                                                       |
 | Title          | The title of the asset as a JSON object with locale keys.                             | <code>{<br /> "en-US": "Example Asset"<br />}</code>                                                                                                                  |
 | Description    | The description of the asset as a JSON object with locale keys.                       | <code>{<br /> "en-US": "Streamliner description"<br />}</code>                                                                                                        |
 | File           | The file metadata for the asset as a JSON object with locale keys and upload details. | <code>{<br /> "en-US": {<br /> "contentType": "image/jpeg",<br /> "fileName": "example.jpeg",<br /> "upload": "https://example.com/example.jpg"<br /> }<br />}</code> |
 
 ### Create Content Type {#createcontenttype}
 
-Create a new content type
+Creates a new content type.
 
 | Input               | Comments                                                                        | Default                                                                                                                                                                                                                                                                                  |
 | ------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -110,9 +121,21 @@ Create a new content type
 | Display Field       | The field used as the main display field for entries of this content type.      |                                                                                                                                                                                                                                                                                          |
 | Description         | A brief explanation of what this content type is used for in the content model. |                                                                                                                                                                                                                                                                                          |
 
+### Create Entry {#createentry}
+
+Creates a new entry in a space.
+
+| Input           | Comments                                                            | Default |
+| --------------- | ------------------------------------------------------------------- | ------- |
+| Connection      | The Contentful connection to use.                                   |         |
+| Space ID        | The unique identifier for the Contentful space.                     |         |
+| Environment ID  | The unique identifier for the Contentful environment.               |         |
+| Content Type ID | The unique identifier for the content type.                         |         |
+| Entry Data      | The entry data as a JSON object containing fields and their values. |         |
+
 ### Create Environment {#createenvironment}
 
-Create a new environment
+Creates a new environment.
 
 | Input            | Comments                                              | Default |
 | ---------------- | ----------------------------------------------------- | ------- |
@@ -123,7 +146,7 @@ Create a new environment
 
 ### Create Space {#createspace}
 
-Create a new space
+Creates a new space.
 
 | Input           | Comments                                    | Default |
 | --------------- | ------------------------------------------- | ------- |
@@ -134,7 +157,7 @@ Create a new space
 
 ### Create Webhook {#createwebhook}
 
-Create a new webhook
+Creates a new webhook.
 
 | Input      | Comments                                                                 | Default |
 | ---------- | ------------------------------------------------------------------------ | ------- |
@@ -146,14 +169,25 @@ Create a new webhook
 
 ### Delete Asset {#deleteasset}
 
-Delete an existing asset
+Deletes an existing asset.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Asset ID       | The unique identifier for the asset.                  |         |
+
+### Delete Entry {#deleteentry}
+
+Deletes an existing entry.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
 
 ### Delete Environment {#deleteenvironment}
 
@@ -167,7 +201,7 @@ Deletes an existing environment.
 
 ### Delete Instanced Webhooks {#deleteinstancedwebhooks}
 
-Delete all webhooks that point to a flow in this instance
+Deletes all webhooks that point to a flow in the current instance.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -176,7 +210,7 @@ Delete all webhooks that point to a flow in this instance
 
 ### Delete Space {#deletespace}
 
-Delete an existing space
+Deletes an existing space.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -185,18 +219,18 @@ Delete an existing space
 
 ### Delete Upload {#deleteupload}
 
-Deletes a file from temporary data storage
+Deletes a file from temporary data storage.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Upload ID      | The unique identifier for the upload.                 |         |
 
 ### Delete Webhook {#deletewebhook}
 
-Delete a webhook
+Deletes an existing webhook.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -206,18 +240,18 @@ Delete a webhook
 
 ### Get Asset {#getasset}
 
-Retrieve a single asset
+Retrieves a single asset by ID.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Asset ID       | The unique identifier for the asset.                  |         |
 
 ### Get Bulk Action {#getbulkaction}
 
-Retrieve a bulk action
+Retrieves a bulk action by ID.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
@@ -226,9 +260,20 @@ Retrieve a bulk action
 | Environment ID | The unique identifier for the Contentful environment. |         |
 | Bulk Action ID | The unique identifier for the bulk action.            |         |
 
+### Get Entry {#getentry}
+
+Retrieves a single entry by ID.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
+
 ### Get Environment {#getenvironment}
 
-Retrieve a single environment
+Retrieves a single environment by ID.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
@@ -238,7 +283,7 @@ Retrieve a single environment
 
 ### Get Organization {#getorganization}
 
-Retrieve an organization by ID
+Retrieves an organization by ID.
 
 | Input           | Comments                                    | Default |
 | --------------- | ------------------------------------------- | ------- |
@@ -247,7 +292,7 @@ Retrieve an organization by ID
 
 ### Get Space {#getspace}
 
-Retrieve a single space
+Retrieves a single space by ID.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -256,18 +301,18 @@ Retrieve a single space
 
 ### Get Upload {#getupload}
 
-Retrieves an unmodified image
+Retrieves an unmodified image.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Upload ID      | The unique identifier for the upload.                 |         |
 
 ### Get Webhook {#getwebhook}
 
-Retrieve a single webhook
+Retrieves a single webhook by ID.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -277,27 +322,37 @@ Retrieve a single webhook
 
 ### List Assets {#listassets}
 
-Retrieve all assets of a space
+Retrieves all assets of a space.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 
 ### List Content Types {#listcontenttypes}
 
-Retrieves all content types of a space
+Retrieves all content types of a space.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+
+### List Entries {#listentries}
+
+Retrieves all entries of a space.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 
 ### List Environments {#listenvironments}
 
-Retrieve all environments in a space
+Retrieves all environments in a space.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
@@ -306,15 +361,25 @@ Retrieve all environments in a space
 
 ### List Organizations {#listorganizations}
 
-Retrieve all organizations an account has access to
+Retrieves all organizations the account has access to.
 
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
 | Connection | The Contentful connection to use. |         |
 
+### List Published Entries {#listpublishedentries}
+
+Retrieves all published entries of a space.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+
 ### List Spaces {#listspaces}
 
-Retrieve all spaces an account has access to
+Retrieves all spaces the account has access to.
 
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
@@ -322,22 +387,35 @@ Retrieve all spaces an account has access to
 
 ### List Webhooks {#listwebhooks}
 
-Retrieves all webhooks of a space
+Retrieves all webhooks of a space.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
 | Connection | The Contentful connection to use.               |         |
 | Space ID   | The unique identifier for the Contentful space. |         |
 
+### Patch Entry {#patchentry}
+
+Applies partial updates to an entry using JSON Patch (RFC 6902) operations.
+
+| Input            | Comments                                                                  | Default |
+| ---------------- | ------------------------------------------------------------------------- | ------- |
+| Connection       | The Contentful connection to use.                                         |         |
+| Space ID         | The unique identifier for the Contentful space.                           |         |
+| Environment ID   | The unique identifier for the Contentful environment.                     |         |
+| Entry ID         | The unique identifier for the entry.                                      |         |
+| Patch Operations | A JSON array of JSON Patch (RFC 6902) operations.                         |         |
+| Entry Version    | The current version number of the entry. Required for optimistic locking. |         |
+
 ### Process Asset {#processasset}
 
-Process an asset
+Processes an asset for content delivery.
 
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Asset ID       | The unique identifier for the asset.                  |         |
 
 ### Publish Asset {#publishanasset}
@@ -347,13 +425,13 @@ Publishes an asset.
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Asset ID       | The unique identifier for the asset.                  |         |
 
 ### Publish Bulk Action {#publishbulkaction}
 
-Publish a bulk action
+Publishes a bulk action.
 
 | Input          | Comments                                                                                       | Default                                                                                                                                                                                                                                                                                          |
 | -------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -362,9 +440,32 @@ Publish a bulk action
 | Environment ID | The unique identifier for the Contentful environment.                                          |                                                                                                                                                                                                                                                                                                  |
 | Items          | The items to be processed in the bulk action as a JSON object containing entities and actions. | <code>[<br /> {<br /> "sys": {<br /> "linkType": "Entry",<br /> "type": "Link",<br /> "id": "<entry_id>",<br /> "version": 2<br /> }<br /> },<br /> {<br /> "sys": {<br /> "linkType": "Asset",<br /> "type": "Link",<br /> "id": "<asset_id>",<br /> "version": 1<br /> }<br /> }<br />]</code> |
 
+### Publish Entry {#publishentry}
+
+Publishes an entry.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
+
+### Put Entry {#putentry}
+
+Replaces all fields of an existing entry with the provided data.
+
+| Input          | Comments                                                                                           | Default |
+| -------------- | -------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                                                                  |         |
+| Space ID       | The unique identifier for the Contentful space.                                                    |         |
+| Environment ID | The unique identifier for the Contentful environment.                                              |         |
+| Entry ID       | The unique identifier for the entry.                                                               |         |
+| Entry Data     | The full entry data as a JSON object. All existing fields will be replaced with the provided data. |         |
+
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Contentful
+Sends a raw HTTP request to the Contentful API.
 
 | Input                   | Comments                                                                                                                                                                                           | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -384,6 +485,17 @@ Send raw HTTP request to Contentful
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                | 0       |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                      | false   |
 
+### Unarchive Entry {#unarchiveentry}
+
+Unarchives an existing entry.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
+
 ### Unpublish Asset {#unpublishanasset}
 
 Unpublishes an asset.
@@ -391,13 +503,13 @@ Unpublishes an asset.
 | Input          | Comments                                              | Default |
 | -------------- | ----------------------------------------------------- | ------- |
 | Connection     | The Contentful connection to use.                     |         |
-| Environment ID | The unique identifier for the Contentful environment. |         |
 | Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
 | Asset ID       | The unique identifier for the asset.                  |         |
 
 ### Unpublish Bulk Action {#unpublishbulkaction}
 
-Unpublish a bulk action
+Unpublishes a bulk action.
 
 | Input          | Comments                                                                                          | Default                                                                                                                                                                                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -406,48 +518,59 @@ Unpublish a bulk action
 | Environment ID | The unique identifier for the Contentful environment.                                             |                                                                                                                                                                                                                                                          |
 | Items          | The items to be unpublished in the bulk action as a JSON object containing entities to unpublish. | <code>[<br /> {<br /> "sys": {<br /> "linkType": "Entry",<br /> "type": "Link",<br /> "id": "<entry_id>"<br /> }<br /> },<br /> {<br /> "sys": {<br /> "linkType": "Asset",<br /> "type": "Link",<br /> "id": "<asset_id>"<br /> }<br /> }<br />]</code> |
 
+### Unpublish Entry {#unpublishentry}
+
+Unpublishes an entry.
+
+| Input          | Comments                                              | Default |
+| -------------- | ----------------------------------------------------- | ------- |
+| Connection     | The Contentful connection to use.                     |         |
+| Space ID       | The unique identifier for the Contentful space.       |         |
+| Environment ID | The unique identifier for the Contentful environment. |         |
+| Entry ID       | The unique identifier for the entry.                  |         |
+
 ### Update Asset {#updateasset}
 
-Update an existing asset
+Updates an existing asset.
 
-| Input                 | Comments                                                                                                   | Default                                                        |
-| --------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Connection            | The Contentful connection to use.                                                                          |                                                                |
-| Environment ID        | The unique identifier for the Contentful environment.                                                      |                                                                |
-| Space ID              | The unique identifier for the Contentful space.                                                            |                                                                |
-| Asset ID              | The unique identifier for the asset.                                                                       |                                                                |
-| Title                 | The updated title of the asset. Locale key must match the original locale of the asset to be updated       | <code>{<br /> "en-US": "Example Asset"<br />}</code>           |
-| New Asset Description | The updated description of the asset. Locale key must match the original locale of the asset to be updated | <code>{<br /> "en-US": "Streamliner description"<br />}</code> |
+| Input             | Comments                                                                                                    | Default                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Connection        | The Contentful connection to use.                                                                           |                                                                |
+| Space ID          | The unique identifier for the Contentful space.                                                             |                                                                |
+| Environment ID    | The unique identifier for the Contentful environment.                                                       |                                                                |
+| Asset ID          | The unique identifier for the asset.                                                                        |                                                                |
+| Title             | The updated title of the asset. Locale key must match the original locale of the asset to be updated.       | <code>{<br /> "en-US": "Example Asset"<br />}</code>           |
+| Asset Description | The updated description of the asset. Locale key must match the original locale of the asset to be updated. | <code>{<br /> "en-US": "Streamliner description"<br />}</code> |
 
 ### Update Content Type {#updatecontenttype}
 
-Update an existing content type
+Updates an existing content type.
 
-| Input               | Comments                                                     | Default                                                                                                                                                                                                                                                                                  |
-| ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection          | The Contentful connection to use.                            |                                                                                                                                                                                                                                                                                          |
-| Space ID            | The unique identifier for the Contentful space.              |                                                                                                                                                                                                                                                                                          |
-| Environment ID      | The unique identifier for the Contentful environment.        |                                                                                                                                                                                                                                                                                          |
-| Content Type ID     | The unique identifier for the content type.                  |                                                                                                                                                                                                                                                                                          |
-| Content Type Name   | The updated name for the content type                        |                                                                                                                                                                                                                                                                                          |
-| Content Type Fields | The updated fields for the content type                      | <code>[<br /> {<br /> "id": "title",<br /> "name": "Title",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> },<br /> {<br /> "id": "body",<br /> "name": "Body",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> }<br />]</code> |
-| Display Field       | The updated Field used as the main display field for Entries |                                                                                                                                                                                                                                                                                          |
-| Description         | The updated description for the content type                 |                                                                                                                                                                                                                                                                                          |
+| Input               | Comments                                                      | Default                                                                                                                                                                                                                                                                                  |
+| ------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection          | The Contentful connection to use.                             |                                                                                                                                                                                                                                                                                          |
+| Space ID            | The unique identifier for the Contentful space.               |                                                                                                                                                                                                                                                                                          |
+| Environment ID      | The unique identifier for the Contentful environment.         |                                                                                                                                                                                                                                                                                          |
+| Content Type ID     | The unique identifier for the content type.                   |                                                                                                                                                                                                                                                                                          |
+| Content Type Name   | The updated name for the content type.                        |                                                                                                                                                                                                                                                                                          |
+| Content Type Fields | The updated field definitions for the content type.           | <code>[<br /> {<br /> "id": "title",<br /> "name": "Title",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> },<br /> {<br /> "id": "body",<br /> "name": "Body",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> }<br />]</code> |
+| Display Field       | The updated field used as the main display field for entries. |                                                                                                                                                                                                                                                                                          |
+| Description         | The updated description for the content type.                 |                                                                                                                                                                                                                                                                                          |
 
 ### Update Environment {#updateenvironment}
 
-Edit an existing environment
+Updates an existing environment.
 
 | Input            | Comments                                              | Default |
 | ---------------- | ----------------------------------------------------- | ------- |
 | Connection       | The Contentful connection to use.                     |         |
 | Space ID         | The unique identifier for the Contentful space.       |         |
 | Environment ID   | The unique identifier for the Contentful environment. |         |
-| Environment Name | The updated name for the environment                  |         |
+| Environment Name | The updated name for the environment.                 |         |
 
 ### Update Organization {#updateorganization}
 
-Update an organization security contact an admin or owner has access to
+Updates the security contact for an organization.
 
 | Input           | Comments                                        | Default |
 | --------------- | ----------------------------------------------- | ------- |
@@ -457,28 +580,28 @@ Update an organization security contact an admin or owner has access to
 
 ### Update Space {#updatespace}
 
-Edit an existing Space
+Updates an existing space.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
 | Connection | The Contentful connection to use.               |         |
 | Space ID   | The unique identifier for the Contentful space. |         |
-| Space Name | The updated name for the space                  |         |
+| Space Name | The updated name for the space.                 |         |
 
 ### Update Webhook {#updatewebhook}
 
-Update an existing webhook
+Updates an existing webhook.
 
 | Input      | Comments                                        | Default |
 | ---------- | ----------------------------------------------- | ------- |
 | Connection | The Contentful connection to use.               |         |
 | Space ID   | The unique identifier for the Contentful space. |         |
-| Name       | The updated name for the webhook                |         |
+| Name       | The updated name for the webhook.               |         |
 | Webhook ID | The unique identifier for the webhook.          |         |
 
 ### Upload File {#uploadfile}
 
-Upload a file to temporary file storage
+Uploads a file to temporary file storage.
 
 | Input         | Comments                                                                                                                    | Default |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |

@@ -446,6 +446,7 @@ List properties and relationships of the Detected Apps objects.
 | Input      | Comments                                                                                         | Default |
 | ---------- | ------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Microsoft Intune connection to use.                                                          |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                        | false   |
 | Filter     | OData filter expression to filter results. Supports operators like eq, ne, startswith, contains. |         |
 | Select     | Comma-separated list of properties to include in the response. Reduces payload size.             |         |
 | Expand     | Comma-separated list of relationships to expand and include in the response.                     |         |
@@ -519,6 +520,7 @@ List all members of a security or Microsoft 365 group.
 | Input      | Comments                                                                                         | Default |
 | ---------- | ------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Microsoft Intune connection to use.                                                          |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                        | false   |
 | Group Id   | The unique identifier of a MS365 or Security group.                                              |         |
 | Filter     | OData filter expression to filter results. Supports operators like eq, ne, startswith, contains. |         |
 | Count      | When true, retrieves the total count of matching resources.                                      | false   |
@@ -550,6 +552,7 @@ List all managed apps in Intune.
 | Input      | Comments                                                                                         | Default                                                                                                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection | The Microsoft Intune connection to use.                                                          |                                                                                                                                              |
+| Fetch All  | When true, fetches all pages of results using pagination.                                        | false                                                                                                                                        |
 | Filter     | OData filter expression to filter results. Supports operators like eq, ne, startswith, contains. | (microsoft.graph.managedApp/appAvailability eq null or microsoft.graph.managedApp/appAvailability eq 'lineOfBusiness' or isAssigned eq true) |
 | Select     | Comma-separated list of properties to include in the response. Reduces payload size.             |                                                                                                                                              |
 | Expand     | Comma-separated list of relationships to expand and include in the response.                     |                                                                                                                                              |
@@ -568,6 +571,7 @@ List properties and relationships of the Managed Device objects.
 | Input      | Comments                                                                                         | Default |
 | ---------- | ------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Microsoft Intune connection to use.                                                          |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                        | false   |
 | Filter     | OData filter expression to filter results. Supports operators like eq, ne, startswith, contains. |         |
 | Select     | Comma-separated list of properties to include in the response. Reduces payload size.             |         |
 | Expand     | Comma-separated list of relationships to expand and include in the response.                     |         |
@@ -649,6 +653,7 @@ Retrieve a list of user objects.
 | Input      | Comments                                                                                         | Default |
 | ---------- | ------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Microsoft Intune connection to use.                                                          |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                        | false   |
 | Filter     | OData filter expression to filter results. Supports operators like eq, ne, startswith, contains. |         |
 | Select     | Comma-separated list of properties to include in the response. Reduces payload size.             |         |
 | Expand     | Comma-separated list of relationships to expand and include in the response.                     |         |

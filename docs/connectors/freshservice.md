@@ -35,253 +35,234 @@ Connect to Freshservice using an API key.
 
 Create a new agent.
 
-| Input                                           | Comments                                                                                                                                                            | Default |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                                      |                                                                                                                                                                     |         |
-| First Name                                      | First name of the agent.                                                                                                                                            |         |
-| Email                                           | Email address of the agent.                                                                                                                                         |         |
-| Roles                                           | Roles of the agent. An array of hashes. See https://api.freshservice.com/#agent_attributes for more information.                                                    |         |
-| Last Name                                       | Last name of the agent.                                                                                                                                             |         |
-| Address                                         | Address of the agent.                                                                                                                                               |         |
-| Occasional                                      | True if the agent is an occasional agent, and false if full-time agent.                                                                                             | false   |
-| Job Title                                       | Job title of the agent.                                                                                                                                             |         |
-| Work Phone Number                               | Work phone number of the agent.                                                                                                                                     |         |
-| Mobile Phone Number                             | Mobile phone number of the agent.                                                                                                                                   |         |
-| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                            |         |
-| Can See All Tickets From Associated Departments | Set to true if the agent must be allowed to view tickets filed by other members of the department, and false otherwise.                                             | false   |
-| Additional Fields                               | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#agent_attributes for more information. |         |
-| Debug Request                                   | Enabling this flag will log out the current request.                                                                                                                | false   |
+| Input                                           | Comments                                                                                                                                                                                              | Default |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                                      |                                                                                                                                                                                                       |         |
+| First Name                                      | First name of the agent.                                                                                                                                                                              |         |
+| Email                                           | Email address of the agent.                                                                                                                                                                           |         |
+| Roles                                           | Roles of the agent. An array of hashes. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information.                                                    |         |
+| Last Name                                       | Last name of the agent.                                                                                                                                                                               |         |
+| Address                                         | Address of the agent.                                                                                                                                                                                 |         |
+| Occasional                                      | True if the agent is an occasional agent, and false if full-time agent.                                                                                                                               | false   |
+| Job Title                                       | Job title of the agent.                                                                                                                                                                               |         |
+| Work Phone Number                               | Work phone number of the agent.                                                                                                                                                                       |         |
+| Mobile Phone Number                             | Mobile phone number of the agent.                                                                                                                                                                     |         |
+| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                                                              |         |
+| Can See All Tickets From Associated Departments | Set to true if the agent must be allowed to view tickets filed by other members of the department, and false otherwise.                                                                               | false   |
+| Additional Fields                               | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information. |         |
 
 ### Create Asset {#createasset}
 
 Create a new asset.
 
-| Input             | Comments                                                                                                                                                                     | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                              |         |
-| Name              | Name of the asset.                                                                                                                                                           |         |
-| Asset Type ID     | ID of the asset type.                                                                                                                                                        |         |
-| Asset Tag         | Asset tag of the asset.                                                                                                                                                      |         |
-| Impact            | Impact of the asset.                                                                                                                                                         |         |
-| Usage Type        | Usage type of the asset.                                                                                                                                                     |         |
-| Description       | Description of the asset.                                                                                                                                                    |         |
-| Location ID       | ID of the associated location.                                                                                                                                               |         |
-| Agent ID          | ID of the associated agent (Managed By).                                                                                                                                     |         |
-| Department ID     | ID of the associated department.                                                                                                                                             |         |
-| Group ID          | ID of the associated agent group (Managed By Group).                                                                                                                         |         |
-| Workspace ID      | ID of the workspace that the asset belongs to. If not provided, the ID of the primary workspace will be defaulted. Applicable only to accounts on the Employee Support Mode. |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#asset_attributes for more information.          |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                         | false   |
+| Input             | Comments                                                                                                                                                                                              | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                       |         |
+| Name              | Name of the asset.                                                                                                                                                                                    |         |
+| Asset Type ID     | ID of the asset type.                                                                                                                                                                                 |         |
+| Asset Tag         | Asset tag of the asset.                                                                                                                                                                               |         |
+| Impact            | Impact of the asset.                                                                                                                                                                                  |         |
+| Usage Type        | Usage type of the asset.                                                                                                                                                                              |         |
+| Description       | Description of the asset.                                                                                                                                                                             |         |
+| Location ID       | ID of the associated location.                                                                                                                                                                        |         |
+| Agent ID          | ID of the associated agent (Managed By).                                                                                                                                                              |         |
+| Department ID     | ID of the associated department.                                                                                                                                                                      |         |
+| Group ID          | ID of the associated agent group (Managed By Group).                                                                                                                                                  |         |
+| Workspace ID      | ID of the workspace that the asset belongs to. If not provided, the ID of the primary workspace will be defaulted. Applicable only to accounts on the Employee Support Mode.                          |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#asset_attributes) for more information. |         |
 
 ### Create Problem {#createproblem}
 
 Create a new problem.
 
-| Input             | Comments                                                                                                                                                              | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                       |         |
-| Subject           | Subject of the Problem.                                                                                                                                               |         |
-| Email             | Email of the initiator of the problem.                                                                                                                                |         |
-| Description       | HTML content of the problem.                                                                                                                                          |         |
-| Due By            | Timestamp at which Problem due ends.                                                                                                                                  |         |
-| Priority          | Priority of the Problem.                                                                                                                                              |         |
-| Status            | Status identifier of the Problem.                                                                                                                                     |         |
-| Impact            | Impact of the Problem.                                                                                                                                                |         |
-| Category          | Category of the Problem.                                                                                                                                              |         |
-| Sub Category      | Sub-category of the Problem.                                                                                                                                          |         |
-| Item Category     | Item of the Problem.                                                                                                                                                  |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#problem_attributes for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                  | false   |
+| Input             | Comments                                                                                                                                                                                                | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                         |         |
+| Subject           | Subject of the Problem.                                                                                                                                                                                 |         |
+| Email             | Email of the initiator of the problem.                                                                                                                                                                  |         |
+| Description       | HTML content of the problem.                                                                                                                                                                            |         |
+| Due By            | Timestamp at which Problem due ends.                                                                                                                                                                    |         |
+| Priority          | Priority of the Problem.                                                                                                                                                                                |         |
+| Status            | Status identifier of the Problem.                                                                                                                                                                       |         |
+| Impact            | Impact of the Problem.                                                                                                                                                                                  |         |
+| Category          | Category of the Problem.                                                                                                                                                                                |         |
+| Sub Category      | Sub-category of the Problem.                                                                                                                                                                            |         |
+| Item Category     | Item of the Problem.                                                                                                                                                                                    |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#problem_attributes) for more information. |         |
 
 ### Create Requester {#createrequester}
 
 Create a new requester.
 
-| Input                | Comments                                                                                                                                                                | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                         |         |
-| First Name           | First name of the requester.                                                                                                                                            |         |
-| Primary Email        | Primary email address of the requester.                                                                                                                                 |         |
-| Last Name            | Last name of the requester.                                                                                                                                             |         |
-| Job Title            | Job title of the requester.                                                                                                                                             |         |
-| Work Phone Number    | Work phone number of the requester.                                                                                                                                     |         |
-| Mobile Phone Number  | Mobile phone number of the requester.                                                                                                                                   |         |
-| Reporting Manager ID | User ID of the requester’s reporting manager.                                                                                                                           |         |
-| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                    |         |
-| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                       |         |
-| Address              | Address of the requester.                                                                                                                                               |         |
-| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#requester_attributes for more information. |         |
-| Debug Request        | Enabling this flag will log out the current request.                                                                                                                    | false   |
+| Input                | Comments                                                                                                                                                                                                  | Default |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                           |         |
+| First Name           | First name of the requester.                                                                                                                                                                              |         |
+| Primary Email        | Primary email address of the requester.                                                                                                                                                                   |         |
+| Last Name            | Last name of the requester.                                                                                                                                                                               |         |
+| Job Title            | Job title of the requester.                                                                                                                                                                               |         |
+| Work Phone Number    | Work phone number of the requester.                                                                                                                                                                       |         |
+| Mobile Phone Number  | Mobile phone number of the requester.                                                                                                                                                                     |         |
+| Reporting Manager ID | User ID of the requester’s reporting manager.                                                                                                                                                             |         |
+| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                                      |         |
+| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                                         |         |
+| Address              | Address of the requester.                                                                                                                                                                                 |         |
+| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#requester_attributes) for more information. |         |
 
 ### Create Service Request {#createservicerequest}
 
 Create a new service request.
 
-| Input             | Comments                                                                                                                                                           | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        |                                                                                                                                                                    |         |
-| Display ID        | The ID of the display to place a request for.                                                                                                                      |         |
-| Quantity          | Quantity needed by the requester.                                                                                                                                  |         |
-| Email             | Email id of the requester. If no email is provided, the request is created on behalf of the agent.                                                                 |         |
-| Requested For     | Email id of the requester on whose behalf the service request is created.                                                                                          |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#service_request for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                               | false   |
+| Input             | Comments                                                                                                                                                                                             | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                      |         |
+| Display ID        | The ID of the display to place a request for.                                                                                                                                                        |         |
+| Quantity          | Quantity needed by the requester.                                                                                                                                                                    |         |
+| Email             | Email id of the requester. If no email is provided, the request is created on behalf of the agent.                                                                                                   |         |
+| Requested For     | Email id of the requester on whose behalf the service request is created.                                                                                                                            |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#service_request) for more information. |         |
 
 ### Create Software {#createsoftware}
 
 Create a new software application.
 
-| Input             | Comments                                                                                                                                                                        | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                                 |         |
-| Name              | Name of the software.                                                                                                                                                           |         |
-| Description       | Description of the software.                                                                                                                                                    |         |
-| Application Type  | Type of the software.                                                                                                                                                           |         |
-| Status            | Status of the software.                                                                                                                                                         |         |
-| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                          |         |
-| Notes             | Notes about the software.                                                                                                                                                       |         |
-| Category          | Category of the software.                                                                                                                                                       |         |
-| Source            | Name of the source from where the software details are updated.                                                                                                                 |         |
-| Workspace ID      | ID of the workspace that the software belongs to. If not provided, the ID of the primary workspace will be defaulted. Applicable only to accounts on the Employee Support Mode. |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#software_attributes for more information.          |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                            | false   |
+| Input             | Comments                                                                                                                                                                                                 | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                          |         |
+| Name              | Name of the software.                                                                                                                                                                                    |         |
+| Description       | Description of the software.                                                                                                                                                                             |         |
+| Application Type  | Type of the software.                                                                                                                                                                                    |         |
+| Status            | Status of the software.                                                                                                                                                                                  |         |
+| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                                                   |         |
+| Notes             | Notes about the software.                                                                                                                                                                                |         |
+| Category          | Category of the software.                                                                                                                                                                                |         |
+| Source            | Name of the source from where the software details are updated.                                                                                                                                          |         |
+| Workspace ID      | ID of the workspace that the software belongs to. If not provided, the ID of the primary workspace will be defaulted. Applicable only to accounts on the Employee Support Mode.                          |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#software_attributes) for more information. |         |
 
 ### Create Ticket {#createticket}
 
 Create a new ticket.
 
-| Input             | Comments                                                                                                                                                             | Default |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                      |         |
-| Description       | HTML content of the ticket.                                                                                                                                          |         |
-| Subject           | Subject of the ticket.                                                                                                                                               |         |
-| Email             | Email address of the requester.                                                                                                                                      |         |
-| Priority          | Priority of the ticket.                                                                                                                                              |         |
-| Status            | Status of the ticket.                                                                                                                                                |         |
-| CC Emails         | Email addresses added in the 'cc' field of the incoming ticket email. The value should be an array of strings.                                                       |         |
-| Workspace ID      | ID of the workspace that the ticket belongs to.                                                                                                                      |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#ticket_attributes for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                 | false   |
+| Input             | Comments                                                                                                                                                                                               | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection        |                                                                                                                                                                                                        |         |
+| Description       | HTML content of the ticket.                                                                                                                                                                            |         |
+| Subject           | Subject of the ticket.                                                                                                                                                                                 |         |
+| Email             | Email address of the requester.                                                                                                                                                                        |         |
+| Priority          | Priority of the ticket.                                                                                                                                                                                |         |
+| Status            | Status of the ticket.                                                                                                                                                                                  |         |
+| CC Emails         | Email addresses added in the 'cc' field of the incoming ticket email. The value should be an array of strings.                                                                                         |         |
+| Workspace ID      | ID of the workspace that the ticket belongs to.                                                                                                                                                        |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#ticket_attributes) for more information. |         |
 
 ### Deactivate Agent {#deactivateagent}
 
 Deactivate an agent.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Agent ID      | Unique ID of the agent to deactivate.                |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection |                                       |         |
+| Agent ID   | Unique ID of the agent to deactivate. |         |
 
 ### Deactivate Requester {#deactivaterequester}
 
 Deactivate a requester.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Requester ID  | Unique ID of the requester to deactivate.            |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                                  | Default |
+| ------------ | ----------------------------------------- | ------- |
+| Connection   |                                           |         |
+| Requester ID | Unique ID of the requester to deactivate. |         |
 
 ### Delete Asset {#deleteasset}
 
 Delete an asset.
 
-| Input            | Comments                                             | Default |
-| ---------------- | ---------------------------------------------------- | ------- |
-| Connection       |                                                      |         |
-| Asset Display ID | Display ID of the asset to delete.                   |         |
-| Debug Request    | Enabling this flag will log out the current request. | false   |
+| Input            | Comments                           | Default |
+| ---------------- | ---------------------------------- | ------- |
+| Connection       |                                    |         |
+| Asset Display ID | Display ID of the asset to delete. |         |
 
 ### Delete Problem {#deleteproblem}
 
 Delete a Problem.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Problem ID    | ID of the Problem to delete.                         |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                     | Default |
+| ---------- | ---------------------------- | ------- |
+| Connection |                              |         |
+| Problem ID | ID of the Problem to delete. |         |
 
 ### Delete Software {#deletesoftware}
 
 Delete a software application.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Application ID | Unique ID of the software to delete.                 |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                             | Default |
+| -------------- | ------------------------------------ | ------- |
+| Connection     |                                      |         |
+| Application ID | Unique ID of the software to delete. |         |
 
 ### Delete Ticket {#deleteticket}
 
 Delete a Ticket.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Ticket ID     | ID of the ticket to delete.                          |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                    | Default |
+| ---------- | --------------------------- | ------- |
+| Connection |                             |         |
+| Ticket ID  | ID of the ticket to delete. |         |
 
 ### Forget Agent {#forgetagent}
 
 Forget an agent.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Agent ID      | Unique ID of the agent to forget.                    |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection |                                   |         |
+| Agent ID   | Unique ID of the agent to forget. |         |
 
 ### Get Agent {#getagent}
 
 View an agent.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Agent ID      | Unique ID of the agent to retrieve.                  |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection |                                     |         |
+| Agent ID   | Unique ID of the agent to retrieve. |         |
 
 ### Get Asset {#getasset}
 
 View an Asset.
 
-| Input            | Comments                                             | Default |
-| ---------------- | ---------------------------------------------------- | ------- |
-| Connection       |                                                      |         |
-| Asset Display ID | Display ID of the asset to retrieve.                 |         |
-| Debug Request    | Enabling this flag will log out the current request. | false   |
+| Input            | Comments                             | Default |
+| ---------------- | ------------------------------------ | ------- |
+| Connection       |                                      |         |
+| Asset Display ID | Display ID of the asset to retrieve. |         |
 
 ### Get Problem {#getproblem}
 
 View a Problem.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Problem ID    | ID of the Problem.                                   |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments           | Default |
+| ---------- | ------------------ | ------- |
+| Connection |                    |         |
+| Problem ID | ID of the Problem. |         |
 
 ### Get Requester {#getrequester}
 
 View information about a requester.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Requester ID  | Unique ID of the requester to retrieve.              |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                                | Default |
+| ------------ | --------------------------------------- | ------- |
+| Connection   |                                         |         |
+| Requester ID | Unique ID of the requester to retrieve. |         |
 
 ### Get Software {#getsoftware}
 
 View a software application.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Application ID | Unique ID of the software to retrieve.               |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                               | Default |
+| -------------- | -------------------------------------- | ------- |
+| Connection     |                                        |         |
+| Application ID | Unique ID of the software to retrieve. |         |
 
 ### Get Ticket {#getticket}
 
@@ -292,7 +273,6 @@ View a Ticket.
 | Connection                  |                                                                                            |         |
 | Ticket ID                   | ID of the ticket to retrieve.                                                              |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### Get Workspace {#getworkspace}
 
@@ -303,7 +283,6 @@ View a Workspace.
 | Connection                  |                                                                                            |         |
 | Workspace ID                | ID of the workspace to retrieve.                                                           |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Agents {#listagents}
 
@@ -316,7 +295,6 @@ View List of Agents.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Assets {#listassets}
 
@@ -329,7 +307,6 @@ View List of Assets.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Problems {#listproblems}
 
@@ -342,7 +319,6 @@ View List of Problems.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Requesters {#listrequesters}
 
@@ -355,16 +331,14 @@ View List of Requesters.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Software {#listsoftware}
 
 List all software applications.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### List Tickets {#listtickets}
 
@@ -378,7 +352,6 @@ View List of Tickets.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### List Workspaces {#listworkspaces}
 
@@ -391,57 +364,52 @@ View List of Workspaces.
 | Items Per Page              | Number of items to return per page. Default is 30. Maximum is 100.                         | 30      |
 | Page Number                 | Page number to return.                                                                     |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### Move Asset {#moveasset}
 
 Move an asset to a different workspace.
 
-| Input            | Comments                                             | Default |
-| ---------------- | ---------------------------------------------------- | ------- |
-| Connection       |                                                      |         |
-| Asset Display ID | Display ID of the asset to move.                     |         |
-| Workspace ID     | ID of the workspace to move the asset to.            |         |
-| Group ID         | ID of the new asset group.                           |         |
-| Agent ID         | ID of the new asset agent.                           |         |
-| Debug Request    | Enabling this flag will log out the current request. | false   |
+| Input            | Comments                                  | Default |
+| ---------------- | ----------------------------------------- | ------- |
+| Connection       |                                           |         |
+| Asset Display ID | Display ID of the asset to move.          |         |
+| Workspace ID     | ID of the workspace to move the asset to. |         |
+| Group ID         | ID of the new asset group.                |         |
+| Agent ID         | ID of the new asset agent.                |         |
 
 ### Move Problem {#moveproblem}
 
 Move a Problem to a different workspace.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Problem ID    | ID of the Problem to move.                           |         |
-| Workspace ID  | ID of the workspace to move the Problem to.          |         |
-| Group ID      | New assigned group ID for the Problem.               |         |
-| Owner ID      | New assigned owner ID for the Problem.               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                                    | Default |
+| ------------ | ------------------------------------------- | ------- |
+| Connection   |                                             |         |
+| Problem ID   | ID of the Problem to move.                  |         |
+| Workspace ID | ID of the workspace to move the Problem to. |         |
+| Group ID     | New assigned group ID for the Problem.      |         |
+| Owner ID     | New assigned owner ID for the Problem.      |         |
 
 ### Move Software {#movesoftware}
 
 Move a software application to a different workspace.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Application ID | Unique ID of the software to move.                   |         |
-| Workspace ID   | ID of the workspace to move the software to.         |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                                     | Default |
+| -------------- | -------------------------------------------- | ------- |
+| Connection     |                                              |         |
+| Application ID | Unique ID of the software to move.           |         |
+| Workspace ID   | ID of the workspace to move the software to. |         |
 
 ### Move Ticket {#moveticket}
 
 Move a Ticket to a different workspace.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Ticket ID     | ID of the ticket to move.                            |         |
-| Workspace ID  | ID of the workspace to move the ticket to.           |         |
-| Group ID      | New group ID to assign the ticket to.                |         |
-| Responder ID  | New responder ID to assign the ticket to.            |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                                   | Default |
+| ------------ | ------------------------------------------ | ------- |
+| Connection   |                                            |         |
+| Ticket ID    | ID of the ticket to move.                  |         |
+| Workspace ID | ID of the workspace to move the ticket to. |         |
+| Group ID     | New group ID to assign the ticket to.      |         |
+| Responder ID | New responder ID to assign the ticket to.  |         |
 
 ### Raw Request {#rawrequest}
 
@@ -475,108 +443,102 @@ Search for assets.
 | Connection                  |                                                                                            |         |
 | Search Query                | Search query to filter assets. Supported fields are name, asset_tag, and serial_number.    |         |
 | Additional Query Parameters | Additional query parameters that might not be covered by the standard inputs like filters. |         |
-| Debug Request               | Enabling this flag will log out the current request.                                       | false   |
 
 ### Update Agent {#updateagent}
 
 Update an existing agent.
 
-| Input                                           | Comments                                                                                                                                                            | Default |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                                      |                                                                                                                                                                     |         |
-| Agent ID                                        | Unique ID of the agent to update.                                                                                                                                   |         |
-| Email                                           | Email address of the agent.                                                                                                                                         |         |
-| Roles                                           | Roles of the agent. An array of hashes. See https://api.freshservice.com/#agent_attributes for more information.                                                    |         |
-| Scoreboard Level ID                             | Unique ID of the level of the agent in the Arcade.                                                                                                                  |         |
-| Address                                         | Address of the agent.                                                                                                                                               |         |
-| Occasional                                      | True if the agent is an occasional agent, and false if full-time agent.                                                                                             |         |
-| Signature                                       | Signature of the agent in HTML format.                                                                                                                              |         |
-| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                            |         |
-| Can See All Tickets From Associated Departments | Set to true if the agent must be allowed to view tickets filed by other members of the department, and false otherwise.                                             |         |
-| Additional Fields                               | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#agent_attributes for more information. |         |
-| Debug Request                                   | Enabling this flag will log out the current request.                                                                                                                | false   |
+| Input                                           | Comments                                                                                                                                                                                              | Default |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                                      |                                                                                                                                                                                                       |         |
+| Agent ID                                        | Unique ID of the agent to update.                                                                                                                                                                     |         |
+| Email                                           | Email address of the agent.                                                                                                                                                                           |         |
+| Roles                                           | Roles of the agent. An array of hashes. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information.                                                    |         |
+| Scoreboard Level ID                             | Unique ID of the level of the agent in the Arcade.                                                                                                                                                    |         |
+| Address                                         | Address of the agent.                                                                                                                                                                                 |         |
+| Occasional                                      | True if the agent is an occasional agent, and false if full-time agent.                                                                                                                               |         |
+| Signature                                       | Signature of the agent in HTML format.                                                                                                                                                                |         |
+| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                                                              |         |
+| Can See All Tickets From Associated Departments | Set to true if the agent must be allowed to view tickets filed by other members of the department, and false otherwise.                                                                               |         |
+| Additional Fields                               | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information. |         |
 
 ### Update Asset {#updateasset}
 
 Update an asset.
 
-| Input             | Comments                                                                                                                                                            | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                     |         |
-| Asset Display ID  | Display ID of the asset to update.                                                                                                                                  |         |
-| Name              | Name of the asset.                                                                                                                                                  |         |
-| Asset Type ID     | ID of the asset type.                                                                                                                                               |         |
-| Asset Tag         | Asset tag of the asset.                                                                                                                                             |         |
-| Impact            | Impact of the asset.                                                                                                                                                |         |
-| Usage Type        | Usage type of the asset.                                                                                                                                            |         |
-| Description       | Description of the asset.                                                                                                                                           |         |
-| Location ID       | ID of the associated location.                                                                                                                                      |         |
-| Agent ID          | ID of the associated agent (Managed By).                                                                                                                            |         |
-| Department ID     | ID of the associated department.                                                                                                                                    |         |
-| Group ID          | ID of the associated agent group (Managed By Group).                                                                                                                |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#asset_attributes for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                | false   |
+| Input             | Comments                                                                                                                                                                                              | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                       |         |
+| Asset Display ID  | Display ID of the asset to update.                                                                                                                                                                    |         |
+| Name              | Name of the asset.                                                                                                                                                                                    |         |
+| Asset Type ID     | ID of the asset type.                                                                                                                                                                                 |         |
+| Asset Tag         | Asset tag of the asset.                                                                                                                                                                               |         |
+| Impact            | Impact of the asset.                                                                                                                                                                                  |         |
+| Usage Type        | Usage type of the asset.                                                                                                                                                                              |         |
+| Description       | Description of the asset.                                                                                                                                                                             |         |
+| Location ID       | ID of the associated location.                                                                                                                                                                        |         |
+| Agent ID          | ID of the associated agent (Managed By).                                                                                                                                                              |         |
+| Department ID     | ID of the associated department.                                                                                                                                                                      |         |
+| Group ID          | ID of the associated agent group (Managed By Group).                                                                                                                                                  |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#asset_attributes) for more information. |         |
 
 ### Update Problem {#updateproblem}
 
 Update a Problem.
 
-| Input             | Comments                                                                                                                                                              | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                       |         |
-| Problem ID        | ID of the Problem to update.                                                                                                                                          |         |
-| Subject           | Subject of the Problem.                                                                                                                                               |         |
-| Email             | Email of the initiator of the problem.                                                                                                                                |         |
-| Description       | HTML content of the problem.                                                                                                                                          |         |
-| Due By            | Timestamp at which Problem due ends.                                                                                                                                  |         |
-| Priority          | Priority of the Problem.                                                                                                                                              |         |
-| Status            | Status identifier of the Problem.                                                                                                                                     |         |
-| Impact            | Impact of the Problem.                                                                                                                                                |         |
-| Category          | Category of the Problem.                                                                                                                                              |         |
-| Sub Category      | Sub-category of the Problem.                                                                                                                                          |         |
-| Item Category     | Item of the Problem.                                                                                                                                                  |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#problem_attributes for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                  | false   |
+| Input             | Comments                                                                                                                                                                                                | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                         |         |
+| Problem ID        | ID of the Problem to update.                                                                                                                                                                            |         |
+| Subject           | Subject of the Problem.                                                                                                                                                                                 |         |
+| Email             | Email of the initiator of the problem.                                                                                                                                                                  |         |
+| Description       | HTML content of the problem.                                                                                                                                                                            |         |
+| Due By            | Timestamp at which Problem due ends.                                                                                                                                                                    |         |
+| Priority          | Priority of the Problem.                                                                                                                                                                                |         |
+| Status            | Status identifier of the Problem.                                                                                                                                                                       |         |
+| Impact            | Impact of the Problem.                                                                                                                                                                                  |         |
+| Category          | Category of the Problem.                                                                                                                                                                                |         |
+| Sub Category      | Sub-category of the Problem.                                                                                                                                                                            |         |
+| Item Category     | Item of the Problem.                                                                                                                                                                                    |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#problem_attributes) for more information. |         |
 
 ### Update Requester {#updaterequester}
 
 Update a requester.
 
-| Input                | Comments                                                                                                                                                                | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                         |         |
-| Requester ID         | Unique ID of the requester to update.                                                                                                                                   |         |
-| First Name           | First name of the requester.                                                                                                                                            |         |
-| Primary Email        | Primary email address of the requester.                                                                                                                                 |         |
-| Last Name            | Last name of the requester.                                                                                                                                             |         |
-| Job Title            | Job title of the requester.                                                                                                                                             |         |
-| Work Phone Number    | Work phone number of the requester.                                                                                                                                     |         |
-| Mobile Phone Number  | Mobile phone number of the requester.                                                                                                                                   |         |
-| Reporting Manager ID | User ID of the requester’s reporting manager.                                                                                                                           |         |
-| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                    |         |
-| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                       |         |
-| Address              | Address of the requester.                                                                                                                                               |         |
-| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#requester_attributes for more information. |         |
-| Debug Request        | Enabling this flag will log out the current request.                                                                                                                    | false   |
+| Input                | Comments                                                                                                                                                                                                  | Default |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                           |         |
+| Requester ID         | Unique ID of the requester to update.                                                                                                                                                                     |         |
+| First Name           | First name of the requester.                                                                                                                                                                              |         |
+| Primary Email        | Primary email address of the requester.                                                                                                                                                                   |         |
+| Last Name            | Last name of the requester.                                                                                                                                                                               |         |
+| Job Title            | Job title of the requester.                                                                                                                                                                               |         |
+| Work Phone Number    | Work phone number of the requester.                                                                                                                                                                       |         |
+| Mobile Phone Number  | Mobile phone number of the requester.                                                                                                                                                                     |         |
+| Reporting Manager ID | User ID of the requester’s reporting manager.                                                                                                                                                             |         |
+| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                                      |         |
+| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                                         |         |
+| Address              | Address of the requester.                                                                                                                                                                                 |         |
+| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#requester_attributes) for more information. |         |
 
 ### Update Software {#updatesoftware}
 
 Update an existing software application.
 
-| Input             | Comments                                                                                                                                                               | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                        |         |
-| Application ID    | Unique ID of the software to update.                                                                                                                                   |         |
-| Name              | Name of the software.                                                                                                                                                  |         |
-| Description       | Description of the software.                                                                                                                                           |         |
-| Application Type  | Type of the software.                                                                                                                                                  |         |
-| Status            | Status of the software.                                                                                                                                                |         |
-| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                 |         |
-| Notes             | Notes about the software.                                                                                                                                              |         |
-| Category          | Category of the software.                                                                                                                                              |         |
-| Source            | Name of the source from where the software details are updated.                                                                                                        |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#software_attributes for more information. |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                   | false   |
+| Input             | Comments                                                                                                                                                                                                 | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                          |         |
+| Application ID    | Unique ID of the software to update.                                                                                                                                                                     |         |
+| Name              | Name of the software.                                                                                                                                                                                    |         |
+| Description       | Description of the software.                                                                                                                                                                             |         |
+| Application Type  | Type of the software.                                                                                                                                                                                    |         |
+| Status            | Status of the software.                                                                                                                                                                                  |         |
+| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                                                   |         |
+| Notes             | Notes about the software.                                                                                                                                                                                |         |
+| Category          | Category of the software.                                                                                                                                                                                |         |
+| Source            | Name of the source from where the software details are updated.                                                                                                                                          |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#software_attributes) for more information. |         |
 
 ### Update Ticket {#updateticket}
 
@@ -590,5 +552,4 @@ Update a Ticket.
 | Status            | Status of the ticket.                                                                                                                                                                                                                                                                                                          |         |
 | Source            | The channel through which the ticket was created.                                                                                                                                                                                                                                                                              |         |
 | Bypass Mandatory  | To bypass mandatory fields check while updating the ticket except for requester_id, source. Any business rules trying to mandate certain fields will also be bypassed. All fields configured as mandatory upon closing or resolving the ticket will be skipped while updating the ticket. This can only be passed by an admin. |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See https://api.freshservice.com/#ticket_attributes for more information.                                                                                                                                                           |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                                           | false   |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. See [Freshservice API documentation](https://api.freshservice.com/#ticket_attributes) for more information.                                                                                                                         |         |

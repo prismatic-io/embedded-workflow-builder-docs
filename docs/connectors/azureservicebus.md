@@ -401,6 +401,8 @@ Receive messages from a queue. Receive messages from a queue will remove the mes
 | Input                | Comments                                                                                                                                                                                                                                 | Default |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           |                                                                                                                                                                                                                                          |         |
+| Subscription ID      | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.                                                                                        |         |
+| Resource Group Name  | Name of the Resource group within the Azure subscription.                                                                                                                                                                                |         |
 | Namespace Name       | The namespace name                                                                                                                                                                                                                       |         |
 | Queue Name           | The queue name.                                                                                                                                                                                                                          |         |
 | Amount of Messages   | Amount of messages to receive from the queue.                                                                                                                                                                                            |         |
@@ -415,6 +417,8 @@ Send a single message to a queue.
 | Input                      | Comments                                                                                                                                                                 | Default |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                 |                                                                                                                                                                          |         |
+| Subscription ID            | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.                        |         |
+| Resource Group Name        | Name of the Resource group within the Azure subscription.                                                                                                                |         |
 | Namespace Name             | The namespace name                                                                                                                                                       |         |
 | Queue Name                 | The queue name.                                                                                                                                                          |         |
 | Body                       | The body of the message.                                                                                                                                                 |         |
@@ -430,9 +434,11 @@ Send a single message to a queue.
 
 Send multiple plain text messages to a queue.
 
-| Input          | Comments                               | Default |
-| -------------- | -------------------------------------- | ------- |
-| Connection     |                                        |         |
-| Namespace Name | The namespace name                     |         |
-| Queue Name     | The queue name.                        |         |
-| Messages       | List of messages to send to the queue. |         |
+| Input               | Comments                                                                                                                                          | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                                                                   |         |
+| Subscription ID     | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. |         |
+| Resource Group Name | Name of the Resource group within the Azure subscription.                                                                                         |         |
+| Namespace Name      | The namespace name                                                                                                                                |         |
+| Queue Name          | The queue name.                                                                                                                                   |         |
+| Messages            | List of messages to send to the queue.                                                                                                            |         |

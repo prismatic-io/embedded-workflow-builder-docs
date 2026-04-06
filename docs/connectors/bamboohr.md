@@ -102,11 +102,11 @@ Delete an company file
 
 Delete an employee file
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Connection  |          |         |
-| Employee ID |          |         |
-| File ID     |          |         |
+| Input            | Comments | Default |
+| ---------------- | -------- | ------- |
+| Connection       |          |         |
+| Employee ID      |          |         |
+| Employee File ID |          |         |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
@@ -157,11 +157,11 @@ Get an Employee
 
 Get an employee file
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Connection  |          |         |
-| Employee ID |          |         |
-| File ID     |          |         |
+| Input            | Comments | Default |
+| ---------------- | -------- | ------- |
+| Connection       |          |         |
+| Employee ID      |          |         |
+| Employee File ID |          |         |
 
 ### Get Time Off Requests {#gettimeoffrequests}
 

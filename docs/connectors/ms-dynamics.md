@@ -10,9 +10,9 @@ This component gives you the ability to query and modify records within the Micr
 
 ## Connections
 
-### MS Dynamics OAuth 2.0 Auth Code {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Microsoft Dynamics 365 OAuth Connection
+OAuth 2.0 connection for Microsoft Dynamics 365
 
 The OAuth 2.0 auth code flow allows your user grant permission to your integration to interact with Dynamics on their behalf.
 
@@ -49,9 +49,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     |                                                                                     |         |
 | Client Secret |                                                                                     |         |
 
-### MS Dynamics OAuth 2.0 Client Credentials {#clientcredentials}
+### OAuth 2.0 Client Credentials {#clientcredentials}
 
-OAuth 2.0 Client Credentials Connectivity for Microsoft Dynamics
+OAuth 2.0 Client Credentials connection for Microsoft Dynamics 365
 
 The OAuth 2.0 client credentials flow allows your user to create an **Application User** to send requests to Dynamics on their behalf.
 Setting up a client credentials connection is a two-step process:

@@ -102,11 +102,11 @@ Convert the input string to lower case
 
 Match a string against a regular expression
 
-| Input       | Comments                                                                                                                                                                                                                              | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Text        | This is the text to manipulate                                                                                                                                                                                                        |         |
-| Regex       | A regular expression to match against the text that is supplied.                                                                                                                                                                      |         |
-| Regex Flags | Flags to apply to the regular expression. For example, you can specify 'd' to ensure capture groups are returned. See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions#advanced_searching_with_flags | g       |
+| Input       | Comments                                                                                                                                                                                                                                                                         | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Text        | This is the text to manipulate                                                                                                                                                                                                                                                   |         |
+| Regex       | A regular expression to match against the text that is supplied.                                                                                                                                                                                                                 |         |
+| Regex Flags | Flags to apply to the regular expression. For example, you can specify 'd' to ensure capture groups are returned. See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions#advanced_searching_with_flags) for more information. | g       |
 
 ### Remove Whitespace {#trim}
 

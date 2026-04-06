@@ -73,16 +73,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Create a customer.
 
-| Input         | Comments                                                                                                                              | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Channels      | The customer's contact channels. See https://developers.gorgias.com/reference/create-customer for more information.                   |         |
-| Email         | Primary email address of the customer.                                                                                                |         |
-| External ID   | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish. |         |
-| Language      | The customer's preferred language (format: ISO_639-1).                                                                                |         |
-| Name          | Full name of the customer.                                                                                                            |         |
-| Timezone      | The customer's preferred timezone (format: IANA timezone name).                                                                       |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                  | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                               |         |
+| Input       | Comments                                                                                                                                         | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Channels    | The customer's contact channels. See [Gorgias API documentation](https://developers.gorgias.com/reference/create-customer) for more information. |         |
+| Email       | Primary email address of the customer.                                                                                                           |         |
+| External ID | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish.            |         |
+| Language    | The customer's preferred language (format: ISO_639-1).                                                                                           |         |
+| Name        | Full name of the customer.                                                                                                                       |         |
+| Timezone    | The customer's preferred timezone (format: IANA timezone name).                                                                                  |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                          |         |
 
 ### Create Ticket {#createticket}
 
@@ -112,54 +111,50 @@ Create a new ticket.
 | Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |         |
 | Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |         |
 | Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |         |
-| Debug Request                  | Enabling this flag will log out the current request.                                                                                                                                                                       | false   |
 | Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |         |
 
 ### Create Ticket Message {#createticketmessage}
 
 Create a message for a ticket.
 
-| Input         | Comments                                                                                                                                                                   | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Ticket ID     | The ID of the ticket associated with the message.                                                                                                                          |         |
-| Channel       | The channel where the message was sent.                                                                                                                                    |         |
-| From Agent    | Whether the message was sent by your company to a customer, or the opposite.                                                                                               | false   |
-| Source        | Information used to route the message. It contains the names and the addresses of the sender and receivers. https://developers.gorgias.com/reference/create-ticket-message |         |
-| Via           | How the message has been received, or sent from Gorgias.                                                                                                                   |         |
-| Action        | Policy applied on external actions associated with the message if they failed.                                                                                             |         |
-| Attachments   | A list of files attached to the message.                                                                                                                                   |         |
-| Body HTML     | The full HTML version of the body of the message, if any.                                                                                                                  |         |
-| Body Text     | The full text version of the body of the message, if any.                                                                                                                  |         |
-| Created Date  | When the message was created.                                                                                                                                              |         |
-| External ID   | ID of the message in a foreign system (Aircall, Zendesk, etc...). This field is not used by Gorgias, feel free to set it as you wish.                                      |         |
-| Failed Date   | When the message failed to be sent.                                                                                                                                        |         |
-| Message ID    | ID of the message on the service that send the message.It can be the ID of an email, a Messenger message, a Facebook comment, etc...                                       |         |
-| Receiver ID   | The primary receiver of the message. It can be a user or a customer. Optional when the source type is 'internal-note'.                                                     |         |
-| Sender        | The person who sent the message. It can be a user or a customer.                                                                                                           |         |
-| Sent Date     | When the message was sent. If omitted, the message will be sent by Gorgias.                                                                                                |         |
-| Subject       | The subject of the message.                                                                                                                                                |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                       | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                    |         |
+| Input        | Comments                                                                                                                                                                   | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Ticket ID    | The ID of the ticket associated with the message.                                                                                                                          |         |
+| Channel      | The channel where the message was sent.                                                                                                                                    |         |
+| From Agent   | Whether the message was sent by your company to a customer, or the opposite.                                                                                               | false   |
+| Source       | Information used to route the message. It contains the names and the addresses of the sender and receivers. https://developers.gorgias.com/reference/create-ticket-message |         |
+| Via          | How the message has been received, or sent from Gorgias.                                                                                                                   |         |
+| Action       | Policy applied on external actions associated with the message if they failed.                                                                                             |         |
+| Attachments  | A list of files attached to the message.                                                                                                                                   |         |
+| Body HTML    | The full HTML version of the body of the message, if any.                                                                                                                  |         |
+| Body Text    | The full text version of the body of the message, if any.                                                                                                                  |         |
+| Created Date | When the message was created.                                                                                                                                              |         |
+| External ID  | ID of the message in a foreign system (Aircall, Zendesk, etc...). This field is not used by Gorgias, feel free to set it as you wish.                                      |         |
+| Failed Date  | When the message failed to be sent.                                                                                                                                        |         |
+| Message ID   | ID of the message on the service that send the message.It can be the ID of an email, a Messenger message, a Facebook comment, etc...                                       |         |
+| Receiver ID  | The primary receiver of the message. It can be a user or a customer. Optional when the source type is 'internal-note'.                                                     |         |
+| Sender       | The person who sent the message. It can be a user or a customer.                                                                                                           |         |
+| Sent Date    | When the message was sent. If omitted, the message will be sent by Gorgias.                                                                                                |         |
+| Subject      | The subject of the message.                                                                                                                                                |         |
+| Connection   | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                    |         |
 
 ### Delete Customer {#deletecustomer}
 
 Delete a customer.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Customer ID   | ID of the customer to delete.                                           |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input       | Comments                                                                | Default |
+| ----------- | ----------------------------------------------------------------------- | ------- |
+| Customer ID | ID of the customer to delete.                                           |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Delete Ticket {#deleteticket}
 
 Delete a ticket.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Ticket ID     | The ID of the ticket to delete.                                         |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Ticket ID  | The ID of the ticket to delete.                                         |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Delete Ticket Custom Field {#deleteticketcustomfield}
 
@@ -169,7 +164,6 @@ Delete a ticket's custom field value.
 | --------------- | ----------------------------------------------------------------------- | ------- |
 | Ticket ID       | The ID of the ticket.                                                   |         |
 | Custom Field ID | The ID of the custom field.                                             |         |
-| Debug Request   | Enabling this flag will log out the current request.                    | false   |
 | Connection      | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Download File {#downloadfile}
@@ -181,37 +175,33 @@ Download a file.
 | File Type     | The type of file to download.                                           |         |
 | Domain Hash   | The domain identifier of the account that owns the resource.            |         |
 | Resource Name | The resource identifier of the attachment you are trying to retrieve.   |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
 | Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Get Account {#getaccount}
 
 Retrieve your account.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Get Customer {#getcustomer}
 
 Retrieve a customer.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Customer ID   | ID of the customer you're looking for.                                  |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input       | Comments                                                                | Default |
+| ----------- | ----------------------------------------------------------------------- | ------- |
+| Customer ID | ID of the customer you're looking for.                                  |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Get Event {#getevent}
 
 Retrieve an event.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Event ID      | The ID of the event to retrieve.                                        |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Event ID   | The ID of the event to retrieve.                                        |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Get Ticket {#getticket}
 
@@ -221,98 +211,91 @@ Retrieve a ticket.
 | ------------- | ----------------------------------------------------------------------- | ------- |
 | Ticket ID     | The ID of the ticket.                                                   |         |
 | Relationships | Names of relations that should be included in returned data.            |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
 | Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Get Ticket Message {#getticketmessage}
 
 Retrieve a message.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Ticket ID     | The ID of the ticket associated with the message.                       |         |
-| Message ID    | The ID of the message.                                                  |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Ticket ID  | The ID of the ticket associated with the message.                       |         |
+| Message ID | The ID of the message.                                                  |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### List Customers {#listcustomers}
 
 List customers, paginated, and ordered by their name (alphabetical order).
 
-| Input         | Comments                                                                                                                              | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Customer ID   | ID of the customer you're looking for.                                                                                                |         |
-| Email         | Primary email address of the customer.                                                                                                |         |
-| External ID   | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish. |         |
-| Language      | The customer's preferred language (format: ISO_639-1).                                                                                |         |
-| Timezone      | The customer's preferred timezone (format: IANA timezone name).                                                                       |         |
-| View ID       | ID of a view to filter customers by.                                                                                                  |         |
-| Fetch All     | When enabled, all customers will be fetched. This can be slow if you have a lot of customers. Cursor and limit will be ignored.       | false   |
-| Cursor        | Value indicating your position in the list of all customers. If omitted, the first customers of the list will be returned.            |         |
-| Limit         | Maximum number of customers to return. The max number allowed is 100.                                                                 |         |
-| Order By      | Attribute used to order customers.                                                                                                    |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                  | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                               |         |
+| Input       | Comments                                                                                                                              | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Customer ID | ID of the customer you're looking for.                                                                                                |         |
+| Email       | Primary email address of the customer.                                                                                                |         |
+| External ID | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish. |         |
+| Language    | The customer's preferred language (format: ISO_639-1).                                                                                |         |
+| Timezone    | The customer's preferred timezone (format: IANA timezone name).                                                                       |         |
+| View ID     | ID of a view to filter customers by.                                                                                                  |         |
+| Fetch All   | When enabled, all customers will be fetched. This can be slow if you have a lot of customers. Cursor and limit will be ignored.       | false   |
+| Cursor      | Value indicating your position in the list of all customers. If omitted, the first customers of the list will be returned.            |         |
+| Limit       | Maximum number of customers to return. The max number allowed is 100.                                                                 |         |
+| Order By    | Attribute used to order customers.                                                                                                    |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                               |         |
 
 ### List Events {#listevents}
 
 List events, paginated, and ordered by their creation date, with the most recently created first.
 
-| Input            | Comments                                                                                                                                 | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Created Datetime | Comparators used to filter events on their creation date. See https://developers.gorgias.com/reference/list-events for more information. |         |
-| Object ID        | ID of the object associated with the events to return.                                                                                   |         |
-| Object Type      | Type of the object associated with the events to return.                                                                                 |         |
-| Types            | Types of the events to return.                                                                                                           |         |
-| User IDs         | IDs of the users who triggered the events to return.                                                                                     |         |
-| Fetch All        | When enabled, all events will be fetched. This can be slow if you have a lot of events. Cursor and limit will be ignored.                | false   |
-| Cursor           | Value indicating your position in the list of all events. If omitted, the first events of the list will be returned.                     |         |
-| Limit            | Maximum number of customers to return. The max number allowed is 100.                                                                    |         |
-| Order By         | Attribute used to order events.                                                                                                          |         |
-| Debug Request    | Enabling this flag will log out the current request.                                                                                     | false   |
-| Connection       | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                  |         |
+| Input            | Comments                                                                                                                                                              | Default |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Created Datetime | Comparators used to filter events on their creation date. See [Gorgias API documentation](https://developers.gorgias.com/reference/list-events) for more information. |         |
+| Object ID        | ID of the object associated with the events to return.                                                                                                                |         |
+| Object Type      | Type of the object associated with the events to return.                                                                                                              |         |
+| Types            | Types of the events to return.                                                                                                                                        |         |
+| User IDs         | IDs of the users who triggered the events to return.                                                                                                                  |         |
+| Fetch All        | When enabled, all events will be fetched. This can be slow if you have a lot of events. Cursor and limit will be ignored.                                             | false   |
+| Cursor           | Value indicating your position in the list of all events. If omitted, the first events of the list will be returned.                                                  |         |
+| Limit            | Maximum number of customers to return. The max number allowed is 100.                                                                                                 |         |
+| Order By         | Attribute used to order events.                                                                                                                                       |         |
+| Connection       | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                               |         |
 
 ### List Messages {#listmessages}
 
 List messages matching the given parameters.
 
-| Input         | Comments                                                                                                                      | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All     | When enabled, all messages will be fetched. This can be slow if you have a lot of messages. Cursor and limit will be ignored. | false   |
-| Ticket ID     | The ID of the ticket the messages are associated with.                                                                        |         |
-| Cursor        | Value indicating your position in the list of all messages. If omitted, the first messages of the list will be returned.      |         |
-| Limit         | Maximum number of messages to return. The max number allowed is 100.                                                          |         |
-| Order By      | Attribute used to order messages.                                                                                             |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                          | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                       |         |
+| Input      | Comments                                                                                                                      | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All  | When enabled, all messages will be fetched. This can be slow if you have a lot of messages. Cursor and limit will be ignored. | false   |
+| Ticket ID  | The ID of the ticket the messages are associated with.                                                                        |         |
+| Cursor     | Value indicating your position in the list of all messages. If omitted, the first messages of the list will be returned.      |         |
+| Limit      | Maximum number of messages to return. The max number allowed is 100.                                                          |         |
+| Order By   | Attribute used to order messages.                                                                                             |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                       |         |
 
 ### List Ticket Custom Fields {#listticketcustomfields}
 
 List all custom fields for a ticket.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Ticket ID     | The ID of the ticket.                                                   |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Ticket ID  | The ID of the ticket.                                                   |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### List Tickets {#listtickets}
 
 List tickets, paginated and ordered by the attribute of the given view.
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Customer ID   | The ID of a customer used to select their tickets.                                                                          |         |
-| External ID   | ID of the ticket in a foreign system you're looking for.                                                                    |         |
-| View ID       | The ID of a view used to select tickets matching the filters of this one.                                                   |         |
-| Rule ID       | The ID of a rule used to select tickets matching the filters of this one.                                                   |         |
-| Ticket IDs    | The IDs of tickets to select.                                                                                               |         |
-| Fetch All     | When enabled, all tickets will be fetched. This can be slow if you have a lot of tickets. Cursor and limit will be ignored. | false   |
-| Cursor        | Value indicating your position in the list of all tickets. If omitted, the first tickets of the list will be returned.      |         |
-| Limit         | Maximum number of tickets to return. The max number allowed is 100.                                                         |         |
-| Order By      | Attribute used to order tickets.                                                                                            |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                     |         |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Customer ID | The ID of a customer used to select their tickets.                                                                          |         |
+| External ID | ID of the ticket in a foreign system you're looking for.                                                                    |         |
+| View ID     | The ID of a view used to select tickets matching the filters of this one.                                                   |         |
+| Rule ID     | The ID of a rule used to select tickets matching the filters of this one.                                                   |         |
+| Ticket IDs  | The IDs of tickets to select.                                                                                               |         |
+| Fetch All   | When enabled, all tickets will be fetched. This can be slow if you have a lot of tickets. Cursor and limit will be ignored. | false   |
+| Cursor      | Value indicating your position in the list of all tickets. If omitted, the first tickets of the list will be returned.      |         |
+| Limit       | Maximum number of tickets to return. The max number allowed is 100.                                                         |         |
+| Order By    | Attribute used to order tickets.                                                                                            |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                     |         |
 
 ### Raw Request {#rawrequest}
 
@@ -341,41 +324,38 @@ Send raw HTTP request to Gorgias API.
 
 Search for resources.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Type          | The type of object to search for.                                       |         |
-| Query         | Text query used to search for resources.                                |         |
-| Size          | Maximum number of results returned.                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Type       | The type of object to search for.                                       |         |
+| Query      | Text query used to search for resources.                                |         |
+| Size       | Maximum number of results returned.                                     |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Update Customer {#updatecustomer}
 
 Update a customer.
 
-| Input         | Comments                                                                                                                              | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Customer ID   | ID of the customer to update.                                                                                                         |         |
-| Channels      | The customer's contact channels. See https://developers.gorgias.com/reference/update-customer for more information.                   |         |
-| Email         | Primary email address of the customer.                                                                                                |         |
-| External ID   | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish. |         |
-| Language      | The customer's preferred language (format: ISO_639-1).                                                                                |         |
-| Name          | Full name of the customer.                                                                                                            |         |
-| Timezone      | The customer's preferred timezone (format: IANA timezone name).                                                                       |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                  | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                               |         |
+| Input       | Comments                                                                                                                                         | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Customer ID | ID of the customer to update.                                                                                                                    |         |
+| Channels    | The customer's contact channels. See [Gorgias API documentation](https://developers.gorgias.com/reference/update-customer) for more information. |         |
+| Email       | Primary email address of the customer.                                                                                                           |         |
+| External ID | ID of the customer in a foreign system (Stripe, Aircall, etc...). This field is not used by Gorgias, feel free to set it as you wish.            |         |
+| Language    | The customer's preferred language (format: ISO_639-1).                                                                                           |         |
+| Name        | Full name of the customer.                                                                                                                       |         |
+| Timezone    | The customer's preferred timezone (format: IANA timezone name).                                                                                  |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                          |         |
 
 ### Update Customer Data {#updatecustomerdata}
 
 Set a customer's data.
 
-| Input         | Comments                                                                                              | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Customer ID   | ID of the customer to update.                                                                         |         |
-| Data          | The customer data.                                                                                    |         |
-| Version       | The date of the customer data. If we already have a more recent version, the request will be ignored. |         |
-| Debug Request | Enabling this flag will log out the current request.                                                  | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                               |         |
+| Input       | Comments                                                                                              | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| Customer ID | ID of the customer to update.                                                                         |         |
+| Data        | The customer data.                                                                                    |         |
+| Version     | The date of the customer data. If we already have a more recent version, the request will be ignored. |         |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                               |         |
 
 ### Update Ticket {#updateticket}
 
@@ -404,7 +384,6 @@ Update a ticket.
 | Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |         |
 | Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |         |
 | Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |         |
-| Debug Request                  | Enabling this flag will log out the current request.                                                                                                                                                                       | false   |
 | Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |         |
 
 ### Update Ticket Custom Fields {#updateticketcustomfields}
@@ -415,16 +394,14 @@ Update a ticket's custom fields values.
 | ------------- | ----------------------------------------------------------------------- | ------- |
 | Ticket ID     | The ID of the ticket.                                                   |         |
 | Custom Fields | Custom fields to update.                                                |         |
-| Debug Request | Enabling this flag will log out the current request.                    | false   |
 | Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
 
 ### Upload Files {#uploadfiles}
 
 Upload a file or several files.
 
-| Input         | Comments                                                                                                                                                                                                          | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Type          | The type of file to upload. If not specified, the file will be uploaded as a private attachment.                                                                                                                  |         |
-| File          | A file to upload, this should be a reference to binary data from a previous step. The name of this parameter can be replaced with the label of the file you want to have once uploaded. E.g: package-damaged.png. |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                              | false   |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                           |         |
+| Input      | Comments                                                                                                                                                                                                          | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Type       | The type of file to upload. If not specified, the file will be uploaded as a private attachment.                                                                                                                  |         |
+| File       | A file to upload, this should be a reference to binary data from a previous step. The name of this parameter can be replaced with the label of the file you want to have once uploaded. E.g: package-damaged.png. |         |
+| Connection | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                           |         |

@@ -83,8 +83,8 @@ Create a new assignment in a given draft product
 | --------------------- | --------------------------------------------------------------------- | ------- |
 | Connection            |                                                                       |         |
 | Project GUID          | Provide a string value for the GUID                                   |         |
-| Task Id               | Provide a unique identifier for the task.                             |         |
-| Resource Id           | Provide the unique identifier for the resource                        |         |
+| Draft Task Id         | Provide a unique identifier for the draft task.                       |         |
+| Resource Id           | Provide the unique identifier for the resource.                       |         |
 | Assignment Start Date | Provide a valid date time value for the start date of the assignment  |         |
 | Finish Date           | Provide a valid date time value for the finish date of the assignment |         |
 | Notes                 | Provide a string value for notes.                                     |         |
@@ -131,11 +131,11 @@ Create a new project
 
 Delete an existing task from a draft project
 
-| Input        | Comments                                  | Default |
-| ------------ | ----------------------------------------- | ------- |
-| Connection   |                                           |         |
-| Project GUID | Provide a string value for the GUID       |         |
-| Task Id      | Provide a unique identifier for the task. |         |
+| Input         | Comments                                        | Default |
+| ------------- | ----------------------------------------------- | ------- |
+| Connection    |                                                 |         |
+| Project GUID  | Provide a string value for the GUID             |         |
+| Draft Task Id | Provide a unique identifier for the draft task. |         |
 
 ### Delete Project {#deleteproject}
 
@@ -159,11 +159,11 @@ Get the information and metadata of an assignment by Id
 
 Get the information or metadata of a task inside a draft project
 
-| Input        | Comments                                  | Default |
-| ------------ | ----------------------------------------- | ------- |
-| Connection   |                                           |         |
-| Project GUID | Provide a string value for the GUID       |         |
-| Task Id      | Provide a unique identifier for the task. |         |
+| Input         | Comments                                        | Default |
+| ------------- | ----------------------------------------------- | ------- |
+| Connection    |                                                 |         |
+| Project GUID  | Provide a string value for the GUID             |         |
+| Draft Task Id | Provide a unique identifier for the draft task. |         |
 
 ### Get Project {#getproject}
 
@@ -178,11 +178,11 @@ Get the information and metadata of a project by Id
 
 Get the information and metadata of an existing Project Resource by Id
 
-| Input        | Comments                                       | Default |
-| ------------ | ---------------------------------------------- | ------- |
-| Connection   |                                                |         |
-| Project GUID | Provide a string value for the GUID            |         |
-| Resource Id  | Provide the unique identifier for the resource |         |
+| Input        | Comments                                        | Default |
+| ------------ | ----------------------------------------------- | ------- |
+| Connection   |                                                 |         |
+| Project GUID | Provide a string value for the GUID             |         |
+| Resource Id  | Provide the unique identifier for the resource. |         |
 
 ### Get Task {#gettask}
 

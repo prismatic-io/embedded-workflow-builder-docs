@@ -10,9 +10,9 @@ The Xero component allows you to manage your invoices, payments, items, and cont
 
 ## Connections
 
-### Xero OAuth 2.0 {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Authenticate requests to Xero using values obtained from the developer console.
+OAuth 2.0 connection for Xero
 
 **Xero** uses OAuth 2.0 to authorize requests made to the API.
 In order for your integration to authenticate with your customers' Xero accounts, you will need to create a Xero OAuth 2.0 app:
@@ -48,9 +48,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client Secret | Provide the Client Secret you generated from the Xero Developer Console.                                                                                 |                                                                               |
 | Tenant Name   | The name of the tenant you are requesting access to.                                                                                                     |                                                                               |
 
-### Xero OAuth 2.0 Client Credentials {#xerooauthclientcredentials}
+### OAuth 2.0 Client Credentials {#xerooauthclientcredentials}
 
-Authenticate requests to Xero using client credentials (Custom Connection).
+OAuth 2.0 Client Credentials connection for Xero
 
 **Xero** uses OAuth 2.0 to authorize requests made to the API.
 You can use client credentials grant type to access data from a single Xero organization using Custom Connections.
@@ -188,7 +188,7 @@ Create a new contact
 | Accounts Receivable Tax Type | Provide a string value for the tax type of accounts receivable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                     |         |
 | Accounts Payable Tax Type    | Provide a string value for the tax type of accounts payable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                        |         |
 | Default Currency             | Provide a valid type of currency.                                                                                                                                                                                                                                                                                                                  |         |
-| Additional Fields            | Additional fields that might not be covered by the standard inputs. See https://developer.xero.com/documentation/api/accounting/contacts#post-contacts for additional fields.                                                                                                                                                                      |         |
+| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                                                                                            |         |
 
 ### Create Invoice {#createinvoice}
 
@@ -210,7 +210,7 @@ Create a new invoice
 | URL               | URL link to a source document – shown as "Go to [appName]" in the Xero app.                                                                                                                                                     |         |
 | Currency Code     | The currency that invoice has been raised in.                                                                                                                                                                                   |         |
 | Sent To Contact   | Boolean to set whether the invoice in the Xero app should be marked as "sent". This can be set only on invoices that have been approve.                                                                                         | false   |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.xero.com/documentation/api/accounting/invoices#post-invoices for additional fields.                                                   |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/invoices#post-invoices) for additional fields.                         |         |
 | Connection        | The connection to use.                                                                                                                                                                                                          |         |
 
 ### Create Item {#createitem}
@@ -501,7 +501,7 @@ Update the information and metadata of a contact by Id
 | Postal Code                  | Provide a valid postal code.                                                                                                                                                                                                                                                                                                                       |         |
 | Country                      | Provide a string value for the country of the address.                                                                                                                                                                                                                                                                                             |         |
 | Region                       | Provide a string value for the region of the address.                                                                                                                                                                                                                                                                                              |         |
-| Additional Fields            | Additional fields that might not be covered by the standard inputs. See https://developer.xero.com/documentation/api/accounting/contacts#post-contacts for additional fields.                                                                                                                                                                      |         |
+| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                                                                                            |         |
 | Connection                   | The connection to use.                                                                                                                                                                                                                                                                                                                             |         |
 
 ### Update Item {#updateitem}

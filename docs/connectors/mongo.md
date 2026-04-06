@@ -98,11 +98,11 @@ Insert a new document into a collection
 
 Execute database commands directly. Does not use collection from connection.
 
-| Input             | Comments                                                                                                       | Default |
-| ----------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                |         |
-| Execute Command   | Provide the command to execute. See https://www.mongodb.com/docs/v6.0/reference/command/ for more information. |         |
-| Run Admin Command | If true, the command will be executed against the admin database.                                              | false   |
+| Input             | Comments                                                                                                                                | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                         |         |
+| Execute Command   | Provide the command to execute. See [MongoDB documentation](https://www.mongodb.com/docs/v6.0/reference/command/) for more information. |         |
+| Run Admin Command | If true, the command will be executed against the admin database.                                                                       | false   |
 
 ### Update Many {#updatemany}
 

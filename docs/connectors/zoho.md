@@ -5,7 +5,7 @@ description: Manage records, contacts, and transactions in Zoho CRM and Books
 ---
 
 ![Zoho](./assets/zoho.png#connector-icon)
-[Zoho](https://www.zoho.com/) is a business software suite that includes CRM, accounting, and business management applications. This component allows you to manage records, contacts, deals, invoices, and bills in Zoho CRM and Zoho Books.
+[Zoho](https://www.zoho.com/) is a business software suite that includes CRM, accounting, and business management applications. This component allows managing records, contacts, deals, invoices, and bills in Zoho CRM and Zoho Books.
 
 ## API Documentation
 
@@ -15,7 +15,7 @@ This component was built using the [Zoho CRM API Documentation](https://www.zoho
 
 ### OAuth 2.0 {#zohotemplatedconnection}
 
-OAuth 2.0 Connection
+Authenticate using OAuth 2.0.
 
 To connect to Zoho CRM or Zoho Books, create a Client application in the [Zoho Developer Console](https://api-console.zoho.com/).
 
@@ -71,31 +71,33 @@ For integrations that will be deployed to users in multiple Zoho regions, config
 
 To make the Region URL field visible to deployers, enable the field visibility in the connection configuration:
 
+:::
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
 | Input         | Comments                                                                                                                                                                                                                     | Default                                                                                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Region URL    | The [URL](https://accounts.zoho.com/oauth/serverinfo) of the Zoho region you want to connect to.                                                                                                                             |                                                                                                                                                                  |
+| Region URL    | The base [URL](https://accounts.zoho.com/oauth/serverinfo) of the Zoho region to connect to.                                                                                                                                 |                                                                                                                                                                  |
 | Scopes        | Space-separated OAuth 2.0 permission scopes for the Zoho API. Can combine [Zoho CRM](https://www.zoho.com/crm/developer/docs/api/v8/scopes.html) and [Zoho Books](https://www.zoho.com/books/api/v3/oauth/#overview) scopes. | ZohoCRM.coql.READ ZohoCRM.notifications.ALL ZohoCRM.users.ALL ZohoCRM.org.ALL ZohoCRM.settings.ALL ZohoCRM.modules.ALL ZohoCRM.bulk.ALL ZohoBooks.fullaccess.all |
-| Client ID     | Client Identifier of your app for the Zoho API. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                      |                                                                                                                                                                  |
-| Client Secret | Client Secret of your app for the Zoho API. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                          |                                                                                                                                                                  |
+| Client ID     | The Client ID for the Zoho API application. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                          |                                                                                                                                                                  |
+| Client Secret | The Client Secret for the Zoho API application. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                      |                                                                                                                                                                  |
 
-### Zoho OAuth 2.0 (Deprecated) {#oauth2}
+### OAuth 2.0 (Deprecated) {#oauth2}
 
-Zoho OAuth 2.0 Connection (Deprecated)
+Authenticate using OAuth 2.0. (Deprecated)
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
 | Input                    | Comments                                                                                                                                                                                                                     | Default                                                                                                                                                          |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Authorize URL            | The OAuth 2.0 Authorization URL for your Zoho region                                                                                                                                                                         |                                                                                                                                                                  |
-| Token URL                | The OAuth 2.0 Token URL for your Zoho region                                                                                                                                                                                 |                                                                                                                                                                  |
+| Authorize URL            | The OAuth 2.0 Authorization URL for the Zoho region.                                                                                                                                                                         |                                                                                                                                                                  |
+| Token URL                | The OAuth 2.0 Token URL for the Zoho region.                                                                                                                                                                                 |                                                                                                                                                                  |
 | Scopes                   | Space-separated OAuth 2.0 permission scopes for the Zoho API. Can combine [Zoho CRM](https://www.zoho.com/crm/developer/docs/api/v8/scopes.html) and [Zoho Books](https://www.zoho.com/books/api/v3/oauth/#overview) scopes. | ZohoCRM.coql.READ ZohoCRM.notifications.ALL ZohoCRM.users.ALL ZohoCRM.org.ALL ZohoCRM.settings.ALL ZohoCRM.modules.ALL ZohoCRM.bulk.ALL ZohoBooks.fullaccess.all |
-| Refresh Token Revoke URL | The OAuth 2.0 Token Revocation URL for your Zoho region                                                                                                                                                                      |                                                                                                                                                                  |
-| Client ID                | Client Identifier of your app for the Zoho API. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                      |                                                                                                                                                                  |
-| Client Secret            | Client Secret of your app for the Zoho API. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                          |                                                                                                                                                                  |
+| Refresh Token Revoke URL | The OAuth 2.0 Token Revocation URL for the Zoho region.                                                                                                                                                                      |                                                                                                                                                                  |
+| Client ID                | The Client ID for the Zoho API application. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                          |                                                                                                                                                                  |
+| Client Secret            | The Client Secret for the Zoho API application. Generate this in the [Zoho API Console](https://api-console.zoho.com/).                                                                                                      |                                                                                                                                                                  |
 
 ## Triggers
 
@@ -142,7 +144,7 @@ Checks for new and updated leads in Zoho CRM on a configured schedule.
 
 ### Books - Create Record {#bookscreaterecord}
 
-Create a Zoho Books Record
+Create a Zoho Books record.
 
 | Input              | Comments                                                                                                      | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -155,7 +157,7 @@ Create a Zoho Books Record
 
 ### Books - Get Record {#booksgetrecord}
 
-Get a single Zoho Books Record
+Get a single Zoho Books record.
 
 | Input              | Comments                                                                                                      | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -167,7 +169,7 @@ Get a single Zoho Books Record
 
 ### Books - Get Records {#booksgetrecords}
 
-Get a collection of Zoho Books Records
+Get a collection of Zoho Books records.
 
 | Input              | Comments                                                                                                      | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -182,7 +184,7 @@ Get a collection of Zoho Books Records
 
 ### Books - Raw Request {#booksrawrequest}
 
-Send raw HTTP request to Zoho Books
+Send a raw HTTP request to Zoho Books.
 
 | Input                   | Comments                                                                                                                                                                                                                                                | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -204,7 +206,7 @@ Send raw HTTP request to Zoho Books
 
 ### Books - Remove Record {#booksremoverecord}
 
-Remove a Zoho Books Record
+Remove a Zoho Books record.
 
 | Input              | Comments                                                                                                      | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -216,7 +218,7 @@ Remove a Zoho Books Record
 
 ### Books - Update Record {#booksupdaterecord}
 
-Update a Zoho Books Record
+Update a Zoho Books record.
 
 | Input              | Comments                                                                                                      | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -228,21 +230,21 @@ Update a Zoho Books Record
 | Dynamic Fields     | Dynamic input fields that can be configured at deploy time using key-value config variables.                  |         |
 | Values             | Key-value pairs representing field names and their values for creating or updating records.                   |         |
 
-### CRM - Add attachment {#crmaddattachment}
+### CRM - Add Attachment {#crmaddattachment}
 
-Add an attachment to a Zoho CRM record (Lead, etc).
+Add an attachment to a Zoho CRM record.
 
-| Input       | Comments                                                     | Default |
-| ----------- | ------------------------------------------------------------ | ------- |
-| Connection  | The Zoho connection to use.                                  |         |
-| Record Type | Type of record to attach a file to                           | Leads   |
-| Record ID   | The unique identifier of the record in Zoho.                 |         |
-| File        | The file to upload - either string contents or a binary file |         |
-| File Name   | The name of the file to upload, including extension.         |         |
+| Input       | Comments                                                                              | Default |
+| ----------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Zoho connection to use.                                                           |         |
+| Record Type | The type of CRM record to attach the file to.                                         | Leads   |
+| Record ID   | The unique identifier of the record in Zoho.                                          |         |
+| File        | The file to upload. Accepts string contents or binary file data from a previous step. |         |
+| File Name   | The name of the file to upload, including extension.                                  |         |
 
 ### CRM - COQL Query {#crmrunquery}
 
-Run a COQL Query for Zoho CRM
+Run a COQL query for Zoho CRM.
 
 | Input      | Comments                                                                                                                            | Default |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -251,7 +253,7 @@ Run a COQL Query for Zoho CRM
 
 ### CRM - Create Record {#crmcreaterecord}
 
-Create a Zoho CRM Record
+Create a Zoho CRM record.
 
 | Input          | Comments                                                                                                                                   | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -311,7 +313,7 @@ Retrieve the details of notifications enabled for a specific channel.
 
 ### CRM - Get Record {#crmgetrecord}
 
-Get a single Zoho CRM Record
+Get a single Zoho CRM record.
 
 | Input       | Comments                                                                                                                                   | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -322,7 +324,7 @@ Get a single Zoho CRM Record
 
 ### CRM - Get Records {#crmgetrecords}
 
-Get a collection of Zoho CRM Records
+Get a collection of Zoho CRM records.
 
 | Input       | Comments                                                                                                                                   | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -331,14 +333,14 @@ Get a collection of Zoho CRM Records
 | Fields      | The field names to retrieve. Leave empty to retrieve all fields.                                                                           |         |
 | Page        | The page number to start at. First page is 1.                                                                                              | 1       |
 | Per Page    | The number of records to fetch per page. Maximum is 200.                                                                                   | 200     |
-| Page Token  | Token used for cursor based pagination. Obtained from previous response.                                                                   |         |
-| Sort Order  | The order in which to sort the results.                                                                                                    |         |
+| Page Token  | Cursor token for pagination. Use the value from the previous response to retrieve the next page of results.                                |         |
+| Sort Order  | The direction to sort results (ascending or descending).                                                                                   |         |
 | Sort By     | The field to sort results by.                                                                                                              |         |
 | Fetch All   | When true, automatically fetches all pages of results using pagination.                                                                    | false   |
 
 ### CRM - Raw Request {#crmrawrequest}
 
-Send raw HTTP request to Zoho CRM
+Send a raw HTTP request to Zoho CRM.
 
 | Input                   | Comments                                                                                                                                                                                                                                                                                                     | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -360,7 +362,7 @@ Send raw HTTP request to Zoho CRM
 
 ### CRM - Remove Record {#crmremoverecord}
 
-Remove a Zoho CRM Record
+Remove a Zoho CRM record.
 
 | Input       | Comments                                                                                                                                   | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -384,7 +386,7 @@ Update specific information of a notification enabled for a channel.
 
 ### CRM - Update Record {#crmupdaterecord}
 
-Update a Zoho CRM Record
+Update a Zoho CRM record.
 
 | Input          | Comments                                                                                                                                   | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |

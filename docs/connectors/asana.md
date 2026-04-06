@@ -11,9 +11,9 @@ Use the Asana component to manage users, projects, and teams in your Asana works
 
 ## Connections
 
-### Asana OAuth 2.0 Connection {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Asana OAuth 2.0 Connection
+OAuth 2.0 connection for Asana
 
 To connect to Asana using OAuth 2.0, create an OAuth application within Asana's developer portal. This allows users to authenticate with their Asana credentials.
 
@@ -64,15 +64,15 @@ To connect to Asana using OAuth 2.0, create an OAuth application within Asana's 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Scopes        | Space separated OAuth scopes using the format `<resource>:<action>` (e.g., tasks:read, projects:write). Leave blank for full access. See https://developers.asana.com/docs/oauth-scopes |         |
-| Client ID     | Generate from https://app.asana.com/0/my-apps/                                                                                                                                          |         |
-| Client secret | Generate from https://app.asana.com/0/my-apps/                                                                                                                                          |         |
+| Input         | Comments                                                                                                                                                                                                                                 | Default |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Scopes        | Space separated OAuth scopes using the format `<resource>:<action>` (e.g., tasks:read, projects:write). Leave blank for full access. See [Asana API documentation](https://developers.asana.com/docs/oauth-scopes) for more information. |         |
+| Client ID     | Generate from the [Asana Developer Portal](https://app.asana.com/0/my-apps).                                                                                                                                                             |         |
+| Client secret | Generate from the [Asana Developer Portal](https://app.asana.com/0/my-apps).                                                                                                                                                             |         |
 
-### Asana Personal Access Token {#apikey}
+### Personal Access Token {#apikey}
 
-Asana Personal Access Token
+Personal Access Token connection for Asana
 
 A personal access token can be used for development and testing purposes. For production deployments, use the OAuth 2.0 connection to allow users to authenticate with their own Asana credentials.
 
@@ -99,9 +99,9 @@ Personal access tokens are tied to the user account that created them and inheri
 
 For more information on personal access tokens, refer to the [Asana Docs](https://developers.asana.com/docs/personal-access-token).
 
-| Input                 | Comments                                                                                            | Default |
-| --------------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Personal Access Token | Log in to https://app.asana.com/0/my-apps to fetch a personal access token for development purposes |         |
+| Input                 | Comments                                                                                                                           | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Personal Access Token | Log in to the [Asana Developer Portal](https://app.asana.com/0/my-apps) to fetch a personal access token for development purposes. |         |
 
 ## Triggers
 

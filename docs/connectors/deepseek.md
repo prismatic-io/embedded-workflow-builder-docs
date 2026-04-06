@@ -1,7 +1,7 @@
 ---
 title: DeepSeek Connector
 sidebar_label: DeepSeek
-description: DeepSeek is an AI developer of large language models (LLM) focused on providing high performance models.
+description: Generate chat completions and manage models with DeepSeek AI.
 ---
 
 ![DeepSeek](./assets/deepseek.png#connector-icon)

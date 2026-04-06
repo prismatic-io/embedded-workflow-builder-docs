@@ -14,9 +14,23 @@ This component was built using the [Google Cloud Storage JSON API](https://cloud
 
 ## Connections
 
-### Google Cloud Storage Private Key {#privatekey}
+### OAuth 2.0 {#googleoauth}
 
-Authenticate requests to Google Cloud Storage using a Private Key
+OAuth 2.0 connection for Google Cloud Storage
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input         | Comments                                                                                                                                                                     | Default                                               |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Scopes        | OAuth scopes for Google Cloud Storage. See [Google OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#storage) for available scopes. | https://www.googleapis.com/auth/devstorage.read_write |
+| Client ID     | The Client ID from the Google Cloud Console OAuth credentials.                                                                                                               |                                                       |
+| Client Secret | The Client Secret from the Google Cloud Console OAuth credentials.                                                                                                           |                                                       |
+| Project ID    | The ID of the Google Cloud Platform project that hosts the storage bucket.                                                                                                   |                                                       |
+
+### Private Key {#privatekey}
+
+Private Key connection for Google Cloud Storage
 
 To authenticate with Google Cloud Storage, a service account with a private key is required.
 
@@ -65,20 +79,6 @@ Ensure the service account has the appropriate permissions to access the Cloud S
 | Private Key  | The private key from the JSON key file. Include the entire key including BEGIN and END markers. |         |
 | Project ID   | The ID of the Google Cloud Platform project that hosts the storage bucket.                      |         |
 
-### Google OAuth 2.0 {#googleoauth}
-
-Authenticate requests to Google Cloud Storage using Google OAuth 2.0
-
-This connection uses OAuth 2.0, a common authentication mechanism for integrations.
-Read about how OAuth 2.0 works [here](../oauth2.md).
-
-| Input         | Comments                                                                                                                                | Default                                               |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Scopes        | OAuth scopes for Google Cloud Storage. See https://developers.google.com/identity/protocols/oauth2/scopes#storage for available scopes. | https://www.googleapis.com/auth/devstorage.read_write |
-| Client ID     | The Client ID from the Google Cloud Console OAuth credentials.                                                                          |                                                       |
-| Client Secret | The Client Secret from the Google Cloud Console OAuth credentials.                                                                      |                                                       |
-| Project ID    | The ID of the Google Cloud Platform project that hosts the storage bucket.                                                              |                                                       |
-
 ## Actions
 
 ### Complete Multipart Upload {#completemultipartupload}
@@ -109,14 +109,14 @@ Copy a file from one Google Cloud Storage bucket to another
 
 Create a new Bucket inside Google Cloud Storage
 
-| Input          | Comments                                                                                                                                                 | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                          |         |
-| Bucket Name    | The name of the Google Cloud Storage bucket. Bucket names contain only lowercase letters, numbers, hyphens, and underscores.                             |         |
-| Multi-Regional | When true, the bucket will be available from multiple regions.                                                                                           | false   |
-| User Project   | The project ID that the user creating the bucket belongs to.                                                                                             |         |
-| Location       | The geographic location where the bucket will be created. Defaults to 'US'. See https://cloud.google.com/storage/docs/locations for available locations. |         |
-| Storage Class  | The storage class for the bucket. See https://cloud.google.com/storage/docs/storage-classes for details.                                                 |         |
+| Input          | Comments                                                                                                                                                                                       | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                                                                                                |         |
+| Bucket Name    | The name of the Google Cloud Storage bucket. Bucket names contain only lowercase letters, numbers, hyphens, and underscores.                                                                   |         |
+| Multi-Regional | When true, the bucket will be available from multiple regions.                                                                                                                                 | false   |
+| User Project   | The project ID that the user creating the bucket belongs to.                                                                                                                                   |         |
+| Location       | The geographic location where the bucket will be created. Defaults to 'US'. See [Google Cloud Storage documentation](https://cloud.google.com/storage/docs/locations) for available locations. |         |
+| Storage Class  | The storage class for the bucket. See [Google Cloud Storage documentation](https://cloud.google.com/storage/docs/storage-classes) for details.                                                 |         |
 
 ### Create Multipart Upload {#createmultipartupload}
 

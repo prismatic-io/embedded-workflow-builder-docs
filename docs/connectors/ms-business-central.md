@@ -282,7 +282,6 @@ Creates a purchase order object in your Business Central organization.
 | Purchaser              | The purchaser in the purchase order.                                                                                                                     |         |
 | Discount Amount        | The discount amount.                                                                                                                                     |         |
 | Additional Properties  | Additional properties to include in the request body. In case of supplying a property that is already defined as an input, the input value will be used. |         |
-| Debug Request          | Enabling this flag will log out the current request.                                                                                                     | false   |
 
 ### Create Purchase Order Line {#createpurchaseorderline}
 
@@ -301,7 +300,6 @@ Creates a purchase order line object in your Business Central organization.
 | Quantity              | The quantity of the item in the purchase order line.                                                                                                     |         |
 | Direct Unit Cost      | The direct cost per unit.                                                                                                                                |         |
 | Additional Properties | Additional properties to include in the request body. In case of supplying a property that is already defined as an input, the input value will be used. |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                                                     | false   |
 
 ### Create Sales Invoice {#createsalesinvoice}
 
@@ -429,23 +427,21 @@ Deletes a purchase invoice object in your Business Central organization.
 
 Deletes a purchase order object in your Business Central Organization.
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        | The Microsoft Business Central connection to use.    |         |
-| Company ID        | The ID of the company you want to interact with.     |         |
-| Purchase Order ID | The unique ID of the purchase order to delete.       |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                                          | Default |
+| ----------------- | ------------------------------------------------- | ------- |
+| Connection        | The Microsoft Business Central connection to use. |         |
+| Company ID        | The ID of the company you want to interact with.  |         |
+| Purchase Order ID | The unique ID of the purchase order to delete.    |         |
 
 ### Delete Purchase Order Line {#deletepurchaseorderline}
 
 Deletes a purchase order line object in your Business Central Organization.
 
-| Input                  | Comments                                             | Default |
-| ---------------------- | ---------------------------------------------------- | ------- |
-| Connection             | The Microsoft Business Central connection to use.    |         |
-| Company ID             | The ID of the company you want to interact with.     |         |
-| Purchase Order Line ID | The unique ID of the purchase order line to delete.  |         |
-| Debug Request          | Enabling this flag will log out the current request. | false   |
+| Input                  | Comments                                            | Default |
+| ---------------------- | --------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.   |         |
+| Company ID             | The ID of the company you want to interact with.    |         |
+| Purchase Order Line ID | The unique ID of the purchase order line to delete. |         |
 
 ### Delete Sales Invoice {#deletesalesinvoice}
 
@@ -581,12 +577,11 @@ Retrieve the properties and relationships of a purchase invoice object in your B
 
 Retrieves a purchase order object in your Business Central Organization.
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        | The Microsoft Business Central connection to use.    |         |
-| Company ID        | The ID of the company you want to interact with.     |         |
-| Purchase Order ID | The unique ID of the purchase order to retrieve.     |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                                          | Default |
+| ----------------- | ------------------------------------------------- | ------- |
+| Connection        | The Microsoft Business Central connection to use. |         |
+| Company ID        | The ID of the company you want to interact with.  |         |
+| Purchase Order ID | The unique ID of the purchase order to retrieve.  |         |
 
 ### Get Purchase Order Line {#getpurchaseorderline}
 
@@ -597,29 +592,26 @@ Retrieves a purchase order line object in your Business Central Organization.
 | Connection             | The Microsoft Business Central connection to use.     |         |
 | Company ID             | The ID of the company you want to interact with.      |         |
 | Purchase Order Line ID | The unique ID of the purchase order line to retrieve. |         |
-| Debug Request          | Enabling this flag will log out the current request.  | false   |
 
 ### Get Purchase Receipt {#getpurchasereceipt}
 
 Retrieves a purchase receipt object in your Business Central Organization.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Connection          | The Microsoft Business Central connection to use.    |         |
-| Company ID          | The ID of the company you want to interact with.     |         |
-| Purchase Receipt ID | The unique identifier of the purchase receipt.       |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                                          | Default |
+| ------------------- | ------------------------------------------------- | ------- |
+| Connection          | The Microsoft Business Central connection to use. |         |
+| Company ID          | The ID of the company you want to interact with.  |         |
+| Purchase Receipt ID | The unique identifier of the purchase receipt.    |         |
 
 ### Get Purchase Receipt Line {#getpurchasereceiptline}
 
 Retrieves a purchase receipt line object in your Business Central Organization.
 
-| Input                    | Comments                                             | Default |
-| ------------------------ | ---------------------------------------------------- | ------- |
-| Connection               | The Microsoft Business Central connection to use.    |         |
-| Company ID               | The ID of the company you want to interact with.     |         |
-| Purchase Receipt Line ID | The unique identifier of the purchase receipt line.  |         |
-| Debug Request            | Enabling this flag will log out the current request. | false   |
+| Input                    | Comments                                            | Default |
+| ------------------------ | --------------------------------------------------- | ------- |
+| Connection               | The Microsoft Business Central connection to use.   |         |
+| Company ID               | The ID of the company you want to interact with.    |         |
+| Purchase Receipt Line ID | The unique identifier of the purchase receipt line. |         |
 
 ### Get Sales Invoice {#getsalesinvoice}
 
@@ -779,21 +771,20 @@ Retrieve all item ledger entries in your Business Central organization.
 
 List all item objects from your Business Central Organization.
 
-| Input         | Comments                                                                                                                           | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Microsoft Business Central connection to use.                                                                                  |         |
-| Company ID    | The ID of the company you want to interact with.                                                                                   |         |
-| Filter        | Filters results (rows).                                                                                                            |         |
-| Select        | Filters properties (columns).                                                                                                      |         |
-| Expand        | Retrieves related resources.                                                                                                       |         |
-| Order By      | Orders results.                                                                                                                    |         |
-| Top           | Sets the page size of results.                                                                                                     |         |
-| Skip          | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Count         | When true, retrieves the total count of matching resources.                                                                        | false   |
-| Search        | Returns results based on search criteria.                                                                                          |         |
-| Format        | Returns the results in the specified media format.                                                                                 |         |
-| Skip Token    | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                               | false   |
+| Input      | Comments                                                                                                                           | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft Business Central connection to use.                                                                                  |         |
+| Company ID | The ID of the company you want to interact with.                                                                                   |         |
+| Filter     | Filters results (rows).                                                                                                            |         |
+| Select     | Filters properties (columns).                                                                                                      |         |
+| Expand     | Retrieves related resources.                                                                                                       |         |
+| Order By   | Orders results.                                                                                                                    |         |
+| Top        | Sets the page size of results.                                                                                                     |         |
+| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Count      | When true, retrieves the total count of matching resources.                                                                        | false   |
+| Search     | Returns results based on search criteria.                                                                                          |         |
+| Format     | Returns the results in the specified media format.                                                                                 |         |
+| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
 
 ### List Purchase Invoices {#listpurchaseinvoices}
 
@@ -833,67 +824,63 @@ List all purchase order line objects in your Business Central Organization.
 | Search            | Returns results based on search criteria.                                                                                          |         |
 | Format            | Returns the results in the specified media format.                                                                                 |         |
 | Skip Token        | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                               | false   |
 
 ### List Purchase Orders {#listpurchaseorders}
 
 List all purchase order objects in your Business Central Organization.
 
-| Input         | Comments                                                                                                                           | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Microsoft Business Central connection to use.                                                                                  |         |
-| Company ID    | The ID of the company you want to interact with.                                                                                   |         |
-| Filter        | Filters results (rows).                                                                                                            |         |
-| Select        | Filters properties (columns).                                                                                                      |         |
-| Expand        | Retrieves related resources.                                                                                                       |         |
-| Order By      | Orders results.                                                                                                                    |         |
-| Top           | Sets the page size of results.                                                                                                     |         |
-| Skip          | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Count         | When true, retrieves the total count of matching resources.                                                                        | false   |
-| Search        | Returns results based on search criteria.                                                                                          |         |
-| Format        | Returns the results in the specified media format.                                                                                 |         |
-| Skip Token    | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                               | false   |
+| Input      | Comments                                                                                                                           | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft Business Central connection to use.                                                                                  |         |
+| Company ID | The ID of the company you want to interact with.                                                                                   |         |
+| Filter     | Filters results (rows).                                                                                                            |         |
+| Select     | Filters properties (columns).                                                                                                      |         |
+| Expand     | Retrieves related resources.                                                                                                       |         |
+| Order By   | Orders results.                                                                                                                    |         |
+| Top        | Sets the page size of results.                                                                                                     |         |
+| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Count      | When true, retrieves the total count of matching resources.                                                                        | false   |
+| Search     | Returns results based on search criteria.                                                                                          |         |
+| Format     | Returns the results in the specified media format.                                                                                 |         |
+| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
 
 ### List Purchase Receipt Lines {#listpurchasereceiptlines}
 
 List all purchase receipt line objects in your Business Central Organization.
 
-| Input         | Comments                                                                                                                           | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Microsoft Business Central connection to use.                                                                                  |         |
-| Company ID    | The ID of the company you want to interact with.                                                                                   |         |
-| Filter        | Filters results (rows).                                                                                                            |         |
-| Select        | Filters properties (columns).                                                                                                      |         |
-| Expand        | Retrieves related resources.                                                                                                       |         |
-| Order By      | Orders results.                                                                                                                    |         |
-| Top           | Sets the page size of results.                                                                                                     |         |
-| Skip          | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Count         | When true, retrieves the total count of matching resources.                                                                        | false   |
-| Search        | Returns results based on search criteria.                                                                                          |         |
-| Format        | Returns the results in the specified media format.                                                                                 |         |
-| Skip Token    | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                               | false   |
+| Input      | Comments                                                                                                                           | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft Business Central connection to use.                                                                                  |         |
+| Company ID | The ID of the company you want to interact with.                                                                                   |         |
+| Filter     | Filters results (rows).                                                                                                            |         |
+| Select     | Filters properties (columns).                                                                                                      |         |
+| Expand     | Retrieves related resources.                                                                                                       |         |
+| Order By   | Orders results.                                                                                                                    |         |
+| Top        | Sets the page size of results.                                                                                                     |         |
+| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Count      | When true, retrieves the total count of matching resources.                                                                        | false   |
+| Search     | Returns results based on search criteria.                                                                                          |         |
+| Format     | Returns the results in the specified media format.                                                                                 |         |
+| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
 
 ### List Purchase Receipts {#listpurchasereceipts}
 
 List all purchase receipt objects in your Business Central Organization.
 
-| Input         | Comments                                                                                                                           | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Microsoft Business Central connection to use.                                                                                  |         |
-| Company ID    | The ID of the company you want to interact with.                                                                                   |         |
-| Filter        | Filters results (rows).                                                                                                            |         |
-| Select        | Filters properties (columns).                                                                                                      |         |
-| Expand        | Retrieves related resources.                                                                                                       |         |
-| Order By      | Orders results.                                                                                                                    |         |
-| Top           | Sets the page size of results.                                                                                                     |         |
-| Skip          | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Count         | When true, retrieves the total count of matching resources.                                                                        | false   |
-| Search        | Returns results based on search criteria.                                                                                          |         |
-| Format        | Returns the results in the specified media format.                                                                                 |         |
-| Skip Token    | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                               | false   |
+| Input      | Comments                                                                                                                           | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft Business Central connection to use.                                                                                  |         |
+| Company ID | The ID of the company you want to interact with.                                                                                   |         |
+| Filter     | Filters results (rows).                                                                                                            |         |
+| Select     | Filters properties (columns).                                                                                                      |         |
+| Expand     | Retrieves related resources.                                                                                                       |         |
+| Order By   | Orders results.                                                                                                                    |         |
+| Top        | Sets the page size of results.                                                                                                     |         |
+| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Count      | When true, retrieves the total count of matching resources.                                                                        | false   |
+| Search     | Returns results based on search criteria.                                                                                          |         |
+| Format     | Returns the results in the specified media format.                                                                                 |         |
+| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
 
 ### List Sales Invoices {#listsalesinvoices}
 
@@ -1026,7 +1013,6 @@ Send a raw HTTP request to Microsoft's Business Central API
 | Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enable this to log the request and response                                                                                                                                                      | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
@@ -1182,7 +1168,6 @@ Updates a purchase order object in your Business Central organization.
 | Purchaser              | The purchaser in the purchase order.                                                                                                                     |         |
 | Discount Amount        | The discount amount.                                                                                                                                     |         |
 | Additional Properties  | Additional properties to include in the request body. In case of supplying a property that is already defined as an input, the input value will be used. |         |
-| Debug Request          | Enabling this flag will log out the current request.                                                                                                     | false   |
 
 ### Update Purchase Order Line {#updatepurchaseorderline}
 
@@ -1202,7 +1187,6 @@ Updates a purchase order line object in your Business Central organization.
 | Quantity               | The quantity of the item in the purchase order line.                                                                                                     |         |
 | Direct Unit Cost       | The direct cost per unit.                                                                                                                                |         |
 | Additional Properties  | Additional properties to include in the request body. In case of supplying a property that is already defined as an input, the input value will be used. |         |
-| Debug Request          | Enabling this flag will log out the current request.                                                                                                     | false   |
 
 ### Update Sales Invoice {#updatesalesinvoice}
 

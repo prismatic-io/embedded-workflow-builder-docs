@@ -9,9 +9,9 @@ description: Manage payroll, benefits, and human resource within Gusto
 
 ## Connections
 
-### Gusto OAuth 2.0 Connection {#gustooauth}
+### OAuth 2.0 {#gustooauth}
 
-Connect to Gusto via OAuth 2.0
+OAuth 2.0 connection for Gusto
 
 To create an OAuth 2.0 app in Gusto, sign up for a Gusto developer account at [https://dev.gusto.com/](https://dev.gusto.com/) and create a new Gusto application.
 Take note of your applications's **Client ID** and **Secret** and enter those values when you add a Gusto connection to your integration.
@@ -136,40 +136,40 @@ Returns the Webhook Subscription associated with the provided UUID for Gusto.
 
 List all companies that the currently authenticated user is a part of
 
-| Input           | Comments                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                             |         |
-| Pagination Page | Which page of results to fetch. See https://docs.gusto.com/app-integrations/docs/pagination |         |
+| Input           | Comments                                                                                                                                     | Default |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                              |         |
+| Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Company Admins {#listcompanyadmins}
 
 List all admin users at a company
 
-| Input           | Comments                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                             |         |
-| Company ID      | A UUID representing a company.                                                              |         |
-| Pagination Page | Which page of results to fetch. See https://docs.gusto.com/app-integrations/docs/pagination |         |
+| Input           | Comments                                                                                                                                     | Default |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                              |         |
+| Company ID      | A UUID representing a company.                                                                                                               |         |
+| Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Employees {#listemployees}
 
 List employees of a company
 
-| Input           | Comments                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                             |         |
-| Company ID      | A UUID representing a company.                                                              |         |
-| Pagination Page | Which page of results to fetch. See https://docs.gusto.com/app-integrations/docs/pagination |         |
+| Input           | Comments                                                                                                                                     | Default |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                              |         |
+| Company ID      | A UUID representing a company.                                                                                                               |         |
+| Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Pay Schedules {#listpayschedules}
 
 List pay schedules for a company
 
-| Input           | Comments                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                             |         |
-| Company ID      | A UUID representing a company.                                                              |         |
-| Pagination Page | Which page of results to fetch. See https://docs.gusto.com/app-integrations/docs/pagination |         |
+| Input           | Comments                                                                                                                                     | Default |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                              |         |
+| Company ID      | A UUID representing a company.                                                                                                               |         |
+| Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Webhook Subscriptions {#listwebhooksubscriptions}
 

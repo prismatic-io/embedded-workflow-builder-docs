@@ -80,9 +80,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Consumer Key (Client ID)        | The consumer key generated when you create your OAuth 2.0 application in NetSuite. Navigate to Setup > Company > Enable Features > SuiteCloud > Manage Authentication to create an application.            |                                                                                    |
 | Consumer Secret (Client Secret) | The consumer secret generated when you create your OAuth 2.0 application in NetSuite. Navigate to Setup > Company > Enable Features > SuiteCloud > Manage Authentication to create an application.         |                                                                                    |
 
-### Netsuite OAuth Client Credentials {#oauthclientcredentials}
+### NetSuite OAuth Client Credentials {#oauthclientcredentials}
 
-Netsuite OAuth 2.0 Client Credentials Connection
+NetSuite OAuth 2.0 Client Credentials Connection
 
 To connect to NetSuite using OAuth 2.0 Client Credentials, configure an OAuth 2.0 application with the Client Credentials (M2M) grant in NetSuite.
 
@@ -248,7 +248,6 @@ Send raw HTTP request to NetSuite
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                   |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                      | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                           |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                          | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                           | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                              | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                           | 0       |

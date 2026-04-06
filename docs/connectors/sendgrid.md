@@ -14,9 +14,9 @@ This component was built using the [SendGrid API v3](https://www.twilio.com/docs
 
 ## Connections
 
-### SendGrid API Key {#apikey}
+### API Key {#apikey}
 
-Authenticate requests to SendGrid using values obtained from the SendGrid Developer Console.
+API Key connection for SendGrid
 
 To authenticate with SendGrid, an API key is required.
 
@@ -229,7 +229,7 @@ Send a single email to one or more recipients
 | File Name             | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                           |                 |
 | File Type             | The MIME type of the content you are attaching.                                                                                                                                                                    |                 |
 | Content Id            | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                    |                 |
-| Multiple Attachments  | Provide an array of attachments to send with the email. See https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body for more information.                                              |                 |
+| Multiple Attachments  | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                |                 |
 | Subscription Tracking | When true, inserts a subscription management link at the bottom of the text and HTML bodies of your email.                                                                                                         | false           |
 
 ### Send Email with Dynamic Template {#sendemailwithdynamictemplate}
@@ -273,7 +273,7 @@ Send a separate email to each recipient
 | File Name            | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                           |                 |
 | File Type            | The MIME type of the content you are attaching.                                                                                                                                                                    |                 |
 | Content Id           | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                    |                 |
-| Multiple Attachments | Provide an array of attachments to send with the email. See https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body for more information.                                              |                 |
+| Multiple Attachments | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                |                 |
 
 ### Test Webhook {#testwebhook}
 

@@ -67,163 +67,163 @@ Use this action to authenticate an MFA session. Session only last 30 days.
 
 Bulk create bill objects.
 
-| Input           | Comments                                                                                                                                | Default |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The Bill.com connection to use.                                                                                                         |         |
-| Bills to Create | An array of bill objects to create. See https://developer.bill.com/reference/ap-vendortransactions-bulkcreatebill for more information. |         |
+| Input           | Comments                                                                                                                                                                 | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The Bill.com connection to use.                                                                                                                                          |         |
+| Bills to Create | An array of bill objects to create. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendortransactions-bulkcreatebill) for more information. |         |
 
 ### Bulk Create Customers {#bulkcreatecustomers}
 
 Bulk create customer objects.
 
-| Input               | Comments                                                                                                                                  | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Bill.com connection to use.                                                                                                           |         |
-| Customers to Create | An array of customer objects to create. See https://developer.bill.com/reference/ar-customermgmt-bulkcreatecustomer for more information. |         |
+| Input               | Comments                                                                                                                                                                   | Default |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Bill.com connection to use.                                                                                                                                            |         |
+| Customers to Create | An array of customer objects to create. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customermgmt-bulkcreatecustomer) for more information. |         |
 
 ### Bulk Create Invoices {#bulkcreateinvoices}
 
 Bulk create invoice objects.
 
-| Input              | Comments                                                                                                                                        | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Bill.com connection to use.                                                                                                                 |         |
-| Invoices to Create | An array of invoice objects to create. See https://developer.bill.com/reference/ar-customertransactions-bulkcreateinvoice for more information. |         |
+| Input              | Comments                                                                                                                                                                         | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Bill.com connection to use.                                                                                                                                                  |         |
+| Invoices to Create | An array of invoice objects to create. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customertransactions-bulkcreateinvoice) for more information. |         |
 
 ### Bulk Create Vendor {#bulkcreatevendor}
 
 Bulk create vendor objects.
 
-| Input             | Comments                                                                                                                            | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                     |         |
-| Vendors to Create | An array of vendor objects to create. See https://developer.bill.com/reference/ap-vendormgmt-bulkcreatevendor for more information. |         |
+| Input             | Comments                                                                                                                                                             | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                      |         |
+| Vendors to Create | An array of vendor objects to create. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendormgmt-bulkcreatevendor) for more information. |         |
 
 ### Bulk Create Vendor Bank Accounts {#bulkcreatevendorbankaccounts}
 
 Bulk create vendor bank account objects.
 
-| Input                          | Comments                                                                                                                                                    | Default |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The Bill.com connection to use.                                                                                                                             |         |
-| MFA ID                         | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                            |         |
-| Device ID                      | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                 |         |
-| Vendor Bank Accounts to Create | An array of vendor bank account objects to create. See https://developer.bill.com/reference/ap-vendormgmt-bulkcreatevendorbankaccount for more information. |         |
+| Input                          | Comments                                                                                                                                                                                     | Default |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Bill.com connection to use.                                                                                                                                                              |         |
+| MFA ID                         | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                                                             |         |
+| Device ID                      | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                                                  |         |
+| Vendor Bank Accounts to Create | An array of vendor bank account objects to create. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendormgmt-bulkcreatevendorbankaccount) for more information. |         |
 
 ### Bulk Update Bills {#bulkupdatebills}
 
 Bulk update bill objects.
 
-| Input           | Comments                                                                                                                                | Default |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The Bill.com connection to use.                                                                                                         |         |
-| Bills to Update | An array of bill objects to update. See https://developer.bill.com/reference/ap-vendortransactions-bulkupdatebill for more information. |         |
+| Input           | Comments                                                                                                                                                                 | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The Bill.com connection to use.                                                                                                                                          |         |
+| Bills to Update | An array of bill objects to update. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendortransactions-bulkupdatebill) for more information. |         |
 
 ### Bulk Update Customers {#bulkupdatecustomers}
 
 Bulk update customer objects.
 
-| Input               | Comments                                                                                                                                  | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Bill.com connection to use.                                                                                                           |         |
-| Customers to Update | An array of customer objects to update. See https://developer.bill.com/reference/ar-customermgmt-bulkupdatecustomer for more information. |         |
+| Input               | Comments                                                                                                                                                                   | Default |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Bill.com connection to use.                                                                                                                                            |         |
+| Customers to Update | An array of customer objects to update. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customermgmt-bulkupdatecustomer) for more information. |         |
 
 ### Bulk Update Invoices {#bulkupdateinvoices}
 
 Bulk update invoice objects.
 
-| Input              | Comments                                                                                                                                        | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Bill.com connection to use.                                                                                                                 |         |
-| Invoices to Update | An array of invoice objects to update. See https://developer.bill.com/reference/ar-customertransactions-bulkupdateinvoice for more information. |         |
+| Input              | Comments                                                                                                                                                                         | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Bill.com connection to use.                                                                                                                                                  |         |
+| Invoices to Update | An array of invoice objects to update. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customertransactions-bulkupdateinvoice) for more information. |         |
 
 ### Bulk Update Vendors {#bulkupdatevendors}
 
 Bulk update vendor objects.
 
-| Input             | Comments                                                                                                                            | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                     |         |
-| Vendors to Update | An array of vendor objects to update. See https://developer.bill.com/reference/ap-vendormgmt-bulkupdatevendor for more information. |         |
+| Input             | Comments                                                                                                                                                             | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                      |         |
+| Vendors to Update | An array of vendor objects to update. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendormgmt-bulkupdatevendor) for more information. |         |
 
 ### Create Bill {#createbill}
 
 Create a bill object.
 
-| Input                          | Comments                                                                                                                                                            | Default |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The Bill.com connection to use.                                                                                                                                     |         |
-| Vendor ID                      | The unique identifier for the vendor.                                                                                                                               |         |
-| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                                        |         |
-| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                                                 |         |
-| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                                                   |         |
-| Bill Line Items                | An array of bill line items. See https://developer.bill.com/reference/ap-vendortransactions-createbill for more information.                                        |         |
-| Allow Duplicate Invoice Number | When true, allows duplicate invoice numbers.                                                                                                                        | false   |
-| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ap-vendortransactions-createbill for more information. |         |
+| Input                          | Comments                                                                                                                                      | Default |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Bill.com connection to use.                                                                                                               |         |
+| Vendor ID                      | The unique identifier for the vendor.                                                                                                         |         |
+| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                  |         |
+| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                           |         |
+| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                             |         |
+| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/createbill) for more information.          |         |
+| Allow Duplicate Invoice Number | When true, allows duplicate invoice numbers.                                                                                                  | false   |
+| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createbill for more information. |         |
 
 ### Create Customer {#createcustomer}
 
 Create a customer object.
 
-| Input             | Comments                                                                                                                                                          | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                                   |         |
-| Customer Name     | The name of the customer.                                                                                                                                         |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ar-customermgmt-createcustomer for more information. |         |
+| Input             | Comments                                                                                                                                          | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                   |         |
+| Customer Name     | The name of the customer.                                                                                                                         |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createcustomer for more information. |         |
 
 ### Create Customer Bank Account {#createcustomerbankaccount}
 
 Create a customer bank account object.
 
-| Input             | Comments                                                                                                                                                                     | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                                              |         |
-| Customer ID       | The unique identifier for the customer.                                                                                                                                      |         |
-| Name on Account   | Customer bank account name.                                                                                                                                                  |         |
-| Routing Number    | The customer bank routing number.                                                                                                                                            |         |
-| Account Number    | The customer bank account number.                                                                                                                                            |         |
-| Agreed with TOS   | When true, indicates agreement with the BILL Payment Terms Of Service.                                                                                                       | true    |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ar-customermgmt-createcustomerbankaccount for more information. |         |
+| Input             | Comments                                                                                                                                                     | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                              |         |
+| Customer ID       | The unique identifier for the customer.                                                                                                                      |         |
+| Name on Account   | Customer bank account name.                                                                                                                                  |         |
+| Routing Number    | The customer bank routing number.                                                                                                                            |         |
+| Account Number    | The customer bank account number.                                                                                                                            |         |
+| Agreed with TOS   | When true, indicates agreement with the BILL Payment Terms Of Service.                                                                                       | true    |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createcustomerbankaccount for more information. |         |
 
 ### Create Invoice {#createinvoice}
 
 Create an invoice object.
 
-| Input              | Comments                                                                                                                                                                 | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection         | The Bill.com connection to use.                                                                                                                                          |         |
-| Customer ID        | The unique identifier for the customer.                                                                                                                                  |         |
-| Invoice Number     | User-generated invoice number. This value can be your chosen number scheme or invoice due date.                                                                          |         |
-| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.                                                                                 |         |
-| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                                                                                                     |         |
-| Invoice Line Items | An array of invoice line items.                                                                                                                                          |         |
-| Additional Fields  | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ar-customertransactions-createinvoice for more information. |         |
+| Input              | Comments                                                                                                                                         | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection         | The Bill.com connection to use.                                                                                                                  |         |
+| Customer ID        | The unique identifier for the customer.                                                                                                          |         |
+| Invoice Number     | User-generated invoice number. This value can be your chosen number scheme or invoice due date.                                                  |         |
+| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.                                                         |         |
+| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                                                                             |         |
+| Invoice Line Items | An array of invoice line items.                                                                                                                  |         |
+| Additional Fields  | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createinvoice for more information. |         |
 
 ### Create Vendor {#createvendor}
 
 Create a vendor object.
 
-| Input             | Comments                                                                                                                                                      | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                               |         |
-| Vendor Name       | Unique vendor name.                                                                                                                                           |         |
-| Company Name      | Vendor organization full name.                                                                                                                                |         |
-| Email             | Vendor email address.                                                                                                                                         |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ap-vendormgmt-createvendor for more information. |         |
+| Input             | Comments                                                                                                                                        | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                 |         |
+| Vendor Name       | Unique vendor name.                                                                                                                             |         |
+| Company Name      | Vendor organization full name.                                                                                                                  |         |
+| Email             | Vendor email address.                                                                                                                           |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createvendor for more information. |         |
 
 ### Create Vendor Bank Account {#createvendorbankaccount}
 
 Create a vendor bank account object.
 
-| Input             | Comments                                                                                                                                                                 | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                                          |         |
-| MFA ID            | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                                         |         |
-| Device ID         | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                              |         |
-| Vendor ID         | The unique identifier for the vendor.                                                                                                                                    |         |
-| Account Number    | The vendor bank account number.                                                                                                                                          |         |
-| Routing Number    | The vendor bank routing number.                                                                                                                                          |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ap-vendormgmt-createvendorbankaccount for more information. |         |
+| Input             | Comments                                                                                                                                                   | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                            |         |
+| MFA ID            | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                           |         |
+| Device ID         | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                |         |
+| Vendor ID         | The unique identifier for the vendor.                                                                                                                      |         |
+| Account Number    | The vendor bank account number.                                                                                                                            |         |
+| Routing Number    | The vendor bank routing number.                                                                                                                            |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createvendorbankaccount for more information. |         |
 
 ### Delete Bill {#deletebill}
 
@@ -339,79 +339,79 @@ Read a vendor bank account object.
 
 List bill objects.
 
-| Input      | Comments                                                                                                                    | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                                                                                             |         |
-| Start      | Index of the first result.                                                                                                  | 0       |
-| Max        | Maximum number of results to return.                                                                                        | 999     |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ap-vendortransactions-listbill for more information. |         |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ap-vendortransactions-listbill for more information.     |         |
-| Nested     | When true, includes additional nested data in the response.                                                                 | false   |
-
-### List Customer Bank Account {#listcustomerbankaccount}
-
-List customer bank account objects.
-
 | Input      | Comments                                                                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Bill.com connection to use.                                                                                                      |         |
 | Start      | Index of the first result.                                                                                                           | 0       |
 | Max        | Maximum number of results to return.                                                                                                 | 999     |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ar-customermgmt-listcustomerbankaccount for more information. |         |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ar-customermgmt-listcustomerbankaccount for more information.     |         |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/reference/listbills) for more information. |         |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/reference/listbills) for more information.     |         |
 | Nested     | When true, includes additional nested data in the response.                                                                          | false   |
+
+### List Customer Bank Account {#listcustomerbankaccount}
+
+List customer bank account objects.
+
+| Input      | Comments                                                                                                                                                              | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Bill.com connection to use.                                                                                                                                       |         |
+| Start      | Index of the first result.                                                                                                                                            | 0       |
+| Max        | Maximum number of results to return.                                                                                                                                  | 999     |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customermgmt-listcustomerbankaccount) for more information. |         |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ar-customermgmt-listcustomerbankaccount) for more information.     |         |
+| Nested     | When true, includes additional nested data in the response.                                                                                                           | false   |
 
 ### List Customers {#listcustomer}
 
 List customer objects.
 
-| Input      | Comments                                                                                                                  | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                                                                                           |         |
-| Start      | Index of the first result.                                                                                                | 0       |
-| Max        | Maximum number of results to return.                                                                                      | 999     |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ar-customermgmt-listcustomer for more information.     |         |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ar-customermgmt-listcustomer for more information. |         |
-| Nested     | When true, includes additional nested data in the response.                                                               | false   |
+| Input      | Comments                                                                                                                                 | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Bill.com connection to use.                                                                                                          |         |
+| Start      | Index of the first result.                                                                                                               | 0       |
+| Max        | Maximum number of results to return.                                                                                                     | 999     |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/reference/listcustomers) for more information.     |         |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/reference/listcustomers) for more information. |         |
+| Nested     | When true, includes additional nested data in the response.                                                                              | false   |
 
 ### List Invoices {#listinvoice}
 
 List invoice objects.
 
-| Input      | Comments                                                                                                                         | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                                                                                                  |         |
-| Start      | Index of the first result.                                                                                                       | 0       |
-| Max        | Maximum number of results to return.                                                                                             | 999     |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ar-customertransactions-listinvoice for more information.     |         |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ar-customertransactions-listinvoice for more information. |         |
-| Nested     | When true, includes additional nested data in the response.                                                                      | false   |
+| Input      | Comments                                                                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Bill.com connection to use.                                                                                                         |         |
+| Start      | Index of the first result.                                                                                                              | 0       |
+| Max        | Maximum number of results to return.                                                                                                    | 999     |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/reference/listinvoices) for more information.     |         |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/reference/listinvoices) for more information. |         |
+| Nested     | When true, includes additional nested data in the response.                                                                             | false   |
 
 ### List Vendor Bank Accounts {#listvendorbankaccounts}
 
 List vendor bank account objects.
 
-| Input      | Comments                                                                                                                         | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                                                                                                  |         |
-| Start      | Index of the first result.                                                                                                       | 0       |
-| Max        | Maximum number of results to return.                                                                                             | 999     |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ap-vendormgmt-listvendorbankaccount for more information.     |         |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ap-vendormgmt-listvendorbankaccount for more information. |         |
-| Nested     | When true, includes additional nested data in the response.                                                                      | false   |
+| Input      | Comments                                                                                                                                                          | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Bill.com connection to use.                                                                                                                                   |         |
+| Start      | Index of the first result.                                                                                                                                        | 0       |
+| Max        | Maximum number of results to return.                                                                                                                              | 999     |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendormgmt-listvendorbankaccount) for more information.     |         |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/v2/reference/ap-vendormgmt-listvendorbankaccount) for more information. |         |
+| Nested     | When true, includes additional nested data in the response.                                                                                                       | false   |
 
 ### List Vendors {#listvendors}
 
 List vendor objects.
 
-| Input      | Comments                                                                                                              | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                                                                                       |         |
-| Start      | Index of the first result.                                                                                            | 0       |
-| Max        | Maximum number of results to return.                                                                                  | 999     |
-| Sort       | An array of sort objects. See https://developer.bill.com/reference/ap-vendormgmt-listvendor for more information.     |         |
-| Filters    | An array of filters to apply. See https://developer.bill.com/reference/ap-vendormgmt-listvendor for more information. |         |
-| Nested     | When true, includes additional nested data in the response.                                                           | false   |
+| Input      | Comments                                                                                                                               | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Bill.com connection to use.                                                                                                        |         |
+| Start      | Index of the first result.                                                                                                             | 0       |
+| Max        | Maximum number of results to return.                                                                                                   | 999     |
+| Sort       | An array of sort objects. See [Bill.com API documentation](https://developer.bill.com/reference/listvendors) for more information.     |         |
+| Filters    | An array of filters to apply. See [Bill.com API documentation](https://developer.bill.com/reference/listvendors) for more information. |         |
+| Nested     | When true, includes additional nested data in the response.                                                                            | false   |
 
 ### Raw Request {#rawrequest}
 
@@ -439,28 +439,28 @@ Send raw HTTP request to Bill.
 
 Update a bill object.
 
-| Input                          | Comments                                                                                                                                                            | Default |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The Bill.com connection to use.                                                                                                                                     |         |
-| Bill ID                        | The unique identifier for the bill.                                                                                                                                 |         |
-| Vendor ID                      | The unique identifier for the vendor.                                                                                                                               |         |
-| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                                        |         |
-| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                                                 |         |
-| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                                                   |         |
-| Bill Line Items                | An array of bill line items. See https://developer.bill.com/reference/ap-vendortransactions-updatebill for more information.                                        |         |
-| Allow Duplicate Invoice Number | Allow duplicate invoice numbers.                                                                                                                                    |         |
-| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ap-vendortransactions-updatebill for more information. |         |
+| Input                          | Comments                                                                                                                                      | Default |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Bill.com connection to use.                                                                                                               |         |
+| Bill ID                        | The unique identifier for the bill.                                                                                                           |         |
+| Vendor ID                      | The unique identifier for the vendor.                                                                                                         |         |
+| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                  |         |
+| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                           |         |
+| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                             |         |
+| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/updatebill) for more information.          |         |
+| Allow Duplicate Invoice Number | Allow duplicate invoice numbers.                                                                                                              |         |
+| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatebill for more information. |         |
 
 ### Update Customer {#updatecustomer}
 
 Update a customer object.
 
-| Input             | Comments                                                                                                                                                          | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                                   |         |
-| Customer ID       | The unique identifier for the customer.                                                                                                                           |         |
-| Customer Name     | The name of the customer.                                                                                                                                         |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ar-customermgmt-updatecustomer for more information. |         |
+| Input             | Comments                                                                                                                                          | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                   |         |
+| Customer ID       | The unique identifier for the customer.                                                                                                           |         |
+| Customer Name     | The name of the customer.                                                                                                                         |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatecustomer for more information. |         |
 
 ### Update Invoice {#updateinvoice}
 
@@ -481,9 +481,9 @@ Update an invoice object.
 
 Update a vendor object.
 
-| Input             | Comments                                                                                                                                                      | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                               |         |
-| Vendor ID         | The unique identifier for the vendor.                                                                                                                         |         |
-| Vendor Name       | Unique vendor name.                                                                                                                                           |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/ap-vendormgmt-updatevendor for more information. |         |
+| Input             | Comments                                                                                                                                        | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                 |         |
+| Vendor ID         | The unique identifier for the vendor.                                                                                                           |         |
+| Vendor Name       | Unique vendor name.                                                                                                                             |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatevendor for more information. |         |

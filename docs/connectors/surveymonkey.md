@@ -122,12 +122,11 @@ After saving the connection configuration, click **Connect** to initiate the OAu
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                               | Default                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| Region        | The SurveyMonkey region for the account.                                                               | us                                                                                     |
-| Scopes        | The space-delimited OAuth scopes. [View all scopes](https://api.surveymonkey.com/v3/docs?shell#scopes) | surveys_read responses_read collectors_read contacts_read webhooks_read webhooks_write |
-| Client ID     | The Client ID from the [SurveyMonkey App](https://developer.surveymonkey.com/apps/).                   |                                                                                        |
-| Client Secret | The Client Secret from the SurveyMonkey App.                                                           |                                                                                        |
+| Input         | Comments                                                                             | Default |
+| ------------- | ------------------------------------------------------------------------------------ | ------- |
+| Region        | The SurveyMonkey region for the account.                                             | us      |
+| Client ID     | The Client ID from the [SurveyMonkey App](https://developer.surveymonkey.com/apps/). |         |
+| Client Secret | The Client Secret from the SurveyMonkey App.                                         |         |
 
 ## Triggers
 

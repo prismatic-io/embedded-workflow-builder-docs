@@ -14,32 +14,17 @@ This component was built using the [Meta Ads Marketing API Reference](https://de
 
 ## Connections
 
-### Conversions API Access Token {#facebookmarketingconversionstoken}
+### Access Token {#facebookmarketingconversionstoken}
 
-Use this connection to connect to a sandbox ad account.
+Access Token connection for Meta Ads Conversions API
 
 | Input        | Comments                              | Default |
 | ------------ | ------------------------------------- | ------- |
 | Access Token | A valid access token for Meta Ads API |         |
 
-### Meta Ads Client Credentials {#meta-client-credentials}
+### OAuth 2.0 {#oauth}
 
-Client Credentials connectivity for Meta Ads. This connection is required to get an APP Token, which is required to use some of the Meta APIs.
-
-This connection uses OAuth 2.0, a common authentication mechanism for integrations.
-Read about how OAuth 2.0 works [here](../oauth2.md).
-
-| Input         | Comments                                                                                                                                                         | Default                                                                                                                              |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Authorize URL | Provide a valid authURL for Meta Ads                                                                                                                             | https://www.facebook.com/v22.0/dialog/oauth                                                                                          |
-| Token URL     | Provide a valid Meta Ads version to complete the Token URL                                                                                                       | https://graph.facebook.com/v22.0/oauth/access_token                                                                                  |
-| App Id        | Provide the App Id that was generated from your Meta Ads App.                                                                                                    |                                                                                                                                      |
-| App Secret    | Provide the App Secret that was generated from your Meta Ads App.                                                                                                |                                                                                                                                      |
-| Scopes        | Provide a valid list of scopes. A list per use case is provided on the Meta Ads docs: https://developers.facebook.com/docs/marketing-api/overview/authorization/ | ads_read ads_management pages_show_list groups_access_member_info leads_retrieval page_events pages_read_user_content public_profile |
-
-### Meta Ads Oauth 2.0 {#oauth}
-
-Oauth 2.0 connectivity for Meta Ads.
+OAuth 2.0 connection for Meta Ads
 
 This component uses OAuth 2.0 to connect to the Meta Ads Marketing API.
 To get started with [Meta Ads](https://developers.facebook.com/docs/marketing-apis/get-started), you first need to [create a developer account](https://developers.facebook.com/).
@@ -54,6 +39,21 @@ To get started with [Meta Ads](https://developers.facebook.com/docs/marketing-ap
 Now you can make a new Meta Ads connection, and provide the values you obtained earlier.
 
 For any additional setup information, refer to the [Meta Ads Docs](https://developers.facebook.com/docs/marketing-apis/overview)
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input         | Comments                                                                                                                                                         | Default                                                                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Authorize URL | Provide a valid authURL for Meta Ads                                                                                                                             | https://www.facebook.com/v22.0/dialog/oauth                                                                                          |
+| Token URL     | Provide a valid Meta Ads version to complete the Token URL                                                                                                       | https://graph.facebook.com/v22.0/oauth/access_token                                                                                  |
+| App Id        | Provide the App Id that was generated from your Meta Ads App.                                                                                                    |                                                                                                                                      |
+| App Secret    | Provide the App Secret that was generated from your Meta Ads App.                                                                                                |                                                                                                                                      |
+| Scopes        | Provide a valid list of scopes. A list per use case is provided on the Meta Ads docs: https://developers.facebook.com/docs/marketing-api/overview/authorization/ | ads_read ads_management pages_show_list groups_access_member_info leads_retrieval page_events pages_read_user_content public_profile |
+
+### OAuth 2.0 Client Credentials {#meta-client-credentials}
+
+OAuth 2.0 Client Credentials connection for Meta Ads
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -209,24 +209,24 @@ Create a single conversion event for a pixel. Requires the Conversions API Acces
 | Connection       |                                                                                                                                                                                                                               |         |
 | Pixel Id         | Provide the Id of a pixel.                                                                                                                                                                                                    |         |
 | Event Name       | A standard event or custom event name.                                                                                                                                                                                        |         |
-| User Data        | A map that contains customer information data. See https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters.                                                             |         |
+| User Data        | A map that contains customer information data. See [Facebook Marketing API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters) for details.         |         |
 | Action Source    | This field allows you to specify where your conversions occurred.                                                                                                                                                             |         |
 | Event Time       | A Unix timestamp in seconds indicating when the actual event occurred. The specified time may be earlier than the time you send the event to Meta Ads. You must send this date in GMT time zone. Default is the current time. |         |
 | Event Source Url | The browser URL where the event happened.                                                                                                                                                                                     |         |
-| Custom Data      | A map that includes additional business data about the event. See https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/custom-data.                                                                  |         |
-| More Data        | Additional data to include with the event. See https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event.                                                                                    |         |
+| Custom Data      | A map that includes additional business data about the event. See [Facebook Marketing API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/custom-data) for details.              |         |
+| More Data        | Additional data to include with the event. See [Facebook Marketing API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event) for details.                                |         |
 | Graph Version    | Provide the version of the Graph API to use. Defaults to 22.                                                                                                                                                                  | 22      |
 
 ### Create Multiple Conversions {#createmultipleconversions}
 
 Create multiple conversion events for a pixel. Requires the Conversions API Access Token connection.
 
-| Input         | Comments                                                                                                                                               | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection    |                                                                                                                                                        |         |
-| Pixel Id      | Provide the Id of a pixel.                                                                                                                             |         |
-| Events        | An array of server event objects. See https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event for more information. |         |
-| Graph Version | Provide the version of the Graph API to use. Defaults to 22.                                                                                           | 22      |
+| Input         | Comments                                                                                                                                                                                       | Default |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection    |                                                                                                                                                                                                |         |
+| Pixel Id      | Provide the Id of a pixel.                                                                                                                                                                     |         |
+| Events        | An array of server event objects. See [Facebook Marketing API documentation](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/server-event) for more information. |         |
+| Graph Version | Provide the version of the Graph API to use. Defaults to 22.                                                                                                                                   | 22      |
 
 ### Create Page Webhook {#createpagewebhook}
 

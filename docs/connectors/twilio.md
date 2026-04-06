@@ -10,9 +10,9 @@ You can use the Twilio component to send messages to your end users or to your t
 
 ## Connections
 
-### Twilio API Key Connection {#apikeysecret}
+### API Key {#apikeysecret}
 
-Authenticate requests to Twilio using an API key
+API Key connection for Twilio
 
 This component authenticates with Twilio using API key/secret pairs that can be generated from Twilio's app console.
 To create a Twilio API key and secret pair:
@@ -33,9 +33,9 @@ Go back to your Twilio console to find your **Account SID** (starts with "AC..."
 | API Key SID    | An API Key SID (starts with SK)                               |         |
 | API Key Secret | The API secret that was generated when an API key was created |         |
 
-### Twilio Auth Token Connection {#basic}
+### Auth Token {#basic}
 
-Authenticate requests using account SID and auth token
+Auth Token connection for Twilio
 
 When you create a Twilio account, an **Account String Identifier** (Account SID) and **Auth Token** are generated.
 You can use the account SID and auth token to authenticate with Twilio and to send SMS messages.
@@ -45,10 +45,10 @@ For security reasons, we recommend using an [API Key Connection](#apikeysecret) 
 API keys can be revoked and auth tokens generated using API keys are short-lived.
 :::
 
-| Input       | Comments                                    | Default |
-| ----------- | ------------------------------------------- | ------- |
-| Account SID | Your account SID (starts with AC)           |         |
-| Auth Token  | Can be found on https://console.twilio.com/ |         |
+| Input       | Comments                                                           | Default |
+| ----------- | ------------------------------------------------------------------ | ------- |
+| Account SID | Your account SID (starts with AC)                                  |         |
+| Auth Token  | Can be found on the [Twilio Console](https://console.twilio.com/). |         |
 
 ## Triggers
 

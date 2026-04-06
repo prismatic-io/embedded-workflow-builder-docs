@@ -1,7 +1,7 @@
 ---
 title: Algolia Connector
 sidebar_label: Algolia
-description: Algolia is an advanced AI search platform.
+description: Manage search indexes, records, and settings in Algolia.
 ---
 
 ![Algolia](./assets/algolia.png#connector-icon)
@@ -15,9 +15,9 @@ This component was built using the [Algolia API Reference](https://www.algolia.c
 
 ## Connections
 
-### Algolia API Key {#apikey}
+### API Key {#apikey}
 
-Algolia API Key
+API Key connection for Algolia
 
 **API Keys** are necessary for interacting with the Algolia API. API keys are unique to each application you create in Algolia.
 

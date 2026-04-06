@@ -11,7 +11,7 @@ Use the component to generate AI-powered text responses and create images from t
 
 ## Connections
 
-### xAI Grok Connection {#xaigrokconnection}
+### xAI Grok {#xaigrokconnection}
 
 Connection to xAI Grok API using API key authentication
 

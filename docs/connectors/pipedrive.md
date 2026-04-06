@@ -16,12 +16,12 @@ OAuth 2.0 connection for Pipedrive
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input             | Comments          | Default                                     |
-| ----------------- | ----------------- | ------------------------------------------- |
-| Authorization URL | Authorization URL | https://oauth.pipedrive.com/oauth/authorize |
-| Token URL         | Token URL         | https://oauth.pipedrive.com/oauth/token     |
-| Client ID         | Client identifier |                                             |
-| Client Secret     | Client secret     |                                             |
+| Input             | Comments                                                                                                | Default                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Authorization URL | OAuth 2.0 Authorization URL for Pipedrive authentication.                                               | https://oauth.pipedrive.com/oauth/authorize |
+| Token URL         | OAuth 2.0 Token URL for Pipedrive authentication.                                                       | https://oauth.pipedrive.com/oauth/token     |
+| Client ID         | The Client ID from your Pipedrive OAuth app. Find this in Pipedrive Settings > Marketplace > Your Apps. |                                             |
+| Client Secret     | The Client Secret from your Pipedrive OAuth app. Keep this value secure.                                |                                             |
 
 ## Triggers
 
@@ -62,39 +62,26 @@ Add a call log
 | Deal ID           | The ID of the deal this call is associated with                                              |         |
 | Note              | The note for the call log in HTML format                                                     |         |
 
-### Add Channel {#addchannel}
-
-Add a channel
-
-| Input               | Comments                                                       | Default |
-| ------------------- | -------------------------------------------------------------- | ------- |
-| Connection          |                                                                |         |
-| Name                | The name of the channel                                        |         |
-| Provider Channel ID | The channel ID                                                 |         |
-| Avatar Url          | The URL for an icon that represents your channel               |         |
-| Template Support    | If true, enables templates logic on UI                         | false   |
-| Provider Type       | It controls the icons (like the icon next to the conversation) | other   |
-
 ### Add Deal {#adddeal}
 
 Add a deal
 
-| Input               | Comments                                                                                    | Default |
-| ------------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                             |         |
-| Title               | The title of the deal                                                                       |         |
-| Value               | The value of the deal                                                                       |         |
-| Currency            | The currency of the deal                                                                    |         |
-| Person ID           | The ID of a person which this deal will be linked to                                        |         |
-| Org ID              | The ID of an organization which this deal will be linked to                                 |         |
-| Pipeline ID         | The ID of the pipeline this deal will be added to                                           |         |
-| Stage ID            | The ID of the stage this deal will be added to                                              |         |
-| Status              | open = Open, won = Won, lost = Lost, deleted = Deleted                                      |         |
-| Expected Close Date | The expected close date of the deal                                                         |         |
-| Probability         | The success probability percentage of the deal                                              |         |
-| Lost Reason         | The optional message about why the deal was lost (to be used when status = lost)            |         |
-| Visible To          | The visibility of the deal. See https://developers.pipedrive.com/docs/api/v1/Deals#addDeal. |         |
-| Add Time            | The optional creation date & time of the deal in UTC                                        |         |
+| Input               | Comments                                                                                                                                        | Default |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                                                                 |         |
+| Title               | The title of the deal                                                                                                                           |         |
+| Value               | The value of the deal                                                                                                                           |         |
+| Currency            | The currency of the deal                                                                                                                        |         |
+| Person ID           | The ID of a person which this deal will be linked to                                                                                            |         |
+| Org ID              | The ID of an organization which this deal will be linked to                                                                                     |         |
+| Pipeline ID         | The ID of the pipeline this deal will be added to                                                                                               |         |
+| Stage ID            | The ID of the stage this deal will be added to                                                                                                  |         |
+| Status              | open = Open, won = Won, lost = Lost, deleted = Deleted                                                                                          |         |
+| Expected Close Date | The expected close date of the deal                                                                                                             |         |
+| Probability         | The success probability percentage of the deal                                                                                                  |         |
+| Lost Reason         | The optional message about why the deal was lost (to be used when status = lost)                                                                |         |
+| Visible To          | The visibility of the deal. See [Pipedrive API documentation](https://developers.pipedrive.com/docs/api/v1/Deals#addDeal) for more information. |         |
+| Add Time            | The optional creation date & time of the deal in UTC                                                                                            |         |
 
 ### Add Deal Follower {#adddealfollower}
 
@@ -311,25 +298,6 @@ Delete a call log
 | ----------- | -------------------------------------------- | ------- |
 | Connection  |                                              |         |
 | Call Log ID | The ID received when you create the call log |         |
-
-### Delete Channel {#deletechannel}
-
-Delete a channel
-
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Connection |                                                   |         |
-| Id         | The ID of the channel provided by the integration |         |
-
-### Delete Conversation {#deleteconversation}
-
-Delete a conversation
-
-| Input           | Comments                                               | Default |
-| --------------- | ------------------------------------------------------ | ------- |
-| Connection      |                                                        |         |
-| Channel ID      | The ID of the channel provided by the integration      |         |
-| Conversation ID | The ID of the conversation provided by the integration |         |
 
 ### Delete Deal {#deletedeal}
 
@@ -758,17 +726,17 @@ List products attached to a deal
 
 Get all deals
 
-| Input          | Comments                                                                                            | Default |
-| -------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All      | If set to true, all records will be fetched. If set to false, the provided pagination will be used. | false   |
-| Limit          | Items shown per page                                                                                |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page    |         |
-| Sort By        | The field name to sort by                                                                           |         |
-| Sort Direction | The sorting direction.                                                                              |         |
-| Filter ID      | The ID of the filter to use                                                                         |         |
-| Stage ID       | If supplied, only deals within the given stage will be returned                                     |         |
-| Status         | Only fetch deals with a specific status                                                             |         |
-| Connection     |                                                                                                     |         |
+| Input          | Comments                                                                                         | Default |
+| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Fetch All      | When true, all records will be fetched. When false, the provided pagination will be used.        | false   |
+| Limit          | Items shown per page                                                                             |         |
+| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Sort By        | The field name to sort by                                                                        |         |
+| Sort Direction | The sorting direction.                                                                           |         |
+| Filter ID      | The ID of the filter to use                                                                      |         |
+| Stage ID       | If supplied, only deals within the given stage will be returned                                  |         |
+| Status         | Only fetch deals with a specific status                                                          |         |
+| Connection     |                                                                                                  |         |
 
 ### Get Deals Summary {#getdealssummary}
 
@@ -940,7 +908,7 @@ List activities associated with an organization
 | Organization ID | The ID of the organization                                                                       |         |
 | Limit           | Items shown per page                                                                             |         |
 | Cursor          | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Done            | Whether the activity is done or not                                                              | false   |
+| Done            | When true, returns only completed activities                                                     | false   |
 
 ### Get Organization Deals {#getorganizationdeals}
 
@@ -1006,15 +974,15 @@ List persons of an organization
 
 Get all organizations
 
-| Input          | Comments                                                                                            | Default |
-| -------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All      | If set to true, all records will be fetched. If set to false, the provided pagination will be used. | false   |
-| Limit          | Items shown per page                                                                                |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page    |         |
-| Sort By        | The field name to sort by                                                                           |         |
-| Sort Direction | The sorting direction.                                                                              |         |
-| Filter ID      | The ID of the filter to use                                                                         |         |
-| Connection     |                                                                                                     |         |
+| Input          | Comments                                                                                         | Default |
+| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Fetch All      | When true, all records will be fetched. When false, the provided pagination will be used.        | false   |
+| Limit          | Items shown per page                                                                             |         |
+| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Sort By        | The field name to sort by                                                                        |         |
+| Sort Direction | The sorting direction.                                                                           |         |
+| Filter ID      | The ID of the filter to use                                                                      |         |
+| Connection     |                                                                                                  |         |
 
 ### Get Organization Updates {#getorganizationupdates}
 
@@ -1085,7 +1053,7 @@ List activities associated with a person
 | Person ID  | The ID of the person                                                                             |         |
 | Limit      | Items shown per page                                                                             |         |
 | Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Done       | Whether the activity is done or not                                                              | false   |
+| Done       | When true, returns only completed activities                                                     | false   |
 
 ### Get Person Deals {#getpersondeals}
 
@@ -1118,3 +1086,37 @@ Get details of a specific field for a person
 | ---------- | ------------------------------------------------- | ------- |
 | Connection |                                                   |         |
 | Field ID   | The ID of the field to fetch details for a person |         |
+
+### Get Person Fields {#getpersonfields}
+
+Get all person fields
+
+| Input      | Comments             | Default |
+| ---------- | -------------------- | ------- |
+| Connection |                      |         |
+| Start      | Pagination start     | 0       |
+| Limit      | Items shown per page |         |
+
+### Get Person Files {#getpersonfiles}
+
+List files attached to a person
+
+| Input                 | Comments                                                                                        | Default |
+| --------------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                 |         |
+| Person ID             | The ID of the person                                                                            |         |
+| Start                 | Pagination start                                                                                | 0       |
+| Limit                 | Items shown per page                                                                            |         |
+| Include Deleted Files | When enabled, the list of files will also include deleted files                                 |         |
+| Sort                  | The field names and sorting mode separated by a comma ("field_name_1 ASC", "field_name_2 DESC") |         |
+
+### Get Person Followers {#getpersonfollowers}
+
+List followers of a person
+
+| Input      | Comments                                                                                         | Default |
+| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Person ID  | The ID of the person                                                                             |         |
+| Limit      | Items shown per page                                                                             |         |
+| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Connection |                                                                                                  |         |

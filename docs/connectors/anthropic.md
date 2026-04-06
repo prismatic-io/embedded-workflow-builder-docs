@@ -1,7 +1,7 @@
 ---
 title: Anthropic Connector
 sidebar_label: Anthropic
-description: Interact with Anthropic's Claude models
+description: Generate chat responses and completions using Anthropic's Claude models.
 ---
 
 ![Anthropic](./assets/anthropic.png#connector-icon)

@@ -297,10 +297,11 @@ Retrieve call data by date range (/v2/calls)
 
 Given a folder id, this endpoint retrieves a list of calls in it.
 
-| Input      | Comments                                                           | Default |
-| ---------- | ------------------------------------------------------------------ | ------- |
-| Connection |                                                                    |         |
-| Folder Id  | Gong's unique numeric identifier for the folder (up to 20 digits). |         |
+| Input        | Comments                                                                                                   | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   |                                                                                                            |         |
+| Workspace Id | Optional Workspace identifier, if supplied the API will return only the calls belonging to this workspace. |         |
+| Folder Id    | Gong's unique numeric identifier for the folder (up to 20 digits).                                         |         |
 
 ### List Library Folders {#listlibraryfolders}
 

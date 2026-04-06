@@ -117,13 +117,13 @@ Copy a file by file id
 
 Create a new file with content and metadata
 
-| Input            | Comments                                                                                                                    | Default |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Connection to use for Google Drive authorization.                                                                       |         |
-| Parent Folder Id | A unique opaque ID for each folder.                                                                                         |         |
-| File Content     | The binary or text body of the file. Some content examples you can store in Google Drive are images, videos, text, and PDF. |         |
-| File Name        | The name of the file.                                                                                                       |         |
-| Fields           | A comma separated list of fields to return in the response.                                                                 | \*      |
+| Input            | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Parent Folder Id | A unique opaque ID for each folder.                                                                                                                                                                                                                                    |         |
+| File Content     | The binary or text body of the file. Some content examples you can store in Google Drive are images, videos, text, and PDF.                                                                                                                                            |         |
+| File Name        | The name of the file.                                                                                                                                                                                                                                                  |         |
+| Fields           | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
 
 ### Create Folder {#createfolder}
 
@@ -161,11 +161,11 @@ Create a webhook to receive notifications of changes for a file or folder
 
 Delete a file by file id
 
-| Input      | Comments                                                                                                              | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Connection to use for Google Drive authorization.                                                                 |         |
-| File ID    | A unique opaque ID for each file. File IDs are stable throughout the life of the file, even if the file name changes. |         |
-| Fields     | A comma separated list of fields to return in the response.                                                           | \*      |
+| Input      | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| File ID    | A unique opaque ID for each file. File IDs are stable throughout the life of the file, even if the file name changes.                                                                                                                                                  |         |
+| Fields     | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
 
 ### Delete Webhook {#deletewebhook}
 
@@ -189,10 +189,10 @@ Empty the trash of deleted files
 
 Gets information about the user's Drive, and system capabilities
 
-| Input      | Comments                                                    | Default |
-| ---------- | ----------------------------------------------------------- | ------- |
-| Connection | The Connection to use for Google Drive authorization.       |         |
-| Fields     | A comma separated list of fields to return in the response. | \*      |
+| Input      | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Fields     | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
 
 ### Get Current User {#getcurrentuser}
 
@@ -243,15 +243,15 @@ List all drives
 
 Lists all available files and directories
 
-| Input      | Comments                                                                                                                                                         | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Connection to use for Google Drive authorization.                                                                                                            |         |
-| Drive ID   | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive". |         |
-| Page Size  | The maximum number of results to return. Must be between 1 and 50.                                                                                               | 20      |
-| Page Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                          |         |
-| Fields     | A comma separated list of fields to return in the response.                                                                                                      | \*      |
-| Query      | A query string to filter results. See [Google's documentation](https://developers.google.com/drive/api/v3/search-files) for query syntax.                        |         |
-| Fetch All  | When true, fetches all pages of results using pagination.                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Drive ID   | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive".                                                                                                       |         |
+| Page Size  | The maximum number of results to return. Must be between 1 and 50.                                                                                                                                                                                                     | 20      |
+| Page Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                                                                                                                                |         |
+| Fields     | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
+| Query      | A query string to filter results. See [Google's documentation](https://developers.google.com/drive/api/v3/search-files) for query syntax.                                                                                                                              |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
 
 ### List File's Export Types {#listexporttypes}
 
@@ -266,15 +266,15 @@ List the available export types of a file by ID.
 
 Lists all available directories
 
-| Input      | Comments                                                                                                                                                         | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Connection to use for Google Drive authorization.                                                                                                            |         |
-| Drive ID   | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive". |         |
-| Page Size  | The maximum number of results to return. Must be between 1 and 50.                                                                                               | 20      |
-| Page Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                          |         |
-| Fields     | A comma separated list of fields to return in the response.                                                                                                      | \*      |
-| Folder ID  | A unique opaque ID for each folder.                                                                                                                              |         |
-| Fetch All  | When true, fetches all pages of results using pagination.                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Drive ID   | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive".                                                                                                       |         |
+| Page Size  | The maximum number of results to return. Must be between 1 and 50.                                                                                                                                                                                                     | 20      |
+| Page Token | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                                                                                                                                |         |
+| Fields     | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
+| Folder ID  | A unique opaque ID for each folder.                                                                                                                                                                                                                                    |         |
+| Fetch All  | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
 
 ### Move File {#movefile}
 
@@ -326,42 +326,42 @@ Send raw HTTP request to Google Drive
 
 Search for an existing file by Name
 
-| Input                         | Comments                                                                                                                                                         | Default |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                    | The Connection to use for Google Drive authorization.                                                                                                            |         |
-| Drive ID                      | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive". |         |
-| Search                        | Search terms to filter results.                                                                                                                                  |         |
-| Files Containing Search Query | When true, searches for files that contain the provided search query in their name.                                                                              | false   |
-| Parent Folder Id              | A unique opaque ID for each folder.                                                                                                                              |         |
-| Query                         | A query string to filter results. See [Google's documentation](https://developers.google.com/drive/api/v3/search-files) for query syntax.                        |         |
-| Fields                        | A comma separated list of fields to return in the response.                                                                                                      | \*      |
-| Page Size                     | The maximum number of results to return. Must be between 1 and 50.                                                                                               | 20      |
-| Page Token                    | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                          |         |
-| Fetch All                     | When true, fetches all pages of results using pagination.                                                                                                        | false   |
+| Input                         | Comments                                                                                                                                                                                                                                                               | Default |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                    | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Drive ID                      | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive".                                                                                                       |         |
+| Search                        | Search terms to filter results.                                                                                                                                                                                                                                        |         |
+| Files Containing Search Query | When true, searches for files that contain the provided search query in their name.                                                                                                                                                                                    | false   |
+| Parent Folder Id              | A unique opaque ID for each folder.                                                                                                                                                                                                                                    |         |
+| Query                         | A query string to filter results. See [Google's documentation](https://developers.google.com/drive/api/v3/search-files) for query syntax.                                                                                                                              |         |
+| Fields                        | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
+| Page Size                     | The maximum number of results to return. Must be between 1 and 50.                                                                                                                                                                                                     | 20      |
+| Page Token                    | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                                                                                                                                |         |
+| Fetch All                     | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
 
 ### Search Folders {#searchfolders}
 
 Search for an existing directory by Name
 
-| Input            | Comments                                                                                                                                                         | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Connection to use for Google Drive authorization.                                                                                                            |         |
-| Drive ID         | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive". |         |
-| Search           | Search terms to filter results.                                                                                                                                  |         |
-| Parent Folder Id | A unique opaque ID for each folder.                                                                                                                              |         |
-| Fields           | A comma separated list of fields to return in the response.                                                                                                      | \*      |
-| Page Size        | The maximum number of results to return. Must be between 1 and 50.                                                                                               | 20      |
-| Page Token       | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                          |         |
-| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                        | false   |
+| Input            | Comments                                                                                                                                                                                                                                                               | Default |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| Drive ID         | The ID of a shared drive to search for the file in. If not provided, the search will be performed across all drives. Enter 'my-drive' to search only "My Drive".                                                                                                       |         |
+| Search           | Search terms to filter results.                                                                                                                                                                                                                                        |         |
+| Parent Folder Id | A unique opaque ID for each folder.                                                                                                                                                                                                                                    |         |
+| Fields           | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |
+| Page Size        | The maximum number of results to return. Must be between 1 and 50.                                                                                                                                                                                                     | 20      |
+| Page Token       | Specify the pagination token that's returned by a previous request to retrieve the next page of results                                                                                                                                                                |         |
+| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
 
 ### Update File {#updatefile}
 
 Updates a file's content by file id
 
-| Input        | Comments                                                                                                                    | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Connection to use for Google Drive authorization.                                                                       |         |
-| File ID      | A unique opaque ID for each file. File IDs are stable throughout the life of the file, even if the file name changes.       |         |
-| File Content | The binary or text body of the file. Some content examples you can store in Google Drive are images, videos, text, and PDF. |         |
-| File Name    | The name of the file.                                                                                                       |         |
-| Fields       | A comma separated list of fields to return in the response.                                                                 | \*      |
+| Input        | Comments                                                                                                                                                                                                                                                               | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Connection to use for Google Drive authorization.                                                                                                                                                                                                                  |         |
+| File ID      | A unique opaque ID for each file. File IDs are stable throughout the life of the file, even if the file name changes.                                                                                                                                                  |         |
+| File Content | The binary or text body of the file. Some content examples you can store in Google Drive are images, videos, text, and PDF.                                                                                                                                            |         |
+| File Name    | The name of the file.                                                                                                                                                                                                                                                  |         |
+| Fields       | Fields to return in the response. For list operations, wrap field names in files(), e.g., files(id,name,mimeType). If unspecified, returns all fields. See [Google's fields parameter documentation](https://developers.google.com/drive/api/guides/fields-parameter). | \*      |

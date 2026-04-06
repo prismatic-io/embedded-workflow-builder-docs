@@ -65,84 +65,79 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Assigns the list of technicians to the appointment
 
-| Input              | Comments                                             | Default |
-| ------------------ | ---------------------------------------------------- | ------- |
-| Connection         |                                                      |         |
-| Job Appointment ID | ID of the job appointment                            |         |
-| Technician IDs     | Assign these technicians to the appointment.         |         |
-| Debug Request      | Enabling this flag will log out the current request. | false   |
+| Input              | Comments                                     | Default |
+| ------------------ | -------------------------------------------- | ------- |
+| Connection         |                                              |         |
+| Job Appointment ID | ID of the job appointment                    |         |
+| Technician IDs     | Assign these technicians to the appointment. |         |
 
 ### Cancel Job {#canceljob}
 
 Cancels a Job
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Job ID        | The job ID.                                          |         |
-| Reason ID     | ID of job cancel reason                              |         |
-| Job Memo      | Memo of job cancel reason                            |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                  | Default |
+| ---------- | ------------------------- | ------- |
+| Connection |                           |         |
+| Job ID     | The job ID.               |         |
+| Reason ID  | ID of job cancel reason   |         |
+| Job Memo   | Memo of job cancel reason |         |
 
 ### Create Appointment {#createappointment}
 
 Adds a new appointment to an existing job
 
-| Input                | Comments                                             | Default |
-| -------------------- | ---------------------------------------------------- | ------- |
-| Connection           |                                                      |         |
-| Job ID               | The job ID.                                          |         |
-| Start                | Start date/time (in UTC)                             |         |
-| End                  | End date/time (in UTC)                               |         |
-| Arrival Window Start | Arrival window start date/time (in UTC)              |         |
-| Arrival Window End   | Arrival window end date/time (in UTC)                |         |
-| Technician ID        | The ID of the technician.                            |         |
-| Special Instructions | Special instructions associated to the appointment   |         |
-| Debug Request        | Enabling this flag will log out the current request. | false   |
+| Input                | Comments                                           | Default |
+| -------------------- | -------------------------------------------------- | ------- |
+| Connection           |                                                    |         |
+| Job ID               | The job ID.                                        |         |
+| Start                | Start date/time (in UTC)                           |         |
+| End                  | End date/time (in UTC)                             |         |
+| Arrival Window Start | Arrival window start date/time (in UTC)            |         |
+| Arrival Window End   | Arrival window end date/time (in UTC)              |         |
+| Technician ID        | The ID of the technician.                          |         |
+| Special Instructions | Special instructions associated to the appointment |         |
 
 ### Create Booking by Provider {#createbookingbyprovider}
 
 Create a booking
 
-| Input                   | Comments                                             | Default                                                                                                                                                                   |
-| ----------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection              |                                                      |                                                                                                                                                                           |
-| Booking Provider        | The ID of the booking provider.                      |                                                                                                                                                                           |
-| Summary                 | Summary of the booking                               |                                                                                                                                                                           |
-| Is First Time Client    | True if first time client                            |                                                                                                                                                                           |
-| External ID             | External ID of booking                               |                                                                                                                                                                           |
-| Source                  | The source of the booking provider                   |                                                                                                                                                                           |
-| Name                    | Booking name                                         |                                                                                                                                                                           |
-| Address                 | Address of the booking                               | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
-| Contacts                | Contacts for the booking                             | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                              |
-| Customer Type           | Type of the customer                                 |                                                                                                                                                                           |
-| Start                   | Start date/time (in UTC)                             |                                                                                                                                                                           |
-| Campaign ID             | ID of the booking's campaign                         |                                                                                                                                                                           |
-| Business Unit ID        | ID of the booking's business unit                    |                                                                                                                                                                           |
-| Job Type ID             | ID of the booking's job type                         |                                                                                                                                                                           |
-| Priority                | Booking priority                                     |                                                                                                                                                                           |
-| Uploaded Images         | Uploaded images                                      |                                                                                                                                                                           |
-| Send Confirmation Email | True if first time client                            |                                                                                                                                                                           |
-| Debug Request           | Enabling this flag will log out the current request. | false                                                                                                                                                                     |
+| Input                   | Comments                           | Default                                                                                                                                                                   |
+| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection              |                                    |                                                                                                                                                                           |
+| Booking Provider        | The ID of the booking provider.    |                                                                                                                                                                           |
+| Summary                 | Summary of the booking             |                                                                                                                                                                           |
+| Is First Time Client    | True if first time client          |                                                                                                                                                                           |
+| External ID             | External ID of booking             |                                                                                                                                                                           |
+| Source                  | The source of the booking provider |                                                                                                                                                                           |
+| Name                    | Booking name                       |                                                                                                                                                                           |
+| Address                 | Address of the booking             | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
+| Contacts                | Contacts for the booking           | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                              |
+| Customer Type           | Type of the customer               |                                                                                                                                                                           |
+| Start                   | Start date/time (in UTC)           |                                                                                                                                                                           |
+| Campaign ID             | ID of the booking's campaign       |                                                                                                                                                                           |
+| Business Unit ID        | ID of the booking's business unit  |                                                                                                                                                                           |
+| Job Type ID             | ID of the booking's job type       |                                                                                                                                                                           |
+| Priority                | Booking priority                   |                                                                                                                                                                           |
+| Uploaded Images         | Uploaded images                    |                                                                                                                                                                           |
+| Send Confirmation Email | True if first time client          |                                                                                                                                                                           |
 
 ### Create Customer {#createcustomer}
 
 Create a New Customer
 
-| Input          | Comments                                             | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection     |                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Name           | Name of the customer                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Location       | Locations for the customer                           | <code>[<br /> {<br /> "name": "string",<br /> "address": {<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string",<br /> "latitude": 0,<br /> "longitude": 0<br /> },<br /> "contacts": [<br /> {<br /> "type": {},<br /> "value": "string",<br /> "memo": "string"<br /> }<br /> ],<br /> "customFields": [<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br /> ],<br /> "tagTypeIds": [<br /> 0<br /> ],<br /> "externalData": {<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br /> }<br />]</code> |
-| Address        | Bill-To address of the customer record               | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Customer Type  | Type of the customer                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Do Not Mail    | Customer has been flagged as “do not mail”           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Do Not Service | Customer has been flagged as “do not service”        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Contacts       | Contacts for the booking                             | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Custom Fields  | Custom fields for the request                        | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Tag Type IDs   | A list of tags ID's                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| External Data  | External data to attach to the request.              | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Debug Request  | Enabling this flag will log out the current request. | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Input          | Comments                                      | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Connection     |                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Name           | Name of the customer                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Location       | Locations for the customer                    | <code>[<br /> {<br /> "name": "string",<br /> "address": {<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string",<br /> "latitude": 0,<br /> "longitude": 0<br /> },<br /> "contacts": [<br /> {<br /> "type": {},<br /> "value": "string",<br /> "memo": "string"<br /> }<br /> ],<br /> "customFields": [<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br /> ],<br /> "tagTypeIds": [<br /> 0<br /> ],<br /> "externalData": {<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br /> }<br />]</code> |
+| Address        | Bill-To address of the customer record        | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Customer Type  | Type of the customer                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Do Not Mail    | Customer has been flagged as “do not mail”    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Do Not Service | Customer has been flagged as “do not service” |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Contacts       | Contacts for the booking                      | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Custom Fields  | Custom fields for the request                 | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Tag Type IDs   | A list of tags ID's                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| External Data  | External data to attach to the request.       | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ### Create Customer Contact {#createcustomercontact}
 
@@ -155,31 +150,29 @@ Create a contact for a customer
 | Customer Contact Type       | Type of the customer contact                                                              |         |
 | Customer Contact Type Value | The email, phone number, or fax number for the contact                                    |         |
 | Memo                        | Short description about this contact, for example, “work #” or “Owner’s daughter - Kelly” |         |
-| Debug Request               | Enabling this flag will log out the current request.                                      | false   |
 
 ### Create Installed Equipment {#createinstalledequipment}
 
 Create a new Installed equipment
 
-| Input                           | Comments                                             | Default                                                                                                                            |
-| ------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Connection                      |                                                      |                                                                                                                                    |
-| Location ID                     | The location id of the installed equipment           |                                                                                                                                    |
-| Name                            | The name of the installed equipment                  |                                                                                                                                    |
-| Installed On                    | The date the equipment was installed                 |                                                                                                                                    |
-| Serial Number                   | Serial number of the installed equipment             |                                                                                                                                    |
-| Memo                            | The memo of the installed equipment                  |                                                                                                                                    |
-| Manufacturer                    | Manufacturer of the installed equipment              |                                                                                                                                    |
-| Model                           | Model of the installed equipment                     |                                                                                                                                    |
-| Cost                            | Cost of the installed equipment                      |                                                                                                                                    |
-| Manufacturer Warranty Start     | Manufacturer warranty start date                     |                                                                                                                                    |
-| Manufacturer Warranty End       | Manufacturer warranty end date                       |                                                                                                                                    |
-| Service Provider Warranty Start | Service Provider Warranty Start date                 |                                                                                                                                    |
-| Service Provider Warranty End   | Service Provider Warranty End date                   |                                                                                                                                    |
-| Custom Fields                   | The custom fields of the installed equipment         | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
-| Attachments                     | List of attachments                                  | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
-| Tag Type IDs                    | A list of tags ID's                                  |                                                                                                                                    |
-| Debug Request                   | Enabling this flag will log out the current request. | false                                                                                                                              |
+| Input                           | Comments                                     | Default                                                                                                                            |
+| ------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Connection                      |                                              |                                                                                                                                    |
+| Location ID                     | The location id of the installed equipment   |                                                                                                                                    |
+| Name                            | The name of the installed equipment          |                                                                                                                                    |
+| Installed On                    | The date the equipment was installed         |                                                                                                                                    |
+| Serial Number                   | Serial number of the installed equipment     |                                                                                                                                    |
+| Memo                            | The memo of the installed equipment          |                                                                                                                                    |
+| Manufacturer                    | Manufacturer of the installed equipment      |                                                                                                                                    |
+| Model                           | Model of the installed equipment             |                                                                                                                                    |
+| Cost                            | Cost of the installed equipment              |                                                                                                                                    |
+| Manufacturer Warranty Start     | Manufacturer warranty start date             |                                                                                                                                    |
+| Manufacturer Warranty End       | Manufacturer warranty end date               |                                                                                                                                    |
+| Service Provider Warranty Start | Service Provider Warranty Start date         |                                                                                                                                    |
+| Service Provider Warranty End   | Service Provider Warranty End date           |                                                                                                                                    |
+| Custom Fields                   | The custom fields of the installed equipment | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
+| Attachments                     | List of attachments                          | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
+| Tag Type IDs                    | A list of tags ID's                          |                                                                                                                                    |
 
 ### Create Installed Equipment Attachment {#createinstalledequipmentattachment}
 
@@ -190,31 +183,29 @@ Create a new installed equipment attachment
 | Connection      |                                                            |         |
 | Attachment File | Reference a file from another action. Must be a file type. |         |
 | File Name       | Name of the file                                           |         |
-| Debug Request   | Enabling this flag will log out the current request.       | false   |
 
 ### Create Invoices {#createinvoices}
 
 Create adjustment invoice
 
-| Input            | Comments                                             | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection       |                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Adjustment To ID | The ID of the invoice the adjustment is for.         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Number           | The invoice number.                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Type ID          | The ID of the type of the payment.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Invoiced On      | The date the invoice was invoiced on.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Subtotal         | The subtotal of the invoice.                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Tax              | The tax of the invoice.                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Summary          | The summary of the invoice.                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Status   | The royalty status of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Date     | The royalty date of the invoice.                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Sent On  | The royalty sent date of the invoice.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Memo     | The royalty sent date of the invoice.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Export ID        | Gets or sets the identifier when exported.           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Review Status    | The review status of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Assigned To ID   | The ID of the user the invoice is assigned to.       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Items            | The items of the invoice.                            | <code>[<br /> {<br /> "skuId": 0,<br /> "skuName": "string",<br /> "technicianId": 0,<br /> "description": "string",<br /> "quantity": 0,<br /> "unitPrice": 0,<br /> "cost": 0,<br /> "isAddOn": true,<br /> "signature": "string",<br /> "technicianAcknowledgementSignature": "string",<br /> "installedOn": "string",<br /> "inventoryWarehouseName": "string",<br /> "skipUpdatingMembershipPrices": true,<br /> "itemGroupName": "string",<br /> "itemGroupRootId": 0,<br /> "inventoryLocationId": 0,<br /> "durationBillingId": 0,<br /> "id": 0<br /> }<br />]</code> |
-| Debug Request    | Enabling this flag will log out the current request. | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Input            | Comments                                       | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Connection       |                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Adjustment To ID | The ID of the invoice the adjustment is for.   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Number           | The invoice number.                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Type ID          | The ID of the type of the payment.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Invoiced On      | The date the invoice was invoiced on.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Subtotal         | The subtotal of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Tax              | The tax of the invoice.                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Summary          | The summary of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Status   | The royalty status of the invoice.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Date     | The royalty date of the invoice.               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Sent On  | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Memo     | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Export ID        | Gets or sets the identifier when exported.     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Review Status    | The review status of the invoice.              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Assigned To ID   | The ID of the user the invoice is assigned to. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Items            | The items of the invoice.                      | <code>[<br /> {<br /> "skuId": 0,<br /> "skuName": "string",<br /> "technicianId": 0,<br /> "description": "string",<br /> "quantity": 0,<br /> "unitPrice": 0,<br /> "cost": 0,<br /> "isAddOn": true,<br /> "signature": "string",<br /> "technicianAcknowledgementSignature": "string",<br /> "installedOn": "string",<br /> "inventoryWarehouseName": "string",<br /> "skipUpdatingMembershipPrices": true,<br /> "itemGroupName": "string",<br /> "itemGroupRootId": 0,<br /> "inventoryLocationId": 0,<br /> "durationBillingId": 0,<br /> "id": 0<br /> }<br />]</code> |
 
 ### Create Job {#createjob}
 
@@ -238,40 +229,37 @@ Create a job
 | External Data                 | External data to attach to the request.                                                                                                   | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                                                  |
 | Invoice Signature Is Required | Optional model that informs if invoice should requires a signature or not if not informed will follow the rules for location and job type |                                                                                                                                                                                                          |
 | Customer PO                   | Customer PO                                                                                                                               |                                                                                                                                                                                                          |
-| Debug Request                 | Enabling this flag will log out the current request.                                                                                      | false                                                                                                                                                                                                    |
 
 ### Create Location {#createlocation}
 
 Creates a new location
 
-| Input         | Comments                                             | Default                                                                                                                                                                   |
-| ------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                                                                                                                           |
-| Name          | The name of the location                             |                                                                                                                                                                           |
-| Address       | The address of the location                          | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
-| Customer ID   | The customer ID.                                     |                                                                                                                                                                           |
-| Contacts      | The contacts associated with the location            | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                              |
-| Custom Fields | Custom fields for the request                        | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
-| Tag Type IDs  | A list of tags ID's                                  |                                                                                                                                                                           |
-| External Data | External data to attach to the request.              | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                                                                                                                     |
+| Input         | Comments                                  | Default                                                                                                                                                                   |
+| ------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection    |                                           |                                                                                                                                                                           |
+| Name          | The name of the location                  |                                                                                                                                                                           |
+| Address       | The address of the location               | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
+| Customer ID   | The customer ID.                          |                                                                                                                                                                           |
+| Contacts      | The contacts associated with the location | <code>[<br /> {<br /> "type": "Phone",<br /> "value": "string",<br /> "memo": "string"<br /> }<br />]</code>                                                              |
+| Custom Fields | Custom fields for the request             | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
+| Tag Type IDs  | A list of tags ID's                       |                                                                                                                                                                           |
+| External Data | External data to attach to the request.   | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
 
 ### Create Payment {#createpayment}
 
 Create a payment in Service Titan
 
-| Input         | Comments                                             | Default                                                                       |
-| ------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                               |
-| Type ID       | The ID of the type of the payment.                   |                                                                               |
-| Splits        | The splits of the payment.                           | <code>[<br /> {<br /> "invoiceId": 0,<br /> "amount": 0<br /> }<br />]</code> |
-| Memo          | The memo of the payment.                             |                                                                               |
-| Paid On       | The date the payment was paid on.                    |                                                                               |
-| Auth Code     | The authorization code for the payment.              |                                                                               |
-| Check Number  | The check number for the payment.                    |                                                                               |
-| Export ID     | Gets or sets the identifier when exported.           |                                                                               |
-| Status        | The status of the payment.                           |                                                                               |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                         |
+| Input        | Comments                                   | Default                                                                       |
+| ------------ | ------------------------------------------ | ----------------------------------------------------------------------------- |
+| Connection   |                                            |                                                                               |
+| Type ID      | The ID of the type of the payment.         |                                                                               |
+| Splits       | The splits of the payment.                 | <code>[<br /> {<br /> "invoiceId": 0,<br /> "amount": 0<br /> }<br />]</code> |
+| Memo         | The memo of the payment.                   |                                                                               |
+| Paid On      | The date the payment was paid on.          |                                                                               |
+| Auth Code    | The authorization code for the payment.    |                                                                               |
+| Check Number | The check number for the payment.          |                                                                               |
+| Export ID    | Gets or sets the identifier when exported. |                                                                               |
+| Status       | The status of the payment.                 |                                                                               |
 
 ### Create Project {#createproject}
 
@@ -292,7 +280,6 @@ Create a new project
 | Actual Completion Date | Actual completion date of the project                                                               |                                                                                                                                                         |
 | Custom Fields          | Custom fields for the project                                                                       | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                        |
 | External Data          | Optional model that contains a list of external data items that should be attached to this project. | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code> |
-| Debug Request          | Enabling this flag will log out the current request.                                                | false                                                                                                                                                   |
 
 ### Create Technician {#createtechnician}
 
@@ -321,90 +308,81 @@ Create new technician
 | Job History Date Filter        | Appointment history visibility                                       |                                                                                                                                                                           |
 | Address                        | The home address of the technician                                   | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
 | Custom Fields                  | Custom fields for the technician                                     | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
-| Debug Request                  | Enabling this flag will log out the current request.                 | false                                                                                                                                                                     |
 
 ### Delete Appointment {#deleteappointment}
 
 Delete appointment by ID
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Appointment ID | The ID of the appointment.                           |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                   | Default |
+| -------------- | -------------------------- | ------- |
+| Connection     |                            |         |
+| Appointment ID | The ID of the appointment. |         |
 
 ### Delete Customer Contact {#deletcustomerscontact}
 
 Removes a contact from a customer
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Connection          |                                                      |         |
-| Customer ID         | The customer ID.                                     |         |
-| Customer Contact ID | The customer contact ID.                             |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                 | Default |
+| ------------------- | ------------------------ | ------- |
+| Connection          |                          |         |
+| Customer ID         | The customer ID.         |         |
+| Customer Contact ID | The customer contact ID. |         |
 
 ### Delete Invoice Item {#deleteinvoiceitem}
 
 Delete an invoice item
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Invoice ID    | The ID of the invoice.                               |         |
-| Item ID       | The ID of the item.                                  |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments               | Default |
+| ---------- | ---------------------- | ------- |
+| Connection |                        |         |
+| Invoice ID | The ID of the invoice. |         |
+| Item ID    | The ID of the item.    |         |
 
 ### Get Appointment {#getappointment}
 
 Retrieve an appointment by ID
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Appointment ID | The ID of the appointment.                           |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                   | Default |
+| -------------- | -------------------------- | ------- |
+| Connection     |                            |         |
+| Appointment ID | The ID of the appointment. |         |
 
 ### Get Booking by Provider {#getbookingbyprovider}
 
 Retrieve a booking by ID
 
-| Input            | Comments                                             | Default |
-| ---------------- | ---------------------------------------------------- | ------- |
-| Connection       |                                                      |         |
-| Booking Provider | The ID of the booking provider.                      |         |
-| Booking ID       | The ID of the booking.                               |         |
-| Debug Request    | Enabling this flag will log out the current request. | false   |
+| Input            | Comments                        | Default |
+| ---------------- | ------------------------------- | ------- |
+| Connection       |                                 |         |
+| Booking Provider | The ID of the booking provider. |         |
+| Booking ID       | The ID of the booking.          |         |
 
 ### Get Booking by Tenant {#getbookingbytenant}
 
 Retrieve a booking by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Booking ID    | The ID of the booking.                               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments               | Default |
+| ---------- | ---------------------- | ------- |
+| Connection |                        |         |
+| Booking ID | The ID of the booking. |         |
 
 ### Get Customer {#getcustomer}
 
 Retrieve a Customer by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Customer ID   | The customer ID.                                     |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments         | Default |
+| ----------- | ---------------- | ------- |
+| Connection  |                  |         |
+| Customer ID | The customer ID. |         |
 
 ### Get Installed Equipment {#getinstalledequipment}
 
 Retrieve a Installed Equipment by ID
 
-| Input                  | Comments                                             | Default |
-| ---------------------- | ---------------------------------------------------- | ------- |
-| Connection             |                                                      |         |
-| Installed Equipment ID | ID of the installed equipment                        |         |
-| Debug Request          | Enabling this flag will log out the current request. | false   |
+| Input                  | Comments                      | Default |
+| ---------------------- | ----------------------------- | ------- |
+| Connection             |                               |         |
+| Installed Equipment ID | ID of the installed equipment |         |
 
 ### Get Job {#getjob}
 
@@ -415,37 +393,33 @@ Retrieve a job by ID
 | Connection                     |                                                                                                                 |         |
 | Job ID                         | The job ID.                                                                                                     |         |
 | External Data Application Guid | Format - guid. If this guid is provided, external data corresponding to this application guid will be returned. |         |
-| Debug Request                  | Enabling this flag will log out the current request.                                                            | false   |
 
 ### Get Location {#getlocation}
 
 Retrieve a location by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Location ID   | The ID of the location to retrieve                   |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments                           | Default |
+| ----------- | ---------------------------------- | ------- |
+| Connection  |                                    |         |
+| Location ID | The ID of the location to retrieve |         |
 
 ### Get Project {#getproject}
 
 Retrieve a project by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Project ID    | The ID of the project to retrieve                    |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection |                                   |         |
+| Project ID | The ID of the project to retrieve |         |
 
 ### Get Technician {#gettechnician}
 
 Retrieve a Technician by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Technician ID | The ID of the Technician to retrieve                 |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input         | Comments                             | Default |
+| ------------- | ------------------------------------ | ------- |
+| Connection    |                                      |         |
+| Technician ID | The ID of the Technician to retrieve |         |
 
 ### List Appointment Assignment {#listappointmentsassignment}
 
@@ -460,7 +434,6 @@ Retrieve a list of appointment assignments
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Appointments {#listappointments}
 
@@ -475,7 +448,6 @@ Retrieve a list of appointments
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Bookings by Provider {#listbookingbyprovider}
 
@@ -491,7 +463,6 @@ Retrieves a list of bookings
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Bookings by Tenant {#listbookingbytenant}
 
@@ -506,7 +477,6 @@ Retrieves a list of bookings
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Business Units {#listbusinessunits}
 
@@ -521,7 +491,6 @@ Gets a list of business units
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Customer Contacts {#listcustomerscontact}
 
@@ -537,7 +506,6 @@ Gets a list of contacts for the specified customer
 | Include Total        | Include total count of records. If fetchAll is true, this will be ignored.      | false   |
 | Modified Before      | Return items modified before certain date/time (in UTC)                         |         |
 | Modified On Or After | Return items modified on or after certain date/time (in UTC)                    |         |
-| Debug Request        | Enabling this flag will log out the current request.                            | false   |
 
 ### List Customers {#listcustomers}
 
@@ -552,7 +520,6 @@ Retrieve a list of Customers
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Installed Equipment {#listinstalledequipment}
 
@@ -567,17 +534,15 @@ Retrieve a list of installed equipment
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Installed Equipment Attachments {#listinstalledequipmentattachments}
 
 Retrieve installed Equipment attachments
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Path          | Installed equipment attachment path                  |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection |                                     |         |
+| Path       | Installed equipment attachment path |         |
 
 ### List Invoices {#listinvoices}
 
@@ -592,7 +557,6 @@ Retrieves a list of invoices
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Job Cancel Reasons {#listjobcancelreasons}
 
@@ -607,7 +571,6 @@ Retrieve a list of job cancel reasons
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Jobs {#listjobs}
 
@@ -622,7 +585,6 @@ Retrieve a list of jobs
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Locations {#listlocations}
 
@@ -637,7 +599,6 @@ Retrieve a list of Locations
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Payments {#listpayments}
 
@@ -652,7 +613,6 @@ Retrieve a list of payments
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Projects {#listprojects}
 
@@ -667,7 +627,6 @@ Retrieve a list of Projects
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List Technicians {#listtechnicians}
 
@@ -682,7 +641,6 @@ Retrieve a list of technicians
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### List User Roles {#listuserroles}
 
@@ -697,7 +655,6 @@ Gets a list of user roles
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
 | Custom Query Params | Custom fields filter                                                                                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                   | false   |
 
 ### Raw Request {#rawrequest}
 
@@ -717,7 +674,6 @@ Send raw HTTP request to ServiceDesk Plus
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                          |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                             | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                  |         |
-| Debug Request           | Enable this to log the request and response                                                                                                                                                                                                          | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                  | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                     | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                  | 0       |
@@ -727,55 +683,52 @@ Send raw HTTP request to ServiceDesk Plus
 
 Un-assigns the list of technicians from the appointment
 
-| Input              | Comments                                             | Default |
-| ------------------ | ---------------------------------------------------- | ------- |
-| Connection         |                                                      |         |
-| Job Appointment ID | ID of the job appointment                            |         |
-| Technician IDs     | Unassign these technicians to the appointment.       |         |
-| Debug Request      | Enabling this flag will log out the current request. | false   |
+| Input              | Comments                                       | Default |
+| ------------------ | ---------------------------------------------- | ------- |
+| Connection         |                                                |         |
+| Job Appointment ID | ID of the job appointment                      |         |
+| Technician IDs     | Unassign these technicians to the appointment. |         |
 
 ### Update Booking {#updatebooking}
 
 Update a booking
 
-| Input                | Comments                                             | Default                                                                                                                                                                   |
-| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection           |                                                      |                                                                                                                                                                           |
-| Booking Provider     | The ID of the booking provider.                      |                                                                                                                                                                           |
-| Booking ID           | The ID of the booking.                               |                                                                                                                                                                           |
-| Summary              | Summary of the booking                               |                                                                                                                                                                           |
-| Is First Time Client | True if first time client                            |                                                                                                                                                                           |
-| External ID          | External ID of booking                               |                                                                                                                                                                           |
-| Source               | The source of the booking provider                   |                                                                                                                                                                           |
-| Name                 | Name of the customer                                 |                                                                                                                                                                           |
-| Address              | Address of the booking                               | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
-| Customer Type        | Type of the customer                                 |                                                                                                                                                                           |
-| Start                | Start date/time (in UTC)                             |                                                                                                                                                                           |
-| Campaign ID          | ID of the booking's campaign                         |                                                                                                                                                                           |
-| Business Unit ID     | ID of the booking's business unit                    |                                                                                                                                                                           |
-| Job Type ID          | ID of the booking's job type                         |                                                                                                                                                                           |
-| Priority             | Booking priority                                     |                                                                                                                                                                           |
-| Uploaded Images      | Uploaded images                                      |                                                                                                                                                                           |
-| Debug Request        | Enabling this flag will log out the current request. | false                                                                                                                                                                     |
+| Input                | Comments                           | Default                                                                                                                                                                   |
+| -------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection           |                                    |                                                                                                                                                                           |
+| Booking Provider     | The ID of the booking provider.    |                                                                                                                                                                           |
+| Booking ID           | The ID of the booking.             |                                                                                                                                                                           |
+| Summary              | Summary of the booking             |                                                                                                                                                                           |
+| Is First Time Client | True if first time client          |                                                                                                                                                                           |
+| External ID          | External ID of booking             |                                                                                                                                                                           |
+| Source               | The source of the booking provider |                                                                                                                                                                           |
+| Name                 | Name of the customer               |                                                                                                                                                                           |
+| Address              | Address of the booking             | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
+| Customer Type        | Type of the customer               |                                                                                                                                                                           |
+| Start                | Start date/time (in UTC)           |                                                                                                                                                                           |
+| Campaign ID          | ID of the booking's campaign       |                                                                                                                                                                           |
+| Business Unit ID     | ID of the booking's business unit  |                                                                                                                                                                           |
+| Job Type ID          | ID of the booking's job type       |                                                                                                                                                                           |
+| Priority             | Booking priority                   |                                                                                                                                                                           |
+| Uploaded Images      | Uploaded images                    |                                                                                                                                                                           |
 
 ### Update Customer {#updatecustomer}
 
 Update a customer
 
-| Input          | Comments                                             | Default                                                                                                                                                                   |
-| -------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection     |                                                      |                                                                                                                                                                           |
-| Customer ID    | The customer ID.                                     |                                                                                                                                                                           |
-| Name           | Name of the customer                                 |                                                                                                                                                                           |
-| Customer Type  | Type of the customer                                 |                                                                                                                                                                           |
-| Address        | Address of the booking                               | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
-| Custom Fields  | Custom fields for the request                        | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
-| External Data  | External data to attach to the request.              | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
-| Do Not Mail    | Customer has been flagged as “do not mail”           |                                                                                                                                                                           |
-| Do Not Service | Customer has been flagged as “do not service”        |                                                                                                                                                                           |
-| Active         | Whether the customer is active                       |                                                                                                                                                                           |
-| Tag Type IDs   | A list of tags ID's                                  |                                                                                                                                                                           |
-| Debug Request  | Enabling this flag will log out the current request. | false                                                                                                                                                                     |
+| Input          | Comments                                      | Default                                                                                                                                                                   |
+| -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection     |                                               |                                                                                                                                                                           |
+| Customer ID    | The customer ID.                              |                                                                                                                                                                           |
+| Name           | Name of the customer                          |                                                                                                                                                                           |
+| Customer Type  | Type of the customer                          |                                                                                                                                                                           |
+| Address        | Address of the booking                        | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
+| Custom Fields  | Custom fields for the request                 | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
+| External Data  | External data to attach to the request.       | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
+| Do Not Mail    | Customer has been flagged as “do not mail”    |                                                                                                                                                                           |
+| Do Not Service | Customer has been flagged as “do not service” |                                                                                                                                                                           |
+| Active         | Whether the customer is active                |                                                                                                                                                                           |
+| Tag Type IDs   | A list of tags ID's                           |                                                                                                                                                                           |
 
 ### Update Customer Contact {#updatecustomercontact}
 
@@ -789,66 +742,62 @@ Updates a contact on the customers
 | Customer Contact Type       | Type of the customer contact                                                              |         |
 | Customer Contact Type Value | The email, phone number, or fax number for the contact                                    |         |
 | Memo                        | Short description about this contact, for example, “work #” or “Owner’s daughter - Kelly” |         |
-| Debug Request               | Enabling this flag will log out the current request.                                      | false   |
 
 ### Update Installed Equipment {#updateinstalledequipment}
 
 Update installed equipment by ID
 
-| Input                           | Comments                                             | Default                                                                                                                            |
-| ------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Connection                      |                                                      |                                                                                                                                    |
-| Installed Equipment ID          | ID of the installed equipment                        |                                                                                                                                    |
-| Name                            | The name of the installed equipment                  |                                                                                                                                    |
-| Installed On                    | The date the equipment was installed                 |                                                                                                                                    |
-| Serial Number                   | Serial number of the installed equipment             |                                                                                                                                    |
-| Memo                            | The memo of the installed equipment                  |                                                                                                                                    |
-| Manufacturer                    | Manufacturer of the installed equipment              |                                                                                                                                    |
-| Model                           | Model of the installed equipment                     |                                                                                                                                    |
-| Cost                            | Cost of the installed equipment                      |                                                                                                                                    |
-| Manufacturer Warranty Start     | Manufacturer warranty start date                     |                                                                                                                                    |
-| Manufacturer Warranty End       | Manufacturer warranty end date                       |                                                                                                                                    |
-| Service Provider Warranty Start | Service Provider Warranty Start date                 |                                                                                                                                    |
-| Service Provider Warranty End   | Service Provider Warranty End date                   |                                                                                                                                    |
-| Custom Fields                   | The custom fields of the installed equipment         | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
-| Attachments                     | List of attachments                                  | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
-| Tag Type IDs                    | A list of tags ID's                                  |                                                                                                                                    |
-| Debug Request                   | Enabling this flag will log out the current request. | false                                                                                                                              |
+| Input                           | Comments                                     | Default                                                                                                                            |
+| ------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Connection                      |                                              |                                                                                                                                    |
+| Installed Equipment ID          | ID of the installed equipment                |                                                                                                                                    |
+| Name                            | The name of the installed equipment          |                                                                                                                                    |
+| Installed On                    | The date the equipment was installed         |                                                                                                                                    |
+| Serial Number                   | Serial number of the installed equipment     |                                                                                                                                    |
+| Memo                            | The memo of the installed equipment          |                                                                                                                                    |
+| Manufacturer                    | Manufacturer of the installed equipment      |                                                                                                                                    |
+| Model                           | Model of the installed equipment             |                                                                                                                                    |
+| Cost                            | Cost of the installed equipment              |                                                                                                                                    |
+| Manufacturer Warranty Start     | Manufacturer warranty start date             |                                                                                                                                    |
+| Manufacturer Warranty End       | Manufacturer warranty end date               |                                                                                                                                    |
+| Service Provider Warranty Start | Service Provider Warranty Start date         |                                                                                                                                    |
+| Service Provider Warranty End   | Service Provider Warranty End date           |                                                                                                                                    |
+| Custom Fields                   | The custom fields of the installed equipment | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
+| Attachments                     | List of attachments                          | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
+| Tag Type IDs                    | A list of tags ID's                          |                                                                                                                                    |
 
 ### Update Invoice {#updateinvoice}
 
 Update Invoice
 
-| Input           | Comments                                             | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Connection      |                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Invoice ID      | The ID of the invoice.                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Number          | The invoice number.                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Type ID         | The ID of the type of the payment.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Invoiced On     | The date the invoice was invoiced on.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Subtotal        | The subtotal of the invoice.                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Tax             | The tax of the invoice.                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Summary         | The summary of the invoice.                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Status  | The royalty status of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Date    | The royalty date of the invoice.                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Sent On | The royalty sent date of the invoice.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Royalty Memo    | The royalty sent date of the invoice.                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Export ID       | Gets or sets the identifier when exported.           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Review Status   | The review status of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Assigned To ID  | The ID of the user the invoice is assigned to.       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Items           | The items of the invoice.                            | <code>[<br /> {<br /> "skuId": 0,<br /> "skuName": "string",<br /> "technicianId": 0,<br /> "description": "string",<br /> "quantity": 0,<br /> "unitPrice": 0,<br /> "cost": 0,<br /> "isAddOn": true,<br /> "signature": "string",<br /> "technicianAcknowledgementSignature": "string",<br /> "installedOn": "string",<br /> "inventoryWarehouseName": "string",<br /> "skipUpdatingMembershipPrices": true,<br /> "itemGroupName": "string",<br /> "itemGroupRootId": 0,<br /> "inventoryLocationId": 0,<br /> "durationBillingId": 0,<br /> "id": 0<br /> }<br />]</code> |
-| Payments        | The payments of the invoice.                         | <code>[<br /> {<br /> "id": 0,<br /> "settlementStatus": {},<br /> "settlementDate": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Debug Request   | Enabling this flag will log out the current request. | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Input           | Comments                                       | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Connection      |                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Invoice ID      | The ID of the invoice.                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Number          | The invoice number.                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Type ID         | The ID of the type of the payment.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Invoiced On     | The date the invoice was invoiced on.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Subtotal        | The subtotal of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Tax             | The tax of the invoice.                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Summary         | The summary of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Status  | The royalty status of the invoice.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Date    | The royalty date of the invoice.               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Sent On | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Memo    | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Export ID       | Gets or sets the identifier when exported.     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Review Status   | The review status of the invoice.              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Assigned To ID  | The ID of the user the invoice is assigned to. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Items           | The items of the invoice.                      | <code>[<br /> {<br /> "skuId": 0,<br /> "skuName": "string",<br /> "technicianId": 0,<br /> "description": "string",<br /> "quantity": 0,<br /> "unitPrice": 0,<br /> "cost": 0,<br /> "isAddOn": true,<br /> "signature": "string",<br /> "technicianAcknowledgementSignature": "string",<br /> "installedOn": "string",<br /> "inventoryWarehouseName": "string",<br /> "skipUpdatingMembershipPrices": true,<br /> "itemGroupName": "string",<br /> "itemGroupRootId": 0,<br /> "inventoryLocationId": 0,<br /> "durationBillingId": 0,<br /> "id": 0<br /> }<br />]</code> |
+| Payments        | The payments of the invoice.                   | <code>[<br /> {<br /> "id": 0,<br /> "settlementStatus": {},<br /> "settlementDate": "string"<br /> }<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Update Invoice Custom Fields {#updateinvoicecustomfields}
 
 Update custom fields for specified Invoices
 
-| Input         | Comments                                             | Default                                                                                                                                                    |
-| ------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                                                                                                            |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                                                                                                      |
-| Operations    | The operations to perform on the invoice.            | <code>[<br /> {<br /> "objectId": 0,<br /> "customFields": [<br /> {<br /> "name": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br />]</code> |
+| Input      | Comments                                  | Default                                                                                                                                                    |
+| ---------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection |                                           |                                                                                                                                                            |
+| Operations | The operations to perform on the invoice. | <code>[<br /> {<br /> "objectId": 0,<br /> "customFields": [<br /> {<br /> "name": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br />]</code> |
 
 ### Update Invoice Items {#updateinvoiceitems}
 
@@ -876,7 +825,6 @@ Update invoice items
 | Inventory Location ID                | The inventory location ID of the SKU.                |         |
 | Duration Billing ID                  | The duration billing ID of the SKU.                  |         |
 | ID                                   | The ID.                                              |         |
-| Debug Request                        | Enabling this flag will log out the current request. | false   |
 
 ### Update Job {#updatejob}
 
@@ -899,53 +847,49 @@ Update a job
 | Tag Type IDs                | Tag type IDs for the job                                                                                                     |                                                                                                                                                         |
 | External Data               | External data to attach to the request.                                                                                      | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code> |
 | Customer PO                 | Customer PO                                                                                                                  |                                                                                                                                                         |
-| Debug Request               | Enabling this flag will log out the current request.                                                                         | false                                                                                                                                                   |
 
 ### Update Location {#updatelocation}
 
 Update a location
 
-| Input         | Comments                                             | Default                                                                                                                                                                   |
-| ------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                                                                                                                           |
-| Location ID   | The ID of the location.                              |                                                                                                                                                                           |
-| Customer ID   | The customer ID associated with the location         |                                                                                                                                                                           |
-| Name          | The name of the location                             |                                                                                                                                                                           |
-| Address       | The address of the location                          | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
-| Active        | If false, the location will be marked as inactive    |                                                                                                                                                                           |
-| Tax Zone ID   | ID of the location tax zone                          |                                                                                                                                                                           |
-| Custom Fields | Custom fields for the request                        | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
-| Tag Type IDs  | A list of tags ID's                                  |                                                                                                                                                                           |
-| External Data | External data to attach to the request.              | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                                                                                                                     |
+| Input         | Comments                                          | Default                                                                                                                                                                   |
+| ------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection    |                                                   |                                                                                                                                                                           |
+| Location ID   | The ID of the location.                           |                                                                                                                                                                           |
+| Customer ID   | The customer ID associated with the location      |                                                                                                                                                                           |
+| Name          | The name of the location                          |                                                                                                                                                                           |
+| Address       | The address of the location                       | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
+| Active        | If false, the location will be marked as inactive |                                                                                                                                                                           |
+| Tax Zone ID   | ID of the location tax zone                       |                                                                                                                                                                           |
+| Custom Fields | Custom fields for the request                     | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
+| Tag Type IDs  | A list of tags ID's                               |                                                                                                                                                                           |
+| External Data | External data to attach to the request.           | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
 
 ### Update Payment {#updatepayment}
 
 Update a specified payment
 
-| Input         | Comments                                             | Default                                                                       |
-| ------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                               |
-| Payment ID    | The ID of the payment.                               |                                                                               |
-| Type ID       | The ID of the type of the payment.                   |                                                                               |
-| Splits        | The splits of the payment.                           | <code>[<br /> {<br /> "invoiceId": 0,<br /> "amount": 0<br /> }<br />]</code> |
-| Memo          | The memo of the payment.                             |                                                                               |
-| Paid On       | The date the payment was paid on.                    |                                                                               |
-| Auth Code     | The authorization code for the payment.              |                                                                               |
-| Check Number  | The check number for the payment.                    |                                                                               |
-| Export ID     | Gets or sets the identifier when exported.           |                                                                               |
-| Status        | The status of the payment.                           |                                                                               |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                         |
+| Input        | Comments                                   | Default                                                                       |
+| ------------ | ------------------------------------------ | ----------------------------------------------------------------------------- |
+| Connection   |                                            |                                                                               |
+| Payment ID   | The ID of the payment.                     |                                                                               |
+| Type ID      | The ID of the type of the payment.         |                                                                               |
+| Splits       | The splits of the payment.                 | <code>[<br /> {<br /> "invoiceId": 0,<br /> "amount": 0<br /> }<br />]</code> |
+| Memo         | The memo of the payment.                   |                                                                               |
+| Paid On      | The date the payment was paid on.          |                                                                               |
+| Auth Code    | The authorization code for the payment.    |                                                                               |
+| Check Number | The check number for the payment.          |                                                                               |
+| Export ID    | Gets or sets the identifier when exported. |                                                                               |
+| Status       | The status of the payment.                 |                                                                               |
 
 ### Update Payment Custom Fields {#updatepaymentcustomfields}
 
 Update custom fields for specified payments
 
-| Input         | Comments                                             | Default                                                                                                                                                    |
-| ------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection    |                                                      |                                                                                                                                                            |
-| Debug Request | Enabling this flag will log out the current request. | false                                                                                                                                                      |
-| Operations    | The operations to perform on the payment.            | <code>[<br /> {<br /> "objectId": 0,<br /> "customFields": [<br /> {<br /> "name": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br />]</code> |
+| Input      | Comments                                  | Default                                                                                                                                                    |
+| ---------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection |                                           |                                                                                                                                                            |
+| Operations | The operations to perform on the payment. | <code>[<br /> {<br /> "objectId": 0,<br /> "customFields": [<br /> {<br /> "name": "string",<br /> "value": "string"<br /> }<br /> ]<br /> }<br />]</code> |
 
 ### Update Project {#updateproject}
 
@@ -966,7 +910,6 @@ Update a project
 | Actual Completion Date | Actual completion date of the project                                                               |                                                                                                                                                         |
 | Custom Fields          | Custom fields for the project                                                                       | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                        |
 | External Data          | Optional model that contains a list of external data items that should be attached to this project. | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code> |
-| Debug Request          | Enabling this flag will log out the current request.                                                | false                                                                                                                                                   |
 
 ### Update Technician {#updatetechnician}
 
@@ -994,4 +937,3 @@ Update a technician
 | Job History Date Filter        | Appointment history visibility                                       |                                                                                                                                                                           |
 | Address                        | The home address of the technician                                   | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
 | Custom Fields                  | Custom fields for the technician                                     | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                                                          |
-| Debug Request                  | Enabling this flag will log out the current request.                 | false                                                                                                                                                                     |

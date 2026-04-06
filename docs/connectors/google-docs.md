@@ -36,11 +36,11 @@ The details of the authorization process, or "flow," for OAuth 2.0 vary somewha
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                  | Default                                   |
-| ------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------- |
-| Scopes        | Space delimited listing of scopes. See https://developers.google.com/docs/api/auth#scopes | https://www.googleapis.com/auth/documents |
-| Client ID     | Your Google Docs App's Client ID                                                          |                                           |
-| Client Secret | Your Google Docs App's Client Secret                                                      |                                           |
+| Input         | Comments                                                                                                                                         | Default                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| Scopes        | Space delimited listing of scopes. See [Google Docs API documentation](https://developers.google.com/docs/api/auth#scopes) for available scopes. | https://www.googleapis.com/auth/documents |
+| Client ID     | Your Google Docs App's Client ID                                                                                                                 |                                           |
+| Client Secret | Your Google Docs App's Client Secret                                                                                                             |                                           |
 
 ## Actions
 

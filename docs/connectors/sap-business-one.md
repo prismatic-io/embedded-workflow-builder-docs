@@ -80,62 +80,57 @@ Gather the following information from the SAP Business One administrator:
 
 Invoke the method Close.
 
-| Input         | Comments                                                                                             | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------- | ------- |
-| Doc Entry     | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value. |         |
-| Connection    | The SAP Business One connection to use.                                                              |         |
-| Debug Request | Enabling this flag will log out the current request.                                                 | false   |
+| Input      | Comments                                                                                             | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------- | ------- |
+| Doc Entry  | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value. |         |
+| Connection | The SAP Business One connection to use.                                                              |         |
 
 ### Create Business Partner {#createbusinesspartner}
 
 Create an instance of Business Partners
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Card Code     | The unique code identifying the business partner (customer or supplier).                                                    |         |
-| Card Name     | The name of the business partner (customer or supplier).                                                                    |         |
-| Card Type     | The type of the business partner: Customer (cCustomer), Supplier (cSupplier), or Lead (cLid).                               |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Card Code   | The unique code identifying the business partner (customer or supplier).                                                    |         |
+| Card Name   | The name of the business partner (customer or supplier).                                                                    |         |
+| Card Type   | The type of the business partner: Customer (cCustomer), Supplier (cSupplier), or Lead (cLid).                               |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Create Invoice {#createinvoice}
 
 Create an instance of Invoices.
 
-| Input         | Comments                                                                                                                                     | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Card Code     | The unique code identifying the business partner (customer or supplier).                                                                     |         |
-| Doc Lines     | The document lines containing item details for the order. Each line should include ItemCode, Quantity, and optionally UnitPrice and TaxCode. |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                  |         |
-| Connection    | The SAP Business One connection to use.                                                                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                         | false   |
+| Input       | Comments                                                                                                                                     | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Card Code   | The unique code identifying the business partner (customer or supplier).                                                                     |         |
+| Doc Lines   | The document lines containing item details for the order. Each line should include ItemCode, Quantity, and optionally UnitPrice and TaxCode. |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                  |         |
+| Connection  | The SAP Business One connection to use.                                                                                                      |         |
 
 ### Create Item {#createitem}
 
 Retrieve all or some selected properties from an instance of Items with the given id.
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Item Code     | The unique code identifying the item in the inventory.                                                                      |         |
-| Item Name     | The name of the item in the inventory.                                                                                      |         |
-| Item Type     | The type of the item: Items (itItems), Labor (itLabor), Travel (itTravel), or Fixed Assets (itFixedAssets).                 |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Item Code   | The unique code identifying the item in the inventory.                                                                      |         |
+| Item Name   | The name of the item in the inventory.                                                                                      |         |
+| Item Type   | The type of the item: Items (itItems), Labor (itLabor), Travel (itTravel), or Fixed Assets (itFixedAssets).                 |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Create Order {#createorder}
 
 Create an instance of Orders.
 
-| Input         | Comments                                                                                                                                     | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Card Code     | The business partner code associated with this order.                                                                                        |         |
-| Doc Due Date  | The due date of the order in YYYY-MM-DD format.                                                                                              |         |
-| Doc Lines     | The document lines containing item details for the order. Each line should include ItemCode, Quantity, and optionally UnitPrice and TaxCode. |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                  |         |
-| Connection    | The SAP Business One connection to use.                                                                                                      |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                         | false   |
+| Input        | Comments                                                                                                                                     | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Card Code    | The business partner code associated with this order.                                                                                        |         |
+| Doc Due Date | The due date of the order in YYYY-MM-DD format.                                                                                              |         |
+| Doc Lines    | The document lines containing item details for the order. Each line should include ItemCode, Quantity, and optionally UnitPrice and TaxCode. |         |
+| Body Fields  | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                  |         |
+| Connection   | The SAP Business One connection to use.                                                                                                      |         |
 
 ### Create Price List {#createpricelist}
 
@@ -146,7 +141,6 @@ Create an instance of Price Lists
 | Price List Name | The name of the price list.                                                                                                 |         |
 | Body Fields     | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
 | Connection      | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request   | Enabling this flag will log out the current request.                                                                        | false   |
 
 ### Create Purchase Order {#createpurchaseorder}
 
@@ -158,18 +152,16 @@ Create an instance of Purchase Orders.
 | Document Lines | The document lines containing item details for the order. Each line should include ItemCode, Quantity, and optionally UnitPrice and TaxCode. |         |
 | Body Fields    | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                  |         |
 | Connection     | The SAP Business One connection to use.                                                                                                      |         |
-| Debug Request  | Enabling this flag will log out the current request.                                                                                         | false   |
 
 ### Create Record {#createrecord}
 
 Create a new record in SAP Business One.
 
-| Input         | Comments                                                                                                                                             | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Record Type   | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                          |         |
-| Connection    | The SAP Business One connection to use.                                                                                                              |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                 | false   |
+| Input       | Comments                                                                                                                                             | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Record Type | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                          |         |
+| Connection  | The SAP Business One connection to use.                                                                                                              |         |
 
 ### Create Warehouse {#createwarehouse}
 
@@ -182,27 +174,24 @@ Create an instance of Warehouses.
 | Warehouse Location ID | The unique identifier for the warehouse location. This is an integer value.                                                 |         |
 | Body Fields           | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
 | Connection            | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                        | false   |
 
 ### Delete Business Partner {#deletebusinesspartner}
 
 Delete an instance of BusinessPartners with the specified id.
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Card Code     | The unique code identifying the business partner (customer or supplier). |         |
-| Connection    | The SAP Business One connection to use.                                  |         |
-| Debug Request | Enabling this flag will log out the current request.                     | false   |
+| Input      | Comments                                                                 | Default |
+| ---------- | ------------------------------------------------------------------------ | ------- |
+| Card Code  | The unique code identifying the business partner (customer or supplier). |         |
+| Connection | The SAP Business One connection to use.                                  |         |
 
 ### Delete Item {#deleteitem}
 
 Delete an instance of Items with the specified id.
 
-| Input         | Comments                                               | Default |
-| ------------- | ------------------------------------------------------ | ------- |
-| Item Code     | The unique code identifying the item in the inventory. |         |
-| Connection    | The SAP Business One connection to use.                |         |
-| Debug Request | Enabling this flag will log out the current request.   | false   |
+| Input      | Comments                                               | Default |
+| ---------- | ------------------------------------------------------ | ------- |
+| Item Code  | The unique code identifying the item in the inventory. |         |
+| Connection | The SAP Business One connection to use.                |         |
 
 ### Delete Price List {#deletepricelist}
 
@@ -212,72 +201,65 @@ Delete an instance of Items with the specified id.
 | ----------------- | ----------------------------------------------------------------------- | ------- |
 | Price List Number | The unique number identifying the price list. This is an integer value. |         |
 | Connection        | The SAP Business One connection to use.                                 |         |
-| Debug Request     | Enabling this flag will log out the current request.                    | false   |
 
 ### Delete Record {#deleterecord}
 
 Delete an existing record in SAP Business One.
 
-| Input         | Comments                                                                                                                                             | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Record Type   | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
-| Record ID     | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                      |         |
-| Connection    | The SAP Business One connection to use.                                                                                                              |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                 | false   |
+| Input       | Comments                                                                                                                                             | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Record Type | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
+| Record ID   | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                      |         |
+| Connection  | The SAP Business One connection to use.                                                                                                              |         |
 
 ### Delete Warehouse {#deletewarehouse}
 
 Delete an instance of Warehouses with the specified id.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Warehouse Code | The unique code identifying the warehouse.           |         |
-| Connection     | The SAP Business One connection to use.              |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                                   | Default |
+| -------------- | ------------------------------------------ | ------- |
+| Warehouse Code | The unique code identifying the warehouse. |         |
+| Connection     | The SAP Business One connection to use.    |         |
 
 ### Get Business Partner {#getbusinesspartner}
 
 Retrieve all or some selected properties from an instance of BusinessPartners with the given id.
 
-| Input         | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Card Code     | The unique code identifying the business partner (customer or supplier).                                                                                                                                                                                                                                    |         |
-| Select        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
-| Connection    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                                                                    | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Card Code  | The unique code identifying the business partner (customer or supplier).                                                                                                                                                                                                                                    |         |
+| Select     | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
+| Connection | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
 
 ### Get Invoice {#getinvoice}
 
 Retrieve all or some selected properties from an instance of Warehouses with the given id.
 
-| Input         | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Doc Entry     | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value.                                                                                                                                                                                                        |         |
-| Select        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
-| Connection    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                                                                    | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Doc Entry  | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value.                                                                                                                                                                                                        |         |
+| Select     | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
+| Connection | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
 
 ### Get Item {#getitem}
 
 Retrieve all or some selected properties from an instance of Items with the given id.
 
-| Input         | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Item Code     | The unique code identifying the item in the inventory.                                                                                                                                                                                                                                                      |         |
-| Select        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
-| Connection    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                                                                    | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Item Code  | The unique code identifying the item in the inventory.                                                                                                                                                                                                                                                      |         |
+| Select     | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
+| Connection | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
 
 ### Get Order {#getorder}
 
 Retrieve all or some selected properties from an instance of Orders with the given id.
 
-| Input         | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Doc Entry     | The document entry number (DocEntry) that uniquely identifies the order. This is an integer value.                                                                                                                                                                                                          |         |
-| Select        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
-| Connection    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
+| Input      | Comments                                                                                                                                                                                                                                                                                                    | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Doc Entry  | The document entry number (DocEntry) that uniquely identifies the order. This is an integer value.                                                                                                                                                                                                          |         |
+| Select     | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
+| Connection | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
 
 ### Get Price List {#getpricelist}
 
@@ -288,7 +270,6 @@ Retrieve all or some selected properties from an instance of PriceLists with the
 | Price List Number | The unique number identifying the price list. This is an integer value.                                                                                                                                                                                                                                     |         |
 | Select            | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
 | Connection        | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### Get Purchase Order {#getpurchaseorder}
 
@@ -299,19 +280,17 @@ Retrieve all or some selected properties from an instance of Purchase Orders wit
 | Purchase Order Document Entry | The document entry number (DocEntry) that uniquely identifies the purchase order. This is an integer value.                                                                                                                                                                                                 |         |
 | Select                        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
 | Connection                    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request                 | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### Get Record {#getrecord}
 
 Retrieve a single record from SAP Business One.
 
-| Input         | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Record Type   | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name.                                                                                                                                                        |         |
-| Record ID     | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                                                                                                                                                                             |         |
-| Select        | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
-| Connection    | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
+| Input       | Comments                                                                                                                                                                                                                                                                                                    | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Record Type | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name.                                                                                                                                                        |         |
+| Record ID   | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                                                                                                                                                                             |         |
+| Select      | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
+| Connection  | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
 
 ### Get Warehouse {#getwarehouse}
 
@@ -322,7 +301,6 @@ Retrieve all or some selected properties from an instance of Warehouses with the
 | Warehouse Code | The unique code identifying the warehouse.                                                                                                                                                                                                                                                                  |         |
 | Select         | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
 | Connection     | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request  | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### Get Warehouse Location {#getwarehouselocation}
 
@@ -333,7 +311,6 @@ Retrieve all or some selected properties from an instance of Warehouse Location 
 | Warehouse Location ID | The unique identifier for the warehouse location. This is an integer value.                                                                                                                                                                                                                                 |         |
 | Select                | A comma-separated list of fields to include in the response. If not provided, all fields will be returned and the query may be slower. See [OData $select documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for available fields. |         |
 | Connection            | The SAP Business One connection to use.                                                                                                                                                                                                                                                                     |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Business Partners {#listbusinesspartners}
 
@@ -349,7 +326,6 @@ Retrieve a collection of Business Partners with all or some selected properties
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Invoices {#listinvoices}
 
@@ -365,7 +341,6 @@ Retrieve a collection of Invoices with all or some selected properties in the gi
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Items {#listitems}
 
@@ -381,7 +356,6 @@ Retrieve a collection of Items with all or some selected properties.
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Orders {#listorders}
 
@@ -397,7 +371,6 @@ Retrieve a collection of Orders with all or some selected properties
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Price Lists {#listpricelists}
 
@@ -413,7 +386,6 @@ Retrieve a collection of PriceLists with all or some selected properties.
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Purchase Orders {#listpurchaseorders}
 
@@ -429,7 +401,6 @@ Retrieve a collection of Purchase Orders with all or some selected properties.
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Records {#listrecords}
 
@@ -446,7 +417,6 @@ Retrieve a list of records from SAP Business One.
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Warehouse Locations {#listwarehouselocations}
 
@@ -462,7 +432,6 @@ Retrieve a collection of Warehouses Locations with all or some selected properti
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### List Warehouses {#listwarehouses}
 
@@ -478,7 +447,6 @@ Retrieve a collection of Warehouses with all or some selected properties in the 
 | Filter              | An OData filter expression to apply to the request (e.g., startswith, eq, gt). See [OData $filter documentation](https://help.sap.com/doc/056f69366b5345a386bb8149f1700c19/10.0/en-US/Service%20Layer%20API%20Reference.html) for filter syntax.                                                            |         |
 | Order By            | A comma-separated list of fields to sort by. Add 'asc' or 'desc' after field name for sort direction (e.g., ItemCode desc).                                                                                                                                                                                 |         |
 | Custom Query Params | Custom query parameters to include in the request, such as $expand for related entities.                                                                                                                                                                                                                    |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                        | false   |
 
 ### Raw Request {#rawrequest}
 
@@ -496,7 +464,6 @@ Send raw HTTP request to the SAP Business One API
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                    |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                       | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                            |         |
-| Debug Request           | When true, the request and response details will be logged for debugging purposes.                                                                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                            | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                               | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                            | 0       |
@@ -507,51 +474,47 @@ Send raw HTTP request to the SAP Business One API
 
 Update an instance of Business Partners
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Card Code     | The unique code identifying the business partner (customer or supplier).                                                    |         |
-| Card Name     | The name of the business partner (customer or supplier).                                                                    |         |
-| Card Type     | The type of the business partner: Customer (cCustomer), Supplier (cSupplier), or Lead (cLid).                               |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Card Code   | The unique code identifying the business partner (customer or supplier).                                                    |         |
+| Card Name   | The name of the business partner (customer or supplier).                                                                    |         |
+| Card Type   | The type of the business partner: Customer (cCustomer), Supplier (cSupplier), or Lead (cLid).                               |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Update Invoice {#updateinvoice}
 
 Update an instance of Invoices.
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Doc Entry     | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value.                        |         |
-| Comments      | The comments to be added to the modified order.                                                                             |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Doc Entry   | The document entry number (DocEntry) that uniquely identifies the invoice. This is an integer value.                        |         |
+| Comments    | The comments to be added to the modified order.                                                                             |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Update Item {#updateitem}
 
 Update an instance of Items
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Item Code     | The unique code identifying the item in the inventory.                                                                      |         |
-| Item Name     | The name of the item in the inventory.                                                                                      |         |
-| Item Type     | The type of the item: Items (itItems), Labor (itLabor), Travel (itTravel), or Fixed Assets (itFixedAssets).                 |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Item Code   | The unique code identifying the item in the inventory.                                                                      |         |
+| Item Name   | The name of the item in the inventory.                                                                                      |         |
+| Item Type   | The type of the item: Items (itItems), Labor (itLabor), Travel (itTravel), or Fixed Assets (itFixedAssets).                 |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Update Order {#updateorder}
 
 Update an instance of Orders.
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Doc Entry     | The document entry number (DocEntry) that uniquely identifies the order. This is an integer value.                          |         |
-| Comments      | The comments to be added to the modified order.                                                                             |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
-| Connection    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                        | false   |
+| Input       | Comments                                                                                                                    | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Doc Entry   | The document entry number (DocEntry) that uniquely identifies the order. This is an integer value.                          |         |
+| Comments    | The comments to be added to the modified order.                                                                             |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
+| Connection  | The SAP Business One connection to use.                                                                                     |         |
 
 ### Update Price List {#updatepricelist}
 
@@ -563,7 +526,6 @@ Update an instance of Price Lists.
 | Price List Name   | The name of the price list.                                                                                                 |         |
 | Body Fields       | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
 | Connection        | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                        | false   |
 
 ### Update Purchase Order {#updatepurchaseorder}
 
@@ -575,19 +537,17 @@ Update an instance of Purchase Orders.
 | Comments                      | The comments to be added to the modified order.                                                                             |         |
 | Body Fields                   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
 | Connection                    | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request                 | Enabling this flag will log out the current request.                                                                        | false   |
 
 ### Update Record {#updaterecord}
 
 Update an existing record in SAP Business One.
 
-| Input         | Comments                                                                                                                                             | Default |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Record Type   | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
-| Record ID     | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                      |         |
-| Body Fields   | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                          |         |
-| Connection    | The SAP Business One connection to use.                                                                                                              |         |
-| Debug Request | Enabling this flag will log out the current request.                                                                                                 | false   |
+| Input       | Comments                                                                                                                                             | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Record Type | The type of record to use for the operation (e.g., JournalEntries, Activities, BusinessPartners). This corresponds to the Service Layer entity name. |         |
+| Record ID   | The unique identifier for the record. This is typically an integer value (DocEntry or similar).                                                      |         |
+| Body Fields | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values.                          |         |
+| Connection  | The SAP Business One connection to use.                                                                                                              |         |
 
 ### Update Warehouse {#updatewarehouse}
 
@@ -600,4 +560,3 @@ Update an instance of Warehouses.
 | Warehouse Location ID | The unique identifier for the warehouse location. This is an integer value.                                                 |         |
 | Body Fields           | Additional fields to include in the request body as a JSON object. These fields will be merged with the other input values. |         |
 | Connection            | The SAP Business One connection to use.                                                                                     |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                        | false   |

@@ -15,9 +15,9 @@ This component was built using the [ServiceDesk Plus V3 API Reference](https://w
 
 ## Connections
 
-### ServiceDesk Plus OAuth 2.0 {#sdp-oauth2}
+### OAuth 2.0 {#sdp-oauth2}
 
-This connection allows you to authenticate with ServiceDesk Plus using OAuth 2.0.
+OAuth 2.0 connection for ServiceDesk Plus
 
 Self Client Applications are stand-alone applications that perform only back-end jobs (without any manual intervention) like data sync.
 
@@ -70,7 +70,6 @@ Create a new asset
 | Bar Code               | Unique barcode used to identify the asset                                 |                                                                                   |
 | Extra parameters       | Additional parameters to add to the request                               |                                                                                   |
 | Connection             |                                                                           |                                                                                   |
-| Debug Request          | Enabling this flag will log out the current request.                      | false                                                                             |
 
 ### Create Configuration Item {#createconfigurationitem}
 
@@ -83,129 +82,120 @@ Create a new configuration item on the CMDB
 | Description      | Description of the CI                                  |                                                           |
 | Attributes       | Other attributes to add to the payload                 | <code>{<br /> "txt_ip_address": "127.0.0.1"<br />}</code> |
 | Connection       |                                                        |                                                           |
-| Debug Request    | Enabling this flag will log out the current request.   | false                                                     |
 
 ### Create Problem {#createproblem}
 
 Create a new problem
 
-| Input                 | Comments                                                                                                                                                                   | Default |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                            |         |
-| Problem Title         | Title of the problem.                                                                                                                                                      |         |
-| Problem Description   | Description of the problem.                                                                                                                                                |         |
-| Problem Reported Time | Indicates the reported time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                         |         |
-| Problem Due By Time   | Indicates the due by time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                           |         |
-| Problem Closed Time   | Indicates the closed time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                           |         |
-| Additional Fields     | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details. |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                                                                       | false   |
+| Input                 | Comments                                                                                                                                                                                                         | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                                                                                                                                  |         |
+| Problem Title         | Title of the problem.                                                                                                                                                                                            |         |
+| Problem Description   | Description of the problem.                                                                                                                                                                                      |         |
+| Problem Reported Time | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
+| Problem Due By Time   | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Problem Closed Time   | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
 
 ### Create Problem Note {#createproblemnote}
 
 Create a new problem note
 
-| Input             | Comments                                                                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                                               |         |
-| Problem ID        | ID of the problem.                                                                                                                                                                            |         |
-| Note Description  | Contains description about the note.                                                                                                                                                          |         |
-| Notify To         | Contains info on users or roles to be notified on add/edit operation of the note. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html for details. |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html for details.               |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                                          | false   |
+| Input             | Comments                                                                                                                                                                                                                            | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                                                     |         |
+| Problem ID        | ID of the problem.                                                                                                                                                                                                                  |         |
+| Note Description  | Contains description about the note.                                                                                                                                                                                                |         |
+| Notify To         | Contains info on users or roles to be notified on add/edit operation of the note. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html) for details. |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html) for details.               |         |
 
 ### Create Problem Task {#createproblemtask}
 
 Create a problem task
 
-| Input                    | Comments                                                                                                                                                                        | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               |                                                                                                                                                                                 |         |
-| Problem ID               | ID of the problem.                                                                                                                                                              |         |
-| Task Title               | Title of the task.                                                                                                                                                              |         |
-| Task Description         | Contains description about the task.                                                                                                                                            |         |
-| Task Type                | Used to categorize the tasks of similar cases. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                      |         |
-| Owner                    | The User assigned to the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                                      |         |
-| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                 |         |
-| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                   |         |
-| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                    |         |
-| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                 |         |
-| Group                    | Indicates the assigned group of the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                           |         |
-| Additional Fields        | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details. |         |
-| Debug Request            | Enabling this flag will log out the current request.                                                                                                                            | false   |
+| Input                    | Comments                                                                                                                                                                                                              | Default |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               |                                                                                                                                                                                                                       |         |
+| Problem ID               | ID of the problem.                                                                                                                                                                                                    |         |
+| Task Title               | Title of the task.                                                                                                                                                                                                    |         |
+| Task Description         | Contains description about the task.                                                                                                                                                                                  |         |
+| Task Type                | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
+| Owner                    | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
+| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
+| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                                                          |         |
+| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Group                    | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
+| Additional Fields        | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
 
 ### Create Product {#createproduct}
 
 Create a new product
 
-| Input         | Comments                                                             | Default                                                                                |
-| ------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Product Type  | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
-| Name          | Unique identifier to identify the resource                           |                                                                                        |
-| ID            | Unique identifier to identify the resource                           |                                                                                        |
-| Manufacturer  | Name to identify the product manufacturer.                           |                                                                                        |
-| Is Laptop     | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
-| Part No       | Part no of the productPart no of the product                         |                                                                                        |
-| Attributes    | Other attributes to add to the payload                               |                                                                                        |
-| Connection    |                                                                      |                                                                                        |
-| Debug Request | Enabling this flag will log out the current request.                 | false                                                                                  |
+| Input        | Comments                                                             | Default                                                                                |
+| ------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Product Type | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
+| Name         | Unique identifier to identify the resource                           |                                                                                        |
+| ID           | Unique identifier to identify the resource                           |                                                                                        |
+| Manufacturer | Name to identify the product manufacturer.                           |                                                                                        |
+| Is Laptop    | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
+| Part No      | Part no of the productPart no of the product                         |                                                                                        |
+| Attributes   | Other attributes to add to the payload                               |                                                                                        |
+| Connection   |                                                                      |                                                                                        |
 
 ### Create Product Type {#createproducttype}
 
 Create a new product type
 
-| Input         | Comments                                                              | Default                                                                     |
-| ------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Name          | Unique identifier to identify the resource                            |                                                                             |
-| Category      | Category of the product type. Remove the default value if not needed. | <code>{<br /> "name": "Non-IT",<br /> "id": "234567890123456"<br />}</code> |
-| Asset Type    | Type of the product type. Remove the default value if not needed.     | <code>{<br /> "name": "Asset",<br /> "id": "234567890123456"<br />}</code>  |
-| ID            | Unique identifier to identify the resource                            |                                                                             |
-| Attributes    | Other attributes to add to the payload                                |                                                                             |
-| Connection    |                                                                       |                                                                             |
-| Debug Request | Enabling this flag will log out the current request.                  | false                                                                       |
+| Input      | Comments                                                              | Default                                                                     |
+| ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Name       | Unique identifier to identify the resource                            |                                                                             |
+| Category   | Category of the product type. Remove the default value if not needed. | <code>{<br /> "name": "Non-IT",<br /> "id": "234567890123456"<br />}</code> |
+| Asset Type | Type of the product type. Remove the default value if not needed.     | <code>{<br /> "name": "Asset",<br /> "id": "234567890123456"<br />}</code>  |
+| ID         | Unique identifier to identify the resource                            |                                                                             |
+| Attributes | Other attributes to add to the payload                                |                                                                             |
+| Connection |                                                                       |                                                                             |
 
 ### Create Request {#createrequest}
 
 Create a new request
 
-| Input                     | Comments                                                                                                                                                                   | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                                            |         |
-| Request Subject           | Subject of this request.                                                                                                                                                   |         |
-| Request Description       | Description of this request.                                                                                                                                               |         |
-| Impact Details            | Description about the impact of this request.                                                                                                                              |         |
-| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                |         |
-| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                | false   |
-| Additional Fields         | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html for details. |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                                                                                       | false   |
+| Input                     | Comments                                                                                                                                                                                                         | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                                                                                                                                  |         |
+| Request Subject           | Subject of this request.                                                                                                                                                                                         |         |
+| Request Description       | Description of this request.                                                                                                                                                                                     |         |
+| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |         |
+| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      |         |
+| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false   |
+| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |         |
 
 ### Create Request Task {#createrequesttask}
 
 Create a new request task
 
-| Input                               | Comments                                                                                                                                                                        | Default |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                          |                                                                                                                                                                                 |         |
-| Request ID                          | ID of the request.                                                                                                                                                              |         |
-| Request Task Title                  | Title of the task.                                                                                                                                                              |         |
-| Request Task Percentage Completion  | Indicates the progress of the task in percentage of completion.                                                                                                                 |         |
-| Request Task Estimated Effort Hours | Estimated number of hours to finish the task.                                                                                                                                   |         |
-| Request Task Description            | Contains description about the task.                                                                                                                                            |         |
-| Request Task Owner                  | The User assigned to the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.                                      |         |
-| Request Task Additional Cost        | Cost spent other than the actual cost of the task.                                                                                                                              |         |
-| Request Task Actual End Time        | Date and time at which the task actually got finished. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.              |         |
-| Request Task Actual Start Time      | Date and time at which the task actually got started. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.               |         |
-| Additional Fields                   | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details. |         |
-| Debug Request                       | Enabling this flag will log out the current request.                                                                                                                            | false   |
+| Input                               | Comments                                                                                                                                                                                                              | Default |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                          |                                                                                                                                                                                                                       |         |
+| Request ID                          | ID of the request.                                                                                                                                                                                                    |         |
+| Request Task Title                  | Title of the task.                                                                                                                                                                                                    |         |
+| Request Task Percentage Completion  | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Request Task Estimated Effort Hours | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Request Task Description            | Contains description about the task.                                                                                                                                                                                  |         |
+| Request Task Owner                  | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.                                      |         |
+| Request Task Additional Cost        | Cost spent other than the actual cost of the task.                                                                                                                                                                    |         |
+| Request Task Actual End Time        | Date and time at which the task actually got finished. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.              |         |
+| Request Task Actual Start Time      | Date and time at which the task actually got started. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.               |         |
+| Additional Fields                   | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details. |         |
 
 ### Delete Asset {#deleteasset}
 
 Delete an existing asset
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Asset ID      | Unique identifier to identify the asset              |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Asset ID   | Unique identifier to identify the asset |         |
+| Connection |                                         |         |
 
 ### Delete Configuration Item {#deleteconfigurationitem}
 
@@ -216,90 +206,81 @@ Delete an existing configuration item on the CMDB
 | CI Type API Name | Denotes the unique identifier used to identify the CI. |         |
 | CI IDs           | Unique identifier used to identify the CI.             |         |
 | Connection       |                                                        |         |
-| Debug Request    | Enabling this flag will log out the current request.   | false   |
 
 ### Delete Problem {#deleteproblem}
 
 Delete a problem by ID
 
-| Input                | Comments                                             | Default |
-| -------------------- | ---------------------------------------------------- | ------- |
-| Connection           |                                                      |         |
-| To Delete Problem ID | ID of the problem to be deleted.                     |         |
-| Debug Request        | Enabling this flag will log out the current request. | false   |
+| Input                | Comments                         | Default |
+| -------------------- | -------------------------------- | ------- |
+| Connection           |                                  |         |
+| To Delete Problem ID | ID of the problem to be deleted. |         |
 
 ### Delete Problem Note {#deleteproblemnote}
 
 Delete a problem note
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        |                                                      |         |
-| Problem ID        | ID of the problem.                                   |         |
-| To Delete Note ID | ID of the note to be deleted.                        |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                      | Default |
+| ----------------- | ----------------------------- | ------- |
+| Connection        |                               |         |
+| Problem ID        | ID of the problem.            |         |
+| To Delete Note ID | ID of the note to be deleted. |         |
 
 ### Delete Problem Task {#deleteproblemtask}
 
 Delete a problem task
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        |                                                      |         |
-| Problem ID        | ID of the problem.                                   |         |
-| To Delete Task ID | ID of the task to be deleted.                        |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                      | Default |
+| ----------------- | ----------------------------- | ------- |
+| Connection        |                               |         |
+| Problem ID        | ID of the problem.            |         |
+| To Delete Task ID | ID of the task to be deleted. |         |
 
 ### Delete Product {#deleteproduct}
 
 Delete a single product
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| ID            | Unique identifier to identify the resource           |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| ID         | Unique identifier to identify the resource |         |
+| Connection |                                            |         |
 
 ### Delete Product Type {#deleteproducttype}
 
 Delete a single product type
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| ID            | Unique identifier to identify the resource           |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| ID         | Unique identifier to identify the resource |         |
+| Connection |                                            |         |
 
 ### Delete Request {#deleterequest}
 
 Delete a request by ID
 
-| Input                | Comments                                             | Default |
-| -------------------- | ---------------------------------------------------- | ------- |
-| Connection           |                                                      |         |
-| To Delete Request ID | ID of the request to be deleted.                     |         |
-| Debug Request        | Enabling this flag will log out the current request. | false   |
+| Input                | Comments                         | Default |
+| -------------------- | -------------------------------- | ------- |
+| Connection           |                                  |         |
+| To Delete Request ID | ID of the request to be deleted. |         |
 
 ### Delete Request Task {#deleterequesttask}
 
 Delete a request task by ID
 
-| Input                     | Comments                                             | Default |
-| ------------------------- | ---------------------------------------------------- | ------- |
-| Connection                |                                                      |         |
-| Request ID                | ID of the request.                                   |         |
-| To Delete Request Task ID | ID of the task to be deleted.                        |         |
-| Debug Request             | Enabling this flag will log out the current request. | false   |
+| Input                     | Comments                      | Default |
+| ------------------------- | ----------------------------- | ------- |
+| Connection                |                               |         |
+| Request ID                | ID of the request.            |         |
+| To Delete Request Task ID | ID of the task to be deleted. |         |
 
 ### Get Asset {#getasset}
 
 Retrieve a single asset
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Asset ID      | Unique identifier to identify the asset              |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Asset ID   | Unique identifier to identify the asset |         |
+| Connection |                                         |         |
 
 ### Get Configuration Item {#getconfigurationitem}
 
@@ -310,80 +291,72 @@ Retrieve a single configuration item on the CMDB
 | CI Type API Name | Denotes the unique identifier used to identify the CI. |         |
 | CI ID            | Denotes the unique identifier used to identify the CI. |         |
 | Connection       |                                                        |         |
-| Debug Request    | Enabling this flag will log out the current request.   | false   |
 
 ### Get Problem {#getproblem}
 
 Get a problem by ID
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        |                                                      |         |
-| To Get Problem ID | ID of the problem to be retrieved.                   |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                           | Default |
+| ----------------- | ---------------------------------- | ------- |
+| Connection        |                                    |         |
+| To Get Problem ID | ID of the problem to be retrieved. |         |
 
 ### Get Problem Note {#getproblemnote}
 
 Get a problem note
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Problem ID     | ID of the problem.                                   |         |
-| To Get Note ID | ID of the note to be retrieved.                      |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                        | Default |
+| -------------- | ------------------------------- | ------- |
+| Connection     |                                 |         |
+| Problem ID     | ID of the problem.              |         |
+| To Get Note ID | ID of the note to be retrieved. |         |
 
 ### Get Problem Task {#getproblemtask}
 
 Get a problem task
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Problem ID     | ID of the problem.                                   |         |
-| To Get Task ID | ID of the task to be retrieved.                      |         |
-| Debug Request  | Enabling this flag will log out the current request. | false   |
+| Input          | Comments                        | Default |
+| -------------- | ------------------------------- | ------- |
+| Connection     |                                 |         |
+| Problem ID     | ID of the problem.              |         |
+| To Get Task ID | ID of the task to be retrieved. |         |
 
 ### Get Product {#getproduct}
 
 Retrieve a single product
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| ID            | Unique identifier to identify the resource           |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| ID         | Unique identifier to identify the resource |         |
+| Connection |                                            |         |
 
 ### Get Product Type {#getproducttype}
 
 Retrieve a single product type
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| ID            | Unique identifier to identify the resource           |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| ID         | Unique identifier to identify the resource |         |
+| Connection |                                            |         |
 
 ### Get Request {#getrequest}
 
 Get a request by ID
 
-| Input             | Comments                                             | Default |
-| ----------------- | ---------------------------------------------------- | ------- |
-| Connection        |                                                      |         |
-| To Get Request ID | ID of the request to be retrieved.                   |         |
-| Debug Request     | Enabling this flag will log out the current request. | false   |
+| Input             | Comments                           | Default |
+| ----------------- | ---------------------------------- | ------- |
+| Connection        |                                    |         |
+| To Get Request ID | ID of the request to be retrieved. |         |
 
 ### Get Request Task {#getrequesttask}
 
 Get a request task by ID
 
-| Input                  | Comments                                             | Default |
-| ---------------------- | ---------------------------------------------------- | ------- |
-| Connection             |                                                      |         |
-| Request ID             | ID of the request.                                   |         |
-| To Get Request Task ID | ID of the task to be retrieved.                      |         |
-| Debug Request          | Enabling this flag will log out the current request. | false   |
+| Input                  | Comments                        | Default |
+| ---------------------- | ------------------------------- | ------- |
+| Connection             |                                 |         |
+| Request ID             | ID of the request.              |         |
+| To Get Request Task ID | ID of the task to be retrieved. |         |
 
 ### List Assets {#listassets}
 
@@ -396,7 +369,6 @@ Retrieve a list of assets
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 | Connection                |                                                                                                          |         |
 
 ### List Configuration Items {#listconfigurationitems}
@@ -411,7 +383,6 @@ Retrieve a list of all configuration items on the CMDB
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 | Connection                |                                                                                                          |         |
 
 ### List Problem Notes {#listproblemnotes}
@@ -427,7 +398,6 @@ Retrieve a list of problem notes
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 
 ### List Problems {#listproblems}
 
@@ -441,7 +411,6 @@ Retrieve a list of problems
 | Page                      | Page number to be returned                                                                               | 1       |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 
 ### List Problem Tasks {#listproblemtasks}
 
@@ -456,7 +425,6 @@ Retrieve a list of problem tasks
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 
 ### List Products {#listproducts}
 
@@ -469,7 +437,6 @@ Retrieve a list of products
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 | Connection                |                                                                                                          |         |
 
 ### List Product Types {#listproducttypes}
@@ -483,7 +450,6 @@ Retrieve a list of product types
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 | Connection                |                                                                                                          |         |
 
 ### List Requests {#listrequests}
@@ -498,7 +464,6 @@ Retrieve a list of requests
 | Page                      | Page number to be returned                                                                               | 1       |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 
 ### List Request Tasks {#listrequesttasks}
 
@@ -513,7 +478,6 @@ Retrieve a list of request tasks
 | Page                      | Page number to be returned                                                                               | 1       |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                     | false   |
 
 ### Raw Request {#rawrequest}
 
@@ -553,7 +517,6 @@ Edit an existing asset
 | Bar Code               | Unique barcode used to identify the asset                                 |                                                                                   |
 | Attributes             | Other attributes to add to the payload                                    |                                                                                   |
 | Connection             |                                                                           |                                                                                   |
-| Debug Request          | Enabling this flag will log out the current request.                      | false                                                                             |
 
 ### Update Configuration Item {#updateconfigurationitem}
 
@@ -566,121 +529,113 @@ Edit an existing configuration item on the CMDB
 | Description      | Description of the CI                                  |                                                           |
 | Attributes       | Other attributes to add to the payload                 | <code>{<br /> "txt_ip_address": "127.0.0.1"<br />}</code> |
 | Connection       |                                                        |                                                           |
-| Debug Request    | Enabling this flag will log out the current request.   | false                                                     |
 
 ### Update Problem {#updateproblem}
 
 Update an existing problem
 
-| Input                 | Comments                                                                                                                                                                   | Default |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                            |         |
-| To Update Problem ID  | ID of the problem to be updated.                                                                                                                                           |         |
-| Problem Title         | Title of the problem.                                                                                                                                                      |         |
-| Problem Description   | Description of the problem.                                                                                                                                                |         |
-| Problem Reported Time | Indicates the reported time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                         |         |
-| Problem Due By Time   | Indicates the due by time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                           |         |
-| Problem Closed Time   | Indicates the closed time of the problem. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details.                           |         |
-| Additional Fields     | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html for details. |         |
-| Debug Request         | Enabling this flag will log out the current request.                                                                                                                       | false   |
+| Input                 | Comments                                                                                                                                                                                                         | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                                                                                                                                  |         |
+| To Update Problem ID  | ID of the problem to be updated.                                                                                                                                                                                 |         |
+| Problem Title         | Title of the problem.                                                                                                                                                                                            |         |
+| Problem Description   | Description of the problem.                                                                                                                                                                                      |         |
+| Problem Reported Time | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
+| Problem Due By Time   | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Problem Closed Time   | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
 
 ### Update Problem Note {#updateproblemnote}
 
 Update a problem note
 
-| Input             | Comments                                                                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                                               |         |
-| Problem ID        | ID of the problem.                                                                                                                                                                            |         |
-| To Update Note ID | ID of the note to be updated.                                                                                                                                                                 |         |
-| Note Description  | Contains description about the note.                                                                                                                                                          |         |
-| Notify To         | Contains info on users or roles to be notified on add/edit operation of the note. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html for details. |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html for details.               |         |
-| Debug Request     | Enabling this flag will log out the current request.                                                                                                                                          | false   |
+| Input             | Comments                                                                                                                                                                                                                            | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                                                                                                     |         |
+| Problem ID        | ID of the problem.                                                                                                                                                                                                                  |         |
+| To Update Note ID | ID of the note to be updated.                                                                                                                                                                                                       |         |
+| Note Description  | Contains description about the note.                                                                                                                                                                                                |         |
+| Notify To         | Contains info on users or roles to be notified on add/edit operation of the note. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html) for details. |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_note.html) for details.               |         |
 
 ### Update Problem Task {#updateproblemtask}
 
 Update a problem task
 
-| Input                    | Comments                                                                                                                                                                        | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               |                                                                                                                                                                                 |         |
-| Problem ID               | ID of the problem.                                                                                                                                                              |         |
-| To Update Task ID        | ID of the task to be updated.                                                                                                                                                   |         |
-| Task Title               | Title of the task.                                                                                                                                                              |         |
-| Task Description         | Contains description about the task.                                                                                                                                            |         |
-| Task Type                | Used to categorize the tasks of similar cases. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                      |         |
-| Owner                    | The User assigned to the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                                      |         |
-| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                 |         |
-| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                   |         |
-| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                    |         |
-| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                 |         |
-| Group                    | Indicates the assigned group of the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details.                           |         |
-| Additional Fields        | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html for details. |         |
-| Debug Request            | Enabling this flag will log out the current request.                                                                                                                            | false   |
+| Input                    | Comments                                                                                                                                                                                                              | Default |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               |                                                                                                                                                                                                                       |         |
+| Problem ID               | ID of the problem.                                                                                                                                                                                                    |         |
+| To Update Task ID        | ID of the task to be updated.                                                                                                                                                                                         |         |
+| Task Title               | Title of the task.                                                                                                                                                                                                    |         |
+| Task Description         | Contains description about the task.                                                                                                                                                                                  |         |
+| Task Type                | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
+| Owner                    | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
+| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
+| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                                                          |         |
+| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Group                    | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
+| Additional Fields        | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
 
 ### Update Product {#updateproduct}
 
 Updates an existing product
 
-| Input         | Comments                                                             | Default                                                                                |
-| ------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| ID            | Unique identifier to identify the resource                           |                                                                                        |
-| Product Type  | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
-| Name          | Unique identifier to identify the resource                           |                                                                                        |
-| Manufacturer  | Name to identify the product manufacturer.                           |                                                                                        |
-| Is Laptop     | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
-| Part No       | Part no of the productPart no of the product                         |                                                                                        |
-| Attributes    | Other attributes to add to the payload                               |                                                                                        |
-| Connection    |                                                                      |                                                                                        |
-| Debug Request | Enabling this flag will log out the current request.                 | false                                                                                  |
+| Input        | Comments                                                             | Default                                                                                |
+| ------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| ID           | Unique identifier to identify the resource                           |                                                                                        |
+| Product Type | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
+| Name         | Unique identifier to identify the resource                           |                                                                                        |
+| Manufacturer | Name to identify the product manufacturer.                           |                                                                                        |
+| Is Laptop    | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
+| Part No      | Part no of the productPart no of the product                         |                                                                                        |
+| Attributes   | Other attributes to add to the payload                               |                                                                                        |
+| Connection   |                                                                      |                                                                                        |
 
 ### Update Product Type {#updateproducttype}
 
 Updates an existing product type
 
-| Input         | Comments                                                              | Default                                                                     |
-| ------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| ID            | Unique identifier to identify the resource                            |                                                                             |
-| Name          | Unique identifier to identify the resource                            |                                                                             |
-| Category      | Category of the product type. Remove the default value if not needed. | <code>{<br /> "name": "Non-IT",<br /> "id": "234567890123456"<br />}</code> |
-| Asset Type    | Type of the product type. Remove the default value if not needed.     | <code>{<br /> "name": "Asset",<br /> "id": "234567890123456"<br />}</code>  |
-| Attributes    | Other attributes to add to the payload                                |                                                                             |
-| Connection    |                                                                       |                                                                             |
-| Debug Request | Enabling this flag will log out the current request.                  | false                                                                       |
+| Input      | Comments                                                              | Default                                                                     |
+| ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| ID         | Unique identifier to identify the resource                            |                                                                             |
+| Name       | Unique identifier to identify the resource                            |                                                                             |
+| Category   | Category of the product type. Remove the default value if not needed. | <code>{<br /> "name": "Non-IT",<br /> "id": "234567890123456"<br />}</code> |
+| Asset Type | Type of the product type. Remove the default value if not needed.     | <code>{<br /> "name": "Asset",<br /> "id": "234567890123456"<br />}</code>  |
+| Attributes | Other attributes to add to the payload                                |                                                                             |
+| Connection |                                                                       |                                                                             |
 
 ### Update Request {#updaterequest}
 
 Update a request
 
-| Input                     | Comments                                                                                                                                                                   | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                                            |         |
-| To Update Request ID      | ID of the request to be updated.                                                                                                                                           |         |
-| Request Subject           | Subject of this request.                                                                                                                                                   |         |
-| Request Description       | Description of this request.                                                                                                                                               |         |
-| Impact Details            | Description about the impact of this request.                                                                                                                              |         |
-| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                |         |
-| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                | false   |
-| Additional Fields         | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html for details. |         |
-| Debug Request             | Enabling this flag will log out the current request.                                                                                                                       | false   |
+| Input                     | Comments                                                                                                                                                                                                         | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                                                                                                                                  |         |
+| To Update Request ID      | ID of the request to be updated.                                                                                                                                                                                 |         |
+| Request Subject           | Subject of this request.                                                                                                                                                                                         |         |
+| Request Description       | Description of this request.                                                                                                                                                                                     |         |
+| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |         |
+| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      |         |
+| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false   |
+| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |         |
 
 ### Update Request Task {#updaterequesttask}
 
 Update a request task
 
-| Input                               | Comments                                                                                                                                                                        | Default |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                          |                                                                                                                                                                                 |         |
-| Request ID                          | ID of the request.                                                                                                                                                              |         |
-| To Update Request Task ID           | ID of the task to be updated.                                                                                                                                                   |         |
-| Request Task Title                  | Title of the task.                                                                                                                                                              |         |
-| Request Task Percentage Completion  | Indicates the progress of the task in percentage of completion.                                                                                                                 |         |
-| Request Task Estimated Effort Hours | Estimated number of hours to finish the task.                                                                                                                                   |         |
-| Request Task Description            | Contains description about the task.                                                                                                                                            |         |
-| Request Task Owner                  | The User assigned to the task. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.                                      |         |
-| Request Task Additional Cost        | Cost spent other than the actual cost of the task.                                                                                                                              |         |
-| Request Task Actual End Time        | Date and time at which the task actually got finished. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.              |         |
-| Request Task Actual Start Time      | Date and time at which the task actually got started. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details.               |         |
-| Additional Fields                   | Additional fields that might not be covered by the standard inputs. See https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html for details. |         |
-| Debug Request                       | Enabling this flag will log out the current request.                                                                                                                            | false   |
+| Input                               | Comments                                                                                                                                                                                                              | Default |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                          |                                                                                                                                                                                                                       |         |
+| Request ID                          | ID of the request.                                                                                                                                                                                                    |         |
+| To Update Request Task ID           | ID of the task to be updated.                                                                                                                                                                                         |         |
+| Request Task Title                  | Title of the task.                                                                                                                                                                                                    |         |
+| Request Task Percentage Completion  | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Request Task Estimated Effort Hours | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Request Task Description            | Contains description about the task.                                                                                                                                                                                  |         |
+| Request Task Owner                  | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.                                      |         |
+| Request Task Additional Cost        | Cost spent other than the actual cost of the task.                                                                                                                                                                    |         |
+| Request Task Actual End Time        | Date and time at which the task actually got finished. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.              |         |
+| Request Task Actual Start Time      | Date and time at which the task actually got started. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details.               |         |
+| Additional Fields                   | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request_task.html) for details. |         |

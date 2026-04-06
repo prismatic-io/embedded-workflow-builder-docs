@@ -17,11 +17,11 @@ This component was built using the [Adobe Commerce REST API Overview](https://de
 
 ### API Access Key {#adobecommerceapikey}
 
-Adobe Commerce API Access Key
+Authenticate with Adobe Commerce using an API Access Key and Secret.
 
 The Marketplace EQP API uses a two-step process to authenticate a client application and authorize access to resources:
 
-1. Using your [API access key](https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys/), obtain a session token.
+1. Using your [API access key](https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys), obtain a session token.
 2. You create your API access key from one, or both, of the **Marketplace Developer Portal** user interfaces:
    1. production - [https://commercedeveloper.adobe.com](https://commercedeveloper.adobe.com/)
    2. sandbox - [https://commercedeveloper-sandbox.adobe.com](https://commercedeveloper-sandbox.adobe.com/)
@@ -33,8 +33,8 @@ The Marketplace EQP API uses a two-step process to authenticate a client applica
 
 | Input                      | Comments                                                                                                                                            | Default |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Application ID             | https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys/#what-is-an-api-access-key                                               |         |
-| Application Secret         | https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys/#what-is-an-api-access-key                                               |         |
+| Application ID             | https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys#what-is-an-api-access-key                                                |         |
+| Application Secret         | https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys#what-is-an-api-access-key                                                |         |
 | Use Production Environment | Set true for production environment (https://commercedeveloper-api.adobe.com), false for sandbox (https://commercedeveloper-sandbox-api.adobe.com). | false   |
 
 ## Triggers
@@ -256,10 +256,10 @@ Send raw HTTP request to Adobe Commerce
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                           | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                |         |
 | Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                               | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                                                                                                                         | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                                                                                                                    | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                                                                                                                          | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                                                                                                                   | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                   | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                      | false   |
 
 ### Search Customers {#searchcustomers}
 

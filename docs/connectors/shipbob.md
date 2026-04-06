@@ -13,6 +13,8 @@ Use the Shipbob component to manage orders, shipments, labels, and more.
 
 ### ShipBob Personal Access Token {#apitoken}
 
+Authenticate with ShipBob using a Personal Access Token
+
 If you're building a single-user custom integration, you can use the Personal Access Token (PAT) method. This generates a ready-to-use bearer-type token with full access to the merchant's account.
 
 You can generate credentials from the ShipBob dashboard.
@@ -20,7 +22,7 @@ You can generate credentials from the ShipBob dashboard.
 For Production Environment, [click here](https://web.shipbob.com/app/merchant/#/Integrations/token-management).
 For Sandbox Environment, [click here](https://webstage.shipbob.dev/app/merchant/#/Integrations/token-management).
 
-When you request your first PAT, ShipBob automatically generates an application (called "SMA" or single-merchant application) and [channel](https://developer.shipbob.com/api-docs/#tag/Channels) to house all your future PATs. You can request as many as you like, and revoke them at any time.
+When you request your first PAT, ShipBob automatically generates an application (called "SMA" or single-merchant application) and [channel](https://developer.shipbob.com/api/channels/get-channels) to house all your future PATs. You can request as many as you like, and revoke them at any time.
 
 `NOTE: These tokens do not expire, so be extremely cautious when sharing them.`
 
@@ -30,7 +32,7 @@ To use your PAT, just provide the token as an Authorization header formatted lik
 
 `bearer [your_api_token]`
 
-First you should use your PAT to hit the [GET Channel](https://developer.shipbob.com/api-docs#tag/Channels) endpoint, so you can use your channel ID in the headers of subsequent API calls. Your response will look like this:
+First you should use your PAT to hit the [GET Channel](https://developer.shipbob.com/api/channels/get-channels) endpoint, so you can use your channel ID in the headers of subsequent API calls. Your response will look like this:
 
 | Input                 | Comments                                                                                                                                 | Default |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -42,12 +44,12 @@ First you should use your PAT to hit the [GET Channel](https://developer.shipbob
 
 Get notified when a specific event occurs
 
-| Input                      | Comments                                                                                 | Default |
-| -------------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection                 |                                                                                          |         |
-| Version                    | The version of the ShipBob API to use                                                    | 1.0     |
-| Topics to Subscribe        | Topics to subscribe to                                                                   |         |
-| Overwrite Webhook Settings | True to delete existing webhook settings pointing to this flow's URL and create new ones | false   |
+| Input                      | Comments                                                                                      | Default |
+| -------------------------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection                 | The ShipBob connection to use.                                                                |         |
+| Version                    | The version of the ShipBob API to use                                                         | 1.0     |
+| Topics to Subscribe        | List of webhook topics to subscribe to                                                        |         |
+| Overwrite Webhook Settings | When true, deletes existing webhook settings pointing to this flow's URL and creates new ones | false   |
 
 ### Webhook {#webhook}
 
@@ -61,10 +63,10 @@ Cancel an existing Order by Order ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Order ID           | The order ID to retrieve              |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Cancel Shipments {#cancelshipment}
 
@@ -72,10 +74,10 @@ Cancel multiple Shipments by Shipment ID
 
 | Input              | Comments                              | Default                 |
 | ------------------ | ------------------------------------- | ----------------------- |
-| Connection         |                                       |                         |
+| Connection         | The ShipBob connection to use.        |                         |
 | Version            | The version of the ShipBob API to use | 1.0                     |
-| ShipBob Channel ID | Channel Id for Operation              |                         |
-| Shipment IDs       | Shipment IDs to cancel                | <code>["000xxx"]</code> |
+| ShipBob Channel ID | Channel ID for operation              |                         |
+| Shipment IDs       | List of shipment IDs to cancel        | <code>["000xxx"]</code> |
 
 ### Cancel Warehouse Receiving Order {#cancelwarehousereceivingorder}
 
@@ -83,9 +85,9 @@ Cancels a Warehouse Receiving Order by Order ID
 
 | Input        | Comments                              | Default |
 | ------------ | ------------------------------------- | ------- |
-| Connection   |                                       |         |
+| Connection   | The ShipBob connection to use.        |         |
 | Version      | The version of the ShipBob API to use | 2.0     |
-| Receiving ID | Id of the receiving order             |         |
+| Receiving ID | ID of the receiving order             |         |
 
 ### Create Order {#createorder}
 
@@ -93,49 +95,49 @@ Create a new Order
 
 | Input                 | Comments                                                                                                                                                                                                                               | Default |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                                                        |         |
+| Connection            | The ShipBob connection to use.                                                                                                                                                                                                         |         |
 | Version               | The version of the ShipBob API to use                                                                                                                                                                                                  | 1.0     |
-| ShipBob Channel ID    | Channel Id for Operation                                                                                                                                                                                                               |         |
-| Shipping Method       | Client-defined shipping method matching what the user has listed as the shipping method on the Ship Option Mapping setup page in the ShipBob Merchant Portal. If they don’t match, we will create a new one and default it to Standard |         |
+| ShipBob Channel ID    | Channel ID for operation                                                                                                                                                                                                               |         |
+| Shipping Method       | Client-defined shipping method matching what the user has listed as the shipping method on the Ship Option Mapping setup page in the ShipBob Merchant Portal. If they don't match, a new one will be created and defaulted to Standard |         |
 | Recipient             | Information about the recipient of an order                                                                                                                                                                                            |         |
-| Products              | Products included in the order. Products identified by reference_id must also include the product name if there is no matching ShipBob product.                                                                                        |         |
+| Products              | Products included in the order. Products identified by reference_id must also include the product name if there is no matching ShipBob product                                                                                         |         |
 | Reference ID          | Unique and immutable order identifier from your upstream system                                                                                                                                                                        |         |
-| Shipping Terms        | Contains shipping properties that need to be used for fulfilling an order.                                                                                                                                                             |         |
-| Retailer Program Data | Contains shipping properties that need to be used for fulfilling an order.                                                                                                                                                             |         |
+| Shipping Terms        | Shipping properties to be used for fulfilling an order                                                                                                                                                                                 |         |
+| Retailer Program Data | Retailer-specific program data for fulfilling orders                                                                                                                                                                                   |         |
 | Financials            | Sum of all line item prices, discounts, and taxes in USD                                                                                                                                                                               |         |
-| Order Number          | User friendly orderId or store order number that will be shown on the Orders Page. If not provided, referenceId will be used                                                                                                           |         |
-| Type                  | Defaults to Direct to Consumer (DTC) if not provided. Note: B2B is not supported at this time. One of DTC, B2B, DropShip                                                                                                               |         |
-| Tags                  | Key value pair array to store extra information at the order level for API purposes. ShipBob won't display the info in the ShipBob Merchant Portal or react based on this data.                                                        |         |
-| Purchase Date         | Date this order was purchase by the end user                                                                                                                                                                                           |         |
-| Location ID           | Desired Fulfillment Center Location ID. If not specified, ShipBob will determine the location that fulfills this order.                                                                                                                |         |
-| Gift Message          | Gift message associated with the order                                                                                                                                                                                                 |         |
+| Order Number          | User-friendly order ID or store order number that will be shown on the Orders Page. If not provided, reference ID will be used                                                                                                         |         |
+| Type                  | Order type. Options: DTC (Direct to Consumer), DropShip. Defaults to DTC if not provided. Note: B2B is not currently supported                                                                                                         |         |
+| Tags                  | Key-value pairs to store extra information at the order level for API purposes. ShipBob won't display the info in the ShipBob Merchant Portal or react based on this data                                                              |         |
+| Purchase Date         | Date this order was purchased by the end user (YYYY-MM-DD)                                                                                                                                                                             |         |
+| Location ID           | Desired fulfillment center location ID. If not specified, ShipBob will determine the location that fulfills this order                                                                                                                 |         |
+| Gift Message          | Gift message to include with the order                                                                                                                                                                                                 |         |
 
 ### Create Warehouse Receiving Order {#createwarehousereceivingorder}
 
 Create a new Warehouse Receiving Order
 
-| Input                 | Comments                                                                                                                                                                                                    | Default |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                             |         |
-| Version               | The version of the ShipBob API to use                                                                                                                                                                       | 2.0     |
-| Fulfillment Center    | Model containing information that assigns a receiving order to a fulfillment center. If the fulfillment center provided is in a receiving hub region, then the response will be the receiving hub location. |         |
-| Package Type          |                                                                                                                                                                                                             |         |
-| Box Packaging Type    |                                                                                                                                                                                                             |         |
-| Boxes                 | Box shipments to be added to this receiving order                                                                                                                                                           |         |
-| Expected Arrival Date | Expected arrival date of all the box shipments in this receiving order                                                                                                                                      |         |
-| Purchase Order Number | Purchase order number for this receiving order                                                                                                                                                              |         |
+| Input                 | Comments                                                                                                                                                                    | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The ShipBob connection to use.                                                                                                                                              |         |
+| Version               | The version of the ShipBob API to use                                                                                                                                       | 2.0     |
+| Fulfillment Center    | Information that assigns a receiving order to a fulfillment center. If the fulfillment center is in a receiving hub region, the response will be the receiving hub location |         |
+| Package Type          | Type of package for the shipment                                                                                                                                            |         |
+| Box Packaging Type    | How items are packaged in boxes                                                                                                                                             |         |
+| Boxes                 | Box shipments to be added to this receiving order                                                                                                                           |         |
+| Expected Arrival Date | Expected arrival date of all the box shipments in this receiving order (YYYY-MM-DD)                                                                                         |         |
+| Purchase Order Number | Purchase order number for this receiving order                                                                                                                              |         |
 
 ### Create Webhook {#createwebhook}
 
 Creates a new Webhook
 
-| Input              | Comments                                                                                                                                                               | Default |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                                        |         |
-| Version            | The version of the ShipBob API to use                                                                                                                                  | 1.0     |
-| Topic              | Topic of the webhooks requested                                                                                                                                        |         |
-| Subscription URL   | URL we will call when an event matching the subscription topic is raised. Must have ssl enabled (https) and accept POST requests with content type of application/json |         |
-| ShipBob Channel ID | Channel Id for Operation                                                                                                                                               |         |
+| Input              | Comments                                                                                                                                                       | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The ShipBob connection to use.                                                                                                                                 |         |
+| Version            | The version of the ShipBob API to use                                                                                                                          | 1.0     |
+| Topic              | Topic of the webhook to subscribe to                                                                                                                           |         |
+| Subscription URL   | URL to call when an event matching the subscription topic is raised. Must have SSL enabled (https) and accept POST requests with content type application/json |         |
+| ShipBob Channel ID | Channel ID for operation                                                                                                                                       |         |
 
 ### Delete All Instanced Webhooks {#deleteallwebhooks}
 
@@ -143,7 +145,7 @@ Delete all webhooks that point to a flow in this instance
 
 | Input      | Comments                              | Default |
 | ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
+| Connection | The ShipBob connection to use.        |         |
 | Version    | The version of the ShipBob API to use | 1.0     |
 
 ### Delete Webhook {#deletewebhook}
@@ -152,9 +154,9 @@ Delete a Webhook by Webhook ID
 
 | Input      | Comments                              | Default |
 | ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
+| Connection | The ShipBob connection to use.        |         |
 | Version    | The version of the ShipBob API to use | 1.0     |
-| Webhook ID | Id of the webhook                     |         |
+| Webhook ID | ID of the webhook                     |         |
 
 ### Get a list of Inventory Items by Product ID {#listbyproductid}
 
@@ -162,9 +164,9 @@ Retrieve a list of Inventory Items by their Product ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 | Product ID         | The product ID to retrieve            |         |
 
 ### Get All Shipments for Order {#getallshipmentsfororder}
@@ -173,10 +175,10 @@ Retrieve all Shipments on an Order by Order ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Order ID           | The order ID to retrieve              |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Inventory Item {#getinventoryitem}
 
@@ -184,10 +186,10 @@ Get single inventory item by Inventory ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Inventory ID       | The inventory ID to retrieve          |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Logs for Shipment {#getlogsshipment}
 
@@ -195,27 +197,27 @@ Retrieve logs for a Shipment by Shipment ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Shipment ID        | The shipment ID to retrieve           |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Multiple Products {#listproduct}
 
 Retrieve a list of several Products
 
-| Input              | Comments                                                                                               | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection         |                                                                                                        |         |
-| Version            | The version of the ShipBob API to use                                                                  | 1.0     |
-| ShipBob Channel ID | Channel Id for Operation                                                                               |         |
-| Page               | Page of orders to get                                                                                  |         |
-| Limit              | Amount of orders per page to request                                                                   |         |
-| Order IDs          | Comma separated list of product ids to filter by                                                       |         |
-| Reference IDs      | Reference ids to filter by, comma separated                                                            |         |
-| Search             | Search is available for 2 fields of the inventory record related to the product: Inventory ID and Name |         |
-| Active Status      |                                                                                                        |         |
-| Bundle Status      |                                                                                                        |         |
+| Input              | Comments                                           | Default |
+| ------------------ | -------------------------------------------------- | ------- |
+| Connection         | The ShipBob connection to use.                     |         |
+| Version            | The version of the ShipBob API to use              | 1.0     |
+| ShipBob Channel ID | Channel ID for operation                           |         |
+| Page               | Page number of orders to retrieve                  |         |
+| Limit              | Number of orders per page to retrieve              |         |
+| Order IDs          | Comma separated list of product ids to filter by   |         |
+| Reference IDs      | Comma-separated list of reference IDs to filter by |         |
+| Search             | Search term to filter by Inventory ID or Name      |         |
+| Active Status      | Filter by active status                            |         |
+| Bundle Status      | Filter by bundle status                            |         |
 
 ### Get Order {#getorder}
 
@@ -223,10 +225,10 @@ Retrieve an order by Order ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Order ID           | The order ID to retrieve              |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Shipment {#getshipment}
 
@@ -234,10 +236,10 @@ Retrieve a Shipment by Shipment ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Shipment ID        | The shipment ID to retrieve           |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Single Product {#getproduct}
 
@@ -245,10 +247,10 @@ Retrieve a single product by Product ID
 
 | Input              | Comments                              | Default |
 | ------------------ | ------------------------------------- | ------- |
-| Connection         |                                       |         |
+| Connection         | The ShipBob connection to use.        |         |
 | Version            | The version of the ShipBob API to use | 1.0     |
 | Product ID         | The product ID to retrieve            |         |
-| ShipBob Channel ID | Channel Id for Operation              |         |
+| ShipBob Channel ID | Channel ID for operation              |         |
 
 ### Get Warehouse Receiving Order Box Labels {#getwarehousereceivingorderboxlabels}
 
@@ -256,9 +258,9 @@ Retrieves Receiving Order Box Labels by Order ID
 
 | Input        | Comments                              | Default |
 | ------------ | ------------------------------------- | ------- |
-| Connection   |                                       |         |
+| Connection   | The ShipBob connection to use.        |         |
 | Version      | The version of the ShipBob API to use | 2.0     |
-| Receiving ID | Id of the receiving order             |         |
+| Receiving ID | ID of the receiving order             |         |
 
 ### Get Warehouse Receiving Orders {#getwarehousereceivingorders}
 
@@ -266,9 +268,9 @@ Receive a Warehouse Receiving Order by ID
 
 | Input        | Comments                              | Default |
 | ------------ | ------------------------------------- | ------- |
-| Connection   |                                       |         |
+| Connection   | The ShipBob connection to use.        |         |
 | Version      | The version of the ShipBob API to use | 2.0     |
-| Receiving ID | Id of the receiving order             |         |
+| Receiving ID | ID of the receiving order             |         |
 
 ### List Channels {#listchannels}
 
@@ -276,7 +278,7 @@ List user-authorized channels info
 
 | Input      | Comments                              | Default |
 | ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
+| Connection | The ShipBob connection to use.        |         |
 | Version    | The version of the ShipBob API to use | 1.0     |
 
 ### List Fulfillment Centers {#listfulfillmentcenters}
@@ -285,82 +287,82 @@ Retrieves a list of Fulfillment Centers
 
 | Input      | Comments                              | Default |
 | ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
+| Connection | The ShipBob connection to use.        |         |
 | Version    | The version of the ShipBob API to use | 1.0     |
 
 ### List Inventory Items {#listinventoryitems}
 
 Retrieve a list of Inventory Items
 
-| Input              | Comments                                                                                                                                                                                       | Default |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                                                                |         |
-| Version            | The version of the ShipBob API to use                                                                                                                                                          | 1.0     |
-| ShipBob Channel ID | Channel Id for Operation                                                                                                                                                                       |         |
-| Page               | Page of orders to get                                                                                                                                                                          |         |
-| Limit              | Amount of orders per page to request                                                                                                                                                           |         |
-| IsActive           | Whether the inventory should be active or not                                                                                                                                                  | false   |
-| IsDigital          | Whether the inventory is digital or not                                                                                                                                                        | false   |
-| Order IDs          | Order ids to filter by, comma separated                                                                                                                                                        |         |
-| Sort               | Sort will default to ascending order for each field. To sort in descending order please pass a ' - ' in front of the field name. For example, Sort=-onHand,name will sort by onHand descending |         |
-| Search             | Search is available for 2 fields of the inventory record related to the product: Inventory ID and Name                                                                                         |         |
-| Location Type      | LocationType is valid for hub, spoke, or lts. LocationType will default to all locations.                                                                                                      |         |
+| Input              | Comments                                                                                                                                                      | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The ShipBob connection to use.                                                                                                                                |         |
+| Version            | The version of the ShipBob API to use                                                                                                                         | 1.0     |
+| ShipBob Channel ID | Channel ID for operation                                                                                                                                      |         |
+| Page               | Page number of orders to retrieve                                                                                                                             |         |
+| Limit              | Number of orders per page to retrieve                                                                                                                         |         |
+| IsActive           | When true, marks the inventory as active                                                                                                                      | false   |
+| IsDigital          | When true, marks the inventory as digital (non-physical)                                                                                                      | false   |
+| Order IDs          | Comma-separated list of order IDs to filter by                                                                                                                |         |
+| Sort               | Sort field(s) in ascending order (default). Prefix field with '-' for descending order. Example: -onHand,name sorts by onHand descending, then name ascending |         |
+| Search             | Search term to filter by Inventory ID or Name                                                                                                                 |         |
+| Location Type      | Location type to filter by. Options: hub, spoke, lts. Defaults to all locations if not specified                                                              |         |
 
 ### List Locations {#listlocations}
 
 Receives a list of the physical locations across a fulfillment network
 
-| Input             | Comments                                                 | Default |
-| ----------------- | -------------------------------------------------------- | ------- |
-| Connection        |                                                          |         |
-| Version           | The version of the ShipBob API to use                    | 1.0     |
-| Include Inactive  | Whether the inactive locations should be included or not | false   |
-| Receiving Enabled | Return all the receiving enabled locations               | false   |
-| Access Granted    | Return all the access granted locations                  | false   |
+| Input             | Comments                                              | Default |
+| ----------------- | ----------------------------------------------------- | ------- |
+| Connection        | The ShipBob connection to use.                        |         |
+| Version           | The version of the ShipBob API to use                 | 1.0     |
+| Include Inactive  | When true, includes inactive locations in the results | false   |
+| Receiving Enabled | When true, returns only receiving-enabled locations   | false   |
+| Access Granted    | When true, returns only locations with access granted | false   |
 
 ### List Orders {#listorders}
 
 Retrieve all Orders
 
-| Input                           | Comments                                                                                                                               | Default |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                      |                                                                                                                                        |         |
-| Version                         | The version of the ShipBob API to use                                                                                                  | 1.0     |
-| ShipBob Channel ID              | Channel Id for Operation                                                                                                               |         |
-| Page                            | Page of orders to get                                                                                                                  |         |
-| Limit                           | Amount of orders per page to request                                                                                                   |         |
-| Order IDs                       | Order ids to filter by, comma separated                                                                                                |         |
-| Reference IDs                   | Reference ids to filter by, comma separated                                                                                            |         |
-| Start Date                      | Start date to filter orders inserted later than                                                                                        |         |
-| End Date                        | End date to filter orders inserted earlier than                                                                                        |         |
-| Sort Order                      | Order to sort results in. One Of Newest, Oldest                                                                                        |         |
-| Has Tracking                    | Has any portion of this order been assigned a tracking number                                                                          | false   |
-| Last Update Start Date          | Start date to filter orders updated later than                                                                                         |         |
-| Last Update End Date            | End date to filter orders updated earlier than                                                                                         |         |
-| Is Tracking Uploaded            | Filter orders that their tracking information was fully uploaded                                                                       | false   |
-| Last Tracking Update Start Date | Start date to filter orders with tracking updates later than the supplied date. Will only return orders that have tracking information |         |
-| Last Tracking Update End Date   | End date to filter orders updated later than the supplied date. Will only return orders that have tracking information                 |         |
-| Delivery Start Date             | Start date to filter orders with delivery date later than the supplied date. Will only return orders that have tracking information    |         |
-| Delivery En Date                | End date to filter orders with delivery date earlier than the supplied date. Will only return orders that have tracking information    |         |
-| Fulfillment Start Date          | Start date to filter orders with fulfillment date later than the supplied date. Will only return orders that have tracking information |         |
-| Fulfillment End Date            | End date to filter orders fulfillment date later than the supplied date. Will only return orders that have tracking information        |         |
+| Input                           | Comments                                                                                                                            | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                      | The ShipBob connection to use.                                                                                                      |         |
+| Version                         | The version of the ShipBob API to use                                                                                               | 1.0     |
+| ShipBob Channel ID              | Channel ID for operation                                                                                                            |         |
+| Page                            | Page number of orders to retrieve                                                                                                   |         |
+| Limit                           | Number of orders per page to retrieve                                                                                               |         |
+| Order IDs                       | Comma-separated list of order IDs to filter by                                                                                      |         |
+| Reference IDs                   | Comma-separated list of reference IDs to filter by                                                                                  |         |
+| Start Date                      | Start date to filter orders inserted on or after this date (YYYY-MM-DD)                                                             |         |
+| End Date                        | End date to filter orders inserted on or before this date (YYYY-MM-DD)                                                              |         |
+| Sort Order                      | Order to sort results. Options: Newest, Oldest                                                                                      |         |
+| Has Tracking                    | When true, filters to orders that have been assigned a tracking number                                                              | false   |
+| Last Update Start Date          | Start date to filter orders updated on or after this date (YYYY-MM-DD)                                                              |         |
+| Last Update End Date            | End date to filter orders updated on or before this date (YYYY-MM-DD)                                                               |         |
+| Is Tracking Uploaded            | When true, filters to orders with tracking information fully uploaded                                                               | false   |
+| Last Tracking Update Start Date | Start date to filter orders with tracking updates on or after this date (YYYY-MM-DD). Only returns orders with tracking information |         |
+| Last Tracking Update End Date   | End date to filter orders with tracking updates on or before this date (YYYY-MM-DD). Only returns orders with tracking information  |         |
+| Delivery Start Date             | Start date to filter orders with delivery date on or after this date (YYYY-MM-DD). Only returns orders with tracking information    |         |
+| Delivery En Date                | End date to filter orders with delivery date on or before this date (YYYY-MM-DD). Only returns orders with tracking information     |         |
+| Fulfillment Start Date          | Start date to filter orders with fulfillment date on or after this date (YYYY-MM-DD). Only returns orders with tracking information |         |
+| Fulfillment End Date            | End date to filter orders with fulfillment date on or before this date (YYYY-MM-DD). Only returns orders with tracking information  |         |
 
 ### List Warehouse Receiving Orders {#listwarehousereceivingorders}
 
 Retrieve all Warehouse Receiving Orders
 
-| Input                  | Comments                                                                                                                                                | Default                 |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| Connection             |                                                                                                                                                         |                         |
-| Version                | The version of the ShipBob API to use                                                                                                                   | 2.0                     |
-| Page                   | Page of WROs to get                                                                                                                                     |                         |
-| Limit                  | Number of WROs per page to request                                                                                                                      |                         |
-| Order IDs              | Order ids to filter by, comma separated                                                                                                                 |                         |
-| Statuses               | Items Enum: 'Awaiting' 'Processing' 'Completed' 'Cancelled' 'Incomplete' 'Arrived' 'PartiallyArrived' Comma separated list of WRO statuses to filter by | <code>["000xxx"]</code> |
-| Insert Start Date      | Earliest date that a WRO was created                                                                                                                    |                         |
-| Insert End Date        | Latest date that a WRO was created                                                                                                                      |                         |
-| Fulfillment Center IDs | Comma separated list of WRO fulfillment center IDs to filter by                                                                                         | <code>["000xxx"]</code> |
-| Purchase Order Numbers | Comma separated list of WRO PO numbers to filter by                                                                                                     | <code>["000xxx"]</code> |
+| Input                  | Comments                                                                                                                      | Default                 |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| Connection             | The ShipBob connection to use.                                                                                                |                         |
+| Version                | The version of the ShipBob API to use                                                                                         | 2.0                     |
+| Page                   | Page of WROs to get                                                                                                           |                         |
+| Limit                  | Number of WROs per page to request                                                                                            |                         |
+| Order IDs              | Comma-separated list of order IDs to filter by                                                                                |                         |
+| Statuses               | List of WRO statuses to filter by. Options: Awaiting, Processing, Completed, Cancelled, Incomplete, Arrived, PartiallyArrived | <code>["000xxx"]</code> |
+| Insert Start Date      | Earliest date that a WRO was created (YYYY-MM-DD)                                                                             |                         |
+| Insert End Date        | Latest date that a WRO was created (YYYY-MM-DD)                                                                               |                         |
+| Fulfillment Center IDs | List of WRO fulfillment center IDs to filter by                                                                               | <code>["000xxx"]</code> |
+| Purchase Order Numbers | List of WRO purchase order numbers to filter by                                                                               | <code>["000xxx"]</code> |
 
 ### List Webhooks {#listwebhooks}
 
@@ -368,9 +370,9 @@ Get a list of active Webhooks
 
 | Input      | Comments                               | Default |
 | ---------- | -------------------------------------- | ------- |
-| Connection |                                        |         |
+| Connection | The ShipBob connection to use.         |         |
 | Version    | The version of the ShipBob API to use  | 1.0     |
-| Topic      | Topic of the webhooks requested        |         |
+| Topic      | Topic of the webhook to subscribe to   |         |
 | Page       | Page of Webhooks to get                |         |
 | Limit      | Amount of Webhooks per page to request |         |
 
@@ -380,7 +382,7 @@ Send raw HTTP request to ShipBob
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
+| Connection              | The ShipBob connection to use.                                                                                                                                                                   |         |
 | Version                 | The version of the ShipBob API to use                                                                                                                                                            | 1.0     |
 | URL                     | This is the URL to call.                                                                                                                                                                         |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                          |         |
@@ -402,15 +404,15 @@ Send raw HTTP request to ShipBob
 
 Update information on a single Product
 
-| Input              | Comments                                                                                                     | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection         |                                                                                                              |         |
-| Version            | The version of the ShipBob API to use                                                                        | 1.0     |
-| Product ID         | The product ID to retrieve                                                                                   |         |
-| ShipBob Channel ID | Channel Id for Operation                                                                                     |         |
-| Name               | The name of the product                                                                                      |         |
-| Sku                | The stock keeping unit of the product                                                                        |         |
-| Barcode            | Barcode for the product                                                                                      |         |
-| GTIN               | Global Trade Item Number - unique and internationally recognized identifier assigned to item by company GS1. |         |
-| UPC                | Universal Product Code - Unique external identifier                                                          |         |
-| Unit Price         | The price of one unit                                                                                        |         |
+| Input              | Comments                                                                                                    | Default |
+| ------------------ | ----------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The ShipBob connection to use.                                                                              |         |
+| Version            | The version of the ShipBob API to use                                                                       | 1.0     |
+| Product ID         | The product ID to retrieve                                                                                  |         |
+| ShipBob Channel ID | Channel ID for operation                                                                                    |         |
+| Name               | The name of the product                                                                                     |         |
+| Sku                | The stock keeping unit (SKU) of the product                                                                 |         |
+| Barcode            | Barcode for the product                                                                                     |         |
+| GTIN               | Global Trade Item Number - unique and internationally recognized identifier assigned to item by company GS1 |         |
+| UPC                | Universal Product Code (UPC) - unique external identifier                                                   |         |
+| Unit Price         | The price of one unit in USD                                                                                |         |

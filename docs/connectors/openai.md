@@ -10,9 +10,9 @@ It has produced models including [GPT-4](https://openai.com/research/gpt-4) and 
 
 ## Connections
 
-### OpenAI API Key {#openaiapikey}
+### API Key {#openaiapikey}
 
-Connect to OpenAI using an API key
+API Key connection for OpenAI
 
 Integrations can authenticate with OpenAI using API keys.
 Generate an API key at [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).

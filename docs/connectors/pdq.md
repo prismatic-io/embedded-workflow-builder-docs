@@ -37,32 +37,29 @@ Follow these steps to [generate a new API key](https://connect.pdq.com/hc/en-us/
 
 Deploy a package version to target devices or groups
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Package       | The package id to deploy.                            |         |
-| Targets       | Comma-delimitted Device IDs or Group IDs.            |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                                  | Default |
+| ---------- | ----------------------------------------- | ------- |
+| Package    | The package id to deploy.                 |         |
+| Targets    | Comma-delimitted Device IDs or Group IDs. |         |
+| Connection |                                           |         |
 
 ### Get Device {#getdevice}
 
 Retrieve a device by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Device ID     | The ID of the device to retrieve.                    |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Device ID  | The ID of the device to retrieve. |         |
+| Connection |                                   |         |
 
 ### Get Package {#getpackage}
 
 Retrieve a package by ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Package ID    | The ID of the package                                |         |
-| Connection    |                                                      |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input      | Comments              | Default |
+| ---------- | --------------------- | ------- |
+| Package ID | The ID of the package |         |
+| Connection |                       |         |
 
 ### List Devices {#listdevices}
 
@@ -79,7 +76,6 @@ Retrieve a list of devices
 | Includes            | Include related resources.                                                                                                                |         |
 | Group               | The id of the group to filter by.                                                                                                         |         |
 | Connection          |                                                                                                                                           |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                      | false   |
 
 ### List Groups {#listgroups}
 
@@ -94,7 +90,6 @@ Retrieve a list of groups
 | Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
 | Custom Query Params | Custom fields filter                                                                                                                      |         |
 | Connection          |                                                                                                                                           |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                      | false   |
 
 ### List Packages {#listpackages}
 
@@ -109,7 +104,6 @@ Retrieve a list of packages
 | Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
 | Custom Query Params | Custom fields filter                                                                                                                      |         |
 | Connection          |                                                                                                                                           |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                      | false   |
 
 ### Raw Request {#rawrequest}
 
@@ -128,7 +122,6 @@ Send raw HTTP request to the PDQ API
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                         |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                            | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                 |         |
-| Debug Request           | Enable this to log the request and response                                                                                                                                                                                         | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                 | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                    | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                 | 0       |

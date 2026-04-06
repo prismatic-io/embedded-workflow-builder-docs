@@ -1,7 +1,7 @@
 ---
 title: ShipStation Connector
 sidebar_label: ShipStation
-description: ShipStation is an ecommerce shipping software solution.
+description: Manage shipments, orders, and fulfillments in ShipStation
 ---
 
 ![ShipStation](./assets/shipstation.png#connector-icon)
@@ -16,7 +16,7 @@ This component was built using the [ShipStation API Documentation](https://www.s
 
 ### API Key {#shipstationapikey}
 
-Authenticate requests using an API key and secret
+Authenticate using an API key and secret.
 
 To authenticate with ShipStation, an API Key and API Secret are required.
 
@@ -47,9 +47,44 @@ The API key must have the correct permissions to interact with the ShipStation A
 
 ## Triggers
 
-### Webhook {#shipstationwebhooktrigger}
+### Manual Webhook {#shipstationwebhooktrigger}
 
-Receive and validate webhook requests from ShipStation for webhooks you configure.
+Receive and validate webhook requests from ShipStation for manually configured webhook subscriptions.
+
+### New and Updated Orders {#pollorders}
+
+Checks for new and updated orders in ShipStation on a configured schedule.
+
+| Input      | Comments                           | Default |
+| ---------- | ---------------------------------- | ------- |
+| Connection | The ShipStation connection to use. |         |
+
+### New and Updated Products {#pollproducts}
+
+Checks for new and updated products in ShipStation on a configured schedule.
+
+| Input      | Comments                           | Default |
+| ---------- | ---------------------------------- | ------- |
+| Connection | The ShipStation connection to use. |         |
+
+### New and Updated Shipments {#pollshipments}
+
+Checks for new and updated shipments in ShipStation on a configured schedule.
+
+| Input      | Comments                           | Default |
+| ---------- | ---------------------------------- | ------- |
+| Connection | The ShipStation connection to use. |         |
+
+### Webhook Event Subscription {#webhookeventsubscription}
+
+Receive webhook event notifications from ShipStation. Automatically creates and manages a webhook subscription for the selected event type when the instance is deployed, and removes the subscription when the instance is deleted.
+
+| Input         | Comments                                                                                           | Default |
+| ------------- | -------------------------------------------------------------------------------------------------- | ------- |
+| Connection    | The ShipStation connection to use.                                                                 |         |
+| Webhook Event | The event type to subscribe to for webhook notifications.                                          |         |
+| Store ID      | The store ID to filter webhook triggers. When provided, webhooks will only trigger for this store. |         |
+| Friendly Name | A descriptive label to identify the webhook in the dashboard.                                      |         |
 
 ## Actions
 
@@ -57,41 +92,40 @@ Receive and validate webhook requests from ShipStation for webhooks you configur
 
 Creates a shipping label for a specified order.
 
-| Input        | Comments                                                                                             | Default |
-| ------------ | ---------------------------------------------------------------------------------------------------- | ------- |
-| Order ID     | The unique identifier for the order.                                                                 |         |
-| Carrier Code | The carrier code for the shipping label.                                                             |         |
-| Service Code | The shipping service code for the label.                                                             |         |
-| Confirmation | The delivery confirmation type (e.g., none, delivery, signature, adult_signature, direct_signature). |         |
-| Ship Date    | The date the order should be shipped in YYYY-MM-DD format.                                           |         |
-| Test Label   | When true, creates a test label.                                                                     | false   |
-| Connection   | The ShipStation connection to use.                                                                   |         |
-| Fields       | A list of additional fields to include in the label for order.                                       |         |
+| Input             | Comments                                                                                             | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The ShipStation connection to use.                                                                   |         |
+| Order ID          | The unique identifier for the order.                                                                 |         |
+| Carrier Code      | The carrier code for the shipping label.                                                             |         |
+| Service Code      | The shipping service code for the label.                                                             |         |
+| Confirmation      | The delivery confirmation type (e.g., none, delivery, signature, adult_signature, direct_signature). |         |
+| Ship Date         | The date the order should be shipped in YYYY-MM-DD format.                                           |         |
+| Test Label        | When true, creates a test label.                                                                     | false   |
+| Additional Fields | A list of additional fields to include in the label for order.                                       |         |
 
 ### Create or Update Multiple Orders {#createorupdatemultipleorders}
 
-Create or update multiple orders in one request.
+Creates or updates multiple orders in one request.
 
 | Input        | Comments                                                               | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Orders Array | Provide an array of order objects to create or update multiple orders. | <code>[<br /> {<br /> "orderNumber": "TEST-ORDER-001",<br /> "orderDate": "2023-09-08T12:34:56.000Z",<br /> "orderStatus": "awaiting_shipment",<br /> "billTo": {<br /> "name": "John Doe",<br /> "street1": "123 Main St",<br /> "city": "Anytown",<br /> "state": "CA",<br /> "postalCode": "12345",<br /> "country": "US"<br /> },<br /> "shipTo": {<br /> "name": "John Doe",<br /> "street1": "123 Main St",<br /> "city": "Anytown",<br /> "state": "CA",<br /> "postalCode": "12345",<br /> "country": "US"<br /> }<br /> },<br /> {<br /> "orderNumber": "TEST-ORDER-002",<br /> "orderDate": "2023-09-09T12:34:56.000Z",<br /> "orderStatus": "awaiting_payment",<br /> "billTo": {<br /> "name": "Jane Doe",<br /> "street1": "456 Another St",<br /> "city": "Othertown",<br /> "state": "NY",<br /> "postalCode": "67890",<br /> "country": "US"<br /> },<br /> "shipTo": {<br /> "name": "Jane Doe",<br /> "street1": "456 Another St",<br /> "city": "Othertown",<br /> "state": "NY",<br /> "postalCode": "67890",<br /> "country": "US"<br /> }<br /> }<br />]</code> |
 | Connection   | The ShipStation connection to use.                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Orders Array | Provide an array of order objects to create or update multiple orders. | <code>[<br /> {<br /> "orderNumber": "TEST-ORDER-001",<br /> "orderDate": "2023-09-08T12:34:56.000Z",<br /> "orderStatus": "awaiting_shipment",<br /> "billTo": {<br /> "name": "John Doe",<br /> "street1": "123 Main St",<br /> "city": "Anytown",<br /> "state": "CA",<br /> "postalCode": "12345",<br /> "country": "US"<br /> },<br /> "shipTo": {<br /> "name": "John Doe",<br /> "street1": "123 Main St",<br /> "city": "Anytown",<br /> "state": "CA",<br /> "postalCode": "12345",<br /> "country": "US"<br /> }<br /> },<br /> {<br /> "orderNumber": "TEST-ORDER-002",<br /> "orderDate": "2023-09-09T12:34:56.000Z",<br /> "orderStatus": "awaiting_payment",<br /> "billTo": {<br /> "name": "Jane Doe",<br /> "street1": "456 Another St",<br /> "city": "Othertown",<br /> "state": "NY",<br /> "postalCode": "67890",<br /> "country": "US"<br /> },<br /> "shipTo": {<br /> "name": "Jane Doe",<br /> "street1": "456 Another St",<br /> "city": "Othertown",<br /> "state": "NY",<br /> "postalCode": "67890",<br /> "country": "US"<br /> }<br /> }<br />]</code> |
 
 ### Create or Update Order {#createorupdateorder}
 
-Create a new order or update an existing one.
+Creates a new order or updates an existing one.
 
-| Input            | Comments                                                                                                                                                  | Default                                                                                                                                                                                                                                                                  |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Order Number     | The user-defined order number to identify the order.                                                                                                      |                                                                                                                                                                                                                                                                          |
-| Order Date       | The date the order was placed.                                                                                                                            | 2023-09-08T12:34:56.000Z                                                                                                                                                                                                                                                 |
-| Order Status     | The order status to filter results (e.g., awaiting_payment, awaiting_shipment, shipped).                                                                  |                                                                                                                                                                                                                                                                          |
-| Order Key        | The unique order key. If provided, the create order method will either create a new order if the key is not found, or update the existing order if found. |                                                                                                                                                                                                                                                                          |
-| Billing Address  | Provide the billing address in JSON format.                                                                                                               | <code>{<br /> "name": "John Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
-| Shipping Address | Provide the shipping address in JSON format.                                                                                                              | <code>{<br /> "name": "Jane Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
-| Connection       | The ShipStation connection to use.                                                                                                                        |                                                                                                                                                                                                                                                                          |
-| Field            | A list of additional fields to include in the order.                                                                                                      |                                                                                                                                                                                                                                                                          |
-| Debug Request    | Enabling this flag will log out the current request.                                                                                                      | false                                                                                                                                                                                                                                                                    |
+| Input             | Comments                                                                                                                                                  | Default                                                                                                                                                                                                                                                                  |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Connection        | The ShipStation connection to use.                                                                                                                        |                                                                                                                                                                                                                                                                          |
+| Order Number      | The user-defined order number to identify the order.                                                                                                      |                                                                                                                                                                                                                                                                          |
+| Order Date        | The date the order was placed. Format: ISO 8601 (e.g., 2023-09-08T12:34:56.000Z).                                                                         | 2023-09-08T12:34:56.000Z                                                                                                                                                                                                                                                 |
+| Order Status      | The order status to filter results (e.g., awaiting_payment, awaiting_shipment, shipped).                                                                  |                                                                                                                                                                                                                                                                          |
+| Order Key         | The unique order key. If provided, the create order method will either create a new order if the key is not found, or update the existing order if found. |                                                                                                                                                                                                                                                                          |
+| Billing Address   | Provide the billing address in JSON format.                                                                                                               | <code>{<br /> "name": "John Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
+| Shipping Address  | Provide the shipping address in JSON format.                                                                                                              | <code>{<br /> "name": "Jane Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
+| Additional Fields | A list of additional fields to include in the order.                                                                                                      |                                                                                                                                                                                                                                                                          |
 
 ### Create Shipment Label {#createshipmentlabel}
 
@@ -100,23 +134,23 @@ Creates a shipping label.
 | Input             | Comments                                                                                | Default                                                                                                                                                                                                                                                                           |
 | ----------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        | The ShipStation connection to use.                                                      |                                                                                                                                                                                                                                                                                   |
-| Carrier Code      | The carrier code for shipping.                                                          |                                                                                                                                                                                                                                                                                   |
+| Carrier Code      | The carrier code for the shipping label.                                                |                                                                                                                                                                                                                                                                                   |
 | Service Code      | The shipping service code for the label.                                                |                                                                                                                                                                                                                                                                                   |
 | Package Code      | The package type code for the label.                                                    |                                                                                                                                                                                                                                                                                   |
-| Ship Date         | The date the shipment will be shipped in YYYY-MM-DD format.                             |                                                                                                                                                                                                                                                                                   |
+| Ship Date         | The date the order should be shipped in YYYY-MM-DD format.                              |                                                                                                                                                                                                                                                                                   |
 | Shipment's Weight | The weight of the shipment, following the Weight model. Note: WeightUnits is read-only. | <code>{<br /> "value": 3,<br /> "units": "ounces",<br /> "WeightUnits": 2<br />}</code>                                                                                                                                                                                           |
 | Shipping Address  | Provide the shipping address in JSON format.                                            | <code>{<br /> "name": "Jane Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code>          |
 | Origin Address    | Provide the origin address in JSON format.                                              | <code>{<br /> "name": "John Smith",<br /> "company": "JS Company",<br /> "street1": "456 Elm St",<br /> "city": "San Francisco",<br /> "state": "CA",<br /> "postalCode": "94107",<br /> "country": "US",<br /> "phone": "987-654-3210",<br /> "residential": false<br />}</code> |
-| Field             | A list of additional fields to include in the shipment.                                 |                                                                                                                                                                                                                                                                                   |
+| Additional Fields | A list of additional fields to include in the shipment.                                 |                                                                                                                                                                                                                                                                                   |
 
 ### Create Warehouse {#createwarehouse}
 
-Adds a Ship From Location (formerly known as warehouse) to your account.
+Creates a Ship From Location (warehouse) in the ShipStation account.
 
 | Input                | Comments                                                                 | Default |
 | -------------------- | ------------------------------------------------------------------------ | ------- |
 | Connection           | The ShipStation connection to use.                                       |         |
-| Warehouse Name       | The name of the ship from location.                                      |         |
+| Warehouse Name       | A descriptive label for the ship-from location.                          |         |
 | Origin Address       | The origin address. Shipping rates will be calculated from this address. |         |
 | Return Address       | The return address. If not specified, the origin address will be used.   |         |
 | Is Default Warehouse | When true, sets this as the default ship from location.                  | false   |
@@ -140,16 +174,16 @@ Deletes all webhooks that point to a flow in this instance.
 
 ### Delete Order {#deleteorder}
 
-Soft delete an order from the database, setting it to inactive.
+Deletes an order from the database by setting it to inactive.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
-| Order ID   | The unique identifier for the order. |         |
 | Connection | The ShipStation connection to use.   |         |
+| Order ID   | The unique identifier for the order. |         |
 
 ### Delete Warehouse {#deletewarehouse}
 
-Removes a warehouse (or Ship From location) from ShipStation's UI. Sets it to Inactive status.
+Deletes a warehouse (Ship From Location) by setting it to inactive status.
 
 | Input        | Comments                                 | Default |
 | ------------ | ---------------------------------------- | ------- |
@@ -158,34 +192,34 @@ Removes a warehouse (or Ship From location) from ShipStation's UI. Sets it to In
 
 ### Get Customer {#getcustomer}
 
-Retrieve a specific customer by their system generated identifier
+Retrieves a specific customer by their system-generated identifier.
 
 | Input       | Comments                                | Default |
 | ----------- | --------------------------------------- | ------- |
-| Customer ID | The unique identifier for the customer. |         |
 | Connection  | The ShipStation connection to use.      |         |
+| Customer ID | The unique identifier for the customer. |         |
 
 ### Get Order {#getorder}
 
-Retrieve a single order from the database.
+Retrieves a single order from the database.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
-| Order ID   | The unique identifier for the order. |         |
 | Connection | The ShipStation connection to use.   |         |
+| Order ID   | The unique identifier for the order. |         |
 
 ### Get Product {#getproduct}
 
-Retrieve a specific product from the database by its ID.
+Retrieves a specific product from the database by its ID.
 
 | Input      | Comments                               | Default |
 | ---------- | -------------------------------------- | ------- |
-| Product ID | The unique identifier for the product. |         |
 | Connection | The ShipStation connection to use.     |         |
+| Product ID | The unique identifier for the product. |         |
 
 ### Get Store {#getstore}
 
-Retrieve detailed information about a specific store.
+Retrieves detailed information about a specific store.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
@@ -194,7 +228,7 @@ Retrieve detailed information about a specific store.
 
 ### Get Warehouse {#getwarehouse}
 
-Retrieve detailed information about a specific Ship From Location (formerly known as warehouse).
+Retrieves detailed information about a specific Ship From Location (warehouse).
 
 | Input        | Comments                                 | Default |
 | ------------ | ---------------------------------------- | ------- |
@@ -203,7 +237,7 @@ Retrieve detailed information about a specific Ship From Location (formerly know
 
 ### List Carriers {#listcarriers}
 
-List all shipping providers connected to this ShipStation account.
+Lists all shipping providers connected to the ShipStation account.
 
 | Input      | Comments                           | Default |
 | ---------- | ---------------------------------- | ------- |
@@ -211,23 +245,23 @@ List all shipping providers connected to this ShipStation account.
 
 ### List Customers {#listcustomers}
 
-Retrieve a list of customers based on specified criteria
+Retrieves a list of customers based on specified criteria.
 
-| Input          | Comments                                                        | Default |
-| -------------- | --------------------------------------------------------------- | ------- |
-| State Code     | The state code to filter customers.                             |         |
-| Country Code   | The two-letter ISO country code to filter customers.            |         |
-| Marketplace ID | The marketplace ID to filter customers.                         |         |
-| Tag ID         | The tag ID to filter customers.                                 |         |
-| Sort By        | The field name to sort results by.                              |         |
-| Sort Direction | The direction to sort results (asc or desc).                    |         |
-| Page           | The page number to retrieve (starts at 1).                      |         |
-| Page Size      | The maximum number of results to return per page. Maximum: 500. |         |
-| Connection     | The ShipStation connection to use.                              |         |
+| Input          | Comments                                                                | Default |
+| -------------- | ----------------------------------------------------------------------- | ------- |
+| Connection     | The ShipStation connection to use.                                      |         |
+| State Code     | The two-letter state or province abbreviation for the customer address. |         |
+| Country Code   | The two-letter ISO country code to filter customers.                    |         |
+| Marketplace ID | The unique identifier for the marketplace to filter results by.         |         |
+| Tag ID         | The unique identifier for the tag to filter results by.                 |         |
+| Sort By        | The API field name used to sort the returned results.                   |         |
+| Sort Direction | The direction to sort results (asc or desc).                            |         |
+| Page           | The page number to retrieve (starts at 1).                              |         |
+| Page Size      | The maximum number of results to return per page. Maximum: 500.         |         |
 
 ### List Fulfillments {#listfulfillments}
 
-Retrieve a list of fulfillments based on specified criteria.
+Retrieves a list of fulfillments based on specified criteria.
 
 | Input          | Comments                                                        | Default |
 | -------------- | --------------------------------------------------------------- | ------- |
@@ -239,40 +273,40 @@ Retrieve a list of fulfillments based on specified criteria.
 
 ### List Orders {#listorders}
 
-Retrieve a list of orders based on specified criteria.
+Retrieves a list of orders based on specified criteria.
 
 | Input         | Comments                                                                                 | Default |
 | ------------- | ---------------------------------------------------------------------------------------- | ------- |
-| Customer Name | The customer name to filter orders.                                                      |         |
+| Connection    | The ShipStation connection to use.                                                       |         |
+| Customer Name | The full name associated with the customer record.                                       |         |
 | Order Status  | The order status to filter results (e.g., awaiting_payment, awaiting_shipment, shipped). |         |
 | Page          | The page number to retrieve (starts at 1).                                               |         |
 | Page Size     | The maximum number of results to return per page. Maximum: 500.                          |         |
-| Connection    | The ShipStation connection to use.                                                       |         |
 
 ### List Packages {#listpackages}
 
 Retrieves a list of packages for the specified carrier.
 
-| Input        | Comments                           | Default |
-| ------------ | ---------------------------------- | ------- |
-| Carrier Code | The carrier code for shipping.     |         |
-| Connection   | The ShipStation connection to use. |         |
+| Input        | Comments                                 | Default |
+| ------------ | ---------------------------------------- | ------- |
+| Connection   | The ShipStation connection to use.       |         |
+| Carrier Code | The carrier code for the shipping label. |         |
 
 ### List Products {#listproducts}
 
-Obtains a list of products that match the specified criteria.
+Retrieves a list of products that match the specified criteria.
 
 | Input               | Comments                                                                 | Default |
 | ------------------- | ------------------------------------------------------------------------ | ------- |
 | Connection          | The ShipStation connection to use.                                       |         |
-| SKU                 | The SKU to filter products.                                              |         |
-| Product Name        | The product name to filter results.                                      |         |
-| Product Category ID | The product category ID to filter results.                               |         |
-| Product Type ID     | The product type ID to filter results.                                   |         |
-| Tag ID              | The tag ID to filter customers.                                          |         |
+| SKU                 | The stock keeping unit code assigned to the product.                     |         |
+| Product Name        | The display name of the product to search for.                           |         |
+| Product Category ID | The unique identifier for the category grouping the product.             |         |
+| Product Type ID     | The unique identifier for the product type classification.               |         |
+| Tag ID              | The unique identifier for the tag to filter results by.                  |         |
 | Start Date          | The start date to filter products by creation date in YYYY-MM-DD format. |         |
 | End Date            | The end date to filter products by creation date in YYYY-MM-DD format.   |         |
-| Sort By             | The field name to sort results by.                                       |         |
+| Sort By             | The API field name used to sort the returned results.                    |         |
 | Sort Direction      | The direction to sort results (asc or desc).                             |         |
 | Page                | The page number to retrieve (starts at 1).                               |         |
 | Page Size           | The maximum number of results to return per page. Maximum: 500.          |         |
@@ -280,33 +314,33 @@ Obtains a list of products that match the specified criteria.
 
 ### List Services {#listservices}
 
-Retrieves the list of available shipping services provided by the specified carrier.
+Retrieves the list of available shipping services for the specified carrier.
 
-| Input        | Comments                           | Default |
-| ------------ | ---------------------------------- | ------- |
-| Carrier Code | The carrier code for shipping.     |         |
-| Connection   | The ShipStation connection to use. |         |
+| Input        | Comments                                 | Default |
+| ------------ | ---------------------------------------- | ------- |
+| Connection   | The ShipStation connection to use.       |         |
+| Carrier Code | The carrier code for the shipping label. |         |
 
 ### List Shipments {#listshipments}
 
-Obtains a list of shipments that match the specified criteria.
+Retrieves a list of shipments that match the specified criteria.
 
 | Input                  | Comments                                                                  | Default |
 | ---------------------- | ------------------------------------------------------------------------- | ------- |
 | Connection             | The ShipStation connection to use.                                        |         |
-| Tracking Number        | The tracking number to filter shipments.                                  |         |
+| Tracking Number        | The carrier-assigned tracking number for the shipment.                    |         |
 | Create Date Start      | The start date to filter shipments by creation date in YYYY-MM-DD format. |         |
 | Create Date End        | The end date to filter shipments by creation date in YYYY-MM-DD format.   |         |
 | Ship Date Start        | The start date to filter shipments by ship date in YYYY-MM-DD format.     |         |
 | Ship Date End          | The end date to filter shipments by ship date in YYYY-MM-DD format.       |         |
-| Recipient Name         | The recipient name to filter shipments.                                   |         |
+| Recipient Name         | The name of the person or business receiving the shipment.                |         |
 | Recipient Country Code | The two-letter ISO country code to filter shipments by recipient country. |         |
 | Page                   | The page number to retrieve (starts at 1).                                |         |
 | Page Size              | The maximum number of results to return per page. Maximum: 500.           |         |
 
 ### List Stores {#liststores}
 
-Retrieve the list of installed stores on the account.
+Retrieves the list of installed stores on the account.
 
 | Input          | Comments                                            | Default |
 | -------------- | --------------------------------------------------- | ------- |
@@ -316,16 +350,16 @@ Retrieve the list of installed stores on the account.
 
 ### List Users {#listusers}
 
-Retrieve the list of users on the account.
+Retrieves the list of users on the account.
 
-| Input               | Comments                                                                 | Default |
-| ------------------- | ------------------------------------------------------------------------ | ------- |
-| Connection          | The ShipStation connection to use.                                       |         |
-| Show Inactive Users | Determines whether inactive users will be returned in the list of users. | false   |
+| Input               | Comments                                           | Default |
+| ------------------- | -------------------------------------------------- | ------- |
+| Connection          | The ShipStation connection to use.                 |         |
+| Show Inactive Users | When true, includes inactive users in the results. | false   |
 
 ### List Warehouses {#listwarehouses}
 
-Retrieves a list of your Ship From Locations (formerly known as warehouses).
+Retrieves a list of Ship From Locations (warehouses) in the account.
 
 | Input      | Comments                           | Default |
 | ---------- | ---------------------------------- | ------- |
@@ -341,7 +375,7 @@ Retrieves a list of registered webhooks for the account.
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to ShipStation.
+Sends a raw HTTP request to the ShipStation API.
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -355,7 +389,6 @@ Send raw HTTP request to ShipStation.
 | Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
@@ -372,7 +405,7 @@ Subscribes to a specific type of webhook in ShipStation.
 | Target URL    | The URL where webhook events will be sent.                                                         |         |
 | Event         | The webhook event type to subscribe to.                                                            |         |
 | Store ID      | The store ID to filter webhook triggers. When provided, webhooks will only trigger for this store. |         |
-| Friendly Name | The display name for the webhook.                                                                  |         |
+| Friendly Name | A descriptive label to identify the webhook in the dashboard.                                      |         |
 
 ### Unsubscribe from Webhook {#unsubscribetowebhook}
 
@@ -389,9 +422,9 @@ Updates an existing product.
 
 | Input        | Comments                                                                                | Default                                                                                            |
 | ------------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Connection   | The ShipStation connection to use.                                                      |                                                                                                    |
 | Product ID   | The unique identifier for the product.                                                  |                                                                                                    |
 | Product Data | The complete data for updating the product. This call does not support partial updates. | <code>{<br /> "aliases": null,<br /> "productId": 123456789,<br /> "sku": "BEAU-000"<br />}</code> |
-| Connection   | The ShipStation connection to use.                                                      |                                                                                                    |
 
 ### Update Store {#updatestore}
 
@@ -405,7 +438,7 @@ Updates an existing store.
 
 ### Update Warehouse {#updatewarehouse}
 
-Updates an existing Ship From Location (formerly known as warehouse).
+Updates an existing Ship From Location (warehouse).
 
 | Input                 | Comments                                                                                        | Default                                                                                           |
 | --------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |

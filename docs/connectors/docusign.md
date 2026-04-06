@@ -14,7 +14,7 @@ This component was built using the [DocuSign eSignature REST API Reference](http
 
 ## Connections
 
-### DocuSign OAuth 2.0 {#docusignoauthconnection}
+### OAuth 2.0 {#docusignoauthconnection}
 
 OAuth 2.0 connection for DocuSign
 

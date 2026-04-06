@@ -99,12 +99,12 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Add metaproperty options to an asset
 
-| Input                    | Comments                                                             | Default |
-| ------------------------ | -------------------------------------------------------------------- | ------- |
-| Asset ID                 | Id of the asset.                                                     |         |
-| Metaproperty ID          | The unique identifier of the metaproperty from which to add options. |         |
-| Metaproperty Options IDs | The list of metaproperty option IDs to add to the asset.             |         |
-| Connection               | The Bynder connection to use.                                        |         |
+| Input                    | Comments                                                      | Default |
+| ------------------------ | ------------------------------------------------------------- | ------- |
+| Asset ID                 | Id of the asset.                                              |         |
+| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |         |
+| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. |         |
+| Connection               |                                                               |         |
 
 ### Close Campaign {#closecampaign}
 
@@ -113,20 +113,20 @@ Delete an existing campaign
 | Input       | Comments                         | Default |
 | ----------- | -------------------------------- | ------- |
 | Campaign ID | The ID of the campaign to delete |         |
-| Connection  | The Bynder connection to use.    |         |
+| Connection  |                                  |         |
 
 ### Create Campaign {#createcampaign}
 
 Create a new campaign
 
-| Input          | Comments                                                        | Default |
-| -------------- | --------------------------------------------------------------- | ------- |
-| Name           | The name of the campaign                                        |         |
-| Key            | A 4-character key representing the campaign.                    |         |
-| Description    | The description of the campaign                                 |         |
-| Responsible ID | The unique identifier of the user responsible for the campaign. |         |
-| Data           | Additional data to update the campaign                          |         |
-| Connection     | The Bynder connection to use.                                   |         |
+| Input          | Comments                                    | Default |
+| -------------- | ------------------------------------------- | ------- |
+| Name           | The name of the campaign                    |         |
+| Key            | 4 character key representing the campaign   |         |
+| Description    | The description of the campaign             |         |
+| Responsible ID | Id of the user responsible for the campaign |         |
+| Data           | Additional data to update the campaign      |         |
+| Connection     |                                             |         |
 
 ### Create Collection {#createcollection}
 
@@ -136,7 +136,7 @@ Create a new collection
 | ---------------------- | ------------------------------------------- | ------- |
 | Collection Name        | The name of the collection to create        |         |
 | Collection Description | The description of the collection to create |         |
-| Connection             | The Bynder connection to use.               |         |
+| Connection             |                                             |         |
 
 ### Create Job {#createjob}
 
@@ -150,42 +150,42 @@ Create a new job
 | Preset ID      | Id of the preset the job should be created from |         |
 | Description    | The description of the job                      |         |
 | Data           | Additional data to create the job               |         |
-| Connection     | The Bynder connection to use.                   |         |
+| Connection     |                                                 |         |
 
 ### Create User {#createuser}
 
 Create a new user
 
-| Input      | Comments                                                                                                                                                     | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Email      | The email address used to identify and authenticate the user.                                                                                                |         |
-| Password   | The password used to authenticate the user.                                                                                                                  |         |
-| Profile ID | The unique identifier of the security profile that determines the user's access rights. Retrieve available profiles using the List Security Profiles action. |         |
-| First Name | The first name of the user.                                                                                                                                  |         |
-| Last Name  | The last name of the user.                                                                                                                                   |         |
-| Username   | The username for login. If not defined, the email address is used as the username.                                                                           |         |
-| Data       | Additional fields to include in the request body as a JSON object.                                                                                           |         |
-| Connection | The Bynder connection to use.                                                                                                                                |         |
+| Input      | Comments                                                                                                              | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
+| Email      | Email address for login.                                                                                              |         |
+| Password   | Password for login.                                                                                                   |         |
+| Profile ID | Security profile id for determining the user's rights. Can be retrieved by using the Retrieve security profiles call. |         |
+| First Name | First name of the user.                                                                                               |         |
+| Last Name  | Last name of the user.                                                                                                |         |
+| Username   | Username for login. If not defined it will take your email as username.                                               |         |
+| Data       | Extra fields to be included in the request. Must be valid JSON.                                                       |         |
+| Connection |                                                                                                                       |         |
 
 ### Delete Asset {#deleteasset}
 
 Delete an existing asset
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| ID         | The unique identifier of the resource to retrieve. |         |
-| Connection | The Bynder connection to use.                      |         |
+| Input      | Comments                           | Default |
+| ---------- | ---------------------------------- | ------- |
+| ID         | The ID of the resource to retrieve |         |
+| Connection |                                    |         |
 
 ### Delete Asset Metaproperty Options {#deleteassetmetapropertyoptions}
 
 Remove metaproperty options from an asset
 
-| Input                    | Comments                                                             | Default |
-| ------------------------ | -------------------------------------------------------------------- | ------- |
-| Asset ID                 | Id of the asset.                                                     |         |
-| Metaproperty ID          | The unique identifier of the metaproperty from which to add options. |         |
-| Metaproperty Options IDs | The list of metaproperty option IDs to add to the asset.             |         |
-| Connection               | The Bynder connection to use.                                        |         |
+| Input                    | Comments                                                      | Default |
+| ------------------------ | ------------------------------------------------------------- | ------- |
+| Asset ID                 | Id of the asset.                                              |         |
+| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |         |
+| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. |         |
+| Connection               |                                                               |         |
 
 ### Delete Campaign {#deletecampaign}
 
@@ -194,7 +194,7 @@ Delete an existing campaign
 | Input       | Comments                         | Default |
 | ----------- | -------------------------------- | ------- |
 | Campaign ID | The ID of the campaign to delete |         |
-| Connection  | The Bynder connection to use.    |         |
+| Connection  |                                  |         |
 
 ### Delete Collection {#deletecollection}
 
@@ -203,36 +203,36 @@ Delete an existing collection
 | Input         | Comments                           | Default |
 | ------------- | ---------------------------------- | ------- |
 | Collection ID | The ID of the collection to delete |         |
-| Connection    | The Bynder connection to use.      |         |
+| Connection    |                                    |         |
 
 ### Delete Job {#deletejob}
 
 Delete an existing job
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Job ID     | The ID of the job to delete   |         |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments                    | Default |
+| ---------- | --------------------------- | ------- |
+| Job ID     | The ID of the job to delete |         |
+| Connection |                             |         |
 
 ### Delete User {#deleteuser}
 
 Remove an existing user
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| ID         | The unique identifier of the resource to retrieve. |         |
-| Connection | The Bynder connection to use.                      |         |
+| Input      | Comments                           | Default |
+| ---------- | ---------------------------------- | ------- |
+| ID         | The ID of the resource to retrieve |         |
+| Connection |                                    |         |
 
 ### Download Specific Asset Item {#downloadspecificassetitem}
 
 Download an specific asset item
 
-| Input      | Comments                                                  | Default |
-| ---------- | --------------------------------------------------------- | ------- |
-| Asset ID   | The id of the asset you’d like to download a item of.     |         |
-| Item ID    | The id of the specific asset item you’d like to download. |         |
-| Hash       | When true, treats the item ID as a hashed item ID.        | false   |
-| Connection | The Bynder connection to use.                             |         |
+| Input      | Comments                                                         | Default |
+| ---------- | ---------------------------------------------------------------- | ------- |
+| Asset ID   | The id of the asset you’d like to download a item of.            |         |
+| Item ID    | The id of the specific asset item you’d like to download.        |         |
+| Hash       | Indicates whether or not to treat the itemId as a hashed item id | false   |
+| Connection |                                                                  |         |
 
 ### Finalize Complete Upload {#finalisecompleteupload}
 
@@ -241,11 +241,11 @@ Finalize a completely uploaded file.
 | Input             | Comments                                                         | Default |
 | ----------------- | ---------------------------------------------------------------- | ------- |
 | ID                | ID of the upload.                                                |         |
-| Target ID         | The target ID returned by the initialise upload call.            |         |
+| Target ID         | The targetid that was returned by the initialize call.           |         |
 | S3 Filename       | Base location of the uploaded file.                              |         |
 | Chunks            | Total number of chunks uploaded.                                 |         |
 | Original Filename | Filename including special characters to be displayed in Bynder. |         |
-| Connection        | The Bynder connection to use.                                    |         |
+| Connection        |                                                                  |         |
 
 ### Finalize Complete Upload And Save As New Asset Additional {#finalisecompleteuploadandsaveasnewasset}
 
@@ -255,43 +255,43 @@ Finalize a completely uploaded file and save as a new asset additional.
 | ----------- | ---------------------------------------------------------------------------------------- | ------- |
 | Asset ID    | Asset id to which to save the new additional.                                            |         |
 | ID          | ID of the upload.                                                                        |         |
-| Target ID   | The target ID returned by the initialise upload call.                                    |         |
+| Target ID   | The targetid that was returned by the initialize call.                                   |         |
 | S3 Filename | Base location of the uploaded file or filename result from the last upload chunk action. |         |
 | Chunks      | Total number of chunks uploaded.                                                         |         |
-| Connection  | The Bynder connection to use.                                                            |         |
+| Connection  |                                                                                          |         |
 
 ### Generate Dynamic Asset Transformation {#generatedynamictransformation}
 
 Generate a derivative on the fly with a transformation (such as cropping, scaling, filling) applied to it
 
-| Input       | Comments                                                                                                                                               | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| ID          | The unique identifier of the resource to retrieve.                                                                                                     |         |
-| Name        | The display name of the asset. The asset will have no name if this is left empty.                                                                      |         |
-| IO          | The operation(s) performed on the image before it is served to the client. Multiple operations can be specified by using this parameter several times. |         |
-| Focus Point | The focus point as an x,y coordinate with values between 0 and 1. This serves as the center point for image operations.                                |         |
-| Format      | The format of the served image. Accepted values are jpg or png, which overrides the default webP format.                                               |         |
-| Quality     | The image quality, ranging from 1 to 100. Has no effect when the format is set to png.                                                                 |         |
-| Connection  | The Bynder connection to use.                                                                                                                          |         |
+| Input       | Comments                                                                                                                                                            | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| ID          | The ID of the resource to retrieve                                                                                                                                  |         |
+| Name        | Name of the asset, beware the asset will have no name when this is empty.                                                                                           |         |
+| IO          | The operation(s) performed on the image before it's served to the client. It's possible to specify this parameter several times to have several operations applied. |         |
+| Focus Point | Focus point as a x,y coordinate (with values between 0 - 1). This will serve as the center point for the image operations.                                          |         |
+| Format      | Format of the served image. This can either be jpg or png and it will overwrite the default webP.                                                                   |         |
+| Format      | Image quality, ranging from 1 - 100 (has no effect when format is set to 'png').                                                                                    |         |
+| Connection  |                                                                                                                                                                     |         |
 
 ### Get Account Information {#getaccountinformation}
 
 Retrieve information on current account
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### Get Asset {#getasset}
 
 Retrieve a specific asset
 
-| Input      | Comments                                                                                  | Default |
-| ---------- | ----------------------------------------------------------------------------------------- | ------- |
-| ID         | The unique identifier of the resource to retrieve.                                        |         |
-| Versions   | When true, includes information about the different asset media items including versions. | false   |
-| Stats      | When true, includes information about views and downloads.                                | false   |
-| Connection | The Bynder connection to use.                                                             |         |
+| Input      | Comments                                                                      | Default |
+| ---------- | ----------------------------------------------------------------------------- | ------- |
+| ID         | The ID of the resource to retrieve                                            |         |
+| Versions   | Include information about the different asset media items including versions. | false   |
+| Stats      | Include information about views and downloads.                                | false   |
+| Connection |                                                                               |         |
 
 ### Get Campaign {#getcampaign}
 
@@ -300,15 +300,15 @@ Retrieve a specific campaign
 | Input       | Comments                           | Default |
 | ----------- | ---------------------------------- | ------- |
 | Campaign ID | The ID of the campaign to retrieve |         |
-| Connection  | The Bynder connection to use.      |         |
+| Connection  |                                    |         |
 
 ### Get Closest S3 Upload Endpoint {#getclosests3endpoint}
 
 Retrieve the closest S3 upload endpoint
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### Get Collection {#getcollection}
 
@@ -317,15 +317,15 @@ Retrieve a specific collection
 | Input         | Comments                             | Default |
 | ------------- | ------------------------------------ | ------- |
 | Collection ID | The ID of the collection to retrieve |         |
-| Connection    | The Bynder connection to use.        |         |
+| Connection    |                                      |         |
 
 ### Get Current User {#getcurrentuser}
 
 Retrieve the current user
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### Get Job {#getjob}
 
@@ -334,7 +334,7 @@ Retrieve a job by ID
 | Input      | Comments                      | Default |
 | ---------- | ----------------------------- | ------- |
 | Job ID     | The ID of the job to retrieve |         |
-| Connection | The Bynder connection to use. |         |
+| Connection |                               |         |
 
 ### Get Job Preset {#getjobpreset}
 
@@ -343,7 +343,7 @@ Retrieve a job preset by ID
 | Input         | Comments                             | Default |
 | ------------- | ------------------------------------ | ------- |
 | Job preset ID | The ID of the job preset to retrieve |         |
-| Connection    | The Bynder connection to use.        |         |
+| Connection    |                                      |         |
 
 ### Get Media of Job {#getmediaofjob}
 
@@ -352,7 +352,7 @@ Retrieve media attached to an existing job
 | Input      | Comments                      | Default |
 | ---------- | ----------------------------- | ------- |
 | Job ID     | The ID of the job to retrieve |         |
-| Connection | The Bynder connection to use. |         |
+| Connection |                               |         |
 
 ### Get Order {#getorder}
 
@@ -362,7 +362,7 @@ Retrieve an existing order
 | ------------ | ------------------------------------------------------------------------------- | ------- |
 | Order ID     | The ID of the order to retrieve. Either id or orderNumber is required           |         |
 | Order Number | The order number of the order to retrieve. Either id or orderNumber is required |         |
-| Connection   | The Bynder connection to use.                                                   |         |
+| Connection   |                                                                                 |         |
 
 ### Get Order Info {#getorderinfo}
 
@@ -371,16 +371,16 @@ Retrieve information on an order
 | Input      | Comments                        | Default |
 | ---------- | ------------------------------- | ------- |
 | Order ID   | The ID of the order to retrieve |         |
-| Connection | The Bynder connection to use.   |         |
+| Connection |                                 |         |
 
 ### Get Security Profile {#getsecurityprofile}
 
 Retrieve a specified security profile
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| ID         | The unique identifier of the resource to retrieve. |         |
-| Connection | The Bynder connection to use.                      |         |
+| Input               | Comments                                    | Default |
+| ------------------- | ------------------------------------------- | ------- |
+| Security Profile ID | The ID of the security profile to retrieve. |         |
+| Connection          |                                             |         |
 
 ### Get User {#getuser}
 
@@ -389,7 +389,7 @@ Retrieve a specified user
 | Input      | Comments                                   | Default |
 | ---------- | ------------------------------------------ | ------- |
 | ID         | The ID or username of the user to retrieve |         |
-| Connection | The Bynder connection to use.              |         |
+| Connection |                                            |         |
 
 ### Initialize Upload {#initialiseupload}
 
@@ -398,85 +398,85 @@ Initialize a new file upload.
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
 | Filename   | Filename of new upload (extension required). |         |
-| Connection | The Bynder connection to use.                |         |
+| Connection |                                              |         |
 
 ### List Assets {#listassets}
 
 Retrieve all assets
 
-| Input            | Comments                                                                                                       | Default |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Page             | The page number to retrieve (starts at 1).                                                                     |         |
-| Limit            | Maximum number of results. Maximum: 1000. Default: 50                                                          |         |
-| Count            | When true, the response includes count results. This parameter overrides the total parameter when set to true. | false   |
-| Total            | When true, the response includes the total count of results.                                                   | false   |
-| Fetch All        | When true, automatically fetches all pages of results using pagination.                                        | false   |
-| Extra Parameters | Additional query parameters to include in the request.                                                         |         |
-| Connection       | The Bynder connection to use.                                                                                  |         |
+| Input            | Comments                                                                                                                               | Default |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Page             | The page number to retrieve                                                                                                            |         |
+| Limit            | Maximum number of results. Maximum: 1000. Default: 50                                                                                  |         |
+| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false   |
+| Total            | Indicating whether or not the response should include the total count of results.                                                      | false   |
+| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true    |
+| Extra Parameters | Extra parameters to be included in the request.                                                                                        |         |
+| Connection       |                                                                                                                                        |         |
 
 ### List Brands {#listbrands}
 
 Retrieve all brands
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### List Campaigns {#listcampaigns}
 
 Retrieve all campaigns
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### List Collections {#listcollections}
 
 Retrieve all collections
 
-| Input            | Comments                                                                                                       | Default |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Page             | The page number to retrieve (starts at 1).                                                                     |         |
-| Limit            | The maximum number of results to return per page.                                                              |         |
-| Count            | When true, the response includes count results. This parameter overrides the total parameter when set to true. | false   |
-| Fetch All        | When true, automatically fetches all pages of results using pagination.                                        | false   |
-| Extra Parameters | Additional query parameters to include in the request.                                                         |         |
-| Connection       | The Bynder connection to use.                                                                                  |         |
+| Input            | Comments                                                                                                                               | Default |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Page             | The page number to retrieve                                                                                                            |         |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned.                                                         |         |
+| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false   |
+| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true    |
+| Extra Parameters | Extra parameters to be included in the request.                                                                                        |         |
+| Connection       |                                                                                                                                        |         |
 
 ### List Jobs {#listjobs}
 
 Retrieve all jobs
 
-| Input            | Comments                                               | Default |
-| ---------------- | ------------------------------------------------------ | ------- |
-| Page             | The page number to retrieve (starts at 1).             |         |
-| Limit            | The maximum number of results to return per page.      |         |
-| Extra Parameters | Additional query parameters to include in the request. |         |
-| Connection       | The Bynder connection to use.                          |         |
+| Input            | Comments                                                                       | Default |
+| ---------------- | ------------------------------------------------------------------------------ | ------- |
+| Page             | The page number to retrieve                                                    |         |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned. |         |
+| Extra Parameters | Extra parameters to be included in the request.                                |         |
+| Connection       |                                                                                |         |
 
 ### List Jobs By Campaign {#listjobsbycampaign}
 
 Retrieve jobs tied to a campaign
 
-| Input            | Comments                                               | Default |
-| ---------------- | ------------------------------------------------------ | ------- |
-| Campaign ID      | The ID of the campaign to retrieve jobs for            |         |
-| Page             | The page number to retrieve (starts at 1).             |         |
-| Limit            | The maximum number of results to return per page.      |         |
-| Extra Parameters | Additional query parameters to include in the request. |         |
-| Connection       | The Bynder connection to use.                          |         |
+| Input            | Comments                                                                       | Default |
+| ---------------- | ------------------------------------------------------------------------------ | ------- |
+| Campaign ID      | The ID of the campaign to retrieve jobs for                                    |         |
+| Page             | The page number to retrieve                                                    |         |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned. |         |
+| Extra Parameters | Extra parameters to be included in the request.                                |         |
+| Connection       |                                                                                |         |
 
 ### List Metaproperties {#listmetaproperties}
 
 Retrieve all metaproperties.
 
-| Input      | Comments                                                                                             | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------- | ------- |
-| Count      | Indicates whether or not the response should include asset count results for metaproperty-options.   | false   |
-| Type       | The asset types to filter count results by. Only applicable when the count parameter is set to true. |         |
-| Options    | When true, the response includes the metaproperty options of each metaproperty.                      | false   |
-| IDs        | The list of metaproperty IDs to retrieve. Returns a metaproperty for each matching ID.               |         |
-| Connection | The Bynder connection to use.                                                                        |         |
+| Input      | Comments                                                                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Count      | Indicates whether or not the response should include asset count results for metaproperty-options.                                      | false   |
+| Type       | List of asset types. Filters the count results by asset type. It only makes sense to be defined if the count parameter was set to true. |         |
+| Format     | Indicates whether or not the response should include the metaproperty options of each metaproperty.                                     | false   |
+| IDs        | List of metaproperty ids. Will return a metaproperty for each existing id.                                                              |         |
+| Connection |                                                                                                                                         |         |
 
 ### List Orders {#listorders}
 
@@ -485,26 +485,26 @@ Retrieve all orders.
 | Input      | Comments                                                                                           | Default |
 | ---------- | -------------------------------------------------------------------------------------------------- | ------- |
 | Page       | Offset page for results: return the N-th set of limit-results. Limit is currently hardcoded to 10. |         |
-| Connection | The Bynder connection to use.                                                                      |         |
+| Connection |                                                                                                    |         |
 
 ### List Security Profiles {#listsecurityprofiles}
 
 Retrieve all security profiles
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Bynder connection to use. |         |
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
 
 ### List Users {#listusers}
 
 Retrieve all users
 
-| Input            | Comments                                                   | Default |
-| ---------------- | ---------------------------------------------------------- | ------- |
-| Page             | The page number to retrieve (starts at 1).                 |         |
-| Limit            | The maximum number of results to return per page.          |         |
-| Include Inactive | When true, includes inactive users in the list of results. | false   |
-| Connection       | The Bynder connection to use.                              |         |
+| Input            | Comments                                                                       | Default |
+| ---------------- | ------------------------------------------------------------------------------ | ------- |
+| Page             | The page number to retrieve                                                    |         |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned. |         |
+| Include Inactive | Whether to include inactive users in the list of results.                      | false   |
+| Connection       |                                                                                |         |
 
 ### Raw Request {#rawrequest}
 
@@ -512,7 +512,7 @@ Send raw HTTP request to Bynder
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Bynder connection to use.                                                                                                                                                                    |         |
+| Connection              |                                                                                                                                                                                                  |         |
 | URL                     | This is the URL to call.                                                                                                                                                                         |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                          |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
@@ -532,36 +532,36 @@ Send raw HTTP request to Bynder
 
 Register an uploaded chunk.
 
-| Input        | Comments                                              | Default |
-| ------------ | ----------------------------------------------------- | ------- |
-| ID           | ID of the upload.                                     |         |
-| Chunk Number | Number of the chunk that was uploaded.                |         |
-| Target ID    | The target ID returned by the initialise upload call. |         |
-| Filename     | Location of the uploaded chunk.                       |         |
-| Connection   | The Bynder connection to use.                         |         |
+| Input        | Comments                                               | Default |
+| ------------ | ------------------------------------------------------ | ------- |
+| ID           | ID of the upload.                                      |         |
+| Chunk Number | Number of the chunk that was uploaded.                 |         |
+| Target ID    | The targetid that was returned by the initialize call. |         |
+| Filename     | Location of the uploaded chunk.                        |         |
+| Connection   |                                                        |         |
 
 ### Retrieve Poll State {#retrievepollstate}
 
 Poll processing state of finalized files
 
-| Input      | Comments                                                                          | Default |
-| ---------- | --------------------------------------------------------------------------------- | ------- |
-| Items      | Comma-separated import IDs of a finalized file, as returned by the finalize call. |         |
-| Connection | The Bynder connection to use.                                                     |         |
+| Input      | Comments                                                                           | Default |
+| ---------- | ---------------------------------------------------------------------------------- | ------- |
+| Items      | Comma-separated import id's of a finalized file, as returned by the finalize call. |         |
+| Connection |                                                                                    |         |
 
 ### Save a New Asset {#saveasnewasset}
 
 Save a completed upload as a new asset.
 
-| Input       | Comments                                                         | Default |
-| ----------- | ---------------------------------------------------------------- | ------- |
-| Import ID   | Import id of a finalized and processed upload to be saved.       |         |
-| Brand ID    | Brand id to save the asset to.                                   |         |
-| Asset Name  | Name of the new asset.                                           |         |
-| Description | A text description providing additional context about the asset. |         |
-| Copyright   | Copyright information associated with the asset.                 |         |
-| Data        | Data of the new asset.                                           |         |
-| Connection  | The Bynder connection to use.                                    |         |
+| Input       | Comments                                                   | Default |
+| ----------- | ---------------------------------------------------------- | ------- |
+| Import ID   | Import id of a finalized and processed upload to be saved. |         |
+| Brand ID    | Brand id to save the asset to.                             |         |
+| Asset Name  | Name of the new asset.                                     |         |
+| Description | Asset description.                                         |         |
+| Copyright   | Copyright information of the asset.                        |         |
+| Data        | Data of the new asset.                                     |         |
+| Connection  |                                                            |         |
 
 ### Save as a New Asset Version {#saveasnewassetversion}
 
@@ -571,60 +571,60 @@ Save a completed upload as a new asset version.
 | ---------- | ---------------------------------------------------------- | ------- |
 | Asset ID   | Asset id for which to save the new version.                |         |
 | Import ID  | Import id of a finalized and processed upload to be saved. |         |
-| Connection | The Bynder connection to use.                              |         |
+| Connection |                                                            |         |
 
 ### Share Collection {#sharecollection}
 
 Share a collection
 
-| Input              | Comments                                                                                                              | Default |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Collection ID      | The ID of the collection to retrieve                                                                                  |         |
-| Collection Options | The access rights granted to recipients of the shared collection.                                                     |         |
-| Recipients         | Comma-separated email addresses of recipients to share the collection with. Required if groups or profiles are empty. |         |
-| Groups             | Comma-separated list of group IDs to share the collection with. Required if recipients or profiles are empty.         |         |
-| Profiles           | Comma-separated list of profile IDs to share the collection with. Required if recipients or groups are empty.         |         |
-| Data               | Additional fields to include in the request body as a JSON object.                                                    |         |
-| Connection         | The Bynder connection to use.                                                                                         |         |
+| Input              | Comments                                                                                  | Default |
+| ------------------ | ----------------------------------------------------------------------------------------- | ------- |
+| Collection ID      | The ID of the collection to retrieve                                                      |         |
+| Collection Options | Recipient rights.                                                                         |         |
+| Recipients         | Comma-separated email addresses of recipients. Mandatory if groups or profiles are empty. |         |
+| Groups             | Comma-separated list of group ids. Mandatory if recipients or profiles are empty.         |         |
+| Profiles           | Comma-separated list of profile ids. Mandatory if recipients or groups are empty.         |         |
+| Data               | Extra fields to be included in the request. Must be valid JSON.                           |         |
+| Connection         |                                                                                           |         |
 
 ### Update Asset {#updateasset}
 
 Edit an existing asset
 
-| Input       | Comments                                                                          | Default |
-| ----------- | --------------------------------------------------------------------------------- | ------- |
-| ID          | The unique identifier of the resource to retrieve.                                |         |
-| Name        | The display name of the asset. The asset will have no name if this is left empty. |         |
-| Description | A text description providing additional context about the asset.                  |         |
-| Copyright   | Copyright information associated with the asset.                                  |         |
-| Data        | Additional fields to include in the request body as a JSON object.                |         |
-| Connection  | The Bynder connection to use.                                                     |         |
+| Input       | Comments                                                                  | Default |
+| ----------- | ------------------------------------------------------------------------- | ------- |
+| ID          | The ID of the resource to retrieve                                        |         |
+| Name        | Name of the asset, beware the asset will have no name when this is empty. |         |
+| Description | Asset description.                                                        |         |
+| Copyright   | Copyright information of the asset.                                       |         |
+| Data        | Extra fields to be included in the request. Must be valid JSON.           |         |
+| Connection  |                                                                           |         |
 
 ### Update Campaign {#updatecampaign}
 
 Edit an existing campaign
 
-| Input          | Comments                                                        | Default |
-| -------------- | --------------------------------------------------------------- | ------- |
-| Campaign ID    | The ID of the campaign to update                                |         |
-| Name           | The name of the campaign                                        |         |
-| Key            | A 4-character key representing the campaign.                    |         |
-| Responsible ID | The unique identifier of the user responsible for the campaign. |         |
-| Description    | The description of the campaign                                 |         |
-| Data           | Additional data to update the campaign                          |         |
-| Connection     | The Bynder connection to use.                                   |         |
+| Input          | Comments                                    | Default |
+| -------------- | ------------------------------------------- | ------- |
+| Campaign ID    | The ID of the campaign to update            |         |
+| Name           | The name of the campaign                    |         |
+| Key            | 4 character key representing the campaign   |         |
+| Responsible ID | Id of the user responsible for the campaign |         |
+| Description    | The description of the campaign             |         |
+| Data           | Additional data to update the campaign      |         |
+| Connection     |                                             |         |
 
 ### Update Collection {#updatecollection}
 
 Edit an existing collection
 
-| Input                  | Comments                                          | Default |
-| ---------------------- | ------------------------------------------------- | ------- |
-| Collection ID          | The ID of the collection to update                |         |
-| Collection Name        | The name of the collection to create              |         |
-| Collection Description | The description of the collection to create       |         |
-| Is Public              | When true, the collection is publicly accessible. | true    |
-| Connection             | The Bynder connection to use.                     |         |
+| Input                  | Comments                                                         | Default |
+| ---------------------- | ---------------------------------------------------------------- | ------- |
+| Collection ID          | The ID of the collection to update                               |         |
+| Collection Name        | The name of the collection to create                             |         |
+| Collection Description | The description of the collection to create                      |         |
+| Is Public              | Indicates whether or not to treat the itemId as a hashed item id | true    |
+| Connection             |                                                                  |         |
 
 ### Update Job {#updatejob}
 
@@ -638,44 +638,44 @@ Edit an existing job
 | Accountable ID | Id of the user responsible for the job |         |
 | Description    | The description of the job             |         |
 | Data           | Additional data to update the job      |         |
-| Connection     | The Bynder connection to use.          |         |
+| Connection     |                                        |         |
 
 ### Update Order {#updateorder}
 
 Update an existing order
 
-| Input           | Comments                                           | Default |
-| --------------- | -------------------------------------------------- | ------- |
-| Order ID        | The ID of the order to update                      |         |
-| Order Status    | The current status of the order.                   |         |
-| Message         | A message to include with the order status update. |         |
-| Tracking Number | The tracking number for the order shipment.        |         |
-| Connection      | The Bynder connection to use.                      |         |
+| Input           | Comments                      | Default |
+| --------------- | ----------------------------- | ------- |
+| Order ID        | The ID of the order to update |         |
+| Order Status    | Status of the order           |         |
+| Message         | A message                     |         |
+| Tracking Number | Link to trackingnumber        |         |
+| Connection      |                               |         |
 
 ### Update User {#updateuser}
 
 Edit an existing user
 
-| Input      | Comments                                                                                                                                                     | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| ID         | The ID of the user to update                                                                                                                                 |         |
-| Email      | The email address used to identify and authenticate the user.                                                                                                |         |
-| Password   | The password used to authenticate the user.                                                                                                                  |         |
-| Profile ID | The unique identifier of the security profile that determines the user's access rights. Retrieve available profiles using the List Security Profiles action. |         |
-| First Name | The first name of the user.                                                                                                                                  |         |
-| Last Name  | The last name of the user.                                                                                                                                   |         |
-| Username   | The username for login. If not defined, the email address is used as the username.                                                                           |         |
-| Data       | Additional fields to include in the request body as a JSON object.                                                                                           |         |
-| Connection | The Bynder connection to use.                                                                                                                                |         |
+| Input      | Comments                                                                                                              | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
+| ID         | The ID of the user to update                                                                                          |         |
+| Email      | Email address for login.                                                                                              |         |
+| Password   | Password for login.                                                                                                   |         |
+| Profile ID | Security profile id for determining the user's rights. Can be retrieved by using the Retrieve security profiles call. |         |
+| First Name | First name of the user.                                                                                               |         |
+| Last Name  | Last name of the user.                                                                                                |         |
+| Username   | Username for login. If not defined it will take your email as username.                                               |         |
+| Data       | Extra fields to be included in the request. Must be valid JSON.                                                       |         |
+| Connection |                                                                                                                       |         |
 
 ### Upload Chunk {#uploadchunk}
 
 Upload a chunk of a file.
 
-| Input                | Comments                                                                                                  | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
-| Upload URL           | The Amazon S3 upload endpoint URL received from calling the Get Closest Amazon S3 Upload Endpoint action. |         |
-| File                 | The file or chunk of the file to be uploaded.                                                             |         |
-| Chunk                | The chunk index number being uploaded (indexing starts from 1).                                           |         |
-| Chunks               | The total number of chunks the file is split into for upload.                                             |         |
-| Multipart Parameters | The parameters for the multipart upload. Use all fields from the response of the initialise upload call.  |         |
+| Input                | Comments                                                                                                 | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
+| Upload URL           | Amazon upload endpoint received from calling Get closest AmazonS3 upload endpoint.                       |         |
+| File                 | File or chunk of the file to be uploaded.                                                                |         |
+| Chunk                | Chunk index number (indexing starts from 1).                                                             |         |
+| Chunks               | Total number of chunks.                                                                                  |         |
+| Multipart Parameters | Parameters for the multipart upload. Use all the fields from the response of the initialise upload call. |         |

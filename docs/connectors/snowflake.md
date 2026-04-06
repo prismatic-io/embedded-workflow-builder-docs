@@ -193,7 +193,6 @@ Executes one or more SQL statements in your Snowflake DB.
 | Bindings                        | Values of bind variables in the SQL statement. Each binding has a type and value. [Learn more](https://docs.snowflake.com/en/user-guide/python-connector-api#binding-data)                                                   |         |
 | Parameters                      | Session parameters to set for this request. [Learn more](https://docs.snowflake.com/en/sql-reference/parameters)                                                                                                             |         |
 | Poll for asynchronous results   | When true, the action will handle polling for results on queries that take longer than 45 seconds to execute. When false, the action returns immediately after executing the query.                                          | false   |
-| Debug Request                   | Enabling this flag will log out the current request.                                                                                                                                                                         | false   |
 
 ### Get Statement Handle {#getstatementhandle}
 
@@ -206,4 +205,3 @@ Retrieve the current status of a executed statement from Snowflake.
 | Account Locator          | The account locator for your Snowflake account. Find this in the organization's account panel. [Learn more](https://docs.snowflake.com/en/user-guide/admin-account-identifier#finding-the-region-and-locator-for-an-account) |         |
 | Statement Handle ID      | The unique identifier of the statement handle returned from an asynchronous query execution.                                                                                                                                 |         |
 | Partition                | The partition number to retrieve from the result set.                                                                                                                                                                        |         |
-| Debug Request            | Enabling this flag will log out the current request.                                                                                                                                                                         | false   |

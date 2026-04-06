@@ -13,6 +13,8 @@ Use the Segment component to manage your Sources, Warehouses, and Destinations.
 
 ### API Key {#apikey}
 
+Authenticate requests to Segment using an API Key.
+
 1. Log in to the Segment App, and choose the Workspace you want to generate a token for. Each Segment Workspace requires a separate token.
 2. Click **Settings** in the left menu to access Workspace Settings. Navigate to the **Access Management** tab, and click **Tokens**. This tab lists any existing tokens created for the Workspace.
 3. Click **+Create Token** , and follow the prompts to generate a new token. Be sure to select a Public API token.
@@ -454,10 +456,10 @@ Send raw HTTP request to Segment
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                       | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                            |         |
 | Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                           | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                      | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                               | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                            | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.               | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                            | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                  | false   |
 
 ### Remove Source Connection from Warehouse {#removesourceconnectionfromwarehouse}
 

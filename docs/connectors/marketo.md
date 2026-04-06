@@ -1,7 +1,7 @@
 ---
 title: Adobe Marketo Engage Connector
 sidebar_label: Adobe Marketo Engage
-description: Manage Marketo records
+description: Manage leads, companies, and custom objects in Adobe Marketo Engage.
 ---
 
 ![Adobe Marketo Engage](./assets/marketo.png#connector-icon)
@@ -9,9 +9,9 @@ description: Manage Marketo records
 
 ## Connections
 
-### Marketo OAuth 2.0 {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Marketo OAuth 2.0 Connection
+OAuth 2.0 connection for Marketo
 
 To make API requests of Marketo on behalf of your customers you need to create a Custom Service using the Marketo Admin Portal.
 Follow the steps outlined in the [Marketo Documentation](https://developers.marketo.com/rest-api/authentication/).

@@ -15,9 +15,9 @@ The component was built using the [WhatsApp Business Platform Cloud API](https:/
 
 ## Connections
 
-### WhatsApp Access Token {#whatsapp-access-token}
+### Access Token {#whatsapp-access-token}
 
-Your WhatsApp Access Token
+Access Token connection for WhatsApp
 
 To get started with WhatsApp, you first need to [create a Meta developer account](https://developers.facebook.com/).
 

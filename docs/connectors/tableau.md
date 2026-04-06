@@ -10,9 +10,9 @@ The Tableau component allows you to manage your users, projects, workbooks, and 
 
 ## Connections
 
-### Tableau Token Connection {#privatekey}
+### Personal Access Token {#privatekey}
 
-Authenticates requests to Tableau using a token
+Personal Access Token connection for Tableau
 
 This component uses token authentication to interact with the Tableau API.
 To generate a token:
@@ -44,13 +44,12 @@ For additional information regarding authentication, please refer to the [Tablea
 
 Receive data from scheduled events in real time with webhook subscriptions.
 
-| Input          | Comments                                                                 | Default |
-| -------------- | ------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                          |         |
-| API Event Name | The events to subscribe to.                                              |         |
-| API Version    | The version of the Tableau API to use                                    | 3.6     |
-| Timeout        | The maximum amount of time the client will await a response.             |         |
-| Debug Request  | This flag will enable debugging and logging of the action's web request. | false   |
+| Input          | Comments                                                     | Default |
+| -------------- | ------------------------------------------------------------ | ------- |
+| Connection     |                                                              |         |
+| API Event Name | The events to subscribe to.                                  |         |
+| API Version    | The version of the Tableau API to use                        | 3.6     |
+| Timeout        | The maximum amount of time the client will await a response. |         |
 
 ## Actions
 
@@ -66,20 +65,18 @@ Create a new project inside your Tableau site
 | Description         | Provide a string value for the description of the project.                                                                                                                       |         |
 | Timeout             | The maximum amount of time the client will await a response.                                                                                                                     |         |
 | Connection          |                                                                                                                                                                                  |         |
-| Debug Request       | This flag will enable debugging and logging of the action's web request.                                                                                                         | false   |
 
 ### Create User {#createuser}
 
 Create a new user in your tableau site
 
-| Input         | Comments                                                                                                 | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Username      | Provide a string value for the username of the user. For Tableau Online, this value is an email address. |         |
-| Site Role     | Provide a value for the role of the user.                                                                |         |
-| Auth Setting  | Provide a string value for the username of the user.                                                     |         |
-| Timeout       | The maximum amount of time the client will await a response.                                             |         |
-| Connection    |                                                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.                                 | false   |
+| Input        | Comments                                                                                                 | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ------- |
+| Username     | Provide a string value for the username of the user. For Tableau Online, this value is an email address. |         |
+| Site Role    | Provide a value for the role of the user.                                                                |         |
+| Auth Setting | Provide a string value for the username of the user.                                                     |         |
+| Timeout      | The maximum amount of time the client will await a response.                                             |         |
+| Connection   |                                                                                                          |         |
 
 ### Create Webhook {#createwebhook}
 
@@ -93,160 +90,146 @@ Creates a new webhook for a site.
 | Webhook URL     | The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate. |         |
 | Webhook Enabled | If true (default), the newly created webhook is enabled. If false then the webhook will be disabled.         | true    |
 | Timeout         | The maximum amount of time the client will await a response.                                                 |         |
-| Debug Request   | This flag will enable debugging and logging of the action's web request.                                     | false   |
 | API Version     | The version of the Tableau API to use                                                                        | 3.6     |
 
 ### Delete Projects {#deleteprojects}
 
 Delete an existing project by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Project Id    | Provide a string value for the Id of your Tableau Project.               |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input      | Comments                                                     | Default |
+| ---------- | ------------------------------------------------------------ | ------- |
+| Project Id | Provide a string value for the Id of your Tableau Project.   |         |
+| Timeout    | The maximum amount of time the client will await a response. |         |
+| Connection |                                                              |         |
 
 ### Delete User {#deleteuser}
 
 Delete an existing user by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| UserId        | Provide a value for the unique identifier of the user.                   |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input      | Comments                                                     | Default |
+| ---------- | ------------------------------------------------------------ | ------- |
+| UserId     | Provide a value for the unique identifier of the user.       |         |
+| Timeout    | The maximum amount of time the client will await a response. |         |
+| Connection |                                                              |         |
 
 ### Delete Webhook {#deletewebhook}
 
 Deletes the specified webhook.
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Connection    |                                                                          |         |
-| Webhook Id    | The ID of the webhook.                                                   |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
-| API Version   | The version of the Tableau API to use                                    | 3.6     |
+| Input       | Comments                                                     | Default |
+| ----------- | ------------------------------------------------------------ | ------- |
+| Connection  |                                                              |         |
+| Webhook Id  | The ID of the webhook.                                       |         |
+| Timeout     | The maximum amount of time the client will await a response. |         |
+| API Version | The version of the Tableau API to use                        | 3.6     |
 
 ### Delete Workbooks {#deleteworkbook}
 
 Delete an existing workbook by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Workbook Id   | Provide a string value for the unique identifier of the workbook.        |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input       | Comments                                                          | Default |
+| ----------- | ----------------------------------------------------------------- | ------- |
+| Workbook Id | Provide a string value for the unique identifier of the workbook. |         |
+| Timeout     | The maximum amount of time the client will await a response.      |         |
+| Connection  |                                                                   |         |
 
 ### Get Project {#getproject}
 
 Get an existing project
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Project Name  | Provide a string value for the name of the project.                      |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input        | Comments                                                     | Default |
+| ------------ | ------------------------------------------------------------ | ------- |
+| Project Name | Provide a string value for the name of the project.          |         |
+| Timeout      | The maximum amount of time the client will await a response. |         |
+| Connection   |                                                              |         |
 
 ### Get User {#getuser}
 
 Get an existing user by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| UserId        | Provide a value for the unique identifier of the user.                   |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input      | Comments                                                     | Default |
+| ---------- | ------------------------------------------------------------ | ------- |
+| UserId     | Provide a value for the unique identifier of the user.       |         |
+| Timeout    | The maximum amount of time the client will await a response. |         |
+| Connection |                                                              |         |
 
 ### Get Webhook {#getwebhook}
 
 Returns information about the specified webhook.
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Connection    |                                                                          |         |
-| Webhook Id    | The ID of the webhook.                                                   |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
-| API Version   | The version of the Tableau API to use                                    | 3.6     |
+| Input       | Comments                                                     | Default |
+| ----------- | ------------------------------------------------------------ | ------- |
+| Connection  |                                                              |         |
+| Webhook Id  | The ID of the webhook.                                       |         |
+| Timeout     | The maximum amount of time the client will await a response. |         |
+| API Version | The version of the Tableau API to use                        | 3.6     |
 
 ### Get Workbooks {#getworkbook}
 
 Get an existing workbook by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Workbook Id   | Provide a string value for the unique identifier of the workbook.        |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input       | Comments                                                          | Default |
+| ----------- | ----------------------------------------------------------------- | ------- |
+| Workbook Id | Provide a string value for the unique identifier of the workbook. |         |
+| Timeout     | The maximum amount of time the client will await a response.      |         |
+| Connection  |                                                                   |         |
 
 ### List Connections {#listconnections}
 
 Retrieve a list of connections connected to your Tableau site
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Workbook Id   | Provide a string value for the unique identifier of the workbook.                 |         |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
+| Input       | Comments                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------- |
+| Workbook Id | Provide a string value for the unique identifier of the workbook.                 |         |
+| Timeout     | The maximum amount of time the client will await a response.                      |         |
+| Page Size   | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Page Number | Provide an integer value for the page offset for the given object's results.      |         |
+| Connection  |                                                                                   |         |
 
 ### List Projects {#listprojects}
 
 Retrieve a list of projects connected to your Tableau site
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
+| Input       | Comments                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------- |
+| Timeout     | The maximum amount of time the client will await a response.                      |         |
+| Page Size   | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Page Number | Provide an integer value for the page offset for the given object's results.      |         |
+| Connection  |                                                                                   |         |
 
 ### List users {#listusers}
 
 Retrieve a list of users connected to your Tableau site
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
+| Input       | Comments                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------- |
+| Timeout     | The maximum amount of time the client will await a response.                      |         |
+| Page Size   | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Page Number | Provide an integer value for the page offset for the given object's results.      |         |
+| Connection  |                                                                                   |         |
 
 ### List Webhooks {#listwebhooks}
 
 Returns a list of all the webhooks on the specified site.
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
-| API Version   | The version of the Tableau API to use                                             | 3.6     |
+| Input       | Comments                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------- |
+| Timeout     | The maximum amount of time the client will await a response.                      |         |
+| Page Size   | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Page Number | Provide an integer value for the page offset for the given object's results.      |         |
+| Connection  |                                                                                   |         |
+| API Version | The version of the Tableau API to use                                             | 3.6     |
 
 ### List Workbooks {#listworkbooks}
 
 Retrieve a list of workbooks connected to your Tableau site
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
+| Input       | Comments                                                                          | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------- |
+| Timeout     | The maximum amount of time the client will await a response.                      |         |
+| Page Size   | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Page Number | Provide an integer value for the page offset for the given object's results.      |         |
+| Connection  |                                                                                   |         |
 
 ### Publish Workbook {#publishworkbook}
 
@@ -256,7 +239,6 @@ Publishes a workbook on the specified site.
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Timeout                | The maximum amount of time the client will await a response.                                                                                                                                                                                                                                       |         |
 | Connection             |                                                                                                                                                                                                                                                                                                    |         |
-| Debug Request          | This flag will enable debugging and logging of the action's web request.                                                                                                                                                                                                                           | false   |
 | Upload Session Id      | If you are calling this method to commit a file that was uploaded in parts, this value contains the upload session ID that was generated by a call to Initiate File Upload.                                                                                                                        |         |
 | Workbook Type          | twb or twbx to indicate whether you have uploaded a workbook file (twb) or a packaged workbook file (twbx).                                                                                                                                                                                        |         |
 | Overwrite              | True to overwrite a workbook that has the same name, or false to fail if the specified workbook already exists.                                                                                                                                                                                    | false   |
@@ -293,44 +275,41 @@ Send raw HTTP request to Tableau
 
 Search for a specific Connection in a Workbook
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Workbook Id   | Provide a string value for the unique identifier of the workbook.                 |         |
-| Search        | Provide a string value to search on.                                              |         |
-| Search Field  |                                                                                   |         |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Input        | Comments                                                                          | Default |
+| ------------ | --------------------------------------------------------------------------------- | ------- |
+| Workbook Id  | Provide a string value for the unique identifier of the workbook.                 |         |
+| Search       | Provide a string value to search on.                                              |         |
+| Search Field |                                                                                   |         |
+| Timeout      | The maximum amount of time the client will await a response.                      |         |
+| Connection   |                                                                                   |         |
+| Page Number  | Provide an integer value for the page offset for the given object's results.      |         |
+| Page Size    | Provide an integer value for the maximum amount of results that will be returned. |         |
 
 ### Search Projects {#searchprojects}
 
 Search for a specific project by a string of text
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Search        | Provide a string value to search on.                                              |         |
-| Search Field  | The field to search. Dates should follow the ISO format: 2016-05-04T21:24:49Z     |         |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Input        | Comments                                                                          | Default |
+| ------------ | --------------------------------------------------------------------------------- | ------- |
+| Search       | Provide a string value to search on.                                              |         |
+| Search Field | The field to search. Dates should follow the ISO format: 2016-05-04T21:24:49Z     |         |
+| Timeout      | The maximum amount of time the client will await a response.                      |         |
+| Connection   |                                                                                   |         |
+| Page Number  | Provide an integer value for the page offset for the given object's results.      |         |
+| Page Size    | Provide an integer value for the maximum amount of results that will be returned. |         |
 
 ### Search Users {#searchusers}
 
 Search for a specific User by a string of text
 
-| Input         | Comments                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------- | ------- |
-| Search Field  | The field to search. Dates should follow the ISO format: 2016-05-04T21:24:49Z     |         |
-| Search        | Provide a string value to search on.                                              |         |
-| Timeout       | The maximum amount of time the client will await a response.                      |         |
-| Connection    |                                                                                   |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.          | false   |
-| Page Number   | Provide an integer value for the page offset for the given object's results.      |         |
-| Page Size     | Provide an integer value for the maximum amount of results that will be returned. |         |
+| Input        | Comments                                                                          | Default |
+| ------------ | --------------------------------------------------------------------------------- | ------- |
+| Search Field | The field to search. Dates should follow the ISO format: 2016-05-04T21:24:49Z     |         |
+| Search       | Provide a string value to search on.                                              |         |
+| Timeout      | The maximum amount of time the client will await a response.                      |         |
+| Connection   |                                                                                   |         |
+| Page Number  | Provide an integer value for the page offset for the given object's results.      |         |
+| Page Size    | Provide an integer value for the maximum amount of results that will be returned. |         |
 
 ### Search Workbooks {#searchworkbooks}
 
@@ -343,7 +322,6 @@ Search for a specific Workbook by a string of text
 | Search          | Provide a string value to search on.                                              |         |
 | Timeout         | The maximum amount of time the client will await a response.                      |         |
 | Connection      |                                                                                   |         |
-| Debug Request   | This flag will enable debugging and logging of the action's web request.          | false   |
 | Page Number     | Provide an integer value for the page offset for the given object's results.      |         |
 | Page Size       | Provide an integer value for the maximum amount of results that will be returned. |         |
 
@@ -351,13 +329,12 @@ Search for a specific Workbook by a string of text
 
 Tests the specified webhook. Sends an empty payload to the configured destination URL of the webhook and returns the response from the server.
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Connection    |                                                                          |         |
-| Webhook Id    | The ID of the webhook.                                                   |         |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
-| API Version   | The version of the Tableau API to use                                    | 3.6     |
+| Input       | Comments                                                     | Default |
+| ----------- | ------------------------------------------------------------ | ------- |
+| Connection  |                                                              |         |
+| Webhook Id  | The ID of the webhook.                                       |         |
+| Timeout     | The maximum amount of time the client will await a response. |         |
+| API Version | The version of the Tableau API to use                        | 3.6     |
 
 ### Update Connection {#updateconnection}
 
@@ -375,7 +352,6 @@ Update the information and metadata of an existing connection by Id
 | Query Tagging Enabled | Associates a specific server log query event with the Tableau resource that made the query. | false   |
 | Timeout               | The maximum amount of time the client will await a response.                                |         |
 | Connection            |                                                                                             |         |
-| Debug Request         | This flag will enable debugging and logging of the action's web request.                    | false   |
 
 ### Update Project {#updateproject}
 
@@ -390,21 +366,19 @@ Update the contents and metadata of an existing project by Id
 | Description         | Provide a string value for the description of the project.                                                                                                                       |         |
 | Timeout             | The maximum amount of time the client will await a response.                                                                                                                     |         |
 | Connection          |                                                                                                                                                                                  |         |
-| Debug Request       | This flag will enable debugging and logging of the action's web request.                                                                                                         | false   |
 
 ### Update User {#updateuser}
 
 Update the information and metadata of an existing user
 
-| Input         | Comments                                                                                                 | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| UserId        | Provide a value for the unique identifier of the user.                                                   |         |
-| Username      | Provide a string value for the username of the user. For Tableau Online, this value is an email address. |         |
-| Site Role     | Provide a value for the role of the user.                                                                |         |
-| Auth Setting  | Provide a string value for the username of the user.                                                     |         |
-| Timeout       | The maximum amount of time the client will await a response.                                             |         |
-| Connection    |                                                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request.                                 | false   |
+| Input        | Comments                                                                                                 | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ------- |
+| UserId       | Provide a value for the unique identifier of the user.                                                   |         |
+| Username     | Provide a string value for the username of the user. For Tableau Online, this value is an email address. |         |
+| Site Role    | Provide a value for the role of the user.                                                                |         |
+| Auth Setting | Provide a string value for the username of the user.                                                     |         |
+| Timeout      | The maximum amount of time the client will await a response.                                             |         |
+| Connection   |                                                                                                          |         |
 
 ### Update Webhook {#updatewebhook}
 
@@ -420,20 +394,18 @@ Modify the properties of an existing webhook.
 | Webhook Enabled        | If true (default), the newly created webhook is enabled. If false then the webhook will be disabled.         | true    |
 | Webhook Disable Reason | The reason a webhook is disabled.                                                                            |         |
 | Timeout                | The maximum amount of time the client will await a response.                                                 |         |
-| Debug Request          | This flag will enable debugging and logging of the action's web request.                                     | false   |
 | API Version            | The version of the Tableau API to use                                                                        | 3.6     |
 
 ### Update Workbook {#updateworkbook}
 
 Update the information and metadata of an existing workbook by Id
 
-| Input         | Comments                                                                 | Default |
-| ------------- | ------------------------------------------------------------------------ | ------- |
-| Workbook Id   | Provide a string value for the unique identifier of the workbook.        |         |
-| Workbook Name | Provide a string value for the name of the workbook.                     |         |
-| Project Id    | Provide a string value for the Id of your Tableau Project.               |         |
-| UserId        | Provide a value for the unique identifier of the user.                   |         |
-| Show Tabs     | Specify true to have the updated workbook show views in tabs.            | false   |
-| Timeout       | The maximum amount of time the client will await a response.             |         |
-| Connection    |                                                                          |         |
-| Debug Request | This flag will enable debugging and logging of the action's web request. | false   |
+| Input         | Comments                                                          | Default |
+| ------------- | ----------------------------------------------------------------- | ------- |
+| Workbook Id   | Provide a string value for the unique identifier of the workbook. |         |
+| Workbook Name | Provide a string value for the name of the workbook.              |         |
+| Project Id    | Provide a string value for the Id of your Tableau Project.        |         |
+| UserId        | Provide a value for the unique identifier of the user.            |         |
+| Show Tabs     | Specify true to have the updated workbook show views in tabs.     | false   |
+| Timeout       | The maximum amount of time the client will await a response.      |         |
+| Connection    |                                                                   |         |

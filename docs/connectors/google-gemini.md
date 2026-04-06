@@ -50,23 +50,6 @@ In order to Authenticate using **Vertex**:
 
 ## Actions
 
-### Conversation {#sendmessage}
-
-Sends a message to the chat. Optionally, historical messages can be provided to continue the chat.
-
-| Input             | Comments                                                                                                                                               | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Prompt            | The prompt you want to ask to the model.                                                                                                               |         |
-| Chat History      | JSON string containing the chat history, you can use this parameter to give the model a context of the conversation.                                   |         |
-| Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').                                                              |         |
-| Temperature       | Controls randomness in the output. Higher values (e.g., 0.8) make output more random, lower values (e.g., 0.2) make it more focused and deterministic. |         |
-| Max Output Tokens | Maximum number of tokens to generate in the response.                                                                                                  |         |
-| Top K             | Limits token selection to the K most likely next tokens.                                                                                               |         |
-| Top P             | Limits token selection to tokens with cumulative probability less than P.                                                                              |         |
-| Safety Settings   | JSON string defining safety settings for content generation.                                                                                           |         |
-| Extra Parameters  | Extra parameters to pass to the API.                                                                                                                   |         |
-| Connection        | Select a Google Gemini connection.                                                                                                                     |         |
-
 ### Delete File {#deletefile}
 
 Deletes a file from the service.
@@ -89,6 +72,22 @@ Generates an image using the Google Generative AI (Gemini) model.
 | Aspect Ratio     | Aspect ratio of the generated media.                                                      |         |
 | Extra Parameters | Extra parameters to pass to the API.                                                      |         |
 | Connection       | Select a Google Gemini connection.                                                        |         |
+
+### Generate Text {#generatetext}
+
+Send a prompt to the model and return a generated text response.
+
+| Input             | Comments                                                                                                                                               | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Prompt            | The text prompt to generate a response for.                                                                                                            |         |
+| Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').                                                              |         |
+| Temperature       | Controls randomness in the output. Higher values (e.g., 0.8) make output more random, lower values (e.g., 0.2) make it more focused and deterministic. |         |
+| Max Output Tokens | Maximum number of tokens to generate in the response.                                                                                                  |         |
+| Top K             | Limits token selection to the K most likely next tokens.                                                                                               |         |
+| Top P             | Limits token selection to tokens with cumulative probability less than P.                                                                              |         |
+| Safety Settings   | JSON string defining safety settings for content generation.                                                                                           |         |
+| Extra Parameters  | Extra parameters to pass to the API.                                                                                                                   |         |
+| Connection        | Select a Google Gemini connection.                                                                                                                     |         |
 
 ### Generate Video {#generatevideo}
 
@@ -149,13 +148,14 @@ Retrieves a list of available models from the Google Generative AI API.
 | Extra Parameters | Extra parameters to pass to the API.    |         |
 | Connection       | Select a Google Gemini connection.      |         |
 
-### Send Prompt {#generatetext}
+### Send Message {#sendmessage}
 
-Send a prompt to the chat and provides a response.
+Sends a message to the chat. Optionally, historical messages can be provided to continue the chat.
 
 | Input             | Comments                                                                                                                                               | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Prompt            | The text prompt to generate a response for.                                                                                                            |         |
+| Prompt            | The prompt you want to ask to the model.                                                                                                               |         |
+| Chat History      | JSON string containing the chat history, you can use this parameter to give the model a context of the conversation.                                   |         |
 | Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').                                                              |         |
 | Temperature       | Controls randomness in the output. Higher values (e.g., 0.8) make output more random, lower values (e.g., 0.2) make it more focused and deterministic. |         |
 | Max Output Tokens | Maximum number of tokens to generate in the response.                                                                                                  |         |

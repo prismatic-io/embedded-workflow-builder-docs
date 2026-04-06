@@ -62,14 +62,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive data from scheduled events in real time with webhook subscriptions.
 
-| Input              | Comments                                                                                                                                                                      | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Calendly connection to use.                                                                                                                                               |         |
-| Organization       | The unique reference to the organization that the webhook will be tied to.                                                                                                    |         |
-| User               | The unique reference to the user that the webhook will be tied to.                                                                                                            |         |
-| Webhook Event Name | The webhook event types to subscribe to.                                                                                                                                      |         |
-| Scope              | Indicates if the webhook subscription scope will be 'organization' or 'user'.                                                                                                 |         |
-| Signing Key        | Optional secret key shared between your application and Calendly. See https://developer.calendly.com/api-docs/ZG9jOjM2MzE2MDM4-webhook-signatures for additional information. |         |
+| Input              | Comments                                                                                                                                                                                                    | Default |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Calendly connection to use.                                                                                                                                                                             |         |
+| Organization       | The unique reference to the organization that the webhook will be tied to.                                                                                                                                  |         |
+| User               | The unique reference to the user that the webhook will be tied to.                                                                                                                                          |         |
+| Webhook Event Name | The webhook event types to subscribe to.                                                                                                                                                                    |         |
+| Scope              | Indicates if the webhook subscription scope will be 'organization' or 'user'.                                                                                                                               |         |
+| Signing Key        | Optional secret key shared between your application and Calendly. See [Calendly API documentation](https://developer.calendly.com/api-docs/ZG9jOjM2MzE2MDM4-webhook-signatures) for additional information. |         |
 
 ## Actions
 
@@ -116,15 +116,15 @@ Creates a single-use scheduling link.
 
 Create a Webhook Subscription for an Organization or User.
 
-| Input        | Comments                                                                                                                                                                      | Default |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Calendly connection to use.                                                                                                                                               |         |
-| Organization | The unique reference to the organization that the webhook will be tied to.                                                                                                    |         |
-| User         | The unique reference to the user that the webhook will be tied to.                                                                                                            |         |
-| URL          | The URL where you want to receive POST requests for events you are subscribed to.                                                                                             |         |
-| Event        | Event to subscribe to.                                                                                                                                                        |         |
-| Scope        | Indicates if the webhook subscription scope will be 'organization' or 'user'.                                                                                                 |         |
-| Signing Key  | Optional secret key shared between your application and Calendly. See https://developer.calendly.com/api-docs/ZG9jOjM2MzE2MDM4-webhook-signatures for additional information. |         |
+| Input        | Comments                                                                                                                                                                                                    | Default |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                                                                                                                                                             |         |
+| Organization | The unique reference to the organization that the webhook will be tied to.                                                                                                                                  |         |
+| User         | The unique reference to the user that the webhook will be tied to.                                                                                                                                          |         |
+| URL          | The URL where you want to receive POST requests for events you are subscribed to.                                                                                                                           |         |
+| Event        | Event to subscribe to.                                                                                                                                                                                      |         |
+| Scope        | Indicates if the webhook subscription scope will be 'organization' or 'user'.                                                                                                                               |         |
+| Signing Key  | Optional secret key shared between your application and Calendly. See [Calendly API documentation](https://developer.calendly.com/api-docs/ZG9jOjM2MzE2MDM4-webhook-signatures) for additional information. |         |
 
 ### Delete Instanced Webhooks {#deleteinstancedwebhooks}
 
@@ -224,10 +224,11 @@ Returns information about a user's Organization Membership.
 
 Get a specified Routing Form.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection | The Calendly connection to use.       |         |
-| UUID       | The unique identifier in UUID format. |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| UUID         | The unique identifier in UUID format.                                   |         |
 
 ### Get Routing Form Submission {#getroutingformsubmission}
 
@@ -366,11 +367,12 @@ Get a list of Routing Forms for a specified Organization.
 
 Get a list of Routing Form Submissions for a specified Routing Form.
 
-| Input      | Comments                                                                                                                         | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Calendly connection to use.                                                                                                  |         |
-| Form       | View routing form submissions associated with the routing form's URI.                                                            |         |
-| Sort       | Order results by the specified field and direction. Supported fields are: created_at. Sort direction is specified as: asc, desc. |         |
+| Input        | Comments                                                                                                                         | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                                                                                  |         |
+| Organization | Return events scheduled with the organization associated with this URI.                                                          |         |
+| Form         | View routing form submissions associated with the routing form's URI.                                                            |         |
+| Sort         | Order results by the specified field and direction. Supported fields are: created_at. Sort direction is specified as: asc, desc. |         |
 
 ### List User Availability Schedules {#listuseravailabilityschedules}
 

@@ -10,9 +10,9 @@ The Mailchimp component allows you to interact with your mailchimp email campaig
 
 ## Connections
 
-### Mailchimp API Key {#apikey}
+### API Key {#apikey}
 
-Authenticate requests to Mailchimp using an API Key
+API Key connection for Mailchimp
 
 To authenticate with Mailchimp using an API Key, generate a key from the Mailchimp account settings.
 
@@ -46,9 +46,9 @@ Mailchimp API keys include a data center suffix (e.g., `abc123def456-us21`). The
 | API Key       | The Mailchimp API Key. Generate one in your Mailchimp account at [Account > Extras > API Keys](https://admin.mailchimp.com/account/api/). The key includes a data center suffix. |         |
 | Debug Request | When true, the component will log the request and response to the console.                                                                                                       | false   |
 
-### Mailchimp OAuth 2.0 Connection {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Authenticate requests to Mailchimp using OAuth 2.0
+OAuth 2.0 connection for Mailchimp
 
 To connect to Mailchimp using OAuth 2.0, an OAuth application must be registered in the Mailchimp account.
 

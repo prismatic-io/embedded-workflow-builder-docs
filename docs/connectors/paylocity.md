@@ -9,24 +9,9 @@ description: Paylocity provides a comprehensive product suite and delivers a uni
 
 ## Connections
 
-### Pay Entry OAuth 2.0 {#payentryoauth2}
+### OAuth 2.0 {#oauth2}
 
-Authenticate requests to Paylocity using values obtained from the developer console.
-
-1. Must have access to the Paylocity Web Service. The Paylocity Client ID and Client Secrets are provided by submitting an [Access Request form](https://docs.paylocity.com/knowledge/Partner%20integration/Paylocity%20Web%20Services_Access%20Request.pdf) for Paylocity Web Services. To request access use the following [guide](https://paylocity.egain.cloud/system/templates/selfservice/pctycss/help/customer/locale/en-US/portal/308600000001020/content-version/PCTY-124765/PCTY-1022971/Paylocity-Web-Services-Access-Request-Form-Field-Descriptions).
-   1. the Access Request form will also determine the external HTTPS URL for webhooks. See the Webhooks section for further details.
-2. Upon approval, your administrator will be provided with the API credentials via email by Paylocity. Input these credentials into the connection's configuration.
-
-| Input         | Comments                                                                     | Default |
-| ------------- | ---------------------------------------------------------------------------- | ------- |
-| Environment   | The environment to use for the Paylocity apis                                |         |
-| Token URL     | Select the environment to fetch the token from.                              |         |
-| Client ID     | Provide the Client Id you received from the Paylocity Developer Console.     |         |
-| Client Secret | Provide the Client Secret you received from the Paylocity Developer Console. |         |
-
-### Paylocity OAuth 2.0 {#oauth2}
-
-Authenticate requests to Paylocity using values obtained from the developer console.
+OAuth 2.0 connection for Paylocity
 
 To Set up OAuth 2.0:
 
@@ -36,6 +21,21 @@ To Set up OAuth 2.0:
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input         | Comments                                                                     | Default |
+| ------------- | ---------------------------------------------------------------------------- | ------- |
+| Environment   | The environment to use for the Paylocity apis                                |         |
+| Token URL     | Select the environment to fetch the token from.                              |         |
+| Client ID     | Provide the Client Id you received from the Paylocity Developer Console.     |         |
+| Client Secret | Provide the Client Secret you received from the Paylocity Developer Console. |         |
+
+### OAuth 2.0 (Pay Entry) {#payentryoauth2}
+
+OAuth 2.0 connection for Paylocity Pay Entry
+
+1. Must have access to the Paylocity Web Service. The Paylocity Client ID and Client Secrets are provided by submitting an [Access Request form](https://docs.paylocity.com/knowledge/Partner%20integration/Paylocity%20Web%20Services_Access%20Request.pdf) for Paylocity Web Services. To request access use the following [guide](https://paylocity.egain.cloud/system/templates/selfservice/pctycss/help/customer/locale/en-US/portal/308600000001020/content-version/PCTY-124765/PCTY-1022971/Paylocity-Web-Services-Access-Request-Form-Field-Descriptions).
+   1. the Access Request form will also determine the external HTTPS URL for webhooks. See the Webhooks section for further details.
+2. Upon approval, your administrator will be provided with the API credentials via email by Paylocity. Input these credentials into the connection's configuration.
 
 | Input         | Comments                                                                     | Default |
 | ------------- | ---------------------------------------------------------------------------- | ------- |

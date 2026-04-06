@@ -75,7 +75,6 @@ Create an Asset.
 | Directory           | An array of strings representing the directory, if a folder does not exist, it is created. Important: Cannot be used in conjunction with parentId that is from a Folder.                            |         |
 | Expires At          | Asset will expire once the defined date is reached.                                                                                                                                                 |         |
 | Author              | Represents the Author of the Asset.                                                                                                                                                                 |         |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                                                | false   |
 
 ### Create Attachment {#createattachment}
 
@@ -88,138 +87,129 @@ Create a new Attachment.
 | File ID             | The signed ID returned by the Upload File action.                |         |
 | Name                | Attachment name or display name.                                 |         |
 | External ID         | Attachment external ID.                                          |         |
-| Debug Request       | Enabling this flag will log out the current request.             | false   |
 
 ### Create Collection {#createcollection}
 
 Create a new Collection. Currently supported for Library type parent entities only.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Parent ID           | ID of the parent Library entity.                     |         |
-| Name                | Collection name.                                     |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                         | Default |
+| ------------------- | -------------------------------- | ------- |
+| Frontify Connection |                                  |         |
+| Parent ID           | ID of the parent Library entity. |         |
+| Name                | Collection name.                 |         |
 
 ### Create Folder {#createfolder}
 
 Create a new Folder.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Parent ID           | ID of the parent.                                    |         |
-| Name                | Folder name.                                         |         |
-| Description         | Folder description.                                  |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments            | Default |
+| ------------------- | ------------------- | ------- |
+| Frontify Connection |                     |         |
+| Parent ID           | ID of the parent.   |         |
+| Name                | Folder name.        |         |
+| Description         | Folder description. |         |
 
 ### Delete Asset {#deleteasset}
 
 Delete an Asset.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Asset ID            | ID of the Asset to delete.                           |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                   | Default |
+| ------------------- | -------------------------- | ------- |
+| Frontify Connection |                            |         |
+| Asset ID            | ID of the Asset to delete. |         |
 
 ### Delete Attachment {#deleteattachment}
 
 Delete an existing Attachment.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Attachment ID       | ID of the Attachment to delete.                      |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                        | Default |
+| ------------------- | ------------------------------- | ------- |
+| Frontify Connection |                                 |         |
+| Attachment ID       | ID of the Attachment to delete. |         |
 
 ### Delete Collection {#deletecollection}
 
 Delete an existing Collection.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Collection ID       | ID of the Collection to delete.                      |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                        | Default |
+| ------------------- | ------------------------------- | ------- |
+| Frontify Connection |                                 |         |
+| Brand ID            | ID of the Brand entity.         |         |
+| Library ID          | ID of the Library entity.       |         |
+| Collection ID       | ID of the Collection to delete. |         |
 
 ### Delete Folders {#deletefolders}
 
 Delete existing Folders.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Folder IDs          | ID of the Folder to delete.                          |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                    | Default |
+| ------------------- | --------------------------- | ------- |
+| Frontify Connection |                             |         |
+| Brand ID            | ID of the Brand entity.     |         |
+| Library ID          | ID of the Library entity.   |         |
+| Folder IDs          | ID of the Folder to delete. |         |
 
 ### Get Account ID {#getaccountid}
 
 Retrieve current Account ID.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments | Default |
+| ------------------- | -------- | ------- |
+| Frontify Connection |          |         |
 
 ### Get Asset {#getasset}
 
 Retrieve an Asset by ID.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Asset ID            | ID of the Asset to retrieve.                         |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                     | Default |
+| ------------------- | ---------------------------- | ------- |
+| Frontify Connection |                              |         |
+| Asset ID            | ID of the Asset to retrieve. |         |
 
 ### Get Assets by IDs {#getassetsbyids}
 
 Retrieve a list of Assets by IDs.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Asset IDs           | List of Asset IDs to retrieve.                       |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                       | Default |
+| ------------------- | ------------------------------ | ------- |
+| Frontify Connection |                                |         |
+| Asset IDs           | List of Asset IDs to retrieve. |         |
 
 ### Get Brand {#getbrand}
 
 Retrieve a Brand by its ID.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Brand ID            | ID of the Brand to retrieve.                         |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                     | Default |
+| ------------------- | ---------------------------- | ------- |
+| Frontify Connection |                              |         |
+| Brand ID            | ID of the Brand to retrieve. |         |
 
 ### Get Current User {#getcurrentuser}
 
 Get the current User.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments | Default |
+| ------------------- | -------- | ------- |
+| Frontify Connection |          |         |
 
 ### Get Library {#getlibrary}
 
 Retrieve a Library by its ID.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Library ID          | ID of the Library entity.                            |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                  | Default |
+| ------------------- | ------------------------- | ------- |
+| Frontify Connection |                           |         |
+| Brand ID            | ID of the Brand entity.   |         |
+| Library ID          | ID of the Library entity. |         |
 
 ### Get Workspace Project {#getworkspaceproject}
 
 Retrieve a Workspace Project by its ID.
 
-| Input                | Comments                                             | Default |
-| -------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection  |                                                      |         |
-| Workspace Project ID | ID of the Workspace Project entity.                  |         |
-| Debug Request        | Enabling this flag will log out the current request. | false   |
+| Input                | Comments                            | Default |
+| -------------------- | ----------------------------------- | ------- |
+| Frontify Connection  |                                     |         |
+| Workspace Project ID | ID of the Workspace Project entity. |         |
 
 ### Install Webhook {#installwebhook}
 
@@ -231,7 +221,6 @@ Install a Webhook onto a Workspace Project or Library.
 | Workspace Project ID or Library ID | The ID of the Workspace Project or Library to attach the Webhook to. |         |
 | Webhook Name                       | The name of the Webhook.                                             |         |
 | Notification URL                   | The URL that the Webhook will send notifications to when triggered.  |         |
-| Debug Request                      | Enabling this flag will log out the current request.                 | false   |
 
 ### List Asset Comments {#listassetcomments}
 
@@ -245,7 +234,6 @@ Retrieve a list of Comments relating to a given Asset.
 | Page Size           | How many items to show per page.                                                  | 25      |
 | Asset ID            | ID of the Asset to retrieve comments for.                                         |         |
 | Reply Limit         | The limit of how may replies to show per comment.                                 | 50      |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Brand Libraries {#listbrandlibraries}
 
@@ -258,16 +246,14 @@ Retrieve list of Libraries belonging to a Brand. For full Library details, pleas
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
 | Brand ID            | ID of the Brand to retrieve Libraries for.                                        |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Brands {#listbrands}
 
 Retrieve Brand list for current Account.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments | Default |
+| ------------------- | -------- | ------- |
+| Frontify Connection |          |         |
 
 ### List Brand Workspace Projects {#listbrandworkspaceprojects}
 
@@ -280,7 +266,6 @@ Retrieve list of Workspace Projects belonging to a Brand. For full details, plea
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
 | Brand ID            | ID of the Brand to retrieve Workspace Projects for.                               |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Library Assets {#listlibraryassets}
 
@@ -292,10 +277,10 @@ Retrieve a list of Assets belonging to a Library.
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Library ID          | ID of the Library entity.                                                         |         |
 | Search Query        | Limit the result set by the search term.                                          |         |
 | External ID         | Limit the result set by the external ID of an Asset.                              |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Library Collaborators {#listlibrarycollaborators}
 
@@ -307,8 +292,8 @@ Retrieve a list of Collaborators belonging to a Library.
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Library ID          | ID of the Library entity.                                                         |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Library Collections {#listlibrarycollections}
 
@@ -320,10 +305,10 @@ Retrieve a list of Collections belonging to a Library.
 | Fetch All           | If true, it will fetch all top-level Collections records and ignore parameters like page and page size. This toggle will not affect the Asset pagination within each Collection. | false   |
 | Page                | Page number                                                                                                                                                                      | 1       |
 | Page Size           | How many items to show per page.                                                                                                                                                 | 25      |
+| Brand ID            | ID of the Brand entity.                                                                                                                                                          |         |
 | Library ID          | ID of the Library entity.                                                                                                                                                        |         |
 | Page (Assets)       | Assets are paginated within collections. Use this to control the nested Asset pagination.                                                                                        | 1       |
 | Page Size (Assets)  | Assets are paginated within collections. Use this to control the nested Asset pagination.                                                                                        | 50      |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                                             | false   |
 
 ### List Library Folders {#listlibraryfolders}
 
@@ -335,8 +320,8 @@ Retrieve a list of the top-level folders in a Library. To browse further, use th
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Library ID          | ID of the Library entity.                                                         |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Related Assets {#listrelatedassets}
 
@@ -349,7 +334,6 @@ Retrieve a list of assets that relate to a specific Asset.
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
 | Asset ID            | ID of the Asset to retrieve related assets for.                                   |         |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List User Groups {#listusergroups}
 
@@ -363,7 +347,6 @@ Retrieve UserGroups list for the current Account.
 | Page Size           | How many items to show per page.                                                                                                                            | 25      |
 | Page (users)        | For paging through users belonging to a userGroup.                                                                                                          | 1       |
 | Limit (user pages)  | How many records to show per page of users.                                                                                                                 | 25      |
-| Debug Request       | Enabling this flag will log out the current request.                                                                                                        | false   |
 
 ### List Users {#listusers}
 
@@ -375,7 +358,6 @@ Retrieve Users list for the current Account.
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Webhooks {#listwebhooks}
 
@@ -387,7 +369,6 @@ Retrieve WebhookItems related to current Account.
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Debug Request       | Enabling this flag will log out the current request.                              | false   |
 
 ### List Workspace Project Assets {#listworkspaceprojectassets}
 
@@ -402,7 +383,6 @@ Retrieve a list of Assets belonging to a Workspace Project.
 | Workspace Project ID | ID of the Workspace Project entity.                                               |         |
 | Search Query         | Limit the result set by the search term.                                          |         |
 | External ID          | Limit the result set by the external ID of an Asset.                              |         |
-| Debug Request        | Enabling this flag will log out the current request.                              | false   |
 
 ### List Workspace Project Folders {#listworkspaceprojectfolders}
 
@@ -415,29 +395,28 @@ Retrieve a list of the top-level folders in a Workspace Project. To browse furth
 | Page                 | Page number                                                                       | 1       |
 | Page Size            | How many items to show per page.                                                  | 25      |
 | Workspace Project ID | ID of the Workspace Project entity.                                               |         |
-| Debug Request        | Enabling this flag will log out the current request.                              | false   |
 
 ### Move Assets {#moveassets}
 
 Move existing Asset item(s) to the given Library, Workspace or Folder destination. Only moves within the same Library/Workspace are supported by this operation.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Asset IDs           | IDs of the Assets to move.                           |         |
-| Destination ID      | Only allows Library, Workspace, or Folder IDs.       |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                                       | Default |
+| ------------------- | ---------------------------------------------- | ------- |
+| Frontify Connection |                                                |         |
+| Asset IDs           | IDs of the Assets to move.                     |         |
+| Destination ID      | Only allows Library, Workspace, or Folder IDs. |         |
 
 ### Move Folders {#movefolders}
 
 Move existing Folder item(s) to the given Library, Workspace or Folder destination. Only moves within the same Library/Workspace are supported by this operation.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Folder IDs          | ID of the Folder items to move.                      |         |
-| Destination ID      | Only allows Library, Workspace, or Folder IDs.       |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                                       | Default |
+| ------------------- | ---------------------------------------------- | ------- |
+| Frontify Connection |                                                |         |
+| Brand ID            | ID of the Brand entity.                        |         |
+| Library ID          | ID of the Library entity.                      |         |
+| Folder IDs          | ID of the Folder items to move.                |         |
+| Destination ID      | Only allows Library, Workspace, or Folder IDs. |         |
 
 ### Raw GraphQL Request {#rawrequest}
 
@@ -448,17 +427,15 @@ Send a raw GraphQL request to Frontify.
 | Frontify Connection |                                                             |         |
 | Query or Mutation   | Provide a query or mutation for the GraphQL request.        |         |
 | GraphQL Variables   | These should match the variables of your query or mutation. |         |
-| Debug Request       | Enabling this flag will log out the current request.        | false   |
 
 ### Uninstall Webhook {#uninstallwebhook}
 
 Uninstall a Webhook.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Webhook ID          | The ID of the Webhook to uninstall.                  |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                            | Default |
+| ------------------- | ----------------------------------- | ------- |
+| Frontify Connection |                                     |         |
+| Webhook ID          | The ID of the Webhook to uninstall. |         |
 
 ### Update Asset {#updateasset}
 
@@ -475,30 +452,31 @@ Update an existing Asset.
 | Copyright Notice    | Asset copyright notice. Supports medium text length. |         |
 | Expires At          | Asset will expire once the defined date is reached.  |         |
 | Author              | Represents the Author of the Asset.                  |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
 
 ### Update Collection {#updatecollection}
 
 Update an existing Collection.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Collection ID       | ID of the Collection to update.                      |         |
-| Name                | Collection name.                                     |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                        | Default |
+| ------------------- | ------------------------------- | ------- |
+| Frontify Connection |                                 |         |
+| Brand ID            | ID of the Brand entity.         |         |
+| Library ID          | ID of the Library entity.       |         |
+| Collection ID       | ID of the Collection to update. |         |
+| Name                | Collection name.                |         |
 
 ### Update Folder {#updatefolder}
 
 Update an existing Folder.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Folder ID           | ID of the Folder to update.                          |         |
-| Name                | Folder name.                                         |         |
-| Description         | Folder description.                                  |         |
-| Debug Request       | Enabling this flag will log out the current request. | false   |
+| Input               | Comments                    | Default |
+| ------------------- | --------------------------- | ------- |
+| Frontify Connection |                             |         |
+| Brand ID            | ID of the Brand entity.     |         |
+| Library ID          | ID of the Library entity.   |         |
+| Folder ID           | ID of the Folder to update. |         |
+| Name                | Folder name.                |         |
+| Description         | Folder description.         |         |
 
 ### Upload File {#uploadfile}
 
@@ -510,4 +488,3 @@ Upload a new file.
 | File Name           | File name.                                                           |         |
 | Size                | File size in bytes.                                                  |         |
 | Chunk Size          | File chunk size in bytes. Value must be integer between 5MB and 1GB. |         |
-| Debug Request       | Enabling this flag will log out the current request.                 | false   |

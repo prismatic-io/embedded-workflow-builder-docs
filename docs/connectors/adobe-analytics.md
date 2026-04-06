@@ -14,9 +14,9 @@ This component was built using the [Adobe Analytics 2.0 API Reference](https://d
 
 ## Connections
 
-### Adobe Analytics OAuth 2.0 Connection {#adobeanalyticsoauth}
+### OAuth 2.0 {#adobeanalyticsoauth}
 
-Connect to Adobe Analytics via OAuth 2.0
+Authenticate using OAuth 2.0.
 
 To create an Adobe Analytics OAuth 2.0 app, first visit the [Adobe Developer Console](https://developer.adobe.com/console/).
 
@@ -32,87 +32,87 @@ Enter your client ID and client secret when you create an Adobe Analytics connec
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                              | Default                                                                                                |
-| ------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Authorize URL | The OAuth 2.0 Authorization URL for Adobe                             | https://ims-na1.adobelogin.com/ims/authorize/v2                                                        |
-| Token URL     | The OAuth 2.0 Token URL for Adobe                                     | https://ims-na1.adobelogin.com/ims/token/v3                                                            |
-| Scopes        | Scopes required for your app                                          | openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function |
-| Client ID     | Client ID of your app for the API. Generate in the developer console. |                                                                                                        |
-| Client Secret | Client Secret of your app for the API                                 |                                                                                                        |
+| Input         | Comments                                                   | Default                                                                                                |
+| ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Authorize URL | The OAuth 2.0 authorization URL for Adobe.                 | https://ims-na1.adobelogin.com/ims/authorize/v2                                                        |
+| Token URL     | The OAuth 2.0 token URL for Adobe.                         | https://ims-na1.adobelogin.com/ims/token/v3                                                            |
+| Scopes        | The space-delimited OAuth scopes required for API access.  | openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function |
+| Client ID     | The client ID for the Adobe Developer Console project.     |                                                                                                        |
+| Client Secret | The client secret for the Adobe Developer Console project. |                                                                                                        |
 
 ## Actions
 
 ### Get Current User {#getcurrentuser}
 
-Get authenticated user and associated organizations and companies
+Retrieves the authenticated user and associated organizations and companies.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Adobe Analytics connection to use. |         |
 
 ### Get Report Suite {#getreportsuite}
 
-Get a report suite by ID
+Retrieves a report suite by ID.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Global Company ID |          |         |
-| Report Suite ID   |          |         |
+| Input             | Comments                                             | Default |
+| ----------------- | ---------------------------------------------------- | ------- |
+| Connection        | The Adobe Analytics connection to use.               |         |
+| Global Company ID | The unique identifier for the analytics company.     |         |
+| Report Suite ID   | The unique identifier for the report suite to query. |         |
 
 ### List Companies {#listcompanies}
 
-List all companies the authenticate user can access
+Lists all companies the authenticated user can access.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Adobe Analytics connection to use. |         |
 
 ### List Dimensions for Report Suite {#listreportsuitedimensions}
 
-Get a list of dimensions for a given report suite
+Retrieves a list of dimensions for a given report suite.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Global Company ID |          |         |
-| Report Suite ID   |          |         |
+| Input             | Comments                                             | Default |
+| ----------------- | ---------------------------------------------------- | ------- |
+| Connection        | The Adobe Analytics connection to use.               |         |
+| Global Company ID | The unique identifier for the analytics company.     |         |
+| Report Suite ID   | The unique identifier for the report suite to query. |         |
 
 ### List Metrics for Report Suite {#listreportsuitemetrics}
 
-Get a list of metrics for a given report suite
+Retrieves a list of metrics for a given report suite.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Global Company ID |          |         |
-| Report Suite ID   |          |         |
+| Input             | Comments                                             | Default |
+| ----------------- | ---------------------------------------------------- | ------- |
+| Connection        | The Adobe Analytics connection to use.               |         |
+| Global Company ID | The unique identifier for the analytics company.     |         |
+| Report Suite ID   | The unique identifier for the report suite to query. |         |
 
 ### List Report Suites {#listreportsuites}
 
-Retrieve a list of report suites
+Retrieves a list of report suites.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Global Company ID |          |         |
+| Input             | Comments                                         | Default |
+| ----------------- | ------------------------------------------------ | ------- |
+| Connection        | The Adobe Analytics connection to use.           |         |
+| Global Company ID | The unique identifier for the analytics company. |         |
 
 ### List Virtual Report Suites {#listvirtualreportsuites}
 
-Retrieve a list of virtual report suites
+Retrieves a list of virtual report suites.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Global Company ID |          |         |
+| Input             | Comments                                         | Default |
+| ----------------- | ------------------------------------------------ | ------- |
+| Connection        | The Adobe Analytics connection to use.           |         |
+| Global Company ID | The unique identifier for the analytics company. |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Adobe Analytics
+Sends a raw HTTP request to Adobe Analytics.
 
 | Input                   | Comments                                                                                                                                                                                                             | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                      |         |
+| Connection              | The Adobe Analytics connection to use.                                                                                                                                                                               |         |
 | URL                     | Input the path only (/discovery/me), The base URL is already included (https://analytics.adobe.io). For example, to connect to https://analytics.adobe.io/discovery/me, only /discovery/me is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                              |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                            |         |
@@ -124,19 +124,19 @@ Send raw HTTP request to Adobe Analytics
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                             | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                  |         |
 | Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                 | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries.                                                                                                                                                                           | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type.                                                                                                                                                      | false   |
-| Max Retry Count         | The maximum number of retries to attempt.                                                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries.                                                                                                                                     | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                  | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                     | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                  | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                        | false   |
 
 ### Run Report {#runreport}
 
-Run a report
+Runs a report against a specified report suite.
 
-| Input               | Comments                                                                                 | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection          |                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Global Company ID   |                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Report Suite ID     |                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Dimension           |                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Report Request Body | The body of the report request. Specify all fields besides dimension and report ID here. | <code>{<br /> "globalFilters": [<br /> {<br /> "type": "dateRange",<br /> "dateRange": "YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"<br /> }<br /> ],<br /> "metricContainer": {<br /> "metrics": [<br /> {<br /> "columnId": "0",<br /> "id": "metrics/pageviews",<br /> "filters": [<br /> "0"<br /> ]<br /> }<br /> ],<br /> "metricFilters": [<br /> {<br /> "id": "0",<br /> "type": "dateRange",<br /> "dateRange": "YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"<br /> }<br /> ]<br /> },<br /> "settings": {<br /> "dimensionSort": "asc",<br /> "limit": "10",<br /> "page": "2"<br /> }<br />}</code> |
+| Input               | Comments                                                                                                                                       | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection          | The Adobe Analytics connection to use.                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Global Company ID   | The unique identifier for the analytics company.                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Report Suite ID     | The unique identifier for the report suite to query.                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Dimension           | The analytics dimension to break down the report by. Use the format variables/dimensionname.                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Report Request Body | The JSON request body for the report. Specify all fields besides dimension and report suite ID here, including filters, metrics, and settings. | <code>{<br /> "globalFilters": [<br /> {<br /> "type": "dateRange",<br /> "dateRange": "YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"<br /> }<br /> ],<br /> "metricContainer": {<br /> "metrics": [<br /> {<br /> "columnId": "0",<br /> "id": "metrics/pageviews",<br /> "filters": [<br /> "0"<br /> ]<br /> }<br /> ],<br /> "metricFilters": [<br /> {<br /> "id": "0",<br /> "type": "dateRange",<br /> "dateRange": "YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"<br /> }<br /> ]<br /> },<br /> "settings": {<br /> "dimensionSort": "asc",<br /> "limit": "10",<br /> "page": "2"<br /> }<br />}</code> |

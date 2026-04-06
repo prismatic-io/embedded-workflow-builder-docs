@@ -16,15 +16,15 @@ This component was built using the [Smartsheet API Documentation](https://smarts
 
 ### API Key {#apikey}
 
-Authenticate requests to Smartsheet using an API Key
+Authenticate requests to Smartsheet using an API key.
 
 API keys can be used for development purposes, though you should use an OAuth 2.0 connection for production integrations.
 Information about getting started and creating API keys with [Smartsheet](https://help.smartsheet.com/articles/2482389-generate-API-key) can be found on their developer documentation site.
 
-| Input    | Comments                                                                                                                                | Default                         |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| Base URL | Most applications use Smartsheet commercial, but you can choose to use a government endpoint if your customers are government entities. | https://api.smartsheet.com/2.0/ |
-| API Key  | Provide a string value for the API Key.                                                                                                 |                                 |
+| Input    | Comments                                                                                                | Default                         |
+| -------- | ------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| Base URL | Most applications use Smartsheet commercial. Government entities should select the government endpoint. | https://api.smartsheet.com/2.0/ |
+| API Key  | The API key generated from the Smartsheet account settings.                                             |                                 |
 
 ### OAuth 2.0 {#templatedoauth}
 
@@ -49,17 +49,17 @@ To authenticate Smartsheet users through OAuth 2.0, you will need to create and 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                                   | Default                                                                                                                                                                                                                           |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| API Domain    | Select the Smartsheet API domain. Most applications use commercial, but government entities should use the government endpoint.                                                                            | api.smartsheet.com                                                                                                                                                                                                                |
-| App Domain    | Select the Smartsheet application domain. This should match your API domain selection.                                                                                                                     | app.smartsheet.com                                                                                                                                                                                                                |
-| Scopes        | A space-separated list of permissions to request. You can remove any permissions that you do not use. Descriptions of each permission is available at https://smartsheet.redoc.ly/#section/Authentication. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
-| App client id | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
-| App secret    | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
+| Input         | Comments                                                                                                                                                                                                | Default                                                                                                                                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| API Domain    | Select the Smartsheet API domain. Most applications use commercial, but government entities should use the government endpoint.                                                                         | api.smartsheet.com                                                                                                                                                                                                                |
+| App Domain    | Select the Smartsheet application domain. This should match your API domain selection.                                                                                                                  | app.smartsheet.com                                                                                                                                                                                                                |
+| Scopes        | A space-separated list of permissions to request. Remove any permissions not needed. See [available scopes](https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth) for details. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
+| App Client ID | The client ID generated when creating an app within Smartsheet's Developer Tools.                                                                                                                       |                                                                                                                                                                                                                                   |
+| App Secret    | The client secret generated when creating an app within Smartsheet's Developer Tools.                                                                                                                   |                                                                                                                                                                                                                                   |
 
 ### OAuth 2.0 (Deprecated) {#smartsheet oauth2}
 
-Authenticate requests to Smartsheet using OAuth 2.0. Please replace this with the latest OAuth 2.0 connection.
+Authenticate requests to Smartsheet using OAuth 2.0. Deprecated in favor of the templated OAuth 2.0 connection.
 
 To authenticate Smartsheet users through OAuth 2.0, you will need to create and configure an app within your Smartsheet account.
 
@@ -80,608 +80,630 @@ To authenticate Smartsheet users through OAuth 2.0, you will need to create and 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input             | Comments                                                                                                                                                                                                   | Default                                                                                                                                                                                                                           |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Base URL          | Most applications use Smartsheet commercial, but you can choose to use a government endpoint if your customers are government entities.                                                                    | https://api.smartsheet.com/2.0/                                                                                                                                                                                                   |
-| Authorization URL | Authorization URL                                                                                                                                                                                          | https://app.smartsheet.com/b/authorize                                                                                                                                                                                            |
-| Token URL         | Token URL                                                                                                                                                                                                  | https://api.smartsheet.com/2.0/token                                                                                                                                                                                              |
-| Scopes            | A space separated list of permissions to request. You can remove any permissions that you do not use. Descriptions of each permission is available at https://smartsheet.redoc.ly/#section/Authentication. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
-| App client id     | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
-| App secret        | This is generated when you create an app within Smartsheet's 'Developer Tools'                                                                                                                             |                                                                                                                                                                                                                                   |
+| Input             | Comments                                                                                                                                                                                                | Default                                                                                                                                                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Base URL          | Most applications use Smartsheet commercial. Government entities should select the government endpoint.                                                                                                 | https://api.smartsheet.com/2.0/                                                                                                                                                                                                   |
+| Authorization URL | The OAuth 2.0 authorization endpoint for Smartsheet.                                                                                                                                                    | https://app.smartsheet.com/b/authorize                                                                                                                                                                                            |
+| Token URL         | The OAuth 2.0 token exchange endpoint for Smartsheet.                                                                                                                                                   | https://api.smartsheet.com/2.0/token                                                                                                                                                                                              |
+| Scopes            | A space-separated list of permissions to request. Remove any permissions not needed. See [available scopes](https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth) for details. | ADMIN_SHEETS ADMIN_SIGHTS ADMIN_USERS ADMIN_WEBHOOKS ADMIN_WORKSPACES CREATE_SHEETS CREATE_SIGHTS DELETE_SHEETS DELETE_SIGHTS READ_CONTACTS READ_EVENTS READ_SHEETS READ_SIGHTS READ_USERS SHARE_SHEETS SHARE_SIGHTS WRITE_SHEETS |
+| App Client ID     | The client ID generated when creating an app within Smartsheet's Developer Tools.                                                                                                                       |                                                                                                                                                                                                                                   |
+| App Secret        | The client secret generated when creating an app within Smartsheet's Developer Tools.                                                                                                                   |                                                                                                                                                                                                                                   |
 
 ## Triggers
 
 ### Webhook {#smartsheetwebhook}
 
-Receive and validate webhook requests from Smartsheet for webhooks you configure.
+Receive and validate webhook requests from Smartsheet for manually configured webhook subscriptions.
 
 ## Actions
 
 ### Add Column to Sheet {#columnsaddtosheet}
 
-Add column to sheet
+Adds a column to a sheet.
 
-| Input          | Comments                                                     | Default |
-| -------------- | ------------------------------------------------------------ | ------- |
-| Connection     |                                                              |         |
-| Sheet ID       |                                                              |         |
-| Title          | Column title                                                 |         |
-| Type           |                                                              |         |
-| Formula        | The formula for a column                                     |         |
-| Hidden         | Indicates whether the column is hidden                       | false   |
-| Position Index | Column index or position                                     | 0       |
-| Description    | Column description                                           |         |
-| Locked         | Indicates whether the column is locked                       | false   |
-| Options        | A list of options for picklists                              |         |
-| Validation     | Indicates whether validation has been enabled for the column | false   |
-| Width          | Display width of the column in pixels                        |         |
+| Input          | Comments                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Smartsheet connection to use.                                                     |         |
+| Sheet ID       | The unique identifier for the sheet.                                                  |         |
+| Title          | The display name for the column header.                                               |         |
+| Type           | The data type for the column. Determines how cell values are displayed and validated. |         |
+| Formula        | The formula for a column.                                                             |         |
+| Hidden         | Indicates whether the column is hidden                                                | false   |
+| Position Index | The 0-based position where the column should be inserted in the sheet.                | 0       |
+| Description    | Additional context or instructions displayed below the column header.                 |         |
+| Locked         | Indicates whether the column is locked                                                | false   |
+| Options        | A list of options for picklists                                                       |         |
+| Validation     | Indicates whether validation has been enabled for the column                          | false   |
+| Width          | Display width of the column in pixels.                                                |         |
 
 ### Add Comment {#commentscreate}
 
-Add a comment to a discussion
+Adds a comment to a discussion.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Sheet ID      |          |         |
-| Discussion ID |          |         |
-| Text          |          |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Smartsheet connection to use.         |         |
+| Sheet ID      | The unique identifier for the sheet.      |         |
+| Discussion ID | The unique identifier for the discussion. |         |
+| Text          | The text content of the comment.          |         |
 
 ### Add/Update Row {#rowsaddtosheet}
 
-Add or update a row on a sheet
+Adds or updates a row on a sheet.
 
-| Input                       | Comments                                                                                                                                      | Default  |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Connection                  |                                                                                                                                               |          |
-| Sheet ID                    |                                                                                                                                               |          |
-| Row ID (Optional)           | An ID of a row to update. Omit to add a new row                                                                                               |          |
-| Dynamic Columns Values      | List of columns and their values                                                                                                              |          |
-| Column Values               | A list of columns to be updated with the specified value                                                                                      |          |
-| Row Position (for new rows) |                                                                                                                                               | toBottom |
-| Allow Partial Success       | When specified with a value of true, enables partial success for this bulk operation                                                          | false    |
-| Override Validation         | You may use the query string parameter **overrideValidation** with a value of **true** to allow a cell value outside of the validation limits | false    |
+| Input                       | Comments                                                                              | Default  |
+| --------------------------- | ------------------------------------------------------------------------------------- | -------- |
+| Connection                  | The Smartsheet connection to use.                                                     |          |
+| Sheet ID                    | The unique identifier for the sheet.                                                  |          |
+| Row ID (Optional)           | An ID of a row to update. Omit to add a new row                                       |          |
+| Dynamic Columns Values      | List of columns and their values                                                      |          |
+| Column Values               | A list of columns to be updated with the specified value                              |          |
+| Row Position (for new rows) | The position where new rows are added to the sheet.                                   | toBottom |
+| Allow Partial Success       | When specified with a value of true, enables partial success for this bulk operation  | false    |
+| Override Validation         | When true, allows cell values outside of the validation limits defined on the column. | false    |
 
 ### Copy Rows {#copyrows}
 
-Copy Rows to Another Sheet
+Copies rows to another sheet.
 
-| Input                | Comments                                                  | Default |
-| -------------------- | --------------------------------------------------------- | ------- |
-| Connection           |                                                           |         |
-| Source Sheet ID      |                                                           |         |
-| Row Ids              | The IDs of the rows to move or copy from the source sheet |         |
-| Destination Sheet ID |                                                           |         |
+| Input                | Comments                                                      | Default |
+| -------------------- | ------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                             |         |
+| Source Sheet ID      | The unique identifier of the sheet to copy or move rows from. |         |
+| Row IDs              | The IDs of the rows to move or copy from the source sheet     |         |
+| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into. |         |
 
 ### Copy Sheet {#copysheet}
 
-Copy Sheet
+Copies a sheet to a specified destination.
 
-| Input            | Comments                                                                         | Default |
-| ---------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                                  |         |
-| Sheet ID         |                                                                                  |         |
-| Destination ID   | The ID of the destination container (when copying or moving a sheet or a folder) |         |
-| Destination Type | Type of the destination container                                                | home    |
-| New Name         | Name of the new copy                                                             |         |
+| Input            | Comments                                                                          | Default |
+| ---------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection       | The Smartsheet connection to use.                                                 |         |
+| Sheet ID         | The unique identifier for the sheet.                                              |         |
+| Destination ID   | The ID of the destination container (when copying or moving a sheet or a folder). |         |
+| Destination Type | The type of container to copy or move the resource into.                          | home    |
+| New Name         | The display name to assign to the copied resource.                                |         |
 
 ### Create Discussion {#discussionscreate}
 
-Create a discussion in a sheet or on a row
+Creates a discussion on a sheet or row.
 
-| Input             | Comments | Default |
-| ----------------- | -------- | ------- |
-| Connection        |          |         |
-| Sheet ID          |          |         |
-| Row ID (Optional) |          |         |
-| Comment           | Comment  |         |
+| Input             | Comments                                                                    | Default |
+| ----------------- | --------------------------------------------------------------------------- | ------- |
+| Connection        | The Smartsheet connection to use.                                           |         |
+| Sheet ID          | The unique identifier for the sheet.                                        |         |
+| Row ID (Optional) | The unique identifier for the row. Leave empty to apply to the sheet level. |         |
+| Comment           | The text content to post as a new discussion comment.                       |         |
 
 ### Create Folder {#createfolder}
 
-Create Folder
+Creates a new folder in a specified location.
 
 | Input                   | Comments                                                                                                 | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                          |         |
+| Connection              | The Smartsheet connection to use.                                                                        |         |
 | Folder ID               | Enter the ID of a folder to create a subfolder in, or omit this value to create a top-level home folder. |         |
 | Workspace ID (Optional) | Create in this workspace. Optional.                                                                      |         |
-| Folder Name             |                                                                                                          |         |
+| Folder Name             | The display name for the folder.                                                                         |         |
 
 ### Create Sheet {#createsheet}
 
-Create a new sheet
+Creates a new sheet with specified columns.
 
-| Input                   | Comments                                                                                                              | Default                                                                                                                                                                                                                |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection              |                                                                                                                       |                                                                                                                                                                                                                        |
-| Folder ID               | Create sheet in this folder. Omit to create a top-level sheet.                                                        |                                                                                                                                                                                                                        |
-| Workspace ID (Optional) |                                                                                                                       |                                                                                                                                                                                                                        |
-| Sheet Name              |                                                                                                                       |                                                                                                                                                                                                                        |
-| Columns                 | See https://smartsheet-platform.github.io/api-docs/?shell#column-types for additional information about column types. | <code>[<br /> {<br /> "title": "Favorite",<br /> "type": "CHECKBOX",<br /> "symbol": "STAR"<br /> },<br /> {<br /> "title": "Primary Column",<br /> "primary": true,<br /> "type": "TEXT_NUMBER"<br /> }<br />]</code> |
+| Input                   | Comments                                                                                                                                            | Default                                                                                                                                                                                                                |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection              | The Smartsheet connection to use.                                                                                                                   |                                                                                                                                                                                                                        |
+| Folder ID               | Create sheet in this folder. Omit to create a top-level sheet.                                                                                      |                                                                                                                                                                                                                        |
+| Workspace ID (Optional) | The unique identifier for the workspace. Leave empty to use the default context.                                                                    |                                                                                                                                                                                                                        |
+| Sheet Name              | The display name for the new sheet.                                                                                                                 |                                                                                                                                                                                                                        |
+| Columns                 | See [Smartsheet API documentation](https://developers.smartsheet.com/api/smartsheet/openapi/columns) for additional information about column types. | <code>[<br /> {<br /> "title": "Favorite",<br /> "type": "CHECKBOX",<br /> "symbol": "STAR"<br /> },<br /> {<br /> "title": "Primary Column",<br /> "primary": true,<br /> "type": "TEXT_NUMBER"<br /> }<br />]</code> |
 
 ### Create Webhook {#createwebhook}
 
-Create and enable a webhook
+Creates and enables a webhook for a specified resource.
 
 | Input             | Comments                                                                                                                                                                                                              | Default |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                                                                                                       |         |
-| Callback URL      | This is usually a reference to another flow's webhook URL                                                                                                                                                             |         |
-| Webhook Name      |                                                                                                                                                                                                                       |         |
-| Sheet ID          |                                                                                                                                                                                                                       |         |
+| Connection        | The Smartsheet connection to use.                                                                                                                                                                                     |         |
+| Callback URL      | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                                                    |         |
+| Webhook Name      | A descriptive label to identify the webhook in the dashboard.                                                                                                                                                         |         |
+| Sheet ID          | The unique identifier for the sheet.                                                                                                                                                                                  |         |
 | Allow Duplicates? | By default this action checks if a webhook with this callback and sheet ID already exists. If it does, this action does not configure a new webhook. Toggle this to true to allow the creation of duplicate webhooks. | false   |
 
 ### Create Workspace {#createworkspace}
 
-Create Workspace
+Creates a new workspace.
 
-| Input          | Comments | Default |
-| -------------- | -------- | ------- |
-| Connection     |          |         |
-| Workspace Name |          |         |
+| Input          | Comments                            | Default |
+| -------------- | ----------------------------------- | ------- |
+| Connection     | The Smartsheet connection to use.   |         |
+| Workspace Name | The display name for the workspace. |         |
 
 ### Delete Column {#columndelete}
 
-Delete column from a sheet
+Deletes a column from a sheet.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Column ID  |          |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.     |         |
+| Sheet ID   | The unique identifier for the sheet.  |         |
+| Column ID  | The unique identifier for the column. |         |
 
 ### Delete Comment {#commentdelete}
 
-Delete a comment by ID
+Deletes a comment by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Comment ID |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Sheet ID   | The unique identifier for the sheet.   |         |
+| Comment ID | The unique identifier for the comment. |         |
 
 ### Delete Discussion {#discussiondelete}
 
-Delete a discussion from a sheet or row
+Deletes a discussion from a sheet or row.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Sheet ID      |          |         |
-| Discussion ID |          |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Smartsheet connection to use.         |         |
+| Sheet ID      | The unique identifier for the sheet.      |         |
+| Discussion ID | The unique identifier for the discussion. |         |
 
 ### Delete Folder {#deletefolder}
 
-Delete Folder
+Deletes a folder by its ID.
 
-| Input      | Comments                                                                             | Default |
-| ---------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                      |         |
-| Folder ID  | Folder ID where you can create sheets, sights, reports, templates, and other folders |         |
+| Input      | Comments                                                                                                         | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.                                                                                |         |
+| Folder ID  | The unique identifier for the folder. Folders can contain sheets, sights, reports, templates, and other folders. |         |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
-Delete all Smartsheet webhooks that point to a flow in this instance
+Deletes all Smartsheet webhooks that point to a flow in this instance.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Smartsheet connection to use. |         |
 
 ### Delete Row {#deleterow}
 
-Delete Row
+Deletes a row from a sheet.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Row ID     |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Sheet ID   | The unique identifier for the sheet. |         |
+| Row ID     | The unique identifier for the row.   |         |
 
 ### Delete Sheet {#deletesheet}
 
-Delete Sheet
+Deletes a sheet by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Sheet ID   | The unique identifier for the sheet. |         |
 
 ### Delete Webhook {#deletewebhook}
 
-Delete webhook
+Deletes a webhook by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Webhook ID |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Webhook ID | The unique identifier for the webhook. |         |
 
 ### Delete Workspace {#deleteworkspace}
 
-Delete Workspace
+Deletes a workspace by its ID.
 
-| Input        | Comments | Default |
-| ------------ | -------- | ------- |
-| Connection   |          |         |
-| Workspace ID |          |         |
+| Input        | Comments                                 | Default |
+| ------------ | ---------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.        |         |
+| Workspace ID | The unique identifier for the workspace. |         |
 
 ### Edit Comment {#commentedit}
 
-Edit a comment by ID
+Edits a comment by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Comment ID |          |         |
-| Text       |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Sheet ID   | The unique identifier for the sheet.   |         |
+| Comment ID | The unique identifier for the comment. |         |
+| Text       | The text content of the comment.       |         |
 
-### Get column {#columnget}
+### Get Column {#columnget}
 
-Get Column by ID
+Retrieves a column by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Column ID  |          |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.     |         |
+| Sheet ID   | The unique identifier for the sheet.  |         |
+| Column ID  | The unique identifier for the column. |         |
 
 ### Get Comment {#commentget}
 
-Get a comment by ID
+Retrieves a comment by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Comment ID |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Sheet ID   | The unique identifier for the sheet.   |         |
+| Comment ID | The unique identifier for the comment. |         |
 
 ### Get Contact {#getcontact}
 
-Get Contact
+Retrieves a contact by its ID.
 
-| Input      | Comments                                | Default |
-| ---------- | --------------------------------------- | ------- |
-| Connection |                                         |         |
-| Contact ID | contactId of the contact being accessed |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Contact ID | The unique identifier for the contact. |         |
 
 ### Get Discussion {#discussionget}
 
-Get discussion by ID
+Retrieves a discussion by its ID.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Sheet ID      |          |         |
-| Discussion ID |          |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Smartsheet connection to use.         |         |
+| Sheet ID      | The unique identifier for the sheet.      |         |
+| Discussion ID | The unique identifier for the discussion. |         |
 
 ### Get Folder {#getfolder}
 
-Get Folder
+Retrieves a folder by its ID.
 
-| Input      | Comments                                                                             | Default |
-| ---------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                      |         |
-| Folder ID  | Folder ID where you can create sheets, sights, reports, templates, and other folders |         |
+| Input      | Comments                                                                                                         | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.                                                                                |         |
+| Folder ID  | The unique identifier for the folder. Folders can contain sheets, sights, reports, templates, and other folders. |         |
 
 ### Get Group {#getgroup}
 
-Get Group
+Retrieves a group by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Group ID   |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Group ID   | The unique identifier for the group. |         |
 
 ### Get Report {#getreport}
 
-Get report including one page of rows, attachments, discussions and source sheets
+Retrieves a report including one page of rows, attachments, discussions, and source sheets.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Report ID            |                                                |         |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Pagination Page      | Which page to return                           | 1       |
-
-### Get Reports {#getreports}
-
-Get Reports
-
-| Input          | Comments                                                                                                                                | Default |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                         |         |
-| Modified Since | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
+| Input                | Comments                                        | Default |
+| -------------------- | ----------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.               |         |
+| Report ID            | The unique identifier for the report.           |         |
+| Pagination Page Size | The maximum number of items to return per page. |         |
+| Pagination Page      | The 1-based page number to return.              | 1       |
 
 ### Get Row {#rowget}
 
-Get the contents of a row by ID
+Retrieves the contents of a row by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| Row ID     |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Sheet ID   | The unique identifier for the sheet. |         |
+| Row ID     | The unique identifier for the row.   |         |
 
 ### Get Sheet {#getsheet}
 
-Get sheet by sheet ID
+Retrieves a sheet by its ID.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Pagination Page      | Which page to return                           | 1       |
+| Input                | Comments                                        | Default |
+| -------------------- | ----------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.               |         |
+| Sheet ID             | The unique identifier for the sheet.            |         |
+| Pagination Page Size | The maximum number of items to return per page. |         |
+| Pagination Page      | The 1-based page number to return.              | 1       |
 
 ### Get Sheet Attachment {#attachmentsget}
 
-Get metadata about an attachment on a sheet
+Retrieves metadata for an attachment on a sheet.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Sheet ID      |          |         |
-| Attachment ID |          |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Smartsheet connection to use.         |         |
+| Sheet ID      | The unique identifier for the sheet.      |         |
+| Attachment ID | The unique identifier for the attachment. |         |
 
 ### Get Sheet Publish Status {#getsheetpublish}
 
-Get Sheet Publish Status
+Retrieves the publish status of a sheet.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Sheet ID   | The unique identifier for the sheet. |         |
 
 ### Get Sheet Version {#getsheetversion}
 
-Get Sheet Version
+Retrieves the version number of a sheet.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Smartsheet connection to use.    |         |
+| Sheet ID   | The unique identifier for the sheet. |         |
 
 ### Get User {#getuser}
 
-Get User
+Retrieves a user by their ID.
 
 | Input      | Comments                                                              | Default |
 | ---------- | --------------------------------------------------------------------- | ------- |
-| Connection |                                                                       |         |
+| Connection | The Smartsheet connection to use.                                     |         |
 | User ID    | The ID of a user to fetch. Enter 'me' to get currently logged in user |         |
 
 ### Get Webhook {#getwebhook}
 
-Get webhook by ID
+Retrieves a webhook by its ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Webhook ID |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.      |         |
+| Webhook ID | The unique identifier for the webhook. |         |
 
 ### Get Workspace {#getworkspace}
 
-Get Workspace
+Retrieves a workspace by its ID.
 
-| Input        | Comments                          | Default |
-| ------------ | --------------------------------- | ------- |
-| Connection   |                                   |         |
-| Workspace ID |                                   |         |
-| Load All     | Set to true to see nested folders | false   |
+| Input        | Comments                                                               | Default |
+| ------------ | ---------------------------------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.                                      |         |
+| Workspace ID | The unique identifier for the workspace.                               |         |
+| Load All     | When true, includes nested folders and their contents in the response. | false   |
 
 ### List Attachments on Row {#attachmentslistonrow}
 
-List attachments on a row of a sheet
+Lists attachments on a row of a sheet.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Row ID               |                                                |         |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Row ID               | The unique identifier for the row.                                                                      |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
 
 ### List Attachments on Sheet {#attachmentslistonsheet}
 
-List attachments on a sheet
+Lists all attachments on a sheet.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
 
 ### List Columns {#columnslistonsheet}
 
-List the columns of a sheet
+Lists all columns on a sheet.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
 
 ### List Contacts {#listcontacts}
 
-List Contacts
+Lists all contacts for the authenticated user.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Discussion Attachments {#discussionlistattachments}
 
-List Discussion Attachments
+Lists all attachments on a discussion.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Discussion ID        |                                                |         |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Discussion ID        | The unique identifier for the discussion.                                                               |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
 
 ### List Discussions {#discussionslist}
 
-List discussions on a sheet or row
+Lists discussions on a sheet or row.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Sheet ID             |                                                |         |
-| Row ID (Optional)    |                                                |         |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Row ID (Optional)    | The unique identifier for the row. Leave empty to apply to the sheet level.                             |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
 
 ### List Events {#listevents}
 
-Gets events that are occurring in your Smartsheet organization account
+Lists events occurring in the Smartsheet organization account.
 
-| Input           | Comments                                                    | Default              |
-| --------------- | ----------------------------------------------------------- | -------------------- |
-| Connection      |                                                             |                      |
-| Since           | Starting time for events to return                          | 2010-01-01T00:00:00Z |
-| Stream Position | Indicates next set of events to return                      |                      |
-| Max Count       | Maximum number of events to return as response to this call | 1000                 |
+| Input           | Comments                                                                                   | Default              |
+| --------------- | ------------------------------------------------------------------------------------------ | -------------------- |
+| Connection      | The Smartsheet connection to use.                                                          |                      |
+| Since           | The starting timestamp for events to return. Format: ISO 8601 (e.g. 2010-01-01T00:00:00Z). | 2010-01-01T00:00:00Z |
+| Stream Position | Indicates next set of events to return                                                     |                      |
+| Max Count       | The maximum number of events to return as response to this call.                           |                      |
 
 ### List Favorites {#getfavorites}
 
-List Favorites
+Lists all favorite items for the authenticated user.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Folders {#listfolders}
 
-List folders, subfolders or workspace folders
+Lists folders, subfolders, or workspace folders.
 
-| Input                   | Comments                                                                                        | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                 |         |
-| Folder ID               | Enter the ID of a folder to list subfolders, or omit this value to list top-level home folders. |         |
-| Workspace ID (Optional) | Create in this workspace. Optional.                                                             |         |
-| Fetch All               | Turn on to fetch all results using pagination                                                   | true    |
-| Pagination Page         | Which page to return                                                                            | 1       |
-| Pagination Page Size    | The maximum number of items to return per page                                                  | 100     |
+| Input                   | Comments                                                                                                | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Smartsheet connection to use.                                                                       |         |
+| Folder ID               | Enter the ID of a folder to list subfolders, or omit this value to list top-level home folders.         |         |
+| Workspace ID (Optional) | Create in this workspace. Optional.                                                                     |         |
+| Fetch All               | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page         | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size    | The maximum number of items to return per page.                                                         |         |
 
 ### List Groups {#listgroups}
 
-List Org Groups
+Lists all groups in the organization.
 
-| Input                | Comments                                                                                                                                | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                         |         |
-| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
-| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
-| Pagination Page      | Which page to return                                                                                                                    | 1       |
-| Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
+| Input                | Comments                                                                                                                                                                               | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                                                                      |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                                                                | false   |
+| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                                                                     | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                                                                        |         |
 
 ### List Home Contents {#listhomecontents}
 
-Get a nested list of all Home objects, including dashboards, folders, reports, sheets, templates, and workspaces, as shown on the "Home" tab.
+Lists all Home objects, including dashboards, folders, reports, sheets, templates, and workspaces.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Smartsheet connection to use. |         |
+
+### List Public Templates {#templateslistpublic}
+
+Lists publicly available templates.
+
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+
+### List Reports {#getreports}
+
+Lists all reports accessible to the authenticated user.
+
+| Input          | Comments                                                                                                                                                                               | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Smartsheet connection to use.                                                                                                                                                      |         |
+| Modified Since | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
 
 ### List Sheets {#listsheets}
 
-List Sheets
+Lists all sheets accessible to the authenticated user.
 
-| Input                | Comments                                                                                                                                | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                         |         |
-| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
-| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
-| Pagination Page      | Which page to return                                                                                                                    | 1       |
-| Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
+| Input                | Comments                                                                                                                                                                               | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                                                                      |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                                                                | false   |
+| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                                                                     | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                                                                        |         |
 
 ### List Users {#listusers}
 
-List Users
+Lists all users in the organization.
 
-| Input                | Comments                                                                                                                                | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                         |         |
-| Email                | Find a user with this email address                                                                                                     |         |
-| Fetch All            | Turn on to fetch all results using pagination                                                                                           | true    |
-| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified |         |
-| Pagination Page      | Which page to return                                                                                                                    | 1       |
-| Pagination Page Size | The maximum number of items to return per page                                                                                          | 100     |
+| Input                | Comments                                                                                                                                                                               | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                                                                      |         |
+| Email                | The email address to filter users by.                                                                                                                                                  |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                                                                | false   |
+| Modified Since       | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                                                                     | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                                                                        |         |
+
+### List User Templates {#templateslist}
+
+Lists user-created templates.
+
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Webhooks {#listwebhooks}
 
-List Webhooks
+Lists all webhooks owned by the authenticated user.
 
 | Input      | Comments                                                                                                                                                                           | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                                                    |         |
+| Connection | The Smartsheet connection to use.                                                                                                                                                  |         |
 | Show All   | By default only webhooks whose callback URLs match a flow in the current instance are shown. Toggle this to 'true' to show all webhooks (even those for other apps and instances). | false   |
 
 ### List Workspaces {#listworkspaces}
 
-List Workspaces
+Lists all workspaces accessible to the authenticated user.
 
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### Move Folder {#movefolder}
 
-Move Folder
+Moves a folder to a specified destination.
 
-| Input                 | Comments                                                                             | Default |
-| --------------------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection            |                                                                                      |         |
-| Folder ID             | Folder ID where you can create sheets, sights, reports, templates, and other folders |         |
-| Destination Folder ID | Folder ID where you can create sheets, sights, reports, templates, and other folders |         |
+| Input                 | Comments                                                                                                         | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Smartsheet connection to use.                                                                                |         |
+| Folder ID             | The unique identifier for the folder. Folders can contain sheets, sights, reports, templates, and other folders. |         |
+| Destination Folder ID | The unique identifier for the folder. Folders can contain sheets, sights, reports, templates, and other folders. |         |
 
 ### Move Rows {#moverows}
 
-Move Rows to Another Sheet
+Moves rows to another sheet.
 
-| Input                | Comments                                                  | Default |
-| -------------------- | --------------------------------------------------------- | ------- |
-| Connection           |                                                           |         |
-| Sheet ID             |                                                           |         |
-| Row IDs              | The Ids of the rows to move or copy from the source sheet |         |
-| Destination Sheet ID |                                                           |         |
+| Input                | Comments                                                      | Default |
+| -------------------- | ------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                             |         |
+| Sheet ID             | The unique identifier for the sheet.                          |         |
+| Row IDs              | The IDs of the rows to move or copy from the source sheet     |         |
+| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into. |         |
 
 ### Move Sheet {#movesheet}
 
-Move Sheet
+Moves a sheet to a specified destination.
 
-| Input            | Comments                                                                         | Default |
-| ---------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                                  |         |
-| Sheet ID         |                                                                                  |         |
-| Destination ID   | The ID of the destination container (when copying or moving a sheet or a folder) |         |
-| Destination Type | Type of the destination container                                                | home    |
+| Input            | Comments                                                                          | Default |
+| ---------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection       | The Smartsheet connection to use.                                                 |         |
+| Sheet ID         | The unique identifier for the sheet.                                              |         |
+| Destination ID   | The ID of the destination container (when copying or moving a sheet or a folder). |         |
+| Destination Type | The type of container to copy or move the resource into.                          | home    |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Smartsheet
+Sends a raw HTTP request to the Smartsheet API.
 
 | Input                   | Comments                                                                                                                                                                                                      | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                               |         |
+| Connection              | The Smartsheet connection to use.                                                                                                                                                                             |         |
 | URL                     | Input the path only (/reports), The base URL is already included (https://api.smartsheet.com/2.0). For example, to connect to https://api.smartsheet.com/2.0/reports, only /reports is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                       |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                     |         |
@@ -700,39 +722,39 @@ Send raw HTTP request to Smartsheet
 
 ### Search Sheets {#searchsheet}
 
-Search sheets for a particular phrase
+Searches sheets for a specified phrase.
 
 | Input               | Comments                                                  | Default |
 | ------------------- | --------------------------------------------------------- | ------- |
-| Connection          |                                                           |         |
+| Connection          | The Smartsheet connection to use.                         |         |
 | Sheet ID (Optional) | The ID of the sheet to search. Omit to search all sheets. |         |
-| Text to search for  | Text with which to perform the search                     |         |
+| Search Query        | The text to search for across sheets, rows, and cells.    |         |
 
 ### Send Sheet {#sheetsend}
 
-Send Sheet via Email
+Sends a sheet via email to specified recipients.
 
 | Input      | Comments                                                    | Default |
 | ---------- | ----------------------------------------------------------- | ------- |
-| Connection |                                                             |         |
-| Sheet ID   |                                                             |         |
-| Format     |                                                             | EXCEL   |
-| Paper Size |                                                             | LETTER  |
-| Emails     | Send the document to these email addresses                  |         |
-| Group IDs  | Send the document to these groups by group ID               |         |
+| Connection | The Smartsheet connection to use.                           |         |
+| Sheet ID   | The unique identifier for the sheet.                        |         |
+| Format     | The file format to use when sending the sheet.              | EXCEL   |
+| Paper Size | The paper size to use when generating the PDF.              | LETTER  |
+| Emails     | The email addresses of recipients to send the document to.  |         |
+| Group IDs  | The group IDs of recipients to send the document to.        |         |
 | CC Me      | Indicates whether to send a copy of the email to the sender | false   |
-| Message    | The message of the email                                    |         |
-| Subject    | The subject of the email                                    |         |
+| Message    | The message of the email.                                   |         |
+| Subject    | The subject line of the email.                              |         |
 
-### Set Sheet Publish {#setsheetpublish}
+### Set Sheet Publish Status {#setsheetpublish}
 
-Set Sheet Publish Status
+Sets the publish status of a sheet.
 
 | Input                        | Comments                                                                                                                   | Default  |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Connection                   |                                                                                                                            |          |
-| Sheet ID                     |                                                                                                                            |          |
-| Ical Enabled                 | If true, a webcal is available for the calendar in the sheet                                                               | false    |
+| Connection                   | The Smartsheet connection to use.                                                                                          |          |
+| Sheet ID                     | The unique identifier for the sheet.                                                                                       |          |
+| iCal Enabled                 | If true, a webcal is available for the calendar in the sheet                                                               | false    |
 | Read Only Full Accessible By | Indicates who can access the 'Read-Only Full' view of the published sheet:                                                 | ALL      |
 | Read Only Full Default View  | Indicates which view the user has set for a read-only, default view of the published sheet                                 | CALENDAR |
 | Read Only Full Enabled       | If true, a rich version of the sheet is published with the ability to download row attachments and discussions             | true     |
@@ -741,54 +763,32 @@ Set Sheet Publish Status
 | Read Write Default View      | Indicates which view the user has set for a read-write, default view of the published sheet                                | CALENDAR |
 | Read Write Enabled           | If **true**,a rich version of the sheet is published with the ability to edit cells and manage attachments and discussions | true     |
 
-### Templates List {#templateslist}
-
-List User-Created Templates
-
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-
-### Templates List Public {#templateslistpublic}
-
-List Public Templates
-
-| Input                | Comments                                       | Default |
-| -------------------- | ---------------------------------------------- | ------- |
-| Connection           |                                                |         |
-| Fetch All            | Turn on to fetch all results using pagination  | true    |
-| Pagination Page      | Which page to return                           | 1       |
-| Pagination Page Size | The maximum number of items to return per page | 100     |
-
 ### Update Folder {#updatefolder}
 
-Update folder name
+Updates the name of a folder.
 
-| Input       | Comments                                                                             | Default |
-| ----------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection  |                                                                                      |         |
-| Folder ID   | Folder ID where you can create sheets, sights, reports, templates, and other folders |         |
-| Folder Name |                                                                                      |         |
+| Input       | Comments                                                                                                         | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Smartsheet connection to use.                                                                                |         |
+| Folder ID   | The unique identifier for the folder. Folders can contain sheets, sights, reports, templates, and other folders. |         |
+| Folder Name | The display name for the folder.                                                                                 |         |
 
 ### Update Sheet {#updatesheet}
 
-Update Sheet
+Updates the properties of a sheet.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Sheet ID   |          |         |
-| New Name   |          |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.       |         |
+| Sheet ID   | The unique identifier for the sheet.    |         |
+| New Name   | The updated display name for the sheet. |         |
 
 ### Update Workspace {#updateworkspace}
 
-Update Workspace
+Updates the properties of a workspace.
 
-| Input        | Comments       | Default |
-| ------------ | -------------- | ------- |
-| Connection   |                |         |
-| Workspace ID |                |         |
-| Name         | Workspace name |         |
+| Input        | Comments                                    | Default |
+| ------------ | ------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.           |         |
+| Workspace ID | The unique identifier for the workspace.    |         |
+| Name         | The updated display name for the workspace. |         |

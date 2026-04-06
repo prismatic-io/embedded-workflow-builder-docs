@@ -9,9 +9,34 @@ description: Manage companies, contacts and tags on the Intercom platform
 
 ## Connections
 
-### Intercom {#intercom}
+### Access Token {#intercomaccessstoken}
 
-Connection to Intercom
+Access Token connection for Intercom
+
+You should use the given access Access Token if:
+
+- You want to use the API to interact with your own Intercom app
+- You have scripts to push or extract data from your Intercom app
+- You want to use the API to programmatically automate certain actions in your own Intercom app
+- The data you interact with programmatically is your own customer data
+
+## How to get your Access Token
+
+Intercom provide you with an Access Token as soon as you [create an app](https://app.intercom.com/a/developer-signup) on your workspace. You can find your Access Token in the Configure > Authentication section in your app within the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages).
+
+You will also see it in your Test & Publish > Your Workspaces page of your app in the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages). This lists out all of your workspaces that have the app installed. More about how this works can be found in their [Installing & Uninstalling Apps guide](https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/installing-uninstalling-apps/).
+
+### Never give your Access Token to a third party
+
+Your Access Token can give access to your private Intercom data and should be treated like a password. If an app provider asks you for your Access Token, please do not provide it. Instead, let us know - apps are required to use OAuth rather than asking users for Access Tokens.
+
+| Input        | Comments                  | Default |
+| ------------ | ------------------------- | ------- |
+| Access Token | Access Token for Intercom |         |
+
+### OAuth 2.0 {#intercom}
+
+OAuth 2.0 connection for Intercom
 
 To connect to Intercom you will need to create a new app in their [Developer Hub](https://developers.intercom.com/).
 
@@ -38,31 +63,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | ------------- | ---------------------------------- | ------- |
 | Client ID     | Client ID of your Intercom app     |         |
 | Client Secret | Client Secret of your Intercom app |         |
-
-### Intercom Access Token {#intercomaccessstoken}
-
-Connection to Intercom using an Access Token
-
-You should use the given access Access Token if:
-
-- You want to use the API to interact with your own Intercom app
-- You have scripts to push or extract data from your Intercom app
-- You want to use the API to programmatically automate certain actions in your own Intercom app
-- The data you interact with programmatically is your own customer data
-
-## How to get your Access Token
-
-Intercom provide you with an Access Token as soon as you [create an app](https://app.intercom.com/a/developer-signup) on your workspace. You can find your Access Token in the Configure > Authentication section in your app within the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages).
-
-You will also see it in your Test & Publish > Your Workspaces page of your app in the [Developer Hub](https://app.intercom.io/a/apps/_/developer-hub/app-packages). This lists out all of your workspaces that have the app installed. More about how this works can be found in their [Installing & Uninstalling Apps guide](https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/installing-uninstalling-apps/).
-
-### Never give your Access Token to a third party
-
-Your Access Token can give access to your private Intercom data and should be treated like a password. If an app provider asks you for your Access Token, please do not provide it. Instead, let us know - apps are required to use OAuth rather than asking users for Access Tokens.
-
-| Input        | Comments                  | Default |
-| ------------ | ------------------------- | ------- |
-| Access Token | Access Token for Intercom |         |
 
 ## Actions
 

@@ -10,9 +10,9 @@ This component allows you to create, read, update and delete events and calendar
 
 ## Connections
 
-### Google Calendar OAuth 2.0 {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Authenticate requests to Google Calendar using values obtained from the Google Cloud Platform.
+OAuth 2.0 connection for Google Calendar
 
 The Google Calendar component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
 A GCP OAuth 2.0 app is required for the integration to authenticate and perform Google Calendar tasks on behalf of users.

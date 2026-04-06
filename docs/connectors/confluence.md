@@ -9,9 +9,9 @@ description: Confluence is an open and shared workspace platform provided by Atl
 
 ## Connections
 
-### Confluence Basic {#basic}
+### Basic Authentication {#basic}
 
-Confluence Basic
+Basic Authentication connection for Confluence
 
 Basic Authentication can be used to connect to both Confluence Cloud and self-hosted Confluence instances.
 
@@ -59,9 +59,9 @@ For self-hosted Confluence instances, API tokens may not be available. Use the a
 | API Token | Your Confluence API token for authentication. Generate this from your [Atlassian account settings](https://id.atlassian.com/manage-profile/security/api-tokens). |         |
 | Host      | Your Confluence site URL. Only enter your domain without the protocol.                                                                                           |         |
 
-### Confluence OAuth 2.0 {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Confluence OAuth 2.0
+OAuth 2.0 connection for Confluence
 
 To connect to Confluence using OAuth 2.0, create an OAuth 2.0 integration in the Atlassian Developer Console and configure the appropriate scopes.
 

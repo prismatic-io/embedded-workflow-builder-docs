@@ -14,9 +14,9 @@ This component was built using the [Box REST API](https://developer.box.com/refe
 
 ## Connections
 
-### Box Developer Token {#apikey}
+### Developer Token {#apikey}
 
-Box Developer Token
+Developer Token connection for Box
 
 A **Developer Token** is a short-lived (60-minute) token that can be used for testing purposes. Developer tokens allow access to the Box API for a personal Box account only.
 
@@ -56,9 +56,9 @@ Developer tokens expire after 60 minutes. Generate a new token if authentication
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Developer Token | A short-lived developer token for testing purposes. Obtain from [Box Developer Console](https://app.box.com/developers/console). |         |
 
-### Box OAuth 2.0 Connection {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Box OAuth 2.0 Connection
+OAuth 2.0 connection for Box
 
 To connect to Box using OAuth 2.0, create a Box OAuth 2.0 app to authorize the integration to access customer Box accounts.
 
@@ -113,14 +113,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive and validate webhook requests from Box. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input                   | Comments                                                                                                                                               | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Box connection to use.                                                                                                                             |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                             |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                       |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/v2/events/) for available options.      |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify/) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify/) for details. |         |
+| Input                   | Comments                                                                                                                                                          | Default |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Box connection to use.                                                                                                                                        |         |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                                        |         |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                                  |         |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.                   |         |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
 
 ### Manual Webhook {#webhook}
 
@@ -206,15 +206,15 @@ Create a Folder at the specified path
 
 Create a webhook to send data from Box to an instance URL
 
-| Input                   | Comments                                                                                                                                               | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                            |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                             |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                       |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/v2/events/) for available options.      |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify/) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify/) for details. |         |
-| Connection              | The Box connection to use.                                                                                                                             |         |
+| Input                   | Comments                                                                                                                                                          | Default |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                                       |         |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                                        |         |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                                  |         |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.                   |         |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
+| Connection              | The Box connection to use.                                                                                                                                        |         |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
