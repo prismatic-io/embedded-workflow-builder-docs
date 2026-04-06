@@ -39,7 +39,7 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.5",
+    "@biomejs/biome": "^2.4.10",
     "@docusaurus/faster": "3.9.2",
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/tsconfig": "3.9.2",
