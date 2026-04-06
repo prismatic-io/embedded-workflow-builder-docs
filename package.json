@@ -50,7 +50,7 @@
     "eslint": "^10.2.0",
     "front-matter-markdown": "^0.4.5",
     "graffle": "^8.0.0-next.164",
-    "graphql": "^16.13.0",
+    "graphql": "^16.13.2",
     "handlebars": "^4.7.9",
     "jimp": "^1.6.0",
     "js-yaml": "^4.1.1",
