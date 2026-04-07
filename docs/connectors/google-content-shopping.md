@@ -70,11 +70,11 @@ To retrieve the Client ID and Secret later, navigate to **APIs & Services** > **
 
   - Refer to the [Google Content API OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#content) for additional scope information
 
-:::note Publishing the OAuth Consent Screen
+:::note[Publishing the OAuth Consent Screen]
 For production use with external users, the OAuth consent screen must be verified and published by Google. During development and testing, the app can remain in "Testing" mode with a limited number of test users. Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for publishing requirements.
 :::
 
-:::info Testing with Limited Users
+:::info[Testing with Limited Users]
 While the app is in "Testing" mode, only users added to the test users list can authenticate. Add test users in the **OAuth consent screen** configuration under **Test users**.
 :::
 

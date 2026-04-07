@@ -37,7 +37,7 @@ To connect Microsoft Excel, create and configure an App Registration in the [Mic
 9. Navigate to **API Permissions** and click **Add a permission**
 10. Select **Microsoft Graph** > **Delegated permissions** and select all permissions required for the integration
 
-:::note Refresh Token Support
+:::note[Refresh Token Support]
 Include the `offline_access` scope in the app registration. It is essential for maintaining the OAuth connection and receiving refresh tokens. Without it, re-authentication is required every hour.
 :::
 

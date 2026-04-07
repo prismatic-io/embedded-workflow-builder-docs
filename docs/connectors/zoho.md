@@ -66,7 +66,7 @@ For detailed information about creating OAuth clients, refer to the [Zoho OAuth 
     ZohoCRM.modules.ALL ZohoCRM.settings.ALL ZohoBooks.fullaccess.all
     ```
 
-:::note Multi Region Deployments
+:::note[Multi Region Deployments]
 For integrations that will be deployed to users in multiple Zoho regions, configure the **Region URL** field to be visible to instance deployers. This allows end users to select their appropriate region during instance configuration.
 
 To make the Region URL field visible to deployers, enable the field visibility in the connection configuration:

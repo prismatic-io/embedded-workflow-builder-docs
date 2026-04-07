@@ -51,7 +51,7 @@ Refer to [Shopify's Admin API access token documentation](https://shopify.dev/do
 - Enter the **Host** (the Shopify domain, e.g., `YOUR-SHOPIFY-DOMAIN.myshopify.com`).
 - Optionally configure the **API Version** (defaults to latest version).
 
-:::warning Production Use
+:::warning[Production Use]
 Admin API access tokens are tied to custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
 :::
 
@@ -104,7 +104,7 @@ Refer to [Shopify's OAuth documentation](https://shopify.dev/apps/auth/oauth) fo
 
 Save the integration to connect and authenticate to Shopify.
 
-:::info Shop Name Format
+:::info[Shop Name Format]
 The **Shop Name** should be the subdomain portion of the Shopify store URL. For example, if the store URL is `example-store.myshopify.com`, enter `example-store` as the Shop Name.
 :::
 

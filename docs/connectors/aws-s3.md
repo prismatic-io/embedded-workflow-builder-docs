@@ -69,7 +69,7 @@ An IAM user with access keys is required to assume a role. If access keys have n
 - **Secret Access Key**: From the IAM user
 - **External ID** (optional): Shared secret for enhanced security
 
-:::note External ID
+:::note[External ID]
 The **External ID** provides additional security for cross-account access. Refer to the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id) for more information.
 :::
 
@@ -108,7 +108,7 @@ To create an IAM access key pair:
 5. Choose the appropriate use case (e.g., **Third-party service** or **Application running outside AWS**)
 6. Copy both the **Access key ID** and **Secret access key** when displayed
 
-:::warning Secret Key Visibility
+:::warning[Secret Key Visibility]
 The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
 :::
 

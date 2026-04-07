@@ -49,7 +49,7 @@ Use the standard account password for authentication. No additional setup is req
 
 For more information on generating API tokens from Jira Cloud, refer to the [Atlassian documentation](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
 
-:::note Self-Hosted vs Cloud Authentication
+:::note[Self-Hosted vs Cloud Authentication]
 Jira Cloud requires an API token for Basic Authentication, while self-hosted instances can use the account password. For security reasons, it is recommended to use API tokens whenever possible.
 :::
 
@@ -90,7 +90,7 @@ Jira's Cloud API supports OAuth 2.0 (3LO) flows for secure authentication. For m
    - Refer to [Jira OAuth 2.0 scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for a complete list of available scopes
 9. Click **Save** to apply the configuration
 
-:::warning Scope Consistency
+:::warning[Scope Consistency]
 The scopes configured in the Atlassian Developer Console must match the scopes entered in the connection configuration. Inconsistent scopes will cause authentication failures.
 :::
 

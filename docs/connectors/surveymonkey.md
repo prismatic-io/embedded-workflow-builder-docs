@@ -20,7 +20,7 @@ Authenticate using an access token
 
 To connect to SurveyMonkey using an Access Token, a registered private application in the [SurveyMonkey Developer Portal](https://developer.surveymonkey.com/apps/) is required.
 
-:::info When to Use Access Token Authentication
+:::info[When to Use Access Token Authentication]
 Access Token authentication is best suited for private applications that access a single SurveyMonkey account. For multi-user or multi-tenant integrations, OAuth 2.0 is recommended.
 :::
 
@@ -40,7 +40,7 @@ Access Token authentication is best suited for private applications that access 
    - **Client ID** (also called **API Key**): Needed for webhook signature verification
    - **Client Secret** (also called **API Secret**): Needed for webhook signature verification
 
-:::note Access Token Generation
+:::note[Access Token Generation]
 The **Access Token** field is only visible for private applications. If the field is not visible, verify that the app type is set to **Private** in the app settings.
 :::
 
@@ -58,7 +58,7 @@ The **Access Token** field is only visible for private applications. If the fiel
 
 After entering the **Access Token**, **API Key**, and **API Secret**, save the connection configuration. The connection can be tested by executing any action, such as **Get Current User**, to verify authentication is working correctly.
 
-:::warning Security Considerations
+:::warning[Security Considerations]
 Access tokens provide full access to the associated SurveyMonkey account. Store tokens securely and rotate them periodically. For production integrations with multiple users, consider using OAuth 2.0 instead.
 :::
 
@@ -111,7 +111,7 @@ To connect to SurveyMonkey using OAuth 2.0, a registered application in the [Sur
     ```
   - Refer to [SurveyMonkey's OAuth Scopes documentation](https://api.surveymonkey.com/v3/docs?shell#scopes) for all available scopes.
 
-:::note Scope Approval for Public Apps
+:::note[Scope Approval for Public Apps]
 Some scopes (such as `surveys_write` and `responses_write`) require SurveyMonkey approval for public applications. Private apps have access to all scopes by default.
 :::
 

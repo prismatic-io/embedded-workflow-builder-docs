@@ -51,7 +51,7 @@ Enter the following values into the connection configuration:
 - **Password**: The service account secret from step 5 above
 - **Project Token**: The project token from the Access Keys section
 
-:::note Service Account Roles
+:::note[Service Account Roles]
 The service account role determines what operations can be performed through the API. Ensure the selected role has sufficient permissions for the integration's intended use. Refer to [Mixpanel's documentation on roles and permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions) for more information.
 :::
 

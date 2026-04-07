@@ -52,7 +52,7 @@ If the organization has multiple tenants in a single region:
 2. Copy the Tenant ID (UUID format) from the command output
 3. Use this Tenant ID when configuring the connection
 
-:::note Multi Tenant Configuration
+:::note[Multi Tenant Configuration]
 If no Tenant ID is provided, the connection will default to the first tenant associated with the region. Only provide a Tenant ID if explicit tenant selection is required for the use case.
 :::
 

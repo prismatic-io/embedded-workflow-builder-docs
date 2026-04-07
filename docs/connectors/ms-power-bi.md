@@ -59,11 +59,11 @@ Configure the OAuth 2.0 connection with the following values:
   - For single-tenant apps: Use the tenant-specific endpoints that include the Azure Tenant ID
   - For multi-tenant apps: Use the `common` endpoints (default configuration)
 
-:::note Tenant Configuration
+:::note[Tenant Configuration]
 The OAuth endpoints depend on the tenant configuration. Single-tenant applications require the Azure Tenant ID in the authorization and token URLs. Multi-tenant applications can use the `common` endpoints. Consult [Microsoft's authentication documentation](https://docs.microsoft.com/en-us/power-bi/developer/automation/walkthrough-push-data-get-token) for details.
 :::
 
-:::warning Refresh Token Requirements
+:::warning[Refresh Token Requirements]
 The `offline_access` scope must be included in the app registration. Without this scope, users will need to re-authenticate every hour when the access token expires.
 :::
 

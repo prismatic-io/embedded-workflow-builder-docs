@@ -92,7 +92,7 @@ Create a connection of type **OAuth 2.0** and enter:
 - **Token URL**: Defaults to `https://login.salesforce.com/services/oauth2/token`
 - **Revoke URL**: Defaults to `https://login.salesforce.com/services/oauth2/revoke`
 
-:::note Connecting to a Salesforce Sandbox Account
+:::note[Connecting to a Salesforce Sandbox Account]
 To connect to a Salesforce sandbox organization for testing purposes, edit the connection's **Authorize URL**, **Token URL** and **Revoke URL** to read `test.salesforce.com` instead of `login.salesforce.com`.
 Be sure to change these values back when testing is done.
 :::
@@ -144,7 +144,7 @@ The selected user's permissions determine what the integration can access.
 - **Consumer Secret**: Enter the Consumer Secret from the Connected App
 - **Scopes**: Scopes are configured in the Salesforce Connected App settings
 
-:::note Connecting to a Salesforce Sandbox
+:::note[Connecting to a Salesforce Sandbox]
 For sandbox environments, use the sandbox My Domain URL format: `https://your-company--sandbox.sandbox.my.salesforce.com`
 :::
 

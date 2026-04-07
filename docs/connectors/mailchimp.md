@@ -33,7 +33,7 @@ To generate an API key:
 4. Enter a descriptive name for the key (e.g., "Integration API Key").
 5. Copy the generated API key value.
 
-:::warning API Key Format
+:::warning[API Key Format]
 Mailchimp API keys include a data center suffix (e.g., `abc123def456-us21`). The suffix after the hyphen indicates the data center where the account is hosted. This suffix is required for the API to route requests correctly.
 :::
 

@@ -42,7 +42,7 @@ To create an IAM access key pair:
 9. Select **Create access key**
 10. Copy both the **Access Key ID** and **Secret Access Key** values
 
-:::warning Secure Storage Required
+:::warning[Secure Storage Required]
 The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later. If lost, a new access key pair must be generated.
 :::
 
@@ -99,7 +99,7 @@ This authentication method uses an IAM user's access key pair to assume an IAM r
 11. Select **Next**, add an optional description tag, then select **Create access key**
 12. Copy both the **Access Key ID** and **Secret Access Key** for later use
 
-:::warning Secure Storage Required
+:::warning[Secure Storage Required]
 The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later.
 :::
 

@@ -36,7 +36,7 @@ To generate OAuth Client Credentials:
 3. Create a new API key following the [ION API documentation](https://manual.firstresonance.io/api/api-keys).
 4. Copy both the **Client ID** and **Client Secret** values that are generated.
 
-:::note Environment Selection
+:::note[Environment Selection]
 First Resonance ION supports multiple deployment environments. Select the appropriate **Auth Endpoint** based on the target environment:
 
 - **Production** - Standard production environment (`auth.buildwithion.com`)

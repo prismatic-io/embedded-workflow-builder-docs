@@ -68,7 +68,7 @@ Create a connection of type **Key Pair Authentication** and enter:
 - **Private Key**: The full content from the `rsa_key.p8` file (include the header and footer lines)
 - **Passphrase**: The private key passphrase (if the key is encrypted)
 
-:::note Private Key Security
+:::note[Private Key Security]
 Private key encryption is highly recommended for production integrations. Keep keys secure and never share them.
 :::
 

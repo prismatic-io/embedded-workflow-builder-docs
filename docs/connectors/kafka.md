@@ -57,11 +57,11 @@ Create a connection of type **Basic Username/Password** and enter:
 - **Client Certificate** (if required): Paste the client certificate in PEM format (only if the cluster requires mutual TLS authentication)
 - **Client Key** (if required): Paste the client private key in PEM format (only if the cluster requires mutual TLS authentication)
 
-:::warning Security Recommendation
+:::warning[Security Recommendation]
 For production environments, use SCRAM-SHA-256 or SCRAM-SHA-512 with SSL/TLS enabled. The PLAIN mechanism transmits credentials without hashing and should only be used over encrypted connections.
 :::
 
-:::info SSL/TLS Certificates
+:::info[SSL/TLS Certificates]
 Certificates must be in PEM format. If the certificates are in other formats (JKS, PKCS12), convert them to PEM before pasting into the connection configuration.
 :::
 

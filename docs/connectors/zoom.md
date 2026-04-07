@@ -109,7 +109,7 @@ For additional information, refer to [Zoom's Server to Server OAuth documentatio
    - **Client Secret**: The app's secret key (must be kept secure)
    - **Account ID**: The Zoom account identifier
 
-:::note Finding the Account ID
+:::note[Finding the Account ID]
 The **Account ID** can be found in multiple locations:
 
 - In the app credentials section after creation
@@ -134,7 +134,7 @@ The **Account ID** can be found in multiple locations:
 
 7. Review the app configuration and click **Activate your app**
 
-:::info Server to Server Authentication
+:::info[Server to Server Authentication]
 Unlike OAuth apps, Server to Server apps do not require user consent and are immediately active once created.
 :::
 
@@ -146,14 +146,14 @@ When creating a Zoom Server to Server connection in the integration:
 - Enter the **Client Secret** from the Zoom app
 - Enter the **Account ID** from the Zoom account
 
-:::warning Credential Security
+:::warning[Credential Security]
 
 - Store the **Client Secret** securely and never expose it in client-side code
 - Rotate credentials periodically for enhanced security
 - Use environment variables or secure configuration management
   :::
 
-:::note Rate Limiting
+:::note[Rate Limiting]
 Server to Server apps are subject to Zoom's rate limiting policies. Monitor API usage and implement appropriate retry logic with exponential backoff.
 :::
 

@@ -40,7 +40,7 @@ For more information about creating API keys, refer to the [SendGrid API Keys do
 
 - Enter the API key into the **API Key** field in the connection configuration
 
-:::warning API Key Security
+:::warning[API Key Security]
 The API key is only displayed once upon creation. Store it securely. If the key is lost, a new one must be generated.
 :::
 

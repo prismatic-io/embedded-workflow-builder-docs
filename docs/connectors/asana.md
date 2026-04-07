@@ -89,7 +89,7 @@ To generate a personal access token:
 3. Enter a description for the token and click **Create token**
 4. Copy the generated token value
 
-:::warning Security Note
+:::warning[Security Note]
 Personal access tokens are tied to the user account that created them and inherit that user's permissions. Store tokens securely and rotate them regularly.
 :::
 

@@ -38,7 +38,7 @@ To create an IAM access key pair:
 5. Choose the appropriate use case (e.g., **Third-party service** or **Application running outside AWS**)
 6. Copy both the **Access key ID** and **Secret access key** when displayed
 
-:::warning Secret Key Visibility
+:::warning[Secret Key Visibility]
 The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
 :::
 
@@ -88,7 +88,7 @@ AWS IAM role authentication allows connections to DynamoDB using the AWS Securit
 9. Optionally, set a description tag and select **Create access key**
 10. Copy both the **Access key ID** and **Secret access key**
 
-:::warning Secret Key Visibility
+:::warning[Secret Key Visibility]
 The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
 :::
 

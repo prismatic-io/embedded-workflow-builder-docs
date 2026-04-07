@@ -25,7 +25,7 @@ To connect to NetSuite using OAuth 2.0 Authorization Code flow, create an OAuth 
 
 Refer to [NetSuite's OAuth 2.0 documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_157769826287.html) for additional details.
 
-:::warning OAuth 2.0 Auth Code Flow Expiration
+:::warning[OAuth 2.0 Auth Code Flow Expiration]
 Tokens retrieved using NetSuite's OAuth 2.0 Auth Code flow expire after 7 days and cannot be refreshed.
 This requires users to re-authenticate every 7 days, which is not a good user experience.
 **We recommend using the OAuth 2.0 Client Credentials flow instead.**
@@ -67,7 +67,7 @@ This requires users to re-authenticate every 7 days, which is not a good user ex
 
 Save the connection to authenticate with NetSuite. Users will be redirected to NetSuite to authorize access.
 
-:::note Token Re-authentication Required
+:::note[Token Re-authentication Required]
 Tokens expire after 7 days and cannot be refreshed. Users will need to re-authenticate every 7 days by opening the connection configuration and re-authorizing.
 :::
 
@@ -132,7 +132,7 @@ Refer to [NetSuite's OAuth Client Credentials documentation](https://docs.oracle
 
      The system will prompt to enter certificate details (country, organization, common name, etc.). Press Enter to skip these prompts, though providing values helps with tracking and identification.
 
-:::warning Private Key Security
+:::warning[Private Key Security]
 The `private.pem` file contains the private key and must be kept secure. Never commit this file to version control, share it publicly, or store it in an unsecured location. Only the application should have access to this file.
 :::
 

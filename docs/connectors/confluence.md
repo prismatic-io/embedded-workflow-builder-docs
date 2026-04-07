@@ -18,7 +18,7 @@ Basic Authentication can be used to connect to both Confluence Cloud and self-ho
 - For **Confluence Cloud**: Use the account email and an API token
 - For **Self-hosted Confluence**: Use the account email and password
 
-:::info API Token vs Password
+:::info[API Token vs Password]
 For Confluence Cloud, API tokens are required. Passwords are only accepted for self-hosted instances.
 :::
 
@@ -49,7 +49,7 @@ Configure the Basic Auth connection:
 - **API Token**: Enter the API token generated from the Atlassian account management page, or for self-hosted instances, enter the account password
 - **Host**: Enter the Confluence site URL (e.g., `your-domain.atlassian.net` for Cloud or the server hostname for self-hosted instances)
 
-:::warning Self-Hosted Credentials
+:::warning[Self-Hosted Credentials]
 For self-hosted Confluence instances, API tokens may not be available. Use the account password instead.
 :::
 
@@ -99,7 +99,7 @@ Configure the OAuth 2.0 connection:
 - Refer to the [Confluence Scopes Documentation](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information
 - **(Optional)** If connecting to a specific Confluence site when multiple sites are available, enter the site name or full URL in **API Site Override** (e.g., `example` or `https://example.atlassian.net`)
 
-:::note Scope Consistency
+:::note[Scope Consistency]
 Ensure the scopes configured in the connection match the scopes granted in the Atlassian Developer Console. Mismatched scopes will result in authentication failures.
 :::
 

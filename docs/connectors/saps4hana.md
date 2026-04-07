@@ -20,7 +20,7 @@ Connect to SAP S/4HANA Cloud APIs via SAP API Business Hub sandbox for testing a
 
 This connection authenticates with SAP S/4HANA Cloud APIs via the SAP API Business Hub sandbox environment. It is designed for testing and development purposes only and provides read-only access to sample data.
 
-:::note Sandbox Environment Only
+:::note[Sandbox Environment Only]
 This connection is intended for **testing and development** using the SAP API Business Hub sandbox. For production access to real SAP S/4HANA Cloud data, use the Basic Auth connection instead.
 :::
 
@@ -55,7 +55,7 @@ Basic Authentication connection for direct access to SAP S/4HANA Cloud Public Ed
 
 This connection authenticates directly with an SAP S/4HANA Cloud Public Edition tenant using Basic Authentication.
 
-:::note Production Access
+:::note[Production Access]
 This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator.
 :::
 
@@ -108,7 +108,7 @@ Authenticate with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Aut
 
 This connection authenticates with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Authorization Code flow. It provides full read/write access to business data and is recommended for production integrations.
 
-:::note Production Access
+:::note[Production Access]
 This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator with OAuth 2.0 enabled.
 :::
 
@@ -153,7 +153,7 @@ Only two fields are required to configure this connection:
   - Leave empty to use default scopes
   - Specify API-specific scopes if required by your Communication Arrangement
 
-:::info Finding OAuth 2.0 Details
+:::info[Finding OAuth 2.0 Details]
 In the Communication Arrangement, navigate to **Inbound Communication** and click **OAuth 2.0 Details** to view the Client ID.
 :::
 
@@ -167,7 +167,7 @@ When you connect using this method:
 4. Grant authorization for the integration to access SAP on your behalf
 5. You will be redirected back to complete the connection setup
 
-:::tip SAP Login Credentials
+:::tip[SAP Login Credentials]
 During the OAuth flow, you log in with your **SAP user account** credentials - not the Communication System credentials. Your SAP user must have the appropriate authorizations to access the APIs defined in the Communication Arrangement.
 :::
 

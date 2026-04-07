@@ -83,7 +83,7 @@ The Microsoft Bot Framework component authenticates using OAuth 2.0 Client Crede
 - For **Client Secret**, enter the secret value from the **Certificates & secrets** blade of the app registration.
 - If the bot is configured as **Single Tenant**, update the **Token URL** to: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/token` and replace `TENANT_ID` with the tenant ID from the **Overview** blade.
 
-:::note Multi-Tenant vs Single-Tenant Bots
+:::note[Multi-Tenant vs Single-Tenant Bots]
 The default **Token URL** (`https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token`) is configured for Multi-Tenant bots. For Single-Tenant bots, the Token URL must be updated to use the specific tenant ID.
 :::
 

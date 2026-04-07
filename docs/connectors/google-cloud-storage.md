@@ -69,7 +69,7 @@ Enter the following values from the JSON file into the connection configuration:
 - Enter the **Project ID** (GCP Project ID)
 - Enter the service account credentials from the JSON file
 
-:::info Service Account Permissions
+:::info[Service Account Permissions]
 Ensure the service account has the appropriate permissions to access the Cloud Storage resources needed for the integration. Resource-specific permissions can be used for more granular access control.
 :::
 

@@ -43,7 +43,7 @@ Obtain an API key from the target service. Refer to the target service's documen
 
 Refer to the target API's authentication documentation to determine which scheme to use.
 
-:::note Authentication Scheme Selection
+:::note[Authentication Scheme Selection]
 Most modern APIs use Bearer token authentication. If unsure, consult the target API's documentation or try Bearer first.
 :::
 
@@ -86,7 +86,7 @@ Refer to the target service's authentication documentation for specific credenti
   - **Host**: Enter the server hostname or IP address
   - **Port**: Enter the server port number
 
-:::note API Token vs Password
+:::note[API Token vs Password]
 For security reasons, many services recommend using API tokens instead of passwords for Basic Authentication. Consult the target service's documentation to determine which credential type is required.
 :::
 
@@ -136,7 +136,7 @@ Enter the following values obtained from the OAuth provider:
 
 Refer to the target OAuth provider's documentation for the specific endpoint URLs and required scopes.
 
-:::note Finding OAuth Endpoints
+:::note[Finding OAuth Endpoints]
 OAuth endpoint URLs are typically found in the OAuth provider's developer documentation under sections like "OAuth 2.0", "API Authentication", or "Getting Started". Look for terms like "authorization endpoint", "token endpoint", or "OAuth URLs".
 :::
 
@@ -178,7 +178,7 @@ This flow is used for server-to-server authentication where the application itse
 4. (Optional) Configure the required OAuth scopes or permissions for the application
 5. Copy the **Token URL** from the OAuth provider's documentation or developer console (e.g., `https://provider.com/oauth/token`)
 
-:::note When to Use Client Credentials
+:::note[When to Use Client Credentials]
 Use this flow for machine-to-machine authentication where no user interaction is required. This is common for background processes, scheduled tasks, or service-to-service integrations. If user authentication is required, use the OAuth 2.0 Authorization Code connection instead.
 :::
 
@@ -194,7 +194,7 @@ Enter the following values obtained from the OAuth provider:
 
 Refer to the target OAuth provider's documentation for the specific token endpoint URL and required scopes.
 
-:::warning No User Context
+:::warning[No User Context]
 The Client Credentials flow authenticates as the application itself, not as a specific user. Actions taken will appear to be performed by the application or service account, not by individual users. Ensure the application has appropriate permissions for the intended operations.
 :::
 

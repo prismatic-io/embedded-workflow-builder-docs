@@ -5,7 +5,7 @@ description: Workday HCM is a single, cloud-based solution for workforce plannin
 ---
 
 ![Workday (Beta)](./assets/workday.png#connector-icon)
-:::note This component connector is currently in BETA.
+:::note[This component connector is currently in BETA.]
 BETA component connections and actions may not always work as expected. Please provide any feedback to the our support team.
 :::
 

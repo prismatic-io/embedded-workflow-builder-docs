@@ -75,7 +75,7 @@ To create the Authorization Header value:
 
 After configuring the connection, save the integration to authenticate with DocuSign. The OAuth flow will prompt for user authorization to complete the connection.
 
-:::note Developer vs Production Environments
+:::note[Developer vs Production Environments]
 DocuSign has separate environments for development and production. Developer accounts use the demo environment at `account-d.docusign.com`. For production environments, ensure the application is published and promoted in the DocuSign Admin Console. Refer to the [DocuSign Go-Live documentation](https://developers.docusign.com/docs/esign-rest-api/go-live/) for more details.
 :::
 

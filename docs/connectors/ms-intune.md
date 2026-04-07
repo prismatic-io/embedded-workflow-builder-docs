@@ -49,7 +49,7 @@ For more information on available permissions, refer to the [Microsoft Graph per
    - Default: `https://login.microsoftonline.com/common/oauth2/v2.0/token`
    - With Tenant ID: `https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token`
 
-:::note Tenant-Specific Authentication
+:::note[Tenant-Specific Authentication]
 Some actions require tenant-specific authentication. Replace the **common** portion of the Token URL with the specific Tenant ID when connecting to a particular organization.
 :::
 
@@ -102,7 +102,7 @@ For more information on application vs delegated permissions, refer to the [Micr
    - With Tenant ID: `https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token`
 5. Use the default scope: `https://graph.microsoft.com/.default`
 
-:::note Client Credentials Flow Requirement
+:::note[Client Credentials Flow Requirement]
 The client credentials flow requires a tenant-specific Token URL. Replace **common** with the actual Tenant ID for all actions using this connection type.
 :::
 

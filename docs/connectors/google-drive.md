@@ -49,7 +49,7 @@ To create a Google Drive OAuth 2.0 app:
    1. Click **CREATE**.
 1. Copy the **Client ID** and **Client Secret** that are generated.
 
-:::info Publishing the OAuth App
+:::info[Publishing the OAuth App]
 Make sure to **publish** the OAuth 2.0 app after testing so users outside of the test users can authorize the integration to interact with Google Drive on their behalf.
 :::
 

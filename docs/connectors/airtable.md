@@ -83,7 +83,7 @@ Connect your Airtable account using a personal access token
 
 A personal access token provides user-specific access to Airtable bases and can be used for testing integrations or for user-scoped operations.
 
-:::info Personal Access Tokens vs OAuth 2.0
+:::info[Personal Access Tokens vs OAuth 2.0]
 Personal access tokens are user-scoped and suitable for testing or personal automations. For production integrations where users need to authenticate with their own credentials, OAuth 2.0 is recommended.
 :::
 
@@ -114,7 +114,7 @@ The token format will look similar to: `patAbCdEfGh1234567.1234567890abcdefghijk
 
 - Enter the personal access token into the **API Key** field of the connection configuration.
 
-:::note Token Security
+:::note[Token Security]
 Store the token securely. Personal access tokens do not expire but can be revoked at any time from the [token management page](https://airtable.com/create/tokens).
 :::
 

@@ -42,11 +42,11 @@ To generate a SAS connection string:
 6. Click **Generate SAS and connection string** at the bottom
 7. Copy the **Connection string** value (not the SAS token alone)
 
-:::warning Token Expiration
+:::warning[Token Expiration]
 The SAS token has an expiration date. Note the expiration date and plan to refresh the connection string before it expires to avoid authentication failures.
 :::
 
-:::note Connection String Format
+:::note[Connection String Format]
 The connection string will have the format:
 
 ```
@@ -91,7 +91,7 @@ To obtain the storage account credentials:
 6. Copy the **Storage account name** (shown at the top of the page)
 7. Click **Show** next to either key and copy the **Key** value
 
-:::note Key Rotation
+:::note[Key Rotation]
 Azure provides two access keys to allow for key rotation without downtime. When rotating keys, update the connection configuration with the new key value.
 :::
 

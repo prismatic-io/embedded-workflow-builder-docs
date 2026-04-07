@@ -68,7 +68,7 @@ The CLI-based approach is recommended for new HubSpot OAuth integrations as it p
    hs project upload
    ```
 
-   :::note Directory Error
+   :::note[Directory Error]
    If the error `[ERROR] Unable to locate a project configuration file` appears, change to the project folder where the app was created and run the command again.
    :::
 
@@ -126,7 +126,7 @@ For a complete list of available scopes, refer to the [HubSpot OAuth scopes docu
 
 ### Creating a Legacy App
 
-:::warning Legacy Apps
+:::warning[Legacy Apps]
 Legacy apps will continue to work, but will not receive new features or platform improvements from HubSpot. The CLI-based approach is recommended for new integrations.
 :::
 

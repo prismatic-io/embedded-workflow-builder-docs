@@ -77,11 +77,11 @@ Enter the following credentials into the connection configuration:
 - **User Password**: The password for the Web Services user account
 - **Entity ID** (optional): The entity identifier for multi-entity environments. Leave blank for single-entity accounts.
 
-:::note Multi-Entity Environments
+:::note[Multi-Entity Environments]
 For Sage Intacct accounts with multiple entities, specify the **Entity ID** to connect to a specific entity. If left blank, the integration will use the default entity associated with the user account.
 :::
 
-:::warning Security Best Practice
+:::warning[Security Best Practice]
 Use a dedicated user account for API integrations with minimal required permissions. Avoid using personal administrator accounts for Web Services authentication.
 :::
 

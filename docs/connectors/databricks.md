@@ -50,7 +50,7 @@ Create a connection of type **Databricks Workspace Service Principal** and enter
 - **Service Principal Client ID**: The Client ID from the generated key pair
 - **Service Principal Client Secret**: The Client Secret from the generated key pair
 
-:::note Account-Level API Access
+:::note[Account-Level API Access]
 For account-level access (e.g., managing workspaces using the service principal), grant the service principal administrative access to the account and use the account-level token URL format: `https://accounts.cloud.databricks.com/oidc/accounts/<my-account-id>/v1/token`.
 :::
 

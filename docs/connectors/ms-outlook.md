@@ -58,11 +58,11 @@ To connect to Microsoft Outlook using OAuth 2.0, create an App Registration in M
   - Use `login_hint=user@example.com` to pre-fill the user's email address on the sign-in page
   - Multiple parameters can be combined with `&` (e.g., `prompt=consent&login_hint=user@example.com`)
 
-:::note Single-Tenant Applications
+:::note[Single-Tenant Applications]
 For single-tenant applications (not Multitenant), tenant-specific URLs are required. The connection will automatically handle tenant-specific configuration when a Tenant ID is provided.
 :::
 
-:::info Cloud Environments
+:::info[Cloud Environments]
 The connection supports different Microsoft cloud environments (Commercial, Government, China). The Base URL will automatically adjust based on the selected cloud environment.
 :::
 
@@ -155,11 +155,11 @@ The Client Credentials flow is used for server-to-server authentication without 
 - Enter the **User ID** of the user whose data will be accessed (required for user-specific endpoints)
 - The default scope `https://graph.microsoft.com/.default` is pre-configured for the connection
 
-:::note Client Credentials vs Authorization Code
+:::note[Client Credentials vs Authorization Code]
 The Client Credentials flow uses application permissions and does not require user login. This is ideal for background services and automated processes. For user-delegated permissions, use the **OAuth 2.0 Authorization Code** connection instead.
 :::
 
-:::warning User ID Required
+:::warning[User ID Required]
 All actions using the client credentials flow require a **User ID** to specify which user's data to access. This is required because application permissions operate on behalf of the application, not a signed-in user.
 :::
 

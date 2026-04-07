@@ -40,7 +40,7 @@ Auth Token connection for Twilio
 When you create a Twilio account, an **Account String Identifier** (Account SID) and **Auth Token** are generated.
 You can use the account SID and auth token to authenticate with Twilio and to send SMS messages.
 
-:::caution Consider API Keys instead
+:::caution[Consider API Keys instead]
 For security reasons, we recommend using an [API Key Connection](#apikeysecret) instead.
 API keys can be revoked and auth tokens generated using API keys are short-lived.
 :::

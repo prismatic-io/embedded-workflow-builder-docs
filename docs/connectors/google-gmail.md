@@ -68,13 +68,13 @@ To create a Gmail OAuth 2.0 app, a Google Developer account is required. Sign up
     https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/pubsub
     ```
 
-:::note Pub/Sub Scope Requirement
+:::note[Pub/Sub Scope Requirement]
 The `https://www.googleapis.com/auth/pubsub` scope is required for push notification features. Include this scope if using the Push Notification Webhook trigger.
 :::
 
 - Refer to [Gmail API Scopes](https://developers.google.com/gmail/api/auth/scopes) for additional scope options
 
-:::info Publishing the OAuth App
+:::info[Publishing the OAuth App]
 The OAuth app will initially only work for test users added during setup. To allow all users to authenticate:
 
 1. Navigate to the **OAuth consent screen** in the GCP Console
@@ -99,7 +99,7 @@ Service Account Connection
 
 The **Service Account** authentication method allows Gmail actions to run on behalf of Google Workspace users without requiring individual user authorization. This method is ideal for serve to server integrations and automated workflows.
 
-:::info When to Use Service Account
+:::info[When to Use Service Account]
 Service accounts are best suited for:
 
 - Server-to-server integrations within a Google Workspace organization

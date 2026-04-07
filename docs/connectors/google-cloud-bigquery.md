@@ -50,7 +50,7 @@ The Google BigQuery component authenticates requests through the Google Cloud Pl
    3. Click **CREATE**.
 8. Take note of the **Client ID** and **Client Secret** that are generated.
 
-:::info Publishing Requirement
+:::info[Publishing Requirement]
 Make sure to **publish** the OAuth 2.0 app after testing it so users outside of the test users can authorize the integration to interact with Google BigQuery on their behalf.
 :::
 
