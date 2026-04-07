@@ -1,6 +1,6 @@
 import type { CommanderStatic } from "commander";
 import { globSync } from "node:fs";
-import { Jimp } from "jimp";
+import sharp from "sharp";
 import path from "node:path";
 
 // Max Docusaurus content width is about 960px
@@ -11,13 +11,16 @@ async function resizeScreenshots() {
   const screenshotFiles = globSync("**/*.png", { cwd: assetPath });
   for (const screenshotFile of screenshotFiles) {
     const screenshotPath = path.join(assetPath, screenshotFile);
-    const screenshot = await Jimp.read(screenshotPath);
-    if (screenshot.width > MAX_SCREENSHOT_SIZE) {
+    const metadata = await sharp(screenshotPath).metadata();
+    if (metadata.width && metadata.width > MAX_SCREENSHOT_SIZE) {
       console.log(
-        `${screenshotFile} is currently ${screenshot.width} pixels wide. Resizing to ${MAX_SCREENSHOT_SIZE}.`,
+        `${screenshotFile} is currently ${metadata.width} pixels wide. Resizing to ${MAX_SCREENSHOT_SIZE}.`,
       );
-      screenshot.resize({ w: MAX_SCREENSHOT_SIZE });
-      await screenshot.write(screenshotPath as `${string}.${string}`);
+      await sharp(screenshotPath)
+        .resize({ width: MAX_SCREENSHOT_SIZE })
+        .toFile(screenshotPath + ".tmp");
+      const fs = await import("node:fs/promises");
+      await fs.rename(screenshotPath + ".tmp", screenshotPath);
     }
   }
 }

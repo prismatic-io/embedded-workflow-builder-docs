@@ -1,5 +1,5 @@
 import path from "node:path";
-import { Jimp } from "jimp";
+import sharp from "sharp";
 import { getPrismaticConnection } from "./graphqlClient";
 import type { Component } from "./queries";
 
@@ -20,8 +20,7 @@ export const fetchConnectorIcon = async (connector: Component) => {
     headers: { Authorization: `Bearer ${PRISMATIC_API_KEY}` },
   });
   const imageBuffer = await imageResponse.arrayBuffer();
-  const image = await Jimp.fromBuffer(imageBuffer);
-  image.resize({ h: 32, w: 32 });
-
-  await image.write(assetFilePath as `${string}.${string}`);
+  await sharp(Buffer.from(imageBuffer))
+    .resize({ height: 32, width: 32 })
+    .toFile(assetFilePath);
 };

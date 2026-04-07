@@ -52,10 +52,10 @@
     "graffle": "^8.0.0-next.164",
     "graphql": "^16.13.2",
     "handlebars": "^4.7.9",
-    "jimp": "^1.6.0",
     "js-yaml": "^4.1.1",
     "prettier": "^3.8.1",
     "rimraf": "^6.1.3",
+    "sharp": "^0.34.5",
     "typescript": "~6.0.2"
   },
   "browserslist": {
