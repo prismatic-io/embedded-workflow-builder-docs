@@ -5,12 +5,12 @@ description: Manage shipments, orders, and fulfillments in ShipStation
 ---
 
 ![ShipStation](./assets/shipstation.png#connector-icon)
-[ShipStation](https://www.shipstation.com/) is an e-commerce shipping solution that streamlines the order fulfillment process.
-This component allows listing, creating, updating, and deleting orders and shipments in the ShipStation account.
+[ShipStation](https://www.shipstation.com/) is an e-commerce shipping and order fulfillment platform.
+This component allows you to manage orders, shipments, and carriers in ShipStation.
 
 ## API Documentation
 
-This component was built using the [ShipStation API Documentation](https://www.shipstation.com/docs/api/).
+This component was built using the [ShipStation API](https://www.shipstation.com/docs/api/).
 
 ## Connections
 

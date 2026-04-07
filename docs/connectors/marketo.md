@@ -5,7 +5,12 @@ description: Manage leads, companies, and custom objects in Adobe Marketo Engage
 ---
 
 ![Adobe Marketo Engage](./assets/marketo.png#connector-icon)
-[Adobe Marketo](https://www.marketo.com/) allows you to leverage rich behavioral data, built-in intelligence, and sophisticated journey flows to identify, engage, and accelerate your best opportunities to orchestrate your buyer's journeys.
+[Adobe Marketo Engage](https://www.marketo.com/) is a marketing automation platform.
+This component allows you to manage leads, companies, and custom objects in Adobe Marketo Engage.
+
+## API Documentation
+
+This component was built using the [Marketo REST API](https://developers.marketo.com/rest-api/).
 
 ## Connections
 

@@ -6,11 +6,11 @@ description: Manage sheets, rows, and workspaces in the Smartsheet platform
 
 ![Smartsheet](./assets/smartsheet.png#connector-icon)
 [Smartsheet](https://www.smartsheet.com) is a software as a service offering for collaboration and work management, developed and marketed by Smartsheet Inc.
-This component allows you to manage and interact with a Smartsheet sheets.
+This component allows managing and interacting with Smartsheet sheets.
 
 ## API Documentation
 
-This component was built using the [Smartsheet API Documentation](https://smartsheet.redoc.ly/)
+This component was built using the [Smartsheet API Documentation](https://developers.smartsheet.com/api/smartsheet/introduction)
 
 ## Connections
 
@@ -18,8 +18,16 @@ This component was built using the [Smartsheet API Documentation](https://smarts
 
 Authenticate requests to Smartsheet using an API key.
 
-API keys can be used for development purposes, though you should use an OAuth 2.0 connection for production integrations.
-Information about getting started and creating API keys with [Smartsheet](https://help.smartsheet.com/articles/2482389-generate-API-key) can be found on their developer documentation site.
+API keys can be used for development purposes, though an OAuth 2.0 connection is recommended for production integrations.
+
+Refer to the [Smartsheet API key documentation](https://help.smartsheet.com/articles/2482389-generate-API-key) for instructions on generating an API key.
+
+#### Configure the Connection
+
+Create a connection of type **API Key** and configure the following fields:
+
+- **Base URL**: Select the Smartsheet API base URL. Most applications use the commercial endpoint. Government entities should select the government endpoint.
+- **API Key**: Enter the API key generated from the Smartsheet account settings.
 
 | Input    | Comments                                                                                                | Default                         |
 | -------- | ------------------------------------------------------------------------------------------------------- | ------------------------------- |
@@ -30,21 +38,38 @@ Information about getting started and creating API keys with [Smartsheet](https:
 
 Authenticate requests to Smartsheet using OAuth 2.0.
 
-To authenticate Smartsheet users through OAuth 2.0, you will need to create and configure an app within your Smartsheet account.
+To authenticate with Smartsheet through OAuth 2.0, create and configure an app within the Smartsheet account.
+
+#### Prerequisites
+
+- A Smartsheet account with access to Developer Tools
+- A developer profile created in Smartsheet
+
+#### Setup Steps
 
 1. Log in to [Smartsheet](https://app.smartsheet.com)
-2. Navigate to your profile icon (bottom left) and select **Developer Tools**
-3. Create a developer profile if you haven't already
+2. Navigate to the profile icon (bottom left) and select **Developer Tools**
+3. Create a developer profile if one does not already exist
 4. Click **Create New App**
-5. Configure your app:
-   - **App Name**: Enter your application name
+5. Configure the app:
+   - **App Name**: Enter the application name
    - **App Description**: Add a brief description
-   - **App Logo**: Optional - add a logo for your app
+   - **App Logo**: Optional
    - **Publish App**: Leave unchecked (not required)
    - **App Redirect URL**: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-6. Save your app and note the generated credentials:
+6. Save the app and note the generated credentials:
    - **App Client ID**
    - **App Secret**
+
+#### Configure the Connection
+
+Create a connection of type **OAuth 2.0** and configure the following fields:
+
+- **API Domain**: Select the Smartsheet API domain. Most applications use the commercial domain (`api.smartsheet.com`). Government entities should select the government endpoint (`api.smartsheetgov.com`).
+- **App Domain**: Select the Smartsheet application domain. This should match the API domain selection.
+- **Scopes**: A space-separated list of permissions to request. Remove any permissions not needed. Refer to the [available scopes](https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth) documentation for details.
+- **App Client ID**: Enter the client ID generated from the Smartsheet app.
+- **App Secret**: Enter the client secret generated from the Smartsheet app.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -61,21 +86,43 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate requests to Smartsheet using OAuth 2.0. Deprecated in favor of the templated OAuth 2.0 connection.
 
-To authenticate Smartsheet users through OAuth 2.0, you will need to create and configure an app within your Smartsheet account.
+:::warning[Deprecation Notice]
+This connection type is deprecated. Use the **OAuth 2.0** connection instead, which provides a simplified configuration with templated URLs.
+:::
+
+To authenticate with Smartsheet through OAuth 2.0, create and configure an app within the Smartsheet account.
+
+#### Prerequisites
+
+- A Smartsheet account with access to Developer Tools
+- A developer profile created in Smartsheet
+
+#### Setup Steps
 
 1. Log in to [Smartsheet](https://app.smartsheet.com)
-2. Navigate to your profile icon (bottom left) and select **Developer Tools**
-3. Create a developer profile if you haven't already
+2. Navigate to the profile icon (bottom left) and select **Developer Tools**
+3. Create a developer profile if one does not already exist
 4. Click **Create New App**
-5. Configure your app:
-   - **App Name**: Enter your application name
+5. Configure the app:
+   - **App Name**: Enter the application name
    - **App Description**: Add a brief description
-   - **App Logo**: Optional - add a logo for your app
+   - **App Logo**: Optional
    - **Publish App**: Leave unchecked (not required)
    - **App Redirect URL**: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-6. Save your app and note the generated credentials:
+6. Save the app and note the generated credentials:
    - **App Client ID**
    - **App Secret**
+
+#### Configure the Connection
+
+Create a connection of type **OAuth 2.0 (Deprecated)** and configure the following fields:
+
+- **Base URL**: Select the Smartsheet API base URL. Most applications use the commercial endpoint. Government entities should select the government endpoint.
+- **Authorization URL**: Select the OAuth 2.0 authorization endpoint for Smartsheet.
+- **Token URL**: Select the OAuth 2.0 token exchange endpoint for Smartsheet.
+- **Scopes**: A space-separated list of permissions to request. Remove any permissions not needed. Refer to the [available scopes](https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth) documentation for details.
+- **App Client ID**: Enter the client ID generated from the Smartsheet app.
+- **App Secret**: Enter the client secret generated from the Smartsheet app.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

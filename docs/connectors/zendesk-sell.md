@@ -5,7 +5,12 @@ description: Manage leads, contacts, and deals in Zendesk Sell.
 ---
 
 ![Zendesk Sell](./assets/zendesk-sell.png#connector-icon)
-[Zendesk Sell](https://www.zendesk.com/sell) is a sales force automation program.
+[Zendesk Sell](https://www.zendesk.com/sell) is a sales force automation and CRM platform.
+This component allows you to manage leads, contacts, and deals in Zendesk Sell.
+
+## API Documentation
+
+This component was built using the [Zendesk Sell API](https://developer.zendesk.com/api-reference/sales-crm/introduction/).
 
 ## Connections
 
@@ -13,18 +18,29 @@ description: Manage leads, contacts, and deals in Zendesk Sell.
 
 Authenticate using OAuth 2.0.
 
-The Zendesk Sell component ensures secure request authentication using OAuth 2.0. To seamlessly configure an application within Zendesk Sell, simply adhere to the instructions outlined in this comprehensive guide.
+Create a connection of type **OAuth 2.0** to authenticate with the Zendesk Sell API using OAuth 2.0.
 
-1. **Access Your Zendesk Sell Dashboard:** To begin, log in to your Zendesk Sell Dashboard. You can reach it via a URL similar to this: `https://{YOUR SUBDOMAIN HERE}.zendesk.com/sales/dashboards/main`.
-1. **Navigate to Settings:** On the left-hand side toolbar, locate and click on the "Settings" option.
-1. **Explore Integrations > OAuth:** Within the Settings section, delve into the "Integrations" category and then proceed to "OAuth."
-1. **Access OAuth2 Settings:** Under the OAuth section, find the "OAuth2 Settings" and access it.
-1. **Developer App Setup:** Within the OAuth2 Settings, locate the "Developer apps" section.
-1. **Add a Developer App:** To initiate the setup process, click on the "Add Developer App" button.
-1. **Provide App Details:** Complete the required fields for the app setup. Be sure to specify the Redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-1. **Retrieve Client ID and Secret:** Upon successful app addition, you can obtain the Client ID and Secret by selecting the "details" button associated with your app.
+#### Prerequisites
 
-Now that you've acquired the necessary credentials, the next step involves establishing a new Zendesk Sell connection, utilizing the obtained credentials. This integration will seamlessly link your systems, facilitating efficient data exchange and management.
+- A Zendesk Sell account with administrator access
+
+#### Setup Steps
+
+1. Log in to the Zendesk Sell Dashboard at a URL similar to `https://{subdomain}.zendesk.com/sales/dashboards/main`.
+2. On the left-hand side toolbar, click **Settings**.
+3. Within the Settings section, navigate to **Integrations** > **OAuth**.
+4. Under the OAuth section, open **OAuth2 Settings**.
+5. In the **Developer apps** section, click **Add Developer App**.
+6. Complete the required fields for the app setup. Specify the Redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+7. Once the app has been added, select the **details** button associated with the app to retrieve the **Client ID** and **Client Secret**.
+
+#### Configure the Connection
+
+- For **Authorize URL**, the default value is `https://api.getbase.com/oauth2/authorize`. Update if using a custom Zendesk Sell instance.
+- For **Token URL**, the default value is `https://api.getbase.com/oauth2/token`. Update if using a custom Zendesk Sell instance.
+- For **Scopes**, the default value is `read write profile`. Adjust based on the required level of access.
+- Enter the **Client ID** obtained from the developer app details.
+- Enter the **Client Secret** obtained from the developer app details.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

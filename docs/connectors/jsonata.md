@@ -5,8 +5,8 @@ description: Transform data using the JSONata query and transformation language
 ---
 
 ![JSONata](./assets/jsonata.png#connector-icon)
-[JSONata](https://jsonata.org/) is a query and transformation language.
-This component takes data and a JSONata expression as input, and returns transformed data based on the expression.
+[JSONata](https://jsonata.org/) is a query and transformation language for JSON data.
+This component allows you to transform data using the JSONata query and transformation language.
 JSONata is helpful when you have a predictable data structure as an input, and you want to output a modified data structure.
 JSONata includes common functions you might execute on a data set - things like `map`, `filter`, `sort`, `sum`, `string.split` (the list goes on).
 

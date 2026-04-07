@@ -5,14 +5,31 @@ description: Interact with a SOAP-based API
 ---
 
 ![SOAP](./assets/soap.png#connector-icon)
-**Simple Object Access Protocol** ([SOAP](https://en.wikipedia.org/wiki/SOAP)) is a messaging protocol specification for exchanging structured information with web services.
+[SOAP](https://en.wikipedia.org/wiki/SOAP) (Simple Object Access Protocol) is a messaging protocol specification for exchanging structured information with web services.
+The **SOAP** component supports fetching WSDL definitions, describing the methods a SOAP API supports, and making requests of the API's methods.
 
-This component allows you to interact with a SOAP API.
-You can fetch WSDL definitions, describe the methods that a SOAP API supports, and make requests of the API's methods.
+## Protocol Specification
+
+This component implements SOAP as defined in the [W3C SOAP specification](https://www.w3.org/TR/soap/).
 
 ## Connections
 
 ### Basic Authentication {#basicauth}
+
+SOAP Basic Authentication uses a username and password along with a SOAP login method to authenticate API requests.
+
+#### Prerequisites
+
+- Access to a SOAP API that supports Basic Authentication
+- A valid username and password for the SOAP service
+- Knowledge of the SOAP login method name required by the API
+
+#### Configure the Connection
+
+- **Username**: Enter the username for the SOAP API
+- **Password**: Enter the password for the SOAP API
+- **SOAP Login Method**: Enter the method name used to authenticate with the SOAP API (e.g., `Login`)
+- **WSDL Definition URL**: Enter the URL to retrieve the WSDL definition from (optional, e.g., `https://example.com/api.svc?WSDL`)
 
 | Input               | Comments                                           | Default |
 | ------------------- | -------------------------------------------------- | ------- |

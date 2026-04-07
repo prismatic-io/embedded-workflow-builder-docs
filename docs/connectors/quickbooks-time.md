@@ -5,13 +5,37 @@ description: Manage Employee Time Tracking within Intuit QuickBooks Time
 ---
 
 ![QuickBooks Time](./assets/quickbooks-time.png#connector-icon)
-Manage Employee Time Tracking within Intuit QuickBooks Time
+[QuickBooks Time](https://quickbooks.intuit.com/time-tracking/) is an employee time tracking solution from Intuit.
+The **QuickBooks Time** component supports managing users, job codes, job code assignments, and timesheets.
+
+## API Documentation
+
+This component was built using the [QuickBooks Time (TSheets) REST API](https://tsheetsteam.github.io/api_docs/).
 
 ## Connections
 
 ### OAuth 2.0 {#oauth}
 
 OAuth 2.0 flow
+
+QuickBooks Time uses OAuth 2.0 Authorization Code authentication. An OAuth application must be created in the QuickBooks Time developer portal before configuring this connection.
+
+#### Prerequisites
+
+- A QuickBooks Time (TSheets) account with administrator access
+- An OAuth application registered in the QuickBooks Time developer portal
+
+#### Setup Steps
+
+1. Navigate to the QuickBooks Time developer portal and create a new OAuth application
+2. Configure the application:
+   - **Redirect URI**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+3. Copy the **Client ID** and **Client Secret** from the application settings
+
+#### Configure the Connection
+
+- **Client ID**: Enter the Client ID from the OAuth application
+- **Client Secret**: Enter the Client Secret from the OAuth application
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

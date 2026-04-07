@@ -21,7 +21,7 @@ This component uses OAuth 2.0 to connect to the Google Ads API.
 
 #### Prerequisites
 
-- A [Developer Token](https://developers.google.com/google-ads/api/docs/first-call/dev-token) is required to work with Google Ads
+- A [Developer Token](https://developers.google.com/google-ads/api/docs/api-policy/developer-token) is required to work with Google Ads
 - The Customer ID of the Ads Manager account (the hyphenated number in the top-left corner of the Ads app) must be noted
 - A [Google Developer account](https://console.cloud.google.com/) is required
 

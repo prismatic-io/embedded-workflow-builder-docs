@@ -35,7 +35,9 @@ To connect to Contentful, create a new OAuth application.
 6. Save the application
 7. Copy the **Client ID** and **Client Secret**
 
-> **Important**: Contentful only accepts a single scope per authorization request. The `content_management_manage` scope includes read access, so a separate `content_management_read` scope is not needed.
+:::note[Single Scope Requirement]
+Contentful only accepts a single scope per authorization request. The `content_management_manage` scope includes read access, so a separate `content_management_read` scope is not needed.
+:::
 
 #### Available Scopes
 

@@ -35,7 +35,7 @@ To generate a Gong API key manually:
 
 Authenticate using oauth flow.
 
-To Create an [OAuth app](https://help.gong.io/hc/en-us/articles/13944551222157-Create-an-app-for-Gong) for Gong:
+To Create an [OAuth app](https://help.gong.io/docs/create-an-app-for-gong) for Gong:
 
 1. In your company's **Settings** page, click **API** and click the **Integrations** tab.
 2. Click **Create Integration**.

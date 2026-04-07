@@ -5,9 +5,8 @@ description: Manage search indexes, records, and settings in Algolia.
 ---
 
 ![Algolia](./assets/algolia.png#connector-icon)
-[Algolia](https://www.algolia.com/es/) is a powerful and flexible search and discovery API, trusted by thousands of developers for delivering relevant search results in real-time.
-
-Use the Algolia component to interact with your Algolia indexes, manage records, and perform search operations in your Algolia account.
+[Algolia](https://www.algolia.com/) is a search and discovery API platform.
+This component allows you to manage search indexes, records, and settings in Algolia.
 
 ## API Documentation
 

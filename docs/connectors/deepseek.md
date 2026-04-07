@@ -5,9 +5,8 @@ description: Generate chat completions and manage models with DeepSeek AI.
 ---
 
 ![DeepSeek](./assets/deepseek.png#connector-icon)
-[DeepSeek](https://www.deepseek.com/) is an AI developer of large language models (LLM) focused on providing high performance models.
-
-Use the component to create chat completions with available models.
+[DeepSeek](https://www.deepseek.com/) is an artificial intelligence company that develops large language models focused on high performance.
+This component allows you to generate chat completions and manage models with DeepSeek AI.
 
 ## API Documentation:
 

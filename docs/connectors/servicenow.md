@@ -5,14 +5,30 @@ description: Create records and incidents within ServiceNow
 ---
 
 ![ServiceNow](./assets/servicenow.png#connector-icon)
-[ServiceNow](https://www.servicenow.com/) is platform that helps you manage digital workflows.
-The ServiceNow component gives you the ability to insert table records and incidents on the platform.
+[ServiceNow](https://www.servicenow.com/) is a platform for managing digital workflows.
+The **ServiceNow** component supports managing table records, incidents, attachments, CMDB entries, knowledge articles, and users.
+
+## API Documentation
+
+This component was built using the [ServiceNow REST API](https://developer.servicenow.com/dev.do#!/reference/api/latest/rest).
 
 ## Connections
 
 ### Basic Username/Password {#basic}
 
 Basic Username and Password connection
+
+ServiceNow supports Basic Authentication using a username and password.
+
+#### Prerequisites
+
+- A ServiceNow instance with an active user account
+- The user account must have appropriate roles and permissions for the required API operations
+
+#### Configure the Connection
+
+- **Username**: Enter the ServiceNow account username
+- **Password**: Enter the ServiceNow account password
 
 | Input    | Comments | Default |
 | -------- | -------- | ------- |
@@ -22,6 +38,36 @@ Basic Username and Password connection
 ### OAuth 2.0 Authorization Code {#authorizationcode}
 
 OAuth 2.0 Authorization Code flow
+
+ServiceNow supports OAuth 2.0 Authorization Code authentication. An OAuth application must be registered in the ServiceNow instance before configuring this connection.
+
+#### Prerequisites
+
+- A ServiceNow instance with administrator access
+- Access to **System OAuth > Application Registry** in the ServiceNow instance
+
+#### Setup Steps
+
+1. Log in to the ServiceNow instance as an administrator
+2. Navigate to **System OAuth > Application Registry**
+3. Click **New** and select **Create an OAuth API endpoint for external clients**
+4. Configure the application:
+   - **Name**: Enter a descriptive name
+   - **Redirect URL**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+5. Save the application
+6. Copy the **Client ID** and **Client Secret** from the application record
+
+#### Configure the Connection
+
+- **Authorize URL**: Enter the OAuth authorization URL for the ServiceNow instance (e.g., `https://dev12345.service-now.com/oauth_auth.do`)
+- **Token URL**: Enter the OAuth token URL for the ServiceNow instance (e.g., `https://dev12345.service-now.com/oauth_token.do`)
+- **Scopes**: Enter space-separated OAuth scopes if required (optional)
+- **Client ID**: Enter the Client ID from the OAuth application
+- **Client Secret**: Enter the Client Secret from the OAuth application
+
+:::note[Instance-Specific URLs]
+The Authorize URL and Token URL are specific to each ServiceNow instance. Replace `dev12345` with the actual instance name.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

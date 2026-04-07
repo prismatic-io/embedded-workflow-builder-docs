@@ -5,12 +5,12 @@ description: Generate chat responses and completions using Anthropic's Claude mo
 ---
 
 ![Anthropic](./assets/anthropic.png#connector-icon)
-[Anthropic](https://www.anthropic.com/) is an artificial intelligence research company that provides various AI systems and large language models.
-Use the component to generate chat responses from the models offered from Anthropic.
+[Anthropic](https://www.anthropic.com/) is an artificial intelligence safety company that develops and provides Claude, a family of large language models.
+This component allows you to send chat messages to Claude, count tokens, and manage available models.
 
 ## API Documentation
 
-This component was built using the [Anthropic Typescript SDK](https://github.com/anthropics/anthropic-sdk-typescript).
+This component was built using the [Anthropic Messages API](https://docs.anthropic.com/en/api/messages).
 
 ## Connections
 

@@ -5,9 +5,12 @@ description: Manage candidates, applications, and job postings in Greenhouse.
 ---
 
 ![Greenhouse](./assets/greenhouse.png#connector-icon)
-[Greenhouse](https://www.greenhouse.com/) is a platform designed for recruiting and talent management.
+[Greenhouse](https://www.greenhouse.com/) is a recruiting and applicant tracking system platform.
+This component allows you to manage candidates, applications, and job postings in Greenhouse.
 
-Use the Greenhouse component to connect to the Harvest API for managing Candidate information, User information, Applications, and more.
+## API Documentation
+
+This component was built using the [Greenhouse Harvest API](https://developers.greenhouse.io/harvest.html).
 
 ## Connections
 
