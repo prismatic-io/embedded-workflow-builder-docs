@@ -55,6 +55,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | The client ID for the Adobe Developer Console project.     |                                                                                                        |
 | Client Secret | The client secret for the Adobe Developer Console project. |                                                                                                        |
 
+## Triggers
+
+### New Records {#pollchangestrigger}
+
+Checks for new report suites or companies in Adobe Analytics on a configured schedule.
+
+| Input             | Comments                                          | Default |
+| ----------------- | ------------------------------------------------- | ------- |
+| Connection        | The Adobe Analytics connection to use.            |         |
+| Global Company ID | The unique identifier for the analytics company.  |         |
+| Resource Type     | The type of resource to poll for new records.     |         |
+| Show New Records  | Include newly created records in trigger results. | true    |
+
 ## Actions
 
 ### Get Current User {#getcurrentuser}
@@ -138,7 +151,6 @@ Sends a raw HTTP request to Adobe Analytics.
 | Header                  | A list of headers to send with the request.                                                                                                                                                                          |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                             | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                  |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                 | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                  | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                     | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                  | 0       |

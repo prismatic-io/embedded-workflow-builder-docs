@@ -34,6 +34,17 @@ For additional information regarding authentication, please refer to the [WooCom
 | Consumer Secret |                                                               |         |
 | Domain          | Provide a string value for the domain of your wordpress site. |         |
 
+## Triggers
+
+### New Records {#pollnewrecordstrigger}
+
+Checks for new records in a selected WooCommerce resource type on a configured schedule.
+
+| Input         | Comments                                                      | Default |
+| ------------- | ------------------------------------------------------------- | ------- |
+| Connection    | The connection to be used.                                    |         |
+| Resource Type | Select the WooCommerce resource type to poll for new records. |         |
+
 ## Actions
 
 ### Create Customer {#createcustomer}
@@ -405,7 +416,6 @@ Send raw HTTP request to WooCommerce
 | Header                  | A list of headers to send with the request.                                                                                                                                                                               |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                  | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                       |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                      | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                       | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                          | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                       | 0       |

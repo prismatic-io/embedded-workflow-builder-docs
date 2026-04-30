@@ -49,6 +49,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     |                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Client Secret |                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected Ramp resource type on a configured schedule.
+
+| Input                | Comments                                                  | Default |
+| -------------------- | --------------------------------------------------------- | ------- |
+| Connection           |                                                           |         |
+| Resource Type        | The type of resource to poll for new and updated records. |         |
+| Show New Records     | Include newly created records in trigger results.         | true    |
+| Show Updated Records | Include updated records in trigger results.               | true    |
+
 ## Actions
 
 ### Create Custom Accounting Field {#createcustomaccountingfield}

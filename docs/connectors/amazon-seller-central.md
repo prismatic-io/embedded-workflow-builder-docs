@@ -13,9 +13,9 @@ This component was built using the [Amazon Selling Partner API](https://develope
 
 ## Connections
 
-### Amazon Seller Central OAuth 2.0 {#oauth2}
+### OAuth 2.0 {#oauth2}
 
-Authenticate requests to Amazon Seller Central.
+OAuth 2.0 connection for Amazon Seller Central
 
 To connect to Amazon Seller Central, register an application in the Developer Central console and configure OAuth 2.0 authentication.
 
@@ -74,9 +74,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | SP-API Endpoint        | Selling Partner API endpoints are associated with a particular AWS Region. The AWS Region is important because it is part of the credential scope, which is required for calculating a signature when calling the Selling Partner API. [Learn more](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)                                                                     | sellingpartnerapi-na.amazon.com                                                               |
 | Is Sandbox Environment | When set to Yes, the connection will use the Amazon SP-API sandbox environment for testing. Leave blank or select No for production use.                                                                                                                                                                                                                                                |                                                                                               |
 
-### Amazon Seller Central OAuth 2.0 Client Credentials {#clientcredentials}
+### OAuth 2.0 Client Credentials {#clientcredentials}
 
-Authenticate requests to Amazon Seller Central using client credentials.
+OAuth 2.0 Client Credentials connection for Amazon Seller Central
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -89,6 +89,20 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client Secret          | Client Secret from your Amazon Seller Central application. Find this on the [Developer Central](https://developer-docs.amazon.com/sp-api/docs/registering-your-application) page.                                                                                                                                                                                                       |                                                                                               |
 | SP-API Endpoint        | Selling Partner API endpoints are associated with a particular AWS Region. The AWS Region is important because it is part of the credential scope, which is required for calculating a signature when calling the Selling Partner API. [Learn more](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)                                                                     | sellingpartnerapi-na.amazon.com                                                               |
 | Is Sandbox Environment | When set to Yes, the connection will use the Amazon SP-API sandbox environment for testing. Leave blank or select No for production use.                                                                                                                                                                                                                                                |                                                                                               |
+
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated orders or feeds in Amazon Seller Central on a configured schedule.
+
+| Input                | Comments                                                                                                                                                                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Amazon Seller Central connection to use.                                                                                                                                                                                                            |         |
+| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                               |         |
+| Marketplace Ids      | List of MarketplaceId values. Used to select orders that were placed in the specified marketplaces. See the [Marketplace IDs documentation](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values. |         |
+| Show New Records     | Include newly created records in trigger results.                                                                                                                                                                                                       | true    |
+| Show Updated Records | Include updated records in trigger results.                                                                                                                                                                                                             | true    |
 
 ## Actions
 
@@ -382,8 +396,8 @@ Returns feed details for the feeds that match the filters that you specify.
 | Marketplace Ids     | List of MarketplaceId values. Used to select orders that were placed in the specified marketplaces. See the [Marketplace IDs documentation](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values.                     |                          |
 | Page Size           | The maximum number of feeds to return in a single call.                                                                                                                                                                                                                     | 10                       |
 | Processing Statuses | List of processing statuses used to filter feeds.                                                                                                                                                                                                                           |                          |
-| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2025-11-29T20:24:42.546Z |
-| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-02-27T20:24:42.547Z |
+| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2026-01-21T14:26:09.285Z |
+| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-04-21T14:26:09.285Z |
 | Next Token          | String token returned in the response of your previous request for pagination.                                                                                                                                                                                              |                          |
 
 ### List Orders {#listorders}

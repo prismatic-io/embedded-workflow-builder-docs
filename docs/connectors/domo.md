@@ -1,85 +1,97 @@
 ---
 title: Domo Connector
 sidebar_label: Domo
-description: The Domo platform includes a world class data warehouse, robust data pipeline functionality, and visualization engine.
+description: Manage datasets, streams, users, groups, pages, and projects in Domo.
 ---
 
 ![Domo](./assets/domo.png#connector-icon)
-The Domo platform includes a world class data warehouse, robust data pipeline functionality, and visualization engine.
+Manage datasets, streams, users, groups, pages, and projects in Domo.
 
 ## Connections
 
-### Domo OAuth Connection {#oauth}
+### OAuth 2.0 Client Credentials {#oauth}
 
-OAuth Connectivity for Domo
+Authenticate against the Domo API using OAuth 2.0 client credentials.
 
-[Generating Client ID and Client Secret](https://developer.domo.com/portal/8ba9aedad3679-ap-is#step-1-create-client-id-and-secret)
+Create a connection of type **OAuth 2.0 Client Credentials** to authenticate with the Domo API.
 
-To generate a client ID and client secret for your Domo instance, follow these steps:
+To [generate a Client ID and Client Secret](https://developer.domo.com/portal/8ba9aedad3679-ap-is#step-1-create-client-id-and-secret), follow the steps below.
 
-1. Obtain your Domo Instance Name:
-   - Your Domo Instance Name is the part of the URL preceding "domo.com." For instance, if your Domo URL is `acmecompany.domo.com`, your instance name would be `acmecompany`.
+#### Prerequisites
 
-2. Log in to the Developer Portal:
-   - Click on the "Dev Portal Login" link to access the Developer Portal or follow this link [https://developer.domo.com/login](https://developer.domo.com/login).
+- A Domo account with access to the Developer Portal
+- The Domo instance name (the part of the URL preceding `domo.com` -- for example, if the Domo URL is `acmecompany.domo.com`, the instance name is `acmecompany`)
 
-3. Enter Instance Name and User Credentials:
-   - Provide your Domo Instance Name and user credentials when prompted to log in.
+#### Setup Steps
 
-4. Access "Manage Clients" Page:
-   - After logging in successfully, you will be redirected to the Developer Portal's homepage.
-   - Click on the "My Account" dropdown, and you will find options to manage clients, create a new one, or logout.
+1. Navigate to the [Domo Developer Portal login page](https://developer.domo.com/login)
+2. Enter the Domo instance name and user credentials when prompted
+3. After logging in, click on the **My Account** dropdown and select **Manage Clients**
+4. Click **Create a New Client** from the **Manage Clients** page
+5. Submit the required information -- a newly provisioned **Client ID** and **Client Secret** will be generated and displayed on the **Manage Clients** page
+6. Copy the **Client ID** and **Client Secret** values
 
-5. Create a New Client:
-   - Choose the option to create a new client from the "Manage Clients" page.
+#### Configure the Connection
 
-6. Submit and Obtain Client ID and Secret:
-   - After submitting the required information, a newly provisioned client ID and client secret will be generated and displayed on the "Manage Clients" page.
+- Enter the **Client ID** and **Client Secret** obtained from the Developer Portal
+- For **Scopes**, enter the required OAuth permission scopes separated by spaces (e.g., `data workflow audit buzz user account dashboard`)
+  - Refer to the [Domo API documentation](https://developer.domo.com/portal/8ba9aedad3679-ap-is) for available scope information
 
-Now you have successfully generated a client ID and client secret for your Domo instance. These credentials will be used in the component's OAuth connection.
+| Input         | Comments                                                      | Default |
+| ------------- | ------------------------------------------------------------- | ------- |
+| Client ID     | The Client Identifier of the Domo app for API authentication. |         |
+| Client Secret | The Client Secret of the Domo app for API authentication.     |         |
+| Scopes        | The space-separated OAuth permission scopes for the API.      |         |
 
-| Input         | Comments                                            | Default |
-| ------------- | --------------------------------------------------- | ------- |
-| Client ID     | Client Identifier of your Domo app for the API      |         |
-| Client Secret | Client Secret of your Domo app for the API          |         |
-| Scopes        | Space separated OAuth permission scopes for the API |         |
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected Domo resource type on a configured schedule.
+
+| Input                | Comments                                                                                                                                       | Default |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Domo connection to use.                                                                                                                    |         |
+| Resource Type        | The type of resource to monitor for changes.                                                                                                   |         |
+| Show New Records     | When true, includes newly created records in the results.                                                                                      | true    |
+| Show Updated Records | When true, includes updated records in the results. Only available for resource types that support update tracking (DataSets, Streams, Users). | true    |
 
 ## Actions
 
 ### Abort Stream Execution {#abortstreamexecution}
 
-If needed during an execution, aborts an entire Stream execution.
+Aborts an entire stream execution in progress.
 
-| Input        | Comments                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Domo connection to use.                                                                                                            |         |
-| Stream ID    | The ID of the Stream of data being imported into a DataSet.                                                                            |         |
-| Execution ID | The ID of the Stream execution within the Stream, if no Stream execution ID is provided, the current Stream execution will be aborted. |         |
+| Input        | Comments                                                                                                       | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Domo connection to use.                                                                                    |         |
+| Stream ID    | The ID of the Stream of data being imported into a DataSet.                                                    |         |
+| Execution ID | The unique identifier for the Stream execution. If not provided, the current Stream execution will be aborted. |         |
 
 ### Add Attachment {#addattachment}
 
-Add a multipart form file to a task item as an attachment.
+Adds a multipart form file to a task item as an attachment.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
-| List ID    | The ID of the list.         |         |
-| Task ID    | The ID of the task.         |         |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                               |         |
+| Project ID | The unique identifier for the project.                    |         |
+| List ID    | The unique identifier for the project list.               |         |
+| Task ID    | The unique identifier for the task within a project list. |         |
 
 ### Add User To Group {#addusertogroup}
 
-Add user to a group in your Domo instance.
+Adds a user to a group in a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Group ID   | The ID of the group.        |         |
-| User ID    | The ID of the user.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| Group ID   | The unique identifier for the group.     |         |
+| User ID    | The unique identifier for the Domo user. |         |
 
 ### Commit Stream Execution {#commitstreamexecution}
 
-Commits stream execution to import combined set of data parts that have been successfully uploaded.
+Commits a stream execution to import the combined set of data parts that have been successfully uploaded.
 
 | Input        | Comments                                                    | Default |
 | ------------ | ----------------------------------------------------------- | ------- |
@@ -89,33 +101,33 @@ Commits stream execution to import combined set of data parts that have been suc
 
 ### Create Account {#createaccount}
 
-When creating an Account, you must specify the Account Type properties. The Account Type properties are different, depending on the type of Account you are trying to create.
+Creates a new account in a Domo instance with the specified account type properties.
 
-| Input           | Comments                    | Default |
-| --------------- | --------------------------- | ------- |
-| Connection      | The Domo connection to use. |         |
-| Name            |                             |         |
-| ID              |                             |         |
-| Password        |                             |         |
-| Authenticate By |                             |         |
-| URL             |                             |         |
-| Username        |                             |         |
+| Input           | Comments                                                             | Default |
+| --------------- | -------------------------------------------------------------------- | ------- |
+| Connection      | The Domo connection to use.                                          |         |
+| Name            | The display name for the resource.                                   |         |
+| ID              | The unique identifier for the resource.                              |         |
+| Password        | The password used for account authentication.                        |         |
+| Authenticate By | The authentication method used for the account (e.g., basic, token). |         |
+| URL             | The URL of the account endpoint.                                     |         |
+| Username        | The username for account authentication.                             |         |
 
 ### Create Data Set {#createdataset}
 
-Creates a new DataSet in your Domo instance. Once the DataSet has been created, data can then be imported into the DataSet.
+Creates a new DataSet in a Domo instance.
 
-| Input       | Comments                              | Default |
-| ----------- | ------------------------------------- | ------- |
-| Connection  | The Domo connection to use.           |         |
-| Name        | Name of the DataSet to create         |         |
-| Description | Description of the DataSet to create. |         |
-| Rows        | Number of rows in the DataSet.        |         |
-| Columns     | Array of columns in the DataSet.      |         |
+| Input       | Comments                                                                                          | Default |
+| ----------- | ------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Domo connection to use.                                                                       |         |
+| Name        | Name of the DataSet to create                                                                     |         |
+| Description | A summary of the DataSet contents and purpose.                                                    |         |
+| Rows        | The total number of rows to include in the DataSet.                                               |         |
+| Columns     | A JSON array defining the column schema for the DataSet, including type and name for each column. |         |
 
 ### Create Group {#creategroup}
 
-Creates a new group in your Domo instance.
+Creates a new group in a Domo instance.
 
 | Input      | Comments                    | Default |
 | ---------- | --------------------------- | ------- |
@@ -124,33 +136,33 @@ Creates a new group in your Domo instance.
 
 ### Create List {#createlist}
 
-Creates a new list within the given project id.
+Creates a new list within a given project.
 
-| Input      | Comments                                                                                                                                                                                                                                       | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                                                                                                                                                                                    |         |
-| Name       | The name of the list.                                                                                                                                                                                                                          |         |
-| Type       | The type of the list.                                                                                                                                                                                                                          |         |
-| Index      | The ordered index of the list within the project. Setting this property will re-order other lists in the project to maintain sequential order. Leaving this property blank will default the index to 1 and shift the index of all other lists. |         |
-| Project ID | The ID of the project.                                                                                                                                                                                                                         |         |
+| Input      | Comments                                                                                                                                                          | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                                                                                                                                       |         |
+| Name       | The name of the list.                                                                                                                                             |         |
+| Type       | The workflow status category for the list (e.g., TODO, WORKING_ON, COMPLETED).                                                                                    |         |
+| Index      | The ordered position of the list within the project. Setting this property will re-order other lists to maintain sequential order. Defaults to 1 if not provided. |         |
+| Project ID | The unique identifier for the project.                                                                                                                            |         |
 
 ### Create Page {#createpage}
 
-Creates a new page in your Domo instance.
+Creates a new page in a Domo instance.
 
-| Input      | Comments                                                                           | Default |
-| ---------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                        |         |
-| Name       | The name of the page.                                                              |         |
-| Parent ID  | If provided, the page will be created as a subpage to the page provided            |         |
-| Locked     | When true, restricts other users the ability to make edits to page or its content. |         |
-| Card ID    | The ID of the card to add to the page.                                             |         |
-| User ID    | The ID of the user that will be given access to view the page.                     |         |
-| Group ID   | The ID of the group that will be given access to view the page.                    |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                                                                   |         |
+| Name       | The name of the page.                                                                         |         |
+| Parent ID  | The unique identifier of the parent page. If provided, the page will be created as a subpage. |         |
+| Locked     | When true, restricts other users the ability to make edits to page or its content.            |         |
+| Card ID    | The ID of the card to add to the page.                                                        |         |
+| User ID    | The ID of the user that will be given access to view the page.                                |         |
+| Group ID   | The ID of the group that will be given access to view the page.                               |         |
 
 ### Create Project {#createproject}
 
-Create a new project in your Domo instance
+Creates a new project in a Domo instance.
 
 | Input       | Comments                                                               | Default |
 | ----------- | ---------------------------------------------------------------------- | ------- |
@@ -159,28 +171,28 @@ Create a new project in your Domo instance
 | Name        | The name of the project.                                               |         |
 | Public      | When true, the project will be publicly available to other Domo users. | true    |
 | Description | The description of the project.                                        |         |
-| Due Date    | The due date of the project in ISO 8601 format.                        |         |
+| Due Date    | The due date for the project. Format: ISO 8601.                        |         |
 | Member ID   | User IDs of members to include in the project.                         |         |
-| Public Body |                                                                        |         |
+| Public Body | When true, makes the resource publicly visible to other Domo users.    |         |
 | Name        | Body name                                                              |         |
 
 ### Create Stream {#createstream}
 
-When creating a Stream, specify the DataSet properties (name and description) and as a convenience, the create Stream API will create a DataSet for you.
+Creates a new stream and its associated DataSet in Domo.
 
-| Input          | Comments                                        | Default |
-| -------------- | ----------------------------------------------- | ------- |
-| Connection     | The Domo connection to use.                     |         |
-| DataSet object | The DataSet object associated with this Stream. |         |
-| Update Method  | The data import behavior.                       |         |
-| Name           |                                                 |         |
-| Description    |                                                 |         |
-| Columns        |                                                 |         |
-| Update Method  | Update method for body.                         |         |
+| Input          | Comments                                                                                          | Default |
+| -------------- | ------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Domo connection to use.                                                                       |         |
+| DataSet Object | The DataSet object associated with this Stream.                                                   |         |
+| Update Method  | The data import behavior.                                                                         |         |
+| Name           | The display name for the resource.                                                                |         |
+| Description    | A summary of the stream DataSet contents and purpose.                                             |         |
+| Columns        | The column schema definition for the stream DataSet, specified as a JSON array of column objects. |         |
+| Update Method  | Update method for body.                                                                           |         |
 
 ### Create Stream Execution {#createstreamexecution}
 
-When you’re ready to upload data to your DataSet via a Stream, you first tell Domo that you’re ready to start sending data by creating an Execution.
+Creates a new stream execution to begin uploading data to a DataSet via a stream.
 
 | Input      | Comments                    | Default |
 | ---------- | --------------------------- | ------- |
@@ -189,74 +201,74 @@ When you’re ready to upload data to your DataSet via a Stream, you first tell 
 
 ### Create Task {#createtask}
 
-Add a task to a project list.
+Adds a task to a project list.
 
-| Input        | Comments                                                                                                                                                                                                                                         | Default |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection   | The Domo connection to use.                                                                                                                                                                                                                      |         |
-| Project ID   | The ID of the project that the task belongs to.                                                                                                                                                                                                  |         |
-| List ID      | The ID of the list within a project that the task belongs to.                                                                                                                                                                                    |         |
-| Task Name    | The name of the task.                                                                                                                                                                                                                            |         |
-| Contributors | An array of user IDs that are assigned as contributors to the task.                                                                                                                                                                              |         |
-| Description  | An optional description of the task.                                                                                                                                                                                                             |         |
-| Due Date     | The date the task is expected to be completed.                                                                                                                                                                                                   |         |
-| Owned By     | The ID of the Domo user that owns the task.                                                                                                                                                                                                      |         |
-| Priority     | Priority of task within a list. Setting this property will impact the index of other tasks in the list to maintain sequential order. If not provided the priority will default to 1 and the index of all the other tasks in the list will shift. |         |
-| Tags         | An array of tags that have been assigned to the task.                                                                                                                                                                                            |         |
-| Task Object  | The task object to create or update.                                                                                                                                                                                                             |         |
+| Input        | Comments                                                                                                                                                    | Default |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Domo connection to use.                                                                                                                                 |         |
+| Project ID   | The ID of the project that the task belongs to.                                                                                                             |         |
+| List ID      | The ID of the list within a project that the task belongs to.                                                                                               |         |
+| Task Name    | A descriptive label for the task within the project list.                                                                                                   |         |
+| Contributors | A JSON array of user IDs assigned as contributors to the task.                                                                                              |         |
+| Description  | An optional description of the task.                                                                                                                        |         |
+| Due Date     | The date the task is expected to be completed.                                                                                                              |         |
+| Owned By     | The unique identifier of the Domo user that owns the task.                                                                                                  |         |
+| Priority     | The priority position of the task within the list. Setting this property re-orders other tasks to maintain sequential order. Defaults to 1 if not provided. |         |
+| Tags         | A JSON array of tag labels to assign to the task for categorization.                                                                                        |         |
+| Task Object  | The task object to create or update.                                                                                                                        |         |
 
 ### Create User {#createuser}
 
-Creates a new user in your Domo instance.
+Creates a new user in a Domo instance.
 
-| Input           | Comments                                                                        | Default |
-| --------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection      | The Domo connection to use.                                                     |         |
-| Email           | User's primary email used in profile.                                           |         |
-| Name            |                                                                                 |         |
-| Role            | The role of the user.                                                           | Admin   |
-| Alternate Email | User's secondary email in profile.                                              |         |
-| Employee Number | Employee number within company.                                                 |         |
-| Locale          | Locale used to display to user the system settings throughout Domo application. |         |
-| Location        | Free text that can be used to define office location.                           |         |
-| Phone           | Primary phone number of user.                                                   |         |
-| Send Invite     | When true, sends an email invite to created user.                               |         |
-| Timezone        | Time zone used to display to user the system times throughout Domo application. |         |
-| Title           | User's job title.                                                               |         |
-| User Body       | The user object to create.                                                      |         |
+| Input           | Comments                                                                                   | Default |
+| --------------- | ------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The Domo connection to use.                                                                |         |
+| Email           | The primary email address associated with the Domo user profile.                           |         |
+| Name            | The display name for the resource.                                                         |         |
+| Role            | The permission level assigned to the user (Admin, Privileged, or Participant).             | Admin   |
+| Alternate Email | The secondary email address associated with the Domo user profile.                         |         |
+| Employee Number | The employee identification number within the organization.                                |         |
+| Locale          | The locale code used to display system settings throughout the Domo application.           |         |
+| Location        | The office location or geographic area for the user profile.                               |         |
+| Phone           | The primary phone number for the Domo user profile.                                        |         |
+| Send Invite     | When true, sends an email invitation to the newly created user.                            |         |
+| Timezone        | The IANA timezone identifier used to display system times throughout the Domo application. |         |
+| Title           | The job title for the Domo user profile.                                                   |         |
+| User Body       | The user object to create.                                                                 |         |
 
 ### Delete Account {#deleteaccount}
 
-Deletes an Account from your Domo instance.
+Deletes an account from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Account ID | The ID of the account.      |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| Account ID | The unique identifier for the Domo account. |         |
 
 ### Delete Attachment {#deleteattachment}
 
-Permanently deletes an attachment from your task.
+Permanently deletes an attachment from a task.
 
 | Input         | Comments                                              | Default |
 | ------------- | ----------------------------------------------------- | ------- |
 | Connection    | The Domo connection to use.                           |         |
 | Project ID    | The ID of the project that the attachment belongs to. |         |
 | Task ID       | The ID of the task that the attachment belongs to.    |         |
-| Attachment ID | The ID of the attachment.                             |         |
+| Attachment ID | The unique identifier for the project attachment.     |         |
 
 ### Delete Data Set {#deletedataset}
 
-Permanently deletes a DataSet from your Domo instance. This can be done for all DataSets, not just those created through the API.
+Permanently deletes a DataSet from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| DataSet ID | The ID of the DataSet.      |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| DataSet ID | The unique identifier for the Domo DataSet. |         |
 
 ### Delete Group {#deletegroup}
 
-Permanently deletes a group from your Domo instance.
+Permanently deletes a group from a Domo instance.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -265,35 +277,35 @@ Permanently deletes a group from your Domo instance.
 
 ### Delete List {#deletelist}
 
-Permanently deletes a list from your Domo instance.
+Permanently deletes a list from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
-| List ID    | The ID of the list.         |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| Project ID | The unique identifier for the project.      |         |
+| List ID    | The unique identifier for the project list. |         |
 
 ### Delete Page {#deletepage}
 
-Permanently deletes a page from your Domo instance.
+Permanently deletes a page from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Page ID    | The ID of the page.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| Page ID    | The unique identifier for the Domo page. |         |
 
 ### Delete Project {#deleteproject}
 
-Permanently deletes a project from your Domo instance.
+Permanently deletes a project from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Domo connection to use.            |         |
+| Project ID | The unique identifier for the project. |         |
 
 ### Delete Stream {#deletestream}
 
-Deletes a Stream from your Domo instance. This does not a delete the associated DataSet.
+Deletes a stream from a Domo instance without deleting the associated DataSet.
 
 | Input      | Comments                        | Default |
 | ---------- | ------------------------------- | ------- |
@@ -302,136 +314,137 @@ Deletes a Stream from your Domo instance. This does not a delete the associated 
 
 ### Delete User {#deleteuser}
 
-Permanently deletes a user from your Domo instance.
+Permanently deletes a user from a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| User ID    | The ID of the user.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| User ID    | The unique identifier for the Domo user. |         |
 
 ### Download Attachment {#downloadattachment}
 
-Downloads an individual attachment given an attachment id.
+Downloads an individual attachment by ID.
 
-| Input         | Comments                    | Default |
-| ------------- | --------------------------- | ------- |
-| Connection    | The Domo connection to use. |         |
-| List ID       | The ID of the list.         |         |
-| Project ID    | The ID of the project.      |         |
-| Task ID       | The ID of the task.         |         |
-| Attachment ID | The ID of the attachment.   |         |
+| Input         | Comments                                                  | Default |
+| ------------- | --------------------------------------------------------- | ------- |
+| Connection    | The Domo connection to use.                               |         |
+| List ID       | The unique identifier for the project list.               |         |
+| Project ID    | The unique identifier for the project.                    |         |
+| Task ID       | The unique identifier for the task within a project list. |         |
+| Attachment ID | The unique identifier for the project attachment.         |         |
 
 ### Export Data From DataSet {#exportdatafromdataset}
 
-Export data from a DataSet in your Domo instance.
+Exports data from a DataSet in a Domo instance.
 
-| Input          | Comments                                    | Default |
-| -------------- | ------------------------------------------- | ------- |
-| Connection     | The Domo connection to use.                 |         |
-| File Name      | The filename of the exported CSV.           |         |
-| Include Header | When true, includes table header in export. |         |
+| Input          | Comments                                       | Default |
+| -------------- | ---------------------------------------------- | ------- |
+| Connection     | The Domo connection to use.                    |         |
+| DataSet ID     | The unique identifier for the Domo DataSet.    |         |
+| File Name      | The output filename for the exported CSV data. |         |
+| Include Header | When true, includes table header in export.    |         |
 
 ### Get Accounts {#getaccounts}
 
-Retrieve the details of an account type. This includes information on the properties required to create an Account of this type.
+Retrieves the details of an account type.
 
-| Input           | Comments                    | Default |
-| --------------- | --------------------------- | ------- |
-| Connection      | The Domo connection to use. |         |
-| Account Type ID | The ID of the account type. |         |
+| Input           | Comments                                         | Default |
+| --------------- | ------------------------------------------------ | ------- |
+| Connection      | The Domo connection to use.                      |         |
+| Account Type ID | The unique identifier for the Domo account type. |         |
 
 ### Get Activity Log Entries {#getactivitylogentries}
 
-Retrieves activity log entries
+Retrieves activity log entries.
 
-| Input      | Comments                                                                   | Default |
-| ---------- | -------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                |         |
-| Start      | The start time in milliseconds of when you want to receive log events.     |         |
-| End        | The end time in milliseconds of when you want to receive log events.       |         |
-| Limit      | The maximum number of events to retrieve (default is 50, maximum of 1000). |         |
-| Offset     | The offset location of events to retrieve (default is 0).                  |         |
-| User       | The ID of the user.                                                        |         |
+| Input      | Comments                                                                  | Default |
+| ---------- | ------------------------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                                               |         |
+| Start      | The start time in milliseconds for the activity log query range.          |         |
+| End        | The end time in milliseconds for the activity log query range.            |         |
+| Limit      | The maximum number of results to return (default is 50, maximum of 1000). |         |
+| Offset     | The 0-based offset position to begin retrieving results from.             |         |
+| User       | The unique identifier for the user to filter activity log entries by.     |         |
 
 ### Get Data Set {#getdataset}
 
 Retrieves the details of an existing DataSet.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| DataSet ID | The ID of the DataSet.      |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| DataSet ID | The unique identifier for the Domo DataSet. |         |
 
 ### Get Group {#getgroup}
 
 Retrieves the details of an existing group.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Group ID   | The ID of the group.        |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Domo connection to use.          |         |
+| Group ID   | The unique identifier for the group. |         |
 
 ### Get List {#getlist}
 
 Retrieves the details of an individual list given a project id and a list id.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
-| List ID    | The ID of the list.         |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| Project ID | The unique identifier for the project.      |         |
+| List ID    | The unique identifier for the project list. |         |
 
 ### Get List Of Attachments {#getlistofattachments}
 
-Retrieve details about all of the attachments belonging to a particular task.
+Retrieves all attachments belonging to a particular task.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
-| List ID    | The ID of the list.         |         |
-| Task ID    | The ID of the task.         |         |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                               |         |
+| Project ID | The unique identifier for the project.                    |         |
+| List ID    | The unique identifier for the project list.               |         |
+| Task ID    | The unique identifier for the task within a project list. |         |
 
 ### Get Page {#getpage}
 
 Retrieves the details of an existing page.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Page ID    | The ID of the page.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| Page ID    | The unique identifier for the Domo page. |         |
 
 ### Get Project {#getproject}
 
-Retrieves the details of an individual existing project given a project id. Use the special project ID me to return your personal project.
+Retrieves the details of an existing project by ID.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Domo connection to use.            |         |
+| Project ID | The unique identifier for the project. |         |
 
 ### Get Project Members {#getprojectmembers}
 
-Retrieves a list of ids of the users that are members of the given project id.
+Retrieves the member user IDs for a given project.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Domo connection to use.            |         |
+| Project ID | The unique identifier for the project. |         |
 
 ### Get Stream {#getstream}
 
 Retrieves the details of an existing stream.
 
-| Input      | Comments                                                                         | Default |
-| ---------- | -------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                      |         |
-| Stream ID  | The id of the stream.                                                            |         |
-| Fields     | Return desired fields: all, id, dataset, updateMethod, createdAt, or modifiedAt. |         |
+| Input      | Comments                                                                                         | Default |
+| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Domo connection to use.                                                                      |         |
+| Stream ID  | The id of the stream.                                                                            |         |
+| Fields     | The fields to include in the response: all, id, dataset, updateMethod, createdAt, or modifiedAt. |         |
 
 ### Get Stream Execution {#getstreamexecution}
 
-Import data into a DataSet in your Domo instance. This request will replace the data currently in the DataSet.
+Retrieves the details of an existing stream execution.
 
 | Input        | Comments                                                    | Default |
 | ------------ | ----------------------------------------------------------- | ------- |
@@ -443,35 +456,35 @@ Import data into a DataSet in your Domo instance. This request will replace the 
 
 Retrieves an individual task from a given project id and list id.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| List ID    | The ID of the list.         |         |
-| Project ID | The ID of the project.      |         |
-| Task ID    | The ID of the task.         |         |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                               |         |
+| List ID    | The unique identifier for the project list.               |         |
+| Project ID | The unique identifier for the project.                    |         |
+| Task ID    | The unique identifier for the task within a project list. |         |
 
 ### Get User {#getuser}
 
 Retrieves the details of an existing user.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| User ID    | The ID of the user.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| User ID    | The unique identifier for the Domo user. |         |
 
 ### Import Data Into DataSet {#importdataintodataset}
 
-Import data into a DataSet in your Domo instance. This request will replace the data currently in the DataSet.
+Imports data into a DataSet in a Domo instance, replacing the existing data.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| DataSet ID | The ID of the DataSet.      |         |
-| CSV Body   | The CSV data to import.     |         |
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                        |         |
+| DataSet ID | The unique identifier for the Domo DataSet.        |         |
+| CSV Body   | The CSV-formatted data to import into the DataSet. |         |
 
 ### List Accounts {#listaccounts}
 
-Get a list of all Accounts for which the user has permissions.
+Lists all accounts the authenticated user has permissions for.
 
 | Input      | Comments                                                                                | Default |
 | ---------- | --------------------------------------------------------------------------------------- | ------- |
@@ -481,19 +494,19 @@ Get a list of all Accounts for which the user has permissions.
 
 ### List DataSets {#listdatasets}
 
-Get a list of all DataSets in your Domo instance.
+Lists all DataSets in a Domo instance.
 
-| Input      | Comments                                                                                                                                              | Default |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                                                                                           |         |
-| Limit      | The amount of DataSets to return in the list. The default is 50 and the maximum is 50.                                                                |         |
-| Name Like  | If included, will limit the list of DataSets to those with names that contain the string passed in. nameLike is case insensitive.                     |         |
-| Offset     | The offset of the DataSet ID to begin list of users within the response.                                                                              |         |
-| Sort       | The DataSet field to sort by. Fields prefixed with a negative sign reverses the sort (e.g., '-name' does a reverse sort by the name of the DataSets). |         |
+| Input      | Comments                                                                                       | Default |
+| ---------- | ---------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                                                                    |         |
+| Limit      | The amount of DataSets to return in the list. The default is 50 and the maximum is 50.         |         |
+| Name Like  | A case-insensitive filter that limits the list to DataSets with names containing this string.  |         |
+| Offset     | The offset of the DataSet ID to begin list of users within the response.                       |         |
+| Sort       | The DataSet field to sort by. Prefix with a negative sign to reverse the sort (e.g., '-name'). |         |
 
 ### List Groups {#listgroups}
 
-Get a list of all groups in your Domo instance.
+Lists all groups in a Domo instance.
 
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
@@ -503,7 +516,7 @@ Get a list of all groups in your Domo instance.
 
 ### List Pages {#listpages}
 
-Get a list of all pages in your Domo instance.
+Lists all pages in a Domo instance.
 
 | Input      | Comments                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
@@ -513,28 +526,28 @@ Get a list of all pages in your Domo instance.
 
 ### List Project Lists {#listprojectlists}
 
-Retrieves all lists available within a given project id.
+Retrieves all lists available within a given project.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Project ID | The ID of the project.      |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Domo connection to use.            |         |
+| Project ID | The unique identifier for the project. |         |
 
 ### List Project List Tasks {#listprojectlisttasks}
 
-Retrieves all tasks from a given project id and list id.
+Retrieves all tasks from a given project list.
 
-| Input      | Comments                                                                              | Default |
-| ---------- | ------------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                           |         |
-| Project ID | The ID of the project.                                                                |         |
-| List ID    | The ID of the list.                                                                   |         |
-| Limit      | The number of records to offset from the beginning of the result list (defaults to 0) |         |
-| Offset     | The maximum amount of results to return (defaults to 10 with a maximum of 50)         |         |
+| Input      | Comments                                                                             | Default |
+| ---------- | ------------------------------------------------------------------------------------ | ------- |
+| Connection | The Domo connection to use.                                                          |         |
+| Project ID | The unique identifier for the project.                                               |         |
+| List ID    | The unique identifier for the project list.                                          |         |
+| Limit      | The maximum number of results to return (defaults to 10 with a maximum of 50).       |         |
+| Offset     | The number of records to skip from the beginning of the result list (defaults to 0). |         |
 
 ### List Projects {#listprojects}
 
-Retrieves a list of all projects that the client scope has access to.
+Retrieves a list of all accessible projects.
 
 | Input      | Comments                    | Default |
 | ---------- | --------------------------- | ------- |
@@ -542,7 +555,7 @@ Retrieves a list of all projects that the client scope has access to.
 
 ### List Stream Execution {#liststreamexecution}
 
-Returns all Stream Execution objects that meet argument criteria from original request.
+Lists all stream executions that match the specified criteria.
 
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
@@ -553,7 +566,7 @@ Returns all Stream Execution objects that meet argument criteria from original r
 
 ### List Streams {#liststreams}
 
-Get a list of all Streams for which the user has view permissions.
+Lists all streams the authenticated user has view permissions for.
 
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
@@ -563,7 +576,7 @@ Get a list of all Streams for which the user has view permissions.
 
 ### List Users {#listusers}
 
-Get a list of all users in your Domo instance.
+Lists all users in a Domo instance.
 
 | Input      | Comments                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
@@ -573,28 +586,28 @@ Get a list of all users in your Domo instance.
 
 ### List Users In Group {#listusersingroup}
 
-List the users in a group in your Domo instance.
+Lists the users in a group in a Domo instance.
 
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
-| Group ID   | The ID of the group.                                                                  |         |
+| Group ID   | The unique identifier for the group.                                                  |         |
 | Limit      | The amount of groups to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the group ID to begin list of groups within the response.               |         |
 
 ### Query Data Set {#querydataset}
 
-Queries the data in an existing Domo DataSet
+Queries the data in an existing Domo DataSet.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| DataSet ID | The ID of the DataSet.      |         |
-| SQL        | The SQL query to execute.   |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The Domo connection to use.                 |         |
+| DataSet ID | The unique identifier for the Domo DataSet. |         |
+| SQL        | The SQL query to run against the DataSet.   |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Domo.
+Sends a raw HTTP request to the Domo API.
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -609,7 +622,6 @@ Send raw HTTP request to Domo.
 | Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
@@ -617,27 +629,27 @@ Send raw HTTP request to Domo.
 
 ### Remove User From Group {#removeuserfromgroup}
 
-Remove a user from a group in your Domo instance.
+Removes a user from a group in a Domo instance.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Domo connection to use. |         |
-| Group ID   | The ID of the group.        |         |
-| User ID    | The ID of the user.         |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Connection | The Domo connection to use.              |         |
+| Group ID   | The unique identifier for the group.     |         |
+| User ID    | The unique identifier for the Domo user. |         |
 
 ### Search Stream {#searchstream}
 
-Returns all Stream objects that meet argument criteria from original request.
+Searches for streams that match the specified criteria.
 
-| Input      | Comments                                                                                       | Default |
-| ---------- | ---------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                                    |         |
-| Qualifiers | The search qualifiers to search by available qualifiers: dataSource.id or dataSource.owner.id. |         |
-| Fields     | Return desired fields: all, id, dataset, updateMethod, createdAt, or modifiedAt.               |         |
+| Input      | Comments                                                                                         | Default |
+| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Domo connection to use.                                                                      |         |
+| Qualifiers | The search qualifier expression to filter streams (e.g., dataSource.id or dataSource.owner.id).  |         |
+| Fields     | The fields to include in the response: all, id, dataset, updateMethod, createdAt, or modifiedAt. |         |
 
 ### Share Account {#shareaccount}
 
-Share an Account with a User.
+Shares an account with one or more users.
 
 | Input      | Comments                            | Default |
 | ---------- | ----------------------------------- | ------- |
@@ -647,7 +659,7 @@ Share an Account with a User.
 
 ### Update Account {#updateaccount}
 
-Updates the specified Account’s metadata as well as the Account’s Type properties.
+Updates the specified account's metadata and type properties.
 
 | Input               | Comments                         | Default |
 | ------------------- | -------------------------------- | ------- |
@@ -657,56 +669,56 @@ Updates the specified Account’s metadata as well as the Account’s Type prope
 
 ### Update Data Set {#updatedataset}
 
-Updates the specified DataSet’s metadata by providing values to parameters passed.
+Updates the specified DataSet's metadata.
 
-| Input               | Comments                      | Default |
-| ------------------- | ----------------------------- | ------- |
-| Connection          | The Domo connection to use.   |         |
-| DataSet ID          | The ID of the DataSet.        |         |
-| Update DataSet Body | The DataSet object to update. |         |
+| Input               | Comments                                    | Default |
+| ------------------- | ------------------------------------------- | ------- |
+| Connection          | The Domo connection to use.                 |         |
+| DataSet ID          | The unique identifier for the Domo DataSet. |         |
+| Update DataSet Body | The DataSet object to update.               |         |
 
 ### Update Group {#updategroup}
 
-Updates the specified group by providing values to parameters passed. Any parameter left out of the request will cause the specific group’s attribute to remain unchanged.
+Updates the specified group's attributes in a Domo instance.
 
-| Input             | Comments                    | Default |
-| ----------------- | --------------------------- | ------- |
-| Connection        | The Domo connection to use. |         |
-| Group ID          | The ID of the group.        |         |
-| Update Group Body | The group object to update. |         |
+| Input             | Comments                             | Default |
+| ----------------- | ------------------------------------ | ------- |
+| Connection        | The Domo connection to use.          |         |
+| Group ID          | The unique identifier for the group. |         |
+| Update Group Body | The group object to update.          |         |
 
 ### Update List {#updatelist}
 
-Update the details of a list given an existing project id and list id.
+Updates the details of a list within a project.
 
 | Input            | Comments                                                                                                                                                         | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Domo connection to use.                                                                                                                                      |         |
-| List ID          | The ID of the list.                                                                                                                                              |         |
-| Project ID       | The ID of the project.                                                                                                                                           |         |
+| List ID          | The unique identifier for the project list.                                                                                                                      |         |
+| Project ID       | The unique identifier for the project.                                                                                                                           |         |
 | Index            | The updated index of the list within the project. Updating the index of a list may also change the order of the other lists in the project to remain sequential. |         |
 | Name             | The updated name of the list.                                                                                                                                    |         |
-| Type             | The type of the list.                                                                                                                                            |         |
+| Type             | The workflow status category for the list (e.g., TODO, WORKING_ON, COMPLETED).                                                                                   |         |
 | Update List Body | The list object to update.                                                                                                                                       |         |
 
 ### Update Page {#updatepage}
 
-Updates the specified page by providing values to parameters passed. Any parameter left out of the request will cause the specific page’s attribute to remain unchanged.
+Updates the specified page's attributes in a Domo instance.
 
-| Input            | Comments                    | Default |
-| ---------------- | --------------------------- | ------- |
-| Connection       | The Domo connection to use. |         |
-| Page ID          | The ID of the page.         |         |
-| Update Page Body | The page object to update.  |         |
+| Input            | Comments                                 | Default |
+| ---------------- | ---------------------------------------- | ------- |
+| Connection       | The Domo connection to use.              |         |
+| Page ID          | The unique identifier for the Domo page. |         |
+| Update Page Body | The page object to update.               |         |
 
 ### Update Project {#updateproject}
 
-Updates attributes of an existing project in your Domo instance. The following properties are read-only and cannot be updated with this request:id members createdBy createdDate
+Updates attributes of an existing project in a Domo instance.
 
 | Input               | Comments                                                                | Default |
 | ------------------- | ----------------------------------------------------------------------- | ------- |
 | Connection          | The Domo connection to use.                                             |         |
-| Project ID          | The ID of the project.                                                  |         |
+| Project ID          | The unique identifier for the project.                                  |         |
 | Update Project Body | The project object to update.                                           |         |
 | Description         | Updates the description of the project.                                 |         |
 | Due Date            | Updates the due date of the project.                                    |         |
@@ -715,17 +727,17 @@ Updates attributes of an existing project in your Domo instance. The following p
 
 ### Update Project Members {#updateprojectmembers}
 
-Update the members of a given project id.
+Updates the members of a given project.
 
 | Input                       | Comments                                               | Default |
 | --------------------------- | ------------------------------------------------------ | ------- |
 | Connection                  | The Domo connection to use.                            |         |
-| Project ID                  | The ID of the project.                                 |         |
+| Project ID                  | The unique identifier for the project.                 |         |
 | Update Project Members Body | Array of user IDs to assign as members of the project. |         |
 
 ### Update Stream {#updatestream}
 
-Updates the specified Stream’s metadata by providing values to parameters passed.
+Updates the specified stream's metadata.
 
 | Input              | Comments                         | Default |
 | ------------------ | -------------------------------- | ------- |
@@ -736,47 +748,47 @@ Updates the specified Stream’s metadata by providing values to parameters pass
 
 ### Update Task {#updatetask}
 
-Update the details of a task given an existing project id, list id, and task id.
+Updates the details of a task within a project list.
 
-| Input            | Comments                                                                                                                                                                                                                                         | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection       | The Domo connection to use.                                                                                                                                                                                                                      |         |
-| Task ID          | The ID of the task.                                                                                                                                                                                                                              |         |
-| List ID          | The ID of the list.                                                                                                                                                                                                                              |         |
-| Project ID       | The ID of the project.                                                                                                                                                                                                                           |         |
-| Contributors     | An array of user IDs that are assigned as contributors to the task.                                                                                                                                                                              |         |
-| Description      | Description of the DataSet to create.                                                                                                                                                                                                            |         |
-| Due Date         | The due date of the project in ISO 8601 format.                                                                                                                                                                                                  |         |
-| Owned By         | The ID of the Domo user that owns the task.                                                                                                                                                                                                      |         |
-| Priority         | Priority of task within a list. Setting this property will impact the index of other tasks in the list to maintain sequential order. If not provided the priority will default to 1 and the index of all the other tasks in the list will shift. |         |
-| Tags             | An array of tags that have been assigned to the task.                                                                                                                                                                                            |         |
-| Task Name        | The name of the task.                                                                                                                                                                                                                            |         |
-| Update Task Body | The task object to update.                                                                                                                                                                                                                       |         |
+| Input            | Comments                                                                                                                                                    | Default |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Domo connection to use.                                                                                                                                 |         |
+| Task ID          | The unique identifier for the task within a project list.                                                                                                   |         |
+| List ID          | The unique identifier for the project list.                                                                                                                 |         |
+| Project ID       | The unique identifier for the project.                                                                                                                      |         |
+| Contributors     | A JSON array of user IDs assigned as contributors to the task.                                                                                              |         |
+| Description      | A summary of the DataSet contents and purpose.                                                                                                              |         |
+| Due Date         | The due date for the project. Format: ISO 8601.                                                                                                             |         |
+| Owned By         | The unique identifier of the Domo user that owns the task.                                                                                                  |         |
+| Priority         | The priority position of the task within the list. Setting this property re-orders other tasks to maintain sequential order. Defaults to 1 if not provided. |         |
+| Tags             | A JSON array of tag labels to assign to the task for categorization.                                                                                        |         |
+| Task Name        | A descriptive label for the task within the project list.                                                                                                   |         |
+| Update Task Body | The task object to update.                                                                                                                                  |         |
 
 ### Update User {#updateuser}
 
-Updates the specified user by providing values to parameters passed. Any parameter left out of the request will cause the specific user’s attribute to remain unchanged.
+Updates the specified user's attributes in a Domo instance.
 
-| Input            | Comments                                                                        | Default |
-| ---------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection       | The Domo connection to use.                                                     |         |
-| User ID          | The ID of the user.                                                             |         |
-| Email            | User's primary email used in profile.                                           |         |
-| Name             | User's full name                                                                |         |
-| Role             | The system role of the user                                                     | Admin   |
-| Alternate Email  | User's secondary email in profile.                                              |         |
-| Employee Number  | Employee number within company.                                                 |         |
-| Locale           | Locale used to display to user the system settings throughout Domo application. |         |
-| Location         | Free text that can be used to define office location.                           |         |
-| Phone            | Primary phone number of user.                                                   |         |
-| Roled            | The ID of the custom or system role of the user.                                |         |
-| Timezone         | Time zone used to display to user the system times throughout Domo application. |         |
-| Title            | User's job title.                                                               |         |
-| Update User Body | The user object to update.                                                      |         |
+| Input            | Comments                                                                                   | Default |
+| ---------------- | ------------------------------------------------------------------------------------------ | ------- |
+| Connection       | The Domo connection to use.                                                                |         |
+| User ID          | The unique identifier for the Domo user.                                                   |         |
+| Email            | The primary email address associated with the Domo user profile.                           |         |
+| Name             | User's full name                                                                           |         |
+| Role             | The system role of the user                                                                | Admin   |
+| Alternate Email  | The secondary email address associated with the Domo user profile.                         |         |
+| Employee Number  | The employee identification number within the organization.                                |         |
+| Locale           | The locale code used to display system settings throughout the Domo application.           |         |
+| Location         | The office location or geographic area for the user profile.                               |         |
+| Phone            | The primary phone number for the Domo user profile.                                        |         |
+| Roled            | The unique identifier for the custom or system role assigned to the user.                  |         |
+| Timezone         | The IANA timezone identifier used to display system times throughout the Domo application. |         |
+| Title            | The job title for the Domo user profile.                                                   |         |
+| Update User Body | The user object to update.                                                                 |         |
 
 ### Upload Data Part {#uploaddatapart}
 
-Creates a data part within the Stream execution to upload chunks of rows to the DataSet. The calling client should keep track of parts and order them accordingly in an increasing sequence. If a part upload fails, retry the upload as all parts must be present before committing the stream execution.
+Uploads a data part within a stream execution to add rows to the DataSet.
 
 | Input        | Comments                                                                                   | Default |
 | ------------ | ------------------------------------------------------------------------------------------ | ------- |

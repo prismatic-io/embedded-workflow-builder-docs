@@ -1,7 +1,7 @@
 ---
 title: ShipStation Connector
 sidebar_label: ShipStation
-description: Manage shipments, orders, and fulfillments in ShipStation
+description: Manage orders, shipments, and carriers in ShipStation.
 ---
 
 ![ShipStation](./assets/shipstation.png#connector-icon)

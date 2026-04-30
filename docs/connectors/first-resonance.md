@@ -15,7 +15,7 @@ This component was built using the [ION GraphQL API](https://manual.firstresonan
 
 ### OAuth 2.0 Client Credentials {#firstresonanceoauthclientcredentials}
 
-OAuth 2.0 Client Credentials connection for First Resonance ION
+Authenticate against the First Resonance ION API using OAuth 2.0 Client Credentials.
 
 To connect to First Resonance ION using OAuth 2.0 Client Credentials, an API key consisting of a Client ID and Client Secret is required.
 
@@ -74,7 +74,7 @@ Receive a webhook from ION
 
 ### Import Purchase Order from Quickbooks {#importpurchaseorderfromquickbooks}
 
-Creates a Purchase Order from Quickbooks
+Creates a Purchase Order from Quickbooks.
 
 | Input             | Comments                                                                                                                        | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -84,7 +84,7 @@ Creates a Purchase Order from Quickbooks
 
 ### Run GraphQL Query {#rawrequest}
 
-Performs a generic GraphQL query against the API
+Performs a generic GraphQL query against the API.
 
 | Input             | Comments                                                                                                                                                        | Default |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

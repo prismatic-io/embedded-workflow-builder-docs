@@ -45,6 +45,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Client Identifier of your app for Quickbooks Time |         |
 | Client Secret | Client Secret of your app for Quickbooks Time     |         |
 
+## Triggers
+
+### New Records {#pollchangestrigger}
+
+Checks for new timesheets, users, or job codes in QuickBooks Time on a configured schedule.
+
+| Input            | Comments                                          | Default |
+| ---------------- | ------------------------------------------------- | ------- |
+| Connection       |                                                   |         |
+| Resource Type    | The type of resource to poll for new records.     |         |
+| Show New Records | Include newly created records in trigger results. | true    |
+
 ## Actions
 
 ### Create Timesheet {#createtimesheet}

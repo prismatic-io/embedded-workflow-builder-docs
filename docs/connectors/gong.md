@@ -58,6 +58,16 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New Records {#pollchangestrigger}
+
+Checks for new calls or users in Gong on a configured schedule.
+
+| Input            | Comments                                          | Default |
+| ---------------- | ------------------------------------------------- | ------- |
+| Connection       |                                                   |         |
+| Resource Type    | The type of resource to poll for new records.     |         |
+| Show New Records | Include newly created records in trigger results. | true    |
+
 ### Process Automation Trigger {#webhook}
 
 Trigger for handling process automations from Gong

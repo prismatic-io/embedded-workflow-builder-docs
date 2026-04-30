@@ -44,6 +44,18 @@ OAuth 2.0 connection for Paylocity Pay Entry
 | Client ID     | Provide the Client Id you received from the Paylocity Developer Console.     |         |
 | Client Secret | Provide the Client Secret you received from the Paylocity Developer Console. |         |
 
+## Triggers
+
+### New Employees {#pollchangestrigger}
+
+Checks for new employees in a Paylocity company on a configured schedule.
+
+| Input            | Comments                                          | Default |
+| ---------------- | ------------------------------------------------- | ------- |
+| Connection       |                                                   |         |
+| Company ID       | The ID of the company to poll for new employees.  |         |
+| Show New Records | Include newly created records in trigger results. | true    |
+
 ## Actions
 
 ### Create Employee {#createemployee}
@@ -238,7 +250,6 @@ Send raw HTTP request to Paylocity
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                      |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                         | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                                                                                             | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                              | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                 | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                              | 0       |

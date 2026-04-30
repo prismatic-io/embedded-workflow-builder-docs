@@ -36,6 +36,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Client ID for the TeamViewer OAuth 2.0 connection     |         |
 | Client Secret | Client Secret for the TeamViewer OAuth 2.0 connection |         |
 
+## Triggers
+
+### New Records {#pollchangestrigger}
+
+Checks for new devices, users, or groups in TeamViewer on a configured schedule.
+
+| Input            | Comments                                              | Default |
+| ---------------- | ----------------------------------------------------- | ------- |
+| Connection       |                                                       |         |
+| Resource Type    | The type of resource to poll for new records.         |         |
+| Show New Records | Include newly detected records in the trigger output. | true    |
+
 ## Actions
 
 ### Assign Device {#assigndevice}

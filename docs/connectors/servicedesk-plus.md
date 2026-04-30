@@ -53,6 +53,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client Secret |                                                                                                                                                                                                    |                                                                   |
 | Data Center   |                                                                                                                                                                                                    |                                                                   |
 
+## Triggers
+
+### New Records {#pollchangestrigger}
+
+Checks for new records in ServiceDesk Plus on a configured schedule.
+
+| Input            | Comments                                          | Default  |
+| ---------------- | ------------------------------------------------- | -------- |
+| Connection       |                                                   |          |
+| Resource Type    | The type of resource to poll for new records.     | requests |
+| Show New Records | Include records that are new since the last poll. | true     |
+
 ## Actions
 
 ### Create Asset {#createasset}

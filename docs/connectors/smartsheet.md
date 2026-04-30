@@ -250,13 +250,14 @@ Creates a new sheet with specified columns.
 
 Creates and enables a webhook for a specified resource.
 
-| Input             | Comments                                                                                                                                                                                                              | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Smartsheet connection to use.                                                                                                                                                                                     |         |
-| Callback URL      | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                                                    |         |
-| Webhook Name      | A descriptive label to identify the webhook in the dashboard.                                                                                                                                                         |         |
-| Sheet ID          | The unique identifier for the sheet.                                                                                                                                                                                  |         |
-| Allow Duplicates? | By default this action checks if a webhook with this callback and sheet ID already exists. If it does, this action does not configure a new webhook. Toggle this to true to allow the creation of duplicate webhooks. | false   |
+| Input               | Comments                                                                                                                                                                                                              | Default |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Smartsheet connection to use.                                                                                                                                                                                     |         |
+| Callback URL        | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                                                    |         |
+| Webhook Name        | A descriptive label to identify the webhook in the dashboard.                                                                                                                                                         |         |
+| Sheet ID            | The unique identifier for the sheet.                                                                                                                                                                                  |         |
+| Subscope Column IDs | When provided, the webhook only fires when these specific columns are modified. Leave empty to trigger on any change to the sheet. Use the List Columns action to find column IDs for a sheet.                        |         |
+| Allow Duplicates?   | By default this action checks if a webhook with this callback and sheet ID already exists. If it does, this action does not configure a new webhook. Toggle this to true to allow the creation of duplicate webhooks. | false   |
 
 ### Create Workspace {#createworkspace}
 

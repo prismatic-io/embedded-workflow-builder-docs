@@ -184,6 +184,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID | The OAuth Client ID from the Communication Arrangement. Navigate to Inbound Communication and click OAuth 2.0 Details to view the Client ID. [Learn more](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/2e84a10c430645a88bdbfaaa23ac9ff7.html) |         |
 | Scopes    | Space-separated OAuth scopes. Leave empty to use default scopes, or specify API scopes from your Communication Arrangement.                                                                                                                                                  |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in SAP S/4HANA on a configured schedule.
+
+| Input                | Comments                                                  | Default |
+| -------------------- | --------------------------------------------------------- | ------- |
+| Connection           |                                                           |         |
+| Resource Type        | The type of resource to poll for new and updated records. |         |
+| Show New Records     | Include newly created records in trigger results.         | true    |
+| Show Updated Records | Include updated records in trigger results.               | true    |
+
 ## Actions
 
 ### Add Attachment {#addattachment}

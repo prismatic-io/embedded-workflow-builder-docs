@@ -1,50 +1,96 @@
 ---
 title: Microsoft SQL Server Connector
 sidebar_label: Microsoft SQL Server
-description: Query and manage data in a Microsoft SQL Server (MSSQL) Database
+description: Query and manage data in a Microsoft SQL Server (MSSQL) database.
 ---
 
 ![Microsoft SQL Server](./assets/ms-sql-server.png#connector-icon)
 [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server) (MSSQL) is a popular relational database system.
-This component allows you to query an MSSQL database.
+This component allows querying an MSSQL database.
+
+## API Documentation
+
+This component was built using the [Microsoft SQL Server documentation](https://learn.microsoft.com/en-us/sql/sql-server/).
 
 ## Connections
 
-### MS SQL Server Connection {#basic}
+### Azure Active Directory {#azuread}
 
-Authenticate requests to a Microsoft SQL Server.
+Authenticate requests to a Microsoft SQL Server or Azure SQL Database using Azure Active Directory service principal credentials. Compatible with Microsoft Fabric.
 
-The MS SQL Server **username** and **password** can be put directly into a connection, alongside the database host, port, and database name.
+Use the **Azure Active Directory** connection to connect to Azure SQL Database, Microsoft Fabric, or any SQL Server instance that supports Azure Active Directory authentication via service principal credentials.
+
+#### Prerequisites
+
+- An [Azure AD App Registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) with a client secret
+- The service principal must have the appropriate permissions on the target database or Fabric workspace
+
+#### Configure the Connection
+
+- **Host**: The server address (e.g., `my-server.database.windows.net` for Azure SQL, or `my-server.datawarehouse.fabric.microsoft.com` for Fabric)
+- **Port**: The database port (default: `1433`)
+- **Database**: The name of the database or Fabric warehouse
+- **Tenant ID**: The Directory (Tenant) ID from the Azure AD App Registration
+- **Client ID**: The Application (Client) ID from the Azure AD App Registration
+- **Client Secret**: The client secret from the Azure AD App Registration
+- **Connection Timeout**: Milliseconds before the connection attempt is considered failed (default: `15000`)
+
+Token acquisition and refresh are handled automatically by the underlying driver.
 
 | Input              | Comments                                                                       | Default |
 | ------------------ | ------------------------------------------------------------------------------ | ------- |
-| Host               | Provide a string value for the address that your database server is hosted on. |         |
-| Port               | Provide a string value of the port your database server is exposing.           | 1433    |
-| Database           | Provide a string value for the name of the database.                           |         |
+| Host               | The address of the SQL Server or Fabric warehouse endpoint.                    |         |
+| Port               | The port the database server is exposing.                                      | 1433    |
+| Database           | The name of the database or Fabric warehouse.                                  |         |
+| Tenant ID          | The Directory (Tenant) ID from the Azure AD App Registration.                  |         |
+| Client ID          | The Application (Client) ID from the Azure AD App Registration.                |         |
+| Client Secret      | The Client Secret from the Azure AD App Registration.                          |         |
 | Connection Timeout | The number of milliseconds before the attempt to connect is considered failed. | 15000   |
-| Username           |                                                                                |         |
-| Password           |                                                                                |         |
+
+### Basic Authentication {#basic}
+
+Authenticate requests to a Microsoft SQL Server using a username and password.
+
+Use the **Basic Authentication** connection to connect to a Microsoft SQL Server instance using a username and password.
+
+#### Configure the Connection
+
+- **Host**: The address of the database server (e.g., `192.168.0.1`)
+- **Port**: The port the database server is exposing (default: `1433`)
+- **Database**: The name of the database (e.g., `msdb`)
+- **Connection Timeout**: The number of milliseconds before the attempt to connect is considered failed (default: `15000`)
+- **Username**: The SQL Server login username for authentication
+- **Password**: The SQL Server login password for authentication
+
+| Input              | Comments                                                                       | Default |
+| ------------------ | ------------------------------------------------------------------------------ | ------- |
+| Host               | The address of the database server.                                            |         |
+| Port               | The port the database server is exposing.                                      | 1433    |
+| Database           | The name of the database.                                                      |         |
+| Connection Timeout | The number of milliseconds before the attempt to connect is considered failed. | 15000   |
+| Username           | The SQL Server login username for authentication.                              |         |
+| Password           | The SQL Server login password for authentication.                              |         |
 
 ## Actions
 
 ### Execute Stored Procedure {#execute}
 
-Execute a stored procedure on a Microsoft SQL Server Database
+Execute a stored procedure on a Microsoft SQL Server database.
 
 | Input            | Comments                                                                                                                                       | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Stored Procedure | The name of the stored procedure to execute.                                                                                                   |         |
 | Timeout          | The number of milliseconds to wait for a response from the server. If the timeout expires before the server responds, an error will be thrown. | 60000   |
-| Connection       |                                                                                                                                                |         |
+| Connection       | The Microsoft SQL Server connection to use.                                                                                                    |         |
 
 ### Query {#query}
 
-Interact with a Microsoft SQL Server Database
+Execute a SQL query against a Microsoft SQL Server database.
 
-| Input             | Comments                                                                                                                                                                  | Default                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Query             | Provide a string containing a query that will be executed by the Microsoft SQL-Server database. You can pass in optional named parameters using the '@variable' operator. | SELECT \* FROM Customers WHERE customerId = @id |
-| Parameters        | Optional parameters to insert into a query.                                                                                                                               |                                                 |
-| Parameters Object | Optional parameters to insert into a query. This should be a key-value object. Values from this object will be merged with Parameters inputs.                             |                                                 |
-| Timeout           | The number of milliseconds to wait for a response from the server. If the timeout expires before the server responds, an error will be thrown.                            | 60000                                           |
-| Connection        |                                                                                                                                                                           |                                                 |
+| Input             | Comments                                                                                                                                       | Default                                         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Query             | The SQL query to execute against the Microsoft SQL Server database. Supports optional named parameters using the '@variable' operator.         | SELECT \* FROM Customers WHERE customerId = @id |
+| Parameters        | The key-value pairs to bind as named parameters in the query, referenced using the '@variable' operator.                                       |                                                 |
+| Parameters Object | The JSON key-value object of named parameters to bind in the query. Values are merged with the Parameters input.                               |                                                 |
+| Timeout           | The number of milliseconds to wait for a response from the server. If the timeout expires before the server responds, an error will be thrown. | 60000                                           |
+| Connection        | The Microsoft SQL Server connection to use.                                                                                                    |                                                 |

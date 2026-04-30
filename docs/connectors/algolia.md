@@ -39,6 +39,18 @@ For more information about API keys, refer to the [Algolia Docs](https://www.alg
 | API Key        | Your Algolia API Key        |         |
 | Application ID | Your Algolia Application ID |         |
 
+## Triggers
+
+### New and Updated Indices {#pollchangestrigger}
+
+Checks for new and updated indices in Algolia on a configured schedule.
+
+| Input                | Comments                                          | Default |
+| -------------------- | ------------------------------------------------- | ------- |
+| Connection           |                                                   |         |
+| Show New Records     | Include newly created indices in trigger results. | true    |
+| Show Updated Records | Include updated indices in trigger results.       | true    |
+
 ## Actions
 
 ### Browse Index {#browseindex}
@@ -136,7 +148,6 @@ Send raw HTTP request to Algolia
 | Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                           |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                              | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                   |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                  | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                   | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                      | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                   | 0       |

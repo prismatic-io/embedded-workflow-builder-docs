@@ -11,7 +11,7 @@ Use the Sage 200 component to manage Customers, Products, and Pricing.
 
 ## API Documentation
 
-This component is built to the [Sage 200 Professional/Extra Online API Reference](https://developer.sage.com/200/reference/).
+This component is built to the [Sage 200 Professional/Extra Online API Reference](https://developer.sage.com/200-uk).
 
 ## Connections
 

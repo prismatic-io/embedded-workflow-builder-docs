@@ -90,6 +90,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Xero on a configured schedule.
+
+| Input                | Comments                                                       | Default |
+| -------------------- | -------------------------------------------------------------- | ------- |
+| Connection           | The connection to use.                                         |         |
+| Resource Type        | The type of Xero resource to poll for new and updated records. |         |
+| Show New Records     | Include newly created records in trigger results.              | true    |
+| Show Updated Records | Include updated records in trigger results.                    | true    |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from Xero for webhooks you configure.

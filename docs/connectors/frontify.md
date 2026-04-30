@@ -19,7 +19,7 @@ This component was built using the [Frontify GraphQL API Reference](https://fron
 
 Connection to Frontify using OAuth 2.0
 
-[Documentation](https://developer.frontify.com/document/1367#/access-control/authentication)
+[Documentation](https://help.frontify.com/en/articles/5402357-what-is-the-frontify-graphql-api) - search for **OAuth 2.0**
 
 1. Go to Frontify and open the applications setting.
 2. Add a new application with the following configuration options:
@@ -42,7 +42,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Personal Developer Tokens are used for private applications or during development to skip the OAuth2 process.
 
-[Documentation](https://developer.frontify.com/document/1367#/access-control/authentication)
+[Documentation](https://developer.frontify.com/) - search for **Personal Developer Token**
 
 1. To generate a Personal Developer token, navigate to `https://company-domain/api/developer/token` in your browser.
    1. Replace `company-domain` in URL with the domain name of your company's site.
@@ -63,7 +63,7 @@ Create an Asset.
 | Input               | Comments                                                                                                                                                                                            | Default |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                                                                                                                                     |         |
-| File ID             | A file's Signed ID, returned by the Upload File action. For more information, see: https://developer.frontify.com/document/1367#/deep-dive/upload-file-create-asset                                 |         |
+| File ID             | A file's Signed ID, returned by the Upload File action.                                                                                                                                             |         |
 | Title               | Asset title or display name.                                                                                                                                                                        |         |
 | Parent ID           | The parent Id, where the Asset should be located in. Should either be a Library, WorkspaceProject or Folder Id. Important: Cannot be used in conjunction with directory if the Id is from a Folder. |         |
 | Description         | Asset description.                                                                                                                                                                                  |         |

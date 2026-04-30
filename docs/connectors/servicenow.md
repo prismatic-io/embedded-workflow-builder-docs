@@ -80,6 +80,21 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Client Identifier of your app for ServiceNow               |         |
 | Client Secret | Client Secret of your app for ServiceNow                   |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected ServiceNow table on a configured schedule.
+
+| Input                | Comments                                                                                            | Default |
+| -------------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                     |         |
+| Instance URL         | The URL of the specific ServiceNow instance to use for API requests                                 |         |
+| API Version          | The version of the ServiceNow API file_name, to use                                                 |         |
+| Table                | The name of the ServiceNow table in which to create a record                                        |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.                         | true    |
+| Show Updated Records | When enabled, records that were updated after the last poll will be included in the trigger output. | true    |
+
 ## Actions
 
 ### Create Configuration Item {#createconfigurationitem}

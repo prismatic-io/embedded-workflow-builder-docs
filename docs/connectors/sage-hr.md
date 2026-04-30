@@ -27,6 +27,18 @@ To activate API:
 | API Key        | API Key for your Sage HR User              |         |
 | Subdomain Name | The subdomain name of your Sage HR account |         |
 
+## Triggers
+
+### Poll Changes {#pollchangestrigger}
+
+Checks for new records in Sage HR on a configured schedule.
+
+| Input                         | Comments                                                                                                                 | Default |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection                    |                                                                                                                          |         |
+| Resource Type                 | The type of resource to poll for new records.                                                                            |         |
+| Show New Records on First Run | If true, the first poll will return all existing records as new. If false, the first run seeds state without triggering. | false   |
+
 ## Actions
 
 ### Close Project {#closeproject}
@@ -287,7 +299,6 @@ Send raw HTTP request to Sage HR
 | Header                  | A list of headers to send with the request.                                                                                                                                                                        |         |
 | Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                           | json    |
 | Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                               | false   |
 | Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                | 0       |
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                   | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                | 0       |

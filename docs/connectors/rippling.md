@@ -86,6 +86,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID         | The OAuth 2.0 client ID for your Rippling partner app. Found in your app configuration in the Rippling admin console.                                                   |         |
 | Client Secret     | The OAuth 2.0 client secret for your Rippling partner app. Keep this value secure and do not share it.                                                                  |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Rippling on a configured schedule.
+
+| Input                | Comments                                                  | Default |
+| -------------------- | --------------------------------------------------------- | ------- |
+| Connection           | The Rippling connection to use.                           |         |
+| Resource Type        | The type of Rippling resource to poll for changes.        | workers |
+| Show New Records     | When true, includes newly created records in the results. | true    |
+| Show Updated Records | When true, includes updated records in the results.       | true    |
+
 ## Actions
 
 ### Create Business Partner Group (V2) {#createbusinesspartnergroup}
