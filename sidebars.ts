@@ -20,6 +20,7 @@ const sidebars: SidebarsConfig = {
         "error-handling",
         "http-requests",
         "custom-code",
+        "runner-environment",
       ],
     },
     {
