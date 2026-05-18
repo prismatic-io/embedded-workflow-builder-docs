@@ -475,7 +475,7 @@ Retrieves a collection of service dates (hire date, continuous service date, etc
 
 ### Initiate Job Change {#initiatejobchange}
 
-Initiates a job change request for the specified worker. Returns a new job change ID that can be submitted with POST /jobChanges/{ID}/submit.
+Initiates a job change request for the specified worker. Returns a new job change ID that can be submitted with POST `/jobChanges/{ID}/submit`.
 
 | Input                | Comments                                                                                                                                                                                                                                               | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -489,7 +489,7 @@ Initiates a job change request for the specified worker. Returns a new job chang
 
 ### Initiate Organization Assignment Change {#initiateorganizationassignmentchange}
 
-Initiates an organization assignment change for the specified worker. Returns a new change ID that can be submitted with POST /organizationAssignmentChanges/{ID}/submit.
+Initiates an organization assignment change for the specified worker. Returns a new change ID that can be submitted with POST `/organizationAssignmentChanges/{ID}/submit`.
 
 | Input                | Comments                                                                                                                                                                                                                                                                  | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

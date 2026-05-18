@@ -94,6 +94,19 @@ Use a dedicated user account for API integrations with minimal required permissi
 | User Password   | The password for the Web Services user account.                                                                                                            |         |
 | Entity ID       | Optional entity ID for multi-entity Sage Intacct environments. Leave blank if your organization uses a single entity.                                      |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Sage Intacct on a configured schedule.
+
+| Input                | Comments                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------- | ------- |
+| Connection           | The Sage Intacct connection to use.                                                |         |
+| Resource Type        | The Sage Intacct object to poll for new or updated records.                        |         |
+| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output. | true    |
+
 ## Actions
 
 ### Create AR Advance {#createaradvance}

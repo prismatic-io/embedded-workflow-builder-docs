@@ -74,6 +74,19 @@ Gather the following information from the SAP Business One administrator:
 | Company Name      | The company database name to connect to in SAP Business One.                                                                                                                                                                                                                                                                                       |         |
 | API Version       | The Service Layer API version to use. v2 (OData 4.0) is recommended for new integrations and provides improved functionality. v1 (OData 3.0) is available for backwards compatibility with existing integrations.                                                                                                                                  | v1      |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in SAP Business One on a configured schedule.
+
+| Input                | Comments                                                                                         | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The SAP Business One connection to use.                                                          |         |
+| Resource Type        | The SAP Business One resource type to poll for new or updated records.                           |         |
+| Show New Records     | When true, newly created records will be included in the trigger output.                         | true    |
+| Show Updated Records | When true, records that were updated after the last poll will be included in the trigger output. | true    |
+
 ## Actions
 
 ### Close Invoice {#closeinvoice}

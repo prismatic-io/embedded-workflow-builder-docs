@@ -28,15 +28,15 @@ Connection to Frontify using OAuth 2.0
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                                                       | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Base URL      | The base URL of the Frontify API. This URL should be provided by the service provider.                                                                                                                                         |         |
-| Authorize URL | The Authorization URL for Frontify.                                                                                                                                                                                            |         |
-| Token URL     | The Token URL for Frontify.                                                                                                                                                                                                    |         |
-| Scopes        | A list of scopes, combined by a space. At least `basic:read` must be specified within scopes. A full list of scopes can be found here: https://developer.frontify.com/d/XFPCrGNrXQQM/graphql-api#/access-control/scopes-p11876 |         |
-| Client ID     |                                                                                                                                                                                                                                |         |
-| Client Secret |                                                                                                                                                                                                                                |         |
-| State         | The state is a parameter controlled by you and used to preserves some state objects set by the client in the Authorization request and makes it available to the client in the response.                                       |         |
+| Input         | Comments                                                                                                                                                                                                                  | Default |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Base URL      | The base URL of the Frontify API. This URL should be provided by the service provider.                                                                                                                                    |         |
+| Authorize URL | The Authorization URL for Frontify.                                                                                                                                                                                       |         |
+| Token URL     | The Token URL for Frontify.                                                                                                                                                                                               |         |
+| Scopes        | A list of scopes, combined by a space. At least `basic:read` must be specified within scopes. A full list of scopes can be found here: https://help.frontify.com/en/articles/5402354-overview-of-frontify-developer-tools |         |
+| Client ID     |                                                                                                                                                                                                                           |         |
+| Client Secret |                                                                                                                                                                                                                           |         |
+| State         | The state is a parameter controlled by you and used to preserves some state objects set by the client in the Authorization request and makes it available to the client in the response.                                  |         |
 
 ### Personal Developer Token {#personaldevelopertoken}
 
@@ -482,9 +482,9 @@ Update an existing Folder.
 
 Upload a new file.
 
-| Input               | Comments                                                             | Default |
-| ------------------- | -------------------------------------------------------------------- | ------- |
-| Frontify Connection |                                                                      |         |
-| File Name           | File name.                                                           |         |
-| Size                | File size in bytes.                                                  |         |
-| Chunk Size          | File chunk size in bytes. Value must be integer between 5MB and 1GB. |         |
+| Input               | Comments                                                                                                                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Frontify Connection |                                                                                                                                                                                                               |         |
+| File Name           | File name.                                                                                                                                                                                                    |         |
+| Size                | File size in bytes.                                                                                                                                                                                           |         |
+| Chunk Size          | File chunk size in bytes. Value must be integer between 5MB and 1GB. See the [Frontify uploadFile mutation](https://frontify.github.io/graphql-reference/mutations/uploadFile) for full upload documentation. |         |

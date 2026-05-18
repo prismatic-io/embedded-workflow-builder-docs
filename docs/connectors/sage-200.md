@@ -47,6 +47,21 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Ocp Apim Subscription Key | You can get your subscription key following the steps at 'Obtain Developer Subscription Keys' here: https://developer.sage.com/200/api/get-started/ |                                     |
 | Sage 200 Edition          | The Sage 200 Edition you are connecting to.                                                                                                         |                                     |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Sage 200 on a configured schedule.
+
+| Input                | Comments                                                                                                 | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                          |         |
+| Site                 | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
+| Company              | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
+| Resource Type        | The Sage 200 resource type to poll for new or updated records.                                           |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                     | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output.                       | true    |
+
 ## Actions
 
 ### Create Customer {#createcustomer}

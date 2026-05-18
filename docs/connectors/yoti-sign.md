@@ -39,11 +39,10 @@ If you believe your API key has been compromised, please contact Yoti Client Sup
 
 Archiving an envelope stops all other signers from signing and leaves the envelope in the state it was archived in.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope ID   | The ID of the envelope                               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments               | Default |
+| ----------- | ---------------------- | ------- |
+| Connection  |                        |         |
+| Envelope ID | The ID of the envelope |         |
 
 ### Create Embedded Envelope {#createembeddedenvelope}
 
@@ -62,7 +61,6 @@ Create an envelope for Yoti Sign
 | Branding                    | The branding to be used for the envelope                                                                                                                                | <code>{<br /> "logo_options": {<br /> "logo_choice": "brand_powered_by_yoti",<br /> "logo_base64": "base64-encoded-PNG-image"<br /> },<br /> "primary_color": "#000",<br /> "primary_color_hover": "#c0c0c0",<br /> "on_primary_color": "#fff",<br /> "secondary_color": "#00ffff",<br /> "secondary_color_hover": "#d2691e"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Parent Redirect URLs        | The parent redirect URLs to be used for the envelope                                                                                                                    | <code>{<br /> "success": "https://someurl.com/success",<br /> "failure": "https://someurl.com/failure"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Autotagging                 | Auto-tagging is an optional property and is used to automatically place fields in documents which have been set up for Auto-tagging. This is an extension of templates. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Debug Request               | Enabling this flag will log out the current request.                                                                                                                    | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Create Envelope {#createenvelope}
 
@@ -82,80 +80,72 @@ Create an envelope for Yoti Sign
 | Branding                    | The branding to be used for the envelope                                                                                                                                | <code>{<br /> "logo_options": {<br /> "logo_choice": "brand_powered_by_yoti",<br /> "logo_base64": "base64-encoded-PNG-image"<br /> },<br /> "primary_color": "#000",<br /> "primary_color_hover": "#c0c0c0",<br /> "on_primary_color": "#fff",<br /> "secondary_color": "#00ffff",<br /> "secondary_color_hover": "#d2691e"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Parent Redirect URLs        | The parent redirect URLs to be used for the envelope                                                                                                                    | <code>{<br /> "success": "https://someurl.com/success",<br /> "failure": "https://someurl.com/failure"<br />}</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Autotagging                 | Auto-tagging is an optional property and is used to automatically place fields in documents which have been set up for Auto-tagging. This is an extension of templates. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Debug Request               | Enabling this flag will log out the current request.                                                                                                                    | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Edit Recipient {#editrecipient}
 
 Change the recipient of your envelope.
 
-| Input          | Comments                                             | Default                                                                                                                                              |
-| -------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection     |                                                      |                                                                                                                                                      |
-| Envelope ID    | The ID of the envelope                               |                                                                                                                                                      |
-| Recipient ID   | The ID of the recipient                              |                                                                                                                                                      |
-| Recipient Info | The recipient info to be modified                    | <code>{<br /> "name": "foobar",<br /> "email": "test@example.com",<br /> "iso_country_code": "US",<br /> "mobile_number": "2136210002"<br />}</code> |
-| Debug Request  | Enabling this flag will log out the current request. | false                                                                                                                                                |
+| Input          | Comments                          | Default                                                                                                                                              |
+| -------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection     |                                   |                                                                                                                                                      |
+| Envelope ID    | The ID of the envelope            |                                                                                                                                                      |
+| Recipient ID   | The ID of the recipient           |                                                                                                                                                      |
+| Recipient Info | The recipient info to be modified | <code>{<br /> "name": "foobar",<br /> "email": "test@example.com",<br /> "iso_country_code": "US",<br /> "mobile_number": "2136210002"<br />}</code> |
 
 ### Envelope Status {#getenvelopestatus}
 
 Get the status of a single envelope
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope ID   | The ID of the envelope                               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments               | Default |
+| ----------- | ---------------------- | ------- |
+| Connection  |                        |         |
+| Envelope ID | The ID of the envelope |         |
 
 ### Find Envelopes {#findenvelopes}
 
 This allows you to find the envelope details for specified envelopes.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope IDs  | The IDs of the envelopes                             |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                 | Default |
+| ------------ | ------------------------ | ------- |
+| Connection   |                          |         |
+| Envelope IDs | The IDs of the envelopes |         |
 
 ### Get Documents {#getdocuments}
 
 Get Documents from a specific envelope based on Envelope ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope ID   | The ID of the envelope                               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments               | Default |
+| ----------- | ---------------------- | ------- |
+| Connection  |                        |         |
+| Envelope ID | The ID of the envelope |         |
 
 ### Get Envelope {#getenvelope}
 
 Get Envelope details based on Envelope ID
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope ID   | The ID of the envelope                               |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input       | Comments               | Default |
+| ----------- | ---------------------- | ------- |
+| Connection  |                        |         |
+| Envelope ID | The ID of the envelope |         |
 
 ### Get IDV session media {#getidvsessionmedia}
 
 This action will allow you to obtain the individual media generated in the identity verification session submitted in signing e.g the image of a document.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Recipient ID  | The ID of the recipient                              |         |
-| Media ID      | The ID of the media                                  |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                | Default |
+| ------------ | ----------------------- | ------- |
+| Connection   |                         |         |
+| Recipient ID | The ID of the recipient |         |
+| Media ID     | The ID of the media     |         |
 
 ### Get IDV Session Result {#getidvsessionresult}
 
 This will return the result of the Identity verification session in JSON format
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Recipient ID  | The ID of the recipient                              |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                | Default |
+| ------------ | ----------------------- | ------- |
+| Connection   |                         |         |
+| Recipient ID | The ID of the recipient |         |
 
 ### List Envelopes {#listenvelopes}
 
@@ -168,15 +158,13 @@ List Envelopes based on the search criteria. If no search criteria is provided, 
 | Offset           | The files to be used for the envelope                 |         |
 | Limit            | The amount of envelopes to return                     |         |
 | Key Value Params | Key value pairs to be used as query parameters        |         |
-| Debug Request    | Enabling this flag will log out the current request.  | false   |
 
 ### Send Reminder {#sendenvelopereminder}
 
 Send a reminder to a recipient to sign the envelope.
 
-| Input         | Comments                                             | Default |
-| ------------- | ---------------------------------------------------- | ------- |
-| Connection    |                                                      |         |
-| Envelope ID   | The ID of the envelope                               |         |
-| Recipient ID  | The ID of the recipient                              |         |
-| Debug Request | Enabling this flag will log out the current request. | false   |
+| Input        | Comments                | Default |
+| ------------ | ----------------------- | ------- |
+| Connection   |                         |         |
+| Envelope ID  | The ID of the envelope  |         |
+| Recipient ID | The ID of the recipient |         |

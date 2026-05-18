@@ -362,6 +362,7 @@ Retrieves activity log entries.
 | Connection | The Domo connection to use.                                               |         |
 | Start      | The start time in milliseconds for the activity log query range.          |         |
 | End        | The end time in milliseconds for the activity log query range.            |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.   | false   |
 | Limit      | The maximum number of results to return (default is 50, maximum of 1000). |         |
 | Offset     | The 0-based offset position to begin retrieving results from.             |         |
 | User       | The unique identifier for the user to filter activity log entries by.     |         |
@@ -489,6 +490,7 @@ Lists all accounts the authenticated user has permissions for.
 | Input      | Comments                                                                                | Default |
 | ---------- | --------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                             |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                 | false   |
 | Limit      | The number of Accounts to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of Accounts to begin the list of Accounts within the response.               |         |
 
@@ -499,6 +501,7 @@ Lists all DataSets in a Domo instance.
 | Input      | Comments                                                                                       | Default |
 | ---------- | ---------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                        | false   |
 | Limit      | The amount of DataSets to return in the list. The default is 50 and the maximum is 50.         |         |
 | Name Like  | A case-insensitive filter that limits the list to DataSets with names containing this string.  |         |
 | Offset     | The offset of the DataSet ID to begin list of users within the response.                       |         |
@@ -511,6 +514,7 @@ Lists all groups in a Domo instance.
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
 | Limit      | The amount of groups to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the group ID to begin list of groups within the response.               |         |
 
@@ -521,6 +525,7 @@ Lists all pages in a Domo instance.
 | Input      | Comments                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
 | Connection | The Domo connection to use.                                                          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
 | Limit      | The amount of pages to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the page ID to begin list of pages within the response.                |         |
 
@@ -542,6 +547,7 @@ Retrieves all tasks from a given project list.
 | Connection | The Domo connection to use.                                                          |         |
 | Project ID | The unique identifier for the project.                                               |         |
 | List ID    | The unique identifier for the project list.                                          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
 | Limit      | The maximum number of results to return (defaults to 10 with a maximum of 50).       |         |
 | Offset     | The number of records to skip from the beginning of the result list (defaults to 0). |         |
 
@@ -560,6 +566,7 @@ Lists all stream executions that match the specified criteria.
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
 | Stream ID  | The ID of the Stream                                                                  |         |
 | Limit      | The amount of Stream to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the Stream ID to begin list of users within the response.               |         |
@@ -571,6 +578,7 @@ Lists all streams the authenticated user has view permissions for.
 | Input      | Comments                                                                              | Default |
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
 | Limit      | The amount of Stream to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the Stream ID to begin list of users within the response.               |         |
 
@@ -581,6 +589,7 @@ Lists all users in a Domo instance.
 | Input      | Comments                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
 | Connection | The Domo connection to use.                                                          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
 | Limit      | The amount of users to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the user ID to begin list of users within the response.                |         |
 
@@ -592,6 +601,7 @@ Lists the users in a group in a Domo instance.
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
 | Group ID   | The unique identifier for the group.                                                  |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
 | Limit      | The amount of groups to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the group ID to begin list of groups within the response.               |         |
 

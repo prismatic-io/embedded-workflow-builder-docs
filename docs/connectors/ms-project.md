@@ -1,7 +1,7 @@
 ---
 title: Microsoft Project Connector
 sidebar_label: Microsoft Project
-description: Make queries to reporting data from a Project Web App instance
+description: Query reporting data from a Project Web App instance.
 ---
 
 ![Microsoft Project](./assets/ms-project.png#connector-icon)
@@ -54,6 +54,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | This value is obtained by creating a new app in Active Directory with the same tenant as your user with a Microsoft Project license                      |                                                           |
 | Client Secret | This value can be generated inside your Active Directory application.                                                                                    |                                                           |
 | PWA Site      | The Project Web App Sharepoint Site domain. This is the same value that is supplied for the resource argument of the Token URL.                          |                                                           |
+
+## Triggers
+
+### New and Updated Projects {#pollchangestrigger}
+
+Checks for new and updated projects in Microsoft Project on a configured schedule.
+
+| Input                | Comments                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                    |         |
+| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output. | true    |
 
 ## Actions
 

@@ -50,6 +50,19 @@ The following credentials are needed to authenticate with the BILL API:
 | Developer Key      | The developer key is used to uniquely identify the developer account in API requests.   |         |
 | Use Production URL | Turn this On to use the production URL. Turn this Off to use the sandbox URL.           | true    |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected Bill.com resource type on a configured schedule.
+
+| Input                | Comments                                                                                         | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Bill.com connection to use.                                                                  |         |
+| Resource Type        | The type of resource to poll for changes.                                                        |         |
+| Show New Records     | When true, newly created records will be included in the trigger output.                         | true    |
+| Show Updated Records | When true, records that were updated after the last poll will be included in the trigger output. | true    |
+
 ## Actions
 
 ### Authenticate MFA Session {#mfaauthenticate}

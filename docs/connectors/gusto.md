@@ -43,16 +43,18 @@ Receive and validate webhook requests from Gusto for webhooks you configure.
 
 Create an employee of a company
 
-| Input                  | Comments                               | Default |
-| ---------------------- | -------------------------------------- | ------- |
-| Connection             |                                        |         |
-| Company ID             | A UUID representing a company.         |         |
-| First Name             | The employee's first name.             |         |
-| Middle Initial         | The employee's middle initial.         |         |
-| Last Name              | The employee's last name.              |         |
-| Date of Birth          | The employee's date of birth.          |         |
-| Email Address          | The employee's personal email address. |         |
-| Social Security Number | The employee's social security number. |         |
+| Input                  | Comments                                                                                                                              | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             |                                                                                                                                       |         |
+| Company ID             | A UUID representing a company.                                                                                                        |         |
+| First Name             | The employee's first name.                                                                                                            |         |
+| Middle Initial         | The employee's middle initial.                                                                                                        |         |
+| Last Name              | The employee's last name.                                                                                                             |         |
+| Date of Birth          | The employee's date of birth.                                                                                                         |         |
+| Email Address          | The employee's personal email address. Required if Self Onboarding is true.                                                           |         |
+| Social Security Number | The employee's social security number.                                                                                                |         |
+| Self Onboarding        | If true, employee is expected to self-onboard. If false, payroll admin is expected to enter in the employee's onboarding information. | false   |
+| Additional Fields      | Additional fields that might not be covered by the standard inputs.                                                                   |         |
 
 ### Create Webhook Subscription {#createwebhooksubscription}
 
@@ -115,13 +117,14 @@ Get a pay schedules for a company by pay schedule ID
 
 Get webhook events based on the partner application's scopes for Gusto.
 
-| Input                      | Comments                                                                                          | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection                 |                                                                                                   |         |
-| Page                       | The page that is requested. When unspecified, will load the first page.                           |         |
-| Number of Objects per Page | Number of objects per page. When unspecified, will default to 25.                                 |         |
-| Starting After UUID        | Serves as a cursor, returns all events occurring after specified UUID (exclusive).                |         |
-| Event Type                 | A string containing the exact event name or use a wildcard match to filter for a group of events. |         |
+| Input               | Comments                                                                                          | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                   |         |
+| Resource UUID       | The UUID of the company. If not specified, will return all events for all companies.              |         |
+| Event Type          | A string containing the exact event name or use a wildcard match to filter for a group of events. |         |
+| Starting After UUID | Serves as a cursor, returns all events occurring after specified UUID (exclusive).                |         |
+| Limit               | Limits the number of objects returned in a single response, between 1 and 100. Defaults to 25.    |         |
+| Sort Order          | Sort resulting events in ascending (asc) or descending (desc) chronological order.                |         |
 
 ### Get Webhook Subscription {#getwebhooksubscription}
 
@@ -186,7 +189,7 @@ Send raw HTTP request to Gusto
 | Input                   | Comments                                                                                                                                                                                                | Default    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | Connection              |                                                                                                                                                                                                         |            |
-| API Version             | The API version to use.                                                                                                                                                                                 | 2025-06-15 |
+| API Version             | The API version to use.                                                                                                                                                                                 | 2026-02-01 |
 | URL                     | Input the path only (/provision), The base URL is already included (https://api.gusto.com/v1). For example, to connect to https://api.gusto.com/v1/provision, only /provision is entered in this field. |            |
 | Method                  | The HTTP method to use.                                                                                                                                                                                 |            |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                               |            |

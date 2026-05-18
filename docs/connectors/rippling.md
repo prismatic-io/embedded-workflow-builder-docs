@@ -219,23 +219,25 @@ GET Current Company.
 
 GET Company Activity.
 
-| Input      | Comments                                                          | Default |
-| ---------- | ----------------------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                                   |         |
-| Start Date | ISO 8601 timestamp to list activity after (inclusive).            |         |
-| End Date   | ISO 8601 timestamp to list activity before (inclusive).           |         |
-| Next       | Pagination cursor token for retrieving the next page of results.  |         |
-| Limit      | Maximum number of results per page. Maximum: 1000. Default: 1000. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Start Date | ISO 8601 timestamp to list activity after (inclusive).                  |         |
+| End Date   | ISO 8601 timestamp to list activity before (inclusive).                 |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Next       | Pagination cursor token for retrieving the next page of results.        |         |
+| Limit      | Maximum number of results per page. Maximum: 1000. Default: 1000.       |         |
 
 ### Get Custom Fields (V1) {#getcustomfields}
 
 GET Custom Fields.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Custom Object (V2) {#getcustomobject}
 
@@ -250,11 +252,12 @@ Retrieve a specific custom object by API name.
 
 GET Departments.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Department (V2) {#getdepartment}
 
@@ -282,19 +285,21 @@ GET Employees (Including Terminated).
 | Input      | Comments                                                                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                                                                      |         |
+| EIN        | Employer Identification Number (EIN), also known as the Federal Employer Identification Number or Federal Tax Identification Number. |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                              | false   |
 | Limit      | Sets a limit on the number of returned values.                                                                                       |         |
 | Offset     | Number of results to skip before returning values.                                                                                   |         |
-| EIN        | Employer Identification Number (EIN), also known as the Federal Employer Identification Number or Federal Tax Identification Number. |         |
 
 ### Get Employees (V1) {#getemployees}
 
 GET Employees.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Employment Type (V2) {#getemploymenttype}
 
@@ -344,11 +349,12 @@ GET Leave Requests.
 
 GET Levels.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Me (V1) {#getme}
 
@@ -397,11 +403,12 @@ Retrieve a specific supergroup by ID.
 
 GET Teams.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Team (V2) {#getteam}
 
@@ -436,11 +443,12 @@ Retrieve a specific worker by ID.
 
 GET Work Locations.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Rippling connection to use.                    |         |
-| Limit      | Sets a limit on the number of returned values.     |         |
-| Offset     | Number of results to skip before returning values. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Rippling connection to use.                                         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Limit      | Sets a limit on the number of returned values.                          |         |
+| Offset     | Number of results to skip before returning values.                      |         |
 
 ### Get Work Location (V2) {#getworklocation}
 
@@ -459,6 +467,7 @@ Retrieve a list of business partner groups.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: default_business_partner.                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -471,6 +480,7 @@ Retrieve a list of business partners.
 | Connection | The Rippling connection to use.                                                          |         |
 | Filter     | Filterable fields: worker_id, business_partner_group_id. Example: worker_id eq 'abc123'. |         |
 | Expand     | Comma-separated fields to expand: business_partner_group, worker, client_group.          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                  | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                   |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response.           |         |
 
@@ -482,6 +492,7 @@ Retrieve a list of companies.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent_legal_entity, legal_entities.         |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -492,6 +503,7 @@ Retrieve a list of custom fields.
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -499,9 +511,12 @@ Retrieve a list of custom fields.
 
 Retrieve a list of custom objects.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The Rippling connection to use. |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
 ### List Departments (V2) {#listdepartments}
 
@@ -511,6 +526,7 @@ Retrieve a list of departments.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent, department_hierarchy.                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -521,6 +537,7 @@ Retrieve a list of employment types.
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -528,9 +545,12 @@ Retrieve a list of employment types.
 
 Retrieve a list of entitlements.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The Rippling connection to use. |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
 ### List Job Functions (V2) {#listjobfunctions}
 
@@ -539,6 +559,7 @@ Retrieve a list of job functions.
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -546,9 +567,12 @@ Retrieve a list of job functions.
 
 Retrieve a list of object categories.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The Rippling connection to use. |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
 ### List Supergroups (V2) {#listsupergroups}
 
@@ -558,7 +582,9 @@ Retrieve supergroups matching the input parameters.
 | ---------- | ------------------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                                 |         |
 | Filter     | Filterable fields: app_owner_id, group_type. Example: app_owner_id eq 'abc123'. |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.         | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.          |         |
+| Cursor     | Pagination cursor token from the next_link field in the previous API response.  |         |
 
 ### List Teams (V2) {#listteams}
 
@@ -568,6 +594,7 @@ Retrieve a list of teams.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent.                                      |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -578,6 +605,7 @@ Retrieve a list of users.
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -590,6 +618,7 @@ Retrieve a list of workers with filtering, expansion, and sorting support.
 | Connection | The Rippling connection to use.                                                                                                                           |         |
 | Filter     | Filter expression. Filterable fields: status, work_email, user_id, created_at, updated_at. Example: status eq 'ACTIVE'.                                   |         |
 | Expand     | Comma-separated fields to expand: user, manager, legal_entity, employment_type, compensation, department, teams, level, custom_fields, business_partners. |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                   | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                                                                                    |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response.                                                                            |         |
 
@@ -600,6 +629,7 @@ Retrieve a list of work locations.
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 

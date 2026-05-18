@@ -30,6 +30,17 @@ Create a new authentication connection. Refer to the following [guide](https://i
 | Partner User ID     | Provide a string value for the partnerUserID of your Expensify account.     |         |
 | Partner User Secret | Provide a string value for the partnerUserSecret of your Expensify account. |         |
 
+## Triggers
+
+### New Policies {#pollchangestrigger}
+
+Checks for new policies in Expensify on a configured schedule.
+
+| Input            | Comments                                          | Default |
+| ---------------- | ------------------------------------------------- | ------- |
+| Connection       |                                                   |         |
+| Show New Records | Include newly created records in trigger results. | true    |
+
 ## Actions
 
 ### Create Expense {#createexpense}

@@ -57,6 +57,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Client Identifier of your app for Sage               |                                                        |
 | Client Secret | Client Secret of your app for Sage                   |                                                        |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Qlik on a configured schedule.
+
+| Input                | Comments                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                           |         |
+| Resource Type        | The type of Qlik resource to poll for changes.                                            |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.               | true    |
+| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output. | true    |
+
 ## Actions
 
 ### Create Data Asset {#createdataassets}

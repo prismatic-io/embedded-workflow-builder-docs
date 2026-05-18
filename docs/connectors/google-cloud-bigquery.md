@@ -370,6 +370,7 @@ Lists all datasets in the specified project to which the user has been granted t
 | All         | When true, lists all datasets, including hidden ones.                                                                                                                                                                                                                                                                                                                           | false   |
 | Filter      | An expression for filtering the results of the request by label. The syntax is 'labels.<name>[:<value>]'. Multiple filters can be ANDed together by connecting with a space. Example: 'labels.department:receiving labels.active'. See [Filtering datasets](https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels) using labels for details. |         |
 | Max Results | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.                                                                                                                                                                                                                                           |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                                                                                                                                                         | false   |
 
 ### List Jobs {#listjobs}
 
@@ -387,6 +388,7 @@ Lists all jobs that you started in the specified project.
 | Projection        | Restrict information returned to a set of selected fields                                                                                   |         |
 | State Filter      | Filter for job state. Valid values of this enum field are: DONE, PENDING, RUNNING.                                                          |         |
 | Parent Job ID     | If set, shows only child jobs of the specified parent. Otherwise, shows all top-level jobs.                                                 |         |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                     | false   |
 
 ### List Models {#listmodels}
 
@@ -399,6 +401,7 @@ Lists all models in the specified dataset. Requires the READER dataset role. Aft
 | Dataset ID  | The unique identifier for the dataset.                                                                                                |         |
 | Page Token  | Page token returned by a previous call to request the next page of results.                                                           |         |
 | Max Results | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection. |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination.                                                               | false   |
 
 ### List Projects {#listprojects}
 
@@ -409,6 +412,7 @@ Lists projects to which the user has been granted any project role.
 | Connection  | The Google Cloud BigQuery connection to use.                                                                                          |         |
 | Page Token  | Page token returned by a previous call to request the next page of results.                                                           |         |
 | Max Results | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection. |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination.                                                               | false   |
 
 ### List Routines {#listroutines}
 
@@ -423,6 +427,7 @@ Lists all routines in the specified dataset.
 | Page Token  | Page token returned by a previous call to request the next page of results.                                                                                                                                                                                                                                                                                                     |         |
 | Max Results | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.                                                                                                                                                                                                                                           |         |
 | Read Mask   | If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned. This is a comma-separated list of fully qualified names of fields. Example: 'user.displayName,photo'.                                                                                                                                                |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                                                                                                                                                         | false   |
 
 ### List Table Data (Deprecated) {#listtabledata}
 
@@ -450,6 +455,7 @@ Lists all tables in the specified dataset.
 | Project ID  | Project ID of the tables to list.                                                                                                     |         |
 | Max Results | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection. |         |
 | Page Token  | Page token returned by a previous call to request the next page of results.                                                           |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination.                                                               | false   |
 
 ### Patch Table {#patchtable}
 

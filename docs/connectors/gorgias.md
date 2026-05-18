@@ -67,6 +67,19 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     |                                                                                                                                                                                 |                                        |
 | Client Secret |                                                                                                                                                                                 |                                        |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected Gorgias resource type on a configured schedule.
+
+| Input                | Comments                                                                                 | Default |
+| -------------------- | ---------------------------------------------------------------------------------------- | ------- |
+| Connection           | Select the Gorgias connection type for this request: OAuth2 or API Key.                  |         |
+| Resource Type        | The Gorgias resource type to poll for newly created or updated records.                  |         |
+| Show New Records     | When true, newly created records since the last poll are included in the trigger output. | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output.       | true    |
+
 ## Actions
 
 ### Create Customer {#createcustomer}
