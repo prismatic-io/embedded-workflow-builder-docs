@@ -32,6 +32,20 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Provide a string value for the client Id of your OAuth 2.0 application.             |                                                                                                                                                                                                    |
 | Client Secret | Provide a string value for the client secret of your OAuth 2.0 application.         |                                                                                                                                                                                                    |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in Google Analytics GA4 on a configured schedule.
+
+| Input                | Comments                                                                                                 | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Google Analytics GA4 connection to use.                                                              |         |
+| Resource Type        | The Google Analytics GA4 resource type to poll for new or updated records.                               |         |
+| Account ID           | The unique identifier for the Google Analytics account. Required when the Resource Type is 'Properties'. |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                     | true    |
+| Show Updated Records | When true, records that were modified after the last poll are included in the trigger output.            | true    |
+
 ## Actions
 
 ### Get Property {#getproperty}

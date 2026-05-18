@@ -93,6 +93,19 @@ Basic Authentication for SAP SuccessFactors Connection
 | Protocol   | The SAP SuccessFactors protocol to use                                                                                                                                             |         |
 | API Server | Your SAP SuccessFactors api server, if you are not sure, please contact your SAP SuccessFactors administrator. If empty the sandbox environment will be used (sandbox.api.sap.com) |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records in a selected SAP SuccessFactors resource type on a configured schedule.
+
+| Input                | Comments                                                                                     | Default |
+| -------------------- | -------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                              |         |
+| Resource Type        | The SAP SuccessFactors resource type to poll for new or updated records.                     |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                         | true    |
+| Show Updated Records | When true, records that were updated after the last poll are included in the trigger output. | true    |
+
 ## Actions
 
 ### Create a Record {#createrecord}

@@ -49,6 +49,30 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     |                                          |         |
 | Client secret |                                          |         |
 
+## Triggers
+
+### New and Updated Campaigns {#pollcampaignchangestrigger}
+
+Checks for new and updated campaigns in Klaviyo on a configured schedule.
+
+| Input                | Comments                                                                                                         | Default |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                  |         |
+| Message Channel      | Klaviyo requires a channel filter to list campaigns. Select which channel's campaigns the trigger should return. |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                             | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                               | true    |
+
+### New and Updated Profiles and Lists {#pollprofileandlistchangestrigger}
+
+Checks for new and updated profiles and lists in Klaviyo on a configured schedule.
+
+| Input                | Comments                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                    |         |
+| Resource Type        | The type of resource to poll for new and updated records.                          |         |
+| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output. | true    |
+
 ## Actions
 
 ### Bulk Create Events {#bulkcreateevents}

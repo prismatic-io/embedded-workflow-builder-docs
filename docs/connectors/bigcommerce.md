@@ -419,6 +419,7 @@ Returns a list of product Variants.
 | Limit                  | Controls the number of items per page in a limited (paginated) list of products.                                                                                               |         |
 | Include Fields         | Fields to include, in a comma-separated list.                                                                                                                                  |         |
 | Exclude Fields         | Fields to exclude, in a comma-separated list.                                                                                                                                  |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### Get a Modifier {#getmodifieraction}
 
@@ -476,6 +477,7 @@ Returns a list of product custom fields.
 | Product ID             | The ID of the Product to retrieve custom fields for.                                                                                                                           |         |
 | Page                   | Specifies the page number in a limited list of products.                                                                                                                       |         |
 | Limit                  | Controls the number of items per page.                                                                                                                                         |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### Get Product Image {#getproductimage}
 
@@ -501,6 +503,7 @@ Returns a list of all webhooks on a store.
 | Is Active              |                                                                                                                                                                                | false   |
 | Scope                  |                                                                                                                                                                                |         |
 | Destination            |                                                                                                                                                                                |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Brands {#listbrands}
 
@@ -512,6 +515,7 @@ List all of the store's brands.
 | Store Hash             | The unique identifier for the BigCommerce store. Find this in your store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}). |         |
 | Brand Name             | Filter brands by name.                                                                                                                                                         |         |
 | Limit                  | Controls the number of items per page in a limited (paginated) list of products.                                                                                               |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Categories {#getallcategories}
 
@@ -544,6 +548,7 @@ Retrieve a list of categories with optional filters.
 | Limit                  | Controls the number of items per page.                                                                                                                                         |         |
 | Include Fields         | Fields to include, in a comma-separated list.                                                                                                                                  |         |
 | Exclude Fields         | Fields to exclude, in a comma-separated list.                                                                                                                                  |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Categories (Simplified) {#getallcategoriessimple}
 
@@ -556,6 +561,7 @@ Returns a list of categories.
 | ID In                  | Filter by specific IDs.                                                                                                                                                        |         |
 | Limit                  | Controls the number of items per page.                                                                                                                                         |         |
 | Page                   | Specifies the page number in a limited list of products.                                                                                                                       |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Category Trees {#getallcategorytrees}
 
@@ -567,6 +573,7 @@ Returns a list of Category Trees.
 | Store Hash             | The unique identifier for the BigCommerce store. Find this in your store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}). |         |
 | ID In                  | Filter by specific IDs.                                                                                                                                                        |         |
 | Channel ID In          | Filter by Channel IDs.                                                                                                                                                         |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Product Images {#getallproductimages}
 
@@ -577,6 +584,7 @@ Returns a list of product images with optional filter parameters.
 | BigCommerce Connection | The BigCommerce connection to use.                                                                                                                                             |         |
 | Store Hash             | The unique identifier for the BigCommerce store. Find this in your store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}). |         |
 | Product ID for Images  | ID of the product for which to retrieve images.                                                                                                                                |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Product Modifiers {#getallproductmodifiersaction}
 
@@ -591,6 +599,7 @@ Returns a list of all Product Modifiers.
 | Limit                  | Controls the number of items per page in a limited (paginated) list of products.                                                                                               |         |
 | Include Fields         | Fields to include, in a comma-separated list.                                                                                                                                  |         |
 | Exclude Fields         | Fields to exclude, in a comma-separated list. The ID cannot be excluded.                                                                                                       |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### List Products {#getallproducts}
 
@@ -607,6 +616,7 @@ Returns a list of products with optional filter parameters.
 | Product Type           | Filter items by product type.                                                                                                                                                  |         |
 | Page                   | Specifies the page number in a limited (paginated) list of products.                                                                                                           |         |
 | Limit                  | Controls the number of items per page in a limited (paginated) list of products.                                                                                               |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                        | false   |
 
 ### Raw Request {#rawrequest}
 

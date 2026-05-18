@@ -77,11 +77,12 @@ Receive data from scheduled events in real time with webhook subscriptions.
 
 Cancels specified event.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection | The Calendly connection to use.       |         |
-| UUID       | The unique identifier in UUID format. |         |
-| Reason     | The reason for canceling the event.   |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| UUID         | The unique identifier in UUID format.                                   |         |
+| Reason       | The reason for canceling the event.                                     |         |
 
 ### Create Share {#createshare}
 
@@ -90,6 +91,7 @@ Allows you to create an endpoint for the Customize Once and Share feature.
 | Input                   | Comments                                                                                                                            | Default                                                                                                                                                |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Connection              | The Calendly connection to use.                                                                                                     |                                                                                                                                                        |
+| Organization            | Return events scheduled with the organization associated with this URI.                                                             |                                                                                                                                                        |
 | Event Type              | The URI associated with the event type.                                                                                             |                                                                                                                                                        |
 | Name                    | The name of the resource.                                                                                                           |                                                                                                                                                        |
 | Duration                | The duration of the event in minutes.                                                                                               |                                                                                                                                                        |
@@ -177,29 +179,32 @@ Returns basic information about your user account.
 
 Returns information about a specified Event.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection | The Calendly connection to use.       |         |
-| UUID       | The unique identifier in UUID format. |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| UUID         | The unique identifier in UUID format.                                   |         |
 
 ### Get Event Invitee {#geteventinvitee}
 
 Returns information about a specified Invitee (person invited to an event).
 
-| Input        | Comments                         | Default |
-| ------------ | -------------------------------- | ------- |
-| Connection   | The Calendly connection to use.  |         |
-| Event UUID   | The event's unique identifier.   |         |
-| Invitee UUID | The invitee's unique identifier. |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| Event UUID   | The event's unique identifier.                                          |         |
+| Invitee UUID | The invitee's unique identifier.                                        |         |
 
 ### Get Event Type {#geteventtype}
 
 Returns information about a specified Event Type.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection | The Calendly connection to use.       |         |
-| UUID       | The unique identifier in UUID format. |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| UUID         | The unique identifier in UUID format.                                   |         |
 
 ### Get Organization Invitation {#getorganizationinvitation}
 
@@ -296,13 +301,14 @@ Returns a list of activity log entries.
 
 Returns a list of Invitees for an event.
 
-| Input      | Comments                                                                                                 | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Calendly connection to use.                                                                          |         |
-| UUID       | The unique identifier in UUID format.                                                                    |         |
-| Email      | Indicates if the results should be filtered by email address.                                            |         |
-| Sort       | Order results by the created_at field and direction specified: ascending ('asc') or descending ('desc'). |         |
-| Status     | Indicates if the invitee 'canceled' or still 'active'.                                                   |         |
+| Input        | Comments                                                                                                 | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                                                          |         |
+| Organization | Return events scheduled with the organization associated with this URI.                                  |         |
+| UUID         | The unique identifier in UUID format.                                                                    |         |
+| Email        | Indicates if the results should be filtered by email address.                                            |         |
+| Sort         | Order results by the created_at field and direction specified: ascending ('asc') or descending ('desc'). |         |
+| Status       | Indicates if the invitee 'canceled' or still 'active'.                                                   |         |
 
 ### List Events {#listevents}
 
@@ -323,12 +329,13 @@ Returns a list of Events.
 
 Returns a list of available times for an event type within a specified date range.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection | The Calendly connection to use.                 |         |
-| End Time   | End time of the requested availability range.   |         |
-| Event Type | The URI associated with the event type.         |         |
-| Start Time | Start time of the requested availability range. |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| End Time     | End time of the requested availability range.                           |         |
+| Event Type   | The URI associated with the event type.                                 |         |
+| Start Time   | Start time of the requested availability range.                         |         |
 
 ### List Organization Invitations {#listorganizationinvitations}
 
@@ -446,10 +453,11 @@ Send raw HTTP request to Calendly
 
 Removes a user from an organization.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection | The Calendly connection to use.                 |         |
-| UUID       | The organization membership's unique identifier |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Calendly connection to use.                                         |         |
+| Organization | Return events scheduled with the organization associated with this URI. |         |
+| UUID         | The organization membership's unique identifier                         |         |
 
 ### Revoke User's Organization Invitation {#revokeuserorganizationinvitation}
 

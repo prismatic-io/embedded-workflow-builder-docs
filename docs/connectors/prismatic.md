@@ -19,7 +19,7 @@ For users with multiple tenants in a single region, a Tenant ID can optionally b
 
 #### Prerequisites
 
-- [Prism CLI](https://prismatic.io/docs/cli/cli-usage/) installed, configured and authenticated
+- [Prism CLI](https://prismatic.io/docs/cli/) installed, configured and authenticated
 
 #### Setup Steps
 
