@@ -34,6 +34,9 @@ jobs:
           PRISM_REFRESH_TOKEN: ${{ secrets.PRISM_REFRESH_TOKEN }}
         run: echo "PRISMATIC_API_KEY=$(prism me:token)" >> "$GITHUB_ENV"
 
+      - name: Copy example site config
+        run: cp -R site-config.example site-config
+
       - name: Generate public connector docs
         run: npm run generate-public-connector-docs
 
