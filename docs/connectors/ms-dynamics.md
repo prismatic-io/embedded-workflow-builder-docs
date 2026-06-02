@@ -115,6 +115,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records of a Microsoft Dynamics 365 entity type on a configured schedule.
+
+| Input                | Comments                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                           |         |
+| Entity Type          | The type of Entity to query, usually a pluralized name.                                   |         |
+| Filter Expression    | The filter expression that used for querying entity collections.                          |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.               | true    |
+| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output. | true    |
+
 ### Webhook {#dynamicswebhooktrigger}
 
 Receive and validate webhook requests from Microsoft Dynamics 365 for manually configured webhook subscriptions.

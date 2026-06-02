@@ -1,7 +1,7 @@
 ---
 title: ClickUp Connector
 sidebar_label: ClickUp
-description: Use the ClickUp component to manage users, projects, and teams in your ClickUp workspace.
+description: Manage tasks, lists, spaces, time tracking, and team members in ClickUp.
 ---
 
 ![ClickUp](./assets/click-up.png#connector-icon)
@@ -13,7 +13,7 @@ Use the Clickup component to manage users, projects, and teams in your Clickup w
 
 ### OAuth 2.0 {#clickupoauth2connection}
 
-OAuth 2.0 connection for ClickUp
+Authenticate using OAuth 2.0.
 
 Oauth Configuration Instructions
 
@@ -30,14 +30,14 @@ To make API requests of Clickup on behalf of your customers you will need to cre
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                          | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Client ID     | The Client ID from your ClickUp OAuth app. Create an OAuth app at <a href="https://clickup.com/api/developer-portal/authentication/#step-1-create-an-oauth-app">ClickUp Developer Portal</a>.     |         |
-| Client Secret | The Client Secret from your ClickUp OAuth app. Create an OAuth app at <a href="https://clickup.com/api/developer-portal/authentication/#step-1-create-an-oauth-app">ClickUp Developer Portal</a>. |         |
+| Input         | Comments                                                                                                                                                 | Default |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Client ID     | The Client ID from the ClickUp OAuth app. Create an OAuth app via the [ClickUp Developer Portal](https://developer.clickup.com/docs/authentication).     |         |
+| Client Secret | The Client Secret from the ClickUp OAuth app. Create an OAuth app via the [ClickUp Developer Portal](https://developer.clickup.com/docs/authentication). |         |
 
 ### Personal Access Token {#apikey}
 
-Personal Access Token connection for ClickUp
+Authenticate using a personal access token.
 
 Personal API token Configuration Instructions
 
@@ -48,21 +48,33 @@ To make API requests to ClickUp using a personal API token you may generate one 
 3. Under API Token, click **Generate.**
 4. You can copy and paste your personal API token.
 
-| Input                 | Comments                                                                                                                                                                                                                                             | Default |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Personal Access Token | Your ClickUp Personal Access Token. Generate one in ClickUp Settings > Apps > API Token. See <a href="https://help.clickup.com/hc/en-us/articles/6303426241687-Getting-Started-with-the-ClickUp-API#personal-api-key">ClickUp API documentation</a>. |         |
+| Input                 | Comments                                                                                                                                                                                                                        | Default |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Personal Access Token | The ClickUp Personal Access Token used to authenticate API requests. Generate one in ClickUp Settings > Apps > API Token. See the [ClickUp Authentication docs](https://developer.clickup.com/docs/authentication) for details. |         |
 
 ## Triggers
 
+### New and Updated Tasks {#pollchangestrigger}
+
+Checks for new and updated tasks in ClickUp on a configured schedule.
+
+| Input                | Comments                                                                              | Default |
+| -------------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection           | The ClickUp connection to use.                                                        |         |
+| Scope                | Whether to poll tasks across an entire Team (Workspace) or scoped to a single List.   |         |
+| Scope ID             | The Team ID or List ID to monitor for changes, depending on the Scope selected above. |         |
+| Show New Records     | When enabled, tasks created since the last poll are returned in the trigger payload.  | true    |
+| Show Updated Records | When enabled, tasks updated since the last poll are returned in the trigger payload.  | true    |
+
 ### Webhook {#webhook}
 
-Receive and validate webhook requests from ClickUp for webhooks you configure.
+Receive and validate webhook requests from ClickUp for manually configured webhook subscriptions.
 
 ## Actions
 
 ### Add Guest to Folder {#addguesttofolder}
 
-Share a Folder with a guest.
+Share a folder with a guest.
 
 | Input            | Comments                                                                          | Default |
 | ---------------- | --------------------------------------------------------------------------------- | ------- |
@@ -74,7 +86,7 @@ Share a Folder with a guest.
 
 ### Add Guest to List {#addguesttolist}
 
-Share a List with a guest.
+Share a list with a guest.
 
 | Input            | Comments                                                                          | Default |
 | ---------------- | --------------------------------------------------------------------------------- | ------- |
@@ -100,7 +112,7 @@ Share a task with a guest.
 
 ### Add Task to List {#addtasktolist}
 
-Add a new task to an additional List.
+Add a task to an additional list.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -110,7 +122,7 @@ Add a new task to an additional List.
 
 ### Create Folder {#createfolder}
 
-Add a new Folder to a Space.
+Add a new folder to a space.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -137,7 +149,7 @@ Add a new list to a folder.
 
 ### Create Space {#createspace}
 
-Add a new Space to a Workspace.
+Add a new space to a workspace.
 
 | Input                     | Comments                                                      | Default |
 | ------------------------- | ------------------------------------------------------------- | ------- |
@@ -160,7 +172,7 @@ Add a new Space to a Workspace.
 
 ### Create Task {#createtask}
 
-Create a new Task
+Create a new task in a list.
 
 | Input                        | Comments                                                                                                                                                                     | Default |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -215,7 +227,7 @@ Add a new comment to a task.
 
 ### Create Team {#createteam}
 
-This endpoint is used to create Teams: user groups which are groups of users you can assign items to in your Workspace.
+Create a user group (Team) of users that can be assigned to items in a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -244,7 +256,7 @@ Create a time entry.
 
 ### Create Webhook {#createwebhook}
 
-Create a new webhook for a specific List.
+Create a new webhook for a workspace, space, folder, list, or task.
 
 | Input      | Comments                           | Default |
 | ---------- | ---------------------------------- | ------- |
@@ -268,7 +280,7 @@ Delete a task comment.
 
 ### Delete Folder {#deletefolder}
 
-Delete a Folder from your Workspace.
+Delete a folder from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -277,7 +289,7 @@ Delete a Folder from your Workspace.
 
 ### Delete List {#deletelist}
 
-Delete a List from your Workspace.
+Delete a list from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -286,7 +298,7 @@ Delete a List from your Workspace.
 
 ### Delete Space {#deletespace}
 
-Delete a Space from your Workspace.
+Delete a space from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -295,7 +307,7 @@ Delete a Space from your Workspace.
 
 ### Delete Task {#deletetask}
 
-Delete a task from your Workspace.
+Delete a task from a workspace.
 
 | Input          | Comments                                                     | Default |
 | -------------- | ------------------------------------------------------------ | ------- |
@@ -306,7 +318,7 @@ Delete a task from your Workspace.
 
 ### Delete Team {#deleteteam}
 
-This endpoint is used to remove a Team: user group from your Workspace.
+Remove a user group (Team) from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -315,7 +327,7 @@ This endpoint is used to remove a Team: user group from your Workspace.
 
 ### Delete Time Entry {#deletetimeentry}
 
-Delete a time entry from a Workspace.
+Delete a time entry from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -348,9 +360,9 @@ Rename and configure options for a guest.
 | Custom Role ID         | Custom Role ID value.          |         |
 | Guest ID               | Guest ID                       |         |
 
-### Edit User On Workspace {#edituseronworkspace}
+### Edit User on Workspace {#edituseronworkspace}
 
-Update a user's name and role.
+Update a user's name and role on a workspace.
 
 | Input          | Comments                                        | Default |
 | -------------- | ----------------------------------------------- | ------- |
@@ -362,16 +374,16 @@ Update a user's name and role.
 
 ### Get Accessible Custom Fields {#getaccessiblecustomfields}
 
-View the Custom Fields available on tasks in a specific List.
+List the custom fields available on tasks in a specific list.
 
 | Input      | Comments                                                            | Default |
 | ---------- | ------------------------------------------------------------------- | ------- |
 | Connection | The ClickUp connection to use.                                      |         |
 | List ID    | Only include time entries associated with tasks in a specific List. |         |
 
-### Get Authorized Teams (Workspaces) {#getauthorizedteams}
+### Get Authorized Workspaces {#getauthorizedteams}
 
-View the Workspaces available to the authenticated user.
+List the workspaces available to the authenticated user.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -379,7 +391,7 @@ View the Workspaces available to the authenticated user.
 
 ### Get Folder {#getfolder}
 
-View the Lists within a Folder.
+Retrieve a folder and its lists.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -388,7 +400,7 @@ View the Lists within a Folder.
 
 ### Get Guest {#getguest}
 
-View information about a guest in a Workspace.
+Retrieve information about a guest in a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -398,7 +410,7 @@ View information about a guest in a Workspace.
 
 ### Get List {#getlist}
 
-View details for a specific List.
+Retrieve details for a specific list.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -407,28 +419,16 @@ View details for a specific List.
 
 ### Get List Members {#getlistmembers}
 
-View the people who have access to a List.
+List the people who have access to a list.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
 | Connection | The ClickUp connection to use. |         |
 | List ID    | List ID                        |         |
 
-### Get Singular Time Entry {#getsingulartimeentry}
-
-View a single time entry.
-
-| Input                  | Comments                                                                                                      | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             | The ClickUp connection to use.                                                                                |         |
-| Team ID                | Team ID (Workspace) value.                                                                                    |         |
-| Timer ID               | The ID of a time entry.                                                                                       |         |
-| Include Task Tags      | When true, includes task tags in the response for time entries associated with tasks.                         | true    |
-| Include Location Names | When true, includes the names of the List, Folder, and Space along with the list_id, folder_id, and space_id. | true    |
-
 ### Get Space {#getspace}
 
-View the Spaces available in a Workspace by ID.
+Retrieve details for a specific space by ID.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -437,7 +437,7 @@ View the Spaces available in a Workspace by ID.
 
 ### Get Task {#gettask}
 
-View information about a task.
+Retrieve information about a task.
 
 | Input            | Comments                                                        | Default |
 | ---------------- | --------------------------------------------------------------- | ------- |
@@ -449,7 +449,7 @@ View information about a task.
 
 ### Get Task Comments {#gettaskcomments}
 
-View task comments.
+List all comments on a task.
 
 | Input          | Comments                                                     | Default |
 | -------------- | ------------------------------------------------------------ | ------- |
@@ -462,7 +462,7 @@ View task comments.
 
 ### Get Task Members {#gettaskmembers}
 
-View the members assigned to a task.
+List the members assigned to a task.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -471,7 +471,7 @@ View the members assigned to a task.
 
 ### Get Team {#getteam}
 
-This endpoint is used to view Teams: user groups in your Workspace.
+Retrieve user groups (Teams) in a workspace.
 
 | Input      | Comments                                                                               | Default |
 | ---------- | -------------------------------------------------------------------------------------- | ------- |
@@ -479,9 +479,9 @@ This endpoint is used to view Teams: user groups in your Workspace.
 | Team ID    | Team ID (Workspace) value.                                                             |         |
 | Group IDs  | Enter one or more Team IDs (user groups) to retrieve information about specific Teams. |         |
 
-### Get Time Entries Within a Date Range {#gettimeentrieswithindaterange}
+### Get Time Entries Within Date Range {#gettimeentrieswithindaterange}
 
-View time entries filtered by start and end date. By default, this endpoint returns time entries from the last 30 days created by the authenticated user.
+List time entries filtered by start and end date. By default, returns entries from the last 30 days created by the authenticated user.
 
 | Input                  | Comments                                                                                                      | Default |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -499,9 +499,21 @@ View time entries filtered by start and end date. By default, this endpoint retu
 | Custom Task ID         | When true, allows referencing a task by its custom task ID.                                                   | false   |
 | Custom Team ID         | Only used when the custom_task_ids parameter is set to true.                                                  |         |
 
+### Get Time Entry {#getsingulartimeentry}
+
+Retrieve a single time entry.
+
+| Input                  | Comments                                                                                                      | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The ClickUp connection to use.                                                                                |         |
+| Team ID                | Team ID (Workspace) value.                                                                                    |         |
+| Timer ID               | The ID of a time entry.                                                                                       |         |
+| Include Task Tags      | When true, includes task tags in the response for time entries associated with tasks.                         | true    |
+| Include Location Names | When true, includes the names of the List, Folder, and Space along with the list_id, folder_id, and space_id. | true    |
+
 ### Get User {#getuser}
 
-View information about a user in a Workspace.
+Retrieve information about a user in a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -509,18 +521,9 @@ View information about a user in a Workspace.
 | User ID    | User ID value.                 |         |
 | Connection | The ClickUp connection to use. |         |
 
-### Get Webhooks {#getwebhooks}
-
-View all webhooks for a list.
-
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Connection | The ClickUp connection to use. |         |
-| Team ID    | Team ID (Workspace) value.     |         |
-
 ### Get Workspace Plan {#getworkspaceplan}
 
-View the current Plan for the specified Workspace.
+Retrieve the current plan for a specified workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -529,7 +532,7 @@ View the current Plan for the specified Workspace.
 
 ### Get Workspace Seats {#getworkspaceseats}
 
-View the used, total, and available member and guest seats for a Workspace.
+Retrieve the used, total, and available member and guest seats for a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -551,9 +554,9 @@ Invite a new guest to a workspace.
 | Can Create Views       |                                    | true    |
 | Custom Role ID         | Custom Role ID value.              |         |
 
-### Invite User To Workspace {#inviteusertoworkspace}
+### Invite User to Workspace {#inviteusertoworkspace}
 
-Invite someone to join your Workspace as a member.
+Invite someone to join a workspace as a member.
 
 | Input          | Comments                                        | Default |
 | -------------- | ----------------------------------------------- | ------- |
@@ -565,7 +568,7 @@ Invite someone to join your Workspace as a member.
 
 ### List Folders {#listfolders}
 
-View all folders in a space.
+List all folders in a space.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -573,9 +576,9 @@ View all folders in a space.
 | Space ID   | Space ID value.                |         |
 | Archived   | Archived?                      | false   |
 
-### List Lists {#getlists}
+### List Lists in Folder {#getlists}
 
-View the Lists within a Folder.
+List the lists within a folder.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -585,7 +588,7 @@ View the Lists within a Folder.
 
 ### List Spaces {#listspaces}
 
-View the Spaces available in a Workspace.
+List the spaces available in a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -594,7 +597,7 @@ View the Spaces available in a Workspace.
 
 ### List Tasks {#listtasks}
 
-View the tasks in a List.
+List the tasks in a list.
 
 | Input                     | Comments                                                                                                                        | Default |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -618,9 +621,18 @@ View the tasks in a List.
 | Date Done Less Than       | Filter by date done less than Unix time in milliseconds.                                                                        |         |
 | Custom Fields             | JSON object containing an array of custom field filters. Each filter has a field_id, operator (=, <, >, <=, >=, !=), and value. |         |
 
+### List Webhooks {#getwebhooks}
+
+List all webhooks for a workspace.
+
+| Input      | Comments                       | Default |
+| ---------- | ------------------------------ | ------- |
+| Connection | The ClickUp connection to use. |         |
+| Team ID    | Team ID (Workspace) value.     |         |
+
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to ClickUp
+Send a raw HTTP request to the ClickUp API.
 
 | Input                   | Comments                                                                                                                                                                                                                                             | Default |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -652,9 +664,9 @@ Remove the data from a Custom Field on a task. This does not delete the option f
 | Custom Task ID | If you want to reference a task by its Custom Task ID, this value must be true.   | true    |
 | Team ID        | Only used when the custom_task_ids parameter is set to true                       |         |
 
-### Remove Guest From Folder {#removeguestfromfolder}
+### Remove Guest from Folder {#removeguestfromfolder}
 
-Revoke a guest's access to a Folder.
+Revoke a guest's access to a folder.
 
 | Input          | Comments                                                                          | Default |
 | -------------- | --------------------------------------------------------------------------------- | ------- |
@@ -663,9 +675,9 @@ Revoke a guest's access to a Folder.
 | Guest ID       | Guest ID                                                                          |         |
 | Include Shared | Exclude details of items shared with the guest by setting this parameter to false | true    |
 
-### Remove Guest From List {#removeguestfromlist}
+### Remove Guest from List {#removeguestfromlist}
 
-Revoke a guest's access to a List.
+Revoke a guest's access to a list.
 
 | Input          | Comments                                                                          | Default |
 | -------------- | --------------------------------------------------------------------------------- | ------- |
@@ -674,7 +686,7 @@ Revoke a guest's access to a List.
 | Guest ID       | Guest ID                                                                          |         |
 | Include Shared | Exclude details of items shared with the guest by setting this parameter to false | true    |
 
-### Remove Guest From Task {#removeguestfromtask}
+### Remove Guest from Task {#removeguestfromtask}
 
 Revoke a guest's access to a task.
 
@@ -687,9 +699,9 @@ Revoke a guest's access to a task.
 | Custom Task ID | If you want to reference a task by its Custom Task ID, this value must be true.   | true    |
 | Team ID        | Only used when the custom_task_ids parameter is set to true                       |         |
 
-### Remove Guest From Workspace {#removeguestfromworkspace}
+### Remove Guest from Workspace {#removeguestfromworkspace}
 
-Revoke a guest's access to a Workspace.
+Revoke a guest's access to a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -697,9 +709,9 @@ Revoke a guest's access to a Workspace.
 | Team ID    | Team ID (Workspace) value.     |         |
 | Guest ID   | Guest ID                       |         |
 
-### Remove Task From List {#removetaskfromlist}
+### Remove Task from List {#removetaskfromlist}
 
-Remove a task from an additional List. You can't remove a task from its home List.
+Remove a task from an additional list. A task cannot be removed from its home list.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -707,9 +719,9 @@ Remove a task from an additional List. You can't remove a task from its home Lis
 | List ID    | List ID                        |         |
 | Task ID    | Task ID                        |         |
 
-### Remove User From Workspace {#removeuserfromworkspace}
+### Remove User from Workspace {#removeuserfromworkspace}
 
-Deactivate a user from a Workspace.
+Deactivate a user from a workspace.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -729,7 +741,7 @@ Update the value of a Custom Field on a task.
 | Field Value | The value to set for the custom field.                                            |         |
 | Value Type  | The type of the value being set.                                                  |         |
 
-### Start a Time Entry {#starttimeentry}
+### Start Time Entry {#starttimeentry}
 
 Start a timer for the authenticated user.
 
@@ -744,9 +756,9 @@ Start a timer for the authenticated user.
 | Task ID        | Associate a time entry with a task by ID                     |         |
 | Tag name       | Add a tag name                                               |         |
 
-### Stop a Time Entry {#stoptimeentry}
+### Stop Time Entry {#stoptimeentry}
 
-Stop a timer that's currently running for the authenticated user.
+Stop the timer that is currently running for the authenticated user.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -767,7 +779,7 @@ Replace the content of a task comment, assign a comment, and mark a comment as r
 
 ### Update Folder {#updatefolder}
 
-Rename a Folder
+Rename a folder.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -777,7 +789,7 @@ Rename a Folder
 
 ### Update List {#updatelist}
 
-Rename a List, update the List Info description, set a due date/time, set the List's priority, set an assignee, set or remove the List color.
+Update a list's name, info description, due date/time, priority, assignee, and color.
 
 | Input         | Comments                                                                             | Default |
 | ------------- | ------------------------------------------------------------------------------------ | ------- |
@@ -794,7 +806,7 @@ Rename a List, update the List Info description, set a due date/time, set the Li
 
 ### Update Space {#updatespace}
 
-Rename, set the Space color, and enable ClickApps for a Space.
+Rename a space, set its color, and enable ClickApps for the space.
 
 | Input                     | Comments                                                      | Default |
 | ------------------------- | ------------------------------------------------------------- | ------- |
@@ -820,7 +832,7 @@ Rename, set the Space color, and enable ClickApps for a Space.
 
 ### Update Task {#updatetask}
 
-Update a task
+Update an existing task.
 
 | Input                | Comments                                                                                  | Default |
 | -------------------- | ----------------------------------------------------------------------------------------- | ------- |
@@ -845,7 +857,7 @@ Update a task
 
 ### Update Team {#updateteam}
 
-This endpoint is used to manage Teams: user groups which are groups of users you can assign items to in your Workspace
+Update a user group (Team) of users that can be assigned to items in a workspace.
 
 | Input         | Comments                                                                                        | Default |
 | ------------- | ----------------------------------------------------------------------------------------------- | ------- |

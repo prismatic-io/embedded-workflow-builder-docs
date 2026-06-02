@@ -82,12 +82,13 @@ Read about Amazon SES IAM policies in the [AWS docs](https://docs.aws.amazon.com
 
 List Identities available in Amazon SES
 
-| Input         | Comments                                                                                                | Default      |
-| ------------- | ------------------------------------------------------------------------------------------------------- | ------------ |
-| AWS Region    | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                 |              |
-| Identity Type | Provide the type of identity you want to list.                                                          | EmailAddress |
-| Next Token    | Specify the pagination token that's returned by a previous request to retrieve the next page of results |              |
-| Connection    |                                                                                                         |              |
+| Input         | Comments                                                                                                        | Default      |
+| ------------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
+| Connection    |                                                                                                                 |              |
+| AWS Region    | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                         |              |
+| Identity Type | Provide the type of identity you want to list.                                                                  | EmailAddress |
+| Fetch All     | When enabled, automatically fetches all pages of results. The Next Token input is ignored when this is enabled. | false        |
+| Next Token    | Specify the pagination token that's returned by a previous request to retrieve the next page of results         |              |
 
 ### Send Email {#sendemail}
 

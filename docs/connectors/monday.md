@@ -81,17 +81,28 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Items {#pollchangestrigger}
+
+Polls a Monday.com board for items created or updated since the last execution, separated into new and updated buckets.
+
+| Input                | Comments                                                                         | Default |
+| -------------------- | -------------------------------------------------------------------------------- | ------- |
+| Connection           | The Monday.com connection to use.                                                |         |
+| Board ID             | The unique identifier for the Monday.com board that the action targets.          |         |
+| Show New Records     | When true, newly created items are included in the trigger output.               | true    |
+| Show Updated Records | When true, items updated since the last poll are included in the trigger output. | true    |
+
 ### Webhook {#webhook}
 
-Receives webhook events from Monday.com. Automatically creates and deletes webhook subscriptions on instance deploy and delete.
+Receive webhook events from Monday. Automatically creates and manages webhook subscriptions on instance deploy and removes them on instance delete.
 
-| Input          | Comments                                                                                                                                                                                                                                               | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     | The Monday.com connection to use.                                                                                                                                                                                                                      |         |
-| Board ID       | The unique identifier of the Monday.com board.                                                                                                                                                                                                         |         |
-| Event          | The type of board event to subscribe to.                                                                                                                                                                                                               |         |
-| Config         | Optional event-specific configuration as a JSON object. For example, {"columnId": "status"} for change_specific_column_value events.                                                                                                                   |         |
-| Signing Secret | The Signing Secret from your Monday.com app. When provided, webhook payloads are verified against this secret. See [Monday.com Authorization docs](https://developer.monday.com/apps/docs/integration-authorization#authorization-header) for details. |         |
+| Input          | Comments                                                                                                                                                                                                                                              | Default |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Monday.com connection to use.                                                                                                                                                                                                                     |         |
+| Board ID       | The unique identifier for the Monday.com board that the action targets.                                                                                                                                                                               |         |
+| Event          | The type of board event to subscribe to.                                                                                                                                                                                                              |         |
+| Config         | Optional event-specific configuration as a JSON object. For example, {"columnId": "status"} for change_specific_column_value events.                                                                                                                  |         |
+| Signing Secret | The Signing Secret from the Monday.com app. When provided, webhook payloads are verified against this secret. See [Monday.com Authorization docs](https://developer.monday.com/apps/docs/integration-authorization#authorization-header) for details. |         |
 
 ## Actions
 
@@ -99,10 +110,10 @@ Receives webhook events from Monday.com. Automatically creates and deletes webho
 
 Archives a board by ID.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection | The Monday.com connection to use.              |         |
-| Board ID   | The unique identifier of the Monday.com board. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Monday.com connection to use.                                       |         |
+| Board ID   | The unique identifier for the Monday.com board that the action targets. |         |
 
 ### Create Board {#createboard}
 
@@ -124,7 +135,7 @@ Creates a webhook subscription for a board event.
 | Input       | Comments                                                                                                                             | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection  | The Monday.com connection to use.                                                                                                    |         |
-| Board ID    | The unique identifier of the Monday.com board.                                                                                       |         |
+| Board ID    | The unique identifier for the Monday.com board that the action targets.                                                              |         |
 | Webhook URL | The URL to receive webhook events. Must be a publicly accessible HTTPS endpoint (255 character limit).                               |         |
 | Event       | The type of board event to subscribe to.                                                                                             |         |
 | Config      | Optional event-specific configuration as a JSON object. For example, {"columnId": "status"} for change_specific_column_value events. |         |
@@ -133,15 +144,15 @@ Creates a webhook subscription for a board event.
 
 Deletes an existing webhook subscription by ID.
 
-| Input      | Comments                                         | Default |
-| ---------- | ------------------------------------------------ | ------- |
-| Connection | The Monday.com connection to use.                |         |
-| Board ID   | The unique identifier of the Monday.com board.   |         |
-| Webhook ID | The unique identifier of the Monday.com webhook. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Monday.com connection to use.                                       |         |
+| Board ID   | The unique identifier for the Monday.com board that the action targets. |         |
+| Webhook ID | The unique identifier of the Monday.com webhook.                        |         |
 
 ### Generic GraphQL Request {#genericrequest}
 
-Issue any GraphQL query or mutation with variables.
+Issues any GraphQL query or mutation with variables.
 
 | Input             | Comments                                                                                                     | Default                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
@@ -153,33 +164,33 @@ Issue any GraphQL query or mutation with variables.
 
 ### Get Board {#getboard}
 
-Get the information and metadata of a board by ID.
+Gets the information and metadata of a board by ID.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection | The Monday.com connection to use.              |         |
-| Board ID   | The unique identifier of the Monday.com board. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Monday.com connection to use.                                       |         |
+| Board ID   | The unique identifier for the Monday.com board that the action targets. |         |
 
 ### Get Items By Column Value {#getitemsbycolumnvaluenew}
 
-Fetch items that have a certain column value.
+Fetches items that have a certain column value.
 
 | Input         | Comments                                                                                                                                                                                           | Default |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection    | The Monday.com connection to use.                                                                                                                                                                  |         |
-| Board ID      | The unique identifier of the Monday.com board.                                                                                                                                                     |         |
+| Board ID      | The unique identifier for the Monday.com board that the action targets.                                                                                                                            |         |
 | Column ID     | The ID of the column to filter by. For possible values see the [Monday.com column types reference](https://developer.monday.com/api-reference/reference/column-types-reference#supported-columns). |         |
 | Column Value  | The value to match against the specified column when searching for items.                                                                                                                          |         |
 | Get All Items | When true, automatically fetches all pages of items matching the column value. When false, a maximum of 500 items will be returned.                                                                | false   |
 
 ### Get Items By Column Value (Deprecated) {#getitemsbycolumnvalue}
 
-Fetch items that have a certain column value. This version of the action is being deprecated. Please replace action with Get Items By Column Value.
+Fetches items that have a certain column value. This version of the action is deprecated. Please use Get Items By Column Value instead.
 
 | Input        | Comments                                                                                                                                                                                           | Default |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Monday.com connection to use.                                                                                                                                                                  |         |
-| Board ID     | The unique identifier of the Monday.com board.                                                                                                                                                     |         |
+| Board ID     | The unique identifier for the Monday.com board that the action targets.                                                                                                                            |         |
 | Column ID    | The ID of the column to filter by. For possible values see the [Monday.com column types reference](https://developer.monday.com/api-reference/reference/column-types-reference#supported-columns). |         |
 | Column Value | The value to match against the specified column when searching for items.                                                                                                                          |         |
 
@@ -190,15 +201,15 @@ Lists all available boards in the Monday account.
 | Input        | Comments                                                                                                                 | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection   | The Monday.com connection to use.                                                                                        |         |
+| Fetch All    | When true, automatically fetches all pages of results using pagination. Ignores the Result Limit and Page Offset inputs. | false   |
 | Result Limit | The maximum number of results to return. Accepts a value from 1 to 500.                                                  |         |
 | Page Offset  | The page number to retrieve from paginated results. Uses 1-based indexing.                                               |         |
-| Fetch All    | When true, automatically fetches all pages of results using pagination. Ignores the Result Limit and Page Offset inputs. | false   |
 
 ### List Webhooks {#listwebhooks}
 
 Lists all webhook subscriptions for a board.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection | The Monday.com connection to use.              |         |
-| Board ID   | The unique identifier of the Monday.com board. |         |
+| Input      | Comments                                                                | Default |
+| ---------- | ----------------------------------------------------------------------- | ------- |
+| Connection | The Monday.com connection to use.                                       |         |
+| Board ID   | The unique identifier for the Monday.com board that the action targets. |         |

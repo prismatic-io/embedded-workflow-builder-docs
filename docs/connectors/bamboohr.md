@@ -1,7 +1,7 @@
 ---
 title: BambooHR Connector
 sidebar_label: BambooHR
-description: Manage employees and HR data in the BambooHR platform
+description: Manage employees and HR data in BambooHR.
 ---
 
 ![BambooHR](./assets/bamboohr.png#connector-icon)
@@ -16,225 +16,235 @@ This component was built using the [BambooHR API Documentation](https://document
 
 ### API Key {#apikey}
 
-Authenticate with BambooHR using an API key
+Authenticate requests using an API key.
 
 Bamboo HR API keys can be used for testing an integration, but for production integrations, please use OAuth 2.0.
 
 To generate an API key, log in to Bamboo HR, click your user profile image on the upper-right and then click **API Keys**.
 Click **Add New Key**, and take note of the API key that is generated - it will be a ~40 character alphanumeric string.
 
-| Input          | Comments                                                                        | Default |
-| -------------- | ------------------------------------------------------------------------------- | ------- |
-| API Key        | Your BambooHR API key. You can generate this in your BambooHR account settings. |         |
-| Company Domain | The MYCOMPANY portion of your https://MYCOMPANY.bamboohr.com instance           |         |
+| Input          | Comments                                                                                            | Default |
+| -------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| API Key        | The BambooHR API key used to authenticate requests. Generate this in the BambooHR account settings. |         |
+| Company Domain | The MYCOMPANY portion of the https://MYCOMPANY.bamboohr.com instance URL.                           |         |
 
 ## Triggers
 
+### Changed Employees {#pollchangestrigger}
+
+Checks for new, updated, and deleted employees in BambooHR on a configured schedule.
+
+| Input                  | Comments                                                                                                                                                                         | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The BambooHR connection to use.                                                                                                                                                  |         |
+| Show New Employees     | When true, employees inserted since the last poll are included in the trigger output.                                                                                            | true    |
+| Show Updated Employees | When true, employees updated or deleted since the last poll are included in the trigger output. Inspect the `action` field on each record to distinguish updates from deletions. | true    |
+
 ### Webhook {#bamboohrtrigger}
 
-Receive and validate webhook requests from BambooHR for webhooks you configure.
+Receive and validate webhook requests from BambooHR for manually configured webhook subscriptions.
 
 ## Actions
 
-### Add Employee {#addemployee}
+### Add Employee Table Row {#addemployeetablerow}
 
-Add a new employee
-
-| Input           | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| First Name      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Last Name       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Employee Fields | The names of the fields and their values to use when creating/updating a record. Possible fields are: address1, address2, age, bestEmail, birthday, city, country, dateOfBirth, department, division, employeeNumber, employmentHistoryStatus, ethnicity, exempt, firstName, fullName1, fullName2, fullName3, fullName4, fullName5, displayName, gender, hireDate, originalHireDate, id, jobTitle, lastChanged, lastName, location, maritalStatus, middleName, mobilePhone, nationality, payGroup, payRate, payRateEffectiveDate, payType, paidPer, paySchedule, payFrequency, includeInPayroll, timeTrackingEnabled, ssn, sin, standardHoursPerWeek, state, stateCode, status, supervisor, supervisorEmail, terminationDate, workEmail, workPhone, zipcode |         |
-
-### Add Table Row {#addemployeetablerow}
-
-Adds a row to the specified table for an employee
+Add a row to the specified table for an employee.
 
 | Input              | Comments                                                                                                                                                                         | Default |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                                                  |         |
-| Employee ID        |                                                                                                                                                                                  |         |
-| Table Name (Alias) |                                                                                                                                                                                  |         |
+| Connection         | The BambooHR connection to use.                                                                                                                                                  |         |
+| Employee ID        | The unique identifier for the employee.                                                                                                                                          |         |
+| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                     |         |
 | Table Fields       | The names of the fields and their values to use when creating/updating a row in a table. Use the "List Tabular Fields (Tables)" action to list possible field names for a table. |         |
 
 ### Create Company File Category {#addcompanyfilecategory}
 
-Create a new company file category (folder)
+Create a new company file category (folder).
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Category Name |          |         |
+| Input         | Comments                                             | Default |
+| ------------- | ---------------------------------------------------- | ------- |
+| Connection    | The BambooHR connection to use.                      |         |
+| Category Name | The display name to assign to the new file category. |         |
+
+### Create Employee {#addemployee}
+
+Create a new employee.
+
+| Input           | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The BambooHR connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |         |
+| First Name      | The given name of the employee being created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
+| Last Name       | The family name of the employee being created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |         |
+| Employee Fields | The names of the fields and their values to use when creating/updating a record. Possible fields are: address1, address2, age, bestEmail, birthday, city, country, dateOfBirth, department, division, employeeNumber, employmentHistoryStatus, ethnicity, exempt, firstName, fullName1, fullName2, fullName3, fullName4, fullName5, displayName, gender, hireDate, originalHireDate, id, jobTitle, lastChanged, lastName, location, maritalStatus, middleName, mobilePhone, nationality, payGroup, payRate, payRateEffectiveDate, payType, paidPer, paySchedule, payFrequency, includeInPayroll, timeTrackingEnabled, ssn, sin, standardHoursPerWeek, state, stateCode, status, supervisor, supervisorEmail, terminationDate, workEmail, workPhone, zipcode. |         |
 
 ### Create Employee File Category {#addemployeefilecategory}
 
-Create a new employee file category (folder)
+Create a new employee file category (folder).
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Category Name |          |         |
+| Input         | Comments                                             | Default |
+| ------------- | ---------------------------------------------------- | ------- |
+| Connection    | The BambooHR connection to use.                      |         |
+| Category Name | The display name to assign to the new file category. |         |
 
 ### Create Webhook {#createwebhook}
 
-Create a new webhook
+Create a new webhook.
 
-| Input                     | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Webhook Name              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Callback URL              | Where the data should be sent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
-| Fields to Monitor         | Select one or more fields to trigger this webhook on. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle |         |
-| Fields to send to Webhook | A list of fields to post to the webhook url. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle          |         |
-| Allow Duplicates?         | By default this action checks if a webhook with this callback and sheet ID already exists. If it does, this action does not configure a new webhook. Toggle this to true to allow the creation of duplicate webhooks.                                                                                                                                                                                                                                                                                                                                                                                                                              | false   |
+| Input                     | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                | The BambooHR connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |         |
+| Webhook Name              | A descriptive label used to identify the webhook in BambooHR.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |         |
+| Callback URL              | The URL where BambooHR should send webhook payloads.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |         |
+| Fields to Monitor         | One or more fields to trigger this webhook on. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle.                           |         |
+| Fields to Send to Webhook | The list of fields to include in the payload posted to the callback URL. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle. |         |
+| Allow Duplicates          | When true, allows the creation of duplicate webhooks. By default this action checks if a webhook with this callback and sheet ID already exists and, if so, skips configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | false   |
 
 ### Delete Company File {#deletecompanyfile}
 
-Delete an company file
+Delete a company file.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| File ID    |          |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The BambooHR connection to use.             |         |
+| File ID    | The unique identifier for the company file. |         |
 
 ### Delete Employee File {#deleteemployeefile}
 
-Delete an employee file
+Delete an employee file.
 
-| Input            | Comments | Default |
-| ---------------- | -------- | ------- |
-| Connection       |          |         |
-| Employee ID      |          |         |
-| Employee File ID |          |         |
+| Input            | Comments                                     | Default |
+| ---------------- | -------------------------------------------- | ------- |
+| Connection       | The BambooHR connection to use.              |         |
+| Employee ID      | The unique identifier for the employee.      |         |
+| Employee File ID | The unique identifier for the employee file. |         |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
-Delete all BambooHR webhooks that point to a flow in this instance
+Delete all BambooHR webhooks that point to a flow in this instance.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The BambooHR connection to use. |         |
 
 ### Delete Webhook {#deletewebhookbyid}
 
-Delete a webhook by ID
+Delete a webhook by ID.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| Webhook ID |          |         |
-
-### Get an Employee's Table {#getemployeetable}
-
-Get a specific table associated with an employee
-
-| Input              | Comments | Default |
-| ------------------ | -------- | ------- |
-| Connection         |          |         |
-| Employee ID        |          |         |
-| Table Name (Alias) |          |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The BambooHR connection to use.        |         |
+| Webhook ID | The unique identifier for the webhook. |         |
 
 ### Get Company File {#getcompanyfile}
 
-Get an company file
+Retrieve a company file.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
-| File ID    |          |         |
+| Input      | Comments                                    | Default |
+| ---------- | ------------------------------------------- | ------- |
+| Connection | The BambooHR connection to use.             |         |
+| File ID    | The unique identifier for the company file. |         |
 
 ### Get Employee {#getemployee}
 
-Get an Employee
+Retrieve an employee by ID.
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Connection  |          |         |
-| Employee ID |          |         |
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The BambooHR connection to use.         |         |
+| Employee ID | The unique identifier for the employee. |         |
 
 ### Get Employee File {#getemployeefile}
 
-Get an employee file
+Retrieve an employee file.
 
-| Input            | Comments | Default |
-| ---------------- | -------- | ------- |
-| Connection       |          |         |
-| Employee ID      |          |         |
-| Employee File ID |          |         |
+| Input            | Comments                                     | Default |
+| ---------------- | -------------------------------------------- | ------- |
+| Connection       | The BambooHR connection to use.              |         |
+| Employee ID      | The unique identifier for the employee.      |         |
+| Employee File ID | The unique identifier for the employee file. |         |
 
-### Get Time Off Requests {#gettimeoffrequests}
+### Get Employee Table {#getemployeetable}
 
-Gets Employee Time Off Requests for a given date range.
+Retrieve a specific table associated with an employee.
 
-| Input              | Comments | Default |
-| ------------------ | -------- | ------- |
-| Connection         |          |         |
-| Time Off Record ID |          |         |
-| Employee ID        |          |         |
-| Start Date         |          |         |
-| End Date           |          |         |
-| Status             |          |         |
+| Input              | Comments                                                                                                     | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection         | The BambooHR connection to use.                                                                              |         |
+| Employee ID        | The unique identifier for the employee.                                                                      |         |
+| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus). |         |
 
 ### List Company Files {#listcompanyfiles}
 
-List all company categories and files
+List all company file categories and files.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The BambooHR connection to use. |         |
 
 ### List Employee Files {#listemployeefiles}
 
-List all employee categories and files
+List all employee file categories and files.
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Connection  |          |         |
-| Employee ID |          |         |
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The BambooHR connection to use.         |         |
+| Employee ID | The unique identifier for the employee. |         |
 
 ### List Employees {#getemployeedirectory}
 
-Get the employee directory
+List all employees from the directory.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The BambooHR connection to use. |         |
 
-### List Tabular Fields (Tables) {#gettabularfields}
+### List Tabular Fields {#gettabularfields}
 
-List all tables and their fields in the account
+List all tables and their fields in the account.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The BambooHR connection to use. |         |
+
+### List Time Off Requests {#gettimeoffrequests}
+
+List employee time off requests for a given date range.
+
+| Input              | Comments                                                                     | Default |
+| ------------------ | ---------------------------------------------------------------------------- | ------- |
+| Connection         | The BambooHR connection to use.                                              |         |
+| Start Date         | The first date of the time off range to query or create. Format: YYYY-MM-DD. |         |
+| End Date           | The last date of the time off range to query or create. Format: YYYY-MM-DD.  |         |
+| Time Off Record ID | The unique identifier for a specific time off request record.                |         |
+| Employee ID        | The unique identifier for the employee.                                      |         |
+| Status             | The time off request status to filter by.                                    |         |
 
 ### List Webhooks {#listwebhooks}
 
-Get a list of existing webhooks
+List all existing webhooks.
 
-| Input                       | Comments                                       | Default |
-| --------------------------- | ---------------------------------------------- | ------- |
-| Connection                  |                                                |         |
-| Show only instance webhooks | Show only webhooks that point to this instance | true    |
+| Input                       | Comments                                                           | Default |
+| --------------------------- | ------------------------------------------------------------------ | ------- |
+| Connection                  | The BambooHR connection to use.                                    |         |
+| Show Only Instance Webhooks | When true, only webhooks that point to this instance are returned. | true    |
 
 ### List Who's Out {#whosout}
 
-Get a list of all employees currently taking time off
+List all employees currently taking time off.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection |                                                |         |
-| Start Date | Defaults to today's date if omitted            |         |
-| End Date   | Defaults to 14 days from start date if omitted |         |
+| Input      | Comments                                                                                                     | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The BambooHR connection to use.                                                                              |         |
+| Start Date | The first date of the range to query. Defaults to today's date if omitted. Format: YYYY-MM-DD.               |         |
+| End Date   | The last date of the range to query. Defaults to 14 days from the start date if omitted. Format: YYYY-MM-DD. |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to BambooHR
+Send a raw HTTP request to BambooHR.
 
 | Input                   | Comments                                                                                                                                                                                                                                                                                                     | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                              |         |
+| Connection              | The BambooHR connection to use.                                                                                                                                                                                                                                                                              |         |
 | URL                     | Input the path only (/v1/employees/directory), The base URL is already included (https://api.bamboohr.com/api/gateway.php/COMPANY_DOMAIN). For example, to connect to https://api.bamboohr.com/api/gateway.php/COMPANY_DOMAIN/v1/employees/directory, only /v1/employees/directory is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                      |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                    |         |
@@ -252,47 +262,47 @@ Send raw HTTP request to BambooHR
 
 ### Update Employee {#updateemployee}
 
-Update an existing employee
+Update an existing employee.
 
-| Input           | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Employee ID     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
-| Employee Fields | The names of the fields and their values to use when creating/updating a record. Possible fields are: address1, address2, age, bestEmail, birthday, city, country, dateOfBirth, department, division, employeeNumber, employmentHistoryStatus, ethnicity, exempt, firstName, fullName1, fullName2, fullName3, fullName4, fullName5, displayName, gender, hireDate, originalHireDate, id, jobTitle, lastChanged, lastName, location, maritalStatus, middleName, mobilePhone, nationality, payGroup, payRate, payRateEffectiveDate, payType, paidPer, paySchedule, payFrequency, includeInPayroll, timeTrackingEnabled, ssn, sin, standardHoursPerWeek, state, stateCode, status, supervisor, supervisorEmail, terminationDate, workEmail, workPhone, zipcode |         |
+| Input           | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The BambooHR connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |         |
+| Employee ID     | The unique identifier for the employee.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
+| Employee Fields | The names of the fields and their values to use when creating/updating a record. Possible fields are: address1, address2, age, bestEmail, birthday, city, country, dateOfBirth, department, division, employeeNumber, employmentHistoryStatus, ethnicity, exempt, firstName, fullName1, fullName2, fullName3, fullName4, fullName5, displayName, gender, hireDate, originalHireDate, id, jobTitle, lastChanged, lastName, location, maritalStatus, middleName, mobilePhone, nationality, payGroup, payRate, payRateEffectiveDate, payType, paidPer, paySchedule, payFrequency, includeInPayroll, timeTrackingEnabled, ssn, sin, standardHoursPerWeek, state, stateCode, status, supervisor, supervisorEmail, terminationDate, workEmail, workPhone, zipcode. |         |
 
 ### Update Employee Table Row {#updateemployeetablerow}
 
-Updates a specific row in an Employee Table
+Update a specific row in an employee table.
 
 | Input              | Comments                                                                                                                                                                         | Default |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                                                  |         |
-| Employee ID        |                                                                                                                                                                                  |         |
-| Table Name (Alias) |                                                                                                                                                                                  |         |
-| Row ID             |                                                                                                                                                                                  |         |
+| Connection         | The BambooHR connection to use.                                                                                                                                                  |         |
+| Employee ID        | The unique identifier for the employee.                                                                                                                                          |         |
+| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                     |         |
+| Row ID             | The unique identifier for the row in the table.                                                                                                                                  |         |
 | Table Fields       | The names of the fields and their values to use when creating/updating a row in a table. Use the "List Tabular Fields (Tables)" action to list possible field names for a table. |         |
 
 ### Upload Company File {#uploadcompanyfile}
 
-Upload a new company file
+Upload a new company file.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Category ID   |          |         |
-| File Name     |          |         |
-| Share?        |          | false   |
-| File contents |          |         |
+| Input         | Comments                                                                              | Default |
+| ------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection    | The BambooHR connection to use.                                                       |         |
+| Category ID   | The unique identifier for the file category.                                          |         |
+| File Name     | The name to assign to the uploaded file, including its extension.                     |         |
+| File Contents | The binary contents of the file to upload, typically referenced from a previous step. |         |
+| Share         | When true, the file is shared with the employee.                                      | false   |
 
 ### Upload Employee File {#uploademployeefile}
 
-Upload a new employee file
+Upload a new employee file.
 
-| Input         | Comments | Default |
-| ------------- | -------- | ------- |
-| Connection    |          |         |
-| Employee ID   |          |         |
-| Category ID   |          |         |
-| File Name     |          |         |
-| Share?        |          | false   |
-| File contents |          |         |
+| Input         | Comments                                                                              | Default |
+| ------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection    | The BambooHR connection to use.                                                       |         |
+| Employee ID   | The unique identifier for the employee.                                               |         |
+| Category ID   | The unique identifier for the file category.                                          |         |
+| File Name     | The name to assign to the uploaded file, including its extension.                     |         |
+| File Contents | The binary contents of the file to upload, typically referenced from a previous step. |         |
+| Share         | When true, the file is shared with the employee.                                      | false   |

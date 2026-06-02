@@ -262,9 +262,10 @@ List Folder contents at the specified path
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                         |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Recursive      | If true, the response will contain contents of all subfolders.                                                                                          | false   |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
-| Recursive      | If true, the response will contain contents of all subfolders.                                                                                          | false   |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |
 | Team Member ID | The ID of the team member. Required if Team User Type is set                                                                                            |         |
 
@@ -276,22 +277,24 @@ List Shared Folders contents
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                                                                                                             |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                                                                                                        |         |
+| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                                                                                                         | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                                                                                                       |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases.                                                                                     |         |
-| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. |         |
 
 ### List Shared Links {#listsharedlinks}
 
 List Folder contents at the specified path
 
-| Input          | Comments                                                                              | Default |
-| -------------- | ------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                       |         |
-| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                  |         |
-| Direct Only    | Links to parent folders can be suppressed by setting direct_only to true.             | false   |
-| Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue. |         |
-| Team User Type | The type of user to connect with. Admin or User                                       |         |
-| Team Member ID | The ID of the team member. Required if Team User Type is set                          |         |
+| Input          | Comments                                                                                                            | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                     |         |
+| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                |         |
+| Direct Only    | Links to parent folders can be suppressed by setting direct_only to true.                                           | false   |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled. | false   |
+| Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                               |         |
+| Team User Type | The type of user to connect with. Admin or User                                                                     |         |
+| Team Member ID | The ID of the team member. Required if Team User Type is set                                                        |         |
 
 ### List Team's Folders {#listteamfolder}
 
@@ -301,6 +304,7 @@ List Team's Folder contents
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                         |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 
@@ -369,6 +373,7 @@ Search for files at the specified path
 | Connection     |                                                                                                                                                         |         |
 | File Name      | The name of a file within a Dropbox share.                                                                                                              |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |
@@ -383,6 +388,7 @@ Search for folders at the specified path
 | Connection     |                                                                                                                                                         |         |
 | Folder Name    | The name of the folder to search for                                                                                                                    |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |

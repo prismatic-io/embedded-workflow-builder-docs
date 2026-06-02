@@ -206,18 +206,19 @@ Retrieve logs for a Shipment by Shipment ID
 
 Retrieve a list of several Products
 
-| Input              | Comments                                           | Default |
-| ------------------ | -------------------------------------------------- | ------- |
-| Connection         | The ShipBob connection to use.                     |         |
-| Version            | The version of the ShipBob API to use              | 1.0     |
-| ShipBob Channel ID | Channel ID for operation                           |         |
-| Page               | Page number of orders to retrieve                  |         |
-| Limit              | Number of orders per page to retrieve              |         |
-| Order IDs          | Comma separated list of product ids to filter by   |         |
-| Reference IDs      | Comma-separated list of reference IDs to filter by |         |
-| Search             | Search term to filter by Inventory ID or Name      |         |
-| Active Status      | Filter by active status                            |         |
-| Bundle Status      | Filter by bundle status                            |         |
+| Input              | Comments                                                                                                          | Default |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The ShipBob connection to use.                                                                                    |         |
+| Version            | The version of the ShipBob API to use                                                                             | 1.0     |
+| ShipBob Channel ID | Channel ID for operation                                                                                          |         |
+| Fetch All          | When enabled, automatically fetches all pages of results. Page and Limit inputs are ignored when this is enabled. | false   |
+| Order IDs          | Comma separated list of product ids to filter by                                                                  |         |
+| Reference IDs      | Comma-separated list of reference IDs to filter by                                                                |         |
+| Search             | Search term to filter by Inventory ID or Name                                                                     |         |
+| Active Status      | Filter by active status                                                                                           |         |
+| Bundle Status      | Filter by bundle status                                                                                           |         |
+| Page               | Page number of orders to retrieve                                                                                 |         |
+| Limit              | Number of orders per page to retrieve                                                                             |         |
 
 ### Get Order {#getorder}
 
@@ -299,14 +300,15 @@ Retrieve a list of Inventory Items
 | Connection         | The ShipBob connection to use.                                                                                                                                |         |
 | Version            | The version of the ShipBob API to use                                                                                                                         | 1.0     |
 | ShipBob Channel ID | Channel ID for operation                                                                                                                                      |         |
-| Page               | Page number of orders to retrieve                                                                                                                             |         |
-| Limit              | Number of orders per page to retrieve                                                                                                                         |         |
+| Fetch All          | When enabled, automatically fetches all pages of results. Page and Limit inputs are ignored when this is enabled.                                             | false   |
 | IsActive           | When true, marks the inventory as active                                                                                                                      | false   |
 | IsDigital          | When true, marks the inventory as digital (non-physical)                                                                                                      | false   |
 | Order IDs          | Comma-separated list of order IDs to filter by                                                                                                                |         |
 | Sort               | Sort field(s) in ascending order (default). Prefix field with '-' for descending order. Example: -onHand,name sorts by onHand descending, then name ascending |         |
 | Search             | Search term to filter by Inventory ID or Name                                                                                                                 |         |
 | Location Type      | Location type to filter by. Options: hub, spoke, lts. Defaults to all locations if not specified                                                              |         |
+| Page               | Page number of orders to retrieve                                                                                                                             |         |
+| Limit              | Number of orders per page to retrieve                                                                                                                         |         |
 
 ### List Locations {#listlocations}
 
@@ -329,8 +331,7 @@ Retrieve all Orders
 | Connection                      | The ShipBob connection to use.                                                                                                      |         |
 | Version                         | The version of the ShipBob API to use                                                                                               | 1.0     |
 | ShipBob Channel ID              | Channel ID for operation                                                                                                            |         |
-| Page                            | Page number of orders to retrieve                                                                                                   |         |
-| Limit                           | Number of orders per page to retrieve                                                                                               |         |
+| Fetch All                       | When enabled, automatically fetches all pages of results. Page and Limit inputs are ignored when this is enabled.                   | false   |
 | Order IDs                       | Comma-separated list of order IDs to filter by                                                                                      |         |
 | Reference IDs                   | Comma-separated list of reference IDs to filter by                                                                                  |         |
 | Start Date                      | Start date to filter orders inserted on or after this date (YYYY-MM-DD)                                                             |         |
@@ -346,6 +347,8 @@ Retrieve all Orders
 | Delivery En Date                | End date to filter orders with delivery date on or before this date (YYYY-MM-DD). Only returns orders with tracking information     |         |
 | Fulfillment Start Date          | Start date to filter orders with fulfillment date on or after this date (YYYY-MM-DD). Only returns orders with tracking information |         |
 | Fulfillment End Date            | End date to filter orders with fulfillment date on or before this date (YYYY-MM-DD). Only returns orders with tracking information  |         |
+| Page                            | Page number of orders to retrieve                                                                                                   |         |
+| Limit                           | Number of orders per page to retrieve                                                                                               |         |
 
 ### List Warehouse Receiving Orders {#listwarehousereceivingorders}
 
@@ -355,26 +358,28 @@ Retrieve all Warehouse Receiving Orders
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | Connection             | The ShipBob connection to use.                                                                                                |                         |
 | Version                | The version of the ShipBob API to use                                                                                         | 2.0                     |
-| Page                   | Page of WROs to get                                                                                                           |                         |
-| Limit                  | Number of WROs per page to request                                                                                            |                         |
+| Fetch All              | When enabled, automatically fetches all pages of results. Page and Limit inputs are ignored when this is enabled.             | false                   |
 | Order IDs              | Comma-separated list of order IDs to filter by                                                                                |                         |
 | Statuses               | List of WRO statuses to filter by. Options: Awaiting, Processing, Completed, Cancelled, Incomplete, Arrived, PartiallyArrived | <code>["000xxx"]</code> |
 | Insert Start Date      | Earliest date that a WRO was created (YYYY-MM-DD)                                                                             |                         |
 | Insert End Date        | Latest date that a WRO was created (YYYY-MM-DD)                                                                               |                         |
 | Fulfillment Center IDs | List of WRO fulfillment center IDs to filter by                                                                               | <code>["000xxx"]</code> |
 | Purchase Order Numbers | List of WRO purchase order numbers to filter by                                                                               | <code>["000xxx"]</code> |
+| Page                   | Page of WROs to get                                                                                                           |                         |
+| Limit                  | Number of WROs per page to request                                                                                            |                         |
 
 ### List Webhooks {#listwebhooks}
 
 Get a list of active Webhooks
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The ShipBob connection to use.         |         |
-| Version    | The version of the ShipBob API to use  | 1.0     |
-| Topic      | Topic of the webhook to subscribe to   |         |
-| Page       | Page of Webhooks to get                |         |
-| Limit      | Amount of Webhooks per page to request |         |
+| Input      | Comments                                                                                                          | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The ShipBob connection to use.                                                                                    |         |
+| Version    | The version of the ShipBob API to use                                                                             | 1.0     |
+| Fetch All  | When enabled, automatically fetches all pages of results. Page and Limit inputs are ignored when this is enabled. | false   |
+| Topic      | Topic of the webhook to subscribe to                                                                              |         |
+| Page       | Page of Webhooks to get                                                                                           |         |
+| Limit      | Amount of Webhooks per page to request                                                                            |         |
 
 ### Raw Request {#rawrequest}
 

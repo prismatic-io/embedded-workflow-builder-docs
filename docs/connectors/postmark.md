@@ -177,9 +177,10 @@ Get a list of all servers associated with the account
 | Input       | Comments                                                                                                                                                                | Default |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Postmark connection to use.                                                                                                                                         |         |
+| Server Name | Filter by a specific server name. <strong>Note:</strong> This is a partial match search - 'MyServer' will match 'MyServer', 'MyServer Production', and 'MyServer Test'. |         |
+| Fetch All   | When enabled, automatically fetches all pages of results. Count and Offset inputs are ignored when this is enabled.                                                     | false   |
 | Count       | Number of servers to return per request. Maximum 500.                                                                                                                   |         |
 | Offset      | Number of servers to skip for pagination.                                                                                                                               |         |
-| Server Name | Filter by a specific server name. <strong>Note:</strong> This is a partial match search - 'MyServer' will match 'MyServer', 'MyServer Production', and 'MyServer Test'. |         |
 
 ### List Webhooks {#listwebhooks}
 

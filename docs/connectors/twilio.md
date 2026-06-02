@@ -12,7 +12,7 @@ You can use the Twilio component to send messages to your end users or to your t
 
 ### API Key {#apikeysecret}
 
-API Key connection for Twilio
+Authenticate requests to Twilio using an API key and secret.
 
 This component authenticates with Twilio using API key/secret pairs that can be generated from Twilio's app console.
 To create a Twilio API key and secret pair:
@@ -27,15 +27,15 @@ Now, when you create an integration that uses Twilio, a "Twilio API Key Connecti
 Enter your **API Key SID** (starts with "SK..."), and its **Secret**.
 Go back to your Twilio console to find your **Account SID** (starts with "AC..."), and enter that as well.
 
-| Input          | Comments                                                      | Default |
-| -------------- | ------------------------------------------------------------- | ------- |
-| Account SID    | Your account SID (starts with AC)                             |         |
-| API Key SID    | An API Key SID (starts with SK)                               |         |
-| API Key Secret | The API secret that was generated when an API key was created |         |
+| Input          | Comments                                               | Default |
+| -------------- | ------------------------------------------------------ | ------- |
+| Account SID    | The Twilio Account SID (starts with AC).               |         |
+| API Key SID    | The API Key SID (starts with SK).                      |         |
+| API Key Secret | The API secret generated when the API key was created. |         |
 
-### Auth Token {#basic}
+### Basic Authentication {#basic}
 
-Auth Token connection for Twilio
+Authenticate requests to Twilio using an Account SID and Auth Token.
 
 When you create a Twilio account, an **Account String Identifier** (Account SID) and **Auth Token** are generated.
 You can use the account SID and auth token to authenticate with Twilio and to send SMS messages.
@@ -45,43 +45,55 @@ For security reasons, we recommend using an [API Key Connection](#apikeysecret) 
 API keys can be revoked and auth tokens generated using API keys are short-lived.
 :::
 
-| Input       | Comments                                                           | Default |
-| ----------- | ------------------------------------------------------------------ | ------- |
-| Account SID | Your account SID (starts with AC)                                  |         |
-| Auth Token  | Can be found on the [Twilio Console](https://console.twilio.com/). |         |
+| Input       | Comments                                                               | Default |
+| ----------- | ---------------------------------------------------------------------- | ------- |
+| Account SID | The Twilio Account SID (starts with AC).                               |         |
+| Auth Token  | The Auth Token from the [Twilio Console](https://console.twilio.com/). |         |
 
 ## Triggers
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for newly sent Twilio messages on a configured schedule. Returned messages appear in the created bucket; the updated bucket is preserved for shape parity but is always empty because Twilio polling does not detect status changes to already-sent messages.
+
+| Input                | Comments                                                                                                                                                                                                                 | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Twilio connection to use.                                                                                                                                                                                            |         |
+| From Filter          | The sender phone number to filter polled messages by, in E.164 format. Leave blank to include all senders.                                                                                                               |         |
+| To Filter            | The recipient phone number to filter polled messages by, in E.164 format. Leave blank to include all recipients.                                                                                                         |         |
+| Show New Records     | When true, newly sent messages are included in the trigger output.                                                                                                                                                       | true    |
+| Show Updated Records | Reserved for shape consistency with other polling triggers. Twilio polling does not detect status changes to already-sent messages (use the webhook trigger for status callbacks). The 'updated' bucket is always empty. | true    |
+
 ### Webhook {#webhook}
 
-Receive and validate webhook requests from Twilio for webhooks you configure.
+Receive and validate webhook requests from Twilio for manually configured webhook subscriptions.
 
 ## Actions
 
 ### Get SMS {#getsms}
 
-Get an SMS message
+Retrieve an SMS message by SID.
 
-| Input       | Comments | Default |
-| ----------- | -------- | ------- |
-| Message SID |          |         |
-| Connection  |          |         |
+| Input       | Comments                                   | Default |
+| ----------- | ------------------------------------------ | ------- |
+| Connection  | The Twilio connection to use.              |         |
+| Message SID | The unique identifier for the SMS message. |         |
 
-### List SMS messages {#listmessages}
+### List SMS Messages {#listmessages}
 
-Lists SMS messages
+List SMS messages from the Twilio account.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                      | Default |
+| ---------- | ----------------------------- | ------- |
+| Connection | The Twilio connection to use. |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Twilio
+Send a raw HTTP request to Twilio.
 
 | Input                   | Comments                                                                                                                                                                                                                                                                                                                     | Default |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                              |         |
+| Connection              | The Twilio connection to use.                                                                                                                                                                                                                                                                                                |         |
 | URL                     | Input the path only (/Accounts/$TWILIO_ACCOUNT_SID/Messages.json), The base URL is already included (https://api.twilio.com/2010-04-01). For example, to connect to https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages.json, only /Accounts/$TWILIO_ACCOUNT_SID/Messages.json is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                      |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                    |         |
@@ -99,11 +111,11 @@ Send raw HTTP request to Twilio
 
 ### Send SMS {#sendsms}
 
-Send an SMS message
+Send an SMS message via Twilio.
 
-| Input      | Comments                             | Default |
-| ---------- | ------------------------------------ | ------- |
-| To         | The SMS recipient's phone number.    |         |
-| From       | The SMS sender's phone number.       |         |
-| Message    | The message body of the SMS message. |         |
-| Connection |                                      |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Twilio connection to use.                     |         |
+| To         | The SMS recipient's phone number in E.164 format. |         |
+| From       | The SMS sender's phone number in E.164 format.    |         |
+| Message    | The text content of the SMS message to send.      |         |

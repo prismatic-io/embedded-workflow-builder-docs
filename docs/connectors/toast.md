@@ -155,12 +155,13 @@ Returns information about cash added to or removed from a cash drawer or other c
 
 ### List Connected Restaurants {#listconnectedrestaurants}
 
-Returns a PaginatedResponse object that contains a paginated array of the restaurants that have connected to your integrated partner service.
+Returns a PaginatedResponse object that contains a paginateResultsd array of the restaurants that have connected to your integrated partner service.
 
 | Input         | Comments                                                                                                                                                                                                                                    | Default |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection    |                                                                                                                                                                                                                                             |         |
 | Last Modified | Limits the return data to restaurants that changed their access configuration for your partner service after a specific date and time. You can use this parameter to identify new or updated restaurants connected to your partner service. |         |
+| Fetch All     | When enabled, automatically fetches all pages of results. Page Size and Page Token inputs are ignored when this is enabled.                                                                                                                 | false   |
 | Page Size     | Controls the number of PartnerAccessExternalRep objects that the endpoint will return in each page of response data. The maximum page size is 200.                                                                                          | 100     |
 | Page Token    | Returns a specific set of restaurants in the response value. You get the token string for the next page of connected restaurants from the nextPageToken value of the PaginatedResponse object for a page of results.                        |         |
 

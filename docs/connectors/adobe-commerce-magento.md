@@ -39,6 +39,17 @@ The Marketplace EQP API uses a two-step process to authenticate a client applica
 
 ## Triggers
 
+### New and Updated Records {#pollchangestrigger}
+
+Polls a Magento resource collection (orders, customers, or products) for records whose `updated_at` is at or after the last poll. Records whose `created_at` is also after the last poll go to the `created` branch; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           |                                                                                                                                      |         |
+| Resource Type        | The Magento resource collection to poll for new and updated records.                                                                 | orders  |
+| Show New Records     | When enabled, records whose `created_at` falls after the last poll will be emitted on the `created` branch.                          | true    |
+| Show Updated Records | When enabled, records whose `updated_at` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
+
 ### Webhook {#mytrigger}
 
 Receive and validate webhook requests from Adobe Commerce for webhooks you configure.

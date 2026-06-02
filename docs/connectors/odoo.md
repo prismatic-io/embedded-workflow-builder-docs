@@ -34,6 +34,19 @@ Either way, Odoo uses basic auth to connect to an Odoo database.
 | Username            |                                                                                 |         |
 | Password or API Key |                                                                                 |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Polls an Odoo model for records whose `write_date` is at or after the last poll. Records whose `create_date` is also after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           |                                                                                                                                      |         |
+| Model                | The type of record you would like to query for. Use the 'List Models' action for a list of available models.                         |         |
+| Show New Records     | When enabled, records whose `create_date` falls after the last poll will be emitted on the `created` branch.                         | true    |
+| Show Updated Records | When enabled, records whose `write_date` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
+
 ## Actions
 
 ### Create Record {#createrecord}

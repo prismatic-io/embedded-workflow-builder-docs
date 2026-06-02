@@ -18,7 +18,7 @@ This component was built using the [Adobe Sign REST API v6](https://secure.na1.a
 
 ### OAuth 2.0 {#oauth}
 
-OAuth 2.0 flow
+Authenticate using OAuth 2.0.
 
 To configure OAuth for Sign, begin by [creating an App:](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#get-the-app-id-and-secret)
 
@@ -58,7 +58,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### Webhook {#adobesigntrigger}
 
-Receive and validate webhook requests from Adobe Sign for webhooks you configure.
+Receive and validate webhook requests from Adobe Acrobat Sign for manually configured webhook subscriptions.
 
 | Input                     | Comments                                                            | Default |
 | ------------------------- | ------------------------------------------------------------------- | ------- |
@@ -69,7 +69,7 @@ Receive and validate webhook requests from Adobe Sign for webhooks you configure
 
 ### Create Account {#createaccount}
 
-Creates an Acrobat Sign account under the partner channel.
+Creates an Adobe Acrobat Sign account under the partner channel.
 
 | Input               | Comments                                                                                                                                                                                                                                                                                               | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -126,7 +126,7 @@ Uploads a document and obtains the document's ID.
 
 ### Create User {#createuser}
 
-Creates a new user in the Acrobat Sign system.
+Creates a new user in the Adobe Acrobat Sign system.
 
 | Input         | Comments                                     | Default |
 | ------------- | -------------------------------------------- | ------- |
@@ -144,7 +144,7 @@ Creates a new user in the Acrobat Sign system.
 
 ### Create Webhook {#createwebhook}
 
-Creates a webhook.
+Creates a webhook for the authenticated user.
 
 | Input                                            | Comments                                                                                                                                                                                                                                                                                                                                                                                                 | Default |
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -174,7 +174,7 @@ Deletes all the documents for an agreement.
 
 ### Delete Group {#deletegroup}
 
-Delete an existing group.
+Deletes an existing group.
 
 | Input      | Comments                                  | Default |
 | ---------- | ----------------------------------------- | ------- |
@@ -251,70 +251,76 @@ Retrieves agreements for the user.
 | Input                  | Comments                                                                                                                                                                                                                                                                                               | Default |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection             | The Adobe Acrobat Sign connection to use.                                                                                                                                                                                                                                                              |         |
-| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page.                                                                                                                                                                                                               |         |
-| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings.                                                                                                                                                                                                 |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                                                                                | true    |
+| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.                                                                                                                                                                         |         |
+| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false.                                                                                                                                                           | 500     |
 | External ID            | Case-sensitive External ID for which you would like to retrieve agreement information. ExternalId is passed in the call to the agreement creation API. <strong>Note:</strong> The externalId value is visible to all participants through the API, so should not be used to contain a sensitive token. |         |
 | Group ID               | The group identifier, as returned by the group creation API or retrieved from the API to fetch groups.                                                                                                                                                                                                 |         |
 | Show Hidden Agreements | When true, fetches all the hidden agreements along with the visible agreements. Default value is false.                                                                                                                                                                                                | false   |
 
 ### List Group Events {#listgroupevents}
 
-Retrieves all events for group
+Retrieves all events for a group.
 
-| Input      | Comments                                                                                               | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection | The Adobe Acrobat Sign connection to use.                                                              |         |
-| Group ID   | The unique identifier of the group.                                                                    |         |
-| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page.               |         |
-| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. |         |
+| Input      | Comments                                                                                                                                     | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Group ID   | The unique identifier of the group.                                                                                                          |         |
+| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### List Groups {#listgroups}
 
-Retrieve a list of groups in the Adobe Sign account.
+Retrieves a list of groups in the Adobe Acrobat Sign account.
 
-| Input      | Comments                                                                                               | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection | The Adobe Acrobat Sign connection to use.                                                              |         |
-| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page.               |         |
-| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. |         |
+| Input      | Comments                                                                                                                                     | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### List Group Users {#listgroupusers}
 
 Retrieves all the users in a group.
 
-| Input      | Comments                                                                                               | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection | The Adobe Acrobat Sign connection to use.                                                              |         |
-| Group ID   | The unique identifier of the group.                                                                    |         |
-| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page.               |         |
-| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. |         |
+| Input      | Comments                                                                                                                                     | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Group ID   | The unique identifier of the group.                                                                                                          |         |
+| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### List Users {#listusers}
 
 Retrieves all the users in an account.
 
-| Input      | Comments                                                                                               | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection | The Adobe Acrobat Sign connection to use.                                                              |         |
-| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page.               |         |
-| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. |         |
+| Input      | Comments                                                                                                                                     | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### List Webhooks {#listwebhooks}
 
 Retrieves webhooks for a user.
 
-| Input                  | Comments                                                                                               | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection             | The Adobe Acrobat Sign connection to use.                                                              |         |
-| Show Inactive Webhooks | When true, fetches all the inactive webhooks along with the active webhooks. Default value is false.   | false   |
-| Scope                  | Filter for webhooks with a specific scope.                                                             |         |
-| Webhook Resource Type  | The type of resource being accessed. <strong>Note:</strong> Only specify if scope is Resource.         |         |
-| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page.               |         |
-| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. |         |
+| Input                  | Comments                                                                                                                                     | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
+| Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Show Inactive Webhooks | When true, fetches all the inactive webhooks along with the active webhooks. Default value is false.                                         | false   |
+| Scope                  | Filter for webhooks with a specific scope.                                                                                                   |         |
+| Webhook Resource Type  | The type of resource being accessed. <strong>Note:</strong> Only specify if scope is Resource.                                               |         |
+| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Adobe Acrobat Sign
+Sends a raw HTTP request to Adobe Acrobat Sign.
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -336,7 +342,7 @@ Send raw HTTP request to Adobe Acrobat Sign
 
 ### Search Resources {#searchresources}
 
-Retrieves, searches, filters and sorts agreements for the user
+Retrieves, searches, filters, and sorts agreements for the authenticated user.
 
 | Input                        | Comments                                                                                                                                                                                                                                                                                                                                           | Default |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -378,19 +384,21 @@ Retrieves, searches, filters and sorts agreements for the user
 
 Updates the agreement in draft state, or update the expiration time on an existing agreement that is already out for signature.
 
-| Input                     | Comments                                                                                                                                                                                                                                      | Default |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                | The Adobe Acrobat Sign connection to use.                                                                                                                                                                                                     |         |
-| Transient Document ID     | ID for a transient document that will be added to the agreement.                                                                                                                                                                              |         |
-| Participant Set Info Role | Role assumed by all participants in this set (signer, approver, etc.).                                                                                                                                                                        |         |
-| Signature Type            | The type of signature you would like to request - written or e-signature.                                                                                                                                                                     |         |
-| Agreement State           | State of the agreement.                                                                                                                                                                                                                       |         |
-| Expiration Date           | A range filter against the agreement expiration date. Format would be date-time with an offset from UTC/Greenwich in the ISO-8601 format, such as 2007-12-03T10:15:30+01:00. Range terms can be defined as less-than/greater-than or min/max. |         |
-| Agreement ID              | The agreement identifier, as returned by the agreement creation API or retrieved from the API to fetch agreements.                                                                                                                            |         |
+| Input                         | Comments                                                                                                                                                                                                                                      | Default |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                    | The Adobe Acrobat Sign connection to use.                                                                                                                                                                                                     |         |
+| Transient Document ID         | ID for a transient document that will be added to the agreement.                                                                                                                                                                              |         |
+| Participant Set Info Role     | Role assumed by all participants in this set (signer, approver, etc.).                                                                                                                                                                        |         |
+| Agreement Name                | Name of the Agreement that will be used to identify it.                                                                                                                                                                                       |         |
+| Participant Member Info Email | Email address of the participant.                                                                                                                                                                                                             |         |
+| Signature Type                | The type of signature you would like to request - written or e-signature.                                                                                                                                                                     |         |
+| Agreement State               | State of the agreement.                                                                                                                                                                                                                       |         |
+| Expiration Date               | A range filter against the agreement expiration date. Format would be date-time with an offset from UTC/Greenwich in the ISO-8601 format, such as 2007-12-03T10:15:30+01:00. Range terms can be defined as less-than/greater-than or min/max. |         |
+| Agreement ID                  | The agreement identifier, as returned by the agreement creation API or retrieved from the API to fetch agreements.                                                                                                                            |         |
 
 ### Update Group {#updategroup}
 
-Update an existing group.
+Updates an existing group.
 
 | Input            | Comments                                                              | Default |
 | ---------------- | --------------------------------------------------------------------- | ------- |
@@ -402,7 +410,7 @@ Update an existing group.
 
 ### Update User {#updateuser}
 
-Update a user in the Acrobat Sign system.
+Updates a user in the Adobe Acrobat Sign system.
 
 | Input      | Comments                                                                                            | Default |
 | ---------- | --------------------------------------------------------------------------------------------------- | ------- |
@@ -420,7 +428,7 @@ Update a user in the Acrobat Sign system.
 
 ### Update Webhook {#updatewebhook}
 
-Updates a webhook
+Updates a webhook.
 
 | Input                                            | Comments                                                                                            | Default |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ------- |

@@ -206,61 +206,67 @@ Retrieve single terminated employee
 
 View all documents for company
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Category ID | Optional ID of the document category to filter by. |         |
-| Employee ID | Optional id of employee to filter documents.       |         |
+| Input       | Comments                                                                                                  | Default |
+| ----------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  |                                                                                                           |         |
+| Category ID | Optional ID of the document category to filter by.                                                        |         |
+| Employee ID | Optional id of employee to filter documents.                                                              |         |
+| Fetch All   | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
 
 ### List Employees {#listemployees}
 
 List active employees in company.
 
-| Input                     | Comments                                        | Default |
-| ------------------------- | ----------------------------------------------- | ------- |
-| Connection                |                                                 |         |
-| Page                      | The page number to return                       |         |
-| Team History              | Whether to return the team history              | false   |
-| Employment Status History | Whether to return the employment status history | false   |
-| Position History          | Whether to return the position history          | false   |
+| Input                     | Comments                                                                                                  | Default |
+| ------------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                           |         |
+| Team History              | Whether to return the team history                                                                        | false   |
+| Employment Status History | Whether to return the employment status history                                                           | false   |
+| Position History          | Whether to return the position history                                                                    | false   |
+| Fetch All                 | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
+| Page                      | The page number to return                                                                                 |         |
 
 ### List Positions {#listpositions}
 
 List positions in company
 
-| Input      | Comments                  | Default |
-| ---------- | ------------------------- | ------- |
-| Connection |                           |         |
-| Page       | The page number to return |         |
+| Input      | Comments                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                           |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
+| Page       | The page number to return                                                                                 |         |
 
 ### List Projects {#listprojects}
 
 List projects
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                           |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
 
 ### List Teams {#listteams}
 
 List teams in company
 
-| Input      | Comments                  | Default |
-| ---------- | ------------------------- | ------- |
-| Connection |                           |         |
-| Page       | The page number to return |         |
+| Input      | Comments                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                           |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
+| Page       | The page number to return                                                                                 |         |
 
 ### List Terminated Employees {#listterminatedemployees}
 
 Retrieve a list of terminated employees
 
-| Input                     | Comments                                        | Default |
-| ------------------------- | ----------------------------------------------- | ------- |
-| Connection                |                                                 |         |
-| Page                      | The page number to return                       |         |
-| Team History              | Whether to return the team history              | false   |
-| Employment Status History | Whether to return the employment status history | false   |
-| Position History          | Whether to return the position history          | false   |
+| Input                     | Comments                                                                                                  | Default |
+| ------------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                           |         |
+| Team History              | Whether to return the team history                                                                        | false   |
+| Employment Status History | Whether to return the employment status history                                                           | false   |
+| Position History          | Whether to return the position history                                                                    | false   |
+| Fetch All                 | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled. | false   |
+| Page                      | The page number to return                                                                                 |         |
 
 ### List Time Off Balances {#listtimeoffbalances}
 
@@ -278,9 +284,10 @@ Lists employee time off Requests
 | Input      | Comments                                                                                                                                                                                          | Default |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection |                                                                                                                                                                                                   |         |
-| Page       | The page number to return                                                                                                                                                                         |         |
 | From Date  | If not specified defaults to beginning of current month. Format: YYYY-MM-DD                                                                                                                       |         |
 | To Date    | If not specified defaults to end of current month. Days between from date and to date must be less than 65. If you need info for larger period of time make multiple requests. Format: YYYY-MM-DD |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. The Page input is ignored when this is enabled.                                                                                         | false   |
+| Page       | The page number to return                                                                                                                                                                         |         |
 
 ### Raw Request {#rawrequest}
 

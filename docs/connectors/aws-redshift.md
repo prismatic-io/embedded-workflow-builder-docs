@@ -158,6 +158,9 @@ List executed SQL statements in Redshift.
 | Workgroup Name     | The serverless workgroup name or Amazon Resource Name (ARN). Only statements that ran on this workgroup are returned. When providing <code>WorkgroupName</code>, then <code>ClusterIdentifier</code> can't be specified.                                  |         |
 | Cluster Identifier | The cluster identifier. Only statements that ran on this cluster are returned. When providing <code>ClusterIdentifier</code>, then <code>WorkgroupName</code> can't be specified.                                                                         |         |
 | Statement Name     | The name of the SQL statement specified as input to <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> to identify the query. Multiple statements can be matched by providing a prefix that matches the beginning of the statement name. |         |
+| Fetch All          | When enabled, automatically fetches all pages of results. Next Token and Max Results inputs are ignored when this is enabled.                                                                                                                             | false   |
+| Next Token         | The pagination token returned from a previous list request, used to retrieve the next page of results.                                                                                                                                                    |         |
+| Max Results        | The maximum number of SQL statements to return per page. Valid range: 0-100.                                                                                                                                                                              |         |
 
 ### Raw Request {#rawrequest}
 

@@ -138,6 +138,16 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Sheets {#pollchangestrigger}
+
+Polls Smartsheet for sheets created or modified since the last execution, separated into new and updated buckets.
+
+| Input                | Comments                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                   |         |
+| Show New Records     | When true, sheets created since the last poll are returned in the trigger payload.  | true    |
+| Show Updated Records | When true, sheets modified since the last poll are returned in the trigger payload. | true    |
+
 ### Webhook {#smartsheetwebhook}
 
 Receive and validate webhook requests from Smartsheet for manually configured webhook subscriptions.
@@ -250,14 +260,14 @@ Creates a new sheet with specified columns.
 
 Creates and enables a webhook for a specified resource.
 
-| Input               | Comments                                                                                                                                                                                                              | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Smartsheet connection to use.                                                                                                                                                                                     |         |
-| Callback URL        | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                                                    |         |
-| Webhook Name        | A descriptive label to identify the webhook in the dashboard.                                                                                                                                                         |         |
-| Sheet ID            | The unique identifier for the sheet.                                                                                                                                                                                  |         |
-| Subscope Column IDs | When provided, the webhook only fires when these specific columns are modified. Leave empty to trigger on any change to the sheet. Use the List Columns action to find column IDs for a sheet.                        |         |
-| Allow Duplicates?   | By default this action checks if a webhook with this callback and sheet ID already exists. If it does, this action does not configure a new webhook. Toggle this to true to allow the creation of duplicate webhooks. | false   |
+| Input               | Comments                                                                                                                                                                                       | Default |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Smartsheet connection to use.                                                                                                                                                              |         |
+| Callback URL        | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                             |         |
+| Webhook Name        | A descriptive label to identify the webhook in the dashboard.                                                                                                                                  |         |
+| Sheet ID            | The unique identifier for the sheet.                                                                                                                                                           |         |
+| Subscope Column IDs | When provided, the webhook only fires when these specific columns are modified. Leave empty to trigger on any change to the sheet. Use the List Columns action to find column IDs for a sheet. |         |
+| Allow Duplicates    | When true, allows the creation of duplicate webhooks. By default the action checks if a webhook with this callback and sheet ID already exists and skips creation if one is found.             | false   |
 
 ### Create Workspace {#createworkspace}
 
@@ -428,8 +438,8 @@ Retrieves a report including one page of rows, attachments, discussions, and sou
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Report ID                         | The unique identifier for the report.                                                                                                                                                   |         |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
+| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
 
 ### Get Row {#rowget}
 
@@ -449,8 +459,8 @@ Retrieves a sheet by its ID.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
+| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
 
 ### Get Sheet Attachment {#attachmentsget}
 
@@ -517,9 +527,9 @@ Lists attachments on a row of a sheet.
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
 | Row ID                            | The unique identifier for the row.                                                                                                                                                      |         |
+| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 
 ### List Attachments on Sheet {#attachmentslistonsheet}
 
@@ -529,9 +539,9 @@ Lists all attachments on a sheet.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
+| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 
 ### List Columns {#columnslistonsheet}
 
@@ -541,9 +551,9 @@ Lists all columns on a sheet.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
+| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 
 ### List Contacts {#listcontacts}
 
@@ -565,9 +575,9 @@ Lists all attachments on a discussion.
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
 | Discussion ID                     | The unique identifier for the discussion.                                                                                                                                               |         |
+| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 
 ### List Discussions {#discussionslist}
 
@@ -577,10 +587,10 @@ Lists discussions on a sheet or row.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Row ID (Optional)                 | The unique identifier for the row. Leave empty to apply to the sheet level.                                                                                                             |         |
+| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
+| Row ID (Optional)                 | The unique identifier for the row. Leave empty to apply to the sheet level.                                                                                                             |         |
 
 ### List Events {#listevents}
 
@@ -625,9 +635,9 @@ Lists all groups in the organization.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Modified Since                    | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).  |         |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
 
 ### List Home Contents {#listhomecontents}
 
@@ -652,10 +662,10 @@ Lists publicly available templates.
 
 Lists all reports accessible to the authenticated user.
 
-| Input          | Comments                                                                                                                                                                               | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Smartsheet connection to use.                                                                                                                                                      |         |
-| Modified Since | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
+| Input          | Comments                                                                                                                                  | Default |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Smartsheet connection to use.                                                                                                         |         |
+| Modified Since | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
 
 ### List Sheets {#listsheets}
 
@@ -665,9 +675,9 @@ Lists all sheets accessible to the authenticated user.
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
 | Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Modified Since                    | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).  |         |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
 
 ### List Users {#listusers}
 
@@ -676,11 +686,11 @@ Lists all users in the organization.
 | Input                             | Comments                                                                                                                                                                                | Default |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Email                             | The email address to filter users by.                                                                                                                                                   |         |
 | Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Modified Since                    | When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).  |         |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Email                             | The email address to filter users by.                                                                                                                                                   |         |
+| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
 
 ### List User Templates {#templateslist}
 
@@ -689,10 +699,10 @@ Lists user-created templates.
 | Input                             | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                             | Default |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                        | The Smartsheet connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Workspace ID                      | Optional. When supplied, fetches templates from this single workspace only — fast, single API call. When omitted, the action paginates ALL workspaces and aggregates templates from each — this preserves backwards compatibility with the legacy GET /templates response shape but may be slow and rate-limit-sensitive on accounts with many workspaces (chunked-parallel concurrency 5). Recommend supplying a workspace ID for production flows. |         |
 | Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              | false   |
 | Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              | 1       |
 | Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              |         |
+| Workspace ID                      | Optional. When supplied, fetches templates from this single workspace only — fast, single API call. When omitted, the action paginates ALL workspaces and aggregates templates from each — this preserves backwards compatibility with the legacy GET /templates response shape but may be slow and rate-limit-sensitive on accounts with many workspaces (chunked-parallel concurrency 5). Recommend supplying a workspace ID for production flows. |         |
 
 ### List Webhooks {#listwebhooks}
 
@@ -750,24 +760,24 @@ Moves a sheet to a specified destination.
 
 Sends a raw HTTP request to the Smartsheet API.
 
-| Input                   | Comments                                                                                                                                                                                                      | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Smartsheet connection to use.                                                                                                                                                                             |         |
-| URL                     | Input the path only (/reports), The base URL is already included (https://api.smartsheet.com/2.0). For example, to connect to https://api.smartsheet.com/2.0/reports, only /reports is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                       |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                     |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                          |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                              |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                        |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                           |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                   |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                      | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                           |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                          | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                           | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.              | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                           | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                 | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection              | The Smartsheet connection to use.                                                                                                                                                                |         |
+| URL                     | The path to append to the Smartsheet API base URL (https://api.smartsheet.com/2.0). For example, to reach https://api.smartsheet.com/2.0/reports, enter /reports.                                |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
 
 ### Search Sheets {#searchsheet}
 

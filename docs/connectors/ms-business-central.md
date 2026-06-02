@@ -170,6 +170,18 @@ Automatically registers and manages webhook subscriptions for resource changes i
 
 Receive and validate webhook requests from Business Central for manually configured webhooks.
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records of a Microsoft Dynamics 365 Business Central entity on a configured schedule.
+
+| Input                | Comments                                                                                         | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Microsoft Business Central connection to use.                                                |         |
+| Company ID           | The ID of the company you want to interact with.                                                 |         |
+| Resource Type        | The Business Central entity to poll for changes.                                                 |         |
+| Additional Filter    | Optional OData filter to combine (AND) with the modification-time filter applied by the trigger. |         |
+| Show Updated Records | When enabled, records modified after the last poll are included in the trigger output.           | true    |
+
 ## Actions
 
 ### Create Attachment {#createattachment}

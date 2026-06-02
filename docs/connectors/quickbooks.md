@@ -59,6 +59,17 @@ Receive webhook notifications from QuickBooks when entity changes occur.
 | ---------- | --------------------------------- | ------- |
 | Connection | The QuickBooks connection to use. |         |
 
+### New and Updated Records {#pollchangestrigger}
+
+Polls QuickBooks Online's Query API for entity records modified at or after the last poll. Records with `Metadata.CreateTime` after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                       | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The QuickBooks connection to use.                                                                              |         |
+| Resource Type        | The QuickBooks entity type to poll for changes.                                                                |         |
+| Show New Records     | When enabled, records with `Metadata.CreateTime` after the last poll are included in the `created` bucket.     | true    |
+| Show Updated Records | When enabled, records modified after the last poll (but created earlier) are included in the `updated` bucket. | true    |
+
 ## Actions
 
 ### Batch Request {#batchrequest}
