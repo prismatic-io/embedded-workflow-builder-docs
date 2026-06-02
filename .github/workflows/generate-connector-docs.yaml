@@ -1,0 +1,55 @@
+name: Generate public connector docs
+
+on:
+  # Run at 06:00 UTC on the 1st of every month
+  schedule:
+    - cron: "0 6 1 * *"
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Prism CLI
+        run: npm install --global @prismatic-io/prism
+
+      - name: Mint a fresh access token
+        id: token
+        env:
+          PRISM_REFRESH_TOKEN: ${{ secrets.PRISM_REFRESH_TOKEN }}
+        run: echo "PRISMATIC_API_KEY=$(prism me:token)" >> "$GITHUB_ENV"
+
+      - name: Generate public connector docs
+        run: npm run generate-public-connector-docs
+
+      - name: Format markdown
+        run: npm run format-markdown
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: Generate latest public connector docs
+          branch: chore/generate-connector-docs
+          delete-branch: true
+          title: Generate latest public connector docs
+          body: |
+            Automated monthly regeneration of public connector docs.
+
+            Produced by the [Generate public connector docs](.github/workflows/generate-connector-docs.yaml)
+            workflow, which runs `npm run generate-public-connector-docs` followed by
+            `npm run format-markdown`.
