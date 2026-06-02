@@ -5,38 +5,13 @@ description: Manage assets, contacts, journeys, campaigns, transactional messagi
 ---
 
 ![Salesforce Marketing Cloud](./assets/salesforce-marketing-cloud.png#connector-icon)
-[Salesforce Marketing Cloud](https://www.salesforce.com/marketing/) is a digital marketing platform for managing customer journeys, email campaigns, SMS messaging, and marketing automation.
-This component enables integration with the Marketing Cloud REST API for managing assets, contacts, journeys, campaigns, transactional messaging, data extensions, automations, and event notifications.
-
-## API Documentation
-
-This component was built using the [Salesforce Marketing Cloud REST API Documentation](https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_summary/summary.html)
+Manage assets, contacts, journeys, campaigns, transactional messaging, data extensions, automations, and event notifications in Salesforce Marketing Cloud.
 
 ## Connections
 
 ### OAuth 2.0 {#sfmcoauth2authorizationcode}
 
 Authenticate using OAuth 2.0 Authorization Code flow with refresh tokens.
-
-This connection uses the **OAuth 2.0 Authorization Code** flow to authenticate with Salesforce Marketing Cloud. It is designed for user-context integrations and supports refresh tokens for persistent access.
-
-#### Prerequisites
-
-1. In Marketing Cloud, navigate to **Setup > Apps > Installed Packages**
-2. Create a new package or select an existing one
-3. Add an **API Integration** component with the **Web App** integration type
-4. Note the **Client ID**, **Client Secret**, and the **Subdomain**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and enter:
-
-| Field             | Description                                                                                                             |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details. |
-| **Client ID**     | The Client ID from the installed package's API Integration component.                                                   |
-| **Client Secret** | The Client Secret from the installed package's API Integration component.                                               |
-| **Scopes**        | Space-separated OAuth scopes. Include `offline` to enable persistent refresh tokens.                                    |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -51,26 +26,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#sfmcoauth2clientcredentials}
 
 Authenticate using OAuth 2.0 Client Credentials for server-to-server integrations.
-
-This connection uses the **OAuth 2.0 Client Credentials** flow for server-to-server integrations with Salesforce Marketing Cloud. No user interaction is required.
-
-#### Prerequisites
-
-1. In Marketing Cloud, navigate to **Setup > Apps > Installed Packages**
-2. Create a new package or select an existing one
-3. Add an **API Integration** component with the **Server-to-Server** integration type
-4. Note the **Client ID**, **Client Secret**, and the **Subdomain**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0 Client Credentials** and enter:
-
-| Field             | Description                                                                                                             |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details. |
-| **Client ID**     | The Client ID from the installed package's API Integration component.                                                   |
-| **Client Secret** | The Client Secret from the installed package's API Integration component.                                               |
-| **Scopes**        | Space-separated OAuth scopes. Maximum 125 characters.                                                                   |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

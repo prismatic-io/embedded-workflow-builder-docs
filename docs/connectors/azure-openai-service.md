@@ -5,72 +5,13 @@ description: Generate completions and images using Azure OpenAI Service or OpenA
 ---
 
 ![Azure OpenAI Service](./assets/azure-openai-service.png#connector-icon)
-[Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service) is Microsoft's cloud service that provides REST API access to OpenAI's language models including GPT-4, GPT-3.5-Turbo, and DALL·E.
-This component allows you to create chat completions, generate images, and perform text completions using Azure-hosted OpenAI models or directly through the OpenAI API.
-
-## API Documentation
-
-This component supports both the [Azure OpenAI Service REST API](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference) and the [OpenAI Platform API](https://platform.openai.com/docs/api-reference).
+Generate completions and images using Azure OpenAI Service or OpenAI API.
 
 ## Connections
 
 ### API Key {#apikey}
 
 Connect using an OpenAI or Azure OpenAI API key
-
-This connection supports both Azure OpenAI Service and standard OpenAI API authentication using API keys.
-
-#### Prerequisites
-
-For **Azure OpenAI Service**:
-
-- An active [Azure subscription](https://azure.microsoft.com/free/dotnet/)
-- [Azure OpenAI access approval](https://learn.microsoft.com/azure/cognitive-services/openai/overview#how-do-i-get-access-to-azure-openai)
-- An Azure OpenAI resource created in the Azure portal
-
-For **OpenAI API**:
-
-- An active OpenAI account at [platform.openai.com](https://platform.openai.com/)
-- Access to API key generation
-
-#### Setup For Azure OpenAI Service
-
-To use Azure OpenAI Service, an Azure OpenAI resource and API key are required.
-
-1. Follow the [Azure OpenAI quickstart guide](https://learn.microsoft.com/azure/cognitive-services/openai/quickstart) to create an Azure OpenAI resource
-2. In the Azure portal, navigate to the Azure OpenAI resource
-3. Select **Keys and Endpoint** from the resource menu
-4. Copy one of the displayed API keys
-
-For additional information on Azure OpenAI authentication, refer to [Azure OpenAI Service REST API reference](https://learn.microsoft.com/azure/ai-services/openai/reference).
-
-#### Setup For OpenAI API
-
-To use the standard OpenAI API, an API key from OpenAI is required.
-
-1. Navigate to [API Keys](https://platform.openai.com/account/api-keys) in the OpenAI platform
-2. Click **Create new secret key**
-3. Enter a name for the key (optional) and click **Create secret key**
-4. Copy the generated API key (it begins with `sk-`)
-
-Note: If the user account belongs to multiple OpenAI organizations, the organization ID will also be required. The organization ID can be found in [Organization settings](https://platform.openai.com/account/org-settings).
-
-#### Configure the Connection
-
-When configuring the connection:
-
-- Enter the **API Key** from either Azure OpenAI Service or OpenAI API
-- Set **Is OpenAI Key** to:
-  - `false` for Azure OpenAI Service (default)
-  - `true` for standard OpenAI API
-- For **Organization** (OpenAI only):
-  - Leave blank if the account belongs to a single organization
-  - Enter the organization ID if the account belongs to multiple organizations
-
-The API key format differs between providers:
-
-- **Azure OpenAI**: 32-character hexadecimal string
-- **OpenAI API**: Begins with `sk-` followed by a random string
 
 | Input                              | Comments                                                                                                                                                                                                                                                                                                      | Default            |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |

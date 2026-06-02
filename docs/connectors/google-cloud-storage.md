@@ -5,12 +5,7 @@ description: Manage files in a Google Cloud Platform (GCP) Cloud Storage bucket
 ---
 
 ![Google Cloud Storage](./assets/google-cloud-storage.png#connector-icon)
-[Google Cloud Storage](https://cloud.google.com/storage) is Google's cloud file/blob storage system.
-The Google Cloud Storage component allows you to create, download, modify, list, and delete files stored in a Google Cloud Storage bucket.
-
-## API Documentation
-
-This component was built using the [Google Cloud Storage JSON API](https://cloud.google.com/storage/docs/json_api)
+Manage files in a Google Cloud Platform (GCP) Cloud Storage bucket
 
 ## Connections
 
@@ -31,47 +26,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Private Key {#privatekey}
 
 Private Key connection for Google Cloud Storage
-
-To authenticate with Google Cloud Storage, a service account with a private key is required.
-
-For more information on creating service accounts, refer to [Google Cloud's authentication documentation](https://cloud.google.com/docs/authentication/getting-started).
-
-#### Prerequisites
-
-- Access to a Google Cloud Platform (GCP) project
-- Permissions to create service accounts and assign roles
-
-#### Setup Steps
-
-To create a service account and generate a private key:
-
-1. Navigate to the [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) page in the Google Cloud Console
-2. Select a project or create a new one
-3. Click **Create Service Account**
-4. Enter a service account name and description, then click **Create and Continue**
-5. Assign the appropriate role:
-   - For full access to Cloud Storage: Select **Cloud Storage Admin**
-   - For specific permissions: Select a resource-specific role based on requirements
-6. Click **Continue**, then **Done**
-7. In the service accounts list, click on the newly created service account
-8. Navigate to the **Keys** tab
-9. Click **Add Key** and select **Create new key**
-10. Select **JSON** as the key type and click **Create**
-11. A JSON file will be downloaded containing the service account credentials
-
-#### Configure the Connection
-
-The downloaded JSON file contains several fields including **type**, **project_id**, **private_key**, **client_email**, and others.
-
-Enter the following values from the JSON file into the connection configuration:
-
-- Extract the required fields from the JSON file
-- Enter the **Project ID** (GCP Project ID)
-- Enter the service account credentials from the JSON file
-
-:::info[Service Account Permissions]
-Ensure the service account has the appropriate permissions to access the Cloud Storage resources needed for the integration. Resource-specific permissions can be used for more granular access control.
-:::
 
 | Input        | Comments                                                                                        | Default |
 | ------------ | ----------------------------------------------------------------------------------------------- | ------- |

@@ -7,26 +7,11 @@ description: WhatsApp is a messaging app that allows users to send texts, make v
 ![WhatsApp](./assets/whatsapp.png#connector-icon)
 WhatsApp is a messaging app that allows users to send texts, make voice and video calls, and share media.
 
-Use the component to send messages and configure webhook subscriptions.
-
-API Documentation:
-
-The component was built using the [WhatsApp Business Platform Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/reference).
-
 ## Connections
 
 ### Access Token {#whatsapp-access-token}
 
 Access Token connection for WhatsApp
-
-To get started with WhatsApp, you first need to [create a Meta developer account](https://developers.facebook.com/).
-
-1. Select **Create app.**
-2. In the ‘Add products to your app’ section, select Setup for WhatsApp.
-3. Once the validation has been made to your account, navigate back to the home page of the App
-4. From the side menu find the WhatsApp section and select **API Setup.**
-5. Select **Generate access token** and enter the value into the connection configuration of your integration.
-6. Additionally, this screen will also provide your accounts Test Number, Phone number ID, and Business Account ID.
 
 | Input        | Comments                    | Default |
 | ------------ | --------------------------- | ------- |

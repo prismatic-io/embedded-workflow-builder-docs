@@ -5,145 +5,13 @@ description: Manage records and associations in the HubSpot CRM platform
 ---
 
 ![HubSpot](./assets/hubspot.png#connector-icon)
-[HubSpot](https://www.hubspot.com/) is a Customer Relationship Management software for inbound marketing, sales, and customer service.
-Manage contacts, companies, deals, products, engagements, and custom objects in HubSpot.
-
-## API Documentation
-
-This component was built using the [HubSpot API Documentation](https://developers.hubspot.com/docs/api/overview) currently utilizing v3
+Manage records and associations in the HubSpot CRM platform
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 Authenticate requests to Hubspot using OAuth 2.0.
-
-To connect to HubSpot using OAuth 2.0, create an app in the HubSpot developer platform. HubSpot offers two approaches: creating an app via CLI (recommended for new integrations), or creating a legacy app through the web interface.
-
-Refer to the [HubSpot app creation guide](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/create-an-app) and [quick reference guide](https://developers.hubspot.com/docs/getting-started/quickstart) for detailed information.
-
-### Creating an App via the CLI
-
-The CLI-based approach is recommended for new HubSpot OAuth integrations as it provides access to the latest features and platform improvements.
-
-#### Prerequisites
-
-- A [HubSpot developer account](https://developers.hubspot.com/) is required
-- Node.js and npm installed (for CLI-based app creation)
-- HubSpot CLI version 7.6.0 or higher
-
-#### Setup Steps
-
-1. Install the HubSpot CLI:
-
-   ```bash
-   npm install -g @hubspot/cli
-   ```
-
-2. Authenticate the CLI with a HubSpot developer account:
-
-   ```bash
-   hs account auth
-   ```
-
-3. Create a new app project:
-
-   ```bash
-   hs project create
-   ```
-
-   - Select **App** as the project template
-   - Choose the distribution type (marketplace or private/specific accounts)
-   - Select **OAuth** as the authentication method
-   - Optionally select app features (**Card**, **App Function**, **Settings**, **Webhooks**, **Custom Workflow Action**)
-
-4. Configure the app by editing the generated `app-hsmeta.json` file:
-   - Update the **name** and **description** fields
-   - In the **auth** section, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` to the **redirectUrls** array
-   - Update the **scopes** array with required OAuth permissions
-
-5. Upload the app project to HubSpot:
-
-   ```bash
-   hs project upload
-   ```
-
-   :::note[Directory Error]
-   If the error `[ERROR] Unable to locate a project configuration file` appears, change to the project folder where the app was created and run the command again.
-   :::
-
-6. Open the project in the HubSpot developer portal:
-
-   ```bash
-   hs project open
-   ```
-
-7. Navigate to the **Auth** tab in the developer portal
-8. Copy the **Client ID** and **Client Secret** from the Auth page
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the app's Auth page
-- For **Scopes**, choose from the available scopes based on integration needs
-  - Refer to [HubSpot OAuth documentation](https://developers.hubspot.com/docs/api/working-with-oauth) for scope details
-
-<details>
-<summary>Recommended Scopes</summary>
-
-The following scopes provide comprehensive access to HubSpot CRM functionality that this component supports:
-
-| Category               | Scope                          | Description                                                   |
-| ---------------------- | ------------------------------ | ------------------------------------------------------------- |
-| **Essential**          | `oauth`                        | Required for all OAuth apps (cannot be removed)               |
-| **Essential**          | `crm.objects.owners.read`      | Read owner information                                        |
-| **CRM Objects**        | `crm.objects.contacts.read`    | Read contacts                                                 |
-| **CRM Objects**        | `crm.objects.contacts.write`   | Create/update contacts                                        |
-| **CRM Objects**        | `crm.objects.companies.read`   | Read companies                                                |
-| **CRM Objects**        | `crm.objects.companies.write`  | Create/update companies                                       |
-| **CRM Objects**        | `crm.objects.deals.read`       | Read deals                                                    |
-| **CRM Objects**        | `crm.objects.deals.write`      | Create/update deals                                           |
-| **CRM Objects**        | `crm.objects.custom.read`      | Read custom objects                                           |
-| **CRM Objects**        | `crm.objects.custom.write`     | Create/update custom objects                                  |
-| **Additional Objects** | `crm.objects.line_items.read`  | Read line items                                               |
-| **Additional Objects** | `crm.objects.line_items.write` | Create/update line items                                      |
-| **Additional Objects** | `crm.objects.quotes.read`      | Read quotes                                                   |
-| **Additional Objects** | `crm.objects.quotes.write`     | Create/update quotes                                          |
-| **Additional Objects** | `tickets`                      | Ticket management (legacy scope)                              |
-| **Schemas**            | `crm.schemas.contacts.read`    | Contact property definitions                                  |
-| **Schemas**            | `crm.schemas.companies.read`   | Company property definitions                                  |
-| **Schemas**            | `crm.schemas.deals.read`       | Deal property definitions                                     |
-| **Webhooks**           | `webhooks`                     | Webhook subscriptions (requires App ID and Developer API Key) |
-
-**Example minimal scope configuration:**
-
-```
-crm.objects.contacts.read crm.objects.contacts.write crm.objects.deals.read crm.objects.deals.write crm.objects.owners.read
-```
-
-For a complete list of available scopes, refer to the [HubSpot OAuth scopes documentation](https://developers.hubspot.com/docs/api/oauth/scopes).
-
-</details>
-
-### Creating a Legacy App
-
-:::warning[Legacy Apps]
-Legacy apps will continue to work, but will not receive new features or platform improvements from HubSpot. The CLI-based approach is recommended for new integrations.
-:::
-
-#### Setup Steps
-
-1. Navigate to the [HubSpot developer account portal](https://app.hubspot.com/developer)
-2. Click **Create app** to create a new public app
-3. Fill in the app details (name, description, etc.)
-4. Navigate to the **Auth** tab of the newly created app
-5. Under **Redirect URLs**, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-6. Configure the required scopes for the integration in the **Scopes** section
-7. Copy the **Client ID** and **Client Secret** from the Auth page
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the app's Auth page
-- Configure scopes as needed (see Recommended Scopes above)
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -161,31 +29,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate requests to Hubspot using a private app access token.
 
-Private app access tokens are recommended for testing purposes only. For production integrations, OAuth 2.0 should be used to allow users to authenticate with their own credentials.
-
-Private app access tokens do not expire but can be revoked at any time from the HubSpot account settings.
-
-#### Prerequisites
-
-- Access to a [HubSpot account](https://app.hubspot.com)
-- Appropriate permissions to create private apps
-
-#### Setup Steps
-
-To generate a private app access token:
-
-1. Navigate to [HubSpot](https://app.hubspot.com) and log in
-2. Navigate to **Settings > Integrations > Private Apps**
-3. Click **Create a private app**
-4. Enter a name for the app
-5. Configure the required scopes for the integration
-6. After creating the app, navigate to the **Auth** tab
-7. Copy the **Access Token** displayed
-
-#### Configure the Connection
-
-- Enter the **Access Token** from the HubSpot private app settings into the connection configuration
-
 | Input        | Comments                                                                                                                        | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Access Token | An access token generated when you create a private app. For testing purposes only - use OAuth 2.0 for production integrations. |         |
@@ -193,42 +36,6 @@ To generate a private app access token:
 ### Webhook Authentication {#hubspotoauthtrigger}
 
 Authenticate HubSpot webhooks using Client Secret for signature verification only.
-
-The Webhook Authentication connection is used specifically for verifying HubSpot webhook signatures to ensure webhook requests are legitimate.
-
-This connection is only used for webhook triggers and does not grant API access. It solely validates that incoming webhooks are from HubSpot by verifying the request signature.
-
-#### Prerequisites
-
-- Access to a [HubSpot account](https://app.hubspot.com)
-- Appropriate permissions to create private apps or manage existing apps
-- A configured HubSpot app with webhook capabilities
-
-#### Setup Steps
-
-1. Navigate to [HubSpot](https://app.hubspot.com) and log in
-2. Navigate to **Settings > Integrations > Private Apps**
-3. To create a new app:
-   - Click **Create a private app** or **Create an app**
-   - Configure the required webhook subscriptions
-4. Navigate to the **Auth** or **App Credentials** section
-5. Copy the **Client Secret** value
-
-#### Configure the Connection
-
-- Enter the **Client Secret** from the HubSpot app into the connection configuration
-- The client secret is used to verify webhook signatures
-- Ensure the trigger is configured to use the Webhook Authentication connection
-
-#### Webhook Subscriptions
-
-After configuring the connection, webhook subscriptions must be set up:
-
-1. In the app settings, navigate to the **Webhooks** section
-2. Click **Configure** or **Set up webhooks**
-3. Provide the following:
-   - **Target URL**: The webhook endpoint URL where HubSpot will send webhook events (found in **Test Configuration > Trigger Payload** section of the integration)
-   - **Events to subscribe to**: Select the specific events to monitor (e.g., contact created, deal updated, company deleted)
 
 | Input         | Comments                                                                    | Default |
 | ------------- | --------------------------------------------------------------------------- | ------- |

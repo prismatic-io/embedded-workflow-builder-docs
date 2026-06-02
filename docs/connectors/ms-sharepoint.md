@@ -5,98 +5,13 @@ description: Manage sites, drives, files, and lists in Microsoft SharePoint.
 ---
 
 ![Microsoft SharePoint](./assets/ms-sharepoint.png#connector-icon)
-[Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration?ms.officeurl=sharepoint&rtc=1) is a web-based document management and collaboration platform that integrates with Microsoft 365.
-This component allows you to manage sites, drives, files, and lists within SharePoint.
-
-## API Documentation
-
-This component was built using the [Microsoft Graph Rest API v1.0](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint?view=graph-rest-1.0)
+Manage sites, drives, files, and lists in Microsoft SharePoint.
 
 ## Connections
 
 ### Certificate Credentials {#certificatecredentials}
 
 Authenticates actions in all Microsoft's Graph API services.
-
-#### App Registration Requirements
-
-First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration). Then configure the following **Microsoft Graph Application permissions**:
-
-**Site Operations:**
-
-- `Sites.Read.All` - Read items in all site collections
-- `Sites.ReadWrite.All` - Read and write items in all site collections
-- `Sites.Manage.All` - Create, edit, and delete items and lists in all site collections
-- `Sites.FullControl.All` - Full control of all site collections
-
-**File Operations:**
-
-- `Files.Read.All` - Read files in all site collections
-- `Files.ReadWrite.All` - Read and write files in all site collections
-
-**List Operations:**
-
-- `Sites.ReadWrite.All` - Required for list operations
-- `Sites.Manage.All` - For creating and managing lists
-
-**User and Group Access:**
-
-- `User.Read.All` - Read all users' profiles
-- `Group.Read.All` - Read all groups
-
-#### Certificate Requirements
-
-Before configuring certificate credentials, ensure:
-
-- Certificate issued by a Certificate Authority (CA) for production, or self-signed for development
-- RSA key size: minimum 2048 bits (4096 bits recommended)
-- Certificate in X.509 format
-- Public key formats: .cer, .pem, or .crt
-- Private key in PEM or PKCS#12 format
-
-#### Registering Certificate with Azure
-
-1. Ensure app registration is complete with required permissions
-2. Navigate to **Certificates & Secrets** in the app registration
-3. Select the **Certificates** tab
-4. Click **Upload certificate**
-5. Select the public certificate file (.cer, .pem, or .crt)
-6. Add an optional description
-7. Click **Add** to upload
-
-After upload, note these values:
-
-- **Certificate Thumbprint** - SHA-1 hash (e.g., "931E8F84B98A4B5F93AD609FD5E8D0BA1AB90F87")
-- **Start Date** and **Expiration Date**
-- **Certificate ID** - Automatically generated
-
-#### Connection Configuration
-
-Configure the following fields:
-
-- **Tenant ID**: Azure AD Directory ID from app registration
-- **Client ID**: Application ID from app registration
-- **Certificate Thumbprint**: SHA-1 thumbprint from uploaded certificate (remove spaces)
-- **Private Key**: Certificate private key in PEM format
-- **Scope**: `https://graph.microsoft.com/.default` for application permissions
-
-#### Private Key Format
-
-The private key must be in PEM format with appropriate headers:
-
-```
------BEGIN PRIVATE KEY-----
-[base64 encoded private key]
------END PRIVATE KEY-----
-```
-
-Or for RSA keys:
-
-```
------BEGIN RSA PRIVATE KEY-----
-[base64 encoded RSA private key]
------END RSA PRIVATE KEY-----
-```
 
 | Input                       | Comments                                                                                                                                                                                                                             | Default                              |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
@@ -111,89 +26,6 @@ Or for RSA keys:
 ### Microsoft SharePoint OAuth 2.0 (Deprecated) {#oauth}
 
 Authenticates actions in the Microsoft SharePoint component.
-
-#### Creating an App Registration
-
-With a licensed instance of Microsoft SharePoint, create and configure a new App Registration in the [Microsoft Entra admin center](https://entra.microsoft.com/).
-
-1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations**
-2. Select **New registration**
-3. Configure the basic settings:
-   - **Name**: Provide a descriptive name for the application
-   - **Supported account types**: Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**
-   - **Redirect URI**: Select **Web** platform and add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Click **Register** to create the app registration
-
-#### Obtaining Application Credentials
-
-After registration, navigate to the **Overview** page and note:
-
-- **Application (client) ID** - This will be the Client ID
-- **Directory (tenant) ID** - Required for certain connection types
-
-#### API Permissions Configuration
-
-1. Navigate to **API Permissions**
-2. Click **Add a permission**
-3. Select **SharePoint** for SharePoint-specific operations
-4. Choose **Delegated permissions** for user-authenticated flows
-5. Select the following permissions:
-
-**Essential Scopes:**
-
-- `offline_access` - **Required** for refresh tokens (without this, users re-authenticate every hour)
-
-**Site Operations:**
-
-- `AllSites.Read` - Read items in all site collections
-- `AllSites.Write` - Edit or delete items in all site collections
-- `AllSites.Manage` - Create, edit and delete items and lists in all site collections
-- `AllSites.FullControl` - Full control of all site collections
-
-**File Operations:**
-
-- `MyFiles.Read` - Read user files
-- `MyFiles.Write` - Read and write user files
-- `AllSites.Read` - Read files in all sites
-- `AllSites.Write` - Read and write files in all sites
-
-**List Operations:**
-
-- `AllSites.Write` - Required for list item operations
-- `AllSites.Manage` - For creating and managing lists
-
-**User Profile:**
-
-- `User.Read.All` - Read all users' profiles
-- `User.ReadBasic.All` - Read all users' basic profiles
-
-6. Click **Add permissions**
-7. **Important**: Click **Grant admin consent** to activate the permissions
-
-#### Creating Client Secret
-
-1. Navigate to **Certificates & Secrets** in the app registration
-2. Select the **Client secrets** tab
-3. Click **New client secret**
-4. Provide a description and select expiration period
-5. Click **Add**
-6. **Important**: Copy the secret **Value** immediately - it cannot be retrieved later
-
-#### Connection Configuration
-
-Configure the following fields:
-
-- **Client ID**: Application ID from app registration
-- **Client Secret**: Secret value created above
-- **Authorize URL**: Default provided, or tenant-specific URL if not using multitenant
-- **Token URL**: Default provided, or tenant-specific URL if not using multitenant
-
-#### Tenant-Specific URLs
-
-If the app registration is not configured as multitenant, replace the default URLs with tenant-specific versions:
-
-- **Authorize URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize`
-- **Token URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -211,40 +43,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticates actions in all Microsoft's Graph API services.
 
-The templated OAuth flow enables user authentication with SharePoint to access data on their behalf.
-
-#### App Registration
-
-First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration).
-
-#### Permissions
-
-Configure **SharePoint Delegated permissions** in the app registration:
-
-- Select all permissions required for the integration
-- Grant admin consent for the organization
-- Include `offline_access` scope for refresh token support
-
-#### Creating Client Secret
-
-1. Navigate to **Certificates & Secrets** in the app registration
-2. Click **New client secret**
-3. Provide a description and select expiration period
-4. Click **Add**
-5. Copy the secret **Value** (not the Secret ID)
-
-#### Connection Configuration
-
-Configure the following fields:
-
-- **Client ID**: Application ID from app registration
-- **Client Secret**: Secret value created above
-
-For non-multitenant applications, replace the default URLs:
-
-- **Authorize URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize`
-- **Token URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token`
-
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -260,52 +58,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#oauthclientcredentials}
 
 Authenticates actions in all Microsoft's Graph API services.
-
-#### App Registration
-
-First, create an app registration in Microsoft Entra by following the steps in the [OAuth connection guide](#creating-an-app-registration). Then configure the following **Microsoft Graph Application permissions** for app only authentication:
-
-**Site Operations:**
-
-- `Sites.Read.All` - Read items in all site collections
-- `Sites.ReadWrite.All` - Read and write items in all site collections
-- `Sites.Manage.All` - Create, edit, and delete items and lists in all site collections
-- `Sites.FullControl.All` - Full control of all site collections
-
-**File Operations:**
-
-- `Files.Read.All` - Read files in all site collections
-- `Files.ReadWrite.All` - Read and write files in all site collections
-
-**List Operations:**
-
-- `Sites.ReadWrite.All` - Required for list operations
-- `Sites.Manage.All` - For creating and managing lists
-
-**User and Group Access:**
-
-- `User.Read.All` - Read all users' profiles
-- `Group.Read.All` - Read all groups
-
-**Important**: Grant admin consent for all configured permissions.
-
-#### Creating Client Secret
-
-1. Navigate to **Certificates & Secrets** in the app registration
-2. Select the **Client secrets** tab
-3. Click **New client secret**
-4. Provide a description and select expiration period
-5. Click **Add**
-6. **Important**: Copy the secret **Value** immediately - it cannot be retrieved later
-
-#### Connection Configuration
-
-Configure the following fields:
-
-- **Tenant ID**: Azure AD Directory ID from app registration
-- **Client ID**: Application ID from app registration
-- **Client Secret**: Secret value created above
-- **Scope**: `https://graph.microsoft.com/.default` for application permissions
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

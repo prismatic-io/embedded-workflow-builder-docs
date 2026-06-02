@@ -5,34 +5,13 @@ description: Interact with the Canny API to manage feedback boards, posts, votes
 ---
 
 ![Canny](./assets/canny.png#connector-icon)
-[Canny](https://canny.io/) is a customer feedback management platform that helps teams collect, organize, and prioritize product feedback.
-This component allows you to manage feedback boards, posts, votes, comments, categories, tags, users, and companies.
-
-## API Documentation
-
-This component was built using the [Canny API Reference](https://developers.canny.io/api-reference).
+Interact with the Canny API to manage feedback boards, posts, votes, comments, and users.
 
 ## Connections
 
 ### API Key {#cannyapikey}
 
 Authenticate using a Canny API key.
-
-To authenticate with Canny, an API key is required.
-
-#### Prerequisites
-
-- A Canny account with admin access
-
-#### Setup Steps
-
-1. Log in to the [Canny admin panel](https://canny.io/)
-2. Navigate to **Settings** > **API**
-3. Copy the **API Key** displayed on the page
-
-#### Configure the Connection
-
-- Enter the **API Key** into the connection configuration
 
 | Input   | Comments                                                                    | Default |
 | ------- | --------------------------------------------------------------------------- | ------- |

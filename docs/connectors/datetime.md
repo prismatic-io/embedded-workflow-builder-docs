@@ -5,8 +5,7 @@ description: Get and adjust Date/Time values
 ---
 
 ![Date/Time](./assets/datetime.png#connector-icon)
-The **Date/Time** component is a collection of actions for working with Date/Time values.
-You can fetch the current time, convert timestamps between time zones, and more.
+Get and adjust Date/Time values
 
 ## Actions
 

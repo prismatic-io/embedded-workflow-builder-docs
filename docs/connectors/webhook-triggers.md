@@ -5,7 +5,7 @@ description: The Universal Webhook trigger allows you to invoke a flow by making
 ---
 
 ![Universal Webhook](./assets/webhook-triggers.png#connector-icon)
-The **Universal Webhook Trigger** component provides a standard webhook trigger that allows integrations to be executed via an HTTP POST request.
+The Universal Webhook trigger allows you to invoke a flow by making an HTTP request to the trigger's URL.
 
 ## Triggers
 

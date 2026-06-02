@@ -5,7 +5,7 @@ description: Helpful HTML-related functions for building HTML documents and HTML
 ---
 
 ![HTML Utils](./assets/html-utils.png#connector-icon)
-The **HTML Utils** component provides helpful functions for building and formatting HTML documents.
+Helpful HTML-related functions for building HTML documents and HTML-based emails.
 
 ## Actions
 

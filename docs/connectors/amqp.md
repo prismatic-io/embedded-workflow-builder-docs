@@ -5,28 +5,13 @@ description: Send and receive messages on an AMQP-based message broker
 ---
 
 ![AMQP](./assets/amqp.png#connector-icon)
-The Advanced Message Queuing Protocol (**AMQP**) is a standard protocol for interacting with message brokers and queueing platforms.
-It is used by many common message broker services like [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/), [Apache Qpid](https://qpid.apache.org/), [RabbitMQ](https://www.rabbitmq.com/) and more.
-
-This component allows you to manage messages on an AMQP-based queue.
-
-## API Documentation
-
-This component was built using the [AMQP API Reference](https://amqp-node.github.io/amqplib/channel_api.html#api_reference).
+Send and receive messages on an AMQP-based message broker
 
 ## Connections
 
 ### AMQP Connection {#amqp}
 
 Authenticate requests to an amqp server
-
-An AMQP connection is comprised of a host name (this can be an IP address or FQDN endpoint), port, protocol and vhost.
-For example, if you are told that your AMQP server is hosted at `amqps://amqp.example.com:5672/example/vhost`, enter `amqp.example.com` for the **host**, and `5672` for the **port**, select `AMQPS` for the **protocol**, and enter `example/vhost` for the **vhost**.
-
-AMQP often requires authentication (a username and password), but some AMQP servers are anonymous and do not require authentication.
-If the server you're interacting with is allows anonymous authentication, you can omit the **username** and **password** fields.
-
-You can verify that your settings are correct using the this component's [Check AMQP Connection](#checkconnection) action.
 
 | Input    | Comments                                                                   | Default     |
 | -------- | -------------------------------------------------------------------------- | ----------- |

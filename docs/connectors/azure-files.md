@@ -5,19 +5,13 @@ description: Manage files and folders within Azure Files
 ---
 
 ![Azure Files](./assets/azure-files.png#connector-icon)
-[Azure Files](https://azure.microsoft.com/en-us/services/storage/files/) is Microsoft's cloud file sharing platform.
-While similar to Azure Blob Storage, Azure Files is geared towards creating SMB file shares that groups of users (rather than applications) can use.
-This component lets you manage files and shares within Azure Files.
+Manage files and folders within Azure Files
 
 ## Connections
 
 ### Connection String {#connectionstring}
 
 Connection String
-
-You can also grant limited access to your Azure Storage Resources using [Shared Access Signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview) authentication, which involves an access token.
-You can obtain a connection string containing an SAS token from the [Azure Portal](https://portal.azure.com/).
-Keep in mind this token will eventually expire. Make sure to configure an expiration date you will remember, so you can manually refresh the token at a later date.
 
 | Input             | Comments                                                         | Default |
 | ----------------- | ---------------------------------------------------------------- | ------- |
@@ -26,9 +20,6 @@ Keep in mind this token will eventually expire. Make sure to configure an expira
 ### Storage Shared Key {#storagesharedkey}
 
 Storage Shared Key
-
-Azure Files can use [storageSharedKeyCredential](https://docs.microsoft.com/en-us/rest/api/storageservices/authorize-with-shared-key) authentication, which involves an account / key pair.
-You can obtain an account name / account key pair through the [Azure Portal](https://portal.azure.com/).
 
 | Input        | Comments                                            | Default |
 | ------------ | --------------------------------------------------- | ------- |

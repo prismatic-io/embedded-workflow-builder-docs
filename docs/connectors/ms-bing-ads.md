@@ -5,62 +5,13 @@ description: Manage campaigns, accounts, and customer services in Microsoft Bing
 ---
 
 ![Microsoft Bing Ads](./assets/ms-bing-ads.png#connector-icon)
-[Microsoft Advertising](https://ads.microsoft.com/) is a pay-per-click (PPC) advertising platform used to display ads based on the keywords used in a search query. The Bing Ads API provides programmatic access to Microsoft Advertising for managing large campaigns or integrating marketing with other systems.
-
-This component allows you to add external conversions to Ads campaigns.
-
-## API Documentation
-
-This component was built using the [Bing Ads API](https://learn.microsoft.com/en-us/advertising/guides/?view=bingads-13) currently utilizing v13.
+Manage campaigns, accounts, and customer services in Microsoft Bing Ads.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth}
 
 Authenticate using OAuth 2.0.
-
-This component uses OAuth 2.0 to connect to the Microsoft Bing Ads API. Create a connection of type **OAuth 2.0** to authenticate.
-
-#### Prerequisites
-
-- A [Microsoft Advertising](https://ads.microsoft.com/) account
-- [Super Admin](https://learn.microsoft.com/en-us/advertising/guides/account-hierarchy-permissions?view=bingads-13#user-roles-permissions) credentials for obtaining a developer token
-- Access to the [Azure portal](https://go.microsoft.com/fwlink/?linkid=2083908) for app registration
-
-#### Setup Steps
-
-**Obtain a Developer Token:**
-
-1. Sign in with Super Admin credentials at the [Microsoft Advertising Developer Portal](https://developers.ads.microsoft.com/Account) account tab.
-2. Select the user to associate with the developer token. Typically an application only needs one universal token regardless of how many users are supported.
-3. Click the **Request Token** button and copy the token value.
-
-**Register an Azure Application:**
-
-Microsoft Advertising uses the Microsoft identity platform endpoint and the OAuth 2.0 protocol to authenticate work or school accounts from Azure Active Directory (AAD) and personal Microsoft accounts (MSA), such as `hotmail.com`, `outlook.com`, and `msn.com`.
-
-1. Navigate to the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page. Sign in using either a personal Microsoft Account or a Work or School Account.
-2. Select **New registration**.
-3. On the **Register an application** page, enter the registration information:
-   - In the **Name** section, enter a meaningful application name.
-   - In the **Supported account types** section, select **Accounts in any organizational directory and personal Microsoft accounts**.
-4. Select **Register** to create the application.
-5. On the app **Overview** page, find the **Application (client) ID** value and record it.
-6. Select the **Add a Redirect URI** link to open the **Redirect URIs** page. Add the callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-7. Select **Certificates & secrets** under **Manage**. Click the **New client secret** button. Enter a value in **Description**, select an option for **Expires**, and choose **Add**. Copy the client secret value before leaving the page. Refer to the [Microsoft OAuth token documentation](https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth-get-tokens?view=bingads-13) for additional details.
-
-#### Configure the Connection
-
-- Enter the **Client ID** from the Azure app registration **Overview** page
-- Enter the **Client Secret Value** generated in the **Certificates & secrets** section
-- Enter the **Developer Token** obtained from the Microsoft Advertising Developer Portal
-- Optionally, enable **Use Sandbox** to connect to the Microsoft Advertising sandbox environment instead of production
-
-:::note[Using the Sandbox Environment]
-The **Use Sandbox** toggle switches the connection to the Microsoft Advertising sandbox environment (`api.sandbox.bingads.microsoft.com`) instead of production.
-This is useful for testing without affecting live campaign data.
-A separate sandbox developer token is required for sandbox access, which is different from the production developer token obtained from the Microsoft Advertising Developer Portal.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

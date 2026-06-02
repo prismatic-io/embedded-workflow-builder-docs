@@ -5,65 +5,13 @@ description: Manage spreadsheets, sheets, and rows in Google Sheets.
 ---
 
 ![Google Sheets](./assets/google-sheets.png#connector-icon)
-[Google Sheets](https://www.google.com/sheets/about/) is a cloud-based spreadsheet service from Google.
-This component allows you to create and manage spreadsheets, manipulate sheets and rows, and read cell data within Google Drive.
-
-## API Documentation
-
-This component was built using the [Google Sheets API](https://developers.google.com/sheets/api/reference/rest) v4.
-Additional information can be found in the [Google Sheets API Guides](https://developers.google.com/sheets/api/guides/concepts).
+Manage spreadsheets, sheets, and rows in Google Sheets.
 
 ## Connections
 
 ### Google Sheets OAuth 2.0 {#oauth2}
 
 Authenticate requests to Google Sheets using values obtained from the Google Cloud Platform.
-
-The Google Sheets component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
-A GCP OAuth 2.0 app is required for the integration to authenticate and perform Google Sheets tasks on behalf of users.
-
-#### Prerequisites
-
-- A Google Developer account (sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/))
-
-#### Setup Steps
-
-To create a Google Sheets OAuth 2.0 app:
-
-1. Open the Google Sheets API console at [https://console.cloud.google.com/apis/api/sheets.googleapis.com](https://console.cloud.google.com/apis/api/sheets.googleapis.com).
-2. Click **CREATE PROJECT** to create a new GCP project, or select an existing project.
-3. Enable the **Google Sheets API** for the project by clicking **ENABLE**.
-4. On the sidebar, select **Credentials**.
-5. Configure the OAuth 2.0 Consent Screen by clicking **CONFIGURE CONSENT SCREEN**.
-   1. Choose a **User Type** of **External** so the app will be available to users outside the organization.
-   2. Fill out the OAuth consent screen with an app name, support email, and other required information.
-   3. On the Scopes page, add the necessary scopes (see scope configuration below).
-   4. Enter **test users** for testing purposes. The app will only work for those testing users until it is published.
-   5. When ready for production, click **PUBLISH APP** on the **OAuth consent screen** to allow users to authorize the integration.
-6. Once the consent screen is configured, open the **Credentials** page from the sidebar.
-7. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
-   1. Under **Application type** select **Web application**.
-   2. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   3. Click **CREATE**.
-8. Copy the **Client ID** and **Client Secret** that are generated.
-
-:::info[Publishing the OAuth App]
-Make sure to **publish** the OAuth 2.0 app after testing so users outside of the test users can authorize the integration to interact with Google Sheets on their behalf.
-:::
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the OAuth app credentials.
-- For **Scopes**, use the following value:
-
-  ```
-  https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.readonly
-  ```
-
-  - The `spreadsheets` scope allows full access to Google Sheets.
-  - The `drive.file` scope allows access to files created or opened by the integration.
-  - The `drive.readonly` scope allows read-only access to Drive metadata.
-  - Refer to [Google's OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes#sheets) for additional scope information.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

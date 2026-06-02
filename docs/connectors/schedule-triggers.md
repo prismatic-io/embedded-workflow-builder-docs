@@ -5,7 +5,7 @@ description: The schedule trigger allows you to invoke a flow on a recurring cus
 ---
 
 ![Schedule Trigger](./assets/schedule-triggers.png#connector-icon)
-The **Schedule Triggers** component provides a standard schedule trigger that allows integrations to be executed on a recurring schedule.
+The schedule trigger allows you to invoke a flow on a recurring custom schedule.
 
 ## Triggers
 

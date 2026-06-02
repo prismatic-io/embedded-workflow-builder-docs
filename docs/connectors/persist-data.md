@@ -5,8 +5,7 @@ description: Persist small amounts of data that will be available later in the e
 ---
 
 ![Persist Data](./assets/persist-data.png#connector-icon)
-The **persist data** component provides functionality to persist small amounts of data for use during an integration execution or in subsequent integration executions.
-This is helpful if you want to save a bit of data during an integration invocation for use in a later step, or in a subsequent execution.
+Persist small amounts of data that will be available later in the execution or in subsequent executions of the Instance
 
 ## Actions
 

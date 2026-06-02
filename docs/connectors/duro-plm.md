@@ -5,47 +5,13 @@ description: Manage products, components, and change orders in Duro PLM.
 ---
 
 ![Duro PLM](./assets/duro-plm.png#connector-icon)
-[Duro PLM](https://durolabs.co/) is a cloud based Product Lifecycle Management (PLM) platform for managing part data, change orders, and product development workflows. This component allows managing products, components, change orders, and other resources in a Duro workspace.
-
-## API Documentation
-
-This component was built using the [Duro GraphQL API Reference](https://mfg-core-api.duro.app/docs/).
+Manage products, components, and change orders in Duro PLM.
 
 ## Connections
 
 ### API Key {#duroapikey}
 
 Authenticate requests using an API key.
-
-To authenticate with Duro PLM, an API key is required.
-
-#### Prerequisites
-
-- A [Duro account](https://durolabs.co/)
-- Access to account settings with permissions to generate API keys
-
-#### Setup Steps
-
-To generate an API key:
-
-1. Navigate to the [Duro application](https://durolabs.co/) and log in to the account
-2. Click the user avatar in the top right corner and select **Account settings**
-3. In the **Settings** menu, select the **Integrations** tab
-4. Click the **Get API Key** button below the Integrations table
-5. Copy the displayed API key value
-
-Refer to the [Duro GraphQL API documentation](https://mfg-core-api.duro.app/docs/) for additional information about API authentication.
-
-#### Configure the Connection
-
-Enter the following values in the connection configuration:
-
-- **API Key**: The API key generated from the Duro account settings
-- **Duro Environment**: Select the appropriate environment based on data residency requirements:
-  - **Main (MFG)**: Standard production environment for most accounts
-  - **ITAR**: US Government ITAR-compliant environment
-  - **EU**: European data residency environment
-- **Custom Duro Environment (Optional)**: Provide a custom GraphQL endpoint URL to override the selected environment. Use this for private Duro instances or custom deployments.
 
 | Input                   | Comments                                                                                                                                                                        | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

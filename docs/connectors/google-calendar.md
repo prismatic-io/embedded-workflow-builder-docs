@@ -5,60 +5,13 @@ description: Manage calendars and events in Google Calendar
 ---
 
 ![Google Calendar](./assets/google-calendar.png#connector-icon)
-[Google Calendar](https://calendar.google.com/calendar/) is a time-management and scheduling calendar service developed by Google.
-This component allows you to create, read, update and delete events and calendars connected to your Google account.
+Manage calendars and events in Google Calendar
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 OAuth 2.0 connection for Google Calendar
-
-The Google Calendar component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
-A GCP OAuth 2.0 app is required for the integration to authenticate and perform Google Calendar tasks on behalf of users.
-
-#### Prerequisites
-
-- A Google Developer account (sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/))
-
-#### Setup Steps
-
-To create a Google Calendar OAuth 2.0 app:
-
-1. Open the Google Calendar API console at [https://console.cloud.google.com/apis/api/calendar-json.googleapis.com](https://console.cloud.google.com/apis/api/calendar-json.googleapis.com)
-1. Click **CREATE PROJECT** to create a new GCP project, or select an existing project.
-1. Enable the **Google Calendar API** for the project by clicking **ENABLE**.
-1. On the sidebar, select **Credentials**.
-1. Configure the OAuth 2.0 Consent Screen (the page that asks "Do you want to allow (Your Company) to access Google Calendar on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
-   1. Choose a **User Type** of **External** so the app will be available to customers.
-   1. Fill out the OAuth consent screen with an app name (company or product name), support email, app logo, domain, etc.
-   1. Domains can be ignored for now.
-   1. On the next page, add the scope `https://www.googleapis.com/auth/calendar`.
-   1. Enter some **test users** for testing purposes.
-      The app will only work for those testing users until it is "verified" by Google.
-      When ready for verification (Google verifies privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
-      This will allow customers to authorize the integration to access their Google Calendar.
-1. Once the "Consent Screen" is configured, open the **Credentials** page from the sidebar again.
-1. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
-   1. Under **Application type** select **Web application**.
-   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   1. Click **CREATE**.
-1. Copy the **Client ID** and **Client Secret** that are generated.
-
-:::info[Publishing the OAuth App]
-Make sure to **publish** the OAuth 2.0 app after testing so users outside of the test users can authorize the integration to interact with Google Calendar on their behalf.
-:::
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the OAuth app credentials.
-- For **Scopes**, use the default [Google Calendar scope](https://developers.google.com/identity/protocols/oauth2/scopes#calendar):
-
-  ```
-  https://www.googleapis.com/auth/calendar
-  ```
-
-  - Refer to [Google Calendar API scopes](https://developers.google.com/calendar/api/auth) for additional scope information.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

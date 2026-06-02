@@ -5,44 +5,13 @@ description: Query, create, update, or delete Salesforce records.
 ---
 
 ![Salesforce](./assets/salesforce.png#connector-icon)
-[Salesforce](https://www.salesforce.com/) is a customer relationship management (CRM) platform.
-This component provides the ability to manage sales leads and records within the Salesforce platform.
-
-## API Documentation
-
-This component was built using the following API References currently utilizing v63.0 by default.
-
-- [Salesforce REST API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm)
-- [Salesforce Bulk API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm)
+Query, create, update, or delete Salesforce records.
 
 ## Connections
 
 ### Basic Authentication {#basic}
 
 Authenticate requests using Basic Authentication.
-
-#### Prerequisites
-
-- A Salesforce account with API access enabled
-- The account's security token (if security tokens are enabled)
-
-#### Setup Steps
-
-When using Basic Auth, supply a Salesforce username and password.
-Depending on the Salesforce setup, the password may have a security token attached to it.
-If security tokens in the Salesforce account are _disabled_, the password to supply is simply the Salesforce password.
-If security tokens are _enabled_ in the Salesforce account, then the password to enter is the concatenation of the password and the security token.
-
-For example, if the Salesforce password is `p@$sw0rD` and the security token that Salesforce provides is `ExAmPlE0000000000ExAmPlE`, then enter `p@$sw0rDExAmPlE0000000000ExAmPlE` as the password.
-Manage security tokens by clicking the profile picture on the top-right of _Salesforce_, selecting **My Settings**, and then opening **Personal** -> **Reset My Security Token**.
-
-#### Configure the Connection
-
-Create a connection of type **Basic Authentication** and enter:
-
-- **Username**: Enter the Salesforce account username
-- **Password**: Enter the Salesforce password, or the password concatenated with the security token if security tokens are enabled
-- **Login URL**: Enter the Salesforce My Domain URL (e.g., `https://my-company.my.salesforce.com/`)
 
 | Input     | Comments                                                                                                          | Default |
 | --------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
@@ -53,49 +22,6 @@ Create a connection of type **Basic Authentication** and enter:
 ### OAuth 2.0 {#oauth2}
 
 Authenticate requests using OAuth 2.0.
-
-OAuth 2.0 provides a simple way for users to authorize applications.
-To use OAuth 2.0, create and configure a [Connected App](https://help.salesforce.com/s/articleView?id=xcloud.connected_app_create.htm&type=5) within Salesforce.
-
-#### Prerequisites
-
-- A Salesforce account with Administrator access
-- Permission to create Connected Apps in the Salesforce org
-
-#### Setup Steps
-
-1. Log in to the Salesforce account
-1. Navigate to **Setup** by clicking the gear icon in the upper right corner
-1. Open **Apps** > **External Client Apps** > **Settings**
-1. Enable **Allow creation of connected apps** if it is not already enabled
-1. Select **New Connected App**
-   - When creating the "Connected App" be sure to check **Enable OAuth Settings**, and enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Callback URL**.
-   - Consult Salesforce to determine the proper OAuth Scopes to assign.
-     To grant integrations the same permissions that the user authenticating through OAuth has, select **Full access (full)**.
-     Also select **Perform requests at any time (refresh_token, offline_access)**.
-     Select **Require Secret for Web Server Flow** and **Require Secret for Refresh Token Flow**:
-
-Next select **Save** and **Continue**.
-Then, get the app's **Consumer Key** and **Consumer Secret** by selecting **Manage Consumer Details**.
-Take note of these keys:
-
-To return to this screen, select **Apps** > **App Manager**, click the dropdown menu to the right of the app and select **Edit**.
-From there, manage callback URLs.
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and enter:
-
-- **Consumer Key**: Enter the Consumer Key from the Connected App
-- **Consumer Secret**: Enter the Consumer Secret from the Connected App
-- **Authorize URL**: Defaults to `https://login.salesforce.com/services/oauth2/authorize`
-- **Token URL**: Defaults to `https://login.salesforce.com/services/oauth2/token`
-- **Revoke URL**: Defaults to `https://login.salesforce.com/services/oauth2/revoke`
-
-:::note[Connecting to a Salesforce Sandbox Account]
-To connect to a Salesforce sandbox organization for testing purposes, edit the connection's **Authorize URL**, **Token URL** and **Revoke URL** to read `test.salesforce.com` instead of `login.salesforce.com`.
-Be sure to change these values back when testing is done.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -111,42 +37,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#salesforceclientcredentials}
 
 Authenticate using OAuth 2.0 Client Credentials for server-to-server integration.
-
-OAuth 2.0 Client Credentials provides server-to-server authentication without user interaction. Use this connection type for integrations that run in the background without a user context.
-
-#### Prerequisites
-
-- A Salesforce account with Administrator access
-- A Connected App configured for OAuth 2.0 (see [OAuth 2.0 connection documentation](#oauth2)), or permission to create a new one
-
-#### Setup Steps
-
-This connection requires a Connected App configured for Client Credentials. If a Connected App already exists for OAuth 2.0, enable Client Credentials on that app. Otherwise, create a new Connected App following the OAuth 2.0 setup steps first.
-
-1. **Enable Client Credentials Flow**:
-   1. Navigate to **Setup** > **Apps** > **App Manager**
-   2. Find the Connected App and select **Edit** from the dropdown menu
-   3. Under **API (Enable OAuth Settings)**, check **Enable Client Credentials Flow**
-   4. Click **Save**
-
-2. **Configure Run As User** — the Client Credentials flow requires specifying which user the integration will authenticate as:
-   1. From the Connected App, select **Manage** from the dropdown menu
-   2. Click **Edit Policies**
-   3. Under **Client Credentials Flow**, select a user from the **Run As** dropdown
-   4. Click **Save**
-
-The selected user's permissions determine what the integration can access.
-
-#### Configure the Connection
-
-- **Instance URL**: Enter the Salesforce My Domain URL (e.g., `https://acme-corp.my.salesforce.com`)
-- **Consumer Key**: Enter the Consumer Key from the Connected App
-- **Consumer Secret**: Enter the Consumer Secret from the Connected App
-- **Scopes**: Scopes are configured in the Salesforce Connected App settings
-
-:::note[Connecting to a Salesforce Sandbox]
-For sandbox environments, use the sandbox My Domain URL format: `https://your-company--sandbox.sandbox.my.salesforce.com`
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

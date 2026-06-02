@@ -5,39 +5,13 @@ description: Create and manage customers and invoices within Intuit QuickBooks
 ---
 
 ![QuickBooks](./assets/quickbooks.png#connector-icon)
-[QuickBooks](https://quickbooks.intuit.com/) is an accounting and payment platform for individuals and businesses.
-This component allows generating invoices, managing customers, and more within the QuickBooks platform.
-
-## API Documentation
-
-This component was built using the [QuickBooks Online API Documentation](https://developer.intuit.com/app/developer/qbo/docs/get-started)
+Create and manage customers and invoices within Intuit QuickBooks
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 Authenticate using OAuth 2.0.
-
-QuickBooks uses OAuth 2.0 to authenticate requests against the QuickBooks Online API.
-
-#### Prerequisites
-
-- A QuickBooks account with access to the [Intuit Developer Portal](https://developer.intuit.com/)
-
-#### Setup Steps
-
-1. [Create an app](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0-playground#get-the-access-token) within the Intuit developer portal.
-1. When creating the app, enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-   1. Consult [QuickBooks OAuth scopes documentation](https://developer.intuit.com/app/developer/qbo/docs/learn/scopes) to determine the proper OAuth Scopes to assign.
-1. Once the app has been created, a **Client ID** and **Client Secret** will be provided.
-
-#### Configure the Connection
-
-Create a connection of type **QuickBooks OAuth 2.0** and enter:
-
-- **Client ID** and **Client Secret** from the Intuit developer portal
-- **Scopes**: Set to any of the values in [this list](https://developer.intuit.com/app/developer/qbo/docs/learn/scopes)
-- **Use Sandbox**: Enable to connect to the [QuickBooks Sandbox](https://developer.intuit.com/app/developer/qbo/docs/develop/sandboxes) for testing without affecting real customer data
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -58,6 +32,17 @@ Receive webhook notifications from QuickBooks when entity changes occur.
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
 | Connection | The QuickBooks connection to use. |         |
+
+### New and Updated Records {#pollchangestrigger}
+
+Polls QuickBooks Online's Query API for entity records modified at or after the last poll. Records with `Metadata.CreateTime` after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                       | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The QuickBooks connection to use.                                                                              |         |
+| Resource Type        | The QuickBooks entity type to poll for changes.                                                                |         |
+| Show New Records     | When enabled, records with `Metadata.CreateTime` after the last poll are included in the `created` bucket.     | true    |
+| Show Updated Records | When enabled, records modified after the last poll (but created earlier) are included in the `updated` bucket. | true    |
 
 ## Actions
 

@@ -5,12 +5,7 @@ description: Manage topics, subscriptions, and messages in Google Cloud Pub/Sub.
 ---
 
 ![Google Cloud Pub/Sub](./assets/google-cloud-pub-sub.png#connector-icon)
-[Google Cloud Pub/Sub](https://cloud.google.com/pubsub) is a messaging service from Google Cloud Platform for asynchronous communication between applications.
-The Google Cloud Pub/Sub component allows you to create, update, delete, and list topics and subscriptions, as well as publish and pull messages.
-
-## API Documentation
-
-This component was built using the [Google Cloud Pub/Sub REST API](https://cloud.google.com/pubsub/docs/reference/rest) currently utilizing v1.
+Manage topics, subscriptions, and messages in Google Cloud Pub/Sub.
 
 ## Connections
 
@@ -28,48 +23,6 @@ Authenticate requests to Google Cloud Storage using values obtained from the Goo
 ### OAuth2 {#oauth2}
 
 OAuth2 Connection
-
-All requests to the Google Cloud Pub/Sub API must be authorized by an authenticated user.
-
-To create a Google Cloud Pub/Sub OAuth 2.0 connection, configure an OAuth application in the [Google Cloud Console](https://console.cloud.google.com/).
-
-#### Prerequisites
-
-- A Google Cloud account with access to create projects and credentials
-- A Google Cloud project (or the ability to create one)
-
-#### Setup Steps
-
-1. Navigate to the [Google Cloud Console](https://console.cloud.google.com/) and select or create a project
-2. From **APIs & Services** > **Library**, search for and enable the **Cloud Pub/Sub API**
-3. Navigate to **APIs & Services** > **Credentials** and select **Create Credentials**
-4. Choose **OAuth client ID**
-5. If this is the first time creating credentials, configure the OAuth consent screen:
-   - Enter an **App name** (company or product name)
-   - Provide a **User support email**
-   - Add **App logo**, **Application home page**, and **Authorized domains** as needed
-   - Enter **Developer contact information**
-6. On the **Scopes** screen, select **Add Or Remove Scopes**:
-   - Search for "Pub/Sub" and add the following scopes:
-     - `https://www.googleapis.com/auth/cloud-platform`
-     - `https://www.googleapis.com/auth/pubsub`
-   - Refer to [Google's OAuth 2.0 Scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#pubsub) for additional scope information
-7. Return to **Create OAuth client ID**:
-   - Under **Application type** select **Web application**
-   - Provide a **Name** for the OAuth client
-   - Under **Authorized redirect URIs** click **Add URI** and enter: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **CREATE**
-8. Copy the **Client ID** and **Client Secret** from the confirmation dialog
-
-The **Client ID** and **Client Secret** can be retrieved later from **APIs & Services** > **Credentials** under the **OAuth 2.0 Client IDs** section by selecting the name of the OAuth client.
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the OAuth client created above
-- For **Scopes**, use the following value:
-  ```
-  https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/pubsub
-  ```
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,64 +5,13 @@ description: Manage Notion pages, databases, and users
 ---
 
 ![Notion](./assets/notion.png#connector-icon)
-[Notion](https://www.notion.so) is a productivity and collaboration platform that combines note taking, project management, and database capabilities. This component allows you to manage pages, databases, and users within your Notion workspace.
-
-## API Documentation
-
-This component was built using the [Notion API](https://developers.notion.com/reference/intro).
+Manage Notion pages, databases, and users
 
 ## Connections
 
 ### Internal Integration Secret {#notioninternalintegration}
 
 Connect to Notion using an Internal Integration Secret
-
-To create an internal integration for Notion, set up a private integration that works within a single Notion workspace. Internal integrations are ideal for testing or for integrations that will only be used within one workspace.
-
-For detailed information about Notion integrations, refer to the [Notion Integration Documentation](https://developers.notion.com/docs/authorization).
-
-#### Prerequisites
-
-- A Notion account with permission to create integrations in the workspace
-- Access to the [Notion integration settings](https://notion.so/my-integrations)
-- Permission to connect the integration to specific pages or databases in the workspace
-
-#### Setup Steps
-
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
-2. Click **Create new integration**.
-3. Fill in the required integration details:
-   - **Name**: Enter a descriptive name for the integration
-   - **Logo**: Optionally upload a logo
-   - **Associated workspace**: Select the workspace where the integration will be created
-4. Under **Capabilities**, select the permissions needed for the integration:
-   - **Read content**: Allows reading pages, databases, and other content
-   - **Update content**: Allows modifying existing content
-   - **Insert content**: Allows creating new content
-5. Under **Content Capabilities**, choose specific content types if needed (pages, databases, comments, etc.).
-6. Save the integration settings.
-
-#### Get the Integration Token
-
-1. Navigate to the **Secrets** tab in the integration settings.
-2. Copy the **Internal Integration Token** value.
-   - The token format is: `secret_` followed by a series of alphanumeric characters
-   - Example format: `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
-
-#### Configure the Connection
-
-- Enter the **Internal Integration Token** into the connection configuration.
-
-#### Connect to Content
-
-After creating the integration and configuring the connection, the integration must be explicitly connected to specific pages or databases in Notion:
-
-1. Navigate to the Notion page or database that the integration should access.
-2. Click the **...** (more) menu in the top right corner of the page.
-3. Select **Connect to** from the menu.
-4. Choose the integration from the list.
-
-The integration will now have access to that content based on the capabilities configured during setup. Repeat this process for each page or database that the integration needs to access.
 
 | Input                       | Comments                                                                                                                                                            | Default |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -71,52 +20,6 @@ The integration will now have access to that content based on the capabilities c
 ### OAuth 2.0 {#notionoauth}
 
 Connect to Notion via OAuth 2.0
-
-To create an OAuth 2.0 integration for Notion, set up a public integration that allows users to authenticate with their Notion workspaces.
-
-For detailed information about Notion integrations, refer to the [Notion Integration Documentation](https://developers.notion.com/docs/authorization).
-
-#### Prerequisites
-
-- A Notion account with permission to create integrations
-- Access to the [Notion integration settings](https://notion.so/my-integrations)
-
-#### Setup Steps
-
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
-2. Click **Create new integration**.
-3. Fill in the required integration details:
-   - **Name**: Enter a descriptive name for the integration
-   - **Logo**: Optionally upload a logo
-   - **Associated workspace**: Select the workspace where the integration will be created
-4. Under **Capabilities**, select the permissions needed for the integration:
-   - **Read content**: Allows reading pages, databases, and other content
-   - **Update content**: Allows modifying existing content
-   - **Insert content**: Allows creating new content
-5. Under **Content Capabilities**, choose specific content types if needed (pages, databases, comments, etc.).
-6. Save the integration settings.
-
-#### Configure OAuth Settings
-
-1. Navigate to the **Distribution** tab in the integration settings.
-2. Select **Public integration** to enable OAuth 2.0 authentication.
-3. Under **Redirect URIs**, add the OAuth callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Configure any additional OAuth settings as needed.
-5. Review and save the distribution settings.
-
-#### Get OAuth Credentials
-
-1. Navigate to the **Secrets** tab in the integration settings.
-2. Locate the OAuth credentials section.
-3. Copy the **OAuth client ID** value.
-4. Copy the **OAuth client secret** value.
-
-#### Configure the Connection
-
-- Enter the **OAuth client ID** into the **Client ID** field.
-- Enter the **OAuth client secret** into the **Client Secret** field.
-
-When users authenticate through OAuth 2.0, they will be redirected to Notion's authorization page where they can select which pages and databases to share with the integration. The integration will have access only to the content explicitly shared by the user, within the capabilities configured during integration setup.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

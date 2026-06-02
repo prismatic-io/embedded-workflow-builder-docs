@@ -5,41 +5,13 @@ description: Interact with email campaign lists and e-commerce resources.
 ---
 
 ![Mailchimp](./assets/mailchimp.png#connector-icon)
-[Mailchimp](https://www.mailchimp.com/) is a marketing automation platform and email marketing service.
-The Mailchimp component allows you to interact with your mailchimp email campaigns and your e-commerce site.
+Interact with email campaign lists and e-commerce resources.
 
 ## Connections
 
 ### API Key {#apikey}
 
 API Key connection for Mailchimp
-
-To authenticate with Mailchimp using an API Key, generate a key from the Mailchimp account settings.
-
-For detailed information about API key authentication, refer to [Mailchimp's API quickstart guide](https://mailchimp.com/developer/marketing/guides/quick-start/).
-
-#### Prerequisites
-
-- A [Mailchimp account](https://mailchimp.com/) with admin access
-- Access to the [API Keys](https://admin.mailchimp.com/account/api/) settings page
-
-#### Setup Steps
-
-To generate an API key:
-
-1. Navigate to the [API Keys](https://admin.mailchimp.com/account/api/) page in the Mailchimp account settings.
-2. Scroll to the **Your API keys** section.
-3. Click **Create A Key** to generate a new API key.
-4. Enter a descriptive name for the key (e.g., "Integration API Key").
-5. Copy the generated API key value.
-
-:::warning[API Key Format]
-Mailchimp API keys include a data center suffix (e.g., `abc123def456-us21`). The suffix after the hyphen indicates the data center where the account is hosted. This suffix is required for the API to route requests correctly.
-:::
-
-#### Configure the Connection
-
-- Enter the full **API Key** (including the data center suffix) into the connection configuration.
 
 | Input         | Comments                                                                                                                                                                         | Default |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -49,33 +21,6 @@ Mailchimp API keys include a data center suffix (e.g., `abc123def456-us21`). The
 ### OAuth 2.0 {#oauth2}
 
 OAuth 2.0 connection for Mailchimp
-
-To connect to Mailchimp using OAuth 2.0, an OAuth application must be registered in the Mailchimp account.
-
-For detailed information about Mailchimp OAuth, refer to the [Mailchimp OAuth 2.0 documentation](https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/).
-
-#### Prerequisites
-
-- A [Mailchimp account](https://mailchimp.com/) with admin access
-- Access to the [Mailchimp OAuth Apps](https://admin.mailchimp.com/account/oauth2/) settings page
-
-#### Setup Steps
-
-1. Navigate to the [Mailchimp OAuth Apps](https://admin.mailchimp.com/account/oauth2/) page in the Mailchimp account settings.
-2. Click **Register an App** to create a new OAuth application.
-3. Fill in the required fields:
-   - **App Name**: A descriptive name for the application
-   - **App Description**: A brief description of what the application does
-   - **Redirect URL**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Click **Create** to register the application.
-5. Once created, copy the **Client ID** and **Client Secret** values displayed on the app details page.
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the registered OAuth application.
-- The **Authorize URL** and **Token URL** are pre-configured with the correct Mailchimp endpoints.
-
-The connection is now ready to authenticate with Mailchimp.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

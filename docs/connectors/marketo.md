@@ -5,22 +5,13 @@ description: Manage leads, companies, and custom objects in Adobe Marketo Engage
 ---
 
 ![Adobe Marketo Engage](./assets/marketo.png#connector-icon)
-[Adobe Marketo Engage](https://www.marketo.com/) is a marketing automation platform.
-This component allows you to manage leads, companies, and custom objects in Adobe Marketo Engage.
-
-## API Documentation
-
-This component was built using the [Marketo REST API](https://developers.marketo.com/rest-api/).
+Manage leads, companies, and custom objects in Adobe Marketo Engage.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 OAuth 2.0 connection for Marketo
-
-To make API requests of Marketo on behalf of your customers you need to create a Custom Service using the Marketo Admin Portal.
-Follow the steps outlined in the [Marketo Documentation](https://developers.marketo.com/rest-api/authentication/).
-Be sure to note the Client ID and Client Secret values, as these will be important when using the Marketo Connection as part of your Integration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,66 +5,13 @@ description: Workday HCM is a single, cloud-based solution for workforce plannin
 ---
 
 ![Workday (Beta)](./assets/workday.png#connector-icon)
-:::note[This component is currently in BETA.]
-BETA component connections and actions may not always work as expected. Please report any feedback through the support channel.
-:::
-
-[Workday HCM](https://www.workday.com/) is a single, cloud-based solution for workforce planning, talent management, and payroll processes.
-
-The Workday component allows managing Organizations, People, Workers, and more.
-
-## API Documentation
-
-This component was built using the [Workday REST Services](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html) API reference.
+Workday HCM is a single, cloud-based solution for workforce planning, talent management, and payroll processes.
 
 ## Connections
 
 ### OAuth 2.0 {#workdayoauth2connection}
 
 Authenticate using OAuth 2.0.
-
-#### Prerequisites
-
-Before configuring the connection, the following are required:
-
-- A Workday tenant ID.
-- Administrator access to the Workday tenant to register an API client.
-- The Workday domain used by the tenant (for building the API base URL).
-
-#### Setup Steps
-
-The API client is registered in the Workday portal based on the category. This process also surfaces the information required to set up the Workday REST Access Token account.
-
-1. **Log into the Workday Portal**
-   - Use valid Workday Org admin credentials.
-   - Format: `https://impl.workday.com/wday/authgwy/<tenant_name>/login.htmld`
-
-2. **Search and Register**
-   - From the Search menu for the Workday categories, select **Register API Client** and click **Register**.
-
-3. **Provide Mandatory Details**
-   - **Client Name**: Specify a name for the API Client.
-   - **Client Grant Type**: Select `Authorization Code Grant`.
-   - **Enforce 60 Minutes Access Token Expiry**: Ensure this is selected so the auto-refresh token works correctly in the Workday REST OAuth2 Account.
-   - **Access Token Type**: Select `Bearer`.
-   - **Redirect URL**: Enter the redirect URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - **Scope**: Select the required services from the dropdown list.
-
-4. **Complete Registration**
-   - Click **Done**.
-
-After the API client is registered in the Workday portal, note the **Client ID**, **Client Secret**, and **Endpoints** to be used in the integration workflow.
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and provide the following inputs:
-
-- **Authorize URL** (required) — The OAuth 2.0 Authorization URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
-- **Token URL** (required) — The OAuth 2.0 Token URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
-- **Scopes** (optional) — Space-separated list of OAuth 2.0 scopes, if any are required.
-- **Client ID** (required) — The OAuth 2.0 client ID issued by Workday for the registered API client.
-- **Client secret** (required) — The OAuth 2.0 client secret paired with the Workday client ID.
-- **API URL** (required) — The base URL for the Workday API. Replace `<domain>` with the Workday domain.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

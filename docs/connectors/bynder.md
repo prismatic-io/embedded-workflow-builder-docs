@@ -5,44 +5,13 @@ description: Bynder is a leading digital asset management software that allows u
 ---
 
 ![Bynder](./assets/bynder.png#connector-icon)
-[Bynder](https://www.bynder.com/en/) is a leading digital asset management software that allows users to easily create, find, and use content, such as documents, graphics, and videos.
-
-Use the Bynder component to manage Assets, Collections, Campaigns, and more.
-
-## API Documentation
-
-The Bynder component is built using the [Bynder April 2024 REST API](https://bynder.docs.apiary.io/#introduction/welcome-to-the-bynder-api-documentation)
+Bynder is a leading digital asset management software that allows users to easily create, find, and use content, such as documents, graphics, and videos.
 
 ## Connections
 
 ### OAuth 2.0 {#bynder-oauth}
 
 OAuth 2.0
-
-To create a new [OAuth App](https://support.bynder.com/hc/en-us/articles/360013875180-Create-OAuth-Apps) for the OAuth 2.0 Authorization Code flow:
-
-#### Prerequisites
-
-- A Bynder account with administrator access to Portal Settings
-
-#### Setup Steps
-
-1. Sign into Bynder and navigate to **Settings > Advanced Settings > Portal Settings** and select **OAuth Apps**
-2. Select **Register new application** to create an OAuth App
-3. Set Grant Type to **Authorization Code** and configure the redirect URL:
-   - Set the redirect URI to `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Add at least the following scopes: `asset:read asset:write collection:read collection:write`
-5. Select **Register application** to retrieve a **Client ID** and **Client Secret**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and enter:
-
-- **Authorize URL**: The Bynder authorization URL (e.g., `https://{your-bynder-domain}/v6/authentication/oauth2/auth`)
-- **Token URL**: The Bynder token URL (e.g., `https://{your-bynder-domain}/v6/authentication/oauth2/token`)
-- **Scopes**: The required OAuth scopes (defaults are pre-populated)
-- **Client ID**: The Client ID from the registered OAuth application
-- **Client Secret**: The Client Secret from the registered OAuth application
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -58,30 +27,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#bynder-client-credentials-oauth}
 
 Client Credentials OAuth 2.0
-
-To create a new [OAuth App](https://support.bynder.com/hc/en-us/articles/360013875180-Create-OAuth-Apps) for the Client Credentials flow:
-
-#### Prerequisites
-
-- A Bynder account with administrator access to Portal Settings
-
-#### Setup Steps
-
-1. Sign into Bynder and navigate to **Settings > Advanced Settings > Portal Settings** and select **OAuth Apps**
-2. Select **Register new application** to create an OAuth App
-3. Set Grant Type to **Client Credentials** and configure the assigned user:
-   - Choose the user for which tokens will be issued. Enter the name of the user and click one of the returned search results. A dedicated user in the portal is recommended if one does not already exist.
-4. Add at least the following scopes: `asset:read asset:write collection:read collection:write`
-5. Select **Register application** to retrieve a **Client ID** and **Client Secret**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0 Client Credentials** and enter:
-
-- **Token URL**: The Bynder token URL (e.g., `https://{your-bynder-domain}/v6/authentication/oauth2/token`)
-- **Scopes**: The required OAuth scopes (defaults are pre-populated)
-- **Client ID**: The Client ID from the registered OAuth application
-- **Client Secret**: The Client Secret from the registered OAuth application
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

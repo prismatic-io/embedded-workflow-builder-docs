@@ -5,47 +5,13 @@ description: Manage employees, tasks, documents, and custom tables in HiBob.
 ---
 
 ![HiBob](./assets/hibob.png#connector-icon)
-[HiBob](https://www.hibob.com/) is an HR platform for people management, performance, and engagement.
-This component allows managing employee data using the HiBob API, including employee profiles, work history, salary information, and bank account details.
-
-## API Documentation
-
-This component was built using the [HiBob API Reference](https://apidocs.hibob.com/reference/getting-started-with-bob-api)
+Manage employees, tasks, documents, and custom tables in HiBob.
 
 ## Connections
 
 ### Basic Authentication {#hibob-connection}
 
 Authenticate using basic authentication.
-
-Create a connection of type **Basic Authentication** to authenticate with the HiBob API using a [Service User](https://apidocs.hibob.com/docs/api-service-users) ID and token.
-
-#### Prerequisites
-
-- A HiBob account with administrator access
-- Access to the Service Users configuration page in HiBob
-
-#### Setup Steps
-
-1. Log in to the HiBob admin panel and navigate to the **Service Users** configuration page
-2. Click **Create a New Service User**
-3. Copy the **Service User ID** and **Token** immediately, as the token can only be viewed once
-4. Create a dedicated permission group for the service user:
-   - Add the service user to the group
-   - Configure the necessary permissions based on the API operations to perform
-   - For basic employee data access, ensure the **Default Employee Fields** permissions are enabled
-
-:::note[Administrator Access Required]
-If direct access to the HiBob admin panel is not available, contact a HiBob administrator to generate the credentials.
-:::
-
-#### Configure the Connection
-
-- Enter the **Service User ID** from the HiBob admin panel
-- Enter the **Token** generated during service user creation
-- Set **Use Sandbox** to `true` to connect to the HiBob sandbox environment instead of production
-
-Refer to the [HiBob API Service Users documentation](https://apidocs.hibob.com/docs/api-service-users) for additional details on permissions and access configuration.
 
 | Input           | Comments                                                                    | Default |
 | --------------- | --------------------------------------------------------------------------- | ------- |
@@ -56,29 +22,6 @@ Refer to the [HiBob API Service Users documentation](https://apidocs.hibob.com/d
 ### OAuth 2.0 {#hibob-oauth2}
 
 Authenticate using OAuth 2.0.
-
-Create a connection of type **OAuth 2.0** to authenticate with HiBob using the OAuth 2.0 Authorization Code flow.
-
-#### Prerequisites
-
-- A HiBob account with access to the Developer Portal
-- An OAuth application registered in the HiBob Developer Portal
-
-#### Setup Steps
-
-1. Navigate to the [HiBob Developer Portal](https://apidocs.hibob.com/) and create or select an OAuth application
-2. In the application's OAuth section, locate the **App Installation URL** (this is the Authorize URL)
-3. Copy the **Client ID** and **Client Secret** from the application settings
-4. Configure the required scopes under **Manage Scopes** in the Developer Portal
-5. Set the OAuth callback URL to `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` in the application's redirect URI settings
-
-#### Configure the Connection
-
-- Enter the **Authorize URL** (the App Installation URL from the Developer Portal)
-- Enter the **Client ID** and **Client Secret** from the application settings
-- For **Scopes**, enter the required scopes separated by spaces. Configure scopes in the HiBob Developer Portal under **Manage Scopes**
-
-Refer to the [HiBob API documentation](https://apidocs.hibob.com/reference/getting-started-with-bob-api) for additional details on available scopes and permissions.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

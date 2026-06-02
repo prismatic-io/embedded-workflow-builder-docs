@@ -5,63 +5,13 @@ description: Manage product listings, orders, inventory, and fulfillment in Amaz
 ---
 
 ![Amazon Seller Central](./assets/amazon-seller-central.png#connector-icon)
-[Amazon Seller Central](https://sellercentral.amazon.com/) is Amazon's platform for managing third-party seller businesses on the Amazon marketplace. This component allows you to retrieve and update product listings, process orders, manage inventory, and handle fulfillment information.
-
-## API Documentation
-
-This component was built using the [Amazon Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/welcome).
+Manage product listings, orders, inventory, and fulfillment in Amazon Seller Central.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 OAuth 2.0 connection for Amazon Seller Central
-
-To connect to Amazon Seller Central, register an application in the Developer Central console and configure OAuth 2.0 authentication.
-
-For detailed information, refer to the [Amazon Selling Partner API documentation](https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api).
-
-#### Prerequisites
-
-- An Amazon Seller Central account with developer access
-- Access to the [Developer Central console](https://sellercentral.amazon.com/sellingpartner/developerconsole)
-
-#### Setup Steps
-
-To register the application for public or private seller use:
-
-1. Sign into Seller Central using developer credentials and navigate to [Developer Central](https://sellercentral.amazon.com/sellingpartner/developerconsole).
-2. On the **Developer Central** page, select **Add new app client**.
-3. Enter the OAuth Redirect URI: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Save the application configuration.
-5. View the **LWA Credentials** section to access the **Client ID** and **Client Secret**.
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the LWA Credentials section
-- Select the appropriate **Region** for the Seller Central account
-- Configure the **Authorize URL** based on the Seller Central region:
-  - For the Seller Central URL, refer to [Amazon's region URLs](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls)
-  - Replace `{YOUR_APPLICATION_ID}` with the application ID from the Developer Central page
-  - For applications not yet in production, add `version=beta` to the URL parameter
-- If connecting to a Sandbox environment, select **Yes** for the **Is Sandbox Environment** field
-
-For information on required scopes and permissions, refer to the [SP-API authorization documentation](https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications).
-
-:::note[Amazon Seller Central Sandbox Environment]
-When connecting to the Sandbox environment, some fields require different value formats than Production to succeed. The expected values can be referenced in the [Selling Partner API Models](https://github.com/amzn/selling-partner-api-models/tree/f3b0bc6c3949f791589b079e78b341f13f954b41/models).
-
-**Orders Example** ([Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/orders-api-model/ordersV0.json)):
-
-- **Created After**: `TEST_CASE_200` or `TEST_CASE_200_NEXT_TOKEN`
-- **Created Before**: `TEST_CASE_200` or `TEST_CASE_200_NEXT_TOKEN`
-- **Order ID**: `TEST_CASE_200`
-
-**Notifications Example** ([Model Reference](https://github.com/amzn/selling-partner-api-models/blob/f3b0bc6c3949f791589b079e78b341f13f954b41/models/notifications-api-model/notifications.json)):
-
-- **Subscription ID**: `TEST_CASE_200_SUBSCRIPTION_ID`
-- **Created Before**: `TEST_CASE_200_DESTINATION_ID`
-  :::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -396,8 +346,8 @@ Returns feed details for the feeds that match the filters that you specify.
 | Marketplace Ids     | List of MarketplaceId values. Used to select orders that were placed in the specified marketplaces. See the [Marketplace IDs documentation](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values.                     |                          |
 | Page Size           | The maximum number of feeds to return in a single call.                                                                                                                                                                                                                     | 10                       |
 | Processing Statuses | List of processing statuses used to filter feeds.                                                                                                                                                                                                                           |                          |
-| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2026-01-31T16:19:23.218Z |
-| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-05-01T16:19:23.218Z |
+| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2026-02-20T17:27:48.177Z |
+| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-05-21T17:27:48.177Z |
 | Next Token          | String token returned in the response of your previous request for pagination.                                                                                                                                                                                              |                          |
 
 ### List Orders {#listorders}

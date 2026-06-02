@@ -5,16 +5,13 @@ description: Manage orders within Fluent Commerce
 ---
 
 ![Fluent Commerce](./assets/fluent-commerce.png#connector-icon)
-Fluent Commerce is an order management system that allows you to track customers, orders and inventory.
+Manage orders within Fluent Commerce
 
 ## Connections
 
 ### Fluent Commerce OAuth 2.0 Password Grant {#fluent-password-grant}
 
 Authenticate requests to Fluent Commerce using a username and password
-
-Fluent uses OAuth 2.0 password grant type for authentication.
-To authenticate with Fluent, you will need a **Client ID** and **Client Secret** from Fluent, and your end users will need to enter their username and password.
 
 | Input                   | Comments                                     | Default |
 | ----------------------- | -------------------------------------------- | ------- |
@@ -23,6 +20,19 @@ To authenticate with Fluent, you will need a **Client ID** and **Client Secret**
 | Retailer Password       | The retailer's password                      |         |
 | OAuth 2.0 Client ID     | A client ID obtained from Fluent support     |         |
 | OAuth 2.0 Client Secret | A client secret obtained from Fluent support |         |
+
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Polls Fluent Commerce for orders whose `updatedOn` is at or after the last poll. Orders whose `createdOn` is also after the last poll go to the `created` branch; older orders modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | An OAuth 2.0 password grant type connection                                                                                        |         |
+| Retailer ID          | Optional Fluent retailer ID to scope the polling query. When omitted, the connection's default tenant scope applies.               |         |
+| Show New Records     | When enabled, orders whose `createdOn` falls after the last poll will be emitted on the `created` branch.                          | true    |
+| Show Updated Records | When enabled, orders whose `updatedOn` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
 
 ## Actions
 

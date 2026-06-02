@@ -5,25 +5,13 @@ description: Expensify provides an industry leading expense management system. U
 ---
 
 ![Expensify](./assets/expensify.png#connector-icon)
-[Expensify](https://www.expensify.com) provides an industry leading expense management system.
-
-Use the Expensify component to programmatically download expense report data for analysis or insertion into your accounting package, provision accounts for new hires, and much more.
-
-API Reference:
-[Expensify API Reference](https://integrations.expensify.com/Integration-Server/doc/)
+Expensify provides an industry leading expense management system. Use the Expensify component to programmatically download expense report data for analysis or insertion into your accounting package, provision accounts for new hires, and much more.
 
 ## Connections
 
 ### Basic Connection {#basic}
 
 Basic connection for Expensify
-
-Create a new authentication connection. Refer to the following [guide](https://integrations.expensify.com/Integration-Server/doc/#authentication) for more information.
-
-1. Navigate to https://www.expensify.com/tools/integrations/ and select the option that creates a new set of credentials
-2. A pair of credentials: `partnerUserID` and `partnerUserSecret` will be generated and shown on the page.
-   1. Make sure to store the `partnerUserID` and `partnerUserSecret` pair you're given in a secure location, as you won't be shown them again.
-3. Enter the `partnerUserID` and `partnerUserSecret` into your connection's configuration
 
 | Input               | Comments                                                                    | Default |
 | ------------------- | --------------------------------------------------------------------------- | ------- |

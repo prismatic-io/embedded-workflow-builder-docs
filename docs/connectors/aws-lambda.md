@@ -5,21 +5,13 @@ description: List and invoke AWS Lambda functions
 ---
 
 ![AWS Lambda](./assets/aws-lambda.png#connector-icon)
-[AWS Lambda](https://aws.amazon.com/lambda/) is an event-driven, serverless computing platform provided by Amazon as a part of Amazon Web Services.
-The AWS Lambda component allows you to manage and interact with AWS Lambda functions.
-
-API Documentation:
-[AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/?icmpid=docs_homepage_featuredsvcs)
+List and invoke AWS Lambda functions
 
 ## Connections
 
 ### AWS Lambda Access Key and Secret {#apikeysecret}
 
 Authenticates requests to AWS Lambda using an API Key and Secret.
-
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with AWS Lambda.
-Make sure that the key pair you generate in AWS has proper permissions to the Lambda functions you want to access.
-Read more about AWS Lambda permissions in the [AWS docs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.html).
 
 | Input             | Comments                     | Default |
 | ----------------- | ---------------------------- | ------- |
@@ -29,47 +21,6 @@ Read more about AWS Lambda permissions in the [AWS docs](https://docs.aws.amazon
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
-
-To enable the IAM role authentication begin by logging into the [AWS Console](https://aws.amazon.com/) and navigate to Identity and Access Management (IAM).
-
-To create an ARN user and generate credentials:
-
-1. Navigate to Users and select **Create User**.
-
-- Provide a User name and check the box providing them user access to the AWS Management Console if needed.
-- Once completed with the User creation, copy the ARN provided in the summary for a later step.
-
-2. To obtain the ARN for an existing User, click on the designated username from the Users page and the ARN will be provided in the summary section.
-3. From the summary section, select **Create access key**
-
-- Select **Third-party service** as the access key type and select next.
-- Set a description and select **create access key**.
-- Copy the **Access Key** and **Secret access key** and enter those into the connection configuration of your integration along with the ARN.
-
-To create and assign a user a role:
-
-1. Navigate to Roles and select **Create Role**.
-
-- Select **Custom Trust Policy** for the Trusted entity types
-- Copy the following statement into the statement console. Making sure to replace the **ARN** with the user's actual ARN from the previous section
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "ARN"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-- When adding permissions provide the **AWSLambda_FullAccess** permission
-- Complete remaining steps and select **Create Role**
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

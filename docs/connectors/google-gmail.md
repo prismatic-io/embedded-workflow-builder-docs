@@ -5,84 +5,13 @@ description: Manage messages, labels, and drafts in Gmail.
 ---
 
 ![Gmail](./assets/google-gmail.png#connector-icon)
-[Gmail](https://workspace.google.com/products/gmail/) is Google's email service for personal and business use.
-This component allows you to send, read, filter, and manage messages, labels, and drafts in Gmail accounts, as well as configure push notifications for real-time mailbox updates.
-
-## API Documentation
-
-This component was built using the [Gmail API Documentation](https://developers.google.com/gmail/api/guides).
+Manage messages, labels, and drafts in Gmail.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 OAuth2 Connection
-
-The Gmail component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
-
-To create a Gmail OAuth 2.0 app, a Google Developer account is required. Sign up at [console.cloud.google.com](https://console.cloud.google.com/).
-
-#### Prerequisites
-
-- Google Cloud Platform account with billing enabled
-- Access to create and configure GCP projects
-
-#### Setup Steps
-
-1. Open the [Gmail API console](https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com)
-2. Click **ENABLE** to enable the Gmail API for the project
-3. From the sidebar, select **APIs & Services** → **Credentials**
-4. Configure the OAuth consent screen:
-   1. Click **CONFIGURE CONSENT SCREEN**
-   2. Select **External** as the **User Type** (for customer-facing integrations)
-   3. Fill in the required fields:
-      - App name (company or product name)
-      - Support email
-      - App logo (optional but recommended)
-      - Application domain
-   4. Click **Save and Continue**
-   5. On the Scopes page, add required scopes for the integration:
-      - `https://mail.google.com/` for full Gmail access, or
-      - Specific scopes like `https://www.googleapis.com/auth/gmail.readonly` and `https://www.googleapis.com/auth/gmail.send`
-   6. Click **Save and Continue**
-   7. Add test users for testing purposes (required before publishing)
-   8. Review the summary and click **Back to Dashboard**
-5. Create OAuth 2.0 credentials:
-   1. Navigate to **Credentials** from the sidebar
-   2. Click **+ CREATE CREDENTIALS** → **OAuth Client ID**
-   3. Select **Web application** as the **Application type**
-   4. Under **Authorized redirect URIs**, add the OAuth callback URL: callback
-   5. Click **CREATE**
-6. Copy the **Client ID** and **Client Secret** that are generated
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the GCP Console
-- For **Scopes**, use one of the following configurations:
-  - Full access (default):
-    ```
-    https://mail.google.com/ https://www.googleapis.com/auth/pubsub
-    ```
-  - Limited access (example):
-    ```
-    https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/pubsub
-    ```
-
-:::note[Pub/Sub Scope Requirement]
-The `https://www.googleapis.com/auth/pubsub` scope is required for push notification features. Include this scope if using the Push Notification Webhook trigger.
-:::
-
-- Refer to [Gmail API Scopes](https://developers.google.com/gmail/api/auth/scopes) for additional scope options
-
-:::info[Publishing the OAuth App]
-The OAuth app will initially only work for test users added during setup. To allow all users to authenticate:
-
-1. Navigate to the **OAuth consent screen** in the GCP Console
-2. Click **PUBLISH APP**
-3. Follow Google's verification process if prompted (required for production use)
-
-Without publishing, only test users will be able to authorize the integration.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -96,68 +25,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Service Account {#gmailserviceaccount}
 
 Service Account Connection
-
-The **Service Account** authentication method allows Gmail actions to run on behalf of Google Workspace users without requiring individual user authorization. This method is ideal for serve to server integrations and automated workflows.
-
-:::info[When to Use Service Account]
-Service accounts are best suited for:
-
-- Server-to-server integrations within a Google Workspace organization
-- Automated workflows that need to access multiple users' Gmail accounts
-- Scenarios where individual user OAuth consent is not feasible
-
-For customer facing integrations where each end user needs to authorize access, the OAuth 2.0 connection is recommended.
-:::
-
-#### Prerequisites
-
-- Google Cloud Platform (GCP) project with billing enabled
-- Google Workspace administrator access
-- Gmail API enabled in the GCP project
-
-#### Setup Steps
-
-**1. Create a Service Account**
-
-1. Navigate to the [Google Cloud Platform Console](https://console.cloud.google.com/)
-2. Go to **IAM & Admin** > **Service Accounts**
-3. Click **Create Service Account**
-4. Enter a name and description for the service account
-5. Click **Create and Continue**
-6. Click **Done** (no roles are required for Gmail API access)
-
-**2. Generate a Service Account Key**
-
-1. Click on the newly created service account
-2. Navigate to the **Keys** tab
-3. Click **Add Key** > **Create new key**
-4. Select **JSON** as the key type
-5. Click **Create**
-6. A JSON file will be downloaded. This key **contains sensitive data** and should be stored securely
-7. Take note of the **Client ID** from the JSON file (required for domain wide delegation)
-
-**3. Enable Domain Wide Delegation**
-
-Service accounts require domain wide delegation to access Gmail data. Without this configuration, authentication will fail
-
-1. Login to the [Google Workspace](https://workspace.google.com/) domain's Admin console and navigate to **Main menu** > **Security** > **Access and data control** > **API Controls**
-2. In the **Domain wide delegation** pane, select **Manage Domain Wide Delegation**
-3. Click **Add new**
-4. In the **Client ID** field, enter the service account's Client ID (found in the JSON key file)
-5. In the **OAuth scopes (comma delimited)** field, enter the scopes the application needs:
-   - For full Gmail access: `https://mail.google.com/`
-   - For read only access: `https://www.googleapis.com/auth/gmail.readonly`
-   - For multiple scopes: `https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/gmail.send`
-6. Click **Authorize**
-
-For more information on Gmail API scopes, refer to the [Gmail API documentation](https://developers.google.com/gmail/api/auth/scopes).
-
-#### Configure the Connection
-
-1. Add a Gmail action to the integration that uses the **Service Account** connection
-2. In the **Service Account Key File** field, paste the entire contents of the JSON file downloaded in the setup steps
-3. In the **User** field, enter the email address of the Google Workspace user to impersonate (e.g., `support@company.com`)
-4. (Optional) In the **Scopes** field, specify custom scopes if needed. The default is `https://mail.google.com/` which provides full Gmail API access
 
 | Input                    | Comments                                                                                                                                                                    | Default                                                         |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |

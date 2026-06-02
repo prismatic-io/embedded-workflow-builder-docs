@@ -5,54 +5,13 @@ description: Manage spaces, environments, entries, assets, and organizations in 
 ---
 
 ![Contentful](./assets/contentful.png#connector-icon)
-[Contentful](https://www.contentful.com/) is a content management system (CMS) that allows developers to manage and deliver content across multiple platforms and devices.
-
-The Contentful component allows managing spaces, environments, content types, entries, assets, organizations, webhooks, and bulk actions.
-
-## API Documentation
-
-This component was built using the [Contentful Content Management API Reference](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction).
+Manage spaces, environments, entries, assets, and organizations in Contentful
 
 ## Connections
 
 ### OAuth 2.0 {#contentfuloauth2connection}
 
 Authenticate using OAuth 2.0.
-
-To connect to Contentful, create a new OAuth application.
-
-#### Prerequisites
-
-- A Contentful account with developer access
-
-#### Setup Steps
-
-1. Navigate to the Developer [Account Settings](https://app.contentful.com/account/profile/developers/applications) for OAuth applications
-2. Click **Create New Application**
-3. Enter the **Redirect URI** as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Select **Confidential** for the client type
-5. Select the applicable scope (e.g., **Content management manage**)
-6. Save the application
-7. Copy the **Client ID** and **Client Secret**
-
-:::note[Single Scope Requirement]
-Contentful only accepts a single scope per authorization request. The `content_management_manage` scope includes read access, so a separate `content_management_read` scope is not needed.
-:::
-
-#### Available Scopes
-
-| Scope                       | Description                           |
-| --------------------------- | ------------------------------------- |
-| `content_management_manage` | Manage and read content in all Spaces |
-| `content_management_read`   | Read content in all Spaces            |
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and enter:
-
-- **Client ID**: Enter the Client ID from the OAuth application
-- **Client Secret**: Enter the Client Secret from the OAuth application
-- **Scopes**: Enter a single scope (e.g., `content_management_manage`)
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,47 +5,13 @@ description: Manage tables and items in Amazon DynamoDB.
 ---
 
 ![Amazon DynamoDB](./assets/aws-dynamodb.png#connector-icon)
-[Amazon DynamoDB](https://aws.amazon.com/dynamodb) is a key-value and document database from Amazon Web Services (AWS).
-This component allows you to create, read, update, and delete items within an Amazon DynamoDB database.
-
-## API Documentation
-
-This component was built using the [AWS DynamoDB API](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/).
+Manage tables and items in Amazon DynamoDB.
 
 ## Connections
 
 ### Access Key and Secret {#apikeysecret}
 
 Authenticates requests to Amazon DynamoDB using an API Key and API Secret.
-
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon DynamoDB.
-Ensure the key pair generated in AWS has proper permissions to the DynamoDB resources to access.
-Read more about DynamoDB IAM actions in the [AWS documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/api-permissions-reference.html).
-
-#### Prerequisites
-
-- An [AWS account](https://aws.amazon.com/) with IAM access
-- Appropriate permissions to create IAM access keys
-
-#### Setup Steps
-
-To create an IAM access key pair:
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Select the IAM user that will be used for the integration
-3. Navigate to the **Security credentials** tab
-4. Under the **Access keys** section, select **Create access key**
-5. Choose the appropriate use case (e.g., **Third-party service** or **Application running outside AWS**)
-6. Copy both the **Access key ID** and **Secret access key** when displayed
-
-:::warning[Secret Key Visibility]
-The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
-:::
-
-#### Configure the Connection
-
-- Enter the **Access key ID** into the connection configuration
-- Enter the **Secret access key** into the connection configuration
 
 | Input             | Comments                                                                                                                                                                        | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -55,83 +21,6 @@ The **Secret access key** is only shown once during creation. If it is not copie
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
-
-AWS IAM role authentication allows connections to DynamoDB using the AWS Security Token Service (STS) [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) operation. This authentication method provides enhanced security by allowing temporary credentials and cross-account access.
-
-#### Prerequisites
-
-- An [AWS account](https://aws.amazon.com/) with IAM access
-- Permissions to create IAM users, access keys, and roles
-- Understanding of [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and trust policies
-
-#### Setup Steps
-
-**Create IAM User and Access Keys**
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Navigate to **Users** and select **Create User**
-3. Provide a **User name**
-   - Optionally, grant the user access to the AWS Management Console
-4. Complete the user creation process
-5. After creation, the user's ARN will be displayed in the summary section (format: `arn:aws:iam::123456789012:user/username`)
-6. Copy the **ARN** for use in the trust policy in the next section
-
-**To obtain the ARN for an existing user:**
-
-- Navigate to **Users**, select the username
-- The ARN is displayed in the summary section
-
-**Create Access Keys for the User:**
-
-7. From the user's summary page, select **Create access key**
-8. Select **Third-party service** as the access key type and select **Next**
-9. Optionally, set a description tag and select **Create access key**
-10. Copy both the **Access key ID** and **Secret access key**
-
-:::warning[Secret Key Visibility]
-The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
-:::
-
-**Create IAM Role with Trust Policy**
-
-11. Navigate to **Roles** and select **Create Role**
-12. Select **Custom trust policy** for the **Trusted entity type**
-13. Enter the following trust policy, replacing `arn:aws:iam::123456789012:user/username` with the actual user ARN copied in step 6:
-
-<details>
-<summary>Trust Policy JSON</summary>
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::123456789012:user/username"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-</details>
-
-14. Select **Next** to configure permissions
-15. Attach the **AmazonDynamoDBFullAccess** policy, or create a custom policy with only the required DynamoDB permissions following the [principle of least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
-16. Complete the remaining steps and select **Create Role**
-17. After creation, navigate to the newly created role and copy the **Role ARN** from the summary section (format: `arn:aws:iam::123456789012:role/rolename`)
-
-#### Configure the Connection
-
-Enter the following values into the connection configuration:
-
-- **Access Key ID**: The access key ID from step 10
-- **Secret Access Key**: The secret access key from step 10
-- **IAM Role ARN**: The role ARN from step 17
-
-For more information on IAM role authentication, refer to the [AWS STS documentation](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html).
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

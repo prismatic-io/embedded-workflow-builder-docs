@@ -5,29 +5,13 @@ description: Gorgias is a customer support platform designed to help e-commerce 
 ---
 
 ![Gorgias](./assets/gorgias.png#connector-icon)
-[Gorgias](https://www.gorgias.com/) is a customer service platform that helps e-commerce businesses provide support for their online stores. It allows businesses to offer multichannel customer service from a single app, including email, voice, SMS, live chat, and social media. Gorgias is known for its deep integration with e-commerce platforms like Shopify, Magento, and Big Commerce. This integration allows customer service teams to review, edit, or refund customer orders directly from within the Gorgias ticket window.
-
-Use the Gorgias component to create and manage tickets, customers, and associated events.
-
-## API Documentation
-
-This component was built using the [Gorgias REST API](https://developers.gorgias.com/reference/introduction).
+Gorgias is a customer support platform designed to help e-commerce businesses manage customer inquiries and support tickets efficiently.
 
 ## Connections
 
 ### Gorgias API Key {#gorgias-api-key}
 
 Connection to Gorgias using an API Key.
-
-Steps to generate and use an [API key](https://developers.gorgias.com/docs/access-tokens-api-keys) for Gorgias:
-
-1. **Login to Gorgias**: Start by logging into your Gorgias [account](https://www.gorgias.com/login).
-2. **Navigate to Settings**: After logging in, go to the **Settings** section of your Gorgias account. This is where you can manage various configurations for your account, including those related to the API.
-3. **REST API Section**: Within the **Settings**, locate the **REST API** section. Here, you can manage API keys, which are essential for authenticating and interacting with the Gorgias API.
-4. **Generate Password (API Key)**: In the **REST API** section, you'll see an option to generate a new API key, referred to as "Password" in this context. Click **Generate** to create a new API key.
-5. **Enter the API Key**: Once the API key is generated, you need to enter it in the connection configuration.
-
-Once completed, you can start performing requests directly from the [API documentation](https://developers.gorgias.com/reference/requests).
 
 | Input    | Comments                                                                 | Default |
 | -------- | ------------------------------------------------------------------------ | ------- |
@@ -38,22 +22,6 @@ Once completed, you can start performing requests directly from the [API documen
 ### Gorgias OAuth 2.0 {#gorgias-oauth2}
 
 Connection to Gorgias using OAuth 2.0. Using OAuth2 is mandatory for public applications.
-
-Steps to generate app credentials for [OAuth 2.0](https://developers.gorgias.com/docs/set-up-oauth2-app-store) for Gorgias:
-
-1. **Login to Gorgias**: Start by logging into the Gorgias [developer portal](https://partners.gorgias.com/login).
-2. **Create a New App**: Click the **Create New App** button.
-3. **Fill out the app submission form**:
-   - **App Name**: Shown whenever you app is mentioned.
-   - **App Tagline**: Shown underneath the app name in your integration details.
-   - **App Icon**: Shown as your app logo.
-   - **Set App URL**: The **App URL** is required to set up the OAuth flow.
-     Enter your own app's URL.
-   - **Configure Redirect URIs**: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. **Retrieve Client ID and Client Secret**: After creating the app, edit it to retrieve the **Client ID** and **Client Secret**.
-5. **Enter the Client ID and Client Secret**: Enter the **Client ID** and **Client Secret** values into the connection configuration.
-
-Once completed, you can start performing requests directly from the [API documentation](https://developers.gorgias.com/reference/requests).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

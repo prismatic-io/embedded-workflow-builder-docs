@@ -5,31 +5,13 @@ description: Manage projects and workbooks in your Tableau site
 ---
 
 ![Tableau](./assets/tableau.png#connector-icon)
-[Tableau](https://www.tableau.com/) is an interactive data visualization software company focused on business intelligence.
-The Tableau component allows you to manage your users, projects, workbooks, and connections through the Tableau Rest API.
+Manage projects and workbooks in your Tableau site
 
 ## Connections
 
 ### Personal Access Token {#privatekey}
 
 Personal Access Token connection for Tableau
-
-This component uses token authentication to interact with the Tableau API.
-To generate a token:
-
-- Log in to **Tableau**
-- Click the user icon in the top right, and click **My Account Settings**
-- Under **Personal Access Tokens**, type in a **Token Name** and select **Create new token**.
-  Take note of the **Token Name** and **Token Secret** - you'll enter those in a moment
-- Look at your Tableau URL.
-  It'll look like `https://10ay.online.tableau.com/#/site/MarketingTeam/workbooks`.
-  You'll use the `10ay.online.tableau.com` portion as your **Host Name**, and `MarketingTeam` as your **Site ID**.
-
-Now, add a Tableau step to your flow.
-This will automatically create a Tableau connection config variable.
-Fill in the config variable with the **Token Name**, **Token Secret**, **Host Name** and **Site ID** that you noted above.
-
-For additional information regarding authentication, please refer to the [Tableau docs](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).
 
 | Input        | Comments                                                                                                           | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------ | ------- |

@@ -5,16 +5,13 @@ description: Interact with documents in a MongoDB database
 ---
 
 ![MongoDB](./assets/mongo.png#connector-icon)
-[MongoDB](https://www.mongodb.com/) is a NoSQL database program that uses JSON-like documents with optional schemas.
-This component allows you to create, read, update, and delete documents inside a MongoDB collection.
+Interact with documents in a MongoDB database
 
 ## Connections
 
 ### Mongo Connection {#mongo}
 
 Authenticate requests to a MongoDB server.
-
-Create a new MongoDB connection and enter [the connection string for your MongoDB server](https://www.mongodb.com/docs/manual/reference/connection-string/).
 
 | Input                     | Comments                                                                                                                                                                                                                                                                                            | Default |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

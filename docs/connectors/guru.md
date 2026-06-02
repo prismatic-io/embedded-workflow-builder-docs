@@ -5,27 +5,13 @@ description: Manage cards, collections, and folders in the Guru knowledge manage
 ---
 
 ![Guru](./assets/guru.png#connector-icon)
-[Guru](https://www.getguru.com/) is a knowledge management platform that helps teams capture, organize, and share information effectively.
-This component allows you to interact with the Guru REST API.
-
-## API Documentation
-
-This component was built using the [Guru API Documentation](https://developer.getguru.com/reference)
+Manage cards, collections, and folders in the Guru knowledge management platform.
 
 ## Connections
 
 ### User Token {#guruusertoken}
 
 Authenticate with Guru using a user token for read/write access
-
-#### Configuring a User Token
-
-1. Log into [Guru](https://app.getguru.com/signin)
-2. Navigate to Manage > Apps and Integrations > API Access
-3. Select **Generate User Token** and copy the user token
-4. From the integration connection fill in the required fields:
-   - **Username**: The Guru username or email address
-   - **User Token**: The token obtained from your Guru account settings
 
 | Input      | Comments                                                                            | Default |
 | ---------- | ----------------------------------------------------------------------------------- | ------- |

@@ -5,27 +5,13 @@ description: PDQ provides a suite of management tools to automate software deplo
 ---
 
 ![PDQ](./assets/pdq.png#connector-icon)
-[PDQ](https://www.pdq.com/) provides a suite of management tools to automate software deployment, manage patches, and track inventory across a company’s networks.
-
-Use the PDQ component to manage deployments, devices, groups, and packages.
-
-## API Documentation:
-
-The component was built using the [PDQ V1 API](https://app.pdq.com/v1/docs)
+PDQ provides a suite of management tools to automate software deployment, manage patches, and track inventory across a company’s networks. Use the PDQ component to manage deployments, devices, groups, and packages.
 
 ## Connections
 
 ### API Key {#pdq-api-key}
 
 Connection to the PDQ API
-
-Follow these steps to [generate a new API key](https://connect.pdq.com/hc/en-us/articles/22929727991451-PDQ-Connect-API) in PDQ:
-
-1. Login to your PDQ Connect account and select the settings icon represented by a cog located in the lower left corner.
-2. Navigate to the **API keys** section and select **Create API Key.**
-3. Provide a unique name for the API key and select **Create.**
-4. Copy and save the generated API key as it will not be shown again.
-5. Enter the generated API key into the connection configuration of your integration.
 
 | Input   | Comments        | Default |
 | ------- | --------------- | ------- |

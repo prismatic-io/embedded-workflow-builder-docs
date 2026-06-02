@@ -5,21 +5,13 @@ description: Send metrics, logs, and events to New Relic observability platform.
 ---
 
 ![New Relic](./assets/new-relic.png#connector-icon)
-[New Relic](https://newrelic.com) is an observability platform for monitoring application and infrastructure performance.
-This component allows you to send metrics, logs, and events to New Relic observability platform.
-
-## API Documentation
-
-This component was built using the [New Relic API](https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/).
+Send metrics, logs, and events to New Relic observability platform.
 
 ## Connections
 
 ### API Key {#apikey}
 
 Authenticate requests to New Relic using an API key.
-
-After you obtain an **API key** from your [New Relic Account Settings](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
-The New Relic **API key** can be put directly into a New Relic connection.
 
 | Input   | Comments                                        | Default |
 | ------- | ----------------------------------------------- | ------- |

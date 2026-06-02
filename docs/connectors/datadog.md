@@ -5,49 +5,13 @@ description: Interact with the Datadog API to submit metrics, manage webhooks, a
 ---
 
 ![Datadog](./assets/datadog.png#connector-icon)
-[Datadog](https://www.datadoghq.com/) is a monitoring and analytics platform for cloud-scale infrastructure, applications, and logs.
-This component allows submitting metrics, managing webhook integrations, and receiving monitor alert notifications from Datadog.
-
-## API Documentation
-
-This component was built using the [Datadog API Reference](https://docs.datadoghq.com/api/latest/) utilizing the v2 Metrics API and v1 Webhooks Integration API.
-
-- [Metrics API (v2)](https://docs.datadoghq.com/api/latest/metrics/)
-- [Webhooks Integration API (v1)](https://docs.datadoghq.com/api/latest/webhooks-integration/)
-- [Authentication](https://docs.datadoghq.com/api/latest/authentication/)
+Interact with the Datadog API to submit metrics, manage webhooks, and monitor your infrastructure and application performance.
 
 ## Connections
 
 ### API Key + Application Key {#apikey}
 
 Authenticate using a Datadog API Key and Application Key. The API Key authenticates your organization, and the Application Key authorizes management operations.
-
-#### Prerequisites
-
-To configure this connection, the following are required:
-
-- A Datadog account with appropriate permissions
-- A Datadog API Key (created under Organization Settings > API Keys)
-- A Datadog Application Key (created under Organization Settings > Application Keys)
-
-#### Setup Steps
-
-1. Log in to the [Datadog account](https://app.datadoghq.com/).
-2. Navigate to **Organization Settings** > **API Keys**.
-3. Click **+ New Key** to create an API Key. Copy the key value.
-4. Navigate to **Organization Settings** > **Application Keys**.
-5. Click **+ New Key** to create an Application Key. Copy the key value.
-6. Note the Datadog site/region (e.g., US1, EU, US3).
-
-#### Configure the Connection
-
-Create a connection of type **API Key + Application Key** and enter:
-
-| Field               | Description                                                                                      |
-| ------------------- | ------------------------------------------------------------------------------------------------ |
-| **Datadog Site**    | Select the Datadog site that matches the organization (US1, US3, US5, EU, AP1, AP2, or US1-FED). |
-| **API Key**         | The Datadog API Key. Identifies the organization.                                                |
-| **Application Key** | The Datadog Application Key. Authorizes management and read operations.                          |
 
 | Input           | Comments                                                                                                                                    | Default                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
@@ -58,34 +22,6 @@ Create a connection of type **API Key + Application Key** and enter:
 ### OAuth 2.0 Authorization Code {#oauth2}
 
 Authenticate using OAuth 2.0 Authorization Code flow. Primarily used for Datadog integration partners and marketplace apps.
-
-#### Prerequisites
-
-To configure this connection, the following are required:
-
-- A Datadog account with organization admin permissions
-- A registered OAuth application with Datadog (typically for marketplace/partner integrations)
-- The Client ID and Client Secret from the OAuth application
-
-#### Setup Steps
-
-1. Register the application with Datadog as an integration partner.
-2. Obtain the Client ID and Client Secret from the Datadog Developer Platform.
-3. Configure the required OAuth scopes for the use case (e.g., metrics_read, create_webhooks).
-4. Note the Datadog site/region (e.g., US1, EU, US3).
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0 Authorization Code** and enter:
-
-| Field             | Description                                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Datadog Site**  | Select the Datadog site that matches the organization.                                                        |
-| **Scopes**        | Space-separated OAuth scopes. Available: metrics_read, timeseries_query, metric_tags_manage, create_webhooks. |
-| **Client ID**     | The Client ID from the Datadog OAuth application.                                                             |
-| **Client Secret** | The Client Secret from the Datadog OAuth application.                                                         |
-
-The Authorize URL and Token URL are pre-configured for the standard Datadog OAuth endpoints.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

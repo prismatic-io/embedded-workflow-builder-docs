@@ -5,35 +5,13 @@ description: Manage files stored in Dropbox
 ---
 
 ![Dropbox](./assets/dropbox.png#connector-icon)
-[Dropbox](https://www.dropbox.com/) is a file sharing platform that allows teams to collaborate and share files with one another.
-The Dropbox component allows you to interact with the Dropbox API.
-You can upload, download, list, and move files within a Dropbox account.
-
-## API Documentation
-
-This component was built using the [Dropbox API Documentation](https://www.dropbox.com/developers/documentation/http/overview)
+Manage files stored in Dropbox
 
 ## Connections
 
 ### OAuth 2.0 {#oauth}
 
 OAuth 2.0 Connectivity for Dropbox
-
-This component uses OAuth 2.0 to connect to Dropbox's API.
-To create a Dropbox OAuth 2.0 app, log in to Dropbox and open [https://www.dropbox.com/developers/apps](https://www.dropbox.com/developers/apps):
-
-1. Select **Create app**.
-1. Select that you want **Scoped access**.
-1. Choose the type of access you want:
-   1. **App folder** access gives you access to a single folder in the user's `Apps/` directory. A folder will be created with the same name as your OAuth app.
-   1. **Full Dropbox** access gives you access to all files and folders in a user's Dropbox account.
-1. Give your app a name and click **Create app**.
-   1. Take note of the **App key** and **App secret** - you'll enter these in a Dropbox connection config variable.
-1. Under the **OAuth2** section add the **Redirect URI** as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-
-Under the **Permissions** tab, choose the permissions your app will need.
-The actions supported in this component relate to files, so you should grant the `files.metadata.read` and `files.content.read` permissions if you need read-only access, and also include the `files.metadata.write` and `files.content.write` permissions if you need to write files to a user's Dropbox account.
-You can safely ignore permissions listed under **Collaboration** and **Account Info**.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -262,9 +240,10 @@ List Folder contents at the specified path
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                         |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Recursive      | If true, the response will contain contents of all subfolders.                                                                                          | false   |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
-| Recursive      | If true, the response will contain contents of all subfolders.                                                                                          | false   |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |
 | Team Member ID | The ID of the team member. Required if Team User Type is set                                                                                            |         |
 
@@ -276,22 +255,24 @@ List Shared Folders contents
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                                                                                                             |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                                                                                                        |         |
+| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                                                                                                         | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                                                                                                       |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases.                                                                                     |         |
-| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. |         |
 
 ### List Shared Links {#listsharedlinks}
 
 List Folder contents at the specified path
 
-| Input          | Comments                                                                              | Default |
-| -------------- | ------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                       |         |
-| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                  |         |
-| Direct Only    | Links to parent folders can be suppressed by setting direct_only to true.             | false   |
-| Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue. |         |
-| Team User Type | The type of user to connect with. Admin or User                                       |         |
-| Team Member ID | The ID of the team member. Required if Team User Type is set                          |         |
+| Input          | Comments                                                                                                            | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                     |         |
+| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                |         |
+| Direct Only    | Links to parent folders can be suppressed by setting direct_only to true.                                           | false   |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled. | false   |
+| Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                               |         |
+| Team User Type | The type of user to connect with. Admin or User                                                                     |         |
+| Team Member ID | The ID of the team member. Required if Team User Type is set                                                        |         |
 
 ### List Team's Folders {#listteamfolder}
 
@@ -301,6 +282,7 @@ List Team's Folder contents
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     |                                                                                                                                                         |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 
@@ -369,6 +351,7 @@ Search for files at the specified path
 | Connection     |                                                                                                                                                         |         |
 | File Name      | The name of a file within a Dropbox share.                                                                                                              |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |
@@ -383,6 +366,7 @@ Search for folders at the specified path
 | Connection     |                                                                                                                                                         |         |
 | Folder Name    | The name of the folder to search for                                                                                                                    |         |
 | Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                    |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. Cursor and Limit inputs are ignored when this is enabled.                                     | false   |
 | Cursor         | Specify the cursor returned by your last call to list_folder or list_folder/continue.                                                                   |         |
 | Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases. |         |
 | Team User Type | The type of user to connect with. Admin or User                                                                                                         |         |

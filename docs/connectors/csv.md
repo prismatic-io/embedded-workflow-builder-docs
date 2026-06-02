@@ -5,9 +5,7 @@ description: Build and parse CSV files to and from JavaScript arrays
 ---
 
 ![CSV](./assets/csv.png#connector-icon)
-CSV is a delimited text file format that uses a comma to separate values.
-The CSV component gives you the ability to parse and generate CSV files from JavaScript Arrays.
-You can also specify a custom delimiter character when building and parsing CSV files.
+Build and parse CSV files to and from JavaScript arrays
 
 ## Actions
 

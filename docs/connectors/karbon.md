@@ -5,33 +5,13 @@ description: Karbon is a collaborative practice management platform for accounti
 ---
 
 ![Karbon](./assets/karbon.png#connector-icon)
-[Karbon](https://karbonhq.com/) is a collaborative practice management platform for accounting firms. Karbon aligns your team with a single place to do your best work.
-
-Use the Karbon component to manage your accounting firms.
-
-## API Documentation
-
-This components was built using the [Karbon API Reference](https://karbonhq.github.io/karbon-api-reference/#overview).
+Karbon is a collaborative practice management platform for accounting firms.
 
 ## Connections
 
 ### API Key {#karbonapikey}
 
 API Key connection for Karbon
-
-## Karbon API Keys
-
-To obtain your **Application ID** and **Access Key** Follow these steps:
-
-1. **Register for a Developer Account:**
-   - Register for a free developer account to create an application in Karbon and receive the **Application ID**.
-   - Example: `00000000-0000-0000-0000-000000000000`
-
-2. **Find Your API Access Key:**
-   - Navigate to **Settings -> Connected Apps -> Manage** on your app in Karbon to find your **Access Key**.
-   - Example: `eyJ.....`
-
-Use these credentials in the connection.
 
 | Input          | Comments                                                                                          | Default |
 | -------------- | ------------------------------------------------------------------------------------------------- | ------- |

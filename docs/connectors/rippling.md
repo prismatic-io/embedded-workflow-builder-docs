@@ -5,44 +5,13 @@ description: Rippling makes it easy to manage your company's Payroll, Benefits, 
 ---
 
 ![Rippling](./assets/rippling.png#connector-icon)
-[Rippling](https://rippling.com) makes it easy to manage your company's Payroll, Benefits, HR, and IT—all in one, modern platform.
+Rippling makes it easy to manage your company's Payroll, Benefits, HR, and IT—all in one, modern platform.
 
 ## Connections
 
 ### Bearer API Key {#bearerapikey}
 
 If using Rippling's API to access endpoints on behalf of your own company, use your API key.
-
-To authenticate with Rippling using a bearer API key, generate an API key from the Rippling admin console and enter it into the connection configuration.
-
-#### Prerequisites
-
-- Access to the Rippling admin console
-- Authority to generate API keys
-
-#### Setup Steps
-
-To generate an API key:
-
-1. Navigate to the Rippling admin console
-2. Open the **Settings** or **API** section
-3. Locate the **API Keys** area
-4. Click **Generate New API Key** or **Create API Key**
-5. Copy the generated API key value
-
-:::note
-The API key is used for authenticating API requests on behalf of the organization. Keep the API key secure and do not share it publicly.
-:::
-
-#### Configure the Connection
-
-- Enter the API key into the **API Key** field in the connection configuration
-
-Refer to [Rippling's API documentation](https://developer.rippling.com/documentation/) for additional information on API key management and API authentication.
-
-#### Verify Connection
-
-After saving the connection, the API key is ready for use in integration actions.
 
 | Input   | Comments                                                                                                                                                                                               | Default |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -51,30 +20,6 @@ After saving the connection, the API key is ready for use in integration actions
 ### OAuth 2.0 {#authorizationcode}
 
 Authenticate using OAuth 2.0 Authorization Code flow for partner apps requiring user delegation.
-
-To authenticate with Rippling using OAuth 2.0, create and deploy an App Listing in the Rippling partner company dashboard. Refer to the [Developer Portal documentation](https://developer.rippling.com/documentation/developer-portal) for detailed guidance, including the [Partner Requirements](https://developer.rippling.com/documentation/distribute/getting-started/requirements) and [Installation OAuth Guide](https://developer.rippling.com/documentation/distribute/guides/installation).
-
-#### Prerequisites
-
-- A Rippling partner account (apply via [Partner Requirements](https://developer.rippling.com/documentation/developer-portal/getting-started/process))
-- Access to the partner company dashboard at [app.rippling.com](https://app.rippling.com)
-
-#### Setup Steps
-
-1. Log in to the Rippling partner company at [app.rippling.com](https://app.rippling.com) and navigate to **Partner > Client Command Center**
-2. [Create an App Listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/create) with the following configuration:
-   - Set the **Redirect URI** to: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Note the **Authorization URL** (typically in the format `https://app.rippling.com/apps/PLATFORM/{AppName}`)
-3. [Deploy the App Listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/deploy) (sandbox first for testing)
-4. Retrieve the **Client ID** and **Client Secret** from the deployed App Listing
-5. Determine the required [scopes](https://developer.rippling.com/documentation/base-api/scopes) for the integration (space-delimited values like `employees:read departments:read`)
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the deployed App Listing
-- Enter the **Authorization URL** from step 2
-- For **Scopes**, enter the space-delimited scopes determined in step 5. Refer to [Rippling's scopes documentation](https://developer.rippling.com/documentation/base-api/scopes) for available scope values
-- The **Token URL** is automatically set to `https://app.rippling.com/api/o/token/` and does not require modification
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

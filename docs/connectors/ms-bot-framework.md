@@ -5,47 +5,13 @@ description: Manage conversations, messages, and activities in Microsoft Bot Fra
 ---
 
 ![Microsoft Bot Framework](./assets/ms-bot-framework.png#connector-icon)
-[Microsoft Bot Framework](https://dev.botframework.com/) is a comprehensive framework for building enterprise-grade conversational AI experiences.
-This component allows you to send messages, manage conversations, and interact with bot activities across multiple channels including Microsoft Teams, Slack, and web chat.
-
-## API Documentation
-
-This component was built using the following API References currently utilizing Bot Connector API v3.0:
-
-- [Bot Framework REST API Overview](https://learn.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-overview?view=azure-bot-service-4.0)
-- [Bot Framework Connector API Reference](https://learn.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-api-reference?view=azure-bot-service-4.0)
-- [Direct Line API Reference](https://learn.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0)
+Manage conversations, messages, and activities in Microsoft Bot Framework.
 
 ## Connections
 
 ### Direct Line {#directline}
 
 Direct Line connection for Microsoft Bot Framework
-
-The Microsoft Bot Framework component supports Direct Line connectivity for direct communication with an Azure Bot.
-
-Direct Line is a channel that allows integrating a bot directly into a client application. It provides a simple REST API for exchanging messages with the bot.
-
-#### Prerequisites
-
-- An Azure Bot resource configured in the Azure Portal
-- Permissions to manage channels for the Azure Bot
-
-#### Setup Steps
-
-1. Navigate to the Azure Bot resource in the [Azure Portal](https://portal.azure.com).
-
-2. Select the **Channels** blade from the left-hand menu.
-
-3. Click on **Direct Line** from the available channels list to enable it.
-
-4. Once enabled, two secret keys will be presented. These keys are used to authenticate the application with the Direct Line service.
-
-5. Copy one of the secret keys - this is the **Direct Line Secret**.
-
-#### Configure the Connection
-
-- For **Direct Line Secret**, enter the secret key copied from the Direct Line channel configuration in the Azure Bot.
 
 | Input              | Comments                                   | Default |
 | ------------------ | ------------------------------------------ | ------- |
@@ -54,38 +20,6 @@ Direct Line is a channel that allows integrating a bot directly into a client ap
 ### OAuth 2.0 Client Credentials {#clientcredentials}
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Bot Framework
-
-The Microsoft Bot Framework component authenticates using OAuth 2.0 Client Credentials associated with an Azure Bot's App Registration.
-
-#### Prerequisites
-
-- An Azure account with permissions to create and manage Azure Bots
-- An Azure Bot resource (or ability to create one)
-- Appropriate channels enabled and configured for the intended use case
-
-#### Setup Steps
-
-1. [Create a new Azure Bot](https://learn.microsoft.com/en-us/composer/quickstart-create-bot-with-azure) or retrieve the app ID and app password (client secret) for an existing bot. When creating a new bot, set its type to **Multi Tenant** to allow using the bot across tenants.
-
-2. Open the Azure Bot and ensure that [appropriate channels are enabled and configured](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels) for the intended use case. Each channel requires additional configuration - [Microsoft Teams](https://learn.microsoft.com/en-us/azure/bot-service/channel-connect-teams), for example, requires a [Teams app](https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/deploy-and-publish/apps-publish-overview) containing a manifest file specifying the bot's configuration with Teams.
-
-3. Navigate to the **Configuration** blade of the bot and click **Manage** next to **Microsoft App ID**. This will navigate to the Azure AD App Registration for the bot.
-
-4. From the App Registration, navigate to the **Certificates & secrets** blade and create a new **Client Secret**. Copy the secret value immediately - this is the **Client Secret** (also referred to as the "app password" in some Microsoft documentation).
-
-5. Navigate to the **Overview** blade to retrieve:
-   - **Application (client) ID** - This is the **Client ID**
-   - **Directory (tenant) ID** - Required for Single Tenant bots
-
-#### Configure the Connection
-
-- For **Client ID**, enter the value for **Microsoft App ID** or the **Client ID** from the app registration.
-- For **Client Secret**, enter the secret value from the **Certificates & secrets** blade of the app registration.
-- If the bot is configured as **Single Tenant**, update the **Token URL** to: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/token` and replace `TENANT_ID` with the tenant ID from the **Overview** blade.
-
-:::note[Multi-Tenant vs Single-Tenant Bots]
-The default **Token URL** (`https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token`) is configured for Multi-Tenant bots. For Single-Tenant bots, the Token URL must be updated to use the specific tenant ID.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,44 +5,13 @@ description: Manage business partners, sales orders, materials, and other enterp
 ---
 
 ![SAP S/4HANA Cloud](./assets/saps4hana.png#connector-icon)
-[SAP S/4HANA Cloud](https://www.sap.com/products/erp/s4hana.html) is an enterprise resource planning (ERP) system.
-This component allows you to manage business partners, sales orders, materials, and other enterprise resources within SAP S/4HANA Cloud Public Edition.
-
-## API Documentation
-
-This component was built using the [SAP API Business Hub](https://api.sap.com/products/SAPS4HANACloud/overview) for SAP S/4HANA Cloud.
+Manage business partners, sales orders, materials, and other enterprise resources in SAP S/4HANA Public Cloud.
 
 ## Connections
 
 ### API Key (Sandbox) {#apikey}
 
 Connect to SAP S/4HANA Cloud APIs via SAP API Business Hub sandbox for testing and development. This connection provides read-only access to sample data.
-
-This connection authenticates with SAP S/4HANA Cloud APIs via the SAP API Business Hub sandbox environment. It is designed for testing and development purposes only and provides read-only access to sample data.
-
-:::note[Sandbox Environment Only]
-This connection is intended for **testing and development** using the SAP API Business Hub sandbox. For production access to real SAP S/4HANA Cloud data, use the Basic Auth connection instead.
-:::
-
-#### Prerequisites
-
-- An SAP account with access to [SAP API Business Hub](https://api.sap.com/)
-- API key generated from SAP API Business Hub
-
-#### Setup Steps
-
-To create an API key for the sandbox:
-
-1. Navigate to [SAP API Business Hub](https://api.sap.com/) and log in with SAP credentials.
-2. Click on the user profile icon in the top right corner.
-3. Select **Settings** or **API Keys** from the menu.
-4. Click **Show API Key** to reveal the existing key, or generate a new one if needed.
-5. Copy the API key and store it securely.
-
-#### Configure the Connection
-
-- **SAP API Key**: Enter the API key obtained from SAP API Business Hub.
-- **Base URL**: Use the default sandbox URL: `https://sandbox.api.sap.com/s4hanacloud`
 
 | Input       | Comments                                                                                                                              | Default                                 |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
@@ -53,49 +22,6 @@ To create an API key for the sandbox:
 
 Basic Authentication connection for direct access to SAP S/4HANA Cloud Public Edition. Requires a Communication User configured in SAP.
 
-This connection authenticates directly with an SAP S/4HANA Cloud Public Edition tenant using Basic Authentication.
-
-:::note[Production Access]
-This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator.
-:::
-
-#### Prerequisites
-
-- SAP S/4HANA Cloud Public Edition tenant
-- Administrator access to configure Communication Arrangements
-- A Communication Scenario enabled for the required APIs (e.g., `SAP_COM_0008` for Business Partner API)
-
-#### Setup Steps in SAP S/4HANA Cloud
-
-To configure Basic Authentication access, an SAP administrator must complete these steps:
-
-1. **Create a Communication User**
-   - Navigate to the **Maintain Communication Users** app
-   - Create a new user for API access
-   - Set a secure password and note the credentials
-
-2. **Create a Communication System**
-   - Navigate to the **Communication Systems** app
-   - Create a new system representing the external integration
-   - Under **Users for Inbound Communication**, add the Communication User created above
-   - Ensure **User ID and Password** (Basic Authentication) is enabled
-
-3. **Create a Communication Arrangement**
-   - Navigate to the **Communication Arrangements** app
-   - Create a new arrangement based on the required Communication Scenario
-   - Select the Communication System created above
-   - Verify the inbound services are enabled
-
-#### Configure the Connection
-
-- **Tenant URL**: The SAP S/4HANA Cloud tenant URL
-  - Example: `https://my123456-api.s4hana.cloud.sap`
-
-- **Communication User**: The Communication User name created in SAP S/4HANA Cloud
-  - Example: `Username`
-
-- **Password**: The Communication User password
-
 | Input              | Comments                                                                         | Default |
 | ------------------ | -------------------------------------------------------------------------------- | ------- |
 | Tenant URL         | SAP S/4HANA Cloud API tenant URL (include -api in the hostname).                 |         |
@@ -105,75 +31,6 @@ To configure Basic Authentication access, an SAP administrator must complete the
 ### OAuth 2.0 Authorization Code {#sapoauth}
 
 Authenticate with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Authorization Code flow. Provides full read/write access to business data.
-
-This connection authenticates with an SAP S/4HANA Cloud Public Edition tenant using OAuth 2.0 Authorization Code flow. It provides full read/write access to business data and is recommended for production integrations.
-
-:::note[Production Access]
-This connection is for **direct tenant access** to SAP S/4HANA Cloud Public Edition. It requires a Communication Arrangement configured by an SAP administrator with OAuth 2.0 enabled.
-:::
-
-#### Prerequisites
-
-- SAP S/4HANA Cloud Public Edition tenant
-- Administrator access to configure Communication Arrangements
-- A Communication Scenario enabled for the required APIs (e.g., `SAP_COM_0008` for Business Partner API)
-- An SAP user account with permissions to access the required APIs
-
-#### Setup Steps in SAP S/4HANA Cloud
-
-To configure OAuth 2.0 access, an SAP administrator must complete these steps:
-
-1. **Create a Communication System**
-   - Navigate to **Communication Systems** app
-   - Create a new system representing the external integration (e.g., `ACME`)
-   - Under **Users for Inbound Communication**, configure OAuth 2.0:
-     - Authentication Method: **OAuth 2.0**
-     - OAuth 2.0 Client ID: Enter a client identifier (e.g., `ACME`)
-     - Client Type: **Public Client** (recommended) or Confidential Client
-
-2. **Create a Communication Arrangement**
-   - Navigate to **Communication Arrangements** app
-   - Create a new arrangement based on the required Communication Scenario
-   - Select the Communication System created above
-   - Note the **OAuth 2.0 Details** from Inbound Communication:
-     - Client ID
-
-#### Configure the Connection
-
-Only two fields are required to configure this connection:
-
-- **Tenant ID**: The SAP S/4HANA Cloud tenant identifier
-  - This is the prefix in your SAP URL (e.g., `my123456` from `my123456.s4hana.cloud.sap`)
-  - Find this in your browser address bar when logged into SAP
-
-- **Client ID**: The OAuth 2.0 Client ID from the Communication Arrangement
-  - Navigate to Inbound Communication and click **OAuth 2.0 Details** to view the Client ID
-
-- **Scopes** _(optional)_: Space-separated OAuth scopes
-  - Leave empty to use default scopes
-  - Specify API-specific scopes if required by your Communication Arrangement
-
-:::info[Finding OAuth 2.0 Details]
-In the Communication Arrangement, navigate to **Inbound Communication** and click **OAuth 2.0 Details** to view the Client ID.
-:::
-
-#### Authorization Flow
-
-When you connect using this method:
-
-1. Enter your **Tenant ID** and **Client ID** in the connection form
-2. Click **Connect** - you will be redirected to SAP's login page
-3. Log in with your **SAP user credentials** (your personal SAP username and password)
-4. Grant authorization for the integration to access SAP on your behalf
-5. You will be redirected back to complete the connection setup
-
-:::tip[SAP Login Credentials]
-During the OAuth flow, you log in with your **SAP user account** credentials - not the Communication System credentials. Your SAP user must have the appropriate authorizations to access the APIs defined in the Communication Arrangement.
-:::
-
-For detailed setup instructions, refer to:
-
-- [SAP Help: Communication Management](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/2e84a10c430645a88bdbfaaa23ac9ff7.html)
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

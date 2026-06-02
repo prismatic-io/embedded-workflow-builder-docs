@@ -5,44 +5,13 @@ description: Manage companies, report suites, metrics, dimensions and more withi
 ---
 
 ![Adobe Analytics](./assets/adobe-analytics.png#connector-icon)
-[Adobe Analytics](https://www.adobe.com/analytics.html) is a digital analytics platform for mixing, matching, and analyzing data from any digital point in the customer journey.
-This component allows managing Adobe Analytics report suites and generating reports from gathered data.
-
-## API Documentation
-
-This component was built using the [Adobe Analytics 2.0 API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/).
+Manage companies, report suites, metrics, dimensions and more within Adobe Analytics.
 
 ## Connections
 
 ### OAuth 2.0 {#adobeanalyticsoauth}
 
 Authenticate using OAuth 2.0.
-
-Create a connection of type **OAuth 2.0** to authenticate with Adobe Analytics.
-
-#### Prerequisites
-
-- An Adobe account with access to Adobe Analytics
-- Access to the [Adobe Developer Console](https://developer.adobe.com/console/)
-
-#### Setup Steps
-
-1. Navigate to the [Adobe Developer Console](https://developer.adobe.com/console/) and create a new project
-2. Add the **Adobe Analytics API** to the project
-3. Select **User Authentication, OAuth** for the type of authentication, then select **Web** for the application type
-4. For **Redirect URI**, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-5. For **Redirect URI Pattern**, enter the OAuth 2.0 base URL (minus the `/callback` portion)
-6. Copy the **Client ID** and **Client Secret** from the project credentials
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the Adobe Developer Console project
-- The **Authorize URL** defaults to `https://ims-na1.adobelogin.com/ims/authorize/v2`
-- The **Token URL** defaults to `https://ims-na1.adobelogin.com/ims/token/v3`
-- For **Scopes**, the default value is:
-  ```
-  openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function
-  ```
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

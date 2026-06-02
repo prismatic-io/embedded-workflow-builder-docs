@@ -5,42 +5,13 @@ description: Use the Bill component to manage Bank Accounts, Invoices, Bills, an
 ---
 
 ![Bill](./assets/bill.png#connector-icon)
-[Bill.com](https://bill.com/) is a leading provider of cloud-based software that simplifies and automates back-office financial operations for small and midsize businesses.
-
 Use the Bill component to manage Bank Accounts, Invoices, Bills, and more.
-
-## API Documentation
-
-This component was built using the [Bill API Reference](https://developer.bill.com/reference/api-reference-overview)
 
 ## Connections
 
 ### Client Credentials {#billconnection}
 
 Authenticate using client credentials
-
-#### Prerequisites
-
-The following credentials are needed to authenticate with the BILL API:
-
-- **Username**: The username is the email address used to sign in to the API sandbox developer account.
-- **Password**: The password is used to sign in to the API sandbox developer account.
-- **Organization ID**: The API sandbox developer account represents the organization in BILL. The organization ID is a unique alphanumeric value that begins with 008.
-- **Developer key**: The developer key is used to uniquely identify the developer account in API requests.
-
-#### Setup Steps
-
-1. **Retrieve Credentials**
-   The BILL team must provide an email containing the API login information: username, password, organization ID, and developer key.
-
-#### Configure the Connection
-
-1. Open the configuration settings for the Bill connection and input the credentials:
-   - **Username**: Enter the email address used to sign in to the API sandbox developer account.
-   - **Password**: Enter the password used to sign in to the API sandbox developer account.
-   - **Organization ID**: Enter the organization ID (unique alphanumeric value beginning with 008).
-   - **Developer Key**: Enter the developer key used to uniquely identify the developer account in API requests.
-   - **Use Production URL**: Turn this On to use the production URL. Turn this Off to use the sandbox URL.
 
 | Input              | Comments                                                                                | Default |
 | ------------------ | --------------------------------------------------------------------------------------- | ------- |

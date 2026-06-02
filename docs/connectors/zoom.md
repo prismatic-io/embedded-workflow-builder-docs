@@ -5,77 +5,13 @@ description: Manage meetings, recordings, users, and webinars in Zoom.
 ---
 
 ![Zoom](./assets/zoom.png#connector-icon)
-[Zoom](https://zoom.us/) is a video teleconferencing software program developed by Zoom Video Communications.
-The Zoom component allows you to manage meetings, recordings, users, and webinars.
-
-## API Documentation
-
-This component was built using the [Zoom API](https://developers.zoom.us/docs/api/).
+Manage meetings, recordings, users, and webinars in Zoom.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth}
 
 OAuth 2.0 flow
-
-This component uses OAuth 2.0 to connect to Zoom's API.
-
-For additional information on Zoom OAuth 2.0 apps, refer to [Zoom's documentation](https://developers.zoom.us/docs/integrations/oauth/).
-
-#### Prerequisites
-
-- A Zoom account with administrative access
-- Permission to create apps in the [Zoom Marketplace](https://marketplace.zoom.us/)
-
-#### Setup Steps
-
-1. Navigate to the [Zoom Marketplace](https://marketplace.zoom.us/) and log in
-2. Click **Develop** -> **Build App**
-3. Select **OAuth** as the app type
-4. Zoom auto-generates a name for the app, which can be modified at the top left. An icon can also be added in that section.
-5. Select how the app will be managed
-6. Take note of the **Client ID** and **Client Secret** that are generated
-7. Add the OAuth callback URL to the **OAuth Redirect URL** input: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - The **OAuth Allow Lists** input should populate automatically with the same value
-8. Click **Continue**
-9. (Optional) In the Access section, activate Event Subscriptions if needed:
-   - Check the appropriate box
-   - Copy the **Secret Token** for webhook verification and functionality
-10. Skip the Surface and Embed sections by clicking **Continue**
-
-#### Add Scopes
-
-**Scopes** determine what the integration is allowed to do on behalf of users. Scopes might include permissions for accessing meetings, webinars, recordings, and user information.
-
-Add the required scopes for:
-
-- **Meetings** - Create, read, update, delete meetings
-- **Webinars** - Manage webinar settings and participants
-- **Recordings** - Access cloud recordings
-- **Users** - Read user profile information
-
-A Scope Description can also be added for clarity.
-
-Click **Continue** to complete the creation of the OAuth app.
-
-#### Test the Connection
-
-To verify the app configuration:
-
-1. Click **Add App Now**
-2. The browser will redirect to a Zoom consent screen
-3. Click **Allow**
-4. The OAuth callback URL will open with an "Authorization failed" message - this is expected during initial setup
-
-#### Configure the Connection
-
-When creating a Zoom OAuth 2.0 connection in the integration:
-
-- Enter the **Client ID** from the Zoom app
-- Enter the **Client Secret** from the Zoom app
-- The **Scopes** field is pre-configured based on the app settings
-
-Save the connection to authenticate with Zoom.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -88,76 +24,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Server to Server {#servertoserver}
 
 Server to Server connection
-
-This component uses Server to Server OAuth to connect to Zoom's API. Server to Server OAuth apps are designed for backend integrations that operate without user interaction, ideal for machine-to-machine authentication.
-
-For additional information, refer to [Zoom's Server to Server OAuth documentation](https://developers.zoom.us/docs/internal-apps/s2s-oauth/).
-
-#### Prerequisites
-
-- A Zoom account with administrative access
-- Permission to create apps in the [Zoom Marketplace](https://marketplace.zoom.us/)
-- Secure credential storage for Client ID, Client Secret, and Account ID
-
-#### Setup Steps
-
-1. Navigate to the [Zoom Marketplace](https://marketplace.zoom.us/) and log in
-2. Click **Develop** -> **Build App**
-3. Select **Server to Server OAuth App** as the app type
-4. Take note of the following credentials that are generated:
-   - **Client ID**: The app's unique identifier
-   - **Client Secret**: The app's secret key (must be kept secure)
-   - **Account ID**: The Zoom account identifier
-
-:::note[Finding the Account ID]
-The **Account ID** can be found in multiple locations:
-
-- In the app credentials section after creation
-- In the Zoom account settings under **Account Management** -> **Account Info**
-- In the Zoom Admin dashboard URL (the alphanumeric string after `/account/`)
-  :::
-
-5. (Optional) In the **Features** section, configure Event Subscriptions if needed:
-   - Check the appropriate box
-   - Copy the **Secret Token** for webhook verification
-
-6. In the **Scopes** section, add the required scopes for the integration:
-   - `meeting:read:meeting:admin` - View all user meetings
-   - `meeting:write:meeting:admin` - Create and manage meetings
-   - `user:read:user:admin` - View user information
-   - `user:write:user:admin` - Manage user accounts
-   - `webinar:read:webinar:admin` - View webinar information
-   - `webinar:write:webinar:admin` - Create and manage webinars
-   - `cloud_recording:read:recording:admin` - View recordings
-
-   Refer to [Zoom's scope documentation](https://developers.zoom.us/docs/integrations/oauth-scopes/) for additional scope information.
-
-7. Review the app configuration and click **Activate your app**
-
-:::info[Server to Server Authentication]
-Unlike OAuth apps, Server to Server apps do not require user consent and are immediately active once created.
-:::
-
-#### Configure the Connection
-
-When creating a Zoom Server to Server connection in the integration:
-
-- Enter the **Client ID** from the Zoom app
-- Enter the **Client Secret** from the Zoom app
-- Enter the **Account ID** from the Zoom account
-
-:::warning[Credential Security]
-
-- Store the **Client Secret** securely and never expose it in client-side code
-- Rotate credentials periodically for enhanced security
-- Use environment variables or secure configuration management
-  :::
-
-:::note[Rate Limiting]
-Server to Server apps are subject to Zoom's rate limiting policies. Monitor API usage and implement appropriate retry logic with exponential backoff.
-:::
-
-Save the connection to authenticate with Zoom.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

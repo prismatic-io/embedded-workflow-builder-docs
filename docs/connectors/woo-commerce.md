@@ -5,28 +5,13 @@ description: Easily manage your customers, orders, and products in your WooComme
 ---
 
 ![WooCommerce](./assets/woo-commerce.png#connector-icon)
-[WooCommerce](https://woocommerce.com/) is an open-source eCommerce plugin for WordPress.
-The **Woo Commerce** component allows you to interact with customers, products, and orders in your eCommerce wordpress site.
+Easily manage your customers, orders, and products in your WooCommerce platform
 
 ## Connections
 
 ### WooCommerce Basic Auth {#basic}
 
 Authenticate requests to Woo Commerce with values obtained from your wordpress site.
-
-WooCommerce operates through your Wordpress site's built in API.
-To get started with WooCommerce, install the WooCommerce plugin on your Wordpress site.
-
-Once installed, you will see a navigation item for the plugin in your [Wordpress Admin Dashboard](https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fwordpress.com%2Fwp-admin%2F)
-Under the settings tab, navigate to advanced and you will see a section on "page setup".
-Click into REST API, and you will be greeted with a screen to generate API keys.
-Add a new key and give it a description, make sure to take note of the **Consumer Key**, and the **Consumer Secret**.
-
-When you add a WooCommerce step to an integration, a connection config variable will be created automatically for you:
-
-Enter the **Consumer Key** and **Consumer Secret** that you previously noted, and you should be ready to start creating WooCommerce integrations.
-
-For additional information regarding authentication, please refer to the [WooCommerce docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication).
 
 | Input           | Comments                                                      | Default |
 | --------------- | ------------------------------------------------------------- | ------- |

@@ -5,51 +5,13 @@ description: Manage users, groups, and applications in Microsoft Entra ID (forme
 ---
 
 ![Microsoft Entra ID](./assets/ms-entra-id.png#connector-icon)
-[Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) (formerly Azure Active Directory) is a cloud-based identity and access management service from Microsoft that helps employees sign in and access resources.
-
-Use the Microsoft Entra ID component to manage users, groups, and applications.
-
-## API Documentation
-
-This component was built using the [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0&preserve-view=true).
+Manage users, groups, and applications in Microsoft Entra ID (formerly Azure Active Directory).
 
 ## Connections
 
 ### OAuth 2.0 {#msentraidoauth2}
 
 Authenticate using OAuth 2.0
-
-This authentication method may be used when an App requires granting admin consent to API permissions, in addition to authorizing the integration with the App's configured client credentials.
-
-The **Microsoft Entra ID** component authenticates requests through the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api).
-
-#### Prerequisites
-
-- A Microsoft Azure account with access to the [Microsoft Entra Admin Center](https://entra.microsoft.com/#home) or [Microsoft Azure Portal](https://portal.azure.com/#home)
-- Permissions to create App Registrations in the tenant
-
-#### Setup Steps
-
-1. Navigate to **App Registrations**.
-2. When creating the application, select **Supported account types**.
-3. Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**.
-4. Navigate to **Redirect URI** and add the **Web** platform. Enter the redirect URI as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-5. Select **Register** to complete.
-6. In the App, navigate to **Certificates & Secrets** and select **New client secret**. Copy and save the **Value** for use in the connection configuration of the integration (the value will not be shown again).
-7. Next, navigate to the **Overview** section and copy the **Application (client) ID**.
-8. Navigate to the **API Permissions** section to assign the proper permissions for the integration. Select **Add Permission** and select all permissions that are required for the desired integration. A full list of scopes can be found on the [Microsoft Graph API documentation](https://learn.microsoft.com/en-us/graph/permissions-reference).
-   - Recommended scopes for Active Directory can be found in Microsoft Graph > Delegated permissions:
-   - `Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access`
-
-#### Configure the Connection
-
-Supply the following values to the **OAuth 2.0** connection:
-
-- **Client ID**: The **Application (client) ID** from the App Registration.
-- **Client Secret**: The **Value** provided from Certificates & Secrets (not the **Secret ID**).
-- **Scopes**: The assigned API permissions. The default value is set to: `Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access`
-- **Authorize URL**: The OAuth 2.0 authorization endpoint. Defaults to `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`. If Multitenant was not selected when creating the App, replace with a tenant-specific URL.
-- **Token URL**: The OAuth 2.0 token endpoint. Defaults to `https://login.microsoftonline.com/common/oauth2/v2.0/token`. If Multitenant was not selected, replace with a tenant-specific URL.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

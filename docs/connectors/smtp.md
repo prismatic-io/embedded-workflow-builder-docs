@@ -5,34 +5,13 @@ description: Send emails through an SMTP server
 ---
 
 ![SMTP](./assets/smtp.png#connector-icon)
-[SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) or **Simple Mail Transfer Protocol** is an internet standard for email transmission.
-This component allows sending emails via any SMTP server.
-
-## Protocol Specification
-
-This component implements SMTP as defined in [RFC 5321](https://datatracker.ietf.org/doc/html/rfc5321).
+Send emails through an SMTP server
 
 ## Connections
 
 ### SMTP Connection {#smtpconnection}
 
 SMTP server information
-
-An SMTP connection requires the mail server host and port, with optional authentication and TLS settings.
-
-#### Prerequisites
-
-- An SMTP server accessible from the network
-- Server credentials if authentication is required
-
-#### Configure the Connection
-
-- **Host**: Enter the hostname of the SMTP server (e.g., `smtp.example.com`)
-- **Port**: Enter the SMTP server port (default: `587`). Port 587 is commonly used for SMTP with TLS. Port 25 is disallowed, as unencrypted SMTP is insecure.
-- **Use TLS**: Enable to secure the connection with TLS (default: `true`)
-- **Ignore Self-Signed Certificates**: Enable to bypass self-signed certificate validation errors (default: `false`)
-- **Username**: Enter the SMTP account username (optional)
-- **Password**: Enter the SMTP account password (optional)
 
 | Input                           | Comments                                                                                                              | Default |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- |

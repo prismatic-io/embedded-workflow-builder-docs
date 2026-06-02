@@ -5,9 +5,7 @@ description: Repeat a set of steps by iterating over items in a dataset or a fix
 ---
 
 ![Loop](./assets/loop.png#connector-icon)
-The **loop** component allows you to loop over a list of items or loop a specific number of times depending on which action is selected.
-This is handy if you have a set of files or pieces of data to process.
-The loop component can be set up execute a series of actions on each file or item in a list.
+Repeat a set of steps by iterating over items in a dataset or a fixed number of iterations
 
 ## Actions
 

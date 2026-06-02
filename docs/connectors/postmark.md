@@ -5,45 +5,13 @@ description: Send transactional emails and manage delivery settings in Postmark.
 ---
 
 ![Postmark](./assets/postmark.png#connector-icon)
-[Postmark](https://postmarkapp.com/) is a transactional email delivery service. This component allows you to send emails, manage sender signatures, and analyze email delivery and engagement.
-
-## API Documentation
-
-This component was built using the [Postmark API Documentation](https://postmarkapp.com/developer).
+Send transactional emails and manage delivery settings in Postmark.
 
 ## Connections
 
 ### Postmark Token Authentication {#postmark}
 
 Authenticate requests to Postmark using values obtained from the developer console.
-
-To authenticate with Postmark, access tokens are required. Postmark provides two types of tokens: a **Server Token** for sending emails and server-related actions, and an **Account Token** for account-level management such as creating and managing servers.
-
-#### Prerequisites
-
-- An active Postmark account
-- At least one server created in Postmark (required for Server Token)
-
-#### Setup Steps
-
-To generate access tokens:
-
-1. Log in to [Postmark](https://account.postmarkapp.com/)
-2. Navigate to **Servers** in the left sidebar
-3. Select the server to generate tokens for (or create a new server if needed)
-4. Click on the **API Tokens** tab in the server settings
-5. Locate the **Server API Token** in the API Tokens section
-6. Copy the **Server Token** value
-7. To obtain the **Account Token**, click on **Account** in the top navigation
-8. Select **API Tokens** from the account menu
-9. Copy the **Account Token** value
-
-#### Configure the Connection
-
-- Enter the **Account Token** value into the **Account Token** field
-- Enter the **Server Token** value into the **Server Token** field
-
-The **Server Token** is required for email sending operations and server-level actions. The **Account Token** is required for account-level operations such as creating and managing servers.
 
 | Input         | Comments                                                                                                                                                                       | Default |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -177,9 +145,10 @@ Get a list of all servers associated with the account
 | Input       | Comments                                                                                                                                                                | Default |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Postmark connection to use.                                                                                                                                         |         |
+| Server Name | Filter by a specific server name. <strong>Note:</strong> This is a partial match search - 'MyServer' will match 'MyServer', 'MyServer Production', and 'MyServer Test'. |         |
+| Fetch All   | When enabled, automatically fetches all pages of results. Count and Offset inputs are ignored when this is enabled.                                                     | false   |
 | Count       | Number of servers to return per request. Maximum 500.                                                                                                                   |         |
 | Offset      | Number of servers to skip for pagination.                                                                                                                               |         |
-| Server Name | Filter by a specific server name. <strong>Note:</strong> This is a partial match search - 'MyServer' will match 'MyServer', 'MyServer Production', and 'MyServer Test'. |         |
 
 ### List Webhooks {#listwebhooks}
 

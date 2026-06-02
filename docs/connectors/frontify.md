@@ -7,23 +7,11 @@ description: Frontify is a comprehensive brand management platform that enables 
 ![Frontify](./assets/frontify.png#connector-icon)
 Frontify is a comprehensive brand management platform that enables organizations to create, manage, and distribute brand assets, guidelines, and digital content across teams and channels, streamlining brand consistency and collaboration.
 
-Use the Frontify Component to create, manage, and distribute brand assets, guidelines, and digital content across teams and channels, streamlining brand consistency and collaboration.
-
-## API Documentation:
-
-This component was built using the [Frontify GraphQL API Reference](https://frontify.github.io/graphql-reference/).
-
 ## Connections
 
 ### OAuth 2.0 {#frontifyoauth2}
 
 Connection to Frontify using OAuth 2.0
-
-[Documentation](https://help.frontify.com/en/articles/5402357-what-is-the-frontify-graphql-api) - search for **OAuth 2.0**
-
-1. Go to Frontify and open the applications setting.
-2. Add a new application with the following configuration options:
-3. Redirect URIs: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -41,13 +29,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Personal Developer Token {#personaldevelopertoken}
 
 Personal Developer Tokens are used for private applications or during development to skip the OAuth2 process.
-
-[Documentation](https://developer.frontify.com/) - search for **Personal Developer Token**
-
-1. To generate a Personal Developer token, navigate to `https://company-domain/api/developer/token` in your browser.
-   1. Replace `company-domain` in URL with the domain name of your company's site.
-2. Once generated, a developer can use the token until it is manually revoked.
-3. When creating a new token, give it a meaningful name. This is helpful if you later need to revoke a token and for you to keep track of where a given token is used.
 
 | Input    | Comments                                                                                                                           | Default |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |

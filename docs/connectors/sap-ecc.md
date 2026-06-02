@@ -5,40 +5,13 @@ description: Send SOAP requests, call BAPIs, and manage IDocs in SAP ECC.
 ---
 
 ![SAP ECC](./assets/sap-ecc.png#connector-icon)
-[SAP ECC](https://www.sap.com/products/erp.html) is an enterprise resource planning (ERP) system from SAP for managing core business processes.
-This component allows sending SOAP requests, call BAPIs via RFC, send and track IDocs, and receive change notifications from SAP ECC systems.
-
-## API Documentation
-
-This component was built using the [SAP ECC SOAP/RFC Interface](https://help.sap.com/docs/SAP_ERP)
+Send SOAP requests, call BAPIs, and manage IDocs in SAP ECC.
 
 ## Connections
 
 ### On-Premise Connection {#sapecc}
 
 Authenticate requests to an SAP ECC server.
-
-Connects to an on-premises SAP ECC server through an on-prem agent using basic authentication. Create a connection of type **On-Premise Connection** to get started.
-
-#### Prerequisites
-
-- An SAP ECC system accessible from the on-prem agent
-- An on-prem agent deployed and configured within the network that has access to the SAP server
-- SAP user credentials with appropriate permissions for the required operations
-
-#### Setup Steps
-
-1. Deploy and configure an on-prem agent within the network that has access to the SAP ECC server.
-2. The **Host** and **Port** fields are controlled by the on-prem agent configuration and are set on the agent side.
-3. In the connection configuration, enter the **SAP Client**, **Username**, and **Password** values.
-
-#### Configure the Connection
-
-- **Host**: The hostname or IP address of the SAP ECC server (e.g., `sap-ecc.internal`). Controlled by the on-prem agent.
-- **Port**: The HTTPS port of the SAP ECC server (default: `44300`). Controlled by the on-prem agent.
-- **SAP Client**: The SAP client number to connect to (e.g., `100`). This value is sent as the `sap-client` query parameter.
-- **Username**: The SAP username for authentication.
-- **Password**: The SAP password for authentication.
 
 | Input      | Comments                                                                                         | Default |
 | ---------- | ------------------------------------------------------------------------------------------------ | ------- |

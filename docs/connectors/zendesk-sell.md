@@ -5,42 +5,13 @@ description: Manage leads, contacts, and deals in Zendesk Sell.
 ---
 
 ![Zendesk Sell](./assets/zendesk-sell.png#connector-icon)
-[Zendesk Sell](https://www.zendesk.com/sell) is a sales force automation and CRM platform.
-This component allows you to manage leads, contacts, and deals in Zendesk Sell.
-
-## API Documentation
-
-This component was built using the [Zendesk Sell API](https://developer.zendesk.com/api-reference/sales-crm/introduction/).
+Manage leads, contacts, and deals in Zendesk Sell.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth}
 
 Authenticate using OAuth 2.0.
-
-Create a connection of type **OAuth 2.0** to authenticate with the Zendesk Sell API using OAuth 2.0.
-
-#### Prerequisites
-
-- A Zendesk Sell account with administrator access
-
-#### Setup Steps
-
-1. Log in to the Zendesk Sell Dashboard at a URL similar to `https://{subdomain}.zendesk.com/sales/dashboards/main`.
-2. On the left-hand side toolbar, click **Settings**.
-3. Within the Settings section, navigate to **Integrations** > **OAuth**.
-4. Under the OAuth section, open **OAuth2 Settings**.
-5. In the **Developer apps** section, click **Add Developer App**.
-6. Complete the required fields for the app setup. Specify the Redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-7. Once the app has been added, select the **details** button associated with the app to retrieve the **Client ID** and **Client Secret**.
-
-#### Configure the Connection
-
-- For **Authorize URL**, the default value is `https://api.getbase.com/oauth2/authorize`. Update if using a custom Zendesk Sell instance.
-- For **Token URL**, the default value is `https://api.getbase.com/oauth2/token`. Update if using a custom Zendesk Sell instance.
-- For **Scopes**, the default value is `read write profile`. Adjust based on the required level of access.
-- Enter the **Client ID** obtained from the developer app details.
-- Enter the **Client Secret** obtained from the developer app details.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -420,8 +391,7 @@ Returns all contacts available to the user according to the parameters provided.
 | Input                 | Comments                                                                                                                        | Default |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Zendesk Sell connection to use.                                                                                             |         |
-| Page                  | The page number to start from. Page numbering is 1-based and omitting the page parameter will return the first page.            |         |
-| Per Page              | The number of records to return per page. Default limit is 25 and maximum number that can be returned is 100.                   |         |
+| Fetch All             | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.            | false   |
 | Sort By               | A field to sort by. You can sort by filterable custom fields as well.                                                           |         |
 | IDs                   | Comma-separated list of the IDs for the contacts you want to be returned in your request.                                       |         |
 | Creator ID            | User ID. Returns all contacts created by that user.                                                                             |         |
@@ -444,6 +414,8 @@ Returns all contacts available to the user according to the parameters provided.
 | Shipping Address      | null if contact is neither a customer nor a prospect (see customer_status and prospect_status fields for details).              |         |
 | Custom Field          | Filterable custom field key-value pairs.                                                                                        |         |
 | Inclusive             | Indicates how filters should be combine. true value, the default, uses AND logic. false value uses OR logic to combine filters. |         |
+| Page                  | The page number to start from. Page numbering is 1-based and omitting the page parameter will return the first page.            |         |
+| Per Page              | The number of records to return per page. Default limit is 25 and maximum number that can be returned is 100.                   |         |
 
 ### List Custom Fields {#listcustomfields}
 
@@ -461,8 +433,7 @@ Returns all deals available to the user.
 | Input                | Comments                                                                                                                        | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Zendesk Sell connection to use.                                                                                             |         |
-| Page                 | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.              |         |
-| Per Page             | Number of records to return per page. Default limit is _25_ and the maximum number that can be returned is _100_.               |         |
+| Fetch All            | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.            | false   |
 | Sort By              | A field to sort by. You can sort by filterable custom fields as well.                                                           |         |
 | IDs                  | Comma-separated list of deal IDs to be returned in a request.                                                                   |         |
 | Includes             | Comma-separated list of one or more resources related to a deal.                                                                |         |
@@ -478,6 +449,8 @@ Returns all deals available to the user.
 | Estimated Close Date | Estimated close date of the deal.                                                                                               |         |
 | Custom Field         | Filterable custom field key-value pairs.                                                                                        |         |
 | Inclusive            | Indicates how filters should be combine. true value, the default, uses AND logic. false value uses OR logic to combine filters. |         |
+| Page                 | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.              |         |
+| Per Page             | Number of records to return per page. Default limit is _25_ and the maximum number that can be returned is _100_.               |         |
 
 ### List Leads {#listleads}
 
@@ -486,8 +459,7 @@ Returns all leads available to the user.
 | Input                | Comments                                                                                                                        | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Zendesk Sell connection to use.                                                                                             |         |
-| Page                 | Page number to start from. Page numbering starts at 1 and omitting the page parameter will return the first page.               |         |
-| Per Page             | Number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.               |         |
+| Fetch All            | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.            | false   |
 | Sort By              | A field to sort by. You can sort by filterable custom fields as well.                                                           |         |
 | IDs                  | Comma-separated list of lead IDs to be returned in a request.                                                                   |         |
 | Creator ID           | User ID. Returns all leads created by that user.                                                                                |         |
@@ -506,6 +478,8 @@ Returns all leads available to the user.
 | Address[country]     | Country name.                                                                                                                   |         |
 | Custom Field         | Filterable custom field key-value pairs.                                                                                        |         |
 | Inclusive            | Indicates how filters should be combine. true value, the default, uses AND logic. false value uses OR logic to combine filters. |         |
+| Page                 | Page number to start from. Page numbering starts at 1 and omitting the page parameter will return the first page.               |         |
+| Per Page             | Number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.               |         |
 
 ### List Notes {#listnotes}
 
@@ -514,8 +488,7 @@ Returns all notes available to the user, according to the parameters provided.
 | Input         | Comments                                                                                                                                                                                                                    | Default |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection    | The Zendesk Sell connection to use.                                                                                                                                                                                         |         |
-| Page          | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                          |         |
-| Per Page      | Number of records to return per page. The default limit is 25 and the maximum number that can be returned at one time is 100.                                                                                               |         |
+| Fetch All     | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.                                                                                                        | false   |
 | Sort By       | A field to sort by. Default ordering is ascending. If you want to change the sort ordering to descending, append :desc to the field e.g. sort_by=resource_type:desc. Possible values, resource_type, created_at, updated_at |         |
 | Includes      | Comma-separated list of one or more resources related to the note. Not supported at the moment.                                                                                                                             |         |
 | IDs           | Comma-separated list of note IDs to be returned in a request.                                                                                                                                                               |         |
@@ -523,6 +496,8 @@ Returns all notes available to the user, according to the parameters provided.
 | Q             | A query string to search for. Performs a full text search on the content field.                                                                                                                                             |         |
 | Resource Type | Name of the type of resource to search for. Possible values: lead, contact, deal                                                                                                                                            |         |
 | Resource ID   | Unique identifier of the resource to search for.                                                                                                                                                                            |         |
+| Page          | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                          |         |
+| Per Page      | Number of records to return per page. The default limit is 25 and the maximum number that can be returned at one time is 100.                                                                                               |         |
 
 ### List Orders {#listorder}
 
@@ -531,11 +506,12 @@ Returns all orders available to the user.
 | Input      | Comments                                                                                                                             | Default |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection | The Zendesk Sell connection to use.                                                                                                  |         |
-| Page       | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                   |         |
-| Per Page   | Number of records to return per page. Defaults to 25. Maximum is 500.                                                                |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.                 | false   |
 | IDs        | Comma-separated list of IDs to be returned in request.                                                                               |         |
 | Sort By    | A field to sort by. Default ordering is ascending. If you want to change the sort ordering to descending, append :desc to the field. |         |
 | Deal ID    | ID of the deal order is associated to.                                                                                               |         |
+| Page       | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                   |         |
+| Per Page   | Number of records to return per page. Defaults to 25. Maximum is 500.                                                                |         |
 
 ### List Pipelines {#listpipelines}
 
@@ -544,12 +520,13 @@ Returns all pipelines available to the user, according to the parameters provide
 | Input      | Comments                                                                                                                                                                                                             | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Zendesk Sell connection to use.                                                                                                                                                                                  |         |
-| Page       | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                   |         |
-| Per Page   | Number of records to return per page. Default limit is 25 and the maximum number that can be returned is 100.                                                                                                        |         |
+| Fetch All  | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.                                                                                                 | false   |
 | IDs        | Comma-separated list of IDs to be returned in request.                                                                                                                                                               |         |
 | Sort By    | Comma-separated list of fields to sort by. The sort criteria is applied in the order specified. The default ordering is ascending. If you want to change the sort ordering to descending, append :desc to the field. |         |
 | Name       | Name of the pipeline to search for. This parameter is used in a strict sense.                                                                                                                                        |         |
 | Disabled   | Parameter that determines whether to return disabled or enabled pipelines.                                                                                                                                           |         |
+| Page       | Page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                   |         |
+| Per Page   | Number of records to return per page. Default limit is 25 and the maximum number that can be returned is 100.                                                                                                        |         |
 
 ### List Stages {#liststages}
 
@@ -558,13 +535,14 @@ Returns all stages available to the user.
 | Input       | Comments                                                                                                                                                                                                                                                                                    | Default |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Zendesk Sell connection to use.                                                                                                                                                                                                                                                         |         |
+| Fetch All   | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.                                                                                                                                                                        | false   |
 | Pipeline ID | The unique identifier of the pipeline that contains this stage.                                                                                                                                                                                                                             |         |
-| Page        | The page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                                                                                      |         |
-| Per Page    | The number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.                                                                                                                                                                       |         |
 | Sort By     | Comma-separated list of fields to sort by. The sort criteria is applied in the order specified. The default ordering is ascending. If you want to change the sort ordering to descending, append :desc to the field. Possible values: pipeline_id, id, name, category, position, likelihood |         |
 | IDs         | Comma-separated list of stage IDs to be returned in a request.                                                                                                                                                                                                                              |         |
 | Name        | Name of the stage you're searching for. This parameter is used in a strict sense.                                                                                                                                                                                                           |         |
 | Active      | Parameter that determines whether to return active or inactive stages.                                                                                                                                                                                                                      |         |
+| Page        | The page number to start from. Page numbering starts at 1, and omitting the page parameter will return the first page.                                                                                                                                                                      |         |
+| Per Page    | The number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.                                                                                                                                                                       |         |
 
 ### List Tasks {#listtasks}
 
@@ -573,8 +551,7 @@ Returns all tasks available to the user.
 | Input         | Comments                                                                                                                             | Default |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection    | The Zendesk Sell connection to use.                                                                                                  |         |
-| Page          | Page number to start from. Page numbering starts at 1 and omitting the page parameter will return the first page.                    |         |
-| Per Page      | Number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.                    |         |
+| Fetch All     | When enabled, automatically fetches all pages of results. Page and Per Page inputs are ignored when this is enabled.                 | false   |
 | Sort By       | A field to sort by. The default ordering is ascending. If you want to change the sort order to descending, append :desc to the field |         |
 | IDs           | Comma-separated list of task IDs to be returned in a request.                                                                        |         |
 | Creator ID    | Unique identifier of the user. Returns all tasks created by the user.                                                                |         |
@@ -586,6 +563,8 @@ Returns all tasks available to the user.
 | Completed     | Indicates whether the query will return tasks that are completed or not.                                                             |         |
 | Overdue       | Indicates whether the query will return tasks where the due_date parameter has been passed or not.                                   |         |
 | Remind        | Indicates whether the query will return tasks with reminders or without reminders.                                                   |         |
+| Page          | Page number to start from. Page numbering starts at 1 and omitting the page parameter will return the first page.                    |         |
+| Per Page      | Number of records to return per page. The default limit is 25 and the maximum number that can be returned is 100.                    |         |
 
 ### Raw Request {#rawrequest}
 

@@ -5,42 +5,13 @@ description: Interact with the Jira Service Management API to manage service req
 ---
 
 ![Jira Service Management](./assets/jira-service-management.png#connector-icon)
-[Jira Service Management](https://www.atlassian.com/software/jira/service-management) is an IT service management (ITSM) platform from Atlassian for managing service requests, incidents, and changes.
-This component allows managing service desks, requests, request types, queues, approvals, organizations, and customers within Jira Service Management.
-
-## API Documentation
-
-This component was built using the [Jira Service Management Cloud REST API](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/).
+Interact with the Jira Service Management API to manage service requests, issues, request types, queues, and approvals.
 
 ## Connections
 
 ### Basic Authentication {#jsmbasic}
 
 Authenticate using an email address and API token.
-
-To authenticate with Jira Service Management using Basic Authentication, an email address and an API token are required.
-
-#### Prerequisites
-
-- A Jira Cloud instance with Jira Service Management enabled
-- An Atlassian account with appropriate permissions
-
-#### Setup Steps
-
-1. Navigate to [Atlassian Account API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
-2. Click **Create API token**
-3. Enter a label for the token and click **Create**
-4. Copy the generated API token value
-
-For more information on generating API tokens, refer to the [Atlassian documentation](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
-
-#### Configure the Connection
-
-Create a connection of type **Basic Authentication** and configure the following fields:
-
-- For **Username**, enter the email address associated with the Atlassian account
-- For **API Key**, enter the API token generated in the previous step
-- For **Host**, enter the Atlassian site hostname without `https://` (e.g., `example-company.atlassian.net`)
 
 | Input    | Comments                                                                                                                      | Default |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -51,45 +22,6 @@ Create a connection of type **Basic Authentication** and configure the following
 ### OAuth 2.0 {#jsmoauth2}
 
 Authenticate using OAuth 2.0.
-
-To connect to Jira Service Management using OAuth 2.0, create and configure an OAuth 2.0 (3LO) application in the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
-
-#### Prerequisites
-
-- An Atlassian account with access to Jira Service Management
-- Access to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/)
-
-#### Setup Steps
-
-1. Navigate to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/) and click **Create** then **OAuth 2.0 integration**
-2. Enter a name for the application and click **Create**
-3. In the left sidebar, click **Authorization** and then click **Add** next to **OAuth 2.0 (3LO)**
-4. Enter the OAuth 2.0 callback URL as the **Callback URL**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-5. Click **Save changes**
-6. In the left sidebar, click **Permissions** and configure the required scopes for Jira Service Management access
-7. In the left sidebar, click **Settings** to find the **Client ID** and **Secret** values
-
-Refer to the [Atlassian OAuth 2.0 (3LO) documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) for detailed setup instructions.
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and configure the following fields:
-
-- For **Authorize URL**, the default value is pre-configured for Atlassian Cloud APIs:
-  ```
-  https://auth.atlassian.com/authorize?audience=api.atlassian.com&prompt=consent
-  ```
-- For **Token URL**, the default value is:
-  ```
-  https://auth.atlassian.com/oauth/token
-  ```
-- For **Scopes**, the default value includes common Jira Service Management scopes:
-  ```
-  read:servicedesk-request write:servicedesk-request manage:servicedesk-customer read:jira-user offline_access
-  ```
-  Refer to the [Atlassian scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information.
-- Enter the **Client ID** and **Client Secret** from the application settings in the Developer Console
-- Optionally, enter the **Atlassian Site Name** if the Atlassian account has access to multiple Jira sites (e.g., `example-company.atlassian.net`). If left blank, the connection uses the first accessible site.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

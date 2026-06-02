@@ -5,58 +5,13 @@ description: Parse and build .xlsx files (spreadsheets)
 ---
 
 ![Microsoft Excel](./assets/ms-excel.png#connector-icon)
-[Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel) is a spreadsheet application developed by Microsoft. It features calculation, graphing tools, pivot tables, and a macro programming language called Visual Basic for Applications.
-This component allows you to read and build .xlsx files. (spreadsheets)
+Parse and build .xlsx files (spreadsheets)
 
 ## Connections
 
 ### OAuth 2.0 {#ms-excel-oauth}
 
 Authenticate using OAuth 2.0
-
-To connect Microsoft Excel, create and configure an App Registration in the [Microsoft Entra admin center](https://entra.microsoft.com/).
-
-#### Prerequisites
-
-- A Microsoft 365 account with access to SharePoint or OneDrive
-- Administrator access to [Microsoft Entra](https://entra.microsoft.com/) (Azure Active Directory)
-
-#### Setup Steps
-
-1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) > **Identity** > **Applications** > **App registrations**
-2. Select **New registration**
-3. Configure the basic settings:
-   - **Name**: Provide a descriptive name for the application
-   - **Supported account types**: Select **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**
-   - **Redirect URI**: Select **Web** platform and add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-4. Click **Register** to create the app registration
-5. From the **Overview** page, copy the **Application (client) ID**
-6. Navigate to **Certificates & Secrets** > **Client secrets** tab
-7. Click **New client secret**, provide a description, select an expiration period, and click **Add**
-8. Copy the secret **Value** immediately -- it cannot be retrieved later
-9. Navigate to **API Permissions** and click **Add a permission**
-10. Select **Microsoft Graph** > **Delegated permissions** and select all permissions required for the integration
-
-:::note[Refresh Token Support]
-Include the `offline_access` scope in the app registration. It is essential for maintaining the OAuth connection and receiving refresh tokens. Without it, re-authentication is required every hour.
-:::
-
-#### Configure the Connection
-
-Create a connection of type **Microsoft Excel OAuth 2.0**:
-
-- **Client ID**: The **Application (client) ID** from the app registration **Overview** page
-- **Client Secret**: The secret **Value** created above
-- **Scopes**: Space-separated list of OAuth 2.0 permission scopes. The default value covers common file and site operations:
-  ```
-  Files.ReadWrite.All Sites.Read.All Sites.ReadWrite.All offline_access
-  ```
-  Refer to [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) for additional scope information
-
-For non-multitenant app registrations, replace the default **Authorize URL** and **Token URL** with tenant-specific values:
-
-- **Authorize URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/authorize`
-- **Token URL**: `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

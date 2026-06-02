@@ -5,7 +5,7 @@ description: Provides utility methods for working with zip files
 ---
 
 ![Zip](./assets/zip.png#connector-icon)
-The **Zip** component helps with handling and manipulating `.zip` files.
+Provides utility methods for working with zip files
 
 ## Actions
 

@@ -5,28 +5,13 @@ description: Connect to TeamViewer to automate your remote support tasks.
 ---
 
 ![TeamViewer](./assets/teamviewer.png#connector-icon)
-[TeamViewer](https://www.teamviewer.com) is support software that allows users to connect to and control devices remotely for troubleshooting, collaboration, and management purposes.
-
-Use the component to manage your devices, groups, contacts, patches, and more.
-
-## API Documentation
-
-The TeamViewer component was built using the [TeamViewer WEB API](https://webapi.teamviewer.com/api/v1/docs/index#/)
+Connect to TeamViewer to automate your remote support tasks.
 
 ## Connections
 
 ### OAuth 2.0 {#teamviewer-oauth}
 
 Connect to TeamViewer to automate your remote support tasks.
-
-To Create an OAuth app in Teamviewer:
-
-1. Login to your [TeamViewer](https://login.teamviewer.com/) account.
-1. In the top right corner select your user icon and select Edit profile.
-1. Navigate to Apps and Select **Create App**.
-1. In the Redirect URL field enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-1. Ensure the app has sufficient permissions for an integration and select **Create** upon completion.
-1. Save and copy the **Client ID** and **Client Secret** and enter them into the connection configuration of your integration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

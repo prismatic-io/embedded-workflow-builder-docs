@@ -7,19 +7,11 @@ description: Klaviyo is a cloud based email marketing solution that enables e-co
 ![Klaviyo](./assets/klaviyo.png#connector-icon)
 Klaviyo is a cloud based email marketing solution that enables e-commerce businesses to create, send, and analyze email and SMS campaigns.
 
-Use the component to manage Templates, Campaigns, Events, and more.
-
-API Documentation: The component was built using the [Klaviyo API Reference](https://developers.klaviyo.com/en/reference/api_overview)
-
 ## Connections
 
 ### API Key {#klaviyoapikeyconnection}
 
 Connection to Klaviyo using an API Key.
-
-Authentication via API key is now deprecated.
-Please use OAuth 2.0 for authentication instead.
-See [Klaviyo documentation](https://developers.klaviyo.com/en/docs/migrate_to_oauth_from_private_key_authentication).
 
 | Input   | Comments                 | Default |
 | ------- | ------------------------ | ------- |
@@ -28,17 +20,6 @@ See [Klaviyo documentation](https://developers.klaviyo.com/en/docs/migrate_to_oa
 ### OAuth 2.0 {#klaviyooauth2connection}
 
 Connection to Klaviyo using OAuth 2.0.
-
-Authentication was developed using the following **[Documentation](https://developers.klaviyo.com/en/docs/set_up_oauth)**
-
-OAuth configuration requires setting up an app in Klaviyo. See the [Set up OAuth](https://developers.klaviyo.com/en/docs/set_up_oauth) guide for more information:
-
-1. Log into your [Klaviyo](https://www.klaviyo.com/dashboard) account and navigate to the [Manage apps page](https://www.klaviyo.com/manage-apps).
-2. Select Create App
-3. Name the app and copy your Client ID and Client Secret and enter them into the connection configuration of your integration
-4. Save and continue to proceed
-5. Once creation has been completed enter the the following into the Redirect URL field: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` and save.
-6. Select Review Submission to submit the app for completion.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

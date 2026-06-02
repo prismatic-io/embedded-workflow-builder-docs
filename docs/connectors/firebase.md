@@ -5,22 +5,13 @@ description: Create, read, update, and delete documents in a Firebase Cloud Fire
 ---
 
 ![Firebase](./assets/firebase.png#connector-icon)
-[Firebase](https://firebase.google.com) is a platform developed by Google for creating mobile and web applications.
-Firebase Cloud Firestore is a document-based, flexible, scalable, and NoSQL cloud database, used to store and sync data for client and server-side applications.
-This component uses the Firebase Admin SDK to create, read, update, delete, and list documents within a Firebase Cloud Firestore collection.
-See more information in the Cloud Firestore section of the Firebase Admin SDK in the [Firebase Docs](https://firebase.google.com/docs/reference/admin).
+Create, read, update, and delete documents in a Firebase Cloud Firestore database collection.
 
 ## Connections
 
 ### Firebase Private Key Connection {#firebaseconnection}
 
 Authenticate requests to firebase using values obtained from the Google Cloud Platform.
-
-The Firebase Admin SDK is a set of server libraries that lets you interact with Firebase from privileged environments.
-To authenticate through the Firebase Admin SDK, follow the instructions to generate a private key located on the Firebase [docs](https://firebase.google.com/docs/admin/setup#set-up-project-and-service-account)
-This will involve you creating a service account in the Google Cloud Platform and generating credentials for that user.
-You will receive a JSON file containing many fields including a private key, and client email which you will use to make a new connection.
-In the new connection, enter the value of the client email, private key, and your GCP project Id.
 
 | Input       | Comments                                                                     | Default |
 | ----------- | ---------------------------------------------------------------------------- | ------- |

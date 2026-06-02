@@ -5,53 +5,13 @@ description: Use the Microsoft Intune component to manage users, devices, and ap
 ---
 
 ![Microsoft Intune](./assets/ms-intune.png#connector-icon)
-[Microsoft Intune](https://www.microsoft.com/en-us/security/business/microsoft-intune) is a cloud-based service that focuses on device management and application management. This component allows you to manage users, devices, groups, mobile applications, and device compliance policies within Microsoft Intune.
-
-## API Documentation
-
-This component was built using the [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0&preserve-view=true).
+Use the Microsoft Intune component to manage users, devices, and applications.
 
 ## Connections
 
 ### OAuth 2.0 {#msintuneoauth2}
 
 OAuth 2.0 Connectivity for Microsoft Intune
-
-To connect to Microsoft Intune using OAuth 2.0, create an app registration in Microsoft Entra.
-
-#### Prerequisites
-
-- A Microsoft account with administrative access to Microsoft Entra (formerly Azure AD)
-
-#### Setup Steps
-
-1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com/) and go to **Identity** > **Applications** > **App registrations**, then select **New registration**.
-2. Configure the app registration:
-   - Set **Supported account types** to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow users from different organizations to authenticate.
-   - Under **Redirect URI**, select **Web** as the platform and enter: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Select **Register** to complete the initial setup.
-3. Navigate to **Certificates & Secrets** and create a new **Client Secret**. Copy the **Value** immediately (it will not be shown again).
-4. Navigate to the **Overview** page and copy the **Application (client) ID**.
-5. Navigate to **API Permissions** and select **Add a permission**:
-   - Select **Microsoft Graph**
-   - Select **Delegated permissions**
-   - Under **DeviceManagementManagedDevices**, add the required permissions such as **DeviceManagementManagedDevices.PrivilegedOperations.All** and **DeviceManagementManagedDevices.Read.All**
-   - Add any additional permissions required by the integration
-
-For more information on available permissions, refer to the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference).
-
-#### Configure the Connection
-
-1. Enter the **Application (client) ID** as the **Client ID**
-2. Enter the **Client Secret** value copied earlier
-3. Use the default **Authorize URL**: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`
-4. For **Token URL**, replace **common** with the Tenant ID when authenticating to a specific tenant:
-   - Default: `https://login.microsoftonline.com/common/oauth2/v2.0/token`
-   - With Tenant ID: `https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token`
-
-:::note[Tenant-Specific Authentication]
-Some actions require tenant-specific authentication. Replace the **common** portion of the Token URL with the specific Tenant ID when connecting to a particular organization.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -67,44 +27,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#oauth2-client-credentials}
 
 OAuth 2.0 Client Credentials Connectivity for Microsoft Intune
-
-To connect to Microsoft Intune using the OAuth 2.0 Client Credentials flow, create an app registration in Microsoft Entra. The client credentials flow is used for server-to-server authentication where the application acts on its own behalf rather than on behalf of a specific user.
-
-#### Prerequisites
-
-- A Microsoft account with administrative access to Microsoft Entra (formerly Azure AD)
-- Admin consent privileges to grant application-level permissions
-
-#### Setup Steps
-
-1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com/) and go to **Identity** > **Applications** > **App registrations**, then select **New registration**.
-2. Configure the app registration:
-   - Set **Supported account types** to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow authentication across different organizations.
-   - Under **Redirect URI**, select **Web** as the platform and enter: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Select **Register** to complete the initial setup.
-3. Navigate to **Certificates & Secrets** and create a new **Client Secret**. Copy the **Value** immediately (it will not be shown again).
-4. Navigate to the **Overview** page and copy the **Application (client) ID**.
-5. Navigate to **API Permissions** and select **Add a permission**:
-   - Select **Microsoft Graph**
-   - Select **Application permissions**
-   - Add all permissions required for the intended use case
-6. After adding all required permissions, select **Grant admin consent** to authorize the application to use these permissions. This step is required for the client credentials flow to function properly.
-
-For more information on application vs delegated permissions, refer to the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference).
-
-#### Configure the Connection
-
-1. Enter the **Application (client) ID** as the **Client ID**
-2. Enter the **Client Secret** value copied earlier
-3. Use the default **Authorize URL**: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`
-4. For **Token URL**, replace **common** with the specific Tenant ID (required for client credentials flow):
-   - Default format: `https://login.microsoftonline.com/common/oauth2/v2.0/token`
-   - With Tenant ID: `https://login.microsoftonline.com/abf988bf-86f1-41af-91ab-2d7cd011db46/oauth2/v2.0/token`
-5. Use the default scope: `https://graph.microsoft.com/.default`
-
-:::note[Client Credentials Flow Requirement]
-The client credentials flow requires a tenant-specific Token URL. Replace **common** with the actual Tenant ID for all actions using this connection type.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,33 +5,13 @@ description: Query and manage data in an OracleDB database
 ---
 
 ![Oracle Database](./assets/oracledb.png#connector-icon)
-[Oracle Database](https://www.oracle.com/database/) is a popular relational database system.
-This component allows querying an Oracle database.
-
-## API Documentation
-
-This component was built using [Node.js for Oracle Database](https://node-oracledb.readthedocs.io/en/latest/user_guide/introduction.html#getting-started).
+Query and manage data in an OracleDB database
 
 ## Connections
 
 ### OracleDB Connection {#oracledbconnection}
 
 Authenticate requests to an OracleDB server.
-
-OracleDB requires a direct database connection with host, port, and database credentials.
-
-#### Prerequisites
-
-- An Oracle Database instance accessible from the network
-- Database user credentials with appropriate permissions
-
-#### Configure the Connection
-
-- **Host**: Enter the hostname or IP address of the Oracle DB server (e.g., `192.168.0.1`)
-- **Port**: Enter the port number (default: `1521`)
-- **Database**: Enter the Oracle database SID (e.g., `xe`)
-- **Username**: Enter the database username (optional if using OS authentication)
-- **Password**: Enter the database password (optional if using OS authentication)
 
 | Input              | Comments                                                                                                             | Default |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------- | ------- |

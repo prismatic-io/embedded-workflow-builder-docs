@@ -5,52 +5,13 @@ description: Manage files stored in Box
 ---
 
 ![Box](./assets/box.png#connector-icon)
-[Box](https://www.box.com/) is a file sharing platform that allows teams to collaborate and share files with one another.
-The Box component allows you to create, list, fetch, move, or delete files and folders in a customer's Box account.
-
-## API Documentation
-
-This component was built using the [Box REST API](https://developer.box.com/reference/)
+Manage files stored in Box
 
 ## Connections
 
 ### Developer Token {#apikey}
 
 Developer Token connection for Box
-
-A **Developer Token** is a short-lived (60-minute) token that can be used for testing purposes. Developer tokens allow access to the Box API for a personal Box account only.
-
-:::note[Production Authentication]
-When an integration is ready for production, an [OAuth 2.0](#oauth2) connection is required to authenticate customer Box accounts. Testing can also be performed with OAuth 2.0.
-:::
-
-#### Prerequisites
-
-- A [Box account](https://www.box.com/)
-- Access to the [Box Developer Console](https://app.box.com/developers/console)
-
-#### Setup Steps
-
-To generate a developer token:
-
-1. Navigate to the [Box Developer Console](https://app.box.com/developers/console)
-2. Select **Create New App**
-3. Choose **Custom App** and click **Next**
-4. Select **User Authentication (OAuth 2.0)** and click **Next**
-5. Enter an app name and click **Create App**
-6. In the app's **Configuration** tab, scroll to the **Developer Token** section
-7. Click **Generate Developer Token**
-8. Copy the generated token (valid for 60 minutes)
-
-For more information, refer to the [Box Developer Token documentation](https://developer.box.com/guides/authentication/tokens/developer-tokens/).
-
-#### Configure the Connection
-
-- Enter the developer token value into the **Developer Token** field of the connection configuration
-
-:::warning[Token Expiration]
-Developer tokens expire after 60 minutes. Generate a new token if authentication fails due to expiration.
-:::
 
 | Input           | Comments                                                                                                                         | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -59,44 +20,6 @@ Developer tokens expire after 60 minutes. Generate a new token if authentication
 ### OAuth 2.0 {#oauth2}
 
 OAuth 2.0 connection for Box
-
-To connect to Box using OAuth 2.0, create a Box OAuth 2.0 app to authorize the integration to access customer Box accounts.
-
-Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authentication/oauth2/oauth2-setup/) for detailed information.
-
-#### Prerequisites
-
-- A [Box account](https://www.box.com/)
-- Access to the [Box Developer Console](https://app.box.com/developers/console)
-
-#### Setup Steps
-
-1. Navigate to the [Box Developer Console](https://app.box.com/developers/console)
-2. Click **Create New App**
-3. Select **Custom App** and click **Next**
-4. Select **User Authentication (OAuth 2.0)** and click **Next**
-5. Enter an app name and click **Create App**
-6. In the app's **Configuration** tab, configure the OAuth settings:
-   - Copy the **Client ID** and **Client Secret** values
-   - Under **OAuth 2.0 Redirect URI**, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Under **Application Scopes**, select the appropriate permissions:
-     - For full access, select **Write all files and folders stored in Box**
-     - For read-only access, select **Read all files and folders stored in Box**
-     - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/) for more granular permissions
-   - Leave **CORS Domains** blank
-7. Click **Save Changes**
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the Box app configuration
-- For **Scopes**, either:
-  - Leave blank to use the **Application Scopes** configured in the Box app
-  - Enter specific scopes as a space-separated list (e.g., `root_readwrite manage_webhook`)
-  - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/) for available scopes
-
-:::note[Box Enterprise Features]
-Some Box features require an Enterprise account. Ensure the Box account has appropriate subscription level for the required functionality.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

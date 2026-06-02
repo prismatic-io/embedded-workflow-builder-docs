@@ -5,38 +5,13 @@ description: Ramp is a spend management platform focused on automating accounts 
 ---
 
 ![Ramp](./assets/ramp.png#connector-icon)
-[Ramp](https://ramp.com/) is a spend management platform focused on automating accounts payable and procurement processes.
-
-Use the Ramp component to manage transactions related to vendors, bills, reimbursements and more.
-
-## API Documentation:
-
-This component was built using the [Ramp REST API V1](https://docs.ramp.com/developer-api/v1/overview/getting-started) Reference.
+Ramp is a spend management platform focused on automating accounts payable and procurement processes. Use the Ramp component to manage transactions related to vendors, bills, reimbursements and more.
 
 ## Connections
 
 ### OAuth 2.0 {#ramp-oauth2}
 
 Authenticate with Ramp using OAuth 2.0 authorization code flow.
-
-Create an OAuth application:
-
-Registering your application in the Ramp developer dashboard is the first step of building an integration based on Ramp API:
-
-1. From the [Ramp developer](https://app.ramp.com/settings/ramp-developer) settings page, click on **Create new app** to register a new application.
-2. Now you have registered a new application. Click into it and configure the following parameters:
-   1. Client ID and client secret: Credentials for your application; store securely.
-   2. App name and description
-   3. Grant types: A list of grant types that the application may use to get access token. See [authorization guide](https://docs.ramp.com/developer-api/v1/authorization) for more information.
-   4. Scopes: Defines [scopes](https://docs.ramp.com/developer-api/v1/authorization/scopes) that may be granted to access token.
-   5. Redirect URIs: Enter`https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-
-Supply the following values to the **OAuth 2.0** connection:
-
-- **Client ID**
-- **Client Secret**
-- **Scopes**
-  - Recommended Scopes (space delimited): `bills:read bills:write accounting:read accounting:write transactions:read reimbursements:read departments:read departments:write entities:read locations:read locations:write`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

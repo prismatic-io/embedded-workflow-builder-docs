@@ -5,28 +5,13 @@ description: Yoti Sign is a digital identity and e-signature solution that allow
 ---
 
 ![Yoti Sign](./assets/yoti-sign.png#connector-icon)
-[Yoti Sign](https://www.yotisign.com/) is a digital identity and e-signature solution that allows users to verify their identity and sign documents electronically and securely.
-
-Use the Yoti Sign component to send, sign, track, and manage the signature process.
-
-API Documentation:
-[Yoti eSignatures](https://developers.yoti.com/eSignatures/overview),
+Yoti Sign is a digital identity and e-signature solution that allows users to verify their identity and sign documents electronically and securely.
 
 ## Connections
 
 ### API Key Connection {#apikey}
 
 The connection to the Yoti API
-
-Before you start
-Request your API keys, please notify Yoti Client Support and specify if you want to use sandbox or production.
-[Get your API Keys here](https://www.yotisign.com/app/contact-us/)
-
-Yoti Sign uses an HTTP authentication scheme called ‘bearer authentication’. This involves security tokens called ‘bearer tokens’. They are the predominant type of access token used with OAuth 2.0. A resource should interpret a bearer token as "Give the bearer of this token access". The client must send this token in the Authorization header when making requests to protected resources.
-
-It is important that your API Key remains strictly confidential. It must be stored securely. We advise that you never commit any code containing your API Key, and never share it beyond the authorized party.
-
-If you believe your API key has been compromised, please contact Yoti Client Support as soon as possible. This can be done through your account manager or via our support channel by emailing clientsupport@yoti.com.
 
 | Input       | Comments                                     | Default |
 | ----------- | -------------------------------------------- | ------- |

@@ -5,77 +5,13 @@ description: Manage objects and buckets in Amazon S3.
 ---
 
 ![Amazon S3](./assets/aws-s3.png#connector-icon)
-[Amazon S3](https://aws.amazon.com/s3/) is an object storage service from Amazon Web Services (AWS).
-This component allows you to create, read, update, move, list, and delete objects (files) within an Amazon S3 bucket.
-
-## API Documentation
-
-This component was built using the [Amazon S3 API Reference](https://docs.aws.amazon.com/AmazonS3/latest/API/Type_API_Reference.html).
+Manage objects and buckets in Amazon S3.
 
 ## Connections
 
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
-
-AWS Assume Role authentication allows assuming an IAM role using temporary security credentials.
-This method is useful for cross account access or when implementing principle of least privilege.
-
-Refer to the [AWS documentation on assuming roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) for detailed information.
-
-#### Prerequisites
-
-- Completed [API Key Secret](#apikeysecret) connection setup (access key pair required)
-- Appropriate permissions to create IAM roles
-
-#### Setup Steps
-
-An IAM user with access keys is required to assume a role. If access keys have not been created, follow the [API Key Secret](#apikeysecret) setup steps first, then return here to create the IAM role.
-
-##### Create an IAM Role with Trust Policy
-
-1. From the [IAM Console](https://console.aws.amazon.com/iam/), navigate to **Roles** and select **Create Role**
-2. Select **Custom trust policy** as the trusted entity type
-3. Enter the trust policy below, replacing `USER_ARN` with the IAM user ARN:
-
-<details>
-<summary>View trust policy template</summary>
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "USER_ARN"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-</details>
-
-4. Click **Next** and attach the appropriate S3 permissions policy (e.g., **AmazonS3FullAccess** or **AmazonS3ReadOnlyAccess**)
-5. Complete the remaining steps and select **Create Role**
-6. Copy the **Role ARN** from the role summary (format: `arn:aws:iam::123456789012:role/role-name`)
-
-#### Configure the Connection
-
-- **Role ARN**: The ARN of the IAM role to assume
-- **Access Key ID**: From the IAM user (see [API Key Secret](#apikeysecret))
-- **Secret Access Key**: From the IAM user
-- **External ID** (optional): Shared secret for enhanced security
-
-:::note[External ID]
-The **External ID** provides additional security for cross-account access. Refer to the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id) for more information.
-:::
-
-#### Verify Connection
-
-The IAM user credentials assume the role, which provides temporary credentials with the role's attached permissions. Ensure the trust policy correctly references the IAM user ARN.
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -87,35 +23,6 @@ The IAM user credentials assume the role, which provides temporary credentials w
 ### AWS S3 Access Key and Secret {#apikeysecret}
 
 Authenticates requests to AWS S3 using an API Key and Secret.
-
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon S3.
-Ensure the key pair generated in AWS has proper permissions to the S3 resources to access.
-Read more about S3 IAM actions in the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html).
-
-#### Prerequisites
-
-- An [AWS account](https://aws.amazon.com/) with IAM access
-- Appropriate permissions to create IAM access keys
-
-#### Setup Steps
-
-To create an IAM access key pair:
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Select the IAM user that will be used for the integration
-3. Navigate to the **Security credentials** tab
-4. Under the **Access keys** section, select **Create access key**
-5. Choose the appropriate use case (e.g., **Third-party service** or **Application running outside AWS**)
-6. Copy both the **Access key ID** and **Secret access key** when displayed
-
-:::warning[Secret Key Visibility]
-The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
-:::
-
-#### Configure the Connection
-
-- Enter the **Access key ID** into the connection configuration
-- Enter the **Secret access key** into the connection configuration
 
 | Input             | Comments                                                                                                                                                                                                                                    | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

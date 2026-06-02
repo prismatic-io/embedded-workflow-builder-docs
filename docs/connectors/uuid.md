@@ -5,8 +5,7 @@ description: Generate UUIDs and GUIDs
 ---
 
 ![UUID](./assets/uuid.png#connector-icon)
-Generate randomized [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier).
-This is useful for when you need to generate a unique identifier.
+Generate UUIDs and GUIDs
 
 ## Actions
 

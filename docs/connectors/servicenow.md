@@ -5,30 +5,13 @@ description: Create records and incidents within ServiceNow
 ---
 
 ![ServiceNow](./assets/servicenow.png#connector-icon)
-[ServiceNow](https://www.servicenow.com/) is a platform for managing digital workflows.
-The **ServiceNow** component supports managing table records, incidents, attachments, CMDB entries, knowledge articles, and users.
-
-## API Documentation
-
-This component was built using the [ServiceNow REST API](https://developer.servicenow.com/dev.do#!/reference/api/latest/rest).
+Create records and incidents within ServiceNow
 
 ## Connections
 
 ### Basic Username/Password {#basic}
 
 Basic Username and Password connection
-
-ServiceNow supports Basic Authentication using a username and password.
-
-#### Prerequisites
-
-- A ServiceNow instance with an active user account
-- The user account must have appropriate roles and permissions for the required API operations
-
-#### Configure the Connection
-
-- **Username**: Enter the ServiceNow account username
-- **Password**: Enter the ServiceNow account password
 
 | Input    | Comments | Default |
 | -------- | -------- | ------- |
@@ -38,36 +21,6 @@ ServiceNow supports Basic Authentication using a username and password.
 ### OAuth 2.0 Authorization Code {#authorizationcode}
 
 OAuth 2.0 Authorization Code flow
-
-ServiceNow supports OAuth 2.0 Authorization Code authentication. An OAuth application must be registered in the ServiceNow instance before configuring this connection.
-
-#### Prerequisites
-
-- A ServiceNow instance with administrator access
-- Access to **System OAuth > Application Registry** in the ServiceNow instance
-
-#### Setup Steps
-
-1. Log in to the ServiceNow instance as an administrator
-2. Navigate to **System OAuth > Application Registry**
-3. Click **New** and select **Create an OAuth API endpoint for external clients**
-4. Configure the application:
-   - **Name**: Enter a descriptive name
-   - **Redirect URL**: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-5. Save the application
-6. Copy the **Client ID** and **Client Secret** from the application record
-
-#### Configure the Connection
-
-- **Authorize URL**: Enter the OAuth authorization URL for the ServiceNow instance (e.g., `https://dev12345.service-now.com/oauth_auth.do`)
-- **Token URL**: Enter the OAuth token URL for the ServiceNow instance (e.g., `https://dev12345.service-now.com/oauth_token.do`)
-- **Scopes**: Enter space-separated OAuth scopes if required (optional)
-- **Client ID**: Enter the Client ID from the OAuth application
-- **Client Secret**: Enter the Client Secret from the OAuth application
-
-:::note[Instance-Specific URLs]
-The Authorize URL and Token URL are specific to each ServiceNow instance. Replace `dev12345` with the actual instance name.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -335,9 +288,10 @@ Returns the metadata for multiple attachments.
 | Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
 | Sysparm Limit  | Limit to be applied on pagination. Default is 1000. Unusually large values can impact system performance.                                                                                                                                                                                                                                                                                                       |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
-| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 
 ### List Configuration Items {#listconfigurationitems}
 
@@ -349,6 +303,7 @@ Returns the available configuration items (CI) for a specified Configuration Man
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
 | API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
 | Class Name     | CMDB class name. This is the name of the table that contains the desired CI records                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                                                                                                                                      | false   |
 | Sysparm Limit  | Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval. Allows numbers from 0 to 100.                                                                                                                                                                                                                                                                                                                                       |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records.Don't pass a negative number in the sysparm_offset parameter. |         |
 | Sysparm Query  | All parameters are case-sensitive. Queries can contain more than one entry, such as sysparm_query=<col_name><operator><value>[<operator><col_name><operator><value>]. Refer to https://www.servicenow.com/docs/bundle/yokohama-api-reference/page/integrate/inbound-rest/concept/cmdb-instance-api.html#title_cmdb-GET-instance-classname for more information.                                                                                                                                                          |         |
@@ -365,6 +320,7 @@ Returns a list of the most-viewed knowledge articles and featured knowledge arti
 | Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
 | Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
 | Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
 | Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
 | Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
 
@@ -377,9 +333,10 @@ Gets a list of all Incidents
 | Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
-| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 
 ### List Knowledge Articles {#listknowledgearticles}
 
@@ -394,9 +351,10 @@ Returns a list of knowledge base (KB) articles which can be searched and filtere
 | Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
 | Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
 | Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Query                   | Text to search for, can be empty.                                                                                                                                                                                                                                                                              |         |
+| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
 | Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
 | Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
-| Query                   | Text to search for, can be empty.                                                                                                                                                                                                                                                                              |         |
 
 ### List Most Viewed Knowledge Articles {#listmostviewedknowledgearticles}
 
@@ -410,6 +368,7 @@ Returns a list of knowledge articles prioritized by most-viewed.
 | Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
 | Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
 | Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
 | Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
 | Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
 
@@ -423,9 +382,10 @@ Lists records in the specified table
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
 | Table          | The name of the ServiceNow table in which to create a record                                                                                                                                                                                                                                                                                                                                                    |         |
+| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
-| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 
 ### List Tables {#listtables}
 
@@ -436,9 +396,10 @@ Retrieve a list of all tables
 | Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | Sysparm Fields | Comma-separated list of fields to return. If not specified, all fields are returned.                                                                                                                                                                                                                                                                                                                            |         |
+| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
-| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 
 ### List Users {#listusers}
 
@@ -449,9 +410,10 @@ Gets a list of all Users
 | Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
+| Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
-| Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 
 ### Multipart Upload Attachment {#multipartuploadattachment}
 

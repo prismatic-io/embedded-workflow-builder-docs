@@ -5,71 +5,13 @@ description: Manage records and execute queries in Oracle NetSuite.
 ---
 
 ![Oracle NetSuite](./assets/netsuite.png#connector-icon)
-[Oracle NetSuite](https://www.netsuite.com/) is a unified business management suite, encompassing ERP/Financials, CRM and ecommerce.
-This component allows you to create, read, update, delete, and list records in NetSuite, as well as execute SuiteQL queries.
-
-## API Documentation
-
-This component was built using the following API References currently utilizing REST API v1:
-
-- [NetSuite REST API Documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_1540391670.html)
-- [SuiteQL Query Reference](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156257770590.html)
+Manage records and execute queries in Oracle NetSuite.
 
 ## Connections
 
 ### NetSuite OAuth Auth Code {#oauth}
 
 NetSuite OAuth 2.0 Connection
-
-To connect to NetSuite using OAuth 2.0 Authorization Code flow, create an OAuth 2.0 application in NetSuite with authorization code grant enabled.
-
-Refer to [NetSuite's OAuth 2.0 documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_157769826287.html) for additional details.
-
-:::warning[OAuth 2.0 Auth Code Flow Expiration]
-Tokens retrieved using NetSuite's OAuth 2.0 Auth Code flow expire after 7 days and cannot be refreshed.
-This requires users to re-authenticate every 7 days, which is not a good user experience.
-**We recommend using the OAuth 2.0 Client Credentials flow instead.**
-:::
-
-#### Prerequisites
-
-- NetSuite administrator access
-- SuiteTalk enabled in the NetSuite account
-
-#### Setup Steps
-
-1. Enable SuiteTalk:
-   - Navigate to **Setup** > **Company** > **Enable Features**
-   - Under the **Suite Cloud** tab, ensure **REST WEB SERVICES** and **OAUTH 2.0** are both checked
-
-2. Create an OAuth 2.0 Application:
-   - Navigate to **Setup** > **Integration** > **Manage Integrations** > **New**
-   - Enter a name and description for the integration
-   - Under **Token-based Authentication**, un-check **TOKEN-BASED AUTHENTICATION** and **TBA: AUTHORIZATION FLOW**
-   - Under **OAuth 2.0**, ensure the following are checked:
-     - **AUTHORIZATION CODE GRANT**
-     - **REST WEB SERVICES**
-   - Under **SCOPE**, enable **REST WEB SERVICES**
-   - Set the **REDIRECT URI** to: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - After saving, copy the **CONSUMER KEY** and **CONSUMER SECRET**
-
-3. Configure OAuth 2.0 Roles:
-   - Ensure that users who will authenticate via OAuth have been assigned a [proper role](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771510070.html) with appropriate permissions
-
-#### Configure the Connection
-
-- Enter the **Consumer Key** (Client ID) and **Consumer Secret** (Client Secret) from the NetSuite integration
-- **Token URL**: Enter the NetSuite account's token URL in the format: `https://[ACCOUNT_ID].suitetalk.api.netsuite.com/services/rest/auth/oauth2/v1/token`
-  - Replace `[ACCOUNT_ID]` with the NetSuite account ID (found in **Setup** > **Company** > **Company Information**)
-  - Example: `https://1234567.suitetalk.api.netsuite.com/services/rest/auth/oauth2/v1/token`
-
-#### Verify Connection
-
-Save the connection to authenticate with NetSuite. Users will be redirected to NetSuite to authorize access.
-
-:::note[Token Re-authentication Required]
-Tokens expire after 7 days and cannot be refreshed. Users will need to re-authenticate every 7 days by opening the connection configuration and re-authorizing.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -83,85 +25,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### NetSuite OAuth Client Credentials {#oauthclientcredentials}
 
 NetSuite OAuth 2.0 Client Credentials Connection
-
-To connect to NetSuite using OAuth 2.0 Client Credentials, configure an OAuth 2.0 application with the Client Credentials (M2M) grant in NetSuite.
-
-This authentication method is recommended for server-to-server integrations and provides a better user experience than the Authorization Code flow, as credentials do not expire and require no user re-authentication.
-
-Refer to [NetSuite's OAuth Client Credentials documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html#subsect_162686947286) for additional details.
-
-#### Prerequisites
-
-- NetSuite administrator access
-- SuiteTalk enabled in the NetSuite account
-- OpenSSL installed on the local machine (for certificate generation)
-
-#### Setup Steps
-
-1. Enable SuiteTalk:
-   - Navigate to **Setup** > **Company** > **Enable Features**
-   - Under the **Suite Cloud** tab, ensure both **REST WEB SERVICES** and **OAUTH 2.0** are checked
-
-2. Create an OAuth 2.0 Application with JWT Option:
-   - Navigate to **Setup** > **Integration** > **Manage Integrations** > **New**
-   - Enter a name and description for the integration
-   - Under **Token-based Authentication**, un-check **TOKEN-BASED AUTHENTICATION** and **TBA: AUTHORIZATION FLOW**
-   - Under **OAuth 2.0**, ensure the following are checked:
-     - **REST WEB SERVICES**
-     - **CLIENT CREDENTIALS (MACHINE TO MACHINE) GRANT**
-   - Under **SCOPE**, enable **REST WEB SERVICES**
-   - After saving, copy the **CONSUMER KEY** — it will not be shown again in NetSuite
-
-3. Generate Certificate and Private Key for JWT:
-
-   A private key and certificate are required for JWT-based authentication. Refer to the [NetSuite documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html#Related-Topics) for more information on generating or importing certificates.
-   - On the local machine, generate a valid certificate using OpenSSL:
-
-     ```bash
-     openssl req -new -x509 -newkey rsa:4096 -keyout private.pem \
-       -sigopt rsa_padding_mode:pss -sha256 -sigopt rsa_pss_saltlen:64 \
-       -out public.pem -nodes -days 730
-     ```
-
-     This command will:
-     - Generate a new RSA 4096-bit key pair with PSS padding
-     - Create a self-signed X.509 certificate valid for 730 days (2 years)
-     - Output two files in the current directory:
-       - `private.pem` - The private key (keep this secure)
-       - `public.pem` - The public certificate (upload to NetSuite)
-
-     The system will prompt to enter certificate details (country, organization, common name, etc.). Press Enter to skip these prompts, though providing values helps with tracking and identification.
-
-:::warning[Private Key Security]
-The `private.pem` file contains the private key and must be kept secure. Never commit this file to version control, share it publicly, or store it in an unsecured location. Only the application should have access to this file.
-:::
-
-4. Configure OAuth 2.0 Client (M2M) in NetSuite:
-   - Navigate to **Setup** > **Integration** > **OAUTH 2.0 CLIENT (M2M) SETUP** and select **Create New**
-   - Choose the appropriate **Entity** and **Role**
-   - Select the **Application** created in step 2
-   - For **Certificate**, upload the `public.pem` file generated in step 3
-   - After saving, NetSuite will generate a **Certificate ID** (a unique identifier). Copy this value — it is needed to configure the connection. The Certificate ID will be a string similar to `zzP3z13fkaZsCcwCbmMpd5GvvPs9DTPIquAI83MnNx4`.
-
-5. Assign Roles:
-   - Ensure that the entity used in the OAuth 2.0 Client setup has been assigned appropriate [roles and permissions](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771510070.html)
-
-#### Configure the Connection
-
-When configuring the NetSuite OAuth 2.0 Client Credentials connection, enter the following values:
-
-- **Certificate ID**: From the OAuth 2.0 Client (M2M) setup in step 4
-- **Private Key**: The entire contents of the `private.pem` file from step 3. Copy the full file including the header and footer lines. Format example:
-  ```
-  -----BEGIN PRIVATE KEY-----
-  MIIJQwIBADANBgkqhkiG9w0BAQEFAASCCS0wggkpAgEAAoICAQC...
-  ...key content here...
-  -----END PRIVATE KEY-----
-  ```
-- **Consumer Key** (Client ID): From the integration created in step 2
-- **Token URL**: The NetSuite account's token URL in the format: `https://[ACCOUNT_ID].suitetalk.api.netsuite.com/services/rest/auth/oauth2/v1/token`
-  - Replace `[ACCOUNT_ID]` with the NetSuite account ID (found in **Setup** > **Company** > **Company Information**)
-  - Example: `https://1234567.suitetalk.api.netsuite.com/services/rest/auth/oauth2/v1/token`
 
 | Input                    | Comments                                                                                                                                                                                                   | Default                                                                            |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |

@@ -5,74 +5,13 @@ description: Interact with your IMAP email account
 ---
 
 ![IMAP](./assets/imap.png#connector-icon)
-[IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) (Internet Message Access Protocol) is an Internet standard protocol used by email clients to retrieve email messages from a mail server over a TCP/IP connection.
-This component gives you the ability to list mailboxes, search and fetch emails, manage message flags, and copy or move messages on any IMAP server.
-
-## API Documentation
-
-This component was built using the [ImapFlow Node.js library](https://imapflow.com/docs/).
+Interact with your IMAP email account
 
 ## Connections
 
 ### IMAP Connection {#imap}
 
 Provide the details of your IMAP server.
-
-To configure a connection to an IMAP server, the server's host address, port, login credentials, and TLS settings are required.
-
-The setup can vary widely depending on the email service in use. Context for some popular services is provided below.
-
-#### Prerequisites
-
-- Access to an IMAP-enabled email account
-- The IMAP server host address and port
-- Valid login credentials (username and password or app password)
-
-#### Setup Steps
-
-#### Gmail
-
-To set up an IMAP connection to a Gmail account, create a [Google App Password](https://support.google.com/accounts/answer/185833?hl=en):
-
-1. Navigate to the [Google Account](https://myaccount.google.com/) page and select **Security**.
-2. Under **Signing in to Google**, select **App Passwords**. Sign-in may be required.
-3. If the **App Passwords** option is not available, possible reasons include:
-   - 2-Step Verification is not set up for the account
-   - 2-Step Verification is only set up for security keys
-   - The account is through work, school, or another organization
-   - Advanced Protection is enabled
-4. At the bottom, click **Select App** and choose **Mail**, then click **Select device** and choose **Other (Custom name)**.
-5. Click **GENERATE**.
-6. A 16-character code will be generated — this is the **app password**. Copy it to a safe location.
-
-If authentication problems occur, ensure the account has [IMAP enabled](https://support.google.com/mail/answer/7126229).
-
-#### Microsoft Office 365
-
-If the Office 365 domain does not use multi-factor authentication (this is rare), the username and password can be used to authenticate directly.
-
-If MFA is enabled, an **app password** is required to authenticate. To create an app password:
-
-1. Log in to the [Microsoft Security Center](https://mysignins.microsoft.com/security-info) and open the **Security info** tab.
-2. Click **+Add method** and choose **App password**.
-3. Enter a name for the app password, and copy the password that is generated.
-
-If the **App password** option is unavailable, contact the Office 365 administrator to [enable it](https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9).
-
-#### Configure the Connection
-
-Create a connection of type **IMAP Connection** and enter the following values:
-
-| Input                   | Description                                                                                         | Default   |
-| ----------------------- | --------------------------------------------------------------------------------------------------- | --------- |
-| **Host**                | The IMAP server hostname (e.g., `imap.gmail.com` for Gmail, `outlook.office365.com` for Office 365) | —         |
-| **Port**                | The IMAP server port                                                                                | `993`     |
-| **Secure**              | Whether to use a secure (TLS) connection                                                            | `true`    |
-| **Username**            | The email address or username for the IMAP account                                                  | —         |
-| **Password**            | The account password or app password                                                                | —         |
-| **Minimum TLS Version** | The minimum TLS version accepted by the connection                                                  | `TLSv1.1` |
-| **Maximum TLS Version** | The maximum TLS version accepted by the connection                                                  | `TLSv1.3` |
-| **Min DH Size**         | Minimum key size (in bits) to accept in a TLS connection                                            | `1024`    |
 
 | Input               | Comments                                                                                   | Default |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------- |

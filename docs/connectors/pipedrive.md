@@ -1,53 +1,64 @@
 ---
 title: Pipedrive Connector
 sidebar_label: Pipedrive
-description: Manage leads, companies, activities, and more on the Pipedrive platform
+description: Manage leads, companies, activities, and more on the Pipedrive platform.
 ---
 
 ![Pipedrive](./assets/pipedrive.png#connector-icon)
-[Pipedrive](https://www.pipedrive.com/) is a sales-focused customer relationship management tool. This component allows you to manage leads, companies, activities, and more.
+Manage leads, companies, activities, and more on the Pipedrive platform.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
-OAuth 2.0 connection for Pipedrive
+Authenticate using OAuth 2.0.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input             | Comments                                                                                                | Default                                     |
-| ----------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Authorization URL | OAuth 2.0 Authorization URL for Pipedrive authentication.                                               | https://oauth.pipedrive.com/oauth/authorize |
-| Token URL         | OAuth 2.0 Token URL for Pipedrive authentication.                                                       | https://oauth.pipedrive.com/oauth/token     |
-| Client ID         | The Client ID from your Pipedrive OAuth app. Find this in Pipedrive Settings > Marketplace > Your Apps. |                                             |
-| Client Secret     | The Client Secret from your Pipedrive OAuth app. Keep this value secure.                                |                                             |
+| Input             | Comments                                                                                               | Default                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| Authorization URL | OAuth 2.0 Authorization URL for Pipedrive authentication.                                              | https://oauth.pipedrive.com/oauth/authorize |
+| Token URL         | OAuth 2.0 Token URL for Pipedrive authentication.                                                      | https://oauth.pipedrive.com/oauth/token     |
+| Client ID         | The Client ID from the Pipedrive OAuth app. Find this in Pipedrive Settings > Marketplace > Your Apps. |                                             |
+| Client Secret     | The Client Secret from the Pipedrive OAuth app. Keep this value secure.                                |                                             |
 
 ## Triggers
 
-### Webhook Trigger {#pipedrivetrigger}
+### New and Updated Records {#pollchangestrigger}
 
-Receive data from Pipedrive in real time with webhook subscriptions.
+Checks for new and updated records in a selected Pipedrive resource type on a configured schedule.
 
-| Input              | Comments                                                                                                                                                                                                                                                                                                                                                                                                                          | Default |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version            | The version of the API to use.                                                                                                                                                                                                                                                                                                                                                                                                    | 2.0     |
-| Event Action       | The actions to subscribe to                                                                                                                                                                                                                                                                                                                                                                                                       |         |
-| Event Object       | The object to subscribe to                                                                                                                                                                                                                                                                                                                                                                                                        |         |
-| User ID            | The ID of the user that this webhook will be authorized with. You have the option to use a different user's user_id. If it is not set, the current user's user_id will be used. As each webhook event is checked against a user's permissions, the webhook will only be sent if the user has access to the specified object(s). If you want to receive notifications for all events, please use a top-level admin user's user_id. |         |
-| HTTP Auth User     | The username for HTTP Basic Auth                                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| HTTP Auth Password | The password for HTTP Basic Auth                                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| Connection         |                                                                                                                                                                                                                                                                                                                                                                                                                                   |         |
+| Input                | Comments                                                                               | Default |
+| -------------------- | -------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Pipedrive connection to use.                                                       |         |
+| Resource Type        | The Pipedrive item type to monitor for new and updated records.                        |         |
+| Show New Records     | When enabled, records created since the last poll are returned in the trigger payload. | true    |
+| Show Updated Records | When enabled, records updated since the last poll are returned in the trigger payload. | true    |
+
+### Webhook {#pipedrivetrigger}
+
+Receive event notifications from Pipedrive. Automatically creates and manages a webhook subscription for the selected event action and object type.
+
+| Input              | Comments                                                                                                                                                                                                                                                                                                                                                                               | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Pipedrive connection to use.                                                                                                                                                                                                                                                                                                                                                       |         |
+| Version            | The Pipedrive webhook version that controls the payload schema.                                                                                                                                                                                                                                                                                                                        | 2.0     |
+| Event Action       | The type of action that triggers the webhook.                                                                                                                                                                                                                                                                                                                                          |         |
+| Event Object       | The Pipedrive resource type that triggers the webhook.                                                                                                                                                                                                                                                                                                                                 |         |
+| User ID            | The ID of the user that this webhook will be authorized with. A different user's user_id may be used. If not set, the authenticated user's user_id is used. Each webhook event is checked against the user's permissions, so the webhook is only sent if the user has access to the affected object(s). To receive notifications for all events, use a top-level admin user's user_id. |         |
+| HTTP Auth User     | The username used for HTTP Basic Auth when Pipedrive calls the subscription URL.                                                                                                                                                                                                                                                                                                       |         |
+| HTTP Auth Password | The password used for HTTP Basic Auth when Pipedrive calls the subscription URL.                                                                                                                                                                                                                                                                                                       |         |
 
 ## Actions
 
 ### Add Call Log {#addcalllog}
 
-Add a call log
+Adds a call log.
 
 | Input             | Comments                                                                                     | Default |
 | ----------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                              |         |
+| Connection        | The Pipedrive connection to use.                                                             |         |
 | User ID           | The ID of the owner of the call log                                                          |         |
 | Activity ID       | If specified, this activity will be converted into a call log, with the information provided |         |
 | Subject           | The name of the activity this call is attached to                                            |         |
@@ -64,11 +75,11 @@ Add a call log
 
 ### Add Deal {#adddeal}
 
-Add a deal
+Adds a deal.
 
 | Input               | Comments                                                                                                                                        | Default |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                                 |         |
+| Connection          | The Pipedrive connection to use.                                                                                                                |         |
 | Title               | The title of the deal                                                                                                                           |         |
 | Value               | The value of the deal                                                                                                                           |         |
 | Currency            | The currency of the deal                                                                                                                        |         |
@@ -85,32 +96,32 @@ Add a deal
 
 ### Add Deal Follower {#adddealfollower}
 
-Add a follower to a deal
+Adds a follower to a deal.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Deal ID    | The ID of the deal |         |
-| User ID    | The ID of the user |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Deal ID    | The unique identifier for the deal. |         |
+| User ID    | The ID of the user                  |         |
 
 ### Add Deal Participant {#adddealparticipant}
 
-Add a participant to a deal
+Adds a participant to a deal.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Deal ID    | The ID of the deal   |         |
-| Person ID  | The ID of the person |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Deal ID    | The unique identifier for the deal. |         |
+| Person ID  | The ID of the person                |         |
 
 ### Add Deal Product {#adddealproduct}
 
-Add a product to the deal, eventually creating a new item called a deal-product
+Adds a product to the deal, eventually creating a new item called a deal-product.
 
 | Input                | Comments                                                         | Default |
 | -------------------- | ---------------------------------------------------------------- | ------- |
-| Connection           |                                                                  |         |
-| Deal ID              | The ID of the deal                                               |         |
+| Connection           | The Pipedrive connection to use.                                 |         |
+| Deal ID              | The unique identifier for the deal.                              |         |
 | Product ID           | The ID of the product to add to the deal                         |         |
 | Item Price           | The price value of the product                                   |         |
 | Quantity             | The quantity of the product                                      |         |
@@ -123,11 +134,11 @@ Add a product to the deal, eventually creating a new item called a deal-product
 
 ### Add File {#addfile}
 
-Upload and add a new file to a deal, person, org, product, activity or lead
+Uploads and adds a new file to a deal, person, organization, product, activity, or lead.
 
 | Input       | Comments                                                                                                         | Default |
 | ----------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                  |         |
+| Connection  | The Pipedrive connection to use.                                                                                 |         |
 | File        | The file to upload - either string contents or a binary file                                                     |         |
 | File Name   | The name of the file to upload                                                                                   |         |
 | Entity Type | The type of entity to attach the file to                                                                         |         |
@@ -135,11 +146,11 @@ Upload and add a new file to a deal, person, org, product, activity or lead
 
 ### Add Lead {#addlead}
 
-Add a lead
+Adds a lead.
 
 | Input               | Comments                                                                               | Default |
 | ------------------- | -------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                        |         |
+| Connection          | The Pipedrive connection to use.                                                       |         |
 | Title               | The name of the lead                                                                   |         |
 | Owner ID            | The ID of the user which will be the owner of the created lead                         |         |
 | Label Ids           | The IDs of the lead labels which will be associated with the lead                      |         |
@@ -152,21 +163,21 @@ Add a lead
 
 ### Add Lead Label {#addleadlabel}
 
-Add a lead label
+Adds a lead label.
 
-| Input      | Comments                   | Default |
-| ---------- | -------------------------- | ------- |
-| Connection |                            |         |
-| Name       | The name of the lead label |         |
-| Color      | The color of the label     |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
+| Name       | The name of the lead label       |         |
+| Color      | The color of the label           |         |
 
 ### Add Organization {#addorganization}
 
-Add an organization
+Adds an organization.
 
 | Input      | Comments                                                                | Default |
 | ---------- | ----------------------------------------------------------------------- | ------- |
-| Connection |                                                                         |         |
+| Connection | The Pipedrive connection to use.                                        |         |
 | Name       | The name of the organization                                            |         |
 | Owner ID   | The ID of the user who will be marked as the owner of this organization |         |
 | Visible To | The visibility of the organization                                      |         |
@@ -174,21 +185,21 @@ Add an organization
 
 ### Add Organization Follower {#addorganizationfollower}
 
-Add a follower to an organization
+Adds a follower to an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
-| User ID         | The ID of the user         |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Organization ID | The unique identifier for the organization. |         |
+| User ID         | The ID of the user                          |         |
 
 ### Add Person {#addperson}
 
-Add a person
+Adds a person.
 
 | Input            | Comments                                                                                                                                                                                 | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                                                                                                                                          |         |
+| Connection       | The Pipedrive connection to use.                                                                                                                                                         |         |
 | Name             | The name of the person                                                                                                                                                                   |         |
 | Owner ID         | The ID of the user who will be marked as the owner of this person                                                                                                                        |         |
 | Org ID           | The ID of the organization this person will belong to                                                                                                                                    |         |
@@ -200,31 +211,31 @@ Add a person
 
 ### Add Person Follower {#addpersonfollower}
 
-Add a follower to a person
+Adds a follower to a person.
 
-| Input      | Comments                                                           | Default |
-| ---------- | ------------------------------------------------------------------ | ------- |
-| Connection |                                                                    |         |
-| Person ID  | The ID of the person                                               |         |
-| User ID    | If supplied, only persons owned by the given user will be returned |         |
+| Input      | Comments                                                            | Default |
+| ---------- | ------------------------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                                    |         |
+| Person ID  | The unique identifier for the person.                               |         |
+| User ID    | If supplied, only persons owned by the specified user are returned. |         |
 
 ### Add Pipeline {#addpipeline}
 
-Add a new pipeline
+Adds a new pipeline.
 
 | Input            | Comments                                                          | Default |
 | ---------------- | ----------------------------------------------------------------- | ------- |
-| Connection       |                                                                   |         |
+| Connection       | The Pipedrive connection to use.                                  |         |
 | Name             | The name of the pipeline                                          |         |
 | Deal Probability | Whether deal probability is disabled or enabled for this pipeline | false   |
 
 ### Add Product {#addproduct}
 
-Add a product
+Adds a product.
 
 | Input      | Comments                                                                                                                                   | Default |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                                                            |         |
+| Connection | The Pipedrive connection to use.                                                                                                           |         |
 | Name       | The name of the product                                                                                                                    |         |
 | Code       | The product code                                                                                                                           |         |
 | Unit       | The unit in which this product is sold                                                                                                     |         |
@@ -235,21 +246,21 @@ Add a product
 
 ### Add Product Follower {#addproductfollower}
 
-Add a follower to a product
+Adds a follower to a product.
 
-| Input      | Comments              | Default |
-| ---------- | --------------------- | ------- |
-| Connection |                       |         |
-| Product ID | The ID of the product |         |
-| User ID    | The ID of the user    |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.       |         |
+| Product ID | The unique identifier for the product. |         |
+| User ID    | The ID of the user                     |         |
 
 ### Add Stage {#addstage}
 
-Add a new stage
+Adds a new stage.
 
 | Input            | Comments                                                                   | Default |
 | ---------------- | -------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                            |         |
+| Connection       | The Pipedrive connection to use.                                           |         |
 | Name             | The name of the stage                                                      |         |
 | Pipeline ID      | The ID of the pipeline to add stage to                                     |         |
 | Deal Probability | The success probability percentage of the deal                             |         |
@@ -258,493 +269,493 @@ Add a new stage
 
 ### Cancel Recurring Subscription (Deprecated) {#cancelrecurringsubscription}
 
-Cancel a recurring subscription
+Cancels a recurring subscription.
 
-| Input           | Comments                          | Default |
-| --------------- | --------------------------------- | ------- |
-| Connection      |                                   |         |
-| Subscription ID | The ID of the subscription        |         |
-| End Date        | The subscription termination date |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Subscription ID | The unique identifier for the subscription. |         |
+| End Date        | The subscription termination date           |         |
 
 ### Create Webhook {#createwebhook}
 
-Create a new webhook
+Creates a new webhook.
 
-| Input              | Comments                                                                                                                                                                                                                                                                                                                                                                                                                          | Default |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Subscription URL   | The URL to subscribe to                                                                                                                                                                                                                                                                                                                                                                                                           |         |
-| Event Action       | The actions to subscribe to                                                                                                                                                                                                                                                                                                                                                                                                       |         |
-| Event Object       | The object to subscribe to                                                                                                                                                                                                                                                                                                                                                                                                        |         |
-| Version            | The webhook's version. NB! Webhooks v2 is the default from March 17th, 2025. See this [Changelog](https://developers.pipedrive.com/changelog/post/breaking-change-webhooks-v2-will-become-the-new-default-version) post for more details.                                                                                                                                                                                         | 2.0     |
-| User ID            | The ID of the user that this webhook will be authorized with. You have the option to use a different user's user_id. If it is not set, the current user's user_id will be used. As each webhook event is checked against a user's permissions, the webhook will only be sent if the user has access to the specified object(s). If you want to receive notifications for all events, please use a top-level admin user's user_id. |         |
-| HTTP Auth User     | The username for HTTP Basic Auth                                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| HTTP Auth Password | The password for HTTP Basic Auth                                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| Connection         |                                                                                                                                                                                                                                                                                                                                                                                                                                   |         |
+| Input              | Comments                                                                                                                                                                                                                                                                                                                                                                               | Default |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Pipedrive connection to use.                                                                                                                                                                                                                                                                                                                                                       |         |
+| Subscription URL   | The URL that Pipedrive will call when a subscribed event occurs.                                                                                                                                                                                                                                                                                                                       |         |
+| Event Action       | The type of action that triggers the webhook.                                                                                                                                                                                                                                                                                                                                          |         |
+| Event Object       | The Pipedrive resource type that triggers the webhook.                                                                                                                                                                                                                                                                                                                                 |         |
+| Version            | The webhook's version. NB! Webhooks v2 is the default from March 17th, 2025. See this [Changelog](https://developers.pipedrive.com/changelog/post/breaking-change-webhooks-v2-will-become-the-new-default-version) post for more details.                                                                                                                                              | 2.0     |
+| User ID            | The ID of the user that this webhook will be authorized with. A different user's user_id may be used. If not set, the authenticated user's user_id is used. Each webhook event is checked against the user's permissions, so the webhook is only sent if the user has access to the affected object(s). To receive notifications for all events, use a top-level admin user's user_id. |         |
+| HTTP Auth User     | The username used for HTTP Basic Auth when Pipedrive calls the subscription URL.                                                                                                                                                                                                                                                                                                       |         |
+| HTTP Auth Password | The password used for HTTP Basic Auth when Pipedrive calls the subscription URL.                                                                                                                                                                                                                                                                                                       |         |
 
 ### Delete Activity {#deleteactivity}
 
-Delete an activity
+Deletes an activity.
 
-| Input       | Comments               | Default |
-| ----------- | ---------------------- | ------- |
-| Connection  |                        |         |
-| Activity ID | The ID of the activity |         |
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.        |         |
+| Activity ID | The unique identifier for the activity. |         |
 
 ### Delete Call Log {#deletecalllog}
 
-Delete a call log
+Deletes a call log.
 
-| Input       | Comments                                     | Default |
-| ----------- | -------------------------------------------- | ------- |
-| Connection  |                                              |         |
-| Call Log ID | The ID received when you create the call log |         |
+| Input       | Comments                                                      | Default |
+| ----------- | ------------------------------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.                              |         |
+| Call Log ID | The unique identifier returned when the call log was created. |         |
 
 ### Delete Deal {#deletedeal}
 
-Delete a deal
+Deletes a deal.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Deal ID    | The ID of the deal |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Deal ID    | The unique identifier for the deal. |         |
 
 ### Delete Deal Field {#deletedealfield}
 
-Delete a deal field
+Deletes a deal field.
 
-| Input         | Comments                 | Default |
-| ------------- | ------------------------ | ------- |
-| Connection    |                          |         |
-| Deal Field ID | The ID of the deal field |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Pipedrive connection to use.          |         |
+| Deal Field ID | The unique identifier for the deal field. |         |
 
 ### Delete Deal Follower {#deletedealfollower}
 
-Delete a follower from a deal
+Deletes a follower from a deal.
 
-| Input       | Comments               | Default |
-| ----------- | ---------------------- | ------- |
-| Connection  |                        |         |
-| Deal ID     | The ID of the deal     |         |
-| Follower ID | The ID of the follower |         |
+| Input       | Comments                            | Default |
+| ----------- | ----------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.    |         |
+| Deal ID     | The unique identifier for the deal. |         |
+| Follower ID | The ID of the follower              |         |
 
 ### Delete Deal Participant {#deletedealparticipant}
 
-Delete a participant from a deal
+Deletes a participant from a deal.
 
 | Input               | Comments                              | Default |
 | ------------------- | ------------------------------------- | ------- |
-| Connection          |                                       |         |
-| Deal ID             | The ID of the deal                    |         |
+| Connection          | The Pipedrive connection to use.      |         |
+| Deal ID             | The unique identifier for the deal.   |         |
 | Deal Participant ID | The ID of the participant of the deal |         |
 
 ### Delete Deal Product {#deletedealproduct}
 
-Delete an attached product from a deal
+Deletes an attached product from a deal.
 
-| Input                 | Comments                  | Default |
-| --------------------- | ------------------------- | ------- |
-| Connection            |                           |         |
-| Deal ID               | The ID of the deal        |         |
-| Product Attachment ID | The product attachment ID |         |
+| Input                 | Comments                            | Default |
+| --------------------- | ----------------------------------- | ------- |
+| Connection            | The Pipedrive connection to use.    |         |
+| Deal ID               | The unique identifier for the deal. |         |
+| Product Attachment ID | The product attachment ID           |         |
 
 ### Delete File {#deletefile}
 
-Delete a file
+Deletes a file.
 
-| Input      | Comments         | Default |
-| ---------- | ---------------- | ------- |
-| Connection |                  |         |
-| File ID    | The ID of a file |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| File ID    | The unique identifier for the file. |         |
 
 ### Delete Lead {#deletelead}
 
-Delete a lead
+Deletes a lead.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Lead ID    | The ID of the lead |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Lead ID    | The unique identifier for the lead. |         |
 
 ### Delete Lead Label {#deleteleadlabel}
 
-Delete a lead label
+Deletes a lead label.
 
-| Input         | Comments                 | Default |
-| ------------- | ------------------------ | ------- |
-| Connection    |                          |         |
-| Lead Label ID | The ID of the lead label |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Pipedrive connection to use.          |         |
+| Lead Label ID | The unique identifier for the lead label. |         |
 
 ### Delete Mail Thread {#deletemailthread}
 
-Delete mail thread
+Deletes a mail thread.
 
-| Input          | Comments                  | Default |
-| -------------- | ------------------------- | ------- |
-| Connection     |                           |         |
-| Mail Thread ID | The ID of the mail thread |         |
+| Input          | Comments                                   | Default |
+| -------------- | ------------------------------------------ | ------- |
+| Connection     | The Pipedrive connection to use.           |         |
+| Mail Thread ID | The unique identifier for the mail thread. |         |
 
 ### Delete Organization {#deleteorganization}
 
-Delete an organization
+Deletes an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Organization ID | The unique identifier for the organization. |         |
 
 ### Delete Organization Follower {#deleteorganizationfollower}
 
-Delete a follower from an organization
+Deletes a follower from an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
-| Follower ID     | The ID of the follower     |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Organization ID | The unique identifier for the organization. |         |
+| Follower ID     | The ID of the follower                      |         |
 
 ### Delete Person {#deleteperson}
 
-Delete a person
+Deletes a person.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Person ID  | The ID of the person |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.      |         |
+| Person ID  | The unique identifier for the person. |         |
 
 ### Delete Person Field {#deletepersonfield}
 
-Delete a person field
+Deletes a person field.
 
-| Input           | Comments            | Default |
-| --------------- | ------------------- | ------- |
-| Connection      |                     |         |
-| Person Field ID | The ID of the field |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Person Field ID | The unique identifier for the person field. |         |
 
 ### Delete Person Follower {#deletepersonfollower}
 
-Delete a follower from a person
+Deletes a follower from a person.
 
-| Input       | Comments               | Default |
-| ----------- | ---------------------- | ------- |
-| Connection  |                        |         |
-| Person ID   | The ID of the person   |         |
-| Follower ID | The ID of the follower |         |
+| Input       | Comments                              | Default |
+| ----------- | ------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.      |         |
+| Person ID   | The unique identifier for the person. |         |
+| Follower ID | The ID of the follower                |         |
 
 ### Delete Person Picture {#deletepersonpicture}
 
-Delete person picture
+Deletes a person picture.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Person ID  | The ID of the person |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.      |         |
+| Person ID  | The unique identifier for the person. |         |
 
 ### Delete Pipeline {#deletepipeline}
 
-Delete a pipeline
+Deletes a pipeline.
 
-| Input       | Comments               | Default |
-| ----------- | ---------------------- | ------- |
-| Connection  |                        |         |
-| Pipeline ID | The ID of the pipeline |         |
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.        |         |
+| Pipeline ID | The unique identifier for the pipeline. |         |
 
 ### Delete Product {#deleteproduct}
 
-Delete a product
+Deletes a product.
 
-| Input      | Comments              | Default |
-| ---------- | --------------------- | ------- |
-| Connection |                       |         |
-| Product ID | The ID of the product |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.       |         |
+| Product ID | The unique identifier for the product. |         |
 
 ### Delete Product Field {#deleteproductfield}
 
-Delete a product field
+Deletes a product field.
 
-| Input            | Comments                    | Default |
-| ---------------- | --------------------------- | ------- |
-| Connection       |                             |         |
-| Product Field ID | The ID of the product field |         |
+| Input            | Comments                         | Default |
+| ---------------- | -------------------------------- | ------- |
+| Connection       | The Pipedrive connection to use. |         |
+| Product Field ID | The ID of the product field      |         |
 
 ### Delete Product Follower {#deleteproductfollower}
 
-Delete a follower from a product
+Deletes a follower from a product.
 
 | Input       | Comments                                                        | Default |
 | ----------- | --------------------------------------------------------------- | ------- |
-| Connection  |                                                                 |         |
-| Product ID  | The ID of the product                                           |         |
+| Connection  | The Pipedrive connection to use.                                |         |
+| Product ID  | The unique identifier for the product.                          |         |
 | Follower ID | The ID of the relationship between the follower and the product |         |
 
 ### Delete Stage {#deletestage}
 
-Delete a stage
+Deletes a stage.
 
-| Input      | Comments            | Default |
-| ---------- | ------------------- | ------- |
-| Connection |                     |         |
-| Stage ID   | The ID of the stage |         |
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Pipedrive connection to use.     |         |
+| Stage ID   | The unique identifier for the stage. |         |
 
 ### Delete Subscription (Deprecated) {#deletesubscription}
 
-Delete a subscription
+Deletes a subscription.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Subscription ID | The ID of the subscription |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Subscription ID | The unique identifier for the subscription. |         |
 
 ### Delete Webhook {#deletewebhook}
 
-Delete a webhook
+Deletes a webhook.
 
-| Input      | Comments              | Default |
-| ---------- | --------------------- | ------- |
-| Webhook ID | The ID of the webhook |         |
-| Connection |                       |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.       |         |
+| Webhook ID | The unique identifier for the webhook. |         |
 
 ### Download File {#downloadfile}
 
-Download one file
+Downloads one file.
 
-| Input      | Comments         | Default |
-| ---------- | ---------------- | ------- |
-| Connection |                  |         |
-| File ID    | The ID of a file |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| File ID    | The unique identifier for the file. |         |
 
 ### Find Subscription By Deal (Deprecated) {#findsubscriptionbydeal}
 
-Find subscription by deal
+Finds a subscription by deal.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Deal ID    | The ID of the deal |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
+| Deal ID    | The ID of the deal               |         |
 
 ### Find Users By Name {#findusersbyname}
 
-Find users by name
+Finds users by name.
 
 | Input           | Comments                                                                     | Default |
 | --------------- | ---------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                              |         |
+| Connection      | The Pipedrive connection to use.                                             |         |
 | Term            | The search term to look for                                                  |         |
 | Search By Email | When enabled, the term will only be matched against email addresses of users | 1       |
 
 ### Get Activities {#getactivities}
 
-Get all activities assigned to a particular user
+Gets all activities assigned to a particular user.
 
 | Input          | Comments                                                                                         | Default |
 | -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                  |         |
+| Connection     | The Pipedrive connection to use.                                                                 |         |
 | Filter ID      | The ID of the filter to use (will narrow down results if used together with "user_id" parameter) |         |
-| Limit          | Items shown per page                                                                             |         |
+| Limit          | The maximum number of results to return per page.                                                |         |
 | Updated Since  | If set, only activities with an update_time later than or equal to this time are returned        |         |
 | Updated Until  | If set, only activities with an update_time earlier than or equal to this time are returned      |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           | desc    |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Sort By        | The field name used to order the results.                                                        |         |
+| Sort Direction | The direction in which results are ordered.                                                      | desc    |
+| Cursor         | The pagination cursor from a previous request.                                                   |         |
 
 ### Get Activity {#getactivity}
 
-Get details of an activity
+Gets details of an activity.
 
-| Input       | Comments               | Default |
-| ----------- | ---------------------- | ------- |
-| Connection  |                        |         |
-| Activity ID | The ID of the activity |         |
+| Input       | Comments                                | Default |
+| ----------- | --------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.        |         |
+| Activity ID | The unique identifier for the activity. |         |
 
 ### Get Activity Fields {#getactivityfields}
 
-Get all activity fields
+Gets all activity fields.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Activity Types {#getactivitytypes}
 
-Get all activity types
+Gets all activity types.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Call Log {#getcalllog}
 
-Get details of a call log
+Gets details of a call log.
 
-| Input       | Comments                                     | Default |
-| ----------- | -------------------------------------------- | ------- |
-| Connection  |                                              |         |
-| Call Log ID | The ID received when you create the call log |         |
+| Input       | Comments                                                      | Default |
+| ----------- | ------------------------------------------------------------- | ------- |
+| Connection  | The Pipedrive connection to use.                              |         |
+| Call Log ID | The unique identifier returned when the call log was created. |         |
 
 ### Get Company Addons {#getcompanyaddons}
 
-Get all add-ons for a single company
+Gets all add-ons for a single company.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Currencies {#getcurrencies}
 
-Get all supported currencies
+Gets all supported currencies.
 
 | Input      | Comments                                                                   | Default |
 | ---------- | -------------------------------------------------------------------------- | ------- |
-| Connection |                                                                            |         |
+| Connection | The Pipedrive connection to use.                                           |         |
 | Term       | Optional search term that is searched for from currency's name and/or code |         |
 
 ### Get Current User {#getcurrentuser}
 
-Get current user data
+Gets current user data.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Deal {#getdeal}
 
-Get details of a deal
+Gets details of a deal.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Deal ID    | The ID of the deal |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Deal ID    | The unique identifier for the deal. |         |
 
 ### Get Deal Activities {#getdealactivities}
 
-List activities associated with a deal
+Lists activities associated with a deal.
 
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                  |         |
-| Deal ID        | The ID of the deal                                                                               |         |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Done           | Whether the activity is done or not                                                              | false   |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
+| Input          | Comments                                          | Default |
+| -------------- | ------------------------------------------------- | ------- |
+| Connection     | The Pipedrive connection to use.                  |         |
+| Deal ID        | The unique identifier for the deal.               |         |
+| Limit          | The maximum number of results to return per page. |         |
+| Cursor         | The pagination cursor from a previous request.    |         |
+| Done           | Whether the activity is done or not               | false   |
+| Sort By        | The field name used to order the results.         |         |
+| Sort Direction | The direction in which results are ordered.       |         |
 
 ### Get Deal Field {#getdealfield}
 
-Get one deal field
+Gets one deal field.
 
-| Input         | Comments                 | Default |
-| ------------- | ------------------------ | ------- |
-| Connection    |                          |         |
-| Deal Field ID | The ID of the deal field |         |
+| Input         | Comments                                  | Default |
+| ------------- | ----------------------------------------- | ------- |
+| Connection    | The Pipedrive connection to use.          |         |
+| Deal Field ID | The unique identifier for the deal field. |         |
 
 ### Get Deal Fields {#getdealfields}
 
-Get all deal fields
+Gets all deal fields.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Start      | Pagination start     | 0       |
-| Limit      | Items shown per page |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |
 
 ### Get Deal Files {#getdealfiles}
 
-List files attached to a deal
+Lists files attached to a deal.
 
-| Input                 | Comments                                                                                         | Default |
-| --------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection            |                                                                                                  |         |
-| Deal ID               | The ID of the deal                                                                               |         |
-| Start                 | Pagination start                                                                                 | 0       |
-| Limit                 | Items shown per page                                                                             |         |
-| Cursor                | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Include Deleted Files | When enabled, the list of files will also include deleted files                                  |         |
-| Sort                  | The field names and sorting mode separated by a comma ("field_name_1 ASC", "field_name_2 DESC")  |         |
+| Input                 | Comments                                                                                            | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Pipedrive connection to use.                                                                    |         |
+| Deal ID               | The unique identifier for the deal.                                                                 |         |
+| Start                 | The 0-based offset of the first item to return.                                                     | 0       |
+| Limit                 | The maximum number of results to return per page.                                                   |         |
+| Cursor                | The pagination cursor from a previous request.                                                      |         |
+| Include Deleted Files | When enabled, the list of files will also include deleted files                                     |         |
+| Sort                  | The field names and sorting mode separated by a comma (e.g. "field_name_1 ASC, field_name_2 DESC"). |         |
 
 ### Get Deal Followers {#getdealfollowers}
 
-List followers of a deal
+Lists followers of a deal.
 
-| Input      | Comments                                                                                         | Default |
-| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                  |         |
-| Deal ID    | The ID of the deal                                                                               |         |
-| Limit      | Items shown per page                                                                             |         |
-| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Deal ID    | The unique identifier for the deal.               |         |
+| Limit      | The maximum number of results to return per page. |         |
+| Cursor     | The pagination cursor from a previous request.    |         |
 
 ### Get Deal Mail Messages {#getdealmailmessages}
 
-List mail messages associated with a deal
+Lists mail messages associated with a deal.
 
-| Input      | Comments                                                                                         | Default |
-| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                  |         |
-| Deal ID    | The ID of the deal                                                                               |         |
-| Start      | Pagination start                                                                                 | 0       |
-| Limit      | Items shown per page                                                                             |         |
-| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Deal ID    | The unique identifier for the deal.               |         |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |
+| Cursor     | The pagination cursor from a previous request.    |         |
 
 ### Get Deal Participants {#getdealparticipants}
 
-List participants of a deal
+Lists participants of a deal.
 
-| Input      | Comments                                                                                         | Default |
-| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                  |         |
-| Deal ID    | The ID of the deal                                                                               |         |
-| Start      | Pagination start                                                                                 | 0       |
-| Limit      | Items shown per page                                                                             |         |
-| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Deal ID    | The unique identifier for the deal.               |         |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |
+| Cursor     | The pagination cursor from a previous request.    |         |
 
 ### Get Deal Persons (Deprecated) {#getdealpersons}
 
-List all persons associated with a deal
+Lists all persons associated with a deal.
 
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                  |         |
-| Deal ID        | The ID of the deal                                                                               |         |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
+| Input          | Comments                                          | Default |
+| -------------- | ------------------------------------------------- | ------- |
+| Connection     | The Pipedrive connection to use.                  |         |
+| Deal ID        | The unique identifier for the deal.               |         |
+| Limit          | The maximum number of results to return per page. |         |
+| Cursor         | The pagination cursor from a previous request.    |         |
+| Sort By        | The field name used to order the results.         |         |
+| Sort Direction | The direction in which results are ordered.       |         |
 
 ### Get Deal Products {#getdealproducts}
 
-List products attached to a deal
+Lists products attached to a deal.
 
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                  |         |
-| Deal ID        | The ID of the deal                                                                               |         |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
+| Input          | Comments                                          | Default |
+| -------------- | ------------------------------------------------- | ------- |
+| Connection     | The Pipedrive connection to use.                  |         |
+| Deal ID        | The unique identifier for the deal.               |         |
+| Limit          | The maximum number of results to return per page. |         |
+| Cursor         | The pagination cursor from a previous request.    |         |
+| Sort By        | The field name used to order the results.         |         |
+| Sort Direction | The direction in which results are ordered.       |         |
 
 ### Get Deals {#getdeals}
 
-Get all deals
+Gets all deals.
 
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Fetch All      | When true, all records will be fetched. When false, the provided pagination will be used.        | false   |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
-| Filter ID      | The ID of the filter to use                                                                      |         |
-| Stage ID       | If supplied, only deals within the given stage will be returned                                  |         |
-| Status         | Only fetch deals with a specific status                                                          |         |
-| Connection     |                                                                                                  |         |
+| Input          | Comments                                                                                                | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All      | When true, automatically fetches all pages of results. When false, only the requested page is returned. | false   |
+| Limit          | The maximum number of results to return per page.                                                       |         |
+| Cursor         | The pagination cursor from a previous request.                                                          |         |
+| Sort By        | The field name used to order the results.                                                               |         |
+| Sort Direction | The direction in which results are ordered.                                                             |         |
+| Filter ID      | The unique identifier of the filter to apply.                                                           |         |
+| Stage ID       | If supplied, only deals within the specified stage are returned.                                        |         |
+| Status         | Filter the response to only include deals matching the selected status.                                 |         |
+| Connection     | The Pipedrive connection to use.                                                                        |         |
 
 ### Get Deals Summary {#getdealssummary}
 
-Get deals summary
+Gets a summary of deals.
 
 | Input      | Comments                                            | Default |
 | ---------- | --------------------------------------------------- | ------- |
-| Connection |                                                     |         |
+| Connection | The Pipedrive connection to use.                    |         |
 | Status     | Only fetch deals with a specific status             |         |
 | Filter ID  | user_id will not be considered                      |         |
 | User ID    | Only deals matching the given user will be returned |         |
@@ -752,11 +763,11 @@ Get deals summary
 
 ### Get Deals Timeline {#getdealstimeline}
 
-Get deals timeline
+Gets the deals timeline.
 
 | Input                   | Comments                                                             | Default |
 | ----------------------- | -------------------------------------------------------------------- | ------- |
-| Connection              |                                                                      |         |
+| Connection              | The Pipedrive connection to use.                                     |         |
 | Start Date              | The date when the first interval starts                              |         |
 | Interval                | The type of the interval                                             |         |
 | Amount                  | The number of given intervals, starting from "start_date", to fetch  |         |
@@ -769,354 +780,354 @@ Get deals timeline
 
 ### Get Deal Users {#getdealusers}
 
-List permitted users
+Lists permitted users for a deal.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Deal ID    | The ID of the deal |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Deal ID    | The unique identifier for the deal. |         |
 
 ### Get File Metadata by ID {#getfile}
 
-Get metadata about one file by ID
+Gets metadata about one file by ID.
 
-| Input      | Comments         | Default |
-| ---------- | ---------------- | ------- |
-| Connection |                  |         |
-| File ID    | The ID of a file |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| File ID    | The unique identifier for the file. |         |
 
 ### Get Filter {#getfilter}
 
-Get one filter
+Gets one filter.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Filter ID  | The ID of the filter |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.      |         |
+| Filter ID  | The unique identifier for the filter. |         |
 
 ### Get Filters {#getfilters}
 
-Get all filters
+Gets all filters.
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection |                               |         |
-| Type       | The types of filters to fetch |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
+| Type       | The types of filters to fetch    |         |
 
 ### Get Lead {#getlead}
 
-Get one lead
+Gets one lead.
 
-| Input      | Comments           | Default |
-| ---------- | ------------------ | ------- |
-| Connection |                    |         |
-| Lead ID    | The ID of the lead |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Lead ID    | The unique identifier for the lead. |         |
 
 ### Get Lead Labels {#getleadlabels}
 
-Get all lead labels
+Gets all lead labels.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Leads {#getleads}
 
-Get all leads
+Gets all leads.
 
-| Input           | Comments                                                                                        | Default |
-| --------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                 |         |
-| Limit           | Items shown per page                                                                            |         |
-| Start           | Pagination start                                                                                | 0       |
-| Archived Status | Filtering based on the archived status of a lead                                                |         |
-| Owner ID        | If supplied, only leads matching the given user will be returned                                |         |
-| Filter ID       | The ID of the filter to use                                                                     |         |
-| Sort            | The field names and sorting mode separated by a comma ("field_name_1 ASC", "field_name_2 DESC") |         |
+| Input           | Comments                                                                                            | Default |
+| --------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                                                                    |         |
+| Limit           | The maximum number of results to return per page.                                                   |         |
+| Start           | The 0-based offset of the first item to return.                                                     | 0       |
+| Archived Status | Filtering based on the archived status of a lead                                                    |         |
+| Owner ID        | If supplied, only leads matching the given user will be returned                                    |         |
+| Filter ID       | The ID of the filter to use                                                                         |         |
+| Sort            | The field names and sorting mode separated by a comma (e.g. "field_name_1 ASC, field_name_2 DESC"). |         |
 
 ### Get Lead Sources {#getleadsources}
 
-Get all lead sources
+Gets all lead sources.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Mail Message {#getmailmessage}
 
-Get one mail message
+Gets one mail message.
 
 | Input        | Comments                                        | Default |
 | ------------ | ----------------------------------------------- | ------- |
-| Connection   |                                                 |         |
+| Connection   | The Pipedrive connection to use.                |         |
 | Id           | The ID of the mail message to fetch             |         |
 | Include Body | Whether to include the full message body or not | 1       |
 
 ### Get Mail Thread {#getmailthread}
 
-Get one mail thread
+Gets one mail thread.
 
-| Input          | Comments                  | Default |
-| -------------- | ------------------------- | ------- |
-| Connection     |                           |         |
-| Mail Thread ID | The ID of the mail thread |         |
+| Input          | Comments                                   | Default |
+| -------------- | ------------------------------------------ | ------- |
+| Connection     | The Pipedrive connection to use.           |         |
+| Mail Thread ID | The unique identifier for the mail thread. |         |
 
 ### Get Mail Thread Messages {#getmailthreadmessages}
 
-Get all mail messages of mail thread
+Gets all mail messages of a mail thread.
 
-| Input          | Comments                  | Default |
-| -------------- | ------------------------- | ------- |
-| Connection     |                           |         |
-| Mail Thread ID | The ID of the mail thread |         |
+| Input          | Comments                                   | Default |
+| -------------- | ------------------------------------------ | ------- |
+| Connection     | The Pipedrive connection to use.           |         |
+| Mail Thread ID | The unique identifier for the mail thread. |         |
 
 ### Get Mail Threads {#getmailthreads}
 
-Get mail threads
+Gets mail threads.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection |                             |         |
-| Folder     | The type of folder to fetch | inbox   |
-| Start      | Pagination start            | 0       |
-| Limit      | Items shown per page        |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Folder     | The type of folder to fetch                       | inbox   |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |
 
 ### Get Note Fields {#getnotefields}
 
-Get all note fields
+Gets all note fields.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Organization {#getorganization}
 
-Get details of an organization
+Gets details of an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Organization ID | The unique identifier for the organization. |         |
 
 ### Get Organization Activities {#getorganizationactivities}
 
-List activities associated with an organization
+Lists activities associated with an organization.
 
-| Input           | Comments                                                                                         | Default |
-| --------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection      |                                                                                                  |         |
-| Organization ID | The ID of the organization                                                                       |         |
-| Limit           | Items shown per page                                                                             |         |
-| Cursor          | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Done            | When true, returns only completed activities                                                     | false   |
+| Input           | Comments                                          | Default |
+| --------------- | ------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                  |         |
+| Organization ID | The unique identifier for the organization.       |         |
+| Limit           | The maximum number of results to return per page. |         |
+| Cursor          | The pagination cursor from a previous request.    |         |
+| Done            | When true, returns only completed activities      | false   |
 
 ### Get Organization Deals {#getorganizationdeals}
 
-List deals associated with an organization
+Lists deals associated with an organization.
 
-| Input           | Comments                                                                                         | Default |
-| --------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection      |                                                                                                  |         |
-| Organization ID | The ID of the organization                                                                       |         |
-| Limit           | Items shown per page                                                                             |         |
-| Cursor          | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Status          | Only fetch deals with a specific status                                                          |         |
-| Sort By         | The field name to sort by                                                                        |         |
-| Sort Direction  | The sorting direction.                                                                           |         |
+| Input           | Comments                                          | Default |
+| --------------- | ------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                  |         |
+| Organization ID | The unique identifier for the organization.       |         |
+| Limit           | The maximum number of results to return per page. |         |
+| Cursor          | The pagination cursor from a previous request.    |         |
+| Status          | Only fetch deals with a specific status           |         |
+| Sort By         | The field name used to order the results.         |         |
+| Sort Direction  | The direction in which results are ordered.       |         |
 
 ### Get Organization Files {#getorganizationfiles}
 
-List files attached to an organization
+Lists files attached to an organization.
 
-| Input                 | Comments                                                                                        | Default |
-| --------------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                 |         |
-| Organization ID       | The ID of the organization                                                                      |         |
-| Start                 | Pagination start                                                                                | 0       |
-| Limit                 | Items shown per page                                                                            |         |
-| Include Deleted Files | When enabled, the list of files will also include deleted files                                 |         |
-| Sort                  | The field names and sorting mode separated by a comma ("field_name_1 ASC", "field_name_2 DESC") |         |
+| Input                 | Comments                                                                                            | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Pipedrive connection to use.                                                                    |         |
+| Organization ID       | The unique identifier for the organization.                                                         |         |
+| Start                 | The 0-based offset of the first item to return.                                                     | 0       |
+| Limit                 | The maximum number of results to return per page.                                                   |         |
+| Include Deleted Files | When enabled, the list of files will also include deleted files                                     |         |
+| Sort                  | The field names and sorting mode separated by a comma (e.g. "field_name_1 ASC, field_name_2 DESC"). |         |
 
 ### Get Organization Followers {#getorganizationfollowers}
 
-List followers of an organization
+Lists followers of an organization.
 
-| Input           | Comments                                                                                         | Default |
-| --------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection      |                                                                                                  |         |
-| Organization ID | The ID of the organization                                                                       |         |
-| Limit           | Items shown per page                                                                             |         |
-| Cursor          | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Input           | Comments                                          | Default |
+| --------------- | ------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                  |         |
+| Organization ID | The unique identifier for the organization.       |         |
+| Limit           | The maximum number of results to return per page. |         |
+| Cursor          | The pagination cursor from a previous request.    |         |
 
 ### Get Organization Mail Messages {#getorganizationmailmessages}
 
-List mail messages associated with an organization
+Lists mail messages associated with an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
-| Start           | Pagination start           | 0       |
-| Limit           | Items shown per page       |         |
+| Input           | Comments                                          | Default |
+| --------------- | ------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                  |         |
+| Organization ID | The unique identifier for the organization.       |         |
+| Start           | The 0-based offset of the first item to return.   | 0       |
+| Limit           | The maximum number of results to return per page. |         |
 
 ### Get Organization Persons {#getorganizationpersons}
 
-List persons of an organization
+Lists persons of an organization.
 
-| Input           | Comments                                                                                         | Default |
-| --------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection      |                                                                                                  |         |
-| Organization ID | The ID of the organization                                                                       |         |
-| Limit           | Items shown per page                                                                             |         |
-| Cursor          | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
+| Input           | Comments                                          | Default |
+| --------------- | ------------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.                  |         |
+| Organization ID | The unique identifier for the organization.       |         |
+| Limit           | The maximum number of results to return per page. |         |
+| Cursor          | The pagination cursor from a previous request.    |         |
 
 ### Get Organizations {#getorganizations}
 
-Get all organizations
+Gets all organizations.
 
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Fetch All      | When true, all records will be fetched. When false, the provided pagination will be used.        | false   |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
-| Filter ID      | The ID of the filter to use                                                                      |         |
-| Connection     |                                                                                                  |         |
+| Input          | Comments                                                                                                | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All      | When true, automatically fetches all pages of results. When false, only the requested page is returned. | false   |
+| Limit          | The maximum number of results to return per page.                                                       |         |
+| Cursor         | The pagination cursor from a previous request.                                                          |         |
+| Sort By        | The field name used to order the results.                                                               |         |
+| Sort Direction | The direction in which results are ordered.                                                             |         |
+| Filter ID      | The unique identifier of the filter to apply.                                                           |         |
+| Connection     | The Pipedrive connection to use.                                                                        |         |
 
 ### Get Organization Updates {#getorganizationupdates}
 
-List updates about an organization
+Lists updates about an organization.
 
 | Input           | Comments                                                         | Default |
 | --------------- | ---------------------------------------------------------------- | ------- |
-| Connection      |                                                                  |         |
-| Organization ID | The ID of the organization                                       |         |
-| Start           | Pagination start                                                 | 0       |
-| Limit           | Items shown per page                                             |         |
+| Connection      | The Pipedrive connection to use.                                 |         |
+| Organization ID | The unique identifier for the organization.                      |         |
+| Start           | The 0-based offset of the first item to return.                  | 0       |
+| Limit           | The maximum number of results to return per page.                |         |
 | All Changes     | Whether to show custom field updates or not                      |         |
 | Items           | A comma-separated string for filtering out item specific updates |         |
 
 ### Get Organization Users {#getorganizationusers}
 
-List permitted users
+Lists permitted users for an organization.
 
-| Input           | Comments                   | Default |
-| --------------- | -------------------------- | ------- |
-| Connection      |                            |         |
-| Organization ID | The ID of the organization |         |
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Organization ID | The unique identifier for the organization. |         |
 
 ### Get Permission Set {#getpermissionset}
 
-Get one permission set
+Gets one permission set.
 
-| Input             | Comments                     | Default |
-| ----------------- | ---------------------------- | ------- |
-| Connection        |                              |         |
-| Permission Set ID | The ID of the permission set |         |
+| Input             | Comments                                      | Default |
+| ----------------- | --------------------------------------------- | ------- |
+| Connection        | The Pipedrive connection to use.              |         |
+| Permission Set ID | The unique identifier for the permission set. |         |
 
 ### Get Permission Set Assignments {#getpermissionsetassignments}
 
-List permission set assignments
+Lists permission set assignments.
 
-| Input             | Comments                     | Default |
-| ----------------- | ---------------------------- | ------- |
-| Connection        |                              |         |
-| Permission Set ID | The ID of the permission set |         |
-| Start             | Pagination start             | 0       |
-| Limit             | Items shown per page         |         |
+| Input             | Comments                                          | Default |
+| ----------------- | ------------------------------------------------- | ------- |
+| Connection        | The Pipedrive connection to use.                  |         |
+| Permission Set ID | The unique identifier for the permission set.     |         |
+| Start             | The 0-based offset of the first item to return.   | 0       |
+| Limit             | The maximum number of results to return per page. |         |
 
 ### Get Permission Sets {#getpermissionsets}
 
-Get all permission sets
+Gets all permission sets.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                         | Default |
+| ---------- | -------------------------------- | ------- |
+| Connection | The Pipedrive connection to use. |         |
 
 ### Get Person {#getperson}
 
-Get details of a person
+Gets details of a person.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Person ID  | The ID of the person |         |
+| Input      | Comments                              | Default |
+| ---------- | ------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.      |         |
+| Person ID  | The unique identifier for the person. |         |
 
 ### Get Person Activities {#getpersonactivities}
 
-List activities associated with a person
-
-| Input      | Comments                                                                                         | Default |
-| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection |                                                                                                  |         |
-| Person ID  | The ID of the person                                                                             |         |
-| Limit      | Items shown per page                                                                             |         |
-| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Done       | When true, returns only completed activities                                                     | false   |
-
-### Get Person Deals {#getpersondeals}
-
-List deals associated with a person
-
-| Input          | Comments                                                                                         | Default |
-| -------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                  |         |
-| Person ID      | The ID of the person                                                                             |         |
-| Limit          | Items shown per page                                                                             |         |
-| Cursor         | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Status         | Only fetch deals with a specific status                                                          |         |
-| Sort By        | The field name to sort by                                                                        |         |
-| Sort Direction | The sorting direction.                                                                           |         |
-
-### Get Person Field {#getpersonfield}
-
-Get one person field
-
-| Input           | Comments            | Default |
-| --------------- | ------------------- | ------- |
-| Connection      |                     |         |
-| Person Field ID | The ID of the field |         |
-
-### Get Person Field Details {#getpersonfielddetails}
-
-Get details of a specific field for a person
+Lists activities associated with a person.
 
 | Input      | Comments                                          | Default |
 | ---------- | ------------------------------------------------- | ------- |
-| Connection |                                                   |         |
+| Connection | The Pipedrive connection to use.                  |         |
+| Person ID  | The unique identifier for the person.             |         |
+| Limit      | The maximum number of results to return per page. |         |
+| Cursor     | The pagination cursor from a previous request.    |         |
+| Done       | When true, returns only completed activities      | false   |
+
+### Get Person Deals {#getpersondeals}
+
+Lists deals associated with a person.
+
+| Input          | Comments                                          | Default |
+| -------------- | ------------------------------------------------- | ------- |
+| Connection     | The Pipedrive connection to use.                  |         |
+| Person ID      | The unique identifier for the person.             |         |
+| Limit          | The maximum number of results to return per page. |         |
+| Cursor         | The pagination cursor from a previous request.    |         |
+| Status         | Only fetch deals with a specific status           |         |
+| Sort By        | The field name used to order the results.         |         |
+| Sort Direction | The direction in which results are ordered.       |         |
+
+### Get Person Field {#getpersonfield}
+
+Gets one person field.
+
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Person Field ID | The unique identifier for the person field. |         |
+
+### Get Person Field Details {#getpersonfielddetails}
+
+Gets details of a specific field for a person.
+
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
 | Field ID   | The ID of the field to fetch details for a person |         |
 
 ### Get Person Fields {#getpersonfields}
 
-Get all person fields
+Gets all person fields.
 
-| Input      | Comments             | Default |
-| ---------- | -------------------- | ------- |
-| Connection |                      |         |
-| Start      | Pagination start     | 0       |
-| Limit      | Items shown per page |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |
 
 ### Get Person Files {#getpersonfiles}
 
-List files attached to a person
+Lists files attached to a person.
 
-| Input                 | Comments                                                                                        | Default |
-| --------------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                 |         |
-| Person ID             | The ID of the person                                                                            |         |
-| Start                 | Pagination start                                                                                | 0       |
-| Limit                 | Items shown per page                                                                            |         |
-| Include Deleted Files | When enabled, the list of files will also include deleted files                                 |         |
-| Sort                  | The field names and sorting mode separated by a comma ("field_name_1 ASC", "field_name_2 DESC") |         |
+| Input                 | Comments                                                                                            | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Pipedrive connection to use.                                                                    |         |
+| Person ID             | The unique identifier for the person.                                                               |         |
+| Start                 | The 0-based offset of the first item to return.                                                     | 0       |
+| Limit                 | The maximum number of results to return per page.                                                   |         |
+| Include Deleted Files | When enabled, the list of files will also include deleted files                                     |         |
+| Sort                  | The field names and sorting mode separated by a comma (e.g. "field_name_1 ASC, field_name_2 DESC"). |         |
 
 ### Get Person Followers {#getpersonfollowers}
 
-List followers of a person
+Lists followers of a person.
 
-| Input      | Comments                                                                                         | Default |
-| ---------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Person ID  | The ID of the person                                                                             |         |
-| Limit      | Items shown per page                                                                             |         |
-| Cursor     | For pagination, the marker (an opaque string value) representing the first item on the next page |         |
-| Connection |                                                                                                  |         |
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Person ID  | The unique identifier for the person.             |         |
+| Limit      | The maximum number of results to return per page. |         |
+| Cursor     | The pagination cursor from a previous request.    |         |
+| Connection | The Pipedrive connection to use.                  |         |

@@ -5,37 +5,13 @@ description: Interact with Google Gemini AI models to generate text, images, vid
 ---
 
 ![Google Gemini](./assets/google-gemini.png#connector-icon)
-[Google Gemini](https://gemini.google.com/) is a family of advanced multimodal AI models developed by Google DeepMind.
-
-This component allows you to generate text, images, and videos, manage uploaded files, and list available models using the Google Generative AI API.
-
-## API Documentation
-
-This component was built using the [Google Generative AI API Reference](https://ai.google.dev/api/rest).
+Interact with Google Gemini AI models to generate text, images, videos, and manage chat conversations.
 
 ## Connections
 
 ### API Key {#apikeyconnection}
 
 Authenticate requests to Google Gemini using an API key.
-
-Create a connection of type **API Key**.
-
-To authenticate with Google Gemini using an API key, generate a key from Google AI Studio.
-
-#### Prerequisites
-
-- A Google account with access to [Google AI Studio](https://aistudio.google.com/)
-
-#### Setup Steps
-
-1. Navigate to [Google AI Studio API Keys](https://aistudio.google.com/app/apikey)
-2. Click **Create API Key** and select a Google Cloud project
-3. Copy the generated API key
-
-#### Configure the Connection
-
-- Enter the **API Key** value into the connection configuration
 
 | Input   | Comments                                                                                                           | Default |
 | ------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -44,42 +20,6 @@ To authenticate with Google Gemini using an API key, generate a key from Google 
 ### Service Account {#vertexaiconnection}
 
 Authenticate requests to Google Gemini via Vertex AI using a service account.
-
-Create a connection of type **Service Account**.
-
-To authenticate with Google Gemini via Vertex AI, a Google Cloud service account with the appropriate roles is required.
-
-#### Prerequisites
-
-- A Google Cloud project with billing enabled
-- Access to the [Google Cloud Console](https://console.cloud.google.com/)
-- The Vertex AI API enabled in the project
-
-#### Setup Steps
-
-1. Navigate to the [Google Cloud Console](https://console.cloud.google.com/) and open the **IAM & Admin** section
-2. Create a **Service Account** (or use an existing one)
-3. Assign the following roles to the Service Account:
-   - **Vertex AI User** or **Vertex AI Administrator**
-   - **Storage Object Viewer**
-4. Generate a **Service Account Key**:
-   - Select the Service Account, navigate to the **Keys** tab, and click **Add Key** to create a new key
-   - Download the JSON file containing the key information
-
-   :::warning
-   The downloaded key file contains sensitive credentials. Store it securely and do not expose it in version control.
-   :::
-
-5. Note the **Project ID** from the top section of the console (click the project selector to display all projects and their IDs)
-6. Identify the target [region](https://docs.cloud.google.com/vertex-ai/docs/general/locations) by navigating to the **Vertex AI Dashboard** in the console
-7. Enable the **Vertex AI API** by navigating to **APIs & Services > Library**, searching for "Vertex AI API", and clicking **Enable**
-
-#### Configure the Connection
-
-- Enter the **Client Email** using the Service Account email address
-- Enter the **Private Key** from the downloaded JSON key file
-- Enter the **Project ID** of the Google Cloud project
-- Enter the **Region** for API requests (e.g., `us-central1`). Refer to the [available regions](https://docs.cloud.google.com/vertex-ai/docs/general/locations) for supported values
 
 | Input        | Comments                                                                                                                                 | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |

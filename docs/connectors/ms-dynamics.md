@@ -5,39 +5,13 @@ description: Query, create, update, or delete Microsoft Dynamics 365 entity reco
 ---
 
 ![Microsoft Dynamics 365](./assets/ms-dynamics.png#connector-icon)
-[Microsoft Dynamics 365](https://dynamics.microsoft.com/) is a product line of enterprise resource planning (ERP) and customer relationship management (CRM) intelligent business applications.
-This component gives you the ability to query and modify records within the Microsoft Dynamics 365 platform.
+Query, create, update, or delete Microsoft Dynamics 365 entity records.
 
 ## Connections
 
 ### OAuth 2.0 Authorization Code {#oauth2}
 
 Authenticate requests using OAuth 2.0 Authorization Code.
-
-The OAuth 2.0 auth code flow allows your user grant permission to your integration to interact with Dynamics on their behalf.
-
-1. Log in to [Azure Portal](https://portal.azure.com/)
-1. Select **App registrations**
-1. Click **+ New registration**
-   - **Supported account types** should be **Multi-tenant** if you intend for customers to authenticate with their own Dynamics instance, or **Single-tenant** if you intend to authenticate with your own Dynamics instance.
-   - Under **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **Register**
-1. Under **API permissions** click **+Add a permission**
-   - Select **Dynamics CRM**
-   - Check the `user_impersonation` permission
-   - Click **Add permissions**
-   - Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
-1. Under **Certificates & secrets** click **+ New client secret**
-   - Give your certificate a description and expiration date
-   - Take note of the **value** (not the Secret ID) of the client secret.
-1. Returning to the **Overview** page, take note of **Application (client) ID**
-
-Create a connection of type **MS Dynamics OAuth 2.0 Auth Code**.
-
-- Enter the **Client ID** and **Secret Value** you noted above.
-- Log in to Dynamics and take note of the Dynamics URL.
-  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`
-  - Under scopes, enter the following, replacing the URL with your Dynamics URL: `https://REPLACE-ME.crm.dynamics.com/user_impersonation offline_access`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -53,55 +27,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate requests using OAuth 2.0 Client Credentials.
 
-The OAuth 2.0 client credentials flow allows your user to create an **Application User** to send requests to Dynamics on their behalf.
-Setting up a client credentials connection is a two-step process:
-
-1. Create an "App" in Azure
-1. Create an "Application User" in Dynamics
-
-#### Create an app in Microsoft Azure
-
-1. Log in to [Azure Portal](https://portal.azure.com/)
-1. Select **App registrations**
-1. Click **+ New registration**
-   - **Supported account types** can be **Single tenant**
-   - No **Redirect URI** is necessary
-   - Click **Register**
-1. Under **API permissions** click **+Add a permission**
-   - Select **Dynamics CRM**
-   - Check the `user_impersonation` permission
-   - Click **Add permissions**
-1. Under **API permissions** click **Grant admin concent for (your org)**
-1. Under **Certificates & secrets** click **+ New client secret**
-   - Give your certificate a description and expiration date
-   - Take note of the **value** (not the Secret ID) of the client secret.
-1. Returning to the **Overview** page, take note of **Application (client) ID**
-1. From the **Overview** page, click **Endpoints** and take note of the **OAuth 2.0 token endpoint (v2)**
-
-You will use the **Secret Value**, **Client ID** and **Token Endpoint** in a moment.
-
-#### Add the app as an App User to Dynamics
-
-1. Log in to [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
-1. Select **Environments** and choose your Dynamics Environments
-1. Select **S2S Apps**
-1. Click **+New app user**
-   - Click **+Add an app**
-   - Choose the app you created in Azure portal (above). You can search for your app by entering the client ID you noted.
-   - Select your Dynamics tenant as your **Business unit**
-   - Under **Security Roles** select **System Administrator**
-   - Click **Create**
-
-#### Configure the connection
-
-Create a connection of type **MS Dynamics OAuth 2.0 Client Credentials**.
-
-- Enter the **Token Endpoint** you noted as your **Token URL**.
-- Enter the **Client ID** and **Secret Value** you noted above.
-- Log in to Dynamics and take note of the Dynamics URL.
-  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`
-  - Under scopes, enter the Dynamics URL with `.default` appended to it - `https://REPLACE-ME.crm.dynamics.com/.default`
-
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -114,6 +39,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client secret value | Generated when registering an application in the Azure portal.                                                                    |         |
 
 ## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records of a Microsoft Dynamics 365 entity type on a configured schedule.
+
+| Input                | Comments                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                           |         |
+| Entity Type          | The type of Entity to query, usually a pluralized name.                                   |         |
+| Filter Expression    | The filter expression that used for querying entity collections.                          |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.               | true    |
+| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output. | true    |
 
 ### Webhook {#dynamicswebhooktrigger}
 

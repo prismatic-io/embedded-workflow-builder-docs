@@ -5,78 +5,13 @@ description: Manage products, inventory, and orders in Google Merchant Center.
 ---
 
 ![Google Shopping](./assets/google-content-shopping.png#connector-icon)
-[The Google Content API for Shopping](https://developers.google.com/shopping-content/guides/rel-notes) is a RESTful service for managing product listings, inventory, and orders in Google Merchant Center. This component enables you to upload products, manage inventory levels, and handle orders and returns.
-
-## API Documentation
-
-This component was built using the [Google Content API for Shopping v2.1](https://developers.google.com/shopping-content/reference/rest/v2.1).
+Manage products, inventory, and orders in Google Merchant Center.
 
 ## Connections
 
 ### OAuth2 {#oauth2}
 
 OAuth2 Connection
-
-To connect to Google Shopping (Content API for Shopping), create an OAuth 2.0 application in the Google Cloud Console and configure the required scopes.
-
-For more information about Google's OAuth 2.0 implementation, refer to the [Google Identity Platform documentation](https://developers.google.com/identity/protocols/oauth2).
-
-#### Prerequisites
-
-- A Google Cloud account with access to the [Google API Console](https://console.cloud.google.com/)
-- A Google Cloud project (create one if needed)
-- Billing enabled on the project (required for some API features)
-
-#### Setup Steps
-
-1. Navigate to the [Google API Console](https://console.cloud.google.com/) and select or create a project.
-2. Enable the Content API for Shopping:
-   - Navigate to **APIs & Services** > **Library**
-   - Search for "Content API for Shopping"
-   - Select the API and click **Enable**
-3. Configure the OAuth consent screen:
-   - Navigate to **APIs & Services** > **OAuth consent screen**
-   - Select the appropriate user type (**Internal** for organization-only access or **External** for public access)
-   - Fill in the required fields:
-     - **App name**: Enter the application or company name
-     - **User support email**: Provide a support contact email
-     - **Developer contact information**: Add contact details
-   - Click **Save and Continue**
-4. Add OAuth scopes:
-   - Click **Add or Remove Scopes**
-   - Search for "Content API for Shopping"
-   - Select the following scope:
-     - `https://www.googleapis.com/auth/content` - View and manage data for Google Shopping
-   - Click **Update** and then **Save and Continue**
-5. Create OAuth 2.0 credentials:
-   - Navigate to **APIs & Services** > **Credentials**
-   - Click **Create Credentials** and select **OAuth client ID**
-   - Under **Application type**, select **Web application**
-   - Enter a name for the OAuth client
-   - Under **Authorized redirect URIs**, click **Add URI** and enter: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **Create**
-6. Copy the generated **Client ID** and **Client Secret** - these values will be used to configure the connection.
-
-To retrieve the Client ID and Secret later, navigate to **APIs & Services** > **Credentials** and select the OAuth 2.0 client from the **OAuth 2.0 Client IDs** section.
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the OAuth 2.0 client
-- For **Scopes**, use the following value:
-
-  ```
-  https://www.googleapis.com/auth/content
-  ```
-
-  - Refer to the [Google Content API OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#content) for additional scope information
-
-:::note[Publishing the OAuth Consent Screen]
-For production use with external users, the OAuth consent screen must be verified and published by Google. During development and testing, the app can remain in "Testing" mode with a limited number of test users. Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for publishing requirements.
-:::
-
-:::info[Testing with Limited Users]
-While the app is in "Testing" mode, only users added to the test users list can authenticate. Add test users in the **OAuth consent screen** configuration under **Test users**.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

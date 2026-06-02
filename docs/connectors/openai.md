@@ -5,20 +5,13 @@ description: Interact with OpenAI's models and build AI Agents
 ---
 
 ![OpenAI](./assets/openai.png#connector-icon)
-[OpenAI](https://openai.com/) is an artificial intelligence research laboratory that develops AI models and APIs.
-It has produced models including [GPT-4](https://openai.com/research/gpt-4) and [GPT-3.5 Turbo](https://platform.openai.com/docs/models/gpt-3-5) for text generation, and [DALL·E 3](https://openai.com/dall-e-3) for image generation.
+Interact with OpenAI's models and build AI Agents
 
 ## Connections
 
 ### API Key {#openaiapikey}
 
 API Key connection for OpenAI
-
-Integrations can authenticate with OpenAI using API keys.
-Generate an API key at [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
-
-If your user is associate with one organization, you can leave the connection's organization field blank.
-Otherwise, specify your organization's ID.
 
 | Input        | Comments                                                                         | Default |
 | ------------ | -------------------------------------------------------------------------------- | ------- |

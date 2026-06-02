@@ -5,62 +5,13 @@ description: Manage surveys, collectors, responses, contacts, and webhooks in Su
 ---
 
 ![SurveyMonkey](./assets/surveymonkey.png#connector-icon)
-[SurveyMonkey](https://www.surveymonkey.com/) is a leading online survey platform that enables organizations to create surveys, collect responses, and analyze feedback at scale.
-This component allows interacting with the SurveyMonkey API to manage surveys, collectors, responses, contacts, and webhooks.
-
-## API Documentation
-
-This component was built using the [SurveyMonkey API v3 Documentation](https://api.surveymonkey.com/v3/docs)
+Manage surveys, collectors, responses, contacts, and webhooks in SurveyMonkey.
 
 ## Connections
 
 ### Access Token {#surveymonkeyaccesstoken}
 
 Authenticate using an access token
-
-To connect to SurveyMonkey using an Access Token, a registered private application in the [SurveyMonkey Developer Portal](https://developer.surveymonkey.com/apps/) is required.
-
-:::info[When to Use Access Token Authentication]
-Access Token authentication is best suited for private applications that access a single SurveyMonkey account. For multi-user or multi-tenant integrations, OAuth 2.0 is recommended.
-:::
-
-#### Prerequisites
-
-- A SurveyMonkey account with access to the [Developer Portal](https://developer.surveymonkey.com/)
-- A **Private** application registered in the Developer Portal
-
-#### Setup Steps
-
-1. Navigate to the [SurveyMonkey Developer Portal](https://developer.surveymonkey.com/apps/) and sign in.
-2. Click **Create New App** to register a new application, or select an existing private app.
-3. Set **App Type** to **Private** (required for access token generation).
-4. Navigate to the app's **Settings** tab.
-5. Copy the following values from the app's **Settings** tab:
-   - **Access Token**: The long-lived token used for API authentication
-   - **Client ID** (also called **API Key**): Needed for webhook signature verification
-   - **Client Secret** (also called **API Secret**): Needed for webhook signature verification
-
-:::note[Access Token Generation]
-The **Access Token** field is only visible for private applications. If the field is not visible, verify that the app type is set to **Private** in the app settings.
-:::
-
-#### Configure the Connection
-
-- Enter the **Access Token** from the app's Settings tab.
-- Enter the **API Key (Client ID)** for webhook signature verification.
-- Enter the **API Secret (Client Secret)** for webhook signature verification.
-- Select the **Region** based on account location:
-  - **United States**: Default for most accounts
-  - **European Union**: For EU-based accounts (uses `api.eu.surveymonkey.com`)
-  - **Canada**: For Canadian accounts (uses `api.surveymonkey.ca`)
-
-#### Verify Connection
-
-After entering the **Access Token**, **API Key**, and **API Secret**, save the connection configuration. The connection can be tested by executing any action, such as **Get Current User**, to verify authentication is working correctly.
-
-:::warning[Security Considerations]
-Access tokens provide full access to the associated SurveyMonkey account. Store tokens securely and rotate them periodically. For production integrations with multiple users, consider using OAuth 2.0 instead.
-:::
 
 | Input                      | Comments                                                                                                                                         | Default |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -72,52 +23,6 @@ Access tokens provide full access to the associated SurveyMonkey account. Store 
 ### OAuth 2.0 {#surveymonkeyoauth}
 
 Authenticate using OAuth 2.0
-
-To connect to SurveyMonkey using OAuth 2.0, a registered application in the [SurveyMonkey Developer Portal](https://developer.surveymonkey.com/apps/) is required.
-
-#### Prerequisites
-
-- A SurveyMonkey account with access to the [Developer Portal](https://developer.surveymonkey.com/)
-- Appropriate plan level for the required API scopes (some scopes require paid plans)
-
-#### Setup Steps
-
-1. Navigate to the [SurveyMonkey Developer Portal](https://developer.surveymonkey.com/apps/) and sign in.
-2. Click **Create New App** to register a new application.
-3. Fill in the required fields:
-   - **App Name**: A descriptive name for the application
-   - **Description**: Brief description of the integration's purpose
-   - **App Type**: Select **Private** for single-organization use or **Public** for multi-tenant integrations
-4. Under **OAuth Settings**, configure the redirect URL:
-   - Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as an **OAuth Redirect URL**
-5. Click **Save** to create the application.
-6. Copy the **Client ID** (also called API Key) and **Client Secret** from the app's **Settings** tab.
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the SurveyMonkey app.
-- Select the **Region** based on account location:
-  - **United States**: Default for most accounts
-  - **European Union**: For EU-based accounts (uses `api.eu.surveymonkey.com`)
-  - **Canada**: For Canadian accounts (uses `api.surveymonkey.ca`)
-- Configure the **Scopes** based on the required functionality:
-  - For read-only survey and response access:
-    ```
-    surveys_read responses_read collectors_read
-    ```
-  - For full access including webhooks:
-    ```
-    surveys_read responses_read collectors_read contacts_read webhooks_read webhooks_write
-    ```
-  - Refer to [SurveyMonkey's OAuth Scopes documentation](https://api.surveymonkey.com/v3/docs?shell#scopes) for all available scopes.
-
-:::note[Scope Approval for Public Apps]
-Some scopes (such as `surveys_write` and `responses_write`) require SurveyMonkey approval for public applications. Private apps have access to all scopes by default.
-:::
-
-#### Verify Connection
-
-After saving the connection configuration, click **Connect** to initiate the OAuth flow. SurveyMonkey will prompt for authorization to grant the requested permissions. After approving, the browser will redirect back to complete the connection. The connection is ready to use once the OAuth flow completes successfully.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

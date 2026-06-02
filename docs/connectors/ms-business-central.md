@@ -5,65 +5,13 @@ description: Manage Sales Orders, Customers, Invoices, Vendors, and Shipments in
 ---
 
 ![Microsoft Dynamics 365 Business Central](./assets/ms-business-central.png#connector-icon)
-[Microsoft Dynamics 365 Business Central](https://www.microsoft.com/en-us/dynamics-365/products/business-central) is a comprehensive enterprise resource planning (ERP) solution with capabilities including finance, manufacturing, customer relationship management (CRM), supply chains, analytics, and e-commerce.
-
-This component manages Sales Orders, Customers, Invoices, Vendors, and Shipments in Microsoft Dynamics 365 Business Central.
-
-## API Documentation
-
-This component was built using the [Microsoft Dynamics v2.0 REST API](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/).
+Manage Sales Orders, Customers, Invoices, Vendors, and Shipments in Microsoft Dynamics 365 Business Central.
 
 ## Connections
 
 ### OAuth 2.0 Authorization Code {#businesscentraloauth2}
 
 Authenticate using OAuth 2.0 Authorization Code
-
-The OAuth 2.0 Authorization Code flow allows users to grant permission for integrations to interact with Business Central on their behalf. For more information, refer to the [Microsoft Business Central OAuth Documentation](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/authenticate-web-services-using-oauth).
-
-#### Prerequisites
-
-- A Microsoft Azure account with administrator access
-- Access to the Azure Portal
-
-#### Register an Application in Azure
-
-1. Log in to [Azure Portal](https://portal.azure.com/)
-2. Select **App registrations**
-3. Click **+ New registration**
-   - **Supported account types** should be **Multi-tenant** for customers authenticating with their own Business Central instance, or **Single-tenant** for authenticating with a specific Business Central instance
-   - Under **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **Register**
-
-#### Configure API Permissions
-
-1. Under **API permissions** click **+ Add a permission**
-2. Select **Business Central**
-3. Check the following permissions:
-   - `user_impersonation`
-   - `offline_access`
-   - `Financials.ReadWrite.All`
-4. Click **Add permissions**
-
-#### Create a Client Secret
-
-1. Under **Certificates & secrets** click **+ New client secret**
-2. Provide a description and expiration date
-3. Take note of the **Value** (not the Secret ID) of the client secret
-
-#### Retrieve the Client ID
-
-1. Return to the **Overview** page
-2. Take note of the **Application (client) ID**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0 Authorization Code** and enter:
-
-- **Web API URL**: The Business Central API URL in the format `https://api.businesscentral.dynamics.com/v2.0/<TENANT_DOMAIN>/<ENVIRONMENT>`
-- **Scopes**: Use `https://api.businesscentral.dynamics.com/.default offline_access`
-- **Client ID**: The Application (client) ID from the Azure app registration
-- **Client Secret**: The secret value created above
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -78,71 +26,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#businesscentralclientcredentials}
 
 Authenticate using OAuth 2.0 Client Credentials
-
-The OAuth 2.0 Client Credentials flow allows applications to send requests to Business Central without user interaction. This requires creating an **Application User** in Business Central. For more information, refer to the [Microsoft Business Central OAuth Documentation](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/authenticate-web-services-using-oauth).
-
-Setting up a client credentials connection is a two-step process:
-
-1. Create an app in Azure
-2. Create an Application User in Business Central
-
-#### Prerequisites
-
-- A Microsoft Azure account with administrator access
-- Access to the Power Platform admin center
-
-#### Create an App in Microsoft Azure
-
-1. Log in to [Azure Portal](https://portal.azure.com/)
-2. Select **App registrations**
-3. Click **+ New registration**
-   - **Supported account types** can be **Single tenant**
-   - No **Redirect URI** is necessary
-   - Click **Register**
-
-#### Configure API Permissions
-
-1. Under **API permissions** click **+ Add a permission**
-2. Select **Business Central**
-3. Check the following permissions:
-   - `user_impersonation`
-   - `offline_access`
-   - `Financials.ReadWrite.All`
-4. Click **Add permissions**
-5. Click **Grant admin consent for (organization name)**
-
-#### Create a Client Secret
-
-1. Under **Certificates & secrets** click **+ New client secret**
-2. Provide a description and expiration date
-3. Take note of the **Value** (not the Secret ID) of the client secret
-
-#### Retrieve the Client ID and Token Endpoint
-
-1. Return to the **Overview** page and take note of the **Application (client) ID**
-2. Click **Endpoints** and take note of the **OAuth 2.0 token endpoint (v2)**
-
-#### Add the App as an Application User in Business Central
-
-1. Log in to [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
-2. Select **Environments** and choose the Business Central environment
-3. Select **S2S Apps**
-4. Click **+ New app user**
-   - Click **+ Add an app**
-   - Choose the app created in Azure Portal (search by client ID)
-   - Select the Business Central tenant as the **Business unit**
-   - Under **Security Roles** select **System Administrator**
-   - Click **Create**
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0 Client Credentials** and enter:
-
-- **Web API URL**: The Business Central API URL in the format `https://api.businesscentral.dynamics.com/v2.0/<TENANT_DOMAIN>/<ENVIRONMENT>`
-- **Token URL**: The OAuth 2.0 token endpoint (v2) from Azure
-- **Scopes**: Use `https://api.businesscentral.dynamics.com/.default`
-- **Client ID**: The Application (client) ID from the Azure app registration
-- **Client Secret**: The secret value created above
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -169,6 +52,18 @@ Automatically registers and manages webhook subscriptions for resource changes i
 ### Manual Webhook {#webhookreceiver}
 
 Receive and validate webhook requests from Business Central for manually configured webhooks.
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated records of a Microsoft Dynamics 365 Business Central entity on a configured schedule.
+
+| Input                | Comments                                                                                         | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Microsoft Business Central connection to use.                                                |         |
+| Company ID           | The ID of the company you want to interact with.                                                 |         |
+| Resource Type        | The Business Central entity to poll for changes.                                                 |         |
+| Additional Filter    | Optional OData filter to combine (AND) with the modification-time filter applied by the trigger. |         |
+| Show Updated Records | When enabled, records modified after the last poll are included in the trigger output.           | true    |
 
 ## Actions
 

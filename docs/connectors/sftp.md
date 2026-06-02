@@ -5,38 +5,13 @@ description: Read, write, move and delete files on an SFTP server
 ---
 
 ![SFTP](./assets/sftp.png#connector-icon)
-[SFTP (SSH File Transfer Protocol)](https://www.ssh.com/academy/ssh/sftp-ssh-file-transfer-protocol) is a secure file transfer protocol that operates over SSH.
-The SFTP component allows uploading, downloading, moving, and deleting files on an SFTP server.
+Read, write, move and delete files on an SFTP server
 
 ## Connections
 
 ### Basic Authentication {#basic}
 
 Authenticate using username and password
-
-The **Basic Authentication** connection is used to connect to SFTP servers that support username / password login.
-
-#### Prerequisites
-
-- An SFTP server with username/password authentication enabled
-- Valid credentials (username and password)
-
-#### Configure the Connection
-
-- **Username**: Enter the SFTP account username
-- **Password**: Enter the SFTP account password
-- **Host**: Enter the SFTP server hostname or IP address
-- **Port**: Enter the SFTP server port (default: 22)
-
-#### Advanced Settings (Optional)
-
-- **Timeout**: Connection timeout in milliseconds (default: 3000)
-- **Enable Unsecure Server Host Key Algorithms**: Enable deprecated host key algorithms for legacy servers
-- **Enable Unsecure Ciphers**: Enable CBC ciphers for legacy servers
-- **Custom Server Host Key Algorithms**: Comma-separated list of custom host key algorithms (overrides defaults)
-- **Custom Ciphers**: Comma-separated list of custom ciphers (overrides defaults)
-
-Consult the SFTP server administrator to determine which login method the server supports.
 
 | Input                                      | Comments                                                                                                                                                  | Default |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -53,39 +28,6 @@ Consult the SFTP server administrator to determine which login method the server
 ### Private Key {#privatekey}
 
 Authenticate using SSH private key
-
-The **Private Key** connection allows access to an SFTP server via SSH [public/private key authentication](https://www.ssh.com/academy/ssh/public-key-authentication).
-
-#### Prerequisites
-
-- An SFTP server with public key authentication enabled
-- A generated public/private SSH key pair
-- The public key must be stored on the SFTP server
-
-#### Setup Steps
-
-1. Generate a public/private SSH key pair if not already available
-2. Copy the public key to the SFTP server (usually to `~/.ssh/authorized_keys`)
-3. Verify the key is properly configured with the SFTP server administrator
-
-#### Configure the Connection
-
-- **Username**: Enter the SFTP account username
-- **Private Key**: Enter the complete private key (including headers and footers)
-- **Key Passphrase**: Enter the passphrase for the private key (if applicable)
-- **Password**: Enter the password if the server requires both private key and password authentication (uncommon)
-- **Host**: Enter the SFTP server hostname or IP address
-- **Port**: Enter the SFTP server port (default: 22)
-
-#### Advanced Settings (Optional)
-
-- **Timeout**: Connection timeout in milliseconds (default: 3000)
-- **Enable Unsecure Server Host Key Algorithms**: Enable deprecated host key algorithms for legacy servers
-- **Enable Unsecure Ciphers**: Enable CBC ciphers for legacy servers
-- **Custom Server Host Key Algorithms**: Comma-separated list of custom host key algorithms (overrides defaults)
-- **Custom Ciphers**: Comma-separated list of custom ciphers (overrides defaults)
-
-Authentication is performed using the username and corresponding private key.
 
 | Input                                      | Comments                                                                                                                                                  | Default |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

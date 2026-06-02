@@ -5,40 +5,13 @@ description: Manage orders, shipments, and carriers in ShipStation.
 ---
 
 ![ShipStation](./assets/shipstation.png#connector-icon)
-[ShipStation](https://www.shipstation.com/) is an e-commerce shipping and order fulfillment platform.
-This component allows you to manage orders, shipments, and carriers in ShipStation.
-
-## API Documentation
-
-This component was built using the [ShipStation API](https://www.shipstation.com/docs/api/).
+Manage orders, shipments, and carriers in ShipStation.
 
 ## Connections
 
 ### API Key {#shipstationapikey}
 
 Authenticate using an API key and secret.
-
-To authenticate with ShipStation, an API Key and API Secret are required.
-
-#### Prerequisites
-
-- A ShipStation account with API access enabled
-
-#### Setup Steps
-
-1. Navigate to the ShipStation account settings
-2. Navigate to the **API Settings** section
-3. Click **Generate New Keys** to create a new API Key and API Secret pair
-4. Copy both the **API Key** and **API Secret** values
-
-#### Configure the Connection
-
-Create a connection of type **API Key** and enter:
-
-- **API Key**: The API Key from the ShipStation account settings
-- **API Secret**: The API Secret from the ShipStation account settings
-
-The API key must have the correct permissions to interact with the ShipStation API resources being accessed.
 
 | Input      | Comments                                              | Default |
 | ---------- | ----------------------------------------------------- | ------- |

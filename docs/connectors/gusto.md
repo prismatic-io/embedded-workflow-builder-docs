@@ -5,17 +5,13 @@ description: Manage payroll, benefits, and human resource within Gusto
 ---
 
 ![Gusto](./assets/gusto.png#connector-icon)
-[Gusto](https://gusto.com) is a company that provides a cloud-based payroll, benefits, and human resource management software for businesses based in the United States.
+Manage payroll, benefits, and human resource within Gusto
 
 ## Connections
 
 ### OAuth 2.0 {#gustooauth}
 
 OAuth 2.0 connection for Gusto
-
-To create an OAuth 2.0 app in Gusto, sign up for a Gusto developer account at [https://dev.gusto.com/](https://dev.gusto.com/) and create a new Gusto application.
-Take note of your applications's **Client ID** and **Secret** and enter those values when you add a Gusto connection to your integration.
-Under **Redirect URI**, add the callback URL, `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -117,14 +113,15 @@ Get a pay schedules for a company by pay schedule ID
 
 Get webhook events based on the partner application's scopes for Gusto.
 
-| Input               | Comments                                                                                          | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                   |         |
-| Resource UUID       | The UUID of the company. If not specified, will return all events for all companies.              |         |
-| Event Type          | A string containing the exact event name or use a wildcard match to filter for a group of events. |         |
-| Starting After UUID | Serves as a cursor, returns all events occurring after specified UUID (exclusive).                |         |
-| Limit               | Limits the number of objects returned in a single response, between 1 and 100. Defaults to 25.    |         |
-| Sort Order          | Sort resulting events in ascending (asc) or descending (desc) chronological order.                |         |
+| Input               | Comments                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                               |         |
+| Resource UUID       | The UUID of the company. If not specified, will return all events for all companies.                          |         |
+| Event Type          | A string containing the exact event name or use a wildcard match to filter for a group of events.             |         |
+| Sort Order          | Sort resulting events in ascending (asc) or descending (desc) chronological order.                            |         |
+| Fetch All           | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled. | false   |
+| Starting After UUID | Serves as a cursor, returns all events occurring after specified UUID (exclusive).                            |         |
+| Limit               | Limits the number of objects returned in a single response, between 1 and 100. Defaults to 25.                |         |
 
 ### Get Webhook Subscription {#getwebhooksubscription}
 
@@ -142,6 +139,7 @@ List all companies that the currently authenticated user is a part of
 | Input           | Comments                                                                                                                                     | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      |                                                                                                                                              |         |
+| Fetch All       | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled.                                | false   |
 | Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Company Admins {#listcompanyadmins}
@@ -152,6 +150,7 @@ List all admin users at a company
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      |                                                                                                                                              |         |
 | Company ID      | A UUID representing a company.                                                                                                               |         |
+| Fetch All       | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled.                                | false   |
 | Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Employees {#listemployees}
@@ -162,6 +161,7 @@ List employees of a company
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      |                                                                                                                                              |         |
 | Company ID      | A UUID representing a company.                                                                                                               |         |
+| Fetch All       | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled.                                | false   |
 | Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Pay Schedules {#listpayschedules}
@@ -172,6 +172,7 @@ List pay schedules for a company
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      |                                                                                                                                              |         |
 | Company ID      | A UUID representing a company.                                                                                                               |         |
+| Fetch All       | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled.                                | false   |
 | Pagination Page | Which page of results to fetch. See [Gusto API documentation](https://docs.gusto.com/app-integrations/docs/pagination) for more information. |         |
 
 ### List Webhook Subscriptions {#listwebhooksubscriptions}

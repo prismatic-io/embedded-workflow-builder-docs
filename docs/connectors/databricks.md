@@ -5,56 +5,13 @@ description: Manage compute, workflow jobs, ML models, SQL queries and more with
 ---
 
 ![Databricks](./assets/databricks.png#connector-icon)
-[Databricks](https://www.databricks.com/) is an analytics and artificial intelligence platform for building, scaling, and governing data and AI, including generative AI and other machine learning models.
-This component allows interacting with the Databricks REST API to manage clusters, jobs, libraries, and other resources.
-
-## API Documentation
-
-This component was built using the [Databricks REST API Reference](https://docs.databricks.com/api/workspace/introduction).
+Manage compute, workflow jobs, ML models, SQL queries and more within a Databricks workspace.
 
 ## Connections
 
 ### OAuth 2.0 Client Credentials {#workspaceserviceprincipal}
 
 Authenticate using OAuth 2.0 Client Credentials
-
-With service principal authentication, a service user is created within the account, the user is granted permissions to a workspace, and then a client ID and secret pair is generated for that service user.
-This component uses that key pair to authenticate with workspaces that the service account has been granted permissions to.
-This is the best practice for authenticating with the Databricks REST API.
-
-#### Prerequisites
-
-- A Databricks account with administrator access
-- Access to [Databricks Account Console](https://accounts.cloud.databricks.com)
-
-#### Setup Steps
-
-1. Create the service principal
-   1. Open [Databricks Users](https://accounts.cloud.databricks.com/users). Under the **Service principals** tab select **Add service principal**.
-   1. Give the service principal any name and click **Add**.
-1. Grant the service principal permission to the workspace
-   1. Navigate to [Databricks Workspaces](https://accounts.cloud.databricks.com/workspaces) and select the workspace.
-   1. Under the **Permissions** tab select **Add permissions**.
-   1. Search for the service principal created above and grant the permission **Admin**.
-1. Generate a key pair for the service principal
-   1. Navigate to the service principal and open the **Principal information** tab.
-   2. Under **OAuth secrets** select **Generate secret**.
-   3. Take note of the **Secret** (i.e. "Client Secret") and **Client ID** received. The client ID should be a UUID like `00000000-0000-0000-0000-000000000000`. The client secret will look like `dose00000000000000000000000000000000`.
-
-#### Configure the Connection
-
-Create a connection of type **Databricks Workspace Service Principal** and enter:
-
-- **Token URL**: The OAuth 2.0 Token URL for the Databricks workspace. Replace `REPLACE-ME` in `https://dbc-REPLACE-ME.cloud.databricks.com/oidc/v1/token` to reflect the workspace URL. For account-level API access, use `https://accounts.cloud.databricks.com/oidc/accounts/<my-account-id>/v1/token` instead.
-- **Scopes**: OAuth scopes to request (defaults to `all-apis`)
-- **Service Principal Client ID**: The Client ID from the generated key pair
-- **Service Principal Client Secret**: The Client Secret from the generated key pair
-
-:::note[Account-Level API Access]
-For account-level access (e.g., managing workspaces using the service principal), grant the service principal administrative access to the account and use the account-level token URL format: `https://accounts.cloud.databricks.com/oidc/accounts/<my-account-id>/v1/token`.
-:::
-
-See [Databricks OAuth machine-to-machine authentication](https://docs.databricks.com/en/dev-tools/auth/oauth-m2m.html) for more information on service principal OAuth client credential authentication.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -69,30 +26,6 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Personal Access Token {#personalaccesstoken}
 
 Authenticate using a personal access token
-
-While service principal authentication is the recommended method for authenticating with the Databricks REST API, personal access tokens (which are tied to specific users) can also be used.
-
-#### Prerequisites
-
-- A Databricks workspace account
-
-#### Setup Steps
-
-1. Open [Databricks Workspaces](https://accounts.cloud.databricks.com/workspaces) and select the workspace. Open the URL for the workspace (e.g., `https://dbc-00000000-aaaa.cloud.databricks.com`) and log in.
-1. From the top-right, click the user icon and select **Settings**.
-1. Under the **User > Developer** tab, select **Manage** under **Access tokens**.
-1. Click the **Generate New Token** button. Enter a description for the token and click **Generate**. Omit _Lifetime (days)_ to create a token that never expires.
-
-The token will look similar to `dap000000000000000000000000000000000`. Copy this token for use in the connection configuration.
-
-#### Configure the Connection
-
-Create a connection of type **Databricks Personal Access Token** and enter:
-
-- **Host**: The workspace endpoint (e.g., `dbc-REPLACE-ME.cloud.databricks.com`)
-- **Personal Access Token**: The token generated above
-
-See [Databricks personal access token authentication](https://docs.databricks.com/en/dev-tools/auth/pat.html) for more information.
 
 | Input                 | Comments                                                                                                                        | Default |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |

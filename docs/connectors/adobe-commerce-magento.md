@@ -5,31 +5,13 @@ description: Adobe Commerce (Magento) is an open-source e-commerce platform. Use
 ---
 
 ![Adobe Commerce Magento](./assets/adobe-commerce-magento.png#connector-icon)
-[Adobe Commerce (Magento)](https://business.adobe.com/products/magento/magento-commerce.html#) is an open-source e-commerce platform.
-
-Use the Adobe Commerce component to manage your Products, Orders, Customers, and Transactions.
-
-## API Documentation
-
-This component was built using the [Adobe Commerce REST API Overview](https://developer.adobe.com/commerce/webapi/rest/).
+Adobe Commerce (Magento) is an open-source e-commerce platform. Use the Adobe Commerce component to manage your Products, Orders, Customers, and Transactions.
 
 ## Connections
 
 ### API Access Key {#adobecommerceapikey}
 
 Authenticate with Adobe Commerce using an API Access Key and Secret.
-
-The Marketplace EQP API uses a two-step process to authenticate a client application and authorize access to resources:
-
-1. Using your [API access key](https://developer.adobe.com/commerce/marketplace/guides/eqp/v1/access-keys), obtain a session token.
-2. You create your API access key from one, or both, of the **Marketplace Developer Portal** user interfaces:
-   1. production - [https://commercedeveloper.adobe.com](https://commercedeveloper.adobe.com/)
-   2. sandbox - [https://commercedeveloper-sandbox.adobe.com](https://commercedeveloper-sandbox.adobe.com/)
-3. From the **Marketplace Developer Portal**, sign in, click on your name (top, right corner), and choose either the **Account Information** or the **Marketplace Profile** link.
-4. From the left-hand side navigation menu, click on **Manage API Keys**.
-5. Click **Create API Access Key**.
-6. In the "Create New API Key" dialog, enter an **API Key Name**. This name is for your own use. Then, click **Continue**.
-7. Enter this API Key value into your connection configuration.
 
 | Input                      | Comments                                                                                                                                            | Default |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -38,6 +20,17 @@ The Marketplace EQP API uses a two-step process to authenticate a client applica
 | Use Production Environment | Set true for production environment (https://commercedeveloper-api.adobe.com), false for sandbox (https://commercedeveloper-sandbox-api.adobe.com). | false   |
 
 ## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Polls a Magento resource collection (orders, customers, or products) for records whose `updated_at` is at or after the last poll. Records whose `created_at` is also after the last poll go to the `created` branch; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           |                                                                                                                                      |         |
+| Resource Type        | The Magento resource collection to poll for new and updated records.                                                                 | orders  |
+| Show New Records     | When enabled, records whose `created_at` falls after the last poll will be emitted on the `created` branch.                          | true    |
+| Show Updated Records | When enabled, records whose `updated_at` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
 
 ### Webhook {#mytrigger}
 

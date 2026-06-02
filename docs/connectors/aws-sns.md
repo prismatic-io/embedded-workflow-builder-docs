@@ -5,67 +5,13 @@ description: Manage topics, subscriptions, and messages in Amazon SNS.
 ---
 
 ![Amazon SNS](./assets/aws-sns.png#connector-icon)
-[Amazon SNS](https://aws.amazon.com/sns/) (Simple Notification Service) is a fully managed messaging service from Amazon Web Services (AWS) for both application-to-application (A2A) and application-to-person (A2P) communication.
-This component allows you to publish messages to topics, manage subscriptions, create and configure topics, and send SMS messages through the SNS service.
-
-## API Documentation
-
-This component is built using the [AWS SNS API](https://docs.aws.amazon.com/sns/latest/api/welcome.html).
+Manage topics, subscriptions, and messages in Amazon SNS.
 
 ## Connections
 
 ### Access Key {#apikeysecret}
 
 Access Key connection for AWS SNS
-
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SNS.
-Ensure the key pair generated in AWS has proper permissions to the SNS resources to access.
-Read about Amazon SNS IAM policies in the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html).
-
-#### Prerequisites
-
-- An active AWS account
-- IAM permissions to create access keys
-
-#### Setup Steps
-
-To create an IAM access key pair:
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Select **Users** from the left sidebar
-3. Choose an existing user or create a new one by selecting **Create User**
-4. If creating a new user, provide a username and configure console access if needed
-5. Navigate to the **Security credentials** tab for the selected user
-6. Under **Access Keys**, select **Create access key**
-7. Choose the use case (select **Third-party service** or **Application running outside AWS** as appropriate)
-8. Add an optional description tag for the key
-9. Select **Create access key**
-10. Copy both the **Access Key ID** and **Secret Access Key** values
-
-:::warning[Secure Storage Required]
-The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later. If lost, a new access key pair must be generated.
-:::
-
-#### Configure the Connection
-
-- Enter the **Access Key ID** into the corresponding field in the connection configuration
-- Enter the **Secret Access Key** into the corresponding field in the connection configuration
-
-#### Required Permissions
-
-The IAM user or role associated with the access key pair must have appropriate permissions for Amazon SNS operations.
-
-Common required permissions include:
-
-- `sns:Publish` - Send messages to topics
-- `sns:Subscribe` - Subscribe endpoints to topics
-- `sns:CreateTopic` - Create new SNS topics
-- `sns:DeleteTopic` - Delete SNS topics
-- `sns:ListTopics` - List available topics
-- `sns:GetTopicAttributes` - Retrieve topic details
-- `sns:SetTopicAttributes` - Modify topic settings
-
-Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
 
 | Input             | Comments                                                                                                                                                        | Default |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -75,88 +21,6 @@ Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/s
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
-
-AWS IAM role assumption enables secure, temporary access to Amazon SNS resources without embedding long-term credentials.
-This authentication method uses an IAM user's access key pair to assume an IAM role with specific SNS permissions.
-
-#### Prerequisites
-
-- An active AWS account
-- IAM permissions to create users, access keys, and roles
-
-#### Create IAM User and Access Key
-
-1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
-2. Select **Users** from the left sidebar
-3. Select **Create User**
-4. Provide a **User name** and optionally enable AWS Management Console access
-5. Complete the user creation process
-6. From the user list, select the newly created user
-7. Copy the **ARN** (Amazon Resource Name) from the summary section - this will be needed for the role trust policy
-8. Navigate to the **Security credentials** tab
-9. Under **Access Keys**, select **Create access key**
-10. Select **Third-party service** as the access key type
-11. Select **Next**, add an optional description tag, then select **Create access key**
-12. Copy both the **Access Key ID** and **Secret Access Key** for later use
-
-:::warning[Secure Storage Required]
-The **Secret Access Key** is only shown once during creation. Store it securely as it cannot be retrieved later.
-:::
-
-#### Create IAM Role with Trust Policy
-
-1. In the IAM console, select **Roles** from the left sidebar
-2. Select **Create Role**
-3. For **Trusted entity type**, select **Custom trust policy**
-4. Replace the default policy with the following trust policy statement, substituting the actual user ARN copied from the previous section:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::123456789012:user/YourUserName"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-5. Select **Next** to proceed to permissions
-6. Under **Permissions policies**, search for and attach **AmazonSNSFullAccess** or create a custom policy with specific SNS permissions
-7. Select **Next** and provide a **Role name** and optional description
-8. Review the configuration and select **Create Role**
-9. From the roles list, select the newly created role
-10. Copy the **Role ARN** from the summary section
-
-#### Configure the Connection
-
-- Enter the **Access Key ID** from the IAM user into the connection configuration
-- Enter the **Secret Access Key** from the IAM user into the connection configuration
-- Enter the **Role ARN** from the IAM role into the connection configuration
-
-The connection will use the IAM user credentials to assume the specified role when accessing Amazon SNS resources.
-
-#### Required Permissions
-
-The IAM role must have appropriate Amazon SNS permissions attached via IAM policies.
-
-Common required permissions include:
-
-- `sns:Publish` - Send messages to topics
-- `sns:Subscribe` - Subscribe endpoints to topics
-- `sns:CreateTopic` - Create new SNS topics
-- `sns:DeleteTopic` - Delete SNS topics
-- `sns:ListTopics` - List available topics
-- `sns:GetTopicAttributes` - Retrieve topic details
-- `sns:SetTopicAttributes` - Modify topic settings
-
-For production use, consider creating a custom IAM policy with least-privilege permissions instead of using **AmazonSNSFullAccess**.
-
-Refer to the [Amazon SNS IAM policy documentation](https://docs.aws.amazon.com/sns/latest/dg/sns-using-identity-based-policies.html) for detailed permission information and policy examples.
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

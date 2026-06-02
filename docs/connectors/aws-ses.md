@@ -5,56 +5,13 @@ description: Send Emails through Amazon (AWS) SES
 ---
 
 ![Amazon SES](./assets/aws-ses.png#connector-icon)
-[Amazon SES](https://aws.amazon.com/ses/) is a service that enables developers to send mail from within any application.
-The Amazon SES component allows you to list identities, and send emails to those identities.
+Send Emails through Amazon (AWS) SES
 
 ## Connections
 
 ### AWS Role ARN {#awsassumerole}
 
 Connect to AWS using an assumed role
-
-To enable the IAM role authentication begin by logging into the [AWS Console](https://aws.amazon.com/) and navigate to Identity and Access Management (IAM).
-
-To create a user and generate credentials:
-
-1. Navigate to Users and select **Create User**.
-
-- Provide a User name and check the box providing them user access to the AWS Management Console if needed.
-- Once completed with the User creation, copy the ARN provided in the summary for a later step.
-
-2. To obtain the ARN for an existing User, click on the designated username from the Users page and the ARN will be provided in the summary section.
-
-3. From the summary section, select **Create access key**
-
-- Select **Third-party service** as the access key type and select next.
-- Set a description and select **create access key**.
-- Copy the **Access Key** and **Secret access key** and enter those into the connection configuration of your integration along with the ARN.
-
-To create and assign a user a role:
-
-1. Navigate to Roles and select **Create Role**.
-
-- Select **Custom Trust Policy** for the Trusted entity types
-- Copy the following statement into the statement console. Making sure to replace the **ARN** with the user's actual ARN from the previous section
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "ARN"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-- When adding permissions provide the **AmazonSESFullAccess** permission
-- Complete remaining steps and select **Create Role**
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -67,10 +24,6 @@ To create and assign a user a role:
 
 Authenticates requests to Amazon SES using an API Key and API Secret
 
-An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with Amazon SES.
-Make sure that the key pair you generate in AWS has proper permissions to the SES resources you want to access.
-Read about Amazon SES IAM policies in the [AWS docs](https://docs.aws.amazon.com/ses/latest/dg/control-user-access.html).
-
 | Input             | Comments                     | Default |
 | ----------------- | ---------------------------- | ------- |
 | Access Key ID     | An AWS IAM Access Key ID     |         |
@@ -82,12 +35,13 @@ Read about Amazon SES IAM policies in the [AWS docs](https://docs.aws.amazon.com
 
 List Identities available in Amazon SES
 
-| Input         | Comments                                                                                                | Default      |
-| ------------- | ------------------------------------------------------------------------------------------------------- | ------------ |
-| AWS Region    | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                 |              |
-| Identity Type | Provide the type of identity you want to list.                                                          | EmailAddress |
-| Next Token    | Specify the pagination token that's returned by a previous request to retrieve the next page of results |              |
-| Connection    |                                                                                                         |              |
+| Input         | Comments                                                                                                        | Default      |
+| ------------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
+| Connection    |                                                                                                                 |              |
+| AWS Region    | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                         |              |
+| Identity Type | Provide the type of identity you want to list.                                                                  | EmailAddress |
+| Fetch All     | When enabled, automatically fetches all pages of results. The Next Token input is ignored when this is enabled. | false        |
+| Next Token    | Specify the pagination token that's returned by a previous request to retrieve the next page of results         |              |
 
 ### Send Email {#sendemail}
 

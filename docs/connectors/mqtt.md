@@ -5,36 +5,13 @@ description: Interact with an MQTT Queue
 ---
 
 ![MQTT](./assets/mqtt.png#connector-icon)
-[Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) is a light-weight, efficient _publish-subscribe_ network protocol for sending messages between devices.
-This component enables publishing messages to an MQTT queue topic.
-
-## Protocol Specification
-
-This component was built using the [MQTT protocol specification](https://mqtt.org/mqtt-specification/).
+Interact with an MQTT Queue
 
 ## Connections
 
 ### MQTT Connection {#mqtt}
 
 Authenticate requests to an MQTT server.
-
-An MQTT broker connection requires a host, protocol, and optionally authentication credentials.
-
-#### Prerequisites
-
-- An MQTT broker instance accessible from the network (e.g., Mosquitto, HiveMQ, AWS IoT Core)
-- Broker credentials if authentication is enabled
-
-#### Configure the Connection
-
-- **Host**: Enter the hostname or IP address of the MQTT broker
-- **Protocol**: Select the connection protocol:
-  - **TCP** — standard unencrypted connection
-  - **MQTT** — MQTT protocol (typically port 1883)
-  - **MQTTS** — MQTT over TLS/SSL (typically port 8883)
-- **Port**: Enter the broker port (optional - defaults depend on the selected protocol)
-- **Username**: Enter the broker username (optional, required if authentication is enabled)
-- **Password**: Enter the broker password (optional, required if authentication is enabled)
 
 | Input    | Comments                                                  | Default |
 | -------- | --------------------------------------------------------- | ------- |

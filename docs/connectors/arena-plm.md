@@ -5,21 +5,13 @@ description: Interact with items and resources in Arena PLM
 ---
 
 ![Arena PLM](./assets/arena-plm.png#connector-icon)
-Arena PLM (Product Lifecycle Management) software brings product information, people, and processes together into a single enterprise platform to speed product design and development.
-
-## API Documentation
-
-This component was built using the [Arena PLM API Reference](https://app-arena.readthedocs.io/en/1.2.1/api/001-index.html).
+Interact with items and resources in Arena PLM
 
 ## Connections
 
 ### Arena PLM Basic Auth {#arenaplmbasicauth}
 
 Arena PLM Basic Auth
-
-Arena's API relies on basic authentication.
-They recommend that you create a user dedicated to integrations with an email address and password.
-In addition to email address and password, your customer will also need to know their **workspace ID**, which is a 9-digit number that they can find within Arena PLM.
 
 | Input                  | Comments | Default                        |
 | ---------------------- | -------- | ------------------------------ |

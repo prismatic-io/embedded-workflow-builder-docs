@@ -5,64 +5,13 @@ description: Manage files in Google Drive
 ---
 
 ![Google Drive](./assets/google-drive.png#connector-icon)
-[Google Drive](https://www.google.com/drive/) is Google's cloud storage for work and home.
-This component allows you to create, copy, download, update, list, and delete files stored in a Google Drive Account.
-
-## API Documentation
-
-This component was built using the [Google Drive API v3](https://developers.google.com/drive/api/v3/reference)
+Manage files in Google Drive
 
 ## Connections
 
 ### OAuth2 {#oauth2}
 
 OAuth2 Connection
-
-The Google Drive component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service.
-A GCP OAuth 2.0 app is required for the integration to authenticate and perform Google Drive tasks on behalf of users.
-
-#### Prerequisites
-
-- A Google Developer account (sign up at [https://console.cloud.google.com/](https://console.cloud.google.com/))
-
-#### Setup Steps
-
-To create a Google Drive OAuth 2.0 app:
-
-1. Open the Google Drive API console at [https://console.cloud.google.com/apis/api/drive.googleapis.com](https://console.cloud.google.com/apis/api/drive.googleapis.com)
-1. Click **CREATE PROJECT** to create a new GCP project, or select an existing project.
-1. Enable the **Google Drive API** for the project by clicking **ENABLE**.
-1. On the sidebar, select **Credentials**.
-1. Configure the OAuth 2.0 Consent Screen (the page that asks "Do you want to allow (Your Company) to access Google Drive on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
-   1. Choose a **User Type** of **External** so the app will be available to customers.
-   1. Fill out the OAuth consent screen with an app name (company or product name), support email, app logo, domain, etc.
-   1. Domains can be ignored for now.
-   1. On the next page, add the scope `https://www.googleapis.com/auth/drive`.
-   1. Enter some **test users** for testing purposes.
-      The app will only work for those testing users until it is "verified" by Google.
-      When ready for verification (Google verifies privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**.
-      This will allow customers to authorize the integration to access their Google Drive.
-1. Once the "Consent Screen" is configured, open the **Credentials** page from the sidebar again.
-1. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
-   1. Under **Application type** select **Web application**.
-   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   1. Click **CREATE**.
-1. Copy the **Client ID** and **Client Secret** that are generated.
-
-:::info[Publishing the OAuth App]
-Make sure to **publish** the OAuth 2.0 app after testing so users outside of the test users can authorize the integration to interact with Google Drive on their behalf.
-:::
-
-#### Configure the Connection
-
-- Enter the **Client ID** and **Client Secret** from the OAuth app credentials.
-- For **Scopes**, use the default [Google Drive scope](https://developers.google.com/identity/protocols/oauth2/scopes#drive):
-
-  ```
-  https://www.googleapis.com/auth/drive
-  ```
-
-  - Refer to [Google's OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes#drive) for additional scope information.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

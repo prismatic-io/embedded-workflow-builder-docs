@@ -5,26 +5,13 @@ description: Manage records in an Odoo database
 ---
 
 ![Odoo](./assets/odoo.png#connector-icon)
-Odoo is a suite of open source business apps that include CRM, eCommerce, accounting, inventory, project management, etc.
-This component allows you to query and manage records in an Odoo database.
+Manage records in an Odoo database
 
 ## Connections
 
 ### Odoo Connection {#odoobasicauth}
 
 Connect to your Odoo instance
-
-Customers can use Odoo's cloud service to access an Odoo database, or they can run Odoo on their own servers.
-Either way, Odoo uses basic auth to connect to an Odoo database.
-
-- For **Base URL**, you can enter the URL you visit when you log in to Odoo (something like `https://example-company.odoo.com`).
-- You can likely ignore **Server Port**, unless your customer uses a non-traditional port for accessing their Odoo installation.
-- The **Database Name** can be found by clicking the user icon on the top-right within Odoo, and then selecting **My Databases**.
-- **Username** is the email address the user uses to log in.
-  We recommend they create a system account for integrations (i.e. not a specific user's account).
-- **Password or API Key** can either be the password your customer uses to log in to Odoo, or they can generate an API key.
-  To generate an API key, your customer will need to go into settings, enable developer mode, and then from their user preferences they can generate an API key.
-  See [https://www.odoo.com/documentation/14.0/developer/api/external_api.html#api-keys](https://www.odoo.com/documentation/14.0/developer/api/external_api.html#api-keys).
 
 | Input               | Comments                                                                        | Default |
 | ------------------- | ------------------------------------------------------------------------------- | ------- |
@@ -33,6 +20,19 @@ Either way, Odoo uses basic auth to connect to an Odoo database.
 | Odoo Database Name  | Click the user icon on the top-right within Odoo and then select 'My Databases' |         |
 | Username            |                                                                                 |         |
 | Password or API Key |                                                                                 |         |
+
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Polls an Odoo model for records whose `write_date` is at or after the last poll. Records whose `create_date` is also after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+
+| Input                | Comments                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           |                                                                                                                                      |         |
+| Model                | The type of record you would like to query for. Use the 'List Models' action for a list of available models.                         |         |
+| Show New Records     | When enabled, records whose `create_date` falls after the last poll will be emitted on the `created` branch.                         | true    |
+| Show Updated Records | When enabled, records whose `write_date` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
 
 ## Actions
 

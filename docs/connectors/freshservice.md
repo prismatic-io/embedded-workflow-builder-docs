@@ -5,42 +5,13 @@ description: Manage tickets, problems, agents, and assets in Freshservice.
 ---
 
 ![Freshservice](./assets/freshservice.png#connector-icon)
-[Freshservice](https://www.freshworks.com/freshservice/) is a cloud-based IT service management platform that streamlines IT operations, automates workflows, and improves service delivery for organizations.
-This component allows managing tickets, problems, agents, assets, and other IT service resources.
-
-## API Documentation
-
-This component was built using the [Freshservice API v2.0](https://api.freshservice.com/#intro).
+Manage tickets, problems, agents, and assets in Freshservice.
 
 ## Connections
 
 ### API Key {#freshservice-api-key-connection}
 
 Authenticate requests using an API key.
-
-To authenticate with Freshservice, an API key is required.
-
-#### Prerequisites
-
-- A Freshservice account with API access enabled
-- The Freshservice domain name (e.g., if the Freshservice URL is `https://example.freshservice.com`, the domain is `example`)
-
-#### Setup Steps
-
-1. Log in to the [Freshservice Support Portal](https://support.freshservice.com/)
-2. Click the profile picture in the top-right corner of the portal
-3. Navigate to **Profile Settings**
-4. The API key is available below the **Delegate Approvals** section on the right side of the page
-5. Copy the **API Key**
-
-For more details, refer to the [Freshservice API key documentation](https://support.freshservice.com/support/solutions/articles/50000000306-where-do-i-find-my-api-key-).
-
-#### Configure the Connection
-
-Create a connection of type **API Key** and configure the following fields:
-
-- **Freshservice Domain**: Enter only the domain name of the Freshservice account. For example, if the Freshservice URL is `https://example.freshservice.com`, enter `example`.
-- **API Key**: Enter the API key obtained from the profile settings page.
 
 | Input               | Comments                                                                                                                              | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |

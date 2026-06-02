@@ -5,79 +5,13 @@ description: Use the DocuSign component to manage signature collection and docum
 ---
 
 ![DocuSign](./assets/docusign.png#connector-icon)
-[DocuSign](https://www.docusign.com/) is an electronic signature and digital transaction management platform.
-This component allows you to create and manage envelopes, send documents for signature, track signature status, manage templates, and configure webhooks for event notifications.
-
-## API Documentation
-
-This component was built using the [DocuSign eSignature REST API Reference](https://developers.docusign.com/docs/esign-rest-api/reference/) currently utilizing v2.1.
+Use the DocuSign component to manage signature collection and document distribution.
 
 ## Connections
 
 ### OAuth 2.0 {#docusignoauthconnection}
 
 OAuth 2.0 connection for DocuSign
-
-To connect to DocuSign using OAuth 2.0, a Developer Account is required to create integration applications.
-
-#### Prerequisites
-
-- A [DocuSign Developer Account](https://developers.docusign.com/) is required
-- Access to the DocuSign Admin Console
-
-#### Setup Steps
-
-1. Log in to the [DocuSign Developer Account](https://developers.docusign.com/auth/docusign-demo/)
-2. Click on the profile icon in the top right corner and select **My Apps & Keys**
-3. Click **Add App and Integration Key** to create a new application
-4. Enter the required application details
-5. Under **Redirect URIs** in the Additional settings section, add the OAuth callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-6. Under the **Secret Keys** section, click **Add Secret Key** to generate a secret key
-7. Copy the **Integration Key** (Client ID) and the newly generated **Secret Key** (Client Secret)
-8. Click **Save** to save the application configuration
-
-For more information on creating DocuSign integrations, refer to the [DocuSign Developer Documentation](https://developers.docusign.com/docs/esign-rest-api/esign101/auth/).
-
-#### Configure the Connection
-
-The DocuSign OAuth 2.0 connection requires the following fields:
-
-- **Client ID** (Integration Key): Enter the Integration Key from step 7
-- **Client Secret** (Secret Key): Enter the Secret Key from step 7
-- **Authorization Header**: This field requires a Base64-encoded value in the format `Basic <encoded_credentials>`
-
-To create the Authorization Header value:
-
-1. Combine the Integration Key and Secret Key with a colon separator in the format: `<integration_key>:<secret_key>`
-   - Example: `7c2b8d7e-xxxx-xxxx-xxxx-cda8a50dd73f:d7014634-xxxx-xxxx-xxxx-6842b7aa8861`
-
-2. Encode this string to Base64 using one of the following methods:
-
-   **Option A: Using an online encoder**
-   - Navigate to a [Base64 Encoder](https://www.base64encode.org/)
-   - Enter the combined key string in the format above
-   - Click **ENCODE**
-   - Copy the encoded result (e.g., `NWMyYjhkN2.....hODg2MQ==`)
-
-   **Option B: Using JavaScript**
-   - Open a JavaScript console and run:
-     ```javascript
-     btoa(
-       "7c2b8d7e-xxxx-xxxx-xxxx-cda8a50dd73f:d7014634-xxxx-xxxx-xxxx-6842b7aa8861",
-     );
-     ```
-   - Copy the returned Base64 string
-
-3. Enter the **Authorization Header** value as: `Basic <base64_encoded_string>`
-   - Example: `Basic NWMyYjhkN2.....hODg2MQ==`
-
-#### Verify Connection
-
-After configuring the connection, save the integration to authenticate with DocuSign. The OAuth flow will prompt for user authorization to complete the connection.
-
-:::note[Developer vs Production Environments]
-DocuSign has separate environments for development and production. Developer accounts use the demo environment at `account-d.docusign.com`. For production environments, ensure the application is published and promoted in the DocuSign Admin Console. Refer to the [DocuSign Go-Live documentation](https://developers.docusign.com/docs/esign-rest-api/go-live/) for more details.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

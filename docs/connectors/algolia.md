@@ -5,34 +5,13 @@ description: Manage search indexes, records, and settings in Algolia.
 ---
 
 ![Algolia](./assets/algolia.png#connector-icon)
-[Algolia](https://www.algolia.com/) is a search and discovery API platform.
-This component allows you to manage search indexes, records, and settings in Algolia.
-
-## API Documentation
-
-This component was built using the [Algolia API Reference](https://www.algolia.com/doc/api-reference/rest-api/).
+Manage search indexes, records, and settings in Algolia.
 
 ## Connections
 
 ### API Key {#apikey}
 
 API Key connection for Algolia
-
-**API Keys** are necessary for interacting with the Algolia API. API keys are unique to each application you create in Algolia.
-
-To generate an **API Key**, you should log into Algolia and navigate to your application page. Within the application settings, you can find your API keys.
-
-Algolia provides three types of API keys:
-
-**Admin API Key**: This key has read and write rights on all indexing and configuration operations.
-
-**Search-Only API Key**: This key has read-only rights on indexing operations and is recommended for use on the frontend.
-
-**Secured API Key**: This key is generated from a search key and has additional rights defined at the time of generation.
-
-For your integration, you will need both the Admin API Key and the Search-Only API Key.
-
-For more information about API keys, refer to the [Algolia Docs](https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/#how-to-get-your-api-keys).
 
 | Input          | Comments                    | Default |
 | -------------- | --------------------------- | ------- |

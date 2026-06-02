@@ -5,39 +5,13 @@ description: Convert and manipulate documents and PDFs in Aspose.
 ---
 
 ![Aspose](./assets/aspose.png#connector-icon)
-[Aspose](https://www.aspose.cloud/) is a cloud-based file manipulation platform that provides APIs for document processing and format conversion. This component allows you to convert documents between formats (PDF, DOCX, HTML), merge and split documents, and extract text and metadata from files.
-
-## API Documentation
-
-This component was built using the [Aspose Words Cloud API](https://reference.aspose.cloud/words/#/) and [Aspose PDF Cloud API](https://reference.aspose.cloud/pdf/#/).
+Convert and manipulate documents and PDFs in Aspose.
 
 ## Connections
 
 ### Aspose API Key {#apikey}
 
 Authenticate with Aspose using Client ID and Client Secret.
-
-To authenticate with Aspose, an application must be created in the Aspose Developer Dashboard to obtain a **Client ID** and **Client Secret**.
-
-#### Prerequisites
-
-- An Aspose account with access to the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/)
-
-#### Setup Steps
-
-1. Log in to the [Aspose Developer Dashboard](https://dashboard.aspose.cloud/) using an Aspose account
-2. Navigate to the **Applications** view
-3. Click **Create New Application** or **Add Application**
-4. Fill in the required application details and save
-5. After creating the application, Aspose will generate a **Client ID** and **Client Secret**
-6. Copy both the **Client ID** and **Client Secret** values
-
-#### Configure the Connection
-
-- Enter the **Client ID** into the **Application Client ID** field
-- Enter the **Client Secret** into the **Application Client Secret** field
-
-For more information about the Aspose REST API, refer to the [Aspose API documentation](https://docs.aspose.cloud/).
 
 | Input                     | Comments                                  | Default |
 | ------------------------- | ----------------------------------------- | ------- |

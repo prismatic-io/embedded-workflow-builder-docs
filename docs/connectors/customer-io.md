@@ -5,18 +5,13 @@ description: Manage customers on the Customer.io platform
 ---
 
 ![Customer.io](./assets/customer-io.png#connector-icon)
-**Customer.io** is an automated messaging platform for marketing departments.
-This component allows you to create, delete and track customers on the Customer.io platform through the Track API.
+Manage customers on the Customer.io platform
 
 ## Connections
 
 ### API Key {#apikey}
 
 Authenticate requests to Customer.io using an API key & secret
-
-An API key and SiteID are both required to interact with Customer.io.
-The Customer.io **API Key** serves as the **API Key**, and the **Site ID** serves as the **API Secret**.
-Read more about authentication in the [Customer.io docs](https://customer.io/docs/managing-credentials/).
 
 | Input   | Comments                                                 | Default |
 | ------- | -------------------------------------------------------- | ------- |

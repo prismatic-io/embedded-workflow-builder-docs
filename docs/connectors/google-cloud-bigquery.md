@@ -5,71 +5,13 @@ description: BigQuery is Google Cloud's fully managed, petabyte-scale, and cost-
 ---
 
 ![Google Cloud BigQuery](./assets/google-cloud-bigquery.png#connector-icon)
-[Google Cloud BigQuery](https://cloud.google.com/bigquery) is Google Cloud's fully managed, petabyte-scale, and cost-effective analytics data warehouse that enables running analytics over vast amounts of data in near real time.
-
-## API Documentation
-
-This component was built using the [Google Cloud BigQuery API](https://cloud.google.com/bigquery/docs/reference/libraries-overview).
+BigQuery is Google Cloud's fully managed, petabyte-scale, and cost-effective analytics data warehouse that lets you run analytics over vast amounts of data in near real time.
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
 Authenticate using OAuth 2.0
-
-The Google BigQuery component authenticates requests through the Google Cloud Platform (GCP) OAuth 2.0 service. A GCP OAuth 2.0 app is required so the integration can authenticate and perform Google BigQuery tasks on the customer's behalf.
-
-#### Prerequisites
-
-- A Google Developer account is required - sign up at https://console.cloud.google.com/
-
-#### Setup Steps
-
-1. Open up the [Google BigQuery Console](https://console.cloud.google.com/bigquery)
-2. Click **CREATE PROJECT** to create a new GCP project, or select an existing project.
-3. The system will prompt to enable **Google BigQuery** for the project. Click **ENABLE**.
-4. On the sidebar, select **Credentials**.
-5. An OAuth 2.0 app includes a "Consent Screen" (the page that asks "Do you want to allow (Your Company) to access Google BigQuery on your behalf?"). Click **CONFIGURE CONSENT SCREEN**.
-   1. The app will be externally available to end users, so choose a **User Type** of **External**.
-   2. Fill out the OAuth consent screen with an app name (company or product name), support email, app logo, domain, etc.
-   3. Domains can be ignored for now.
-   4. On the next page, add these scopes to the app (these may not all be necessary, and should match the scopes in the connection definition):
-      - `https://www.googleapis.com/auth/bigquery`
-      - `https://www.googleapis.com/auth/bigquery.insertdata`
-      - `https://www.googleapis.com/auth/cloud-platform`
-      - `https://www.googleapis.com/auth/cloud-platform.read-only`
-      - `https://www.googleapis.com/auth/devstorage.full_control`
-      - `https://www.googleapis.com/auth/devstorage.read_only`
-      - `https://www.googleapis.com/auth/devstorage.read_write`
-   5. Enter some **test users** for testing purposes. The app will only work for those testing users until it is "verified" by Google.
-      When ready for verification (verification includes the privacy policy statement, etc), click **PUBLISH APP** on the **OAuth consent screen**. This will allow end users to authorize the integration to access their Google BigQuery data.
-6. Once the "Consent Screen" is configured, open the **Credentials** page from the sidebar again.
-7. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
-   1. Under **Application type** select **Web application**.
-   2. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   3. Click **CREATE**.
-8. Take note of the **Client ID** and **Client Secret** that are generated.
-
-:::info[Publishing Requirement]
-Make sure to **publish** the OAuth 2.0 app after testing it so users outside of the test users can authorize the integration to interact with Google BigQuery on their behalf.
-:::
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and enter:
-
-- **Client ID**: Enter the Client ID from the OAuth application
-- **Client Secret**: Enter the Client Secret from the OAuth application
-- **Scopes**: The default [Google BigQuery](https://developers.google.com/identity/protocols/oauth2/scopes#bigquery) scopes should be kept:
-
-| https://www.googleapis.com/auth/bigquery                 | View and manage data in Google BigQuery and see the email address for the Google Account             |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| https://www.googleapis.com/auth/bigquery.insertdata      | Insert data into Google BigQuery                                                                     |
-| https://www.googleapis.com/auth/cloud-platform           | See, edit, configure, and delete Google Cloud data and see the email address for the Google Account. |
-| https://www.googleapis.com/auth/cloud-platform.read-only | View data across Google Cloud services and see the email address of the Google Account               |
-| https://www.googleapis.com/auth/devstorage.full_control  | Manage data and permissions in Cloud Storage and see the email address for the Google Account        |
-| https://www.googleapis.com/auth/devstorage.read_only     | View data in Google Cloud Storage                                                                    |
-| https://www.googleapis.com/auth/devstorage.read_write    | Manage data in Cloud Storage and see the email address of the Google Account                         |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

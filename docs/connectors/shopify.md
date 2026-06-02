@@ -5,57 +5,13 @@ description: Manage customers, products, and orders in Shopify.
 ---
 
 ![Shopify](./assets/shopify.png#connector-icon)
-[Shopify](https://www.shopify.com/) is a multinational e-commerce company. They offer a subscription-based software that allows anyone to set up an online store and sell their products.
-This component allows managing the products and customers connected to a Shopify account.
-
-## API Documentation
-
-This component was built using the [Shopify GraphQL Admin API Reference](https://shopify.dev/docs/api/admin-graphql).
+Manage customers, products, and orders in Shopify.
 
 ## Connections
 
 ### Access Token {#adminapiaccesstoken}
 
 Authenticate requests to Shopify using an Admin API access token.
-
-An **admin API access token** can be used for testing purposes during integration development.
-
-Personal access tokens are recommended for testing only. For production integrations, use OAuth 2.0 to allow users to authenticate with their own credentials.
-
-#### Prerequisites
-
-- A Shopify store (for testing purposes)
-
-#### Setup Steps
-
-To generate an admin API access token:
-
-1. Log in to the Shopify admin dashboard.
-2. Navigate to **Settings** > **Apps and sales channels**.
-3. Click **Develop apps**.
-4. If prompted, click **Allow custom app development**.
-5. Click **Create an app** and provide a name for the app.
-6. Click **Configure Admin API scopes** and select the required scopes for the integration.
-7. Click **Save**.
-8. Navigate to the **API credentials** tab.
-9. Under **Admin API access token**, click **Install app** to generate the token.
-10. Copy the **Admin API access token** value.
-
-The token will have a format similar to `shpat_00000000000000000000000000000000`.
-
-Refer to [Shopify's Admin API access token documentation](https://shopify.dev/docs/apps/auth/admin-app-access-tokens) for more information.
-
-#### Configure the Connection
-
-Create a connection of type **Access Token** and configure the following fields:
-
-- Enter the **Admin API Access Token** into the connection configuration.
-- Enter the **Host** (the Shopify domain without `https://`, e.g., `example-store.myshopify.com`).
-- Optionally configure the **API Version** (defaults to latest version).
-
-:::warning[Production Use]
-Admin API access tokens are tied to custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
-:::
 
 | Input                  | Comments                                                                                                                                                     | Default                           |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
@@ -66,92 +22,6 @@ Admin API access tokens are tied to custom apps and recommended for testing only
 ### OAuth 2.0 {#oauth2-dynamic-inputs}
 
 Authenticate requests to Shopify using values obtained from the Developer Console. Allows for using a single domain input instead of entering separate authorization URLs.
-
-Shopify uses OAuth 2.0 for app authentication. This connection type simplifies configuration by using a single **Shop Name** input to automatically construct the authorization and token URLs.
-
-#### Prerequisites
-
-- A [Shopify Partners account](https://www.shopify.com/partners)
-- Access to the [Dev Dashboard](https://dev.shopify.com/dashboard) or [Shopify CLI](https://shopify.dev/docs/apps/build/scaffold-app) for app creation
-- A [development store](https://shopify.dev/docs/apps/tools/development-stores) for testing
-
-:::caution[Legacy Custom App Deprecation]
-As of January 1, 2026, merchants can no longer create new legacy custom apps. Existing apps are not affected. Partners can still create new custom apps and transfer stores to merchants, but once transferred, new custom app creation is disabled on the store. Use the Partner Dashboard or Shopify CLI to create apps going forward.
-:::
-
-#### Creating a Shopify App
-
-Choose one of the following methods to create a Shopify app.
-
-#### Create App from Dev Dashboard
-
-For backend-focused apps (API utilities, webhook handlers, sync jobs), create an app directly through the Dev Dashboard without scaffolding code.
-
-1. Log in to the [Dev Dashboard](https://dev.shopify.com/dashboard), or navigate from the [Partner Dashboard](https://www.shopify.com/partners) via **App Distribution** > **Visit Dev Dashboard**.
-2. Click **Create app**.
-3. Select **Create app manually** and provide an app name.
-4. Navigate to the **Configuration** section of the created app.
-5. Under **App URL**, enter a valid URL (this is required but can be a placeholder).
-6. Under **Allowed redirection URL(s)**, enter:
-
-   `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-
-7. Click **Save**.
-
-Refer to the [Dev Dashboard documentation](https://shopify.dev/docs/apps/build/dev-dashboard) for more details.
-
-#### Create App with Shopify CLI
-
-The Shopify CLI scaffolds a complete app project with best practices built in. This method is suitable for apps that need embedded UI, checkout extensions, or full-stack capabilities.
-
-1. Install the [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) if not already installed.
-2. Navigate to the desired project directory and run:
-   ```bash
-   shopify app init
-   ```
-3. When prompted, provide an app name and select a template (the React Router template is recommended for most use cases).
-4. Navigate to the new app directory and start the development server:
-   ```bash
-   cd my-new-app
-   shopify app dev
-   ```
-5. The CLI prompts for login to a developer account, creates the app in the Dev Dashboard, and establishes a connection to a dev store.
-6. Once the dev server is running, press `p` to open the preview URL and install the app on the dev store.
-
-Refer to [Shopify's scaffold app documentation](https://shopify.dev/docs/apps/build/scaffold-app) for detailed instructions.
-
-#### Retrieve App Credentials
-
-Regardless of the creation method, retrieve the OAuth credentials:
-
-1. Open the app in the [Dev Dashboard](https://dev.shopify.com/dashboard).
-2. Navigate to the **Configuration** section.
-3. Scroll to the **Client credentials** section.
-4. Copy the **Client ID** (labeled as **API key** in Shopify).
-5. Copy the **Client secret** (labeled as **API secret key** in Shopify).
-
-#### Configure the Connection
-
-Create a connection of type **OAuth 2.0** and configure the following fields:
-
-- **API Key**: Enter the **Client ID** copied from the Shopify app credentials (Shopify labels this as "API key").
-- **API Secret**: Enter the **Client secret** copied from the Shopify app credentials (Shopify labels this as "API secret key").
-- **Shop Name**: Enter the Shopify domain without `.myshopify.com` (e.g., `example-store`).
-- **Scopes**: Configure based on the required permissions. Default scopes include:
-  ```
-  read_customers read_draft_orders read_fulfillments read_inventory
-  read_orders read_products read_locations write_customers
-  write_draft_orders write_fulfillments write_inventory
-  write_orders write_products write_locations
-  ```
-  Refer to [Shopify's access scopes documentation](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for a complete list of available scopes.
-- **API Version** (optional): Specify the Shopify API version to use. Defaults to `2026-01`. Refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.
-
-Save the integration to connect and authenticate to Shopify.
-
-:::info[Shop Name Format]
-The **Shop Name** should be the subdomain portion of the Shopify store URL. For example, if the store URL is `example-store.myshopify.com`, enter `example-store` as the Shop Name.
-:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

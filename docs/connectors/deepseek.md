@@ -5,21 +5,13 @@ description: Generate chat completions and manage models with DeepSeek AI.
 ---
 
 ![DeepSeek](./assets/deepseek.png#connector-icon)
-[DeepSeek](https://www.deepseek.com/) is an artificial intelligence company that develops large language models focused on high performance.
-This component allows you to generate chat completions and manage models with DeepSeek AI.
-
-## API Documentation:
-
-The component was built using the [DeepSeek API Documentation](https://api-docs.deepseek.com/).
+Generate chat completions and manage models with DeepSeek AI.
 
 ## Connections
 
 ### API Key {#api-key}
 
 The DeepSeek API Key to use in order to authenticate with the DeepSeek API.
-
-1. Login to [DeepSeek](https://www.deepseek.com/) and navigate to the [API Keys](https://platform.deepseek.com/api_keys) section.
-2. Select **Create New API Key** and enter into the connection configuration of the integration.
 
 | Input   | Comments          | Default |
 | ------- | ----------------- | ------- |

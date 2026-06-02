@@ -5,23 +5,13 @@ description: Generate chat responses and completions using Anthropic's Claude mo
 ---
 
 ![Anthropic](./assets/anthropic.png#connector-icon)
-[Anthropic](https://www.anthropic.com/) is an artificial intelligence safety company that develops and provides Claude, a family of large language models.
-This component allows you to send chat messages to Claude, count tokens, and manage available models.
-
-## API Documentation
-
-This component was built using the [Anthropic Messages API](https://docs.anthropic.com/en/api/messages).
+Generate chat responses and completions using Anthropic's Claude models.
 
 ## Connections
 
 ### Anthropic API {#anthropic}
 
 Connection to Anthropic's Claude API
-
-To generate an API key:
-
-1. Navigate to [API Keys](https://console.anthropic.com/settings/keys) and select **create key**
-2. Enter the API key value into the connection configuration of the integration.
 
 | Input   | Comments                | Default |
 | ------- | ----------------------- | ------- |

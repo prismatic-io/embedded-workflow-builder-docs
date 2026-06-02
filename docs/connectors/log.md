@@ -5,7 +5,7 @@ description: Write out a log message
 ---
 
 ![Log](./assets/log.png#connector-icon)
-The **log** component allows you to write log messages, which is useful for debugging purposes.
+Write out a log message
 
 ## Actions
 

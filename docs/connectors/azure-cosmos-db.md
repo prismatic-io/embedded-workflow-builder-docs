@@ -5,32 +5,13 @@ description: Manage databases, collections, and documents within Azure Cosmos DB
 ---
 
 ![Azure Cosmos DB](./assets/azure-cosmos-db.png#connector-icon)
-[Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) is a Microsoft database service designed for handling various applications.
-
 Manage databases, collections, and documents within Azure Cosmos DB.
-
-## API Documentation
-
-This component was built using the [Azure Cosmos DB (SQL) REST API](https://learn.microsoft.com/en-us/rest/api/cosmos-db/).
 
 ## Connections
 
 ### Master Key {#cosmosmasterkey}
 
 Azure Cosmos DB Master Key
-
-To authenticate this component using your Cosmos DB **Core (SQL) API** master key:
-
-1. Navigate to [Azure Portal](https://portal.azure.com/).
-2. Find your **Cosmos DB account**.
-3. In the left menu, under **Settings**, select **Keys**.
-4. Copy the **Primary Key** or **Secondary Key**.
-
-You will also need the **Cosmos DB account name** (subdomain). For example, if your endpoint is: `https://your-cosmos-account.documents.azure.com/`
-
-Then your account name is: `your-cosmos-account`
-
-Use these values to configure the component connection.
 
 | Input      | Comments                                                                                            | Default |
 | ---------- | --------------------------------------------------------------------------------------------------- | ------- |
