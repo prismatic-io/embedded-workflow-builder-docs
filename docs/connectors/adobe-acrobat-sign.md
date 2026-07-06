@@ -5,14 +5,12 @@ description: Adobe Acrobat Sign is an e-signature management solution. Use the A
 ---
 
 ![Adobe Acrobat Sign](./assets/adobe-acrobat-sign.png#connector-icon)
-Adobe Acrobat Sign is an e-signature management solution.
-
-Use the Adobe Acrobat Sign component to send, sign, track,
-and manage the signature process.
+[Adobe Acrobat Sign](https://www.adobe.com/sign.html) is an e-signature management solution.
+This component allows you to send, sign, track, and manage agreements through the Adobe Acrobat Sign platform.
 
 ## API Documentation
 
-This component was built using the [Adobe Sign REST API v6](https://secure.na1.adobesign.com/public/docs/restapi/v6#).
+This component was built using the [Adobe Sign REST API](https://secure.na1.adobesign.com/public/docs/restapi/v6) currently utilizing v6.
 
 ## Connections
 
@@ -20,27 +18,58 @@ This component was built using the [Adobe Sign REST API v6](https://secure.na1.a
 
 Authenticate using OAuth 2.0.
 
-To configure OAuth for Sign, begin by [creating an App:](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#get-the-app-id-and-secret)
+To configure OAuth 2.0 for Adobe Acrobat Sign, begin by [creating an App](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#get-the-app-id-and-secret):
 
-1. [Log in to Acrobat Sign](https://secure.adobesign.com/public/login).
-2. Select **API** from the top menu. If you do not see the **API** link, select **Account**
-3. Select **API Applications.**
-4. Select the **Create** (+) icon at the top right of the table and provide details about your app.
+#### Prerequisites
+
+- An [Adobe Acrobat Sign](https://secure.adobesign.com/public/login) account with access to **API Applications**.
+- Permission to create OAuth applications in the Adobe Acrobat Sign account.
+- The region/shard of the Adobe Acrobat Sign account (visible in the web app URL, e.g. `https://secure.na3.adobesign.com`).
+
+#### Setup Steps
+
+1. [Log in to Adobe Acrobat Sign](https://secure.adobesign.com/public/login).
+2. Select **API** from the top menu. If the **API** link is not visible, select **Account** first.
+3. Select **API Applications**.
+4. Select the **Create** (+) icon at the top right of the table and provide application details.
 5. Choose a domain based on the intended use:
-6. **CUSTOMER**: Apps that only access your account or are used for internal use and testing.
-7. **PARTNER**: Select this type if you're developing an application for other users and your app needs access to other Acrobat Sign accounts.
-   Note: PARTNER applications [must be certified](https://www.adobe.com/go/esign-dev-cert) to have full access to other accounts.
+   - **CUSTOMER**: Apps that only access the creating account or are used for internal use and testing.
+   - **PARTNER**: Select this type for applications distributed to other users that require access to other Adobe Acrobat Sign accounts.
+     Note: PARTNER applications [must be certified](https://www.adobe.com/go/esign-dev-cert) to have full access to other accounts.
+6. To retrieve the OAuth [Client ID and Secret](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#configure-oauth): in the **API Applications** menu, select the application.
+7. Click the **Configure OAuth for the Application** link to configure the OAuth integration.
+8. For the **Redirect URI**, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+9. Check the boxes for the necessary scopes with the modifier set to `account` for the integration and save.
+10. In the **API Applications** menu, select the application and select **View / Edit**.
+11. Copy the **Application ID / Client ID** and **Client Secret** values. (Client ID and Application ID are the same value and can be used interchangeably.)
 
-To Retrieve the OAuth [Client ID and Secret:](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#configure-oauth)
+#### Configure the Connection
 
-1. In the API Applications menu, select the application.
-2. Click **Configure OAuth for the Application** link to configure your OAuth integration.
-3. For the redirect URI enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
-4. check the boxes for the necessary scopes needed with the modifier set to `account` for the integration and save.
-5. in the API Applications menu, select the application and select View / Edit.
-6. Enter the Application ID/Client ID and Client Secret Values into the connection configuration of the integration.
-7. Client ID and Application ID are the same value and can be used interchangeably.
-8. Enter the scopes
+Each Adobe Acrobat Sign OAuth URL is region-dependent. Replace the shard (e.g. `na3`) in the host with the shard shown in the Adobe Acrobat Sign web app URL (for example, an `https://secure.na3.adobesign.com` web app uses `na3`).
+
+- **Authorize URL**: The OAuth 2.0 authorization endpoint for the region. Example: `https://secure.na3.adobesign.com/public/oauth/v2`.
+- **Token URL**: The OAuth 2.0 token endpoint for the region. Example: `https://secure.na3.adobesign.com/oauth/v2/token`.
+- **Refresh URL**: The OAuth 2.0 refresh endpoint for the region. Example: `https://secure.na3.adobesign.com/oauth/v2/refresh`.
+- **Scopes**: Space-separated OAuth 2.0 permission scopes for Adobe Acrobat Sign, with the modifier set to `account` (for example, `user_read:account user_write:self agreement_read:group`). Refer to the [Acrobat Sign scopes documentation](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html#configure-scopes) for the available scopes.
+- **Client ID**: The **Application ID / Client ID** copied from the API Application.
+- **Client Secret**: The **Client Secret** copied from the API Application.
+
+#### PARTNER Application Certification
+
+Adobe requires PARTNER domain apps (those designed to access multiple organizations' Adobe Acrobat Sign accounts) to complete a certification process before deployment. This review verifies the app meets Adobe's security and compliance requirements for handling enterprise e-signature data on behalf of external accounts.
+
+**Complete PARTNER application certification before deploying to customer accounts.** Without certification, a PARTNER app is limited to authenticating with the developing organization's own Adobe Acrobat Sign account. Users from other organizations cannot connect to the integration.
+
+To apply for certification:
+
+1. Ensure the PARTNER application is fully developed and tested using the developing organization's own Adobe Acrobat Sign account.
+2. Complete the [PARTNER Application Certification form](https://www.adobe.com/go/esign-dev-cert).
+3. Submit the form. Adobe reviews the application for security and compliance requirements.
+4. Once certified, the PARTNER application can be authorized by users from other organizations' Adobe Acrobat Sign accounts.
+
+:::note[Certification Applies to PARTNER Domain Only]
+CUSTOMER domain applications do not require certification and can only access the account used to create the app. Only select the PARTNER domain if the integration needs to access other organizations' Adobe Acrobat Sign accounts. Refer to the [Acrobat Sign developer guide](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html) for details on choosing the correct domain.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -55,6 +84,16 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client Secret | Client Secret of your Acrobat Sign App.                                                                                                                                                                                                                                                                  |                                                        |
 
 ## Triggers
+
+### New and Updated Agreements {#pollchangestrigger}
+
+Checks for new and updated agreements in Adobe Acrobat Sign on a configured schedule.
+
+| Input                | Comments                                                                              | Default |
+| -------------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Adobe Acrobat Sign connection to use.                                             |         |
+| Show New Records     | When true, newly created agreements are included in the trigger output.               | true    |
+| Show Updated Records | When true, agreements updated since the last poll are included in the trigger output. | true    |
 
 ### Webhook {#adobesigntrigger}
 
@@ -75,16 +114,17 @@ Creates an Adobe Acrobat Sign account under the partner channel.
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection          | The Adobe Acrobat Sign connection to use.                                                                                                                                                                                                                                                              |         |
 | Account Type        | The type of account to be created.                                                                                                                                                                                                                                                                     |         |
-| Country Code        | The country code of the account.                                                                                                                                                                                                                                                                       |         |
-| External ID         | Case-sensitive External ID for which you would like to retrieve agreement information. ExternalId is passed in the call to the agreement creation API. <strong>Note:</strong> The externalId value is visible to all participants through the API, so should not be used to contain a sensitive token. |         |
-| Locale              | The locale of the user.                                                                                                                                                                                                                                                                                |         |
-| Trial Duration Days | Account trial duration (in days).                                                                                                                                                                                                                                                                      |         |
 | Email               | The email address of the user to be created.                                                                                                                                                                                                                                                           |         |
+| Country Code        | The country code of the account.                                                                                                                                                                                                                                                                       |         |
+| Number of Seats     | The number of seats.                                                                                                                                                                                                                                                                                   |         |
 | First Name          | The first name of the user.                                                                                                                                                                                                                                                                            |         |
 | Last Name           | The last name of the user.                                                                                                                                                                                                                                                                             |         |
 | Phone               | The phone number of the user.                                                                                                                                                                                                                                                                          |         |
+| Additional Fields   | Additional optional fields.                                                                                                                                                                                                                                                                            |         |
+| External ID         | Case-sensitive External ID for which you would like to retrieve agreement information. ExternalId is passed in the call to the agreement creation API. <strong>Note:</strong> The externalId value is visible to all participants through the API, so should not be used to contain a sensitive token. |         |
+| Locale              | The locale of the user.                                                                                                                                                                                                                                                                                |         |
+| Trial Duration Days | Account trial duration (in days).                                                                                                                                                                                                                                                                      |         |
 | Title               | The job title of the user.                                                                                                                                                                                                                                                                             |         |
-| Number of Seats     | The number of seats.                                                                                                                                                                                                                                                                                   |         |
 | Company             | The company of the user.                                                                                                                                                                                                                                                                               |         |
 
 ### Create Agreement {#createagreement}
@@ -128,19 +168,20 @@ Uploads a document and obtains the document's ID.
 
 Creates a new user in the Adobe Acrobat Sign system.
 
-| Input         | Comments                                     | Default |
-| ------------- | -------------------------------------------- | ------- |
-| Connection    | The Adobe Acrobat Sign connection to use.    |         |
-| Email         | The email address of the user to be created. |         |
-| Account Admin | When true, the user is an account admin.     | false   |
-| Company       | The company of the user.                     |         |
-| First Name    | The first name of the user.                  |         |
-| Last Name     | The last name of the user.                   |         |
-| Initials      | The initials of the user.                    |         |
-| Locale        | The locale of the user.                      |         |
-| Phone         | The phone number of the user.                |         |
-| Title         | The job title of the user.                   |         |
-| Account ID    | The account ID of the user.                  |         |
+| Input             | Comments                                     | Default |
+| ----------------- | -------------------------------------------- | ------- |
+| Connection        | The Adobe Acrobat Sign connection to use.    |         |
+| Account Admin     | When true, the user is an account admin.     | false   |
+| Email             | The email address of the user to be created. |         |
+| First Name        | The first name of the user.                  |         |
+| Last Name         | The last name of the user.                   |         |
+| Initials          | The initials of the user.                    |         |
+| Phone             | The phone number of the user.                |         |
+| Additional Fields | Additional optional fields.                  |         |
+| Locale            | The locale of the user.                      |         |
+| Title             | The job title of the user.                   |         |
+| Account ID        | The account ID of the user.                  |         |
+| Company           | The company of the user.                     |         |
 
 ### Create Webhook {#createwebhook}
 
@@ -153,8 +194,9 @@ Creates a webhook for the authenticated user.
 | Scope                                            | Scope of the webhook.                                                                                                                                                                                                                                                                                                                                                                                    |         |
 | Webhook Name                                     | The name of the webhook.                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Webhook URL                                      | The URL to which the webhook payload is to be delivered.                                                                                                                                                                                                                                                                                                                                                 |         |
-| Application Display Name                         | The name of the application through which the webhook is created.                                                                                                                                                                                                                                                                                                                                        |         |
+| Webhook Application                              | The application name and display name through which the webhook is created.                                                                                                                                                                                                                                                                                                                              |         |
 | Application Name                                 | The name of the application through which the webhook is created.                                                                                                                                                                                                                                                                                                                                        |         |
+| Application Display Name                         | The name of the application through which the webhook is created.                                                                                                                                                                                                                                                                                                                                        |         |
 | Problem Notification Emails                      | The list of email addresses to which the webhook problem notifications are sent.                                                                                                                                                                                                                                                                                                                         |         |
 | Resource ID                                      | ID of the resource type for which you want to create webhook. Provide agreementId if webhook needs to be created for an agreement. Similarly, widgetId if webhook needs to be created for a web form, megaSignId if webhook needs to be created for a bulk send and libraryDocumentId if webhook needs to be created for a library document. <strong>Note:</strong> Only specify if scope is 'RESOURCE'. |         |
 | Webhook Resource Type                            | The type of resource being accessed. <strong>Note:</strong> Only specify if scope is Resource.                                                                                                                                                                                                                                                                                                           |         |
@@ -252,6 +294,7 @@ Retrieves agreements for the user.
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection             | The Adobe Acrobat Sign connection to use.                                                                                                                                                                                                                                                              |         |
 | Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                                                                                | true    |
+| Pagination             | Page and page-size controls.                                                                                                                                                                                                                                                                           |         |
 | Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.                                                                                                                                                                         |         |
 | Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false.                                                                                                                                                           | 500     |
 | External ID            | Case-sensitive External ID for which you would like to retrieve agreement information. ExternalId is passed in the call to the agreement creation API. <strong>Note:</strong> The externalId value is visible to all participants through the API, so should not be used to contain a sensitive token. |         |
@@ -265,8 +308,9 @@ Retrieves all events for a group.
 | Input      | Comments                                                                                                                                     | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
-| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
 | Group ID   | The unique identifier of the group.                                                                                                          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Pagination | Page and page-size controls.                                                                                                                 |         |
 | Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
 | Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
@@ -278,6 +322,7 @@ Retrieves a list of groups in the Adobe Acrobat Sign account.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Pagination | Page and page-size controls.                                                                                                                 |         |
 | Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
 | Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
@@ -288,8 +333,9 @@ Retrieves all the users in a group.
 | Input      | Comments                                                                                                                                     | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
-| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
 | Group ID   | The unique identifier of the group.                                                                                                          |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Pagination | Page and page-size controls.                                                                                                                 |         |
 | Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
 | Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
@@ -301,6 +347,7 @@ Retrieves all the users in an account.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Pagination | Page and page-size controls.                                                                                                                 |         |
 | Cursor     | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
 | Page Size  | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
@@ -312,11 +359,12 @@ Retrieves webhooks for a user.
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection             | The Adobe Acrobat Sign connection to use.                                                                                                    |         |
 | Fetch All              | When true, automatically fetches all pages of results using pagination.                                                                      | true    |
+| Pagination             | Page and page-size controls.                                                                                                                 |         |
+| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
+| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 | Show Inactive Webhooks | When true, fetches all the inactive webhooks along with the active webhooks. Default value is false.                                         | false   |
 | Scope                  | Filter for webhooks with a specific scope.                                                                                                   |         |
 | Webhook Resource Type  | The type of resource being accessed. <strong>Note:</strong> Only specify if scope is Resource.                                               |         |
-| Cursor                 | Used to navigate through pagination. If not provided, it will default to the first page. Only applied when Fetch All is false.               |         |
-| Page Size              | The number of results to return per page. If not provided, it is decided by your application settings. Only applied when Fetch All is false. |         |
 
 ### Raw Request {#rawrequest}
 
@@ -412,19 +460,20 @@ Updates an existing group.
 
 Updates a user in the Adobe Acrobat Sign system.
 
-| Input      | Comments                                                                                            | Default |
-| ---------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Adobe Acrobat Sign connection to use.                                                           |         |
-| Email      | The email address of the user to be created.                                                        |         |
-| Company    | The company of the user.                                                                            |         |
-| First Name | The first name of the user.                                                                         |         |
-| Last Name  | The last name of the user.                                                                          |         |
-| Initials   | The initials of the user.                                                                           |         |
-| Locale     | The locale of the user.                                                                             |         |
-| Phone      | The phone number of the user.                                                                       |         |
-| Title      | The job title of the user.                                                                          |         |
-| User ID    | The user identifier, as returned by the user creation API or retrieved from the API to fetch users. |         |
-| Status     | Status of the user.                                                                                 |         |
+| Input             | Comments                                                                                            | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Adobe Acrobat Sign connection to use.                                                           |         |
+| Email             | The email address of the user to be created.                                                        |         |
+| First Name        | The first name of the user.                                                                         |         |
+| Last Name         | The last name of the user.                                                                          |         |
+| Initials          | The initials of the user.                                                                           |         |
+| Phone             | The phone number of the user.                                                                       |         |
+| User ID           | The user identifier, as returned by the user creation API or retrieved from the API to fetch users. |         |
+| Status            | Status of the user.                                                                                 |         |
+| Additional Fields | Additional optional fields.                                                                         |         |
+| Locale            | The locale of the user.                                                                             |         |
+| Title             | The job title of the user.                                                                          |         |
+| Company           | The company of the user.                                                                            |         |
 
 ### Update Webhook {#updatewebhook}
 
@@ -433,14 +482,15 @@ Updates a webhook.
 | Input                                            | Comments                                                                                            | Default |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ------- |
 | Connection                                       | The Adobe Acrobat Sign connection to use.                                                           |         |
+| Webhook ID                                       | The webhook identifier, as returned by the Adobe Sign Webhook API.                                  |         |
 | Webhook Subscription Events                      | The list of events for which the webhook subscription is being made.                                |         |
 | Scope                                            | Scope of the webhook.                                                                               |         |
 | Webhook Name                                     | The name of the webhook.                                                                            |         |
 | Webhook URL                                      | The URL to which the webhook payload is to be delivered.                                            |         |
-| Application Display Name                         | The name of the application through which the webhook is created.                                   |         |
+| Webhook Application                              | The application name and display name through which the webhook is created.                         |         |
 | Application Name                                 | The name of the application through which the webhook is created.                                   |         |
+| Application Display Name                         | The name of the application through which the webhook is created.                                   |         |
 | Problem Notification Emails                      | The list of email addresses to which the webhook problem notifications are sent.                    |         |
-| Webhook ID                                       | The webhook identifier, as returned by the Adobe Sign Webhook API.                                  |         |
 | Webhook Agreement Conditional Parameters         | Optional parameters to include additional information in the webhook payload for agreements.        |         |
 | Webhook Library Documents Conditional Parameters | Optional parameters to include additional information in the webhook payload for library documents. |         |
 | Webhook MegaSign Conditional Parameters          | Optional parameters to include additional information in the webhook payload for MegaSign.          |         |

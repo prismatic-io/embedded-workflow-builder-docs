@@ -33,6 +33,16 @@ If you believe your API key has been compromised, please contact Yoti Client Sup
 | Environment | The environment to use for the Yoti Sign API |         |
 | API Key     | The Yoti API Key                             |         |
 
+## Triggers
+
+### New Envelopes {#pollchangestrigger}
+
+Fetches Yoti Sign Envelopes created on a recurring schedule.
+
+| Input      | Comments | Default |
+| ---------- | -------- | ------- |
+| Connection |          |         |
+
 ## Actions
 
 ### Archive Envelope {#archiveenvelope}

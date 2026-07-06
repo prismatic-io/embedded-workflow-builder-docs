@@ -19,6 +19,8 @@ This component was built using [Microsoft Graph REST API v1.0](https://learn.mic
 
 OAuth 2.0 Authorization Code Connectivity for Microsoft Graph API
 
+<Vimeo video="907604023" />
+
 #### Prerequisites
 
 - A Microsoft Azure account with admin access
@@ -52,6 +54,49 @@ Supply the following values to the **OAuth 2.0** connection:
 **Important**: Ensure the `offline_access` scope is included in the app registration. This scope is essential for receiving refresh tokens. Without it, users must re-authenticate every hour.
 
 For more information on authenticating against the Microsoft Graph API, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+Without publisher verification, the Microsoft consent screen displays **"Unverified"** next to the app name. This can reduce user trust and may trigger security warnings in organizations with strict app access policies.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
+
+<Vimeo video="907604023" />
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

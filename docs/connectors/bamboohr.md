@@ -6,11 +6,11 @@ description: Manage employees and HR data in BambooHR.
 
 ![BambooHR](./assets/bamboohr.png#connector-icon)
 [BambooHR](https://www.bamboohr.com/) is a comprehensive human resources software platform that helps companies manage their HR processes effectively. BambooHR's services include an applicant tracking system, employee benefits tracker, time tracking, and employee records management.
-This component allows you to interact with the BambooHR API.
+This component enables interaction with the BambooHR API.
 
 ## API Documentation
 
-This component was built using the [BambooHR API Documentation](https://documentation.bamboohr.com/reference/)
+This component was built using the [BambooHR API Documentation](https://documentation.bamboohr.com/reference).
 
 ## Connections
 
@@ -18,10 +18,27 @@ This component was built using the [BambooHR API Documentation](https://document
 
 Authenticate requests using an API key.
 
-Bamboo HR API keys can be used for testing an integration, but for production integrations, please use OAuth 2.0.
+Authenticate requests to BambooHR using an API key.
 
-To generate an API key, log in to Bamboo HR, click your user profile image on the upper-right and then click **API Keys**.
-Click **Add New Key**, and take note of the API key that is generated - it will be a ~40 character alphanumeric string.
+#### Prerequisites
+
+- An active BambooHR account with permission to manage API keys.
+- The BambooHR company domain (the `MYCOMPANY` portion of `https://MYCOMPANY.bamboohr.com`).
+
+#### Setup Steps
+
+1. Log in to BambooHR.
+2. Click the user profile image in the upper-right corner.
+3. Select **API Keys**.
+4. Click **Add New Key**.
+5. Copy the generated key — it will be an approximately 40-character alphanumeric string. Store it securely; it will not be shown again.
+
+#### Configure the Connection
+
+Create a connection of type **API Key** and provide the following inputs:
+
+- **API Key**: The BambooHR API key generated in the steps above.
+- **Company Domain**: The `MYCOMPANY` portion of the `https://MYCOMPANY.bamboohr.com` instance URL.
 
 | Input          | Comments                                                                                            | Default |
 | -------------- | --------------------------------------------------------------------------------------------------- | ------- |

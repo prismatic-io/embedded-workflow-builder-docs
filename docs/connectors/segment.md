@@ -209,12 +209,13 @@ Returns a Destination by its id.
 
 Returns a list of all available Destinations in the Segment catalog.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### Get Destination Metadata {#getdestinationmetadata}
 
@@ -253,6 +254,7 @@ Enumerates the Workspace event volumes over time in minute increments.
 | Event Name  | A list of strings which filters the results to the given EventNames.                                                                                                                                                           | <code>["000xxx"]</code> |
 | Event Type  | A list of strings which filters the results to the given EventNames.                                                                                                                                                           | <code>["000xxx"]</code> |
 | App Version | A list of strings which filters the results to the given AppVersions.                                                                                                                                                          | <code>["000xxx"]</code> |
+| Fetch All   | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled.                                                                       | false                   |
 | Count       | The number of results to return.                                                                                                                                                                                               | 50                      |
 | Cursor      | The page to request.                                                                                                                                                                                                           |                         |
 
@@ -290,12 +292,13 @@ Returns a Source catalog item by its id.
 
 Returns a list of all available Sources in the Segment catalog.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### Get Transformation {#gettransformation}
 
@@ -341,12 +344,13 @@ Returns a Warehouse catalog item by its id.
 
 Returns a list of all available Warehouses in the Segment catalog.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### List Connected Sources from Warehouse {#listconnectedsourcesfromwarehouse}
 
@@ -362,80 +366,87 @@ Returns the list of Sources that are connected to a Warehouse.
 
 Returns a list of Destinations.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### List Destination Subscriptions {#listdestinationsubscriptions}
 
 Lists subscriptions for a Destination.
 
-| Input          | Comments                              | Default |
-| -------------- | ------------------------------------- | ------- |
-| Connection     |                                       |         |
-| Region         | The region of the Segment API to use. | api     |
-| Destination ID | The Destination ID to use.            |         |
-| Count          | The number of results to return.      | 50      |
-| Cursor         | The page to request.                  |         |
+| Input          | Comments                                                                                                                                                 | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                                                          |         |
+| Region         | The region of the Segment API to use.                                                                                                                    | api     |
+| Destination ID | The Destination ID to use.                                                                                                                               |         |
+| Fetch All      | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count          | The number of results to return.                                                                                                                         | 50      |
+| Cursor         | The page to request.                                                                                                                                     |         |
 
 ### List Functions {#listfunctions}
 
 Lists all Functions in a Workspace.
 
-| Input         | Comments                              | Default |
-| ------------- | ------------------------------------- | ------- |
-| Connection    |                                       |         |
-| Region        | The region of the Segment API to use. | api     |
-| Resource Type | The Function type.                    |         |
-| Count         | The number of results to return.      | 50      |
-| Cursor        | The page to request.                  |         |
+| Input         | Comments                                                                                                                                                 | Default |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection    |                                                                                                                                                          |         |
+| Region        | The region of the Segment API to use.                                                                                                                    | api     |
+| Resource Type | The Function type.                                                                                                                                       |         |
+| Fetch All     | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count         | The number of results to return.                                                                                                                         | 50      |
+| Cursor        | The page to request.                                                                                                                                     |         |
 
 ### List Sources {#listsources}
 
 Returns a list of Sources.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### List Transformations {#listtransformations}
 
 Returns a list of Transformations.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### List Users {#listusers}
 
 Returns a list of users with access to the Workspace.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### List Warehouses {#listwarehouses}
 
 Returns a list of Warehouses.
 
-| Input      | Comments                              | Default |
-| ---------- | ------------------------------------- | ------- |
-| Connection |                                       |         |
-| Region     | The region of the Segment API to use. | api     |
-| Count      | The number of results to return.      | 50      |
-| Cursor     | The page to request.                  |         |
+| Input      | Comments                                                                                                                                                 | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                          |         |
+| Region     | The region of the Segment API to use.                                                                                                                    | api     |
+| Fetch All  | When enabled, automatically fetches all pages of results by following cursor-based pagination. Count and Cursor inputs are ignored when this is enabled. | false   |
+| Count      | The number of results to return.                                                                                                                         | 50      |
+| Cursor     | The page to request.                                                                                                                                     |         |
 
 ### Raw Request {#rawrequest}
 

@@ -294,6 +294,7 @@ Gets all the available namespaces within the subscription, irrespective of the r
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      |                                                                                                                                                   |         |
 | Subscription ID | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. |         |
+| Fetch All       | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.  | false   |
 
 ### List Namespaces By Resource Group {#listnamespacesbyresourcegroup}
 
@@ -304,6 +305,7 @@ Gets the available namespaces within a resource group.
 | Connection          |                                                                                                                                                   |         |
 | Resource Group Name | Name of the Resource group within the Azure subscription.                                                                                         |         |
 | Subscription ID     | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. |         |
+| Fetch All           | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.  | false   |
 
 ### List Queues {#listqueues}
 
@@ -315,6 +317,7 @@ Gets the queues within a namespace.
 | Subscription ID     | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.                                                                                                     |         |
 | Resource Group Name | Name of the Resource group within the Azure subscription.                                                                                                                                                                                             |         |
 | Namespace Name      | The namespace name                                                                                                                                                                                                                                    |         |
+| Fetch All           | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.                                                                                                      | false   |
 | Skip                | Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. |         |
 | Top                 | May be used to limit the number of results to the most recent N usageDetails.                                                                                                                                                                         |         |
 
@@ -330,6 +333,7 @@ List all the rules within given topic-subscription
 | Namespace Name      | The namespace name                                                                                                                                                                                                                                    |         |
 | Topic Name          | The topic name.                                                                                                                                                                                                                                       |         |
 | Subscription Name   | The subscription name.                                                                                                                                                                                                                                |         |
+| Fetch All           | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.                                                                                                      | false   |
 | Skip                | Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. |         |
 | Top                 | May be used to limit the number of results to the most recent N usageDetails.                                                                                                                                                                         |         |
 
@@ -353,6 +357,7 @@ List all the subscriptions under a specified topic.
 | Queue Name          | The queue name.                                                                                                                                                                                                                                       |         |
 | Resource Group Name | Name of the Resource group within the Azure subscription.                                                                                                                                                                                             |         |
 | Subscription ID     | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.                                                                                                     |         |
+| Fetch All           | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.                                                                                                      | false   |
 | Skip                | Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. |         |
 | Top                 | May be used to limit the number of results to the most recent N usageDetails.                                                                                                                                                                         |         |
 | Topic Name          | The topic name.                                                                                                                                                                                                                                       |         |
@@ -368,6 +373,7 @@ Gets all the topics in a namespace
 | Queue Name          | The queue name.                                                                                                                                                                                                                                       |         |
 | Resource Group Name | Name of the Resource group within the Azure subscription.                                                                                                                                                                                             |         |
 | Subscription ID     | Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.                                                                                                     |         |
+| Fetch All           | When enabled, automatically fetches all pages of results by following nextLink pagination. Skip and Top inputs are ignored when this is enabled.                                                                                                      | false   |
 | Skip                | Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. |         |
 | Top                 | May be used to limit the number of results to the most recent N usageDetails.                                                                                                                                                                         |         |
 

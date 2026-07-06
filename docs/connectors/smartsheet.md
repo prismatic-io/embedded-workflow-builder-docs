@@ -10,7 +10,7 @@ This component allows managing and interacting with Smartsheet sheets.
 
 ## API Documentation
 
-This component was built using the [Smartsheet API Documentation](https://developers.smartsheet.com/api/smartsheet/introduction)
+This component was built using the [Smartsheet API Documentation](https://developers.smartsheet.com/api/smartsheet/introduction).
 
 ## Connections
 

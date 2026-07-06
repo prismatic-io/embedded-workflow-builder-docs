@@ -14,6 +14,8 @@ This component allows you to interact with your projects, tasks, and assignments
 
 OAuth 2.0 Connectivity for Microsoft Project
 
+<Vimeo video="907604023" />
+
 To create an new Microsoft Project App Registration:
 
 1. Navigate to the [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**.
@@ -43,6 +45,49 @@ To configure the OAuth 2.0 connection:
 - Use the same **PWA Site** value for that field.
 
 Save your integration and you should be able to authenticate a user through MS Project Online with Auth 2.0.
+
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+**Complete publisher verification before deploying to end users.** Without it, the Microsoft consent screen displays **"Unverified"** next to the app name. This reduces user trust and may prevent users in organizations with strict Azure AD policies from being able to authorize the app at all.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
+
+<Vimeo video="907604023" />
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -292,23 +337,23 @@ Publish the draft of an existing project
 
 Send raw HTTP request to Microsoft Project
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                             | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                                                                                      |         |
-| URL                     | Input the path only (/ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a')), The base URL is already included ({pwaSite}/sites/pwa/\_api). For example, to connect to {pwaSite}/sites/pwa/\_api/ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a'), only /ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a') is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                              |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                            |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                 |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                     |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                               |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                  |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                          |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                             | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                  |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                                  | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                     | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                                  | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                                                        | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                           | Default |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              |                                                                                                                                                                                                                                                                                                                                                                                    |         |
+| URL                     | Input the path only (/ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a')), The base URL is already included ({pwaSite}/sites/pwa/_api). For example, to connect to {pwaSite}/sites/pwa/_api/ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a'), only /ProjectServer/Projects(guid'9840c3b6-ac3d-ec11-bea0-00155d788e0a') is entered in this field. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                            |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                          |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                               |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                   |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                             |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                        |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                           | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                                | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                   | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                                | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                                                      | false   |
 
 ### Remove Project {#removeproject}
 

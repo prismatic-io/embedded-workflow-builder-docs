@@ -27,18 +27,69 @@ Access Token connection for Meta Ads Conversions API
 OAuth 2.0 connection for Meta Ads
 
 This component uses OAuth 2.0 to connect to the Meta Ads Marketing API.
-To get started with [Meta Ads](https://developers.facebook.com/docs/marketing-apis/get-started), you first need to [create a developer account](https://developers.facebook.com/).
 
-1. Select **Create app**, take note of the App Id and App Secret under the basic tab.
-1. Navigate to the Facebook Login Section:
-   1. Under the **Valid OAuth Redirect URIs** section add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Redirect URI**.
-1. Now add a new Meta Ads action to your flow, and you will see a new connection.
-1. Enter the values that you previously saved from your Facebook Developer App.
-1. All the scopes you need should already exist in the connection. However if you need to enter additional scopes you can refer to [Meta Ads Docs](https://developers.facebook.com/docs/permissions/reference/) to find the correct ones.
+#### Prerequisites
 
-Now you can make a new Meta Ads connection, and provide the values you obtained earlier.
+- A [Meta developer account](https://developers.facebook.com/)
+- A [Meta Business account](https://business.facebook.com/) with Business Verification completed (required for production access)
 
-For any additional setup information, refer to the [Meta Ads Docs](https://developers.facebook.com/docs/marketing-apis/overview)
+#### Setup Steps
+
+1. Navigate to the [Meta for Developers portal](https://developers.facebook.com/) and select **Create app**
+2. Select an app type appropriate for the integration
+3. Take note of the **App ID** and **App Secret** from the **Basic Settings** tab
+4. Navigate to **Facebook Login** > **Settings** in the app sidebar
+5. Under **Valid OAuth Redirect URIs**, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a redirect URI
+6. Save the changes
+
+#### Configure the Connection
+
+- Enter the **App ID** as the **Client ID**
+- Enter the **App Secret** as the **Client Secret**
+- Scopes for common Marketing API permissions are pre-configured in the connection. Refer to the [Meta Permissions Reference](https://developers.facebook.com/docs/permissions/reference/) for additional scopes
+
+#### Meta App Review
+
+Meta requires apps to pass an App Review before they can access user accounts outside the development team. This process ensures apps comply with Meta's Platform Policies and handle data from Meta accounts appropriately.
+
+Meta apps pass through two states before they are ready for deployment.
+
+**Development mode (before App Review):** New apps operate in development mode by default. Only users with an explicit role on the app (Administrator, Developer, or Tester) can authenticate. Users without a role who attempt to authorize are blocked. Meta displays an error indicating the app is in development and unavailable to the public. Authorization cannot be completed. This is the expected state during initial development.
+
+**Live mode (after App Review):** Any Meta user can authorize the integration. No development restriction or warning is shown.
+
+To allow end users to authenticate and use the Marketing API, the app must pass Meta's App Review process.
+
+#### Business Verification
+
+Business Verification is required before submitting permissions for App Review:
+
+1. Navigate to [Business Settings](https://business.facebook.com/settings/info) for the Meta Business account
+2. Under **Business Info**, select **Verify Business** and follow the verification steps
+3. Submit the required business documentation
+
+#### Requesting Permission Approval
+
+After Business Verification, submit each required permission for review:
+
+1. In the app dashboard, navigate to **App Review** > **Permissions and Features**
+2. Locate the required permissions. Common Marketing API permissions include:
+   - `ads_management`: Create, read, update, and delete ad objects
+   - `ads_read`: Read ad performance data
+   - `business_management`: Manage business assets
+3. Click **Request** next to each permission and complete the submission:
+   - Provide a description of how the permission will be used
+   - Include a screen recording demonstrating the feature in action
+4. Submit for review. Meta typically reviews within several business days
+
+#### Enabling Live Mode
+
+After permissions are approved, switch the app from development to live mode:
+
+1. In the app dashboard, toggle **App Mode** from **In development** to **Live**
+2. Live mode makes the app accessible to users outside the development team
+
+For additional setup information, refer to the [Meta Marketing API documentation](https://developers.facebook.com/docs/marketing-apis/overview).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

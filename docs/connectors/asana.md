@@ -7,7 +7,7 @@ description: Manage users, projects, and teams in your Asana workspace.
 ![Asana](./assets/asana.png#connector-icon)
 [Asana](https://app.asana.com/) is a web and mobile application designed to help teams organize, track, and manage their work.
 
-Use the Asana component to manage users, projects, and teams in your Asana workspace.
+Use the Asana component to manage users, projects, and teams in an Asana workspace.
 
 ## Connections
 

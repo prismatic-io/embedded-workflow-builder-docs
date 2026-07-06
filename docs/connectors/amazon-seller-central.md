@@ -48,6 +48,36 @@ To register the application for public or private seller use:
 
 For information on required scopes and permissions, refer to the [SP-API authorization documentation](https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications).
 
+#### Public Developer Registration
+
+Amazon requires apps that will be used across multiple seller accounts to complete a public developer registration and Appstore listing review. This process verifies the integration complies with Amazon's data access policies before it can access seller accounts beyond the developer's own.
+
+**Complete public developer registration before deploying to end users.** By default, an Amazon Seller Central app can only be authorized by the seller account that registered the application. Other sellers receive an error when attempting to connect. To allow other sellers to authorize the integration, the application must be registered as a public developer and listed on the Selling Partner Appstore.
+
+#### Registering as a Public Developer
+
+1. In the [Developer Central console](https://sellercentral.amazon.com/sellingpartner/developerconsole), navigate to **Developer Profile**
+2. Complete the developer registration questionnaire, including a description of the integration, data access justification for each requested permission, and security and data handling practices
+3. Submit the profile for Amazon's review. Registration review typically takes 1–2 weeks
+
+For detailed requirements, refer to [Registering your application](https://developer-docs.amazon.com/sp-api/docs/registering-your-application).
+
+#### Listing on the Selling Partner Appstore
+
+After public developer registration is approved, list the application on the Selling Partner Appstore so other sellers can install it:
+
+1. In **Developer Central**, navigate to the application and select **Add Appstore listing**
+2. Complete the listing details: title, description, screenshots, and support contact
+3. Submit the listing for review. Listing review adds approximately 1–2 additional weeks
+
+For detailed requirements, refer to [Listing your app on the Selling Partner Appstore](https://developer-docs.amazon.com/sp-api/docs/list-your-app-on-the-selling-partner-appstore).
+
+Once the Appstore listing is approved, the `version=beta` parameter can be removed from the **Authorize URL**, indicating the application is no longer in draft state.
+
+:::note[Self-Authorization (Private Use)]
+If the integration is only used to access the developer's own Seller Central account, public developer registration and Appstore listing are not required. The `version=beta` parameter should remain in the **Authorize URL** for self-authorization scenarios.
+:::
+
 :::note[Amazon Seller Central Sandbox Environment]
 When connecting to the Sandbox environment, some fields require different value formats than Production to succeed. The expected values can be referenced in the [Selling Partner API Models](https://github.com/amzn/selling-partner-api-models/tree/f3b0bc6c3949f791589b079e78b341f13f954b41/models).
 
@@ -396,8 +426,8 @@ Returns feed details for the feeds that match the filters that you specify.
 | Marketplace Ids     | List of MarketplaceId values. Used to select orders that were placed in the specified marketplaces. See the [Marketplace IDs documentation](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of marketplaceId values.                     |                          |
 | Page Size           | The maximum number of feeds to return in a single call.                                                                                                                                                                                                                     | 10                       |
 | Processing Statuses | List of processing statuses used to filter feeds.                                                                                                                                                                                                                           |                          |
-| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2026-02-20T17:27:48.177Z |
-| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-05-21T17:27:48.177Z |
+| Created Since       | The earliest feed creation date and time for feeds included in the response in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.                                                                                                    | 2026-03-05T20:08:32.080Z |
+| Created Until       | The latest feed creation date and time for feeds included in the response in ISO 8601 format. The default is now.                                                                                                                                                           | 2026-06-03T20:08:32.080Z |
 | Next Token          | String token returned in the response of your previous request for pagination.                                                                                                                                                                                              |                          |
 
 ### List Orders {#listorders}

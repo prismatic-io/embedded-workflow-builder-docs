@@ -54,6 +54,19 @@ Personal Developer Tokens are used for private applications or during developmen
 | Base URL | The base URL of the Frontify API. This URL should be provided by the service provider.                                             |         |
 | Token    | The personal developer token is used to authenticate with the Frontify API. This token should be provided by the service provider. |         |
 
+## Triggers
+
+### New and Updated Assets {#pollchangestrigger}
+
+Checks for new and updated Assets in Frontify on a configured schedule.
+
+| Input                | Comments                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------- | ------- |
+| Frontify Connection  |                                                                                    |         |
+| Library ID           | ID of the Library entity.                                                          |         |
+| Show New Records     | When true, assets created since the last poll are included in the trigger output.  | true    |
+| Show Updated Records | When true, assets modified since the last poll are included in the trigger output. | true    |
+
 ## Actions
 
 ### Create Asset {#createasset}

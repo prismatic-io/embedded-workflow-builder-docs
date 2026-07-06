@@ -98,6 +98,29 @@ Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authen
 Some Box features require an Enterprise account. Ensure the Box account has appropriate subscription level for the required functionality.
 :::
 
+#### App Authorization
+
+Box gives enterprise IT administrators explicit control over which third-party apps can access their organization's data. This is not a vendor review process. It is an enterprise access control step that a Box administrator at the customer's organization must complete before their users can connect.
+
+Box enterprise accounts require an administrator to explicitly authorize a custom app before any users in the organization can authenticate. This is a **hard requirement**: without admin authorization, only the developer's own Box account can connect. All other users receive an error when attempting to authenticate.
+
+Personal (non-enterprise) Box accounts do not require this step.
+
+#### Granting App Authorization
+
+A Box enterprise administrator must authorize the app using the app's **Client ID**:
+
+1. In the [Box Admin Console](https://app.box.com/master), navigate to **Apps** → **Custom Apps Manager**
+2. Click **Add App**
+3. Enter the **Client ID** from the Box app's **Configuration** tab
+4. Click **Next**, review the requested scopes, and select **Authorize**
+
+Once authorized, users within the enterprise organization can authenticate with the integration.
+
+:::note[Re-authorization Required After App Recreation]
+If the Box app is deleted and recreated, a new Client ID is generated and admin authorization must be repeated.
+:::
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

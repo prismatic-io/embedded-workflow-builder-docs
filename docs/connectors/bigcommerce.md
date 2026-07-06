@@ -6,7 +6,11 @@ description: Manage products, brands, categories, and more on the BigCommerce ec
 
 ![BigCommerce](./assets/bigcommerce.png#connector-icon)
 [BigCommerce](https://www.bigcommerce.com/) is a leading SaaS eCommerce platform that allows businesses to build, innovate, and grow their online stores.
-This component allows you to manage products, brands, categories, and other essential e-commerce features in a BigCommerce store.
+This component manages products, brands, categories, and other essential e-commerce features in a BigCommerce store.
+
+## API Documentation
+
+This component leverages the [BigCommerce REST API](https://docs.bigcommerce.com/developer/api-reference/about-our-apis).
 
 ## Connections
 
@@ -14,9 +18,27 @@ This component allows you to manage products, brands, categories, and other esse
 
 Authenticate using OAuth 2.0.
 
-1. To create an OAuth 2.0 app in BigCommerce, sign up for a BigCommerce developer account at https://developer.bigcommerce.com/ and create a new BigCommerce application.
-2. Take note of your application's Client ID and Secret and enter those values when you add a BigCommerce connection to your integration.
-3. Under Redirect URI, add the callback URL, `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+To create a connection of type **OAuth 2.0**:
+
+#### Prerequisites
+
+- A BigCommerce developer account. Sign up at the [BigCommerce Developer Portal](https://docs.bigcommerce.com/developer/docs/integrations/apps/guide/auth).
+- An existing BigCommerce store (or sandbox store) to install the app against.
+
+#### Setup Steps
+
+1. Sign in to the [BigCommerce Developer Portal](https://docs.bigcommerce.com/developer/docs/integrations/apps/guide/auth) and open **My Apps**.
+2. Click **Create an App** and complete the app metadata fields.
+3. Under **Technical**, set the **Auth Callback URL** to `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+4. Select the OAuth scopes required by the integration. See the [BigCommerce OAuth scopes reference](https://docs.bigcommerce.com/developer/docs/overview/api-fundamentals/api-accounts) for the full list.
+5. Save the app and note the **Client ID** and **Client Secret** values.
+
+#### Configure the Connection
+
+1. Enter the OAuth **Scopes** as a space-delimited list (for example, `store_v2_products store_v2_orders`). The default is `store_v2_default`.
+2. Enter the **Client ID** from the BigCommerce app.
+3. Enter the **Client Secret** from the BigCommerce app.
+4. Save the connection and complete the OAuth authorization flow when prompted.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

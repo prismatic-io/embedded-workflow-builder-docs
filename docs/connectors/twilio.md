@@ -5,8 +5,12 @@ description: Send SMS messages through Twilio
 ---
 
 ![Twilio](./assets/twilio.png#connector-icon)
-[Twilio](https://www.twilio.com/) is a platform that allows you to send SMS text messages.
-You can use the Twilio component to send messages to your end users or to your team.
+[Twilio](https://www.twilio.com/) is a cloud communications platform for sending SMS text messages and other programmable messaging.
+This component allows sending SMS messages, retrieving message records, and reacting to Twilio events from within an integration.
+
+## API Documentation
+
+This component was built using the [Twilio Programmable Messaging API](https://www.twilio.com/docs/messaging/api) (API version `2010-04-01`).
 
 ## Connections
 
@@ -14,18 +18,33 @@ You can use the Twilio component to send messages to your end users or to your t
 
 Authenticate requests to Twilio using an API key and secret.
 
-This component authenticates with Twilio using API key/secret pairs that can be generated from Twilio's app console.
-To create a Twilio API key and secret pair:
+This component authenticates with Twilio using an API key and secret pair generated from the Twilio console.
 
-- Go to the Twilio [console](https://console.twilio.com/)
-- On the top-right of the screen click **Account** -> **API Keys & Tokens**
-- Select **Create API Key**
-- Give your key a name and select **Standard** for **Key type**
-- Take note of the API key's **SID** and **Secret** - you will enter those in a moment
+#### Prerequisites
 
-Now, when you create an integration that uses Twilio, a "Twilio API Key Connection" will automatically be generated.
-Enter your **API Key SID** (starts with "SK..."), and its **Secret**.
-Go back to your Twilio console to find your **Account SID** (starts with "AC..."), and enter that as well.
+- A Twilio account with access to the [Twilio Console](https://console.twilio.com/)
+- Permissions to create API keys for the account
+
+#### Setup Steps
+
+1. Sign in to the [Twilio Console](https://console.twilio.com/)
+2. In the top-right of the screen, click **Account** -> **API Keys & Tokens**
+3. Select **Create API Key**
+4. Enter a descriptive name for the key and select **Standard** for **Key type**
+5. Take note of the API key's **SID** and **Secret** (the secret is only shown once)
+6. From the Twilio console, locate the **Account SID** (it starts with `AC`)
+
+#### Configure the Connection
+
+Create a connection of type **API Key** and enter the following values:
+
+- **Account SID**: The Twilio Account SID, which starts with `AC` (for example, `ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`)
+- **API Key SID**: The API Key SID created in the previous step, which starts with `SK` (for example, `SKXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`)
+- **API Key Secret**: The secret generated when the API key was created
+
+:::warning[Store the Secret Securely]
+The API key secret is only displayed once at creation time. Save it in a secure location before leaving the page.
+:::
 
 | Input          | Comments                                               | Default |
 | -------------- | ------------------------------------------------------ | ------- |
@@ -37,12 +56,29 @@ Go back to your Twilio console to find your **Account SID** (starts with "AC..."
 
 Authenticate requests to Twilio using an Account SID and Auth Token.
 
-When you create a Twilio account, an **Account String Identifier** (Account SID) and **Auth Token** are generated.
-You can use the account SID and auth token to authenticate with Twilio and to send SMS messages.
+When a Twilio account is created, an **Account String Identifier** (Account SID) and **Auth Token** are generated automatically.
+The Account SID and Auth Token can be used to authenticate with Twilio and send SMS messages.
+
+#### Prerequisites
+
+- A Twilio account with access to the [Twilio Console](https://console.twilio.com/)
+
+#### Setup Steps
+
+1. Sign in to the [Twilio Console](https://console.twilio.com/)
+2. From the **Account Info** panel on the dashboard, locate the **Account SID** (starts with `AC`) and the **Auth Token**
+3. Copy both values for use in the connection configuration
+
+#### Configure the Connection
+
+Create a connection of type **Basic Authentication** and enter the following values:
+
+- **Account SID**: The Twilio Account SID, which starts with `AC`
+- **Auth Token**: The Auth Token shown in the Twilio Console
 
 :::caution[Consider API Keys instead]
-For security reasons, we recommend using an [API Key Connection](#apikeysecret) instead.
-API keys can be revoked and auth tokens generated using API keys are short-lived.
+For security reasons, the [API Key Connection](#apikeysecret) is recommended over Basic Authentication.
+API keys can be revoked independently, and auth tokens generated using API keys are short-lived.
 :::
 
 | Input       | Comments                                                               | Default |

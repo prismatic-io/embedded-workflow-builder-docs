@@ -29,8 +29,8 @@ The CLI-based approach is recommended for new HubSpot OAuth integrations as it p
 #### Prerequisites
 
 - A [HubSpot developer account](https://developers.hubspot.com/) is required
-- Node.js and npm installed (for CLI-based app creation)
-- HubSpot CLI version 7.6.0 or higher
+- Node.js v20 or higher and npm installed (for CLI-based app creation)
+- HubSpot CLI version 8.6.0 or higher
 
 #### Setup Steps
 
@@ -51,13 +51,12 @@ The CLI-based approach is recommended for new HubSpot OAuth integrations as it p
    ```bash
    hs project create
    ```
-
    - Select **App** as the project template
    - Choose the distribution type (marketplace or private/specific accounts)
    - Select **OAuth** as the authentication method
    - Optionally select app features (**Card**, **App Function**, **Settings**, **Webhooks**, **Custom Workflow Action**)
 
-4. Configure the app by editing the generated `app-hsmeta.json` file:
+4. Configure the app by editing the generated `app-hsmeta.json` file (located at `src/app/app-hsmeta.json` within the project directory):
    - Update the **name** and **description** fields
    - In the **auth** section, add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` to the **redirectUrls** array
    - Update the **scopes** array with required OAuth permissions
@@ -108,7 +107,7 @@ The following scopes provide comprehensive access to HubSpot CRM functionality t
 | **Additional Objects** | `crm.objects.line_items.write` | Create/update line items                                      |
 | **Additional Objects** | `crm.objects.quotes.read`      | Read quotes                                                   |
 | **Additional Objects** | `crm.objects.quotes.write`     | Create/update quotes                                          |
-| **Additional Objects** | `tickets`                      | Ticket management (legacy scope)                              |
+| **Additional Objects** | `tickets`                      | Ticket management                                             |
 | **Schemas**            | `crm.schemas.contacts.read`    | Contact property definitions                                  |
 | **Schemas**            | `crm.schemas.companies.read`   | Company property definitions                                  |
 | **Schemas**            | `crm.schemas.deals.read`       | Deal property definitions                                     |
@@ -126,8 +125,10 @@ For a complete list of available scopes, refer to the [HubSpot OAuth scopes docu
 
 ### Creating a Legacy App
 
-:::warning[Legacy Apps]
-Legacy apps will continue to work, but will not receive new features or platform improvements from HubSpot. The CLI-based approach is recommended for new integrations.
+:::warning[Legacy App Creation Ending]
+HubSpot is discontinuing legacy public app creation. Creation will be disabled for new developer accounts on **May 26, 2026** and for all accounts on **June 23, 2026**. Existing legacy apps will continue to work.
+
+For new integrations, use the CLI-based approach described above.
 :::
 
 #### Setup Steps
@@ -144,6 +145,20 @@ Legacy apps will continue to work, but will not receive new features or platform
 
 - Enter the **Client ID** and **Client Secret** from the app's Auth page
 - Configure scopes as needed (see Recommended Scopes above)
+
+### App Distribution
+
+HubSpot requires OAuth apps to commit to a distribution type that determines who can install the integration and whether a formal HubSpot review is required. Choosing incorrectly at creation is not recoverable (the app must be rebuilt), so understanding this before creating the app matters.
+
+The distribution type selected during `hs project create` determines who can install the app and whether a review process applies.
+
+**Private or specific accounts** (no review required):
+The app is accessible only to HubSpot accounts you explicitly add. Users from other HubSpot accounts cannot install it. To add accounts, navigate to the app's **Distribution** settings in the developer portal and enter each account's hub ID. This is the appropriate option for single-customer integrations or internal tools.
+
+**HubSpot App Marketplace** (HubSpot review required):
+The app is publicly listed in the [HubSpot App Marketplace](https://ecosystem.hubspot.com/marketplace/apps) and any HubSpot customer can install it. HubSpot reviews marketplace submissions for quality, security, and functionality before listing.
+
+For integrations deployed to multiple customers, each with their own HubSpot account, the marketplace path is the scalable option. For single-organization deployments, the private/specific accounts path avoids the review process entirely.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

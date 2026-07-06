@@ -12,9 +12,9 @@ See more information in the Cloud Firestore section of the Firebase Admin SDK in
 
 ## Connections
 
-### Firebase Private Key Connection {#firebaseconnection}
+### Private Key {#firebaseconnection}
 
-Authenticate requests to firebase using values obtained from the Google Cloud Platform.
+Authenticate requests to Firebase using values obtained from the Google Cloud Platform.
 
 The Firebase Admin SDK is a set of server libraries that lets you interact with Firebase from privileged environments.
 To authenticate through the Firebase Admin SDK, follow the instructions to generate a private key located on the Firebase [docs](https://firebase.google.com/docs/admin/setup#set-up-project-and-service-account)
@@ -102,7 +102,7 @@ Completely removes a field from a given document (may not work on a field with a
 
 ### Update Document {#updatedocument}
 
-Updates a document in a Cloud Firestore collection
+Update a document in a Cloud Firestore collection
 
 | Input      | Comments                                                          | Default |
 | ---------- | ----------------------------------------------------------------- | ------- |

@@ -34,6 +34,16 @@ Authenticate with Guru using a user token for read/write access
 
 ## Triggers
 
+### New and Updated Cards {#pollchangestrigger}
+
+Checks for new and updated Cards in Guru on a configured schedule.
+
+| Input                | Comments                                                                         | Default |
+| -------------------- | -------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                  |         |
+| Show New Records     | When true, cards created since the last poll are included in the trigger output. | true    |
+| Show Updated Records | When true, cards updated since the last poll are included in the trigger output. | true    |
+
 ### Webhook Events {#webhook}
 
 Manages Guru webhook subscriptions for your instance. On instance deploy, this trigger creates a webhook subscription in Guru (or reuses an existing one with matching URL and events). On instance deletion, it removes the subscription. The trigger validates incoming webhook requests and handles all webhook lifecycle management automatically.

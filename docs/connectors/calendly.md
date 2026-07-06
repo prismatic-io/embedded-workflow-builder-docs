@@ -58,6 +58,18 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Events {#pollchangestrigger}
+
+Checks for new and updated Events in Calendly on a configured schedule.
+
+| Input                | Comments                                                                          | Default |
+| -------------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection           | The Calendly connection to use.                                                   |         |
+| Organization         | Poll events scheduled with the organization at this URI.                          |         |
+| User                 | Return events scheduled with the user associated with this URI.                   |         |
+| Show New Records     | When true, events created since the last poll are included in the trigger output. | true    |
+| Show Updated Records | When true, events updated since the last poll are included in the trigger output. | true    |
+
 ### Scheduled Event {#calendlytrigger}
 
 Receive data from scheduled events in real time with webhook subscriptions.

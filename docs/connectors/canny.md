@@ -40,6 +40,16 @@ To authenticate with Canny, an API key is required.
 
 ## Triggers
 
+### New and Updated Posts {#pollchangestrigger}
+
+Checks for new and updated Posts in Canny on a configured schedule.
+
+| Input                | Comments                                                                                      | Default |
+| -------------------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Canny connection to use.                                                                  |         |
+| Show New Records     | When true, posts created since the last poll are included in the trigger output.              | true    |
+| Show Updated Records | When true, posts whose status changed since the last poll are included in the trigger output. | true    |
+
 ### Webhook {#webhook}
 
 Receives webhook events from Canny when configured events occur.

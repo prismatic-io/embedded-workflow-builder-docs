@@ -62,6 +62,18 @@ Automatically create and manage GitHub webhooks for specified events. Webhooks a
 | Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
 | Events          | The list of event types that will trigger the webhook.                                                                    |         |
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated issues (including pull requests) in a GitHub repository on a configured schedule.
+
+| Input                | Comments                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                           |         |
+| Owner                | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
+| Repository Name      | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
+| Show New Records     | When true, issues created after the last poll are emitted on the `created` branch.                                        | true    |
+| Show Updated Records | When true, issues updated since the last poll but created earlier are emitted on the `updated` branch.                    | true    |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from Github for webhooks you configure.
@@ -171,7 +183,7 @@ List repository issues
 | Fetch All       | Whether to fetch all results                                                                                              | false   |
 | Milestone       | If an "integer" is passed, it should refer to a milestone by its "number" field                                           |         |
 | State           | Indicates the state of the issues to return                                                                               | open    |
-| Assignee        | The user that is assigned to the issue, use 'none' for issues with no assignee, or '\*' for issues assigned to any user   |         |
+| Assignee        | The user that is assigned to the issue, use 'none' for issues with no assignee, or '*' for issues assigned to any user    |         |
 | Creator         | The user that created the issue                                                                                           |         |
 | Mentioned       | A user that"s mentioned in the issue                                                                                      |         |
 | Labels          | A list of comma separated label names                                                                                     |         |

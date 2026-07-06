@@ -35,6 +35,39 @@ Under the **Permissions** tab, choose the permissions your app will need.
 The actions supported in this component relate to files, so you should grant the `files.metadata.read` and `files.content.read` permissions if you need read-only access, and also include the `files.metadata.write` and `files.content.write` permissions if you need to write files to a user's Dropbox account.
 You can safely ignore permissions listed under **Collaboration** and **Account Info**.
 
+#### Production Approval
+
+Dropbox requires third-party OAuth apps to pass a production approval review. Dropbox OAuth apps start in **development mode**, which are fully functional but limited to 50 total linked users. These apps may be used to build, test, and deploy integrations in this state.
+
+Dropbox apps pass through two states before they are ready for broad deployment.
+
+**Development mode (default):** New apps start in development mode, limited to 50 total linked users. The OAuth authorization flow works normally for users within this limit. No warning is shown during authentication. Once the app reaches 50 linked users, it is frozen: new users cannot authenticate and the authorization flow returns an error to anyone attempting to connect.
+
+**Production approved:** Any Dropbox user can authorize the integration without restriction. No warning is shown.
+
+**Submit for production approval before broadly deploying the integration to end users.** Once an app reaches 50 linked users, Dropbox opens a two-week window to apply for approval. If approval is not granted within this window, the app is **frozen**: new users cannot authenticate, and the app cannot be unfrozen by unlinking existing users. Production approval is the only path forward once frozen.
+
+The recommended approach: deploy to a small initial group to reach the 50 linked users required for review eligibility, then apply for approval immediately and refrain from waiting to scale broadly.
+
+Apps used solely for internal purposes can remain in development mode and do not require production approval.
+
+#### Applying for Production Approval
+
+1. Open the [Dropbox App Console](https://www.dropbox.com/developers/apps) and select the app
+2. On the app's info page, click **Apply for Production**
+3. Provide the following details (more detail leads to faster review):
+   - A description of how the app uses the Dropbox API
+   - An app icon
+   - A functional description of the integration
+
+Applications are not reviewed until the app has at least 50 linked users. Early review is possible by providing a compelling justification when applying.
+
+:::note[App Name Is Locked After Approval]
+The app name cannot be changed after production approval is granted. Finalize the app name before submitting.
+:::
+
+Refer to the [Dropbox developer guide](https://www.dropbox.com/developers/reference/developer-guide#production-approval) for full production approval requirements.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

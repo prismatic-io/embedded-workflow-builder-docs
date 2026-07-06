@@ -75,6 +75,19 @@ Receive event notifications from Contentful. Automatically creates and manages a
 | Space ID   | The unique identifier for the Contentful space.   |         |
 | Events     | The event types to subscribe to for this webhook. |         |
 
+### New and Updated Entries {#pollchangestrigger}
+
+Checks for new and updated entries in a selected Contentful environment on a configured schedule.
+
+| Input                | Comments                                                                                                                         | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Contentful connection to use.                                                                                                |         |
+| Space ID             | The unique identifier for the Contentful space.                                                                                  |         |
+| Environment ID       | The unique identifier for the Contentful environment.                                                                            |         |
+| Content Type ID      | Restrict polling to a single content type. Leave blank to poll all entries in the environment.                                   |         |
+| Show New Entries     | When true, entries whose `sys.createdAt` falls after the last poll are emitted on the `created` branch.                          | true    |
+| Show Updated Entries | When true, entries whose `sys.updatedAt` falls after the last poll but were created earlier are emitted on the `updated` branch. | true    |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from Contentful for webhooks you configure.

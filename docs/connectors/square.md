@@ -6,7 +6,7 @@ description: Manage payments, customers, orders, invoices, and team members in S
 
 ![Square](./assets/square.png#connector-icon)
 [Square](https://squareup.com/) is a comprehensive commerce platform that provides payment processing, point-of-sale systems, online store capabilities, and business management tools.
-This component allows you to manage payments, customers, orders, inventory, invoices, team members, and webhooks in a Square account.
+This component enables management of payments, customers, orders, inventory, invoices, team members, and webhooks in a Square account.
 
 ## API Documentation
 
@@ -36,13 +36,32 @@ To connect to Square using OAuth 2.0, create an application in the Square Develo
 
 #### Configure the Connection
 
-- Enter the **Application ID** as the **Client ID**
-- Enter the **Application Secret** as the **Client Secret**
-- For **Scopes**, configure the OAuth permissions the application requires. Refer to the [Square OAuth Permissions documentation](https://developer.squareup.com/docs/oauth-api/square-permissions) for available scopes.
+- Select the **Authorize URL** matching the target Square environment. Defaults to the Production URL `https://connect.squareup.com/oauth2/authorize`; select the Sandbox URL `https://connect.squareupsandbox.com/oauth2/authorize` for testing.
+- Select the **Token URL** matching the same environment as the Authorize URL. Defaults to the Production URL `https://connect.squareup.com/oauth2/token`; select the Sandbox URL `https://connect.squareupsandbox.com/oauth2/token` for testing.
+- For **Scopes**, enter a space-separated list of OAuth permissions required by the application. Refer to the [Square OAuth Permissions documentation](https://developer.squareup.com/docs/oauth-api/square-permissions) for available scopes.
+- Enter the **Application ID** as the **Client ID**.
+- Enter the **Application Secret** as the **Client Secret**.
+- (Optional) Set the **API Version** to override the default Square API version. Leave blank to use the default. See [Square API Versioning](https://developer.squareup.com/docs/build-basics/versioning-overview) for details.
 
 #### Verify Connection
 
-After configuring the connection, users will be redirected to Square to authorize access to the account. Once authorized, the integration can interact with the Square API on behalf of the user.
+After configuring the connection, the authorizing user is redirected to Square to authorize access to the account. Once authorized, the integration can interact with the Square API on behalf of the merchant.
+
+#### Production Credentials
+
+Square separates its development environment from production to prevent test operations from affecting live merchant data. Sandbox and production credentials are distinct. Switching to production credentials is a required step before the integration can interact with real Square accounts.
+
+Square sandbox and production environments use separate credentials. The sandbox environment is for testing only. To connect to real Square accounts, use production credentials.
+
+1. Navigate to the application in the [Square Developer Portal](https://developer.squareup.com/apps)
+2. Toggle from **Sandbox** to **Production** in the top navigation
+3. Copy the **Application ID** and **Application Secret** from the **Production** > **Credentials** section
+
+Update the connection configuration with the production **Application ID** (Client ID) and **Application Secret** (Client Secret).
+
+:::note[App Marketplace]
+If distributing the app publicly through the [Square App Marketplace](https://squareup.com/app-marketplace), a formal app review is required, including having at least 5 active sellers using the integration. For private integrations within a single organization, App Marketplace listing is not required and no formal review applies.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

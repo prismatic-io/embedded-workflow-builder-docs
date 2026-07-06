@@ -55,39 +55,74 @@ Create a connection of type **Basic Authentication** and enter:
 Authenticate requests using OAuth 2.0.
 
 OAuth 2.0 provides a simple way for users to authorize applications.
-To use OAuth 2.0, create and configure a [Connected App](https://help.salesforce.com/s/articleView?id=xcloud.connected_app_create.htm&type=5) within Salesforce.
+To use OAuth 2.0, create and configure an External Client App (recommended) or a [Connected App](https://help.salesforce.com/s/articleView?id=xcloud.connected_app_create.htm&type=5) within Salesforce.
 
 #### Prerequisites
 
 - A Salesforce account with Administrator access
-- Permission to create Connected Apps in the Salesforce org
+- Permission to create External Client Apps or Connected Apps in the Salesforce org
 
-#### Setup Steps
+:::warning[Connected App Creation Restricted as of Spring '26]
+Salesforce restricted the creation of new Connected Apps in the Spring '26 release. To create a new Connected App, contact Salesforce Support. Salesforce recommends using External Client Apps for new integrations.
+
+Existing Connected Apps continue to work and do not require changes.
+:::
+
+#### External Client App Setup (Recommended for New Integrations)
 
 1. Log in to the Salesforce account
 1. Navigate to **Setup** by clicking the gear icon in the upper right corner
-1. Open **Apps** > **External Client Apps** > **Settings**
-1. Enable **Allow creation of connected apps** if it is not already enabled
-1. Select **New Connected App**
-   - When creating the "Connected App" be sure to check **Enable OAuth Settings**, and enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Callback URL**.
-   - Consult Salesforce to determine the proper OAuth Scopes to assign.
-     To grant integrations the same permissions that the user authenticating through OAuth has, select **Full access (full)**.
-     Also select **Perform requests at any time (refresh_token, offline_access)**.
-     Select **Require Secret for Web Server Flow** and **Require Secret for Refresh Token Flow**:
+1. In the **Quick Find** box, search for **External Client App Manager** and select it
+1. Click **New External Client App**
+1. Complete the **Basic Information** fields:
+   - **Name**: Enter a descriptive name for the integration
+   - **Contact Email**: Enter a valid contact email address
+1. Expand **API (Enable OAuth Settings)** and check **Enable OAuth**
+1. Enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the **Callback URL**
+1. Under **Selected OAuth Scopes**, add:
+   - **Full access (full)**: grants the integration the same permissions as the authenticating user
+   - **Perform requests at any time (refresh_token, offline_access)**
+1. Under security settings, select **Require Secret for the Web Server Flow** and **Require Secret for Refresh Token Flow**
+1. Click **Save**
 
-Next select **Save** and **Continue**.
-Then, get the app's **Consumer Key** and **Consumer Secret** by selecting **Manage Consumer Details**.
+To retrieve the app credentials after saving:
+
+1. From **External Client App Manager**, click the app name
+1. Select **Settings**
+1. Click **Consumer Key and Secret** to view the credentials
+
+Take note of the **Consumer Key** and **Consumer Secret**. Both are required when configuring the connection.
+
+#### Connected App Setup (Existing Apps)
+
+:::note[For existing Connected Apps only]
+Connected App creation is restricted as of Spring '26. These steps apply only if a Connected App was created before Spring '26 or if Salesforce Support has granted permission to create new ones.
+:::
+
+1. Log in to the Salesforce account
+1. Navigate to **Setup** by clicking the gear icon in the upper right corner
+1. Open **Apps** > **App Manager**
+1. Select **New Connected App**
+1. Check **Enable OAuth Settings**
+1. Enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the **Callback URL**
+1. Under **Selected OAuth Scopes**, add:
+   - **Full access (full)**: grants the integration the same permissions as the authenticating user
+   - **Perform requests at any time (refresh_token, offline_access)**
+1. Select **Require Secret for the Web Server Flow** and **Require Secret for Refresh Token Flow**
+
+1. Select **Save** and **Continue**
+1. Click **Manage Consumer Details** to retrieve the **Consumer Key** and **Consumer Secret**
+
 Take note of these keys:
 
-To return to this screen, select **Apps** > **App Manager**, click the dropdown menu to the right of the app and select **Edit**.
-From there, manage callback URLs.
+To update callback URLs later, select **Apps** > **App Manager**, click the dropdown next to the app, and select **Edit**.
 
 #### Configure the Connection
 
 Create a connection of type **OAuth 2.0** and enter:
 
-- **Consumer Key**: Enter the Consumer Key from the Connected App
-- **Consumer Secret**: Enter the Consumer Secret from the Connected App
+- **Consumer Key**: Enter the Consumer Key from the app
+- **Consumer Secret**: Enter the Consumer Secret from the app
 - **Authorize URL**: Defaults to `https://login.salesforce.com/services/oauth2/authorize`
 - **Token URL**: Defaults to `https://login.salesforce.com/services/oauth2/token`
 - **Revoke URL**: Defaults to `https://login.salesforce.com/services/oauth2/revoke`
@@ -96,6 +131,20 @@ Create a connection of type **OAuth 2.0** and enter:
 To connect to a Salesforce sandbox organization for testing purposes, edit the connection's **Authorize URL**, **Token URL** and **Revoke URL** to read `test.salesforce.com` instead of `login.salesforce.com`.
 Be sure to change these values back when testing is done.
 :::
+
+#### OAuth Policies
+
+Salesforce administrators control which users can authorize through **OAuth Policies**. The navigation path depends on the app type:
+
+- **External Client App**: Navigate to **Setup** > **External Client App Manager**, click the app name, select **OAuth** from the left menu, then **Edit Policies**
+- **Connected App**: Navigate to **Setup** > **Apps** > **App Manager**, click the dropdown next to the app, select **Manage**, then **Edit Policies**
+
+The **Permitted Users** setting determines access:
+
+- **All users may self-authorize**: Any user in the Salesforce org can authenticate with the integration. This is the default setting.
+- **Admin approved users are pre-authorized**: Only users or profiles that an administrator has explicitly granted access can authenticate. All other users see an authorization error when attempting to connect.
+
+If users encounter authorization errors after the connection is configured correctly, verify the **Permitted Users** policy is set to **All users may self-authorize**, or that the required users or profiles have been granted access under **Manage** > **Profiles** or **Permission Sets**.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -130,6 +179,7 @@ This connection requires a Connected App configured for Client Credentials. If a
    4. Click **Save**
 
 2. **Configure Run As User** — the Client Credentials flow requires specifying which user the integration will authenticate as:
+
    1. From the Connected App, select **Manage** from the dropdown menu
    2. Click **Edit Policies**
    3. Under **Client Credentials Flow**, select a user from the **Run As** dropdown
@@ -663,12 +713,12 @@ Delete a Salesforce lead record.
 
 Delete one or more metadata components.
 
-| Input             | Comments                                                                                  | Default      |
-| ----------------- | ----------------------------------------------------------------------------------------- | ------------ |
-| Connection        | The Salesforce connection to use.                                                         |              |
-| Metadata Type     | The type of metadata to act upon.                                                         | CustomObject |
-| Version           | The Salesforce API version number to use for requests.                                    | 63.0         |
-| Object Full Names | The full API names of the Salesforce metadata objects to act on (e.g., TestObject1\_\_c). |              |
+| Input             | Comments                                                                                | Default      |
+| ----------------- | --------------------------------------------------------------------------------------- | ------------ |
+| Connection        | The Salesforce connection to use.                                                       |              |
+| Metadata Type     | The type of metadata to act upon.                                                       | CustomObject |
+| Version           | The Salesforce API version number to use for requests.                                  | 63.0         |
+| Object Full Names | The full API names of the Salesforce metadata objects to act on (e.g., TestObject1__c). |              |
 
 ### Delete Opportunity {#deleteopportunity}
 
@@ -886,12 +936,12 @@ Get details of a specific Flow by name.
 
 Get the metadata of an object by full name.
 
-| Input            | Comments                                                               | Default      |
-| ---------------- | ---------------------------------------------------------------------- | ------------ |
-| Connection       | The Salesforce connection to use.                                      |              |
-| Metadata Type    | The type of metadata to act upon.                                      | CustomObject |
-| Version          | The Salesforce API version number to use for requests.                 | 63.0         |
-| Object Full Name | The full API name of the Salesforce custom object (e.g., Widget\_\_c). |              |
+| Input            | Comments                                                             | Default      |
+| ---------------- | -------------------------------------------------------------------- | ------------ |
+| Connection       | The Salesforce connection to use.                                    |              |
+| Metadata Type    | The type of metadata to act upon.                                    | CustomObject |
+| Version          | The Salesforce API version number to use for requests.               | 63.0         |
+| Object Full Name | The full API name of the Salesforce custom object (e.g., Widget__c). |              |
 
 ### Get Record {#getrecord}
 

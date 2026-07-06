@@ -5,8 +5,13 @@ description: Query, create, update, or delete Microsoft Dynamics 365 entity reco
 ---
 
 ![Microsoft Dynamics 365](./assets/ms-dynamics.png#connector-icon)
-[Microsoft Dynamics 365](https://dynamics.microsoft.com/) is a product line of enterprise resource planning (ERP) and customer relationship management (CRM) intelligent business applications.
-This component gives you the ability to query and modify records within the Microsoft Dynamics 365 platform.
+[Microsoft Dynamics 365](https://www.microsoft.com/dynamics-365/) is a product line of enterprise resource planning (ERP) and customer relationship management (CRM) intelligent business applications.
+This component provides the ability to query and modify records within the Microsoft Dynamics 365 platform.
+
+## API Documentation
+
+- [Microsoft Dataverse Web API guide](https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/use-microsoft-dynamics-365-web-api)
+- [Dynamics 365 Release Plans](https://learn.microsoft.com/en-us/dynamics365/release-plans/)
 
 ## Connections
 
@@ -14,30 +19,84 @@ This component gives you the ability to query and modify records within the Micr
 
 Authenticate requests using OAuth 2.0 Authorization Code.
 
-The OAuth 2.0 auth code flow allows your user grant permission to your integration to interact with Dynamics on their behalf.
+<Vimeo video="907604023" />
 
-1. Log in to [Azure Portal](https://portal.azure.com/)
-1. Select **App registrations**
-1. Click **+ New registration**
-   - **Supported account types** should be **Multi-tenant** if you intend for customers to authenticate with their own Dynamics instance, or **Single-tenant** if you intend to authenticate with your own Dynamics instance.
-   - Under **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-   - Click **Register**
-1. Under **API permissions** click **+Add a permission**
-   - Select **Dynamics CRM**
-   - Check the `user_impersonation` permission
-   - Click **Add permissions**
-   - Additionally, ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
-1. Under **Certificates & secrets** click **+ New client secret**
-   - Give your certificate a description and expiration date
-   - Take note of the **value** (not the Secret ID) of the client secret.
-1. Returning to the **Overview** page, take note of **Application (client) ID**
+The OAuth 2.0 authorization code flow allows an end user to grant the integration permission to interact with Dynamics on their behalf.
 
-Create a connection of type **MS Dynamics OAuth 2.0 Auth Code**.
+#### Prerequisites
 
-- Enter the **Client ID** and **Secret Value** you noted above.
+- An active [Azure Portal](https://portal.azure.com/) account with permission to register applications.
+- Access to a Microsoft Dynamics 365 environment.
+
+#### Setup Steps
+
+1. Log in to [Azure Portal](https://portal.azure.com/).
+1. Select **App Registrations**.
+1. Click **+ New Registration**.
+   - **Supported Account Types** should be **Multi-tenant** when end customers will authenticate with their own Dynamics instance, or **Single-tenant** when authenticating with a single Dynamics instance.
+   - Under **Redirect URI** enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+   - Click **Register**.
+1. Under **API Permissions** click **+ Add A Permission**.
+   - Select **Dynamics CRM**.
+   - Check the `user_impersonation` permission.
+   - Click **Add Permissions**.
+   - Additionally, ensure the `offline_access` scope is included in the app registration. It is essential to maintain the OAuth connection and receive refresh tokens. Without it, end users will need to re-authenticate every hour.
+1. Under **Certificates & Secrets** click **+ New Client Secret**.
+   - Provide a description and expiration date for the certificate.
+   - Take note of the **Value** (not the Secret ID) of the client secret.
+1. Returning to the **Overview** page, take note of **Application (Client) ID**.
+
+#### Configure The Connection
+
+Create a connection of type **OAuth 2.0 Authorization Code**.
+
+- Enter the **Client ID** and **Client Secret** noted above.
 - Log in to Dynamics and take note of the Dynamics URL.
-  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`
-  - Under scopes, enter the following, replacing the URL with your Dynamics URL: `https://REPLACE-ME.crm.dynamics.com/user_impersonation offline_access`
+  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`.
+  - Under scopes, enter the following, replacing the URL with the Dynamics URL: `https://REPLACE-ME.crm.dynamics.com/user_impersonation offline_access`.
+
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+**Complete publisher verification before deploying to end users.** Without it, the Microsoft consent screen displays **"Unverified"** next to the app name. This reduces user trust and may prevent users in organizations with strict Azure AD policies from being able to authorize the app at all.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
+
+<Vimeo video="907604023" />
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -53,54 +112,61 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate requests using OAuth 2.0 Client Credentials.
 
-The OAuth 2.0 client credentials flow allows your user to create an **Application User** to send requests to Dynamics on their behalf.
+The OAuth 2.0 client credentials flow allows the creation of an **Application User** to send requests to Dynamics on behalf of an organization.
 Setting up a client credentials connection is a two-step process:
 
-1. Create an "App" in Azure
-1. Create an "Application User" in Dynamics
+1. Create an "App" in Azure.
+1. Create an "Application User" in Dynamics.
 
-#### Create an app in Microsoft Azure
+#### Prerequisites
 
-1. Log in to [Azure Portal](https://portal.azure.com/)
-1. Select **App registrations**
-1. Click **+ New registration**
-   - **Supported account types** can be **Single tenant**
-   - No **Redirect URI** is necessary
-   - Click **Register**
-1. Under **API permissions** click **+Add a permission**
-   - Select **Dynamics CRM**
-   - Check the `user_impersonation` permission
-   - Click **Add permissions**
-1. Under **API permissions** click **Grant admin concent for (your org)**
-1. Under **Certificates & secrets** click **+ New client secret**
-   - Give your certificate a description and expiration date
-   - Take note of the **value** (not the Secret ID) of the client secret.
-1. Returning to the **Overview** page, take note of **Application (client) ID**
-1. From the **Overview** page, click **Endpoints** and take note of the **OAuth 2.0 token endpoint (v2)**
+- An active Azure subscription with permission to register applications in [Azure Portal](https://portal.azure.com/).
+- Microsoft Dynamics 365 administrator access to the [Power Platform admin center](https://admin.powerplatform.microsoft.com/), including the ability to manage Application Users and assign Security Roles.
 
-You will use the **Secret Value**, **Client ID** and **Token Endpoint** in a moment.
+#### Setup Steps
 
-#### Add the app as an App User to Dynamics
+##### Create An App In Microsoft Azure
 
-1. Log in to [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
-1. Select **Environments** and choose your Dynamics Environments
-1. Select **S2S Apps**
-1. Click **+New app user**
-   - Click **+Add an app**
-   - Choose the app you created in Azure portal (above). You can search for your app by entering the client ID you noted.
-   - Select your Dynamics tenant as your **Business unit**
-   - Under **Security Roles** select **System Administrator**
-   - Click **Create**
+1. Log in to [Azure Portal](https://portal.azure.com/).
+1. Select **App Registrations**.
+1. Click **+ New Registration**.
+   - **Supported Account Types** can be **Single Tenant**.
+   - No **Redirect URI** is necessary.
+   - Click **Register**.
+1. Under **API Permissions** click **+ Add A Permission**.
+   - Select **Dynamics CRM**.
+   - Check the `user_impersonation` permission.
+   - Click **Add Permissions**.
+1. Under **API Permissions** click **Grant Admin Consent For (Tenant)** to consent to the requested permissions on behalf of the organization.
+1. Under **Certificates & Secrets** click **+ New Client Secret**.
+   - Provide a description and expiration date for the certificate.
+   - Take note of the **Value** (not the Secret ID) of the client secret.
+1. Returning to the **Overview** page, take note of **Application (Client) ID**.
+1. From the **Overview** page, click **Endpoints** and take note of the **OAuth 2.0 Token Endpoint (V2)**.
 
-#### Configure the connection
+The **Client Secret Value**, **Client ID**, and **Token Endpoint** will be used in the connection configuration.
 
-Create a connection of type **MS Dynamics OAuth 2.0 Client Credentials**.
+##### Add The App As An App User To Dynamics
 
-- Enter the **Token Endpoint** you noted as your **Token URL**.
-- Enter the **Client ID** and **Secret Value** you noted above.
+1. Log in to [Power Platform Admin Center](https://admin.powerplatform.microsoft.com/).
+1. Select **Environments** and choose the appropriate Dynamics environment.
+1. Select **S2S Apps**.
+1. Click **+ New App User**.
+   - Click **+ Add An App**.
+   - Choose the app created in Azure portal (above). The app can be located by entering the client ID noted previously.
+   - Select the Dynamics tenant as the **Business Unit**.
+   - Under **Security Roles** select **System Administrator**.
+   - Click **Create**.
+
+#### Configure The Connection
+
+Create a connection of type **OAuth 2.0 Client Credentials**.
+
+- Enter the **Token Endpoint** noted above as the **Token URL**.
+- Enter the **Client ID** and **Client Secret Value** noted above.
 - Log in to Dynamics and take note of the Dynamics URL.
-  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`
-  - Under scopes, enter the Dynamics URL with `.default` appended to it - `https://REPLACE-ME.crm.dynamics.com/.default`
+  - Enter that Dynamics URL as the **Web API URL**. It should look like `https://REPLACE-ME.crm.dynamics.com/`.
+  - Under scopes, enter the Dynamics URL with `.default` appended to it — `https://REPLACE-ME.crm.dynamics.com/.default`.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -341,16 +407,16 @@ Performs multiple create, update, or delete operations on Microsoft Dynamics 365
 
 Executes a Fetch XML query against the Microsoft Dynamics 365 CRM instance.
 
-| Input               | Comments                                                                                                                                                              | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                                                       |         |
-| Entity Type         | The type of Entity to query, usually a pluralized name.                                                                                                               |         |
-| XML Query           | An XML query string to use as a Fetch query in Microsoft Dynamics 365.                                                                                                |         |
-| Include Annotations | The 'Prefer: odata.include-annotations' header value, e.g., '\*' to include all annotations or 'OData.Community.Display.V1.FormattedValue' for formatted values only. |         |
-| Impersonate User ID | Specifies the GUID of a user to impersonate when executing the query.                                                                                                 |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                                               | false   |
-| Page Number         | The 1-based page number to retrieve when iterating through Fetch XML query results.                                                                                   |         |
-| Next Page ID        | The pagination cookie returned in 'oDataNextLink' from a previous request. Leave empty for the first page.                                                            |         |
+| Input               | Comments                                                                                                                                                             | Default |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                                                                                      |         |
+| Entity Type         | The type of Entity to query, usually a pluralized name.                                                                                                              |         |
+| XML Query           | An XML query string to use as a Fetch query in Microsoft Dynamics 365.                                                                                               |         |
+| Include Annotations | The 'Prefer: odata.include-annotations' header value, e.g., '*' to include all annotations or 'OData.Community.Display.V1.FormattedValue' for formatted values only. |         |
+| Impersonate User ID | Specifies the GUID of a user to impersonate when executing the query.                                                                                                |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                                              | false   |
+| Page Number         | The 1-based page number to retrieve when iterating through Fetch XML query results.                                                                                  |         |
+| Next Page ID        | The pagination cookie returned in 'oDataNextLink' from a previous request. Leave empty for the first page.                                                           |         |
 
 ### Update Attribute {#updateattribute}
 

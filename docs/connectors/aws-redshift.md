@@ -51,11 +51,13 @@ To enable IAM role authentication, log in to the [AWS Console](https://aws.amazo
 **Create an ARN user and generate credentials:**
 
 1. Navigate to **Users** and select **Create User**.
+
    - Provide a user name and check the box providing user access to the AWS Management Console if needed.
    - Once the user is created, copy the ARN provided in the summary for a later step.
 
 2. To obtain the ARN for an existing user, click on the designated username from the **Users** page and the ARN will be provided in the summary section.
 3. From the summary section, select **Create access key**
+
    - Select **Third-party service** as the access key type and select **Next**.
    - Set a description and select **Create access key**.
    - Copy the **Access Key** and **Secret access key** for use in the connection configuration.
@@ -63,6 +65,7 @@ To enable IAM role authentication, log in to the [AWS Console](https://aws.amazo
 **Create and assign a role:**
 
 1. Navigate to **Roles** and select **Create Role**.
+
    - Select **Custom Trust Policy** for the Trusted entity types.
    - Copy the following statement into the statement console, replacing **ARN** with the user's actual ARN from the previous step:
 

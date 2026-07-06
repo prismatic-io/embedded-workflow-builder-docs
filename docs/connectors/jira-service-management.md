@@ -6,11 +6,15 @@ description: Interact with the Jira Service Management API to manage service req
 
 ![Jira Service Management](./assets/jira-service-management.png#connector-icon)
 [Jira Service Management](https://www.atlassian.com/software/jira/service-management) is an IT service management (ITSM) platform from Atlassian for managing service requests, incidents, and changes.
-This component allows managing service desks, requests, request types, queues, approvals, organizations, and customers within Jira Service Management.
+This component allows managing service desks, requests, request types, queues, approvals, organizations, and customers within Jira Service Management. It also supports Operations (Ops) alerts and schedules, Assets / CMDB objects and schemas, and Integration Events for alert ingestion. Polling triggers are included for new service requests and new Ops alerts.
 
 ## API Documentation
 
-This component was built using the [Jira Service Management Cloud REST API](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/).
+This component was built using the following Atlassian APIs:
+
+- [Jira Service Management Cloud REST API](https://developer.atlassian.com/cloud/jira/service-desk/rest/api-group-servicedesk/) for service desk and request management
+- [Jira Service Management Ops REST API](https://developer.atlassian.com/cloud/jira/service-desk-ops/rest/intro/) for Operations alerts, schedules, and Integration Events
+- [Jira Service Management Assets REST API](https://developer.atlassian.com/cloud/assets/rest/intro/) for Assets / CMDB objects and schemas
 
 ## Connections
 
@@ -83,11 +87,17 @@ Create a connection of type **OAuth 2.0** and configure the following fields:
   ```
   https://auth.atlassian.com/oauth/token
   ```
-- For **Scopes**, the default value includes common Jira Service Management scopes:
+- For **Scopes**, the default value covers Service Desk requests, Ops alerts and configuration, and Assets / CMDB objects, schemas, and types:
   ```
-  read:servicedesk-request write:servicedesk-request manage:servicedesk-customer read:jira-user offline_access
+  read:servicedesk-request write:servicedesk-request manage:servicedesk-customer read:jira-user
+  read:ops-alert:jira-service-management write:ops-alert:jira-service-management delete:ops-alert:jira-service-management
+  read:ops-config:jira-service-management write:ops-config:jira-service-management delete:ops-config:jira-service-management
+  read:cmdb-object:jira write:cmdb-object:jira delete:cmdb-object:jira
+  read:cmdb-schema:jira write:cmdb-schema:jira delete:cmdb-schema:jira
+  read:cmdb-type:jira write:cmdb-type:jira delete:cmdb-type:jira
+  read:cmdb-attribute:jira offline_access
   ```
-  Refer to the [Atlassian scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information.
+  Existing connections created before the Ops and Assets scopes were added must be reauthorized to use those actions. Trim the list to only the scopes the integration needs. Refer to the [Atlassian scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information.
 - Enter the **Client ID** and **Client Secret** from the application settings in the Developer Console
 - Optionally, enter the **Atlassian Site Name** if the Atlassian account has access to multiple Jira sites (e.g., `example-company.atlassian.net`). If left blank, the connection uses the first accessible site.
 
@@ -106,6 +116,33 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### Ops Integration API Key {#jsmopsgeniekey}
 
 Authenticate with the JSM Ops Integration Events API using a GenieKey integration API key.
+
+To authenticate with the Jira Service Management Ops Integration Events API, an integration **GenieKey API key** is required. This connection is only used by the Ops Integration Events actions (Create, Acknowledge, Close, Add Note, Get Request) — Ops Management and Assets actions use the OAuth 2.0 connection instead.
+
+#### Prerequisites
+
+- A Jira Cloud instance with Jira Service Management Operations enabled
+- A JSM project where Operations is configured
+- Permission to manage integrations within that project
+
+#### Setup Steps
+
+1. Open the Jira Service Management project where alerts will be ingested
+2. In the left sidebar, navigate to **Operations** and then **Integrations**
+3. Click **Add integration** and choose **API**
+4. Enter a name for the integration (e.g., `My Integration`) and choose the team that should own the resulting alerts
+5. Click **Continue** and then **Turn on integration**
+6. Copy the generated **API key** (also referred to as the GenieKey) — this value is only shown once
+
+Refer to the [JSM Ops REST API documentation](https://developer.atlassian.com/cloud/jira/service-desk-ops/rest/intro/) for additional details about the integration endpoints and request shapes.
+
+#### Configure the Connection
+
+Create a connection of type **Ops Integration API Key** and configure the following field:
+
+- For **API Key**, paste the GenieKey value copied from the integration setup screen
+
+The connection sends requests to `https://api.atlassian.com/jsm/ops/integration/v2` with the header `Authorization: GenieKey <api-key>`. No additional configuration is required.
 
 | Input   | Comments                                                                                                                  | Default |
 | ------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |

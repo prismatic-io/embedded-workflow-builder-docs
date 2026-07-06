@@ -1,42 +1,54 @@
 ---
 title: Xero Connector
 sidebar_label: Xero
-description: Manage invoices, items, accounts, payments and more objects from your Xero account.
+description: Manage invoices, items, accounts, payments, and more in Xero.
 ---
 
 ![Xero](./assets/xero.png#connector-icon)
 [Xero](https://www.xero.com/us/) is a cloud-based accounting software platform for small and medium-sized businesses.
-The Xero component allows you to manage your invoices, payments, items, and contacts through the Xero Rest API.
+This component allows you to manage invoices, payments, items, and contacts through the Xero REST API.
+
+## API Documentation
+
+This component was built using the [Xero Accounting API](https://developer.xero.com/documentation/api/accounting/overview).
 
 ## Connections
 
 ### OAuth 2.0 {#oauth2}
 
-OAuth 2.0 connection for Xero
+Authenticate requests to Xero using OAuth 2.0.
 
 **Xero** uses OAuth 2.0 to authorize requests made to the API.
-In order for your integration to authenticate with your customers' Xero accounts, you will need to create a Xero OAuth 2.0 app:
+This connection uses the OAuth 2.0 Authorization Code grant type so that the integration can authenticate with a customer's Xero account.
 
-- Log on to Xero's [developer portal](https://developer.xero.com/app/manage/)
-- Click **New app**
-  - Give your app a name
-  - Select **Web app** for **Integration type**
-  - Enter _your company's_ URL for **Company or application URL**
-  - Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` for the **Redirect URI**
-- Next, open the **Configuration** page
-  - Click **Generate Secret** and take note of the **Client id** and **Client secret** - you'll enter those in a moment
+#### Prerequisites
 
-When you add a Xero step to an integration, a Xero OAuth 2.0 connection config variable will be created automatically for you:
+- A Xero account with access to the [developer portal](https://developer.xero.com/app/manage/)
 
-- For **Scopes**, enter the scopes from [this list](https://developer.xero.com/documentation/guides/oauth2/scopes/) that are relevant to your integration.
-  Always include the `offline_access` scope in order for authentication tokens to refresh automatically.
-- For **Client ID** and **Client Secret**, enter the values you noted above.
+#### Setup Steps
+
+1. Log on to Xero's [developer portal](https://developer.xero.com/app/manage/).
+2. Click **New app**.
+   - Give the app a name.
+   - Select **Web app** for **Integration type**.
+   - Enter the company's URL for **Company or application URL**.
+   - Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` for the **Redirect URI**.
+3. Open the **Configuration** page.
+   - Click **Generate Secret** and take note of the **Client id** and **Client secret**.
+
+#### Configure the Connection
+
+When a Xero step is added to an integration, a Xero OAuth 2.0 connection config variable is created automatically.
+
+- For **Scopes**, enter the scopes from [this list](https://developer.xero.com/documentation/guides/oauth2/scopes/) that are relevant to the integration.
+  Always include the `offline_access` scope so that authentication tokens refresh automatically.
+- For **Client ID** and **Client Secret**, enter the values noted above.
 - A single customer might be logged in to multiple tenants, and **Tenant Name** is unique for each customer.
   Leave that input blank, and click the gear icon next to **Tenant Name**.
-  Adjust **Input Visibility** and select **Customer** to make that input visible to your customers.
-  That way, your customers will be prompted for their tenant name when they enable this integration.
+  Adjust **Input Visibility** and select **Customer** to make that input visible to customers.
+  That way, customers are prompted for their tenant name when they enable this integration.
 
-For additional information regarding authentication, please refer to the [Xero docs](https://developer.xero.com/documentation/guides/oauth2/auth-flow/#2-users-are-redirected-back-to-you-with-a-code).
+For additional information regarding authentication, refer to the [Xero docs](https://developer.xero.com/documentation/guides/oauth2/auth-flow/#2-users-are-redirected-back-to-you-with-a-code).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -50,34 +62,42 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### OAuth 2.0 Client Credentials {#xerooauthclientcredentials}
 
-OAuth 2.0 Client Credentials connection for Xero
+Authenticate requests to Xero using OAuth 2.0 client credentials.
 
 **Xero** uses OAuth 2.0 to authorize requests made to the API.
-You can use client credentials grant type to access data from a single Xero organization using Custom Connections.
+This connection uses the client credentials grant type to access data from a single Xero organization using Custom Connections.
 
 Custom Connections are a premium integration option that utilize the client credentials grant type to access data from a single Xero organization.
 
-**Setting up a Custom Connection**
+#### Setup Steps
 
-1. **Create the Custom Connection**
-   - Log in to [My Apps](https://developer.xero.com/app/manage) and click “New App”.
-   - Give the integration a name and select “Custom connection” as the integration type.
+1. Create the Custom Connection.
 
-2. **Select scopes and the authorizing user**
-   - Next, select the API scopes your integration will need and who will authorize the connection.
-   - That user will then be emailed a link that takes them to the authorization step.
-   - Once authorization is complete you will receive an email to let you know the connection has been authorized.
+   - Log in to [My Apps](https://developer.xero.com/app/manage) and click **New App**.
+   - Give the integration a name and select **Custom connection** as the integration type.
 
-3. **Authorize the connection**
-   - After clicking the Connect button in the email, the authorizing user will be taken to a consent screen where they can see which scopes are being requested and select the organization to connect.
+2. Select scopes and the authorizing user.
+
+   - Select the API scopes the integration will need and who will authorize the connection.
+   - That user is then emailed a link that takes them to the authorization step.
+   - Once authorization is complete, an email confirms the connection has been authorized.
+
+3. Authorize the connection.
+
+   - After clicking the **Connect** button in the email, the authorizing user is taken to a consent screen where they can see which scopes are being requested and select the organization to connect.
    - Note that an organization needs to have purchased a subscription with sufficient Custom Connections to be authorized and connected.
    - The only exception is the Xero Demo Company, which can be used for free for development purposes.
 
-4. **Retrieve your client id and client secret**
-   - Once the custom connection has been authorized, the client id will be available on the app details page and you can generate the client secret.
-   - You'll enter those into your connection.
+4. Retrieve the client id and client secret.
 
-For more information, check the [documentation here](https://developer.xero.com/documentation/guides/oauth2/custom-connections/).
+   - Once the custom connection has been authorized, the client id is available on the app details page and the client secret can be generated.
+
+#### Configure the Connection
+
+- For **Scopes**, enter the scopes relevant to the integration, separated by spaces. Do not include `offline_access`, as this is a client credentials flow.
+- For **Client ID** and **Client Secret**, enter the values retrieved from the app details page.
+
+For more information, refer to the [Custom Connections documentation](https://developer.xero.com/documentation/guides/oauth2/custom-connections/).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -96,348 +116,348 @@ Checks for new and updated records in Xero on a configured schedule.
 
 | Input                | Comments                                                       | Default |
 | -------------------- | -------------------------------------------------------------- | ------- |
-| Connection           | The connection to use.                                         |         |
+| Connection           | The Xero connection to use.                                    |         |
 | Resource Type        | The type of Xero resource to poll for new and updated records. |         |
 | Show New Records     | Include newly created records in trigger results.              | true    |
 | Show Updated Records | Include updated records in trigger results.                    | true    |
 
 ### Webhook {#webhook}
 
-Receive and validate webhook requests from Xero for webhooks you configure.
+Receive and validate webhook requests from Xero for manually configured webhook subscriptions.
 
-| Input       | Comments                                                    | Default |
-| ----------- | ----------------------------------------------------------- | ------- |
-| Webhook Key | Provide the webhook key that was created upon subscription. |         |
+| Input       | Comments                                                          | Default |
+| ----------- | ----------------------------------------------------------------- | ------- |
+| Webhook Key | The webhook signing key created when the subscription was set up. |         |
 
 ## Actions
 
-### Add Notes To Invoice {#addnotetoinvoice}
+### Add Note to Invoice {#addnotetoinvoice}
 
-Add additional notes to an invoice by Id
+Add additional notes to an invoice by ID.
 
-| Input      | Comments                                              | Default |
-| ---------- | ----------------------------------------------------- | ------- |
-| Invoice ID | Provide a string value for the Invoice ID.            |         |
-| Notes      | Provide a string value for notes to add to an object. |         |
-| Connection | The connection to use.                                |         |
+| Input      | Comments                                      | Default |
+| ---------- | --------------------------------------------- | ------- |
+| Connection | The Xero connection to use.                   |         |
+| Invoice ID | The unique identifier for the invoice.        |         |
+| Notes      | The note text to add to the object's history. |         |
 
-### Add Note To Item {#addnotetoitem}
+### Add Note to Item {#addnotetoitem}
 
-Add a note to an item's history by Id
+Add a note to an item's history by ID.
 
-| Input      | Comments                                              | Default |
-| ---------- | ----------------------------------------------------- | ------- |
-| Item ID    | Provide a string value for the Item ID.               |         |
-| Notes      | Provide a string value for notes to add to an object. |         |
-| Connection | The connection to use.                                |         |
+| Input      | Comments                                      | Default |
+| ---------- | --------------------------------------------- | ------- |
+| Connection | The Xero connection to use.                   |         |
+| Item ID    | The unique identifier for the item.           |         |
+| Notes      | The note text to add to the object's history. |         |
 
 ### Archive Account {#archiveaccount}
 
-Archive the information and metadata of an account by Id
+Archive an account by ID.
 
-| Input      | Comments                                  | Default |
-| ---------- | ----------------------------------------- | ------- |
-| Account ID | Provide a string value for the Account ID |         |
-| Connection | The connection to use.                    |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Account ID | The unique identifier for the account. |         |
 
 ### Archive Contact {#archivecontact}
 
-Archive the information and metadata of a contact by Id
+Archive a contact by ID.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Contact ID | Provide a string value for the Contact ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Contact ID | The unique identifier for the contact. |         |
 
 ### Create Account {#createaccount}
 
-Create a new account
+Create a new account.
 
-| Input                  | Comments                                                                                                                                                                               | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Account Code           | Provide a string value for the account code. This value is a customer defined alpha numeric account code.                                                                              |         |
-| Account Name           | Provide a string value for the name of the account.                                                                                                                                    |         |
-| Account Type           | Provide a string value for the type of the given account. You can choose from the list of provided values here: https://developer.xero.com/documentation/api/accounting/types#accounts |         |
-| Optional Values        | For each item, provide a key and value to be used in the request body.                                                                                                                 |         |
-| Bank Account Number    | This value is required if you are creating an account of type 'BANK'.                                                                                                                  |         |
-| Show In Expense Claims | This value will determine if your account will show in expense claims. This field is required for certain accounts.                                                                    | false   |
-| Connection             | The connection to use.                                                                                                                                                                 |         |
+| Input                  | Comments                                                                                                                                           | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Xero connection to use.                                                                                                                        |         |
+| Account Code           | A customer-defined alphanumeric code that identifies the account.                                                                                  |         |
+| Account Name           | The display name shown for the account.                                                                                                            |         |
+| Account Type           | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts). |         |
+| Bank Account Number    | The bank account number. Required when the account type is BANK.                                                                                   |         |
+| Show In Expense Claims | When true, the account appears in expense claims. Required for certain account types.                                                              | false   |
+| Optional Values        | For each item, provide a key and value to be used in the request body.                                                                             |         |
 
 ### Create Attachment {#createattachment}
 
 Add an attachment to an existing object. Existing attachments with that file name will be overridden.
 
-| Input        | Comments                                                                                                                                                             | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Object Type  | Provide a string value for the type of object you would like to access.                                                                                              |         |
-| Object ID    | Provide a string value for the Id of the object.                                                                                                                     |         |
-| File Name    | Provide a string value for the name of the file you want to attach to the object. The File Name will become the unique identifier of the file for update operations. |         |
-| File Data    | Provide a value that represents the data of the file you want to upload                                                                                              |         |
-| Content Type | MIME type of the file you want to upload                                                                                                                             |         |
-| Connection   | The connection to use.                                                                                                                                               |         |
+| Input        | Comments                                                                                              | Default |
+| ------------ | ----------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Xero connection to use.                                                                           |         |
+| Object Type  | The type of object to attach the file to.                                                             |         |
+| Object ID    | The unique identifier for the object to attach the file to.                                           |         |
+| File Name    | The name of the file to attach. This becomes the unique identifier of the file for update operations. |         |
+| File Data    | The binary contents of the file to upload.                                                            |         |
+| Content Type | The MIME type of the file to upload.                                                                  |         |
 
 ### Create Contact {#createcontact}
 
-Create a new contact
+Create a new contact.
 
-| Input                        | Comments                                                                                                                                                                                                                                                                                                                                           | Default |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                   | The connection to use.                                                                                                                                                                                                                                                                                                                             |         |
-| Contact Name                 | Provide a string value for the name of the contact.                                                                                                                                                                                                                                                                                                |         |
-| First Name                   | Provide a string value for the first name of the contact.                                                                                                                                                                                                                                                                                          |         |
-| Last Name                    | Provide a string value for the last name of the contact.                                                                                                                                                                                                                                                                                           |         |
-| Email Address                | Provide a valid email address for the contact.                                                                                                                                                                                                                                                                                                     |         |
-| Address Type                 | Provide a string value for the address type.                                                                                                                                                                                                                                                                                                       |         |
-| Address                      | Provide a string value that represents a valid address.                                                                                                                                                                                                                                                                                            |         |
-| City                         | Provide a string value for the city of the address.                                                                                                                                                                                                                                                                                                |         |
-| Postal Code                  | Provide a valid postal code.                                                                                                                                                                                                                                                                                                                       |         |
-| Country                      | Provide a string value for the country of the address.                                                                                                                                                                                                                                                                                             |         |
-| Region                       | Provide a string value for the region of the address.                                                                                                                                                                                                                                                                                              |         |
-| Bank Account Details         | Provide a string value for the details of the contacts bank account. Depending on the type of account, providing a value for this field could cause your request to fail. For more information on the expected shape of the Account object, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/accounts/#get-accounts |         |
-| Contact Status               | Provide a string value for the status of the contact.                                                                                                                                                                                                                                                                                              |         |
-| Tax Number                   | Provide a string value for the Tax number. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                                                          |         |
-| Accounts Receivable Tax Type | Provide a string value for the tax type of accounts receivable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                     |         |
-| Accounts Payable Tax Type    | Provide a string value for the tax type of accounts payable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                        |         |
-| Default Currency             | Provide a valid type of currency.                                                                                                                                                                                                                                                                                                                  |         |
-| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                                                                                            |         |
+| Input                        | Comments                                                                                                                                                                                                                                                                      | Default |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                   | The Xero connection to use.                                                                                                                                                                                                                                                   |         |
+| Contact Name                 | The full name or business name of the contact.                                                                                                                                                                                                                                |         |
+| First Name                   | The given name of the contact.                                                                                                                                                                                                                                                |         |
+| Last Name                    | The family name of the contact.                                                                                                                                                                                                                                               |         |
+| Email Address                | The email address used to reach the contact.                                                                                                                                                                                                                                  |         |
+| Address Type                 | The kind of address being provided.                                                                                                                                                                                                                                           |         |
+| Address                      | The street address of the contact.                                                                                                                                                                                                                                            |         |
+| City                         | The city portion of the contact's address.                                                                                                                                                                                                                                    |         |
+| Postal Code                  | The postal or ZIP code of the contact's address.                                                                                                                                                                                                                              |         |
+| Country                      | The country portion of the contact's address.                                                                                                                                                                                                                                 |         |
+| Region                       | The state or region portion of the contact's address.                                                                                                                                                                                                                         |         |
+| Bank Account Details         | The bank account number for the contact. Depending on the account type, providing a value here could cause the request to fail. See the [Xero accounts documentation](https://developer.xero.com/documentation/api/accounting/accounts/#get-accounts) for the expected shape. |         |
+| Contact Status               | The status to assign to the contact.                                                                                                                                                                                                                                          |         |
+| Tax Number                   | The tax number of the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                                                         |         |
+| Accounts Receivable Tax Type | The default tax type applied to sales invoices for the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                        |         |
+| Accounts Payable Tax Type    | The default tax type applied to bills for the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                                 |         |
+| Default Currency             | The default currency code used for the contact.                                                                                                                                                                                                                               |         |
+| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                       |         |
 
 ### Create Invoice {#createinvoice}
 
-Create a new invoice
+Create a new invoice.
 
-| Input             | Comments                                                                                                                                                                                                                        | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Invoice Type      | Provide a string value for the type of the given invoice.                                                                                                                                                                       |         |
-| Contact ID        | Provide a string value for the Contact ID.                                                                                                                                                                                      |         |
-| Invoice Status    | This value is required if you want to make payments on an invoice. Will default to 'DRAFT'                                                                                                                                      |         |
-| Line Items        | Provide a JSON array, For each item, provide an object describing a valid line item. The 'ItemCode', 'Tracking', and 'DiscountRate' properties are optional. If you want to provide no line items, simply enter an empty Array. |         |
-| Line Amount Type  | Provide a string value for the line Amount Types.                                                                                                                                                                               |         |
-| Date              | Date invoice was issued. If the Date element is not specified it will default to the current date based on the timezone setting of the organization.                                                                            |         |
-| Due Date          | Date invoice is due.                                                                                                                                                                                                            |         |
-| Date String       | Provide a string value for the date in which the invoice was created.                                                                                                                                                           |         |
-| Due Date String   | Provide a string value for the due date of the invoice.                                                                                                                                                                         |         |
-| Invoice Number    | Provide a string value for the unique invoice number.                                                                                                                                                                           |         |
-| Reference         | Additional reference number (Accounts Receivable invoices only).                                                                                                                                                                |         |
-| URL               | URL link to a source document – shown as "Go to [appName]" in the Xero app.                                                                                                                                                     |         |
-| Currency Code     | The currency that invoice has been raised in.                                                                                                                                                                                   |         |
-| Sent To Contact   | Boolean to set whether the invoice in the Xero app should be marked as "sent". This can be set only on invoices that have been approve.                                                                                         | false   |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/invoices#post-invoices) for additional fields.                         |         |
-| Connection        | The connection to use.                                                                                                                                                                                                          |         |
+| Input             | Comments                                                                                                                                                                                                | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Xero connection to use.                                                                                                                                                                             |         |
+| Invoice Type      | The type of invoice to create.                                                                                                                                                                          |         |
+| Contact ID        | The unique identifier for the contact.                                                                                                                                                                  |         |
+| Line Amount Type  | Whether line amounts are tax exclusive, inclusive, or have no tax.                                                                                                                                      |         |
+| Invoice Status    | The status of the invoice. Required to make payments on an invoice. Defaults to DRAFT.                                                                                                                  |         |
+| Line Items        | A JSON array where each object describes a line item. The 'ItemCode', 'Tracking', and 'DiscountRate' properties are optional. Use an empty array for no line items.                                     |         |
+| Date              | The date the invoice was issued. Defaults to the current date based on the organization's timezone setting if not specified. Format: YYYY-MM-DD.                                                        |         |
+| Due Date          | The date the invoice is due. Format: YYYY-MM-DD.                                                                                                                                                        |         |
+| Date String       | The date the record was created. Format: YYYY-MM-DDTHH:MM:SS.                                                                                                                                           |         |
+| Due Date String   | The due date of the invoice as a string. Format: YYYY-MM-DDTHH:MM:SS.                                                                                                                                   |         |
+| Invoice Number    | A unique number that identifies the invoice.                                                                                                                                                            |         |
+| Reference         | An additional reference number for the invoice (Accounts Receivable invoices only).                                                                                                                     |         |
+| URL               | The URL of a source document, shown as "Go to [appName]" in the Xero app.                                                                                                                               |         |
+| Currency Code     | The currency the invoice has been raised in.                                                                                                                                                            |         |
+| Sent To Contact   | When true, marks the invoice in the Xero app as "sent". This can only be set on invoices that have been approved.                                                                                       | false   |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/invoices#post-invoices) for additional fields. |         |
 
 ### Create Item {#createitem}
 
-Create a new Item
+Create a new item.
 
-| Input                        | Comments                                                                                                                                                | Default |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Item Code                    | Provide a user-defined valid item code.                                                                                                                 |         |
-| Description                  | Provide a string value for the description.                                                                                                             |         |
-| Purchase Description         | Provide a string value for the description.                                                                                                             |         |
-| Purchase Unit Price          | Provide the unit price of the purchase.                                                                                                                 |         |
-| Purchase Account Code        | Provide the account code of the purchase.                                                                                                               |         |
-| Purchase Tax Type            | Provide the tax type of the purchaser. Pick a value from the items listed here: https://developer.xero.com/documentation/api/accounting/types#tax-types |         |
-| Sales Unit Price             | Provide the unit price of the sale, if the item has been sold.                                                                                          |         |
-| Sales Account Code           | Provide the account code of the sale.                                                                                                                   |         |
-| Item Name                    | Provide a string value for the name of the item.                                                                                                        |         |
-| Sales Tax Type               | Provide the tax type of the Seller. Provide a value from the items listed here: https://developer.xero.com/documentation/api/accounting/types#tax-types |         |
-| Inventory Asset Account Code | Provide the account code for the inventory asset                                                                                                        |         |
-| Is Sold                      | Provide a boolean value to determine if the item has been sold yet.                                                                                     | false   |
-| Is Purchased                 | Provide a boolean value to determine if the item has been purchased yet.                                                                                | false   |
-| Connection                   | The connection to use.                                                                                                                                  |         |
+| Input                        | Comments                                                                                                                                                      | Default |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                   | The Xero connection to use.                                                                                                                                   |         |
+| Item Code                    | A user-defined code that identifies the item.                                                                                                                 |         |
+| Description                  | A summary that describes the item.                                                                                                                            |         |
+| Purchase Description         | A summary shown on purchase transactions for the item.                                                                                                        |         |
+| Purchase Unit Price          | The unit price applied when the item is purchased.                                                                                                            |         |
+| Purchase Account Code        | The account code used for purchases of the item.                                                                                                              |         |
+| Purchase Tax Type            | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types).         |         |
+| Sales Unit Price             | The unit price applied when the item is sold.                                                                                                                 |         |
+| Sales Account Code           | The account code used for sales of the item.                                                                                                                  |         |
+| Item Name                    | The display name of the item.                                                                                                                                 |         |
+| Sales Tax Type               | The tax type applied to sales of the item. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |         |
+| Inventory Asset Account Code | The account code used to track the inventory asset.                                                                                                           |         |
+| Is Sold                      | When true, the item is available to sell.                                                                                                                     | false   |
+| Is Purchased                 | When true, the item is available to purchase.                                                                                                                 | false   |
 
 ### Delete Account {#deleteaccount}
 
-Delete the information and metadata of an account by Id
+Delete an account by ID.
 
-| Input      | Comments                                  | Default |
-| ---------- | ----------------------------------------- | ------- |
-| Account ID | Provide a string value for the Account ID |         |
-| Connection | The connection to use.                    |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Account ID | The unique identifier for the account. |         |
 
 ### Delete Invoice {#deleteinvoice}
 
-Delete the information and metadata of an invoice by Id
+Delete an invoice by ID.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Invoice ID | Provide a string value for the Invoice ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Invoice ID | The unique identifier for the invoice. |         |
 
 ### Delete Item {#deleteitem}
 
-Delete the information and metadata of an item by Id
+Delete an item by ID.
 
-| Input      | Comments                                | Default |
-| ---------- | --------------------------------------- | ------- |
-| Item ID    | Provide a string value for the Item ID. |         |
-| Connection | The connection to use.                  |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Xero connection to use.         |         |
+| Item ID    | The unique identifier for the item. |         |
 
 ### Get Account {#getaccount}
 
-Get the information and metadata of an account by Id
+Retrieve the information and metadata of an account by ID.
 
-| Input      | Comments                                  | Default |
-| ---------- | ----------------------------------------- | ------- |
-| Account ID | Provide a string value for the Account ID |         |
-| Connection | The connection to use.                    |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Account ID | The unique identifier for the account. |         |
 
 ### Get Attachment {#getattachment}
 
-Get an attachment by ID
+Retrieve an attachment by ID.
 
-| Input       | Comments                                                                                                                                                             | Default |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Object Type | Provide a string value for the type of object you would like to access.                                                                                              |         |
-| Object ID   | Provide a string value for the Id of the object.                                                                                                                     |         |
-| File Name   | Provide a string value for the name of the file you want to attach to the object. The File Name will become the unique identifier of the file for update operations. |         |
-| Connection  | The connection to use.                                                                                                                                               |         |
+| Input       | Comments                                                                                              | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Xero connection to use.                                                                           |         |
+| Object Type | The type of object to attach the file to.                                                             |         |
+| Object ID   | The unique identifier for the object to attach the file to.                                           |         |
+| File Name   | The name of the file to attach. This becomes the unique identifier of the file for update operations. |         |
 
 ### Get Contact {#getcontact}
 
-Get the information and metadata of a contact by Id
+Retrieve the information and metadata of a contact by ID.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Contact ID | Provide a string value for the Contact ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Contact ID | The unique identifier for the contact. |         |
 
 ### Get Contact History {#getcontacthistory}
 
-Get the information and metadata of a contact's history by Id
+Retrieve the information and metadata of a contact's history by ID.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Contact ID | Provide a string value for the Contact ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Contact ID | The unique identifier for the contact. |         |
 
 ### Get Invoice {#getinvoice}
 
-Get the information and metadata of an invoice by Id
+Retrieve the information and metadata of an invoice by ID.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Invoice ID | Provide a string value for the Invoice ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Invoice ID | The unique identifier for the invoice. |         |
 
 ### Get Item {#getitem}
 
-Get the information and metadata of an item by Id
+Retrieve the information and metadata of an item by ID.
 
-| Input      | Comments                                | Default |
-| ---------- | --------------------------------------- | ------- |
-| Item ID    | Provide a string value for the Item ID. |         |
-| Connection | The connection to use.                  |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Xero connection to use.         |         |
+| Item ID    | The unique identifier for the item. |         |
 
 ### Get Item History {#getitemhistory}
 
-Get the information and metadata of an items's history by Id
+Retrieve the information and metadata of an item's history by ID.
 
-| Input      | Comments                                | Default |
-| ---------- | --------------------------------------- | ------- |
-| Item ID    | Provide a string value for the Item ID. |         |
-| Connection | The connection to use.                  |         |
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Xero connection to use.         |         |
+| Item ID    | The unique identifier for the item. |         |
 
 ### Get Payment {#getpayment}
 
-Get the information and metadata of a payment by id
+Retrieve the information and metadata of a payment by ID.
 
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Payment ID | Provide a string value for the Id of the payment. |         |
-| Connection | The connection to use.                            |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Payment ID | The unique identifier for the payment. |         |
 
 ### Get Payment History {#getpaymenthistory}
 
-Get the information and metadata of a payment's history by Id
+Retrieve the information and metadata of a payment's history by ID.
 
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Payment ID | Provide a string value for the Id of the payment. |         |
-| Connection | The connection to use.                            |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Payment ID | The unique identifier for the payment. |         |
 
 ### List Accounts {#listaccounts}
 
-List all accounts
+List all accounts.
 
-| Input          | Comments                                                                                                | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                  |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters. |         |
+| Input          | Comments                                                                                             | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                          |         |
+| Modified After | Only records created or modified since this timestamp will be returned. Format: YYYY-MM-DDTHH:MM:SS. |         |
+| Where          | A filter expression applied to endpoints and elements that don't have explicit parameters.           |         |
 
 ### List Connections {#listconnections}
 
-List all connections
+List all connections.
 
-| Input      | Comments               | Default |
-| ---------- | ---------------------- | ------- |
-| Connection | The connection to use. |         |
+| Input      | Comments                    | Default |
+| ---------- | --------------------------- | ------- |
+| Connection | The Xero connection to use. |         |
 
 ### List Contacts {#listcontacts}
 
-List all contacts
+List all contacts.
 
-| Input          | Comments                                                                                                                                                                                  | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                                                                                                    |         |
-| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
-| Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
+| Input          | Comments                                                                                                                                                        | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                                                                                     |         |
+| Fetch All      | When true, automatically fetches all pages of results. This ignores the page number input.                                                                      | false   |
+| Page Number    | The page of results to return (1-based). Pagination is only enabled when more than 100 elements are returned by the request. The page size cannot be specified. |         |
+| Modified After | Only records created or modified since this timestamp will be returned. Format: YYYY-MM-DDTHH:MM:SS.                                                            |         |
+| Where          | A filter expression applied to endpoints and elements that don't have explicit parameters.                                                                      |         |
 
 ### List Invoices {#listinvoices}
 
-List all invoices
+List all invoices.
 
-| Input          | Comments                                                                                                                                                                                  | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                                                                                                    |         |
-| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
-| Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
+| Input          | Comments                                                                                                                                                        | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                                                                                     |         |
+| Fetch All      | When true, automatically fetches all pages of results. This ignores the page number input.                                                                      | false   |
+| Page Number    | The page of results to return (1-based). Pagination is only enabled when more than 100 elements are returned by the request. The page size cannot be specified. |         |
+| Modified After | Only records created or modified since this timestamp will be returned. Format: YYYY-MM-DDTHH:MM:SS.                                                            |         |
+| Where          | A filter expression applied to endpoints and elements that don't have explicit parameters.                                                                      |         |
 
 ### List Items {#listitems}
 
-List all items
+List all items.
 
-| Input          | Comments                                                                                                | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                  |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters. |         |
+| Input          | Comments                                                                                             | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                          |         |
+| Modified After | Only records created or modified since this timestamp will be returned. Format: YYYY-MM-DDTHH:MM:SS. |         |
+| Where          | A filter expression applied to endpoints and elements that don't have explicit parameters.           |         |
 
 ### List Payments {#listpayments}
 
-List all payments
+List all payments.
 
-| Input          | Comments                                                                                                                                                                                  | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The connection to use.                                                                                                                                                                    |         |
-| Fetch All      | Turn on to fetch all pages of results. This will ignore the page number input.                                                                                                            | false   |
-| Page Number    | Provide the page of the results you would like to return. Pagination will only be enabled if over 100 elements are returned by your request. It is not possible to specify the page size. |         |
-| Modified After | Only contacts created or modified since this timestamp will be returned.                                                                                                                  |         |
-| Where          | The where parameter allows you to filter on endpoints and elements that don't have explicit parameters.                                                                                   |         |
+| Input          | Comments                                                                                                                                                        | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                                                                                     |         |
+| Fetch All      | When true, automatically fetches all pages of results. This ignores the page number input.                                                                      | false   |
+| Page Number    | The page of results to return (1-based). Pagination is only enabled when more than 100 elements are returned by the request. The page size cannot be specified. |         |
+| Modified After | Only records created or modified since this timestamp will be returned. Format: YYYY-MM-DDTHH:MM:SS.                                                            |         |
+| Where          | A filter expression applied to endpoints and elements that don't have explicit parameters.                                                                      |         |
 
 ### Pay Invoice {#payinvoice}
 
-Create a new payment on an existing AP/AR invoice
+Create a new payment on an existing AP/AR invoice.
 
-| Input          | Comments                                                                                                                                   | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Invoice ID     | Provide a string value for the Invoice ID.                                                                                                 |         |
-| Account ID     | Provide a string value for the Account ID                                                                                                  |         |
-| Date String    | Provide a string value for the date in which the invoice was created.                                                                      |         |
-| Payment Amount | Provide a string value for the amount of the payment. This value must be less than or equal to the outstanding amount owed on the invoice. |         |
-| Connection     | The connection to use.                                                                                                                     |         |
+| Input          | Comments                                                                                             | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Xero connection to use.                                                                          |         |
+| Invoice ID     | The unique identifier for the invoice.                                                               |         |
+| Account ID     | The unique identifier for the account.                                                               |         |
+| Payment Amount | The amount of the payment. Must be less than or equal to the outstanding amount owed on the invoice. |         |
+| Date String    | The date the record was created. Format: YYYY-MM-DDTHH:MM:SS.                                        |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Xero
+Send a raw HTTP request to Xero.
 
 | Input                   | Comments                                                                                                                                                                                                             | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The connection to use.                                                                                                                                                                                               |         |
+| Connection              | The Xero connection to use.                                                                                                                                                                                          |         |
 | URL                     | Input the path only (/Accounts), The base URL is already included (https://api.xero.com/api.xro/2.0). For example, to connect to https://api.xero.com/api.xro/2.0/Accounts, only /Accounts is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                              |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                            |         |
@@ -455,94 +475,94 @@ Send raw HTTP request to Xero
 
 ### Reverse Payment {#reversepayment}
 
-Reverse a payment by Id
+Reverse a payment by ID.
 
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Payment ID | Provide a string value for the Id of the payment. |         |
-| Connection | The connection to use.                            |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Payment ID | The unique identifier for the payment. |         |
 
 ### Send Invoice {#sendinvoice}
 
-Send an existing accounts receivable invoice through email
+Send an existing accounts receivable invoice through email.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Invoice ID | Provide a string value for the Invoice ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Invoice ID | The unique identifier for the invoice. |         |
 
 ### Update Account {#updateaccount}
 
-Update the information and metadata of an existing account by Id
+Update the information and metadata of an existing account by ID.
 
-| Input                      | Comments                                                                                                                                                                               | Default |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Account ID                 | Provide a string value for the Account ID                                                                                                                                              |         |
-| Account Code               | Provide a string value for the account code. This value is a customer defined alpha numeric account code.                                                                              |         |
-| Account Name               | Provide a string value for the name of the account.                                                                                                                                    |         |
-| Account Type               | Provide a string value for the type of the given account. You can choose from the list of provided values here: https://developer.xero.com/documentation/api/accounting/types#accounts |         |
-| Purchase Tax Type          | Provide the tax type of the purchaser. Pick a value from the items listed here: https://developer.xero.com/documentation/api/accounting/types#tax-types                                |         |
-| Description                | Provide a string value for the description.                                                                                                                                            |         |
-| Enable Payments To Account | This flag will enable payments to be made to the given account.                                                                                                                        | false   |
-| Optional Values            | For each item, provide a key and value to be used in the request body.                                                                                                                 |         |
-| Show In Expense Claims     | This value will determine if your account will show in expense claims. This field is required for certain accounts.                                                                    | false   |
-| Connection                 | The connection to use.                                                                                                                                                                 |         |
+| Input                      | Comments                                                                                                                                              | Default |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                 | The Xero connection to use.                                                                                                                           |         |
+| Account ID                 | The unique identifier for the account.                                                                                                                |         |
+| Account Code               | A customer-defined alphanumeric code that identifies the account.                                                                                     |         |
+| Account Name               | The display name shown for the account.                                                                                                               |         |
+| Account Type               | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts).    |         |
+| Purchase Tax Type          | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |         |
+| Description                | A summary that describes the item.                                                                                                                    |         |
+| Enable Payments To Account | When true, allows payments to be made to the account.                                                                                                 | false   |
+| Optional Values            | For each item, provide a key and value to be used in the request body.                                                                                |         |
+| Show In Expense Claims     | When true, the account appears in expense claims. Required for certain account types.                                                                 | false   |
 
 ### Update Contact {#updatecontact}
 
-Update the information and metadata of a contact by Id
+Update the information and metadata of a contact by ID.
 
-| Input                        | Comments                                                                                                                                                                                                                                                                                                                                           | Default |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Contact ID                   | Provide a string value for the Contact ID.                                                                                                                                                                                                                                                                                                         |         |
-| Contact Number               | Provide a string value for the unique number identifier of the contact.                                                                                                                                                                                                                                                                            |         |
-| Contact Name                 | Provide a string value for the name of the contact.                                                                                                                                                                                                                                                                                                |         |
-| First Name                   | Provide a string value for the first name of the contact.                                                                                                                                                                                                                                                                                          |         |
-| Last Name                    | Provide a string value for the last name of the contact.                                                                                                                                                                                                                                                                                           |         |
-| Email Address                | Provide a valid email address for the contact.                                                                                                                                                                                                                                                                                                     |         |
-| Accounts Payable Tax Type    | Provide a string value for the tax type of accounts payable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                        |         |
-| Accounts Receivable Tax Type | Provide a string value for the tax type of accounts receivable for the account. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                     |         |
-| Bank Account Details         | Provide a string value for the details of the contacts bank account. Depending on the type of account, providing a value for this field could cause your request to fail. For more information on the expected shape of the Account object, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/accounts/#get-accounts |         |
-| Default Currency             | Provide a valid type of currency.                                                                                                                                                                                                                                                                                                                  |         |
-| Tax Number                   | Provide a string value for the Tax number. For more information on what value to provide, refer to the Xero docs: https://developer.xero.com/documentation/api/accounting/types#tax-types                                                                                                                                                          |         |
-| Contact Status               | Provide a string value for the status of the contact.                                                                                                                                                                                                                                                                                              |         |
-| City                         | Provide a string value for the city of the address.                                                                                                                                                                                                                                                                                                |         |
-| Address Type                 | Provide a string value for the address type.                                                                                                                                                                                                                                                                                                       |         |
-| Address                      | Provide a string value that represents a valid address.                                                                                                                                                                                                                                                                                            |         |
-| Postal Code                  | Provide a valid postal code.                                                                                                                                                                                                                                                                                                                       |         |
-| Country                      | Provide a string value for the country of the address.                                                                                                                                                                                                                                                                                             |         |
-| Region                       | Provide a string value for the region of the address.                                                                                                                                                                                                                                                                                              |         |
-| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                                                                                            |         |
-| Connection                   | The connection to use.                                                                                                                                                                                                                                                                                                                             |         |
+| Input                        | Comments                                                                                                                                                                                                                                                                      | Default |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                   | The Xero connection to use.                                                                                                                                                                                                                                                   |         |
+| Contact ID                   | The unique identifier for the contact.                                                                                                                                                                                                                                        |         |
+| Contact Number               | A unique number that identifies the contact.                                                                                                                                                                                                                                  |         |
+| Contact Name                 | The full name or business name of the contact.                                                                                                                                                                                                                                |         |
+| First Name                   | The given name of the contact.                                                                                                                                                                                                                                                |         |
+| Last Name                    | The family name of the contact.                                                                                                                                                                                                                                               |         |
+| Email Address                | The email address used to reach the contact.                                                                                                                                                                                                                                  |         |
+| Accounts Payable Tax Type    | The default tax type applied to bills for the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                                 |         |
+| Accounts Receivable Tax Type | The default tax type applied to sales invoices for the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                        |         |
+| Bank Account Details         | The bank account number for the contact. Depending on the account type, providing a value here could cause the request to fail. See the [Xero accounts documentation](https://developer.xero.com/documentation/api/accounting/accounts/#get-accounts) for the expected shape. |         |
+| Default Currency             | The default currency code used for the contact.                                                                                                                                                                                                                               |         |
+| Tax Number                   | The tax number of the contact. See the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types) for accepted values.                                                                                                                         |         |
+| Contact Status               | The status to assign to the contact.                                                                                                                                                                                                                                          |         |
+| City                         | The city portion of the contact's address.                                                                                                                                                                                                                                    |         |
+| Address Type                 | The kind of address being provided.                                                                                                                                                                                                                                           |         |
+| Address                      | The street address of the contact.                                                                                                                                                                                                                                            |         |
+| Postal Code                  | The postal or ZIP code of the contact's address.                                                                                                                                                                                                                              |         |
+| Country                      | The country portion of the contact's address.                                                                                                                                                                                                                                 |         |
+| Region                       | The state or region portion of the contact's address.                                                                                                                                                                                                                         |         |
+| Additional Fields            | Additional fields that might not be covered by the standard inputs. See [Xero API documentation](https://developer.xero.com/documentation/api/accounting/contacts#post-contacts) for additional fields.                                                                       |         |
 
 ### Update Item {#updateitem}
 
-Update the information and metadata of an item by Id
+Update the information and metadata of an item by ID.
 
-| Input                        | Comments                                                                                                                                                | Default |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Item ID                      | Provide a string value for the Item ID.                                                                                                                 |         |
-| Item Code                    | Provide a user-defined valid item code.                                                                                                                 |         |
-| Item Name                    | Provide a string value for the name of the item.                                                                                                        |         |
-| Description                  | Provide a string value for the description.                                                                                                             |         |
-| Is Sold                      | Provide a boolean value to determine if the item has been sold yet.                                                                                     | false   |
-| Is Purchased                 | Provide a boolean value to determine if the item has been purchased yet.                                                                                | false   |
-| Purchase Description         | Provide a string value for the description.                                                                                                             |         |
-| Purchase Unit Price          | Provide the unit price of the purchase.                                                                                                                 |         |
-| Purchase Tax Type            | Provide the tax type of the purchaser. Pick a value from the items listed here: https://developer.xero.com/documentation/api/accounting/types#tax-types |         |
-| Purchase Account Code        | Provide the account code of the purchase.                                                                                                               |         |
-| Sales Account Code           | Provide the account code of the sale.                                                                                                                   |         |
-| Sales Unit Price             | Provide the unit price of the sale, if the item has been sold.                                                                                          |         |
-| Sales Tax Type               | Provide the tax type of the Seller. Provide a value from the items listed here: https://developer.xero.com/documentation/api/accounting/types#tax-types |         |
-| Inventory Asset Account Code | Provide the account code for the inventory asset                                                                                                        |         |
-| Optional Values              | For each item, provide a key and value to be used in the request body.                                                                                  |         |
-| Connection                   | The connection to use.                                                                                                                                  |         |
+| Input                        | Comments                                                                                                                                                      | Default |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                   | The Xero connection to use.                                                                                                                                   |         |
+| Item ID                      | The unique identifier for the item.                                                                                                                           |         |
+| Item Code                    | A user-defined code that identifies the item.                                                                                                                 |         |
+| Item Name                    | The display name of the item.                                                                                                                                 |         |
+| Description                  | A summary that describes the item.                                                                                                                            |         |
+| Is Sold                      | When true, the item is available to sell.                                                                                                                     | false   |
+| Is Purchased                 | When true, the item is available to purchase.                                                                                                                 | false   |
+| Purchase Description         | A summary shown on purchase transactions for the item.                                                                                                        |         |
+| Purchase Unit Price          | The unit price applied when the item is purchased.                                                                                                            |         |
+| Purchase Tax Type            | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types).         |         |
+| Purchase Account Code        | The account code used for purchases of the item.                                                                                                              |         |
+| Sales Account Code           | The account code used for sales of the item.                                                                                                                  |         |
+| Sales Unit Price             | The unit price applied when the item is sold.                                                                                                                 |         |
+| Sales Tax Type               | The tax type applied to sales of the item. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |         |
+| Inventory Asset Account Code | The account code used to track the inventory asset.                                                                                                           |         |
+| Optional Values              | For each item, provide a key and value to be used in the request body.                                                                                        |         |
 
 ### Void Invoice {#voidinvoice}
 
 Void an existing approved invoice that has no payments applied to it.
 
-| Input      | Comments                                   | Default |
-| ---------- | ------------------------------------------ | ------- |
-| Invoice ID | Provide a string value for the Invoice ID. |         |
-| Connection | The connection to use.                     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Xero connection to use.            |         |
+| Invoice ID | The unique identifier for the invoice. |         |

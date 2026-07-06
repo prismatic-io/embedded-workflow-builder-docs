@@ -24,6 +24,7 @@ API Key connection for Karbon
 To obtain your **Application ID** and **Access Key** Follow these steps:
 
 1. **Register for a Developer Account:**
+
    - Register for a free developer account to create an application in Karbon and receive the **Application ID**.
    - Example: `00000000-0000-0000-0000-000000000000`
 

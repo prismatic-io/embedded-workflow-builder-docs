@@ -5,7 +5,13 @@ description: Manage leads, companies, activities, and more on the Pipedrive plat
 ---
 
 ![Pipedrive](./assets/pipedrive.png#connector-icon)
-[Pipedrive](https://www.pipedrive.com/) is a sales-focused customer relationship management tool. This component allows you to manage leads, companies, activities, and more.
+[Pipedrive](https://www.pipedrive.com/) is a sales-focused customer relationship management tool. This component enables management of leads, companies, activities, and more.
+
+## API Documentation
+
+- [Pipedrive API Reference](https://developers.pipedrive.com/docs/api/v1)
+- [Pipedrive Webhooks Documentation](https://developers.pipedrive.com/docs/api/v1/Webhooks)
+- [Marketplace Scopes and Permissions](https://pipedrive.readme.io/docs/marketplace-scopes-and-permissions-explanations)
 
 ## Connections
 

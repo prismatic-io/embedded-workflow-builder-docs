@@ -6,7 +6,7 @@ description: Manage emails, calendar events, and subscriptions in Microsoft Outl
 
 ![Microsoft Outlook](./assets/ms-outlook.png#connector-icon)
 [Microsoft Outlook](https://outlook.live.com) is a productivity suite for managing email and calendar.
-This component allows you to read, send, and manage emails, as well as create, update, and manage calendar events and subscriptions.
+This component allows reading, sending, and managing emails, as well as creating, updating, and managing calendar events and subscriptions.
 
 ## API Documentation
 
@@ -41,20 +41,17 @@ To connect to Microsoft Outlook using OAuth 2.0, create an App Registration in M
 - Enter the **Application (client) ID** value into the **Client ID** field
 - Enter the **Client Secret** value into the same named field
 - The default scopes are pre-configured for common use cases:
-
   ```
   https://graph.microsoft.com/User.Read https://graph.microsoft.com/Calendars.ReadWrite https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access
   ```
-
   - `https://graph.microsoft.com/User.Read` - Read basic user data
   - `https://graph.microsoft.com/Calendars.ReadWrite` - Manage Outlook calendar
   - `https://graph.microsoft.com/Mail.ReadWrite` - Manage email
   - `https://graph.microsoft.com/Mail.Send` - Send email
   - `offline_access` - Maintain OAuth connection and receive refresh tokens
   - Refer to [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) for additional scope information
-
 - **Additional Authorization Parameters** (optional) - Query string parameters appended to the OAuth authorization URL:
-  - Use `prompt=consent` to force Microsoft to display the consent screen, which is useful when you've changed the requested scopes and need users to re-authorize
+  - Use `prompt=consent` to force Microsoft to display the consent screen, which is useful when the requested scopes have changed and users need to re-authorize
   - Use `login_hint=user@example.com` to pre-fill the user's email address on the sign-in page
   - Multiple parameters can be combined with `&` (e.g., `prompt=consent&login_hint=user@example.com`)
 
@@ -82,29 +79,85 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate using OAuth 2.0 Authorization Code (Deprecated).
 
+:::warning[Deprecated]
+This connection type is deprecated. Use the **OAuth 2.0 Authorization Code** connection instead, which provides the same functionality with improved configuration.
+:::
+
+<Vimeo video="907604023" />
+
 You will first need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
 When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
 
-You will need to go to "Platforms" and add the "Web" platform. In that section you should add the OAuth 2.0 callback URL - `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` - as a **Redirect URI**.
+#### Prerequisites
 
-Next, go to "Certificates & Secrets" for the app and add a new **Client Secret**. Note this value as you will need to supply it to the connection.
+- Access to an [Azure Active Directory tenant](https://portal.azure.com/#home)
+- Permissions to create App Registrations
 
-You will also need the **Application (client) ID** from the "Overview" page.
+#### Setup Steps
 
-Now, configure the OAuth 2.0 connection.
-Add an Microsoft Outlook OAuth 2.0 connection config variable:
+1. Create and configure a new **App Registration** within the Azure Active Directory tenant
+2. When creating the application, select **Supported account types**:
+   - Choose **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow access from other organizations
+3. Under **Platforms**, add the **Web** platform:
+   - Add the OAuth 2.0 callback URL — `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` — as a **Redirect URI**
+4. Navigate to **Certificates & Secrets** and create a new **Client Secret**:
+   - Copy the **Value** of the client secret (this will only be shown once)
+5. Navigate to the **Overview** page and copy the **Application (client) ID**
 
-- Use the **Application (client) ID** value for the **Client ID** field.
-- Use the **Client Secret** for the same named field.
-- If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
-- The default scopes are as follows. You can remove scopes that you don't need:
-  - `https://graph.microsoft.com/User.Read` for reading basic user data
-  - `https://graph.microsoft.com/Calendars.ReadWrite` for managing Outlook calendar
-  - `https://graph.microsoft.com/Mail.ReadWrite` for managing email
-  - `https://graph.microsoft.com/Mail.Send` for sending email
-  - Ensure the `offline_access` scope is included in your app registration. It is essential to maintain your OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+#### Configure the Connection
 
-Save your integration and you should be able to authenticate a user with OAuth 2.0 to access their Microsoft Outlook data.
+- Enter the **Application (client) ID** value into the **Client ID** field
+- Enter the **Client Secret** value into the same named field
+- If Multitenant was not selected when creating the Azure application, replace the **Authorize URL** and **Token URL** with tenant-specific values
+- The default scopes are pre-configured (any scopes not needed can be removed):
+  - `https://graph.microsoft.com/User.Read` — reads basic user data
+  - `https://graph.microsoft.com/Calendars.ReadWrite` — manages Outlook calendar
+  - `https://graph.microsoft.com/Mail.ReadWrite` — manages email
+  - `https://graph.microsoft.com/Mail.Send` — sends email
+  - Ensure the `offline_access` scope is included in the app registration. It is essential to maintain the OAuth connection and receive refresh tokens. Without it, users will need to re-authenticate every hour.
+
+After saving the integration, users can authenticate with OAuth 2.0 to access their Microsoft Outlook data.
+
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+**Complete publisher verification before deploying to end users.** Without it, the Microsoft consent screen displays **"Unverified"** next to the app name. This reduces user trust and may prevent users in organizations with strict Azure AD policies from being able to authorize the app at all.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

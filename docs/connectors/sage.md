@@ -229,7 +229,7 @@ List all address types
 List all contact people
 
 | Input                   | Comments                                                                                     | Default                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | Connection              |                                                                                              |                                                      |
 | Items Per Page          | Provide a value for the amount of items to be returned in the response.                      |                                                      |
 | Page                    | Provide a value for the page of results you would like to be returned.                       |                                                      |
@@ -240,7 +240,7 @@ List all contact people
 List all contacts
 
 | Input                   | Comments                                                                                     | Default                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | Connection              |                                                                                              |                                                      |
 | Items Per Page          | Provide a value for the amount of items to be returned in the response.                      |                                                      |
 | Page                    | Provide a value for the page of results you would like to be returned.                       |                                                      |
@@ -281,7 +281,7 @@ List all currencies
 List all Ledger accounts
 
 | Input                   | Comments                                                                                     | Default                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | Connection              |                                                                                              |                                                      |
 | Items Per Page          | Provide a value for the amount of items to be returned in the response.                      |                                                      |
 | Page                    | Provide a value for the page of results you would like to be returned.                       |                                                      |
@@ -302,7 +302,7 @@ List all Ledger account types
 List all purchase invoices
 
 | Input                   | Comments                                                                                     | Default                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | Connection              |                                                                                              |                                                      |
 | Items Per Page          | Provide a value for the amount of items to be returned in the response.                      |                                                      |
 | Page                    | Provide a value for the page of results you would like to be returned.                       |                                                      |
@@ -313,7 +313,7 @@ List all purchase invoices
 List all sales invoices
 
 | Input                   | Comments                                                                                     | Default                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | Connection              |                                                                                              |                                                      |
 | Items Per Page          | Provide a value for the amount of items to be returned in the response.                      |                                                      |
 | Page                    | Provide a value for the page of results you would like to be returned.                       |                                                      |

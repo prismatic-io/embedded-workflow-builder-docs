@@ -153,6 +153,22 @@ Save the integration to connect and authenticate to Shopify.
 The **Shop Name** should be the subdomain portion of the Shopify store URL. For example, if the store URL is `example-store.myshopify.com`, enter `example-store` as the Shop Name.
 :::
 
+#### App Distribution
+
+Shopify vets all apps intended for distribution to multiple merchants through a formal App Store review to ensure quality and security standards. The distribution type (custom or public) is chosen at app creation and is permanent. Understanding the difference upfront avoids having to rebuild the app later.
+
+Shopify app distribution determines which merchants can install the app and is a permanent, non-reversible choice.
+
+**Custom apps** are created directly within a merchant's Shopify admin and are restricted to that single store. Custom apps do not appear in the Shopify App Store and cannot be installed by other merchants. This is the appropriate choice for single-merchant integrations.
+
+**Public apps** are created through the Shopify Partners program and can be distributed to multiple merchants. Public apps must be submitted for review and listed in the [Shopify App Store](https://apps.shopify.com/) before other merchants can install them.
+
+:::note[Unlisted Apps Deprecated]
+Shopify deprecated unlisted public apps on December 9, 2019. There is no longer an option to distribute to multiple merchants without an App Store listing. For multi-merchant distribution, create a public app and submit it for App Store review.
+:::
+
+For information on the App Store review process, refer to [Shopify's app distribution documentation](https://shopify.dev/docs/apps/distribution).
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

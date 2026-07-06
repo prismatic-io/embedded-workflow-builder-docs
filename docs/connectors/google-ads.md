@@ -5,17 +5,115 @@ description: Manage campaigns, conversions, customers, and local services in Goo
 ---
 
 ![Google Ads](./assets/google-ads.png#connector-icon)
-[Google Ads](https://ads.google.com/) is an online advertising platform that allows businesses to create and manage ad campaigns across Google Search, YouTube, and partner websites. This component gives you the ability to manage campaigns, upload conversions, handle customer accounts, and work with Local Services ads.
+[Google Ads](https://ads.google.com/) is an online advertising platform that allows businesses to create and manage ad campaigns across Google Search, YouTube, and partner websites. This component allows managing campaigns, uploading conversions, handling customer accounts, and working with Local Services ads in Google Ads.
 
 ## API Documentation
 
-This component was built using the [Google Ads API v22](https://developers.google.com/google-ads/api/docs/get-started/introduction) currently supporting versions v19,v20,v21,v22.
+This component was built using the [Google Ads API](https://developers.google.com/google-ads/api/docs/get-started/introduction), currently utilizing v23 by default. Older versions (v21, v22) are supported by specifying the API Version in the connection.
+
+## EU Political Advertising Self-Declaration (v22+)
+
+When using API v22 or later, the `containsEuPoliticalAdvertising` field must be set when:
+
+- Creating new campaigns
+- Modifying location or proximity targeting on existing campaigns
+
+This field is required and accepts one of the following values:
+
+- `CONTAINS_EU_POLITICAL_ADVERTISING`: Campaign contains EU political advertising.
+- `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING`: Campaign does not contain EU political advertising.
+- `UNSPECIFIED` or `UNKNOWN`: Use when the value is unknown or indeterminate.
+
+Failure to set this field will result in a `FieldError.REQUIRED` error from the API.
 
 ## Connections
 
 ### Data Manager OAuth 2.0 {#datamanageroauth}
 
 Authenticate to the Google Data Manager API using OAuth 2.0. Use this connection for the Ingest Offline Conversions action. A Developer Token is not required for this API.
+
+This connection uses OAuth 2.0 to connect to the Google [Data Manager API](https://developers.google.com/data-manager/api). Use this connection for the **Ingest Offline Conversions** action. A Developer Token is **not** required for the Data Manager API.
+
+#### Prerequisites
+
+- A [Google Developer account](https://console.cloud.google.com/) with permission to manage APIs and OAuth credentials
+- A Google Ads account that owns the conversion actions to ingest into
+- The numeric **Customer ID** of the Google Ads account that will receive the offline conversions (configured per-action, not on the connection)
+
+#### Configure Google Cloud Project
+
+1. Sign in to the [Google Cloud Console](https://console.cloud.google.com/) and select or create a project.
+1. Select **APIs & Services** -> **Enabled APIs & services** from the left hand menu.
+1. Click **Enable APIs and Services** at the top of the screen.
+1. Search for "data manager api" and select **Data Manager API** in the results.
+1. Click the **Enable** button to add the API to the project.
+1. From the sidebar, select **Credentials**.
+1. An OAuth 2.0 app requires a "Consent Screen". Click **CONFIGURE CONSENT SCREEN**.
+   1. The app will be externally available to customers, so choose a **User Type** of **External**.
+   1. Fill out the OAuth consent screen with an app name, support email, app logo, and authorized domain.
+   1. On the next page, add the `https://www.googleapis.com/auth/datamanager` scope to the app.
+   1. Enter **test users** for testing purposes. The app will only work for those testing users until it is "verified" by Google. When ready for verification, click **PUBLISH APP** on the **OAuth consent screen**.
+1. Once the "Consent Screen" is configured, open the **Credentials** page from the sidebar again.
+1. Click **+CREATE CREDENTIALS** and select **OAuth client ID**.
+   1. Under **Application type** select **Web application**.
+   1. Under **Authorized redirect URIs** enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+   1. Click **CREATE**.
+1. Take note of the **Client ID** and **Client Secret** that are generated.
+
+#### Configure the Connection
+
+- **Client ID**: From the Google Cloud Console OAuth client credentials
+- **Client Secret**: From the Google Cloud Console OAuth client credentials
+- **API Version**: The Google Data Manager API version to use. Defaults to `v1`. Refer to the [Data Manager API reference](https://developers.google.com/data-manager/api/reference/rest) for the latest version.
+
+After entering the credentials, authorize the connection by signing in with the Google account that has access to the target Google Ads account.
+
+:::note[No Developer Token]
+Unlike the standard Google Ads connection, the Data Manager API does not require a Developer Token. The `developer-token` header is not sent on requests made by this connection.
+:::
+
+#### Supported API Versions
+
+The component supports the following Google Data Manager API versions through the **API Version** connection field:
+
+| Version | Status                |
+| ------- | --------------------- |
+| **v1**  | Recommended (default) |
+
+Refer to the official [Data Manager API release notes](https://developers.google.com/data-manager/api/release-notes) for the latest version information.
+
+#### App Verification
+
+Google requires OAuth apps that request access to user data to pass a verification review before being deployed at scale. This process ensures the app complies with Google's API Services User Data Policy, accurately represents its functionality, and handles user data responsibly.
+
+Google OAuth apps pass through three stages before they are ready for production use.
+
+**Testing (unpublished):** The app is only accessible to users manually added as test users in the OAuth consent screen. Up to 100 test users are allowed. All other users receive an error. This is the expected state during initial development.
+
+**Published, unverified:** After publishing the app, all Google users can authenticate. However, for sensitive scopes, users see a **"This app isn't verified"** warning. Users can proceed by clicking **Advanced** -> **Go to [app name] (unsafe)**, but this warning reduces trust and may be blocked by organizations with strict Google Workspace policies.
+
+**Verified:** Google has reviewed and approved the app. No warning is shown. Verification is required before deploying to production users.
+
+#### Publishing the App
+
+Publishing is required before any users outside the test list can authenticate:
+
+1. In the [Google Cloud Console](https://console.cloud.google.com/), navigate to **APIs & Services** -> **OAuth consent screen**
+2. Click **PUBLISH APP** and confirm
+
+#### Requesting Verification
+
+The `datamanager` scope used by this connection is classified as **sensitive** by Google. Submitting for verification removes the "This app isn't verified" warning:
+
+1. On the **OAuth consent screen**, click **Prepare for verification**
+2. Provide a privacy policy URL, authorized domain, and app logo
+3. Submit for review. Google typically responds within several weeks.
+
+Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for the full verification requirements.
+
+#### Verify Connection
+
+Save the integration to authenticate. After authorizing, run the **Ingest Offline Conversions** action with **Validate Only** enabled to confirm the connection and payload are valid without ingesting live data.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -95,15 +193,45 @@ Sunset dates are tentative and subject to change. See the official [deprecation 
 
 After entering the credentials, authorize the connection by signing in with the Google account used to create the Developer Token and OAuth credentials.
 
+#### App Verification
+
+Google requires OAuth apps that request access to user data to pass a verification review before being deployed at scale. This process ensures the app complies with Google's API Services User Data Policy, accurately represents its functionality, and handles user data responsibly.
+
+Google OAuth apps pass through three stages before they are ready for production use.
+
+**Testing (unpublished):** The app is only accessible to users manually added as test users in the OAuth consent screen. Up to 100 test users are allowed. All other users receive an error. This is the expected state during initial development.
+
+**Published, unverified:** After publishing the app, all Google users can authenticate. However, for sensitive scopes, users see a **"This app isn't verified"** warning. Users can proceed by clicking **Advanced** → **Go to [app name] (unsafe)**, but this warning reduces trust and may be blocked by organizations with strict Google Workspace policies.
+
+**Verified:** Google has reviewed and approved the app. No warning is shown. Verification is required before deploying to production users.
+
+#### Publishing the App
+
+Publishing is required before any users outside the test list can authenticate:
+
+1. In the [Google Cloud Console](https://console.cloud.google.com/), navigate to **APIs & Services** → **OAuth consent screen**
+2. Click **PUBLISH APP** and confirm
+
+#### Requesting Verification
+
+The scopes used by this component are classified as **sensitive** by Google. Submitting for verification removes the "This app isn't verified" warning:
+
+1. On the **OAuth consent screen**, click **Prepare for verification**
+2. Provide a privacy policy URL, authorized domain, and app logo
+3. Submit for review. Google typically responds within several weeks
+
+Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for the full verification requirements.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input           | Comments                                                                                                                                                                                                                                                                    | Default |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Client ID       | The Client ID for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                                |         |
-| Client Secret   | The Client Secret for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                            |         |
-| Developer Token | The Developer Token for the Google Ads Manager account. Obtain from the [Google Ads API Center](https://ads.google.com/aw/apicenter).                                                                                                                                       |         |
-| API Version     | The version of the Google Ads API to use. Defaults to v23. Older versions (v21, v22) are supported by specifying the version explicitly. Note: v20 sunsets in June 2026. See [API versions documentation](https://developers.google.com/google-ads/api/docs/release-notes). | v23     |
+| Input           | Comments                                                                                                                                                                                                                                                                    | Default                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Scopes          | Space-separated OAuth 2.0 permission scopes for the Google Ads and Data Manager APIs. See [OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes).                                                                                     | https://www.googleapis.com/auth/adwords |
+| Client ID       | The Client ID for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                                |                                         |
+| Client Secret   | The Client Secret for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                            |                                         |
+| Developer Token | The Developer Token for the Google Ads Manager account. Obtain from the [Google Ads API Center](https://ads.google.com/aw/apicenter).                                                                                                                                       |                                         |
+| API Version     | The version of the Google Ads API to use. Defaults to v23. Older versions (v21, v22) are supported by specifying the version explicitly. Note: v20 sunsets in June 2026. See [API versions documentation](https://developers.google.com/google-ads/api/docs/release-notes). | v23                                     |
 
 ## Triggers
 
@@ -274,14 +402,14 @@ Creates, updates, or removes campaigns as well as local services campaigns. Oper
 
 Creates, updates, or removes campaign criteria as well as local services campaign criterion. Operation statuses are returned. When using API v22+, the containsEuPoliticalAdvertising field must be set on the parent campaign before modifying location or proximity targeting criteria.
 
-| Input               | Comments                                                                                                                                                                                                                                                                                                                                                        | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection          | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Customer ID         | The unique identifier for the Google Ads client account. Accepts hyphenated or number forms. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid).                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Operations          | The list of operations to perform on individual campaigns. See [Campaign operations documentation](https://developers.google.com/google-ads/api/reference/rpc/latest/CampaignOperation).                                                                                                                                                                        | <code>[<br /> {<br /> "updateMask": "bidModifier",<br /> "create": {<br /> "campaign": "customers/1234567890/campaigns/1122334455",<br /> "location": {<br /> "geoTargetConstant": "geoTargetConstants/1014044"<br /> }<br /> },<br /> "update": {<br /> "resourceName": "customers/1234567890/campaignCriteria/1122334455~987654321",<br /> "bidModifier": 1.5<br /> },<br /> "remove": "customers/1234567890/campaignCriteria/1122334455~987654321"<br /> }<br />]</code> |
-| Partial Failure     | When true, successful operations will be carried out and invalid operations will return errors. When false, all operations will be carried out in one transaction if and only if they are all valid. This should always be set to true. See [Partial failure documentation](https://developers.google.com/google-ads/api/docs/best-practices/partial-failures). | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Manager Customer ID | The unique identifier for the Google Ads Manager account. Accepts hyphenated or number forms. When used in conjunction with a sub account as the customer ID, this value is used as the 'login-customer-id' header for the HTTP request. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid).        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Validate Only       | When true, the request is validated but not executed. Only errors are returned, not results.                                                                                                                                                                                                                                                                    | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Input               | Comments                                                                                                                                                                                                                                                                                                                                                        | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection          | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Customer ID         | The unique identifier for the Google Ads client account. Accepts hyphenated or number forms. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid).                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Operations          | The list of operations to perform on individual campaigns. See [Campaign operations documentation](https://developers.google.com/google-ads/api/reference/rpc/latest/CampaignOperation).                                                                                                                                                                        | <code>[<br /> {<br /> "updateMask": "bidModifier",<br /> "create": {<br /> "campaign": "customers/1234567890/campaigns/1122334455",<br /> "location": {<br /> "geoTargetConstant": "geoTargetConstants/1014044"<br /> }<br /> },<br /> "update": {<br /> "resourceName": "customers/1234567890/campaignCriteria/1122334455~~987654321",<br /> "bidModifier": 1.5<br /> },<br /> "remove": "customers/1234567890/campaignCriteria/1122334455~~987654321"<br /> }<br />]</code> |
+| Partial Failure     | When true, successful operations will be carried out and invalid operations will return errors. When false, all operations will be carried out in one transaction if and only if they are all valid. This should always be set to true. See [Partial failure documentation](https://developers.google.com/google-ads/api/docs/best-practices/partial-failures). | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Manager Customer ID | The unique identifier for the Google Ads Manager account. Accepts hyphenated or number forms. When used in conjunction with a sub account as the customer ID, this value is used as the 'login-customer-id' header for the HTTP request. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid).        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Validate Only       | When true, the request is validated but not executed. Only errors are returned, not results.                                                                                                                                                                                                                                                                    | false                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ### Raw Request {#rawrequest}
 

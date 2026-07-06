@@ -6,7 +6,11 @@ description: Manage AWS Glue crawlers, jobs and triggers
 
 ![AWS Glue](./assets/aws-glue.png#connector-icon)
 [AWS Glue](https://aws.amazon.com/glue) is a serverless data integration service from Amazon Web Services.
-The AWS Glue component allows you to interact with jobs, triggers, and crawlers in your AWS Glue account.
+The AWS Glue component allows listing, starting, and stopping jobs, triggers, and crawlers in an AWS Glue account.
+
+## API Documentation
+
+This component was built using the [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html).
 
 ## Connections
 
@@ -15,8 +19,33 @@ The AWS Glue component allows you to interact with jobs, triggers, and crawlers 
 Authenticates requests to AWS Glue using an API Key and API Secret.
 
 An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with AWS Glue.
-Make sure that the key pair you generate in AWS has proper permissions to the AWS Glue resources you want to access.
-Read more about Glue IAM actions in the [AWS docs](https://docs.aws.amazon.com/glue/latest/dg/create-an-iam-role.html).
+Ensure the key pair generated in AWS has proper permissions to the AWS Glue resources to access.
+Read more about Glue IAM actions in the [AWS documentation](https://docs.aws.amazon.com/glue/latest/dg/create-an-iam-role.html).
+
+#### Prerequisites
+
+- An [AWS account](https://aws.amazon.com/) with IAM access
+- Appropriate permissions to create IAM access keys
+
+#### Setup Steps
+
+To create an IAM access key pair:
+
+1. Sign in to the [AWS Console](https://aws.amazon.com/) and navigate to **Identity and Access Management (IAM)**
+2. Select the IAM user that will be used for the integration
+3. Navigate to the **Security credentials** tab
+4. Under the **Access keys** section, select **Create access key**
+5. Choose the appropriate use case (e.g., **Third-party service** or **Application running outside AWS**)
+6. Copy both the **Access key ID** and **Secret access key** when displayed
+
+:::warning[Secret Key Visibility]
+The **Secret access key** is only shown once during creation. If it is not copied at this time, a new access key pair must be created.
+:::
+
+#### Configure the Connection
+
+- Enter the **Access Key ID** into the connection configuration
+- Enter the **Secret Access Key** into the connection configuration
 
 | Input             | Comments                     | Default |
 | ----------------- | ---------------------------- | ------- |
@@ -27,28 +56,28 @@ Read more about Glue IAM actions in the [AWS docs](https://docs.aws.amazon.com/g
 
 Connect to AWS using an assumed role
 
-To enable the IAM role authentication begin by logging into the [AWS Console](https://aws.amazon.com/) and navigate to Identity and Access Management (IAM).
+AWS Assume Role authentication allows assuming an IAM role using temporary security credentials.
+This method is useful for cross account access or when implementing principle of least privilege.
 
-To create an ARN user and generate credentials:
+Refer to the [AWS documentation on assuming roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) for detailed information.
 
-1. Navigate to Users and select **Create User**.
+#### Prerequisites
 
-- Provide a User name and check the box providing them user access to the AWS Management Console if needed.
-- Once completed with the User creation, copy the ARN provided in the summary for a later step.
+- Completed [Access Key and Secret](#apikeysecret) connection setup (access key pair required)
+- Appropriate permissions to create IAM roles
 
-2. To obtain the ARN for an existing User, click on the designated username from the Users page and the ARN will be provided in the summary section.
-3. From the summary section, select **Create access key**
+#### Setup Steps
 
-- Select **Third-party service** as the access key type and select next.
-- Set a description and select **create access key**.
-- Copy the **Access Key** and **Secret access key** and enter those into the connection configuration of your integration along with the ARN.
+An IAM user with access keys is required to assume a role. If access keys have not been created, follow the [Access Key and Secret](#apikeysecret) setup steps first, then return here to create the IAM role.
 
-To create and assign a user a role:
+#### Create an IAM Role with Trust Policy
 
-1. Navigate to Roles and select **Create Role**.
+1. From the [IAM Console](https://console.aws.amazon.com/iam/), navigate to **Roles** and select **Create Role**
+2. Select **Custom trust policy** as the trusted entity type
+3. Enter the trust policy below, replacing `USER_ARN` with the IAM user ARN:
 
-- Select **Custom Trust Policy** for the Trusted entity types
-- Copy the following statement into the statement console. Making sure to replace the **ARN** with the user's actual ARN from the previous section
+<details>
+<summary>View trust policy template</summary>
 
 ```json
 {
@@ -57,7 +86,7 @@ To create and assign a user a role:
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "ARN"
+        "AWS": "USER_ARN"
       },
       "Action": "sts:AssumeRole"
     }
@@ -65,8 +94,26 @@ To create and assign a user a role:
 }
 ```
 
-- When adding permissions provide the **AWSGlueConsoleFullAccess** permission
-- Complete remaining steps and select **Create Role**
+</details>
+
+4. Click **Next** and attach the appropriate Glue permissions policy (e.g., **AWSGlueConsoleFullAccess**)
+5. Complete the remaining steps and select **Create Role**
+6. Copy the **Role ARN** from the role summary (format: `arn:aws:iam::123456789012:role/role-name`)
+
+#### Configure the Connection
+
+- **Role ARN**: The ARN of the IAM role to assume
+- **Access Key ID**: From the IAM user (see [Access Key and Secret](#apikeysecret))
+- **Secret Access Key**: From the IAM user
+- **External ID** (optional): Shared secret for enhanced security
+
+:::note[External ID]
+The **External ID** provides additional security for cross-account access. Refer to the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id) for more information.
+:::
+
+#### Verify Connection
+
+The IAM user credentials assume the role, which provides temporary credentials with the role's attached permissions. Ensure the trust policy correctly references the IAM user ARN.
 
 | Input             | Comments                                                                                                                                                                                                                                                      | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

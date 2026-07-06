@@ -51,6 +51,17 @@ Get notified when a specific event occurs
 | Topics to Subscribe        | List of webhook topics to subscribe to                                                        |         |
 | Overwrite Webhook Settings | When true, deletes existing webhook settings pointing to this flow's URL and creates new ones | false   |
 
+### New and Updated Orders {#pollchangestrigger}
+
+Checks for new and updated orders in ShipBob on a configured schedule.
+
+| Input                | Comments                                                                          | Default |
+| -------------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection           | The ShipBob connection to use.                                                    |         |
+| Version              | The version of the ShipBob API to use                                             | 1.0     |
+| Show New Records     | When true, orders created since the last poll are included in the trigger output. | true    |
+| Show Updated Records | When true, orders updated since the last poll are included in the trigger output. | true    |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from ShipBob for webhooks you configure.

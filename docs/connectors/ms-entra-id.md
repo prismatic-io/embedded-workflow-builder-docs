@@ -19,6 +19,8 @@ This component was built using the [Microsoft Graph REST API v1.0](https://learn
 
 Authenticate using OAuth 2.0
 
+<Vimeo video="907604023" />
+
 This authentication method may be used when an App requires granting admin consent to API permissions, in addition to authorizing the integration with the App's configured client credentials.
 
 The **Microsoft Entra ID** component authenticates requests through the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api).
@@ -51,6 +53,49 @@ Supply the following values to the **OAuth 2.0** connection:
 - **Authorize URL**: The OAuth 2.0 authorization endpoint. Defaults to `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`. If Multitenant was not selected when creating the App, replace with a tenant-specific URL.
 - **Token URL**: The OAuth 2.0 token endpoint. Defaults to `https://login.microsoftonline.com/common/oauth2/v2.0/token`. If Multitenant was not selected, replace with a tenant-specific URL.
 
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+**Complete publisher verification before deploying to end users.** Without it, the Microsoft consent screen displays **"Unverified"** next to the app name. This reduces user trust and may prevent users in organizations with strict Azure AD policies from being able to authorize the app at all.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
+
+<Vimeo video="907604023" />
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
@@ -61,6 +106,64 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Scopes        | Space-separated list of OAuth permission scopes to request.      | Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access |
 | Client ID     | The Client ID from the App Registration in the Azure Portal.     |                                                                                                      |
 | Client Secret | The Client Secret from the App Registration in the Azure Portal. |                                                                                                      |
+
+### OAuth 2.0 Client Credentials {#msentraidclientcredentials}
+
+Authenticates actions in all Microsoft's Graph API services.
+
+To connect to Microsoft Entra ID using the OAuth 2.0 Client Credentials flow, create an app registration in Microsoft Entra. The client credentials flow is used for server-to-server authentication where the application acts on its own behalf rather than on behalf of a specific user.
+
+The **Microsoft Entra ID** component authenticates requests through the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api). For more information on the Client Credentials flow, refer to the [Microsoft documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow).
+
+#### Prerequisites
+
+- A Microsoft Azure account with administrative access to the [Microsoft Entra Admin Center](https://entra.microsoft.com/#home)
+- Permissions to create App Registrations in the tenant
+- Admin consent privileges to grant application-level permissions
+
+#### Setup Steps
+
+1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com/) and go to **Identity** > **Applications** > **App registrations**, then select **New registration**.
+2. Configure the app registration:
+   - Set **Supported account types** to **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow authentication across different organizations, or to a single-tenant option for tenant-specific access.
+   - Select **Register** to complete the initial setup.
+3. Navigate to **Certificates & Secrets** and create a new **Client Secret**. Copy the **Value** immediately (it will not be shown again).
+4. Navigate to the **Overview** page and copy the **Application (client) ID**.
+5. Navigate to the **Overview** page and copy the **Directory (tenant) ID**. This value is required, as the client credentials flow cannot use the `common` endpoint.
+6. Navigate to **API Permissions** and select **Add a permission**:
+   - Select **Microsoft Graph**
+   - Select **Application permissions**
+   - Add all permissions required for the intended use case
+7. After adding all required permissions, select **Grant admin consent** to authorize the application to use these permissions. This step is required for the client credentials flow to function properly.
+
+For more information on application versus delegated permissions, refer to the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference).
+
+#### Configure the Connection
+
+Supply the following values to the **OAuth 2.0 Client Credentials** connection:
+
+- **Client ID**: The **Application (client) ID** from the App Registration.
+- **Client Secret**: The **Value** provided from Certificates & Secrets (not the **Secret ID**).
+- **Tenant**: The **Directory (tenant) ID** or name from the Overview page. The client credentials flow requires a tenant-specific value and cannot use `common`.
+- **Microsoft Entra ID Endpoint**: The Microsoft Entra ID login endpoint. Defaults to `https://login.microsoftonline.com`. Adjust this value for sovereign or national cloud environments.
+- **Base URL**: The Microsoft Graph API base URL. Defaults to `https://graph.microsoft.com`. Adjust this value for sovereign or national cloud environments.
+- **Scopes**: The Microsoft Graph API scope. Defaults to `https://graph.microsoft.com/.default`, which requests all application permissions configured on the App Registration.
+
+:::note[Client Credentials Flow Requirement]
+The client credentials flow requires a tenant-specific token endpoint and application-level permissions granted through admin consent. Actions performed using this connection execute under the application's identity rather than on behalf of a specific user.
+:::
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input                       | Comments                                                                                                                                                                                                                             | Default                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| Base URL                    | The base URL for the Microsoft Graph API. Depending on your cloud environment, you can choose the correct one [here](https://learn.microsoft.com/en-us/graph/deployments#microsoft-graph-and-graph-explorer-service-root-endpoints). | https://graph.microsoft.com          |
+| Microsoft Entra ID Endpoint | The Microsoft Entra ID endpoint for the Microsoft Graph API. You can find this in the Azure portal or [here](https://learn.microsoft.com/en-us/graph/deployments#app-registration-and-token-service-root-endpoints).                 | https://login.microsoftonline.com    |
+| Tenant                      | The tenant ID or name for the Microsoft Graph API. This is the ID or name of the tenant that you are connecting to.                                                                                                                  |                                      |
+| Client ID                   | Client Id of your Azure application.                                                                                                                                                                                                 |                                      |
+| Client Secret               | Client Secret generated under 'Certificates & Secrets' in your Azure application.                                                                                                                                                    |                                      |
+| Scopes                      | Microsoft Graph API Scopes.                                                                                                                                                                                                          | https://graph.microsoft.com/.default |
 
 ## Triggers
 

@@ -115,6 +115,7 @@ Refer to [NetSuite's OAuth Client Credentials documentation](https://docs.oracle
 3. Generate Certificate and Private Key for JWT:
 
    A private key and certificate are required for JWT-based authentication. Refer to the [NetSuite documentation](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html#Related-Topics) for more information on generating or importing certificates.
+
    - On the local machine, generate a valid certificate using OpenSSL:
 
      ```bash

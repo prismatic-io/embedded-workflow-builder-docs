@@ -12,7 +12,7 @@ handlebars.registerHelper("cleanDefaultForTable", (value: string) => {
   if (value.startsWith("{") || value.startsWith("[")) {
     return `<code>${value.replaceAll("\n", "<br />")}</code>`;
   }
-  return value.replaceAll("\n", "<br />");
+  return value.replaceAll("\n", "<br />").replaceAll("*", "\\*");
 });
 
 handlebars.registerHelper("lowerCase", (value: string) => value.toLowerCase());
@@ -87,7 +87,7 @@ async function generateConnectorDocs({
           .readFileSync(descriptionPath, {
             encoding: "utf-8",
           })
-          .replace("####", "##"); // Downgrade heading levels from description files to fit in the connector docs page better
+          .replaceAll("####", "##"); // Downgrade heading levels from description files to fit in the connector docs page better
       }
       for (const connection of connector.connections.nodes) {
         const docsPath = path.join(

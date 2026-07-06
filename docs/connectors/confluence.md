@@ -419,12 +419,12 @@ Returns all spaces.
 
 Send raw GraphQL request to Confluence
 
-| Input             | Comments                                       | Default                                                                                                                                                                                              |
-| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection        | The Confluence connection to use.              |                                                                                                                                                                                                      |
-| Query or Mutation |                                                | query ($customerName: String!) {<br /> customers(name: $customerName) {<br /> nodes {<br /> id<br /> labels<br /> users {<br /> nodes {<br /> id<br /> email<br /> }<br /> }<br /> }<br /> }<br /> } |
-| Variables         | Variables to pass in to your query or mutation |                                                                                                                                                                                                      |
-| Headers           | Custom headers to send along with your request |                                                                                                                                                                                                      |
+| Input             | Comments                                       | Default                                                                                                                                                                                                 |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection        | The Confluence connection to use.              |                                                                                                                                                                                                         |
+| Query or Mutation |                                                | query ($customerName: String!) {<br />    customers(name: $customerName) {<br /> nodes {<br /> id<br /> labels<br /> users {<br /> nodes {<br /> id<br /> email<br /> }<br /> }<br /> }<br /> }<br /> } |
+| Variables         | Variables to pass in to your query or mutation |                                                                                                                                                                                                         |
+| Headers           | Custom headers to send along with your request |                                                                                                                                                                                                         |
 
 ### Raw Request {#rawrequest}
 

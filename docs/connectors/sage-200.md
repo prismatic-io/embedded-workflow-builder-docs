@@ -410,120 +410,131 @@ Retrieve a tax code by ID
 
 Retrieve a list of customer contacts
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Customer Delivery Addresses {#listcustomerdeliveryaddresses}
 
 Retrieve a list of customer delivery addresses
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Customer Price Bands {#listcustomerpricebands}
 
 Retrieve a list of customer price bands
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Customers {#listcustomers}
 
 Retrieve a list of all customers
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Price Bands {#listpricebands}
 
 Retrieve a list of price bands
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Pricing Source Types {#listpricingsourcetypes}
 
 Retrieve a list of pricing source types
 
-| Input      | Comments                                                                                                 | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                          |         |
-| Site       | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company    | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
+| Input      | Comments                                                                                                                                               | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection |                                                                                                                                                        |         |
+| Site       | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company    | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All  | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
 
 ### List Pricing Types {#listpricingtypes}
 
 Retrieve a list of pricing types
 
-| Input      | Comments                                                                                                 | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                          |         |
-| Site       | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company    | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
+| Input      | Comments                                                                                                                                               | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection |                                                                                                                                                        |         |
+| Site       | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company    | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All  | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
 
 ### List Product Groups {#listproductgroups}
 
 Retrieve a list of product groups
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Products {#listproducts}
 
 Retrieve a list of products
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Sales Order {#listsalesorder}
 
 Retrieve a list of sales orders
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### List Tax Codes {#listtaxcodes}
 
 Retrieve a list of tax codes
 
-| Input                  | Comments                                                                                                 | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             |                                                                                                          |         |
-| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Filter Data After Date | Filter data to only include items that have been updated after this date.                                |         |
+| Input                  | Comments                                                                                                                                               | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection             |                                                                                                                                                        |         |
+| Site                   | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                  |         |
+| Company                | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                               |         |
+| Fetch All              | When enabled, automatically fetches all pages of results using $top/$skip pagination. Filter Data After Date is still applied to the final result set. | false   |
+| Filter Data After Date | Filter data to only include items that have been updated after this date.                                                                              |         |
 
 ### Raw Request {#rawrequest}
 

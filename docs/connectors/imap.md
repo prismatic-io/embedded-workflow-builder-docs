@@ -104,12 +104,12 @@ Fetches new emails from a specified mailbox on a recurring schedule.
 
 Add new flags to an existing message
 
-| Input      | Comments                                                                                 | Default |
-| ---------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                              |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.                |         |
+| Input      | Comments                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                             |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.               |         |
 
 ### Append Message {#appendmessage}
 
@@ -126,12 +126,12 @@ Appends a new message to an existing mailbox
 
 Copies a message from one mailbox to another.
 
-| Input      | Comments                                                                                 | Default |
-| ---------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                              |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
-| New Path   | Mailbox path to upload the message to.                                                   |         |
+| Input      | Comments                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                             |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
+| New Path   | Mailbox path to upload the message to.                                                  |         |
 
 ### Create Mailbox {#createmailbox}
 
@@ -183,12 +183,12 @@ Returns a list of available mailboxes
 
 Remove existing flags from an existing message
 
-| Input      | Comments                                                                                 | Default |
-| ---------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                              |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.                |         |
+| Input      | Comments                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                             |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.               |         |
 
 ### Rename Mailbox {#renamemailbox}
 
@@ -217,9 +217,9 @@ Returns all messages in the given mailbox
 
 Set a value for an existing message flag
 
-| Input      | Comments                                                                                 | Default |
-| ---------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                              |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                      |         |
-| Range      | Provide a range of messages. Alternatively you can specify \* to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.                |         |
+| Input      | Comments                                                                                | Default |
+| ---------- | --------------------------------------------------------------------------------------- | ------- |
+| Connection | The IMAP connection to use.                                                             |         |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
+| Flags      | For each item, provide a string value to be added to an existing message.               |         |

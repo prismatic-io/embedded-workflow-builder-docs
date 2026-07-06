@@ -5,11 +5,12 @@ description: Manage payments, customers, subscriptions, and other objects in you
 ---
 
 ![Stripe](./assets/stripe.png#connector-icon)
-The **Stripe** component provides functionality for interacting with the Stripe API.
+[Stripe](https://stripe.com/) is a payment processing platform for online businesses.
+The **Stripe** component provides functionality for interacting with the Stripe API, including managing customers, payment intents, charges, invoices, products, prices, subscriptions, checkout sessions, disputes, and webhooks.
 
 ## API Documentation
 
-This component was built using the [Stripe REST API Reference](https://docs.stripe.com/api)
+This component was built using the [Stripe REST API Reference](https://docs.stripe.com/api).
 
 ## Connections
 
@@ -17,11 +18,35 @@ This component was built using the [Stripe REST API Reference](https://docs.stri
 
 Authenticate requests to Stripe using an API key.
 
-The **Stripe** component uses API keys to authenticate requests. You can view and manage your API keys in the Stripe Dashboard. For information on obtaining an API key from Stripe, refer to the [docs](https://stripe.com/docs/api/authentication)
+To authenticate requests with Stripe, an API key is required. API keys are managed in the Stripe Dashboard. For background, refer to the [Stripe authentication documentation](https://docs.stripe.com/keys).
+
+#### Prerequisites
+
+- A Stripe account with access to the [API keys dashboard](https://dashboard.stripe.com/apikeys)
+
+#### Setup Steps
+
+1. Sign in to the [Stripe Dashboard](https://dashboard.stripe.com/) and navigate to **Developers > API keys**
+2. Locate the desired secret key:
+   - Use a test mode key (prefix `sk_test_`) for development and testing
+   - Use a live mode key (prefix `sk_live_`) for production traffic
+3. Click **Reveal test key** (or create a new restricted key as needed) and copy the key value
+
+:::warning[Security Note]
+Secret API keys grant full access to the Stripe account. Store them securely and never expose them in client-side code or version control.
+:::
+
+#### Configure the Connection
+
+- Enter the secret key value into the **API Key** field
+
+#### Verify Connection
+
+Save the integration and run any Stripe action (such as **List Customers**) to confirm that the API key is valid.
 
 | Input   | Comments                                                                                                                                                                                                                           | Default |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| API Key | The Stripe API Key from the Stripe Dashboard. Use a test key (sk*test*...) for development and a live key (sk*live*...) for production. Find the API key in the [Stripe API keys dashboard](https://dashboard.stripe.com/apikeys). |         |
+| API Key | The Stripe API Key from the Stripe Dashboard. Use a test key (sk_test_...) for development and a live key (sk_live_...) for production. Find the API key in the [Stripe API keys dashboard](https://dashboard.stripe.com/apikeys). |         |
 
 ## Triggers
 

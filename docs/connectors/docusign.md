@@ -75,9 +75,41 @@ To create the Authorization Header value:
 
 After configuring the connection, save the integration to authenticate with DocuSign. The OAuth flow will prompt for user authorization to complete the connection.
 
-:::note[Developer vs Production Environments]
-DocuSign has separate environments for development and production. Developer accounts use the demo environment at `account-d.docusign.com`. For production environments, ensure the application is published and promoted in the DocuSign Admin Console. Refer to the [DocuSign Go-Live documentation](https://developers.docusign.com/docs/esign-rest-api/go-live/) for more details.
-:::
+#### Going Live
+
+DocuSign requires apps created in the developer environment to complete a Go-Live review before they can access real production accounts. This process verifies the integration is production-ready and meets DocuSign's requirements for handling legally binding signature workflows.
+
+DocuSign apps pass through two states before they are ready for deployment.
+
+**Developer environment (before Go-Live):** Users can authenticate and the OAuth flow completes normally, but the integration connects to `account-d.docusign.com`. Only demo accounts and test documents are accessible. No real production DocuSign accounts or live documents can be reached. This is the expected state during development and testing.
+
+**Production (after Go-Live):** The integration connects to `account.docusign.com`. Users authenticate with their real DocuSign credentials and live documents and accounts are fully accessible.
+
+**Complete the Go-Live process before deploying to end users.** DocuSign apps created in the developer account connect to the demo environment (`account-d.docusign.com`). Until Go-Live is approved, the integration cannot access real production DocuSign accounts.
+
+#### Go-Live Requirements
+
+- The app must make at least 20 API calls in the demo environment to demonstrate functional testing before Go-Live is available
+
+#### Go-Live Process
+
+1. Log in to the [DocuSign Developer Account](https://developers.docusign.com/auth/docusign-demo/)
+2. Navigate to **My Apps & Keys** and select the application
+3. Click **Go Live** to submit the application for production access
+4. DocuSign reviews the application. Reviews typically complete within 3 business days
+5. Once approved, the application is promoted to the production environment
+
+#### Production Endpoints
+
+After Go-Live approval, update the integration to connect to production endpoints:
+
+- **Authorization URL**: `https://account.docusign.com/oauth/auth`
+- **Token URL**: `https://account.docusign.com/oauth/token`
+- **API Base URL**: `https://www.docusign.net/restapi`
+
+The demo environment uses `account-d.docusign.com`. Ensure URLs are updated to production endpoints after Go-Live.
+
+For detailed Go-Live requirements, refer to the [DocuSign Go-Live documentation](https://developers.docusign.com/docs/esign-rest-api/go-live/).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -468,25 +500,27 @@ Retrieves a list of documents associated with the specified envelope.
 
 Gets information about items in the specified folder.
 
-| Input         | Comments                                              | Default |
-| ------------- | ----------------------------------------------------- | ------- |
-| Connection    |                                                       |         |
-| Folder ID     | The ID of the folder.                                 |         |
-| Include Items | When true, folder items are included in the response. | false   |
+| Input         | Comments                                                                                                                                                         | Default |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection    |                                                                                                                                                                  |         |
+| Folder ID     | The ID of the folder.                                                                                                                                            |         |
+| Fetch All     | When enabled, automatically fetches all pages of results using startPosition/count pagination. Start Position and Count inputs are ignored when this is enabled. | false   |
+| Include Items | When true, folder items are included in the response.                                                                                                            | false   |
 
 ### List Folders {#listfolders}
 
 Returns a list of the account's folders.
 
-| Input            | Comments                                                                                                                                             | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       |                                                                                                                                                      |         |
-| Count            | The maximum number of results to return.                                                                                                             |         |
-| Include          | A comma-separated list of folder types to include in the response. Valid values are: envelope_folders, template_folders and shared_template_folders. |         |
-| Include Items    | When true, folder items are included in the response.                                                                                                | false   |
-| Start Position   | The zero-based index of the result from which to start returning results.                                                                            |         |
-| Sub Folder Depth | If missing or any value other than -1, the returned list contains only the top-level folders. A value of -1 returns the complete folder hierarchy.   |         |
-| User Filter      | Narrows down the resulting folder list by the following values: all, owned_by_me and shared_with_me.                                                 |         |
+| Input            | Comments                                                                                                                                                         | Default |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       |                                                                                                                                                                  |         |
+| Fetch All        | When enabled, automatically fetches all pages of results using startPosition/count pagination. Start Position and Count inputs are ignored when this is enabled. | false   |
+| Count            | The maximum number of results to return.                                                                                                                         |         |
+| Include          | A comma-separated list of folder types to include in the response. Valid values are: envelope_folders, template_folders and shared_template_folders.             |         |
+| Include Items    | When true, folder items are included in the response.                                                                                                            | false   |
+| Start Position   | The zero-based index of the result from which to start returning results.                                                                                        |         |
+| Sub Folder Depth | If missing or any value other than -1, the returned list contains only the top-level folders. A value of -1 returns the complete folder hierarchy.               |         |
+| User Filter      | Narrows down the resulting folder list by the following values: all, owned_by_me and shared_with_me.                                                             |         |
 
 ### List Template Documents {#listtemplatedocuments}
 
@@ -501,9 +535,10 @@ Retrieves a list of documents associated with the specified template.
 
 Retrieves the list of templates for the specified account.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input      | Comments                                                                                                                                                         | Default |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection |                                                                                                                                                                  |         |
+| Fetch All  | When enabled, automatically fetches all pages of results using startPosition/count pagination. Start Position and Count inputs are ignored when this is enabled. | false   |
 
 ### List Webhooks {#listwebhooks}
 

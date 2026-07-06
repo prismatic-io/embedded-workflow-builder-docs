@@ -384,91 +384,91 @@ Deletes different objects in Sage Intacct.
 
 Retrieve a single AP Payment.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get AR Adjustment {#getaradjustment}
 
 Retrieve a single AR Adjustment.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get AR Adjustment Line {#getaradjustmentline}
 
 Retrieve a single AR Adjustment Line.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get AR Advance {#getaradvance}
 
 Retrieve a single AR Advance.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get AR Payment {#getarpayment}
 
 Retrieve a single AR Payment.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get Bill {#getbill}
 
 Retrieve a single bill.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get Contact {#getcontact}
 
 Retrieve a single contact.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get Customer {#getcustomer}
 
 Retrieve a single customer.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get Invoice {#getinvoice}
 
 Retrieve a single invoice.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Get Project {#getproject}
 
@@ -477,18 +477,18 @@ Retrieve a project by record number.
 | Input      | Comments                                                        | Default |
 | ---------- | --------------------------------------------------------------- | ------- |
 | Connection | The Sage Intacct connection to use.                             |         |
-| Field      | Field to retrieve, use \* for all fields                        |         |
+| Field      | Field to retrieve, use * for all fields                         |         |
 | Record No  | The unique record number identifier of the project to retrieve. |         |
 
 ### Get Vendor {#getvendor}
 
 Retrieve a single vendor.
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection | The Sage Intacct connection to use.      |         |
-| Field      | Field to retrieve, use \* for all fields |         |
-| Record No  | The unique record number identifier      |         |
+| Input      | Comments                                | Default |
+| ---------- | --------------------------------------- | ------- |
+| Connection | The Sage Intacct connection to use.     |         |
+| Field      | Field to retrieve, use * for all fields |         |
+| Record No  | The unique record number identifier     |         |
 
 ### Query and List Records {#queryandlist}
 
@@ -497,7 +497,7 @@ Lists specified criteria based on a query.
 | Input       | Comments                                                                                                                          | Default |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Sage Intacct connection to use.                                                                                               |         |
-| Field       | Field to retrieve, use \* for all fields                                                                                          |         |
+| Field       | Field to retrieve, use * for all fields                                                                                           |         |
 | Object Name | Name of the object to query. Possible values are: VENDOR, APBILL, APPYMT, ARPYMT, ARADJUSTMENT, ARADJUSTMENTITEM, ARADVANCE, etc. |         |
 | Query       | Query filter expression to filter the records                                                                                     |         |
 

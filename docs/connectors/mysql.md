@@ -14,8 +14,15 @@ This component allows you to query a MySQL database.
 
 Authenticate requests to a MySQL server.
 
-Create a new MySQL connection and enter the host, port, and database for your MySQL server.
-The **username** and **password** are optional inputs that can be put directly into a MySQL connection.
+Create a connection of type **On-Premise Connection** to authenticate with a MySQL server.
+
+#### Configure the Connection
+
+- **Host**: The publicly-accessible address of the MySQL server (e.g., `my-server.example.com`)
+- **Port**: The port the database server is exposing (default: `3306`)
+- **Database**: The name of the MySQL database to connect to
+- **Username** (optional): The username for authenticating with the MySQL server
+- **Password** (optional): The password for authenticating with the MySQL server
 
 | Input    | Comments                                               | Default               |
 | -------- | ------------------------------------------------------ | --------------------- |

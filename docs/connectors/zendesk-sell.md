@@ -5,8 +5,8 @@ description: Manage leads, contacts, and deals in Zendesk Sell.
 ---
 
 ![Zendesk Sell](./assets/zendesk-sell.png#connector-icon)
-[Zendesk Sell](https://www.zendesk.com/sell) is a sales force automation and CRM platform.
-This component allows you to manage leads, contacts, and deals in Zendesk Sell.
+[Zendesk Sell](https://www.zendesk.com/sell/) is a sales force automation and CRM platform.
+This component allows managing leads, contacts, and deals in Zendesk Sell.
 
 ## API Documentation
 

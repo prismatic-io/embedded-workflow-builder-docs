@@ -29,6 +29,17 @@ To authenticate via OAuth 2.0 You must provide a client identifier (clientId) an
 
 ## Triggers
 
+### New and Updated Time Entries {#pollchangestrigger}
+
+Checks for new and updated time entries in Toast on a configured schedule.
+
+| Input                     | Comments                                                                                                                                          | Default |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                                                                   |         |
+| Restaurant External ID    | The GUID of the restaurant that is the context of the request. Use the List Accessible Restaurants action to get the external ID of a restaurant. |         |
+| Show New Time Entries     | When true, newly created time entries will be included in the trigger output.                                                                     | true    |
+| Show Updated Time Entries | When true, time entries modified after the last poll will be included in the trigger output.                                                      | true    |
+
 ### Webhook {#webhook}
 
 Receive and validate webhook requests from Toast for webhooks you configure.

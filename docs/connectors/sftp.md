@@ -111,7 +111,7 @@ Checks for new and modified files in a directory on an SFTP server on a configur
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection             | The SFTP connection to use.                                                                                              |         |
 | Path                   | The path of the directory on the SFTP server to list files from.                                                         |         |
-| Pattern                | The glob-style pattern for filtering files (e.g., \*.txt).                                                               | \*      |
+| Pattern                | The glob-style pattern for filtering files (e.g., *.txt).                                                                | \*      |
 | Include Subdirectories | When true, recursively monitors files in all subdirectories. When false, only monitors files in the specified directory. | false   |
 
 ## Actions
@@ -163,7 +163,7 @@ List files and directories in a directory on an SFTP server. Optionally list fil
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection             | The SFTP connection to use.                                                                                              |         |
 | Path                   | The path of the directory on the SFTP server to list files from.                                                         |         |
-| Pattern                | The glob-style pattern for filtering files (e.g., \*.txt).                                                               | \*      |
+| Pattern                | The glob-style pattern for filtering files (e.g., *.txt).                                                                | \*      |
 | Include Subdirectories | When true, recursively monitors files in all subdirectories. When false, only monitors files in the specified directory. | false   |
 | Include Directories    | When true, lists directories in addition to files. When false, only lists files.                                         | false   |
 

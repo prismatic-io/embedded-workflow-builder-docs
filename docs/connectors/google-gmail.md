@@ -74,15 +74,35 @@ The `https://www.googleapis.com/auth/pubsub` scope is required for push notifica
 
 - Refer to [Gmail API Scopes](https://developers.google.com/gmail/api/auth/scopes) for additional scope options
 
-:::info[Publishing the OAuth App]
-The OAuth app will initially only work for test users added during setup. To allow all users to authenticate:
+#### App Verification
 
-1. Navigate to the **OAuth consent screen** in the GCP Console
-2. Click **PUBLISH APP**
-3. Follow Google's verification process if prompted (required for production use)
+Google requires OAuth apps that request access to user data to pass a verification review before being deployed at scale. This process ensures the app complies with Google's API Services User Data Policy, accurately represents its functionality, and handles user data responsibly.
 
-Without publishing, only test users will be able to authorize the integration.
-:::
+Google OAuth apps pass through three stages before they are ready for production use.
+
+**Testing (unpublished):** The app is only accessible to users manually added as test users in the OAuth consent screen. Up to 100 test users are allowed — all other users receive an error. This is the expected state during initial development.
+
+**Published, unverified:** After publishing the app, all Google users can authenticate. However, for restricted scopes, users see a **"This app isn't verified"** warning. Users can proceed by clicking **Advanced** → **Go to [app name] (unsafe)**, but this warning reduces trust and may be blocked by organizations with strict Google Workspace policies.
+
+**Verified:** Google has reviewed and approved the app. No warning is shown. Verification is required before deploying to production users.
+
+#### Publishing the App
+
+Publishing is required before any users outside the test list can authenticate:
+
+1. In the [Google Cloud Console](https://console.cloud.google.com/), navigate to **APIs & Services** → **OAuth consent screen**
+2. Click **PUBLISH APP** and confirm
+
+#### Requesting Verification
+
+This component uses **restricted scopes** (`https://mail.google.com/`). Restricted scopes require a security assessment in addition to standard sensitive scope verification:
+
+1. On the **OAuth consent screen**, click **Prepare for verification**
+2. Provide a privacy policy URL, authorized domain, and app logo
+3. Arrange a **security assessment** with a [Google-approved assessor](https://support.google.com/cloud/answer/10311615) — this is required for restricted scopes
+4. Submit for review — restricted scope reviews can take longer than sensitive scope reviews
+
+Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for the full verification requirements.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -171,14 +191,14 @@ For more information on Gmail API scopes, refer to the [Gmail API documentation]
 
 Receive mailbox event notifications from Gmail. Automatically creates and manages a Push Notifications subscription for mailbox events when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input           | Comments                                                                                                                                                                                                                                                      | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The connection to use for Gmail authorization.                                                                                                                                                                                                                |         |
-| Project ID      | The Google Cloud project ID containing the Pub/Sub resources.                                                                                                                                                                                                 |         |
-| Topic ID        | The ID of the Pub/Sub topic to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (\_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'. |         |
-| Subscription ID | The ID of the subscription to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (\_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'.  |         |
-| Label ID        | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface.                                                                                                                     |         |
-| Gmail User ID   | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                               | me      |
+| Input           | Comments                                                                                                                                                                                                                                                     | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The connection to use for Gmail authorization.                                                                                                                                                                                                               |         |
+| Project ID      | The Google Cloud project ID containing the Pub/Sub resources.                                                                                                                                                                                                |         |
+| Topic ID        | The ID of the Pub/Sub topic to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'. |         |
+| Subscription ID | The ID of the subscription to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'.  |         |
+| Label ID        | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface.                                                                                                                    |         |
+| Gmail User ID   | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                              | me      |
 
 ### Manual Push Notifications {#pushnotificationwebhook}
 

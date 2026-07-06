@@ -162,46 +162,49 @@ Send raw GraphQL request to Adobe Commerce
 
 Lists order items that match specified search criteria.
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Condition Type    | Condition type.    |         |
-| Current Page      | Current page.      |         |
-| Field             | Field.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
-| Value             | Value.             |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
+| Value             | Value.                                                                                                                                                        |         |
 
 ### List Orders {#listorders}
 
 Lists orders that match specified search criteria.
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Current Page      | Current page.      |         |
-| Condition Type    | Condition type.    |         |
-| Field             | Field.             |         |
-| Value             | Value.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Value             | Value.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
 
 ### List Product Attributes {#listproductattributes}
 
 Retrieve all attributes for entity type
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Current Page      | Current page.      |         |
-| Condition Type    | Condition type.    |         |
-| Field             | Field.             |         |
-| Value             | Value.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Value             | Value.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
 
 ### List Product Option Types {#listproductoptiontypes}
 
@@ -215,16 +218,17 @@ Get custom option types
 
 Get product list
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Current Page      | Current page.      |         |
-| Condition Type    | Condition type.    |         |
-| Field             | Field.             |         |
-| Value             | Value.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Value             | Value.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
 
 ### List Product Types {#listproducttypes}
 
@@ -238,16 +242,17 @@ Retrieve available product types
 
 Lists transactions that match specified search criteria.
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Current Page      | Current page.      |         |
-| Condition Type    | Condition type.    |         |
-| Field             | Field.             |         |
-| Value             | Value.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Value             | Value.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
 
 ### REST Raw Request {#restrawrequest}
 
@@ -275,16 +280,17 @@ Send raw HTTP request to Adobe Commerce
 
 Retrieve customers which match a specified criteria.
 
-| Input             | Comments           | Default |
-| ----------------- | ------------------ | ------- |
-| Connection        |                    |         |
-| Current Page      | Current page.      |         |
-| Condition Type    | Condition type.    |         |
-| Field             | Field.             |         |
-| Value             | Value.             |         |
-| Page Size         | Page size.         |         |
-| Sorting Direction | Sorting direction. |         |
-| Sorting Field     | Sorting field.     |         |
+| Input             | Comments                                                                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        |                                                                                                                                                               |         |
+| Fetch All         | When enabled, automatically fetches all pages of results using searchCriteria pagination. Current Page and Page Size inputs are ignored when this is enabled. | false   |
+| Current Page      | Current page.                                                                                                                                                 |         |
+| Condition Type    | Condition type.                                                                                                                                               |         |
+| Field             | Field.                                                                                                                                                        |         |
+| Value             | Value.                                                                                                                                                        |         |
+| Page Size         | Page size.                                                                                                                                                    |         |
+| Sorting Direction | Sorting direction.                                                                                                                                            |         |
+| Sorting Field     | Sorting field.                                                                                                                                                |         |
 
 ### Update Customer {#updatecustomer}
 

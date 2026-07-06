@@ -84,7 +84,7 @@ Returns the result of dividing the numbers
 
 ### Evaluate Expression {#evaluate}
 
-Evaluate a mathematical expression (for example, "2 \* 3 + 7")
+Evaluate a mathematical expression (for example, "2 * 3 + 7")
 
 | Input      | Comments | Default |
 | ---------- | -------- | ------- |

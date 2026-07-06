@@ -130,6 +130,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ## Triggers
 
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated survey responses in SurveyMonkey on a configured schedule. New responses are emitted on the created branch and previously created responses that changed are emitted on the updated branch. Requires the responses_read_detail scope, available on paid SurveyMonkey plans.
+
+| Input                | Comments                                                                                                           | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The SurveyMonkey connection to use.                                                                                |         |
+| Survey ID            | The unique identifier of the survey.                                                                               |         |
+| Show New Records     | Include newly created survey responses in the results, emitted on the created branch.                              | true    |
+| Show Updated Records | Include previously created survey responses that were modified since the last poll, emitted on the updated branch. | true    |
+
 ### Webhook Events {#eventswebhook}
 
 Receive real-time notifications for SurveyMonkey events. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.

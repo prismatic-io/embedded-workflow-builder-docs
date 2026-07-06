@@ -241,11 +241,11 @@ Publish a new version of an existing integration
 
 Send raw GraphQL request to Prismatic
 
-| Input             | Comments                                                    | Default                                                                                                              |
-| ----------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Connection        |                                                             |                                                                                                                      |
-| Query or Mutation | Provide a query or mutation for the GraphQL request         | query ($myCustomerId: ID!) {<br /> customer(id: $myCustomerId) {<br /> id<br /> name<br /> externalId<br /> }<br />} |
-| GraphQL Variables | These should match the variables of your query or mutation. |                                                                                                                      |
+| Input             | Comments                                                    | Default                                                                                                               |
+| ----------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Connection        |                                                             |                                                                                                                       |
+| Query or Mutation | Provide a query or mutation for the GraphQL request         | query ($myCustomerId: ID!) {<br />  customer(id: $myCustomerId) {<br /> id<br /> name<br /> externalId<br /> }<br />} |
+| GraphQL Variables | These should match the variables of your query or mutation. |                                                                                                                       |
 
 ### Test Flow {#testflow}
 

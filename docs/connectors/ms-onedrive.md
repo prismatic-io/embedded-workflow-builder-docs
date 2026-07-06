@@ -18,6 +18,8 @@ This component was built using the [Microsoft Graph Rest API v1.0](https://learn
 
 OAuth 2.0 Connectivity for Microsoft One Drive
 
+<Vimeo video="907604023" />
+
 Once you have an instance of Microsoft OneDrive licensed to your account, you will need to create and configure a new "App Registration" within your [Azure Active Directory tenant](https://portal.azure.com/#home).
 When creating the application you will be prompted to select the 'Supported account types'. Under this section, be sure to select 'Accounts in any organizational directory (Any Azure AD directory - Multitenant)'.
 
@@ -39,6 +41,49 @@ Add an MS OneDrive OAuth 2.0 connection config variable:
 - If you didn't select Multitenant when creating the Azure application, you will need to replace the **Authorize URL** and **Token URL** with ones specific to your tenant.
 
 Save your integration and you should be able to authenticate a user through MS OneDrive with OAuth 2.0.
+
+#### App Verification and Admin Consent
+
+Microsoft requires Azure AD app registrations used in multi-tenant deployments to complete a publisher verification process. This review confirms the app developer's identity, giving end users confidence that they are authorizing a legitimate, verified application.
+
+Azure AD app registrations have two distinct verification concepts that affect how users experience the authentication flow.
+
+#### Publisher Verification
+
+**Complete publisher verification before deploying to end users.** Without it, the Microsoft consent screen displays **"Unverified"** next to the app name. This reduces user trust and may prevent users in organizations with strict Azure AD policies from being able to authorize the app at all.
+
+To verify the publisher:
+
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
+3. Under **Branding & properties**, click **Add a verified publisher**
+4. Enter the MPN ID and confirm
+
+Once verified, the consent screen displays the organization name with a verified badge instead of "Unverified."
+
+#### Admin Consent
+
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+
+A tenant administrator can grant consent using either method:
+
+**Method 1 — Admin Consent URL:**
+
+Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
+
+    https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
+
+**Method 2 — Microsoft Entra Admin Center:**
+
+1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
+2. Select the app registration
+3. Under **Permissions**, click **Grant admin consent for [organization name]**
+
+:::note[Delegated vs. Application Permissions]
+Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
+:::
+
+<Vimeo video="907604023" />
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -174,87 +219,95 @@ Track changes in a driveItem and its children over time.
 
 Returns all child elements on a given drive item
 
-| Input      | Comments                                                  | Default |
-| ---------- | --------------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.                 |         |
-| Drive      | The unique identifier of the drive.                       |         |
-| Item Id    | The unique identifier of the drive item (file or folder). |         |
-| Page Limit | The maximum number of results to return per page.         |         |
-| Page Token | The token for retrieving the next page of results.        |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Drive      | The unique identifier of the drive.                                                                                                                       |         |
+| Item Id    | The unique identifier of the drive item (file or folder).                                                                                                 |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Drives By Group {#listdrivesbygroup}
 
 Returns a list of all drives available to the given group
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Group      | The unique identifier of the Microsoft 365 group.  |         |
-| Page Limit | The maximum number of results to return per page.  |         |
-| Page Token | The token for retrieving the next page of results. |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Group      | The unique identifier of the Microsoft 365 group.                                                                                                         |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Drives By Site {#listdrivesbysite}
 
 Returns a list of all drives available to the given site
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Site       | The unique identifier of the SharePoint site.      |         |
-| Page Limit | The maximum number of results to return per page.  |         |
-| Page Token | The token for retrieving the next page of results. |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Site       | The unique identifier of the SharePoint site.                                                                                                             |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Drives By User {#listdrivesbyuser}
 
 Returns a list of all drives available to the given user
 
-| Input      | Comments                                            | Default |
-| ---------- | --------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.           |         |
-| User       | The unique identifier or email address of the user. |         |
-| Page Limit | The maximum number of results to return per page.   |         |
-| Page Token | The token for retrieving the next page of results.  |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| User       | The unique identifier or email address of the user.                                                                                                       |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
-### List Files Shared With Me {#listsharedfiles}
+### List Files Shared With Me (Deprecation Notice) {#listsharedfiles}
 
-Returns all files shared with your account
+Returns all files shared with your account. Deprecated: the underlying Microsoft Graph endpoint is degraded and scheduled for removal around November 2026, and may return incomplete results. Use the "List Shared" action instead.
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Page Limit | The maximum number of results to return per page.  |         |
-| Page Token | The token for retrieving the next page of results. |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Groups {#listgroups}
 
 Returns a list of all groups the user has access to
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Page Token | The token for retrieving the next page of results. |         |
-| Page Limit | The maximum number of results to return per page.  |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
 
 ### List Items In Directory {#listdriveitems}
 
 Returns a list of all items in the given directory
 
-| Input      | Comments                                                                              | Default |
-| ---------- | ------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.                                             |         |
-| Directory  | The directory path of the file. Use a forward slash (/) to access the root directory. |         |
-| Page Limit | The maximum number of results to return per page.                                     |         |
-| Page Token | The token for retrieving the next page of results.                                    |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Directory  | The directory path of the file. Use a forward slash (/) to access the root directory.                                                                     |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List My Drives {#listdrives}
 
 Returns a list of all drives available to the current user
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Page Limit | The maximum number of results to return per page.  |         |
-| Page Token | The token for retrieving the next page of results. |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Shared {#listshared}
 
@@ -268,11 +321,12 @@ List shared items in SharePoint or OneDrive
 
 Returns a list of all sites available to the current user
 
-| Input      | Comments                                           | Default |
-| ---------- | -------------------------------------------------- | ------- |
-| Connection | The Microsoft OneDrive connection to use.          |         |
-| Page Limit | The maximum number of results to return per page.  |         |
-| Page Token | The token for retrieving the next page of results. |         |
+| Input      | Comments                                                                                                                                                  | Default |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Microsoft OneDrive connection to use.                                                                                                                 |         |
+| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Limit and Page Token inputs are ignored when this is enabled. | false   |
+| Page Limit | The maximum number of results to return per page.                                                                                                         |         |
+| Page Token | The token for retrieving the next page of results.                                                                                                        |         |
 
 ### List Subscriptions {#listsubscriptions}
 

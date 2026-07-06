@@ -5,13 +5,13 @@ description: PagerDuty is a platform for managing on-call operations. This compo
 ---
 
 ![PagerDuty](./assets/pagerduty.png#connector-icon)
-PagerDuty is an industry leading incident management tool.
+[PagerDuty](https://www.pagerduty.com/) is an industry leading incident management tool.
 
-Use the component to create and manage Incidents, events, and more.
+This component allows the creation and management of Incidents, events, and more.
 
-## API Documentation:
+## API Documentation
 
-The component was built using the [PagerDuty REST API](https://developer.pagerduty.com/api-reference/e65c5833eeb07-pager-duty-api)
+This component was built using the [PagerDuty REST API](https://developer.pagerduty.com/api-reference/e65c5833eeb07-pager-duty-api).
 
 ## Connections
 
@@ -19,13 +19,25 @@ The component was built using the [PagerDuty REST API](https://developer.pagerdu
 
 Authenticate requests using an API key.
 
-Steps to generate and use an API Key for PagerDuty:
+To create a PagerDuty API Key connection, generate a REST API key from the PagerDuty account.
+
+#### Prerequisites
+
+- A PagerDuty account with administrative permissions to create API access keys
+- Access to the [PagerDuty web app](https://app.pagerduty.com/)
+
+#### Setup Steps
 
 1. [Log in to PagerDuty](https://app.pagerduty.com/) and navigate to [Integrations | API Access Keys](https://support.pagerduty.com/main/docs/api-access-keys#section-generate-a-user-token-rest-api-key).
-2. Click the "Create New API Key" button.
-3. Enter a description for the API key. Check "Read-only API Key" if read-only behavior is desired.
-4. Click Create Key.
-5. Copy the provided API Key into the connection's configuration.
+2. Click **Create New API Key**.
+3. Enter a description for the API key. Check **Read-only API Key** if read-only behavior is desired.
+4. Click **Create Key**.
+5. Copy the provided API Key for use in the connection configuration.
+
+#### Configure the Connection
+
+- Create a connection of type **API Key**.
+- Enter the **Token** copied from PagerDuty. This is the API token used to authenticate requests.
 
 | Input | Comments                                               | Default |
 | ----- | ------------------------------------------------------ | ------- |
@@ -35,21 +47,35 @@ Steps to generate and use an API Key for PagerDuty:
 
 Authenticate requests using OAuth 2.0.
 
-Steps to generate app credentials for [OAuth 2.0 for PagerDuty](https://developer.pagerduty.com/docs/b2a19cce2867a-classic-user-o-auth):
+To create a PagerDuty OAuth 2.0 connection, register an app in PagerDuty to obtain a Client ID and Client Secret. For background, refer to [OAuth 2.0 for PagerDuty](https://developer.pagerduty.com/docs/b2a19cce2867a-classic-user-o-auth).
+
+#### Prerequisites
+
+- A PagerDuty account with permissions to register apps
+- Access to the [PagerDuty App Registration page](https://developer.pagerduty.com/docs/dd91fbd09a1a1-register-an-app)
+
+#### Setup Steps
 
 1. [Log in to PagerDuty](https://app.pagerduty.com/) and navigate to [Integrations | App Registration](https://developer.pagerduty.com/docs/dd91fbd09a1a1-register-an-app).
 2. From the top menu, select **Integrations**.
 3. Select **App Registration** from the menu to navigate to the **My Apps** page.
-4. On the **My Apps** page, select **New App**. Enter a name for your app and a brief description.
-5. Check the box next to **OAuth2.0** and/or **Events Integration.**
+4. On the **My Apps** page, select **New App**. Enter a name for the app and a brief description.
+5. Check the box next to **OAuth 2.0** and/or **Events Integration**.
 6. For Authorization select one of the following:
    1. [**Scoped OAuth**](https://developer.pagerduty.com/docs/f59fdbd94ceab-o-auth-functionality#scoped-oauth) - New OAuth client that allows granular read or write access to PagerDuty resources like incidents, services, users, with other benefits.
-      1. Use the table below to select Read or Write access to each Resource your integration will need access to.
+      1. Use the table to select Read or Write access to each Resource the integration requires.
    2. [**Classic User OAuth**](https://developer.pagerduty.com/docs/f59fdbd94ceab-o-auth-functionality#scoped-oauth) - Existing OAuth client that allows apps to act on behalf of users, with read or write to all PagerDuty resources.
-      1. Assign a permission scope of **Read** or **Read and Write**
-7. In the Redirect URL field enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-8. Select **Register App**
-9. Copy and save the Client ID and Client Secret into your integration.
+      1. Assign a permission scope of **Read** or **Read and Write**.
+7. In the **Redirect URL** field, enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+8. Select **Register App**.
+9. Copy and save the Client ID and Client Secret for use in the connection configuration.
+
+#### Configure the Connection
+
+- Create a connection of type **OAuth 2.0**.
+- Enter the **Scopes** granted to the app. Use `write` for read/write access or `read` for read-only access to all resources (Classic User OAuth).
+- Enter the **Client ID** copied from the PagerDuty OAuth application.
+- Enter the **Client Secret** copied from the PagerDuty OAuth application.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

@@ -5,9 +5,9 @@ description: Manage tickets and users in Zendesk.
 ---
 
 ![Zendesk](./assets/zendesk.png#connector-icon)
-**Zendesk** is a public company headquartered in San Francisco, California.
+[Zendesk](https://www.zendesk.com/) is a public company headquartered in San Francisco, California.
 It provides software-as-a-service products related to customer support, sales, and other customer communications.
-The **Zendesk** component allows you to manage Users and Tickets inside your Zendesk domain.
+The **Zendesk** component allows managing Users and Tickets inside a Zendesk domain.
 
 ## Connections
 
@@ -15,12 +15,12 @@ The **Zendesk** component allows you to manage Users and Tickets inside your Zen
 
 Authenticate requests using an API token.
 
-In order to use the API Token connection for Zendesk, you'll need to provide the following parameters:
+To use the API Token connection for Zendesk, provide the following parameters:
 
 - For **Username** enter the email of the Zendesk account.
-- For **API Token** enter the generated API Token under Admin Center (https://YOUR-DOMAIN-HERE.zendesk.com/admin/home) ->
+- For **API Token** enter the generated API Token under Admin Center (`https://YOUR-DOMAIN-HERE.zendesk.com/admin/home`) ->
   App and Registrations -> Zendesk API -> Token access.
-- For **Zendesk Domain** enter your Zendesk Subdomain. You can find your subdomain inside of your Zendesk URL: `https://YOUR-DOMAIN-HERE.zendesk.com/`
+- For **Zendesk Domain** enter the Zendesk Subdomain. The subdomain can be found inside of the Zendesk URL: `https://YOUR-DOMAIN-HERE.zendesk.com/`
 
 | Input              | Comments                                                                                                               | Default |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -33,14 +33,13 @@ In order to use the API Token connection for Zendesk, you'll need to provide the
 Authenticate using OAuth 2.0.
 
 The Zendesk component authenticates requests with OAuth 2.0.
-To configure an application inside zendesk follow the directions in this [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application)
-Now, you will have to create a new Zendesk connection.
+To configure an application inside Zendesk follow the directions in this [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application).
+Then, create a new Zendesk connection.
 
-- For **Client ID** enter in the unique identifier of your app inside the Zendesk admin dashboard.
-- For **Client Secret** enter the generated client secret you received from the Zendesk admin dashboard.
-- For **Scopes** refer to the [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) that was linked above. There is detailed information on picking the correct scope.
-
-You can find your subdomain inside of your Zendesk URL: `https://YOUR-DOMAIN-HERE.zendesk.com/`
+- For **Zendesk Sub Domain** enter the Zendesk sub domain (e.g. if the Zendesk URL is `https://acme-inc.zendesk.com`, then the sub domain is `acme-inc`).
+- For **Client ID** enter the unique identifier of the app inside the Zendesk admin dashboard.
+- For **Client Secret** enter the generated client secret received from the Zendesk admin dashboard.
+- For **Scopes** refer to the [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) linked above. It contains detailed information on picking the correct scope.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -56,15 +55,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate using OAuth 2.0. (Deprecated)
 
-The Zendesk component authenticates requests with OAuth 2.0.
-To configure an application inside zendesk follow the directions in this [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application)
-Now, you will have to create a new Zendesk connection.
+The Zendesk component authenticates requests with OAuth 2.0. This connection (**OAuth 2.0 (Deprecated)**) is retained for backward compatibility; new connections should use **OAuth 2.0** (`oauth2DynamicInputs`).
+To configure an application inside Zendesk follow the directions in this [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application).
+Then, create a new Zendesk connection.
 
-- For **Client ID** enter in the unique identifier of your app inside the Zendesk admin dashboard.
-- For **Client Secret** enter the generated client secret you received from the Zendesk admin dashboard.
-- For **Scopes** refer to the [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) that was linked above. There is detailed information on picking the correct scope.
+- For **Client ID** enter the unique identifier of the app inside the Zendesk admin dashboard.
+- For **Client Secret** enter the generated client secret received from the Zendesk admin dashboard.
+- For **Scopes** refer to the [guide](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) linked above. It contains detailed information on picking the correct scope.
 
-You can find your subdomain inside of your Zendesk URL: `https://YOUR-DOMAIN-HERE.zendesk.com/`
+The subdomain can be found inside of the Zendesk URL: `https://YOUR-DOMAIN-HERE.zendesk.com/`
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

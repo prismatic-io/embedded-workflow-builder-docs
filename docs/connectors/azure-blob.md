@@ -5,10 +5,10 @@ description: Manage files and folders within Azure Blob Storage
 ---
 
 ![Azure Blob Storage](./assets/azure-blob.png#connector-icon)
-[Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs) is a cloud solution for storing unstructured data, like large binary or text files.
-It's often used to store blob data for web applications that don't store nicely in a relational database.
+[Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs/) is a cloud solution for storing unstructured data, like large binary or text files.
+It is often used to store blob data for web applications that don't store nicely in a relational database.
 
-This component allows you to list, create and delete Azure containers, and create and modify blobs (files) within those Azure containers.
+This component allows listing, creating, and deleting Azure containers, and creating and modifying blobs (files) within those Azure containers.
 
 ## Connections
 
@@ -16,9 +16,10 @@ This component allows you to list, create and delete Azure containers, and creat
 
 Authenticates requests to Azure Blob Storage with a connection string.
 
-Azure Blob Storage supports authentication using a [Shared Access Signature (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview) connection string. This method grants limited access to Azure Storage resources with fine-grained control over permissions and expiration.
+Azure Blob Storage supports authentication using a [connection string](https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string). A connection string can authenticate with either of two methods:
 
-A connection string containing a SAS token provides temporary, restricted access and is useful when full account key access is not required.
+- **Account key**: Grants full access to the storage account. This is the simplest option and does not expire.
+- **Shared Access Signature (SAS)**: Grants limited, temporary access with fine-grained control over permissions and expiration. This is useful when full account key access is not required.
 
 #### Prerequisites
 
@@ -28,7 +29,15 @@ A connection string containing a SAS token provides temporary, restricted access
 
 #### Setup Steps
 
-To generate a SAS connection string:
+To retrieve an account key connection string:
+
+1. Sign in to the [Azure Portal](https://portal.azure.com/)
+2. Navigate to **Storage accounts** from the main menu
+3. Select the storage account to connect to
+4. In the left sidebar, under **Security + networking**, select **Access keys**
+5. Under one of the keys, click **Show** next to **Connection string** and copy the value
+
+To generate a SAS connection string instead:
 
 1. Sign in to the [Azure Portal](https://portal.azure.com/)
 2. Navigate to **Storage accounts** from the main menu
@@ -42,12 +51,18 @@ To generate a SAS connection string:
 6. Click **Generate SAS and connection string** at the bottom
 7. Copy the **Connection string** value (not the SAS token alone)
 
-:::warning[Token Expiration]
-The SAS token has an expiration date. Note the expiration date and plan to refresh the connection string before it expires to avoid authentication failures.
+:::warning[SAS Token Expiration]
+A SAS connection string has an expiration date. Note the expiration date and plan to refresh the connection string before it expires to avoid authentication failures. Account key connection strings do not expire.
 :::
 
 :::note[Connection String Format]
-The connection string will have the format:
+An account key connection string has the format:
+
+```
+DefaultEndpointsProtocol=https;AccountName=account;AccountKey=...;EndpointSuffix=core.windows.net
+```
+
+A SAS connection string has the format:
 
 ```
 BlobEndpoint=https://account.blob.core.windows.net/;SharedAccessSignature=sv=...
@@ -59,7 +74,7 @@ BlobEndpoint=https://account.blob.core.windows.net/;SharedAccessSignature=sv=...
 
 - Enter the complete **Connection string** value into the connection configuration
 
-For more information about SAS tokens, permissions, and security considerations, refer to the [Azure SAS documentation](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).
+For more information about connection strings, account keys, and SAS security considerations, refer to the [Azure connection string documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string).
 
 | Input             | Comments                                                                                                                                                                                                                                                                                                    | Default |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -69,9 +84,9 @@ For more information about SAS tokens, permissions, and security considerations,
 
 Authenticates requests to Azure Blob Storage with a Storage Shared Key of an account name and key.
 
-Azure Blob Storage can use [Shared Key authentication](https://docs.microsoft.com/en-us/rest/api/storageservices/authorize-with-shared-key) to authenticate requests. This authentication method uses a storage account name and account key pair.
+Azure Blob Storage can use [Shared Key authentication](https://learn.microsoft.com/en-us/rest/api/storageservices/authorize-with-shared-key) to authenticate requests. This authentication method uses a storage account name and account key pair.
 
-For more information about storage account authentication, refer to the [Azure Storage security guide](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
+For more information about storage account authentication, refer to the [Azure Storage security guide](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
 
 #### Prerequisites
 
@@ -100,7 +115,7 @@ Azure provides two access keys to allow for key rotation without downtime. When 
 - Enter the **Storage account name** into the **Account Name** field
 - Enter the copied **Key** value into the **Account Key** field
 
-For additional information about managing storage account keys and security best practices, refer to the [Azure documentation](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
+For additional information about managing storage account keys and security best practices, refer to the [Azure documentation](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
 
 | Input        | Comments                                                                                                                                                                                                                                          | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

@@ -31,6 +31,17 @@ Follow these steps to [generate a new API key](https://connect.pdq.com/hc/en-us/
 | ------- | --------------- | ------- |
 | API Key | The PDQ API Key |         |
 
+## Triggers
+
+### New Records {#pollchangestrigger}
+
+Checks for new Devices or Groups added to PDQ on a configured schedule.
+
+| Input         | Comments                                                                                     | Default |
+| ------------- | -------------------------------------------------------------------------------------------- | ------- |
+| Connection    |                                                                                              |         |
+| Resource Type | Select the PDQ resource to poll for newly added records. Choose Devices or Groups. Required. | Devices |
+
 ## Actions
 
 ### Create Deployment {#createdeployment}

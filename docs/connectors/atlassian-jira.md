@@ -6,7 +6,7 @@ description: Manage issues, comments, projects, and users in Jira.
 
 ![Jira](./assets/atlassian-jira.png#connector-icon)
 [Jira](https://www.atlassian.com/software/jira) is a proprietary issue tracking product developed by Atlassian that allows bug tracking and agile project management.
-This component allows you to manage issues, comments, projects, and users within Jira.
+This component manages issues, comments, projects, and users within Jira.
 
 ## API Documentation
 
@@ -96,19 +96,17 @@ The scopes configured in the Atlassian Developer Console must match the scopes e
 
 #### Configure the Connection
 
+- For **Authorize URL** and **Token URL**, keep the pre-populated defaults (`https://auth.atlassian.com/authorize?audience=api.atlassian.com&prompt=consent` and `https://auth.atlassian.com/oauth/token`) unless instructed otherwise by Atlassian
 - Enter the **Client ID** from the Atlassian Developer Console
 - Enter the **Client Secret** from the Atlassian Developer Console
 - For **Scopes**, use the following default value:
-
   ```
   read:jira-user read:jira-work write:jira-work manage:jira-project manage:jira-configuration manage:jira-webhook offline_access
   ```
-
   - The `offline_access` scope is required to obtain a refresh token
   - Customize the scopes to match the use case requirements
   - Ensure the scopes match those configured in the Atlassian Developer Console
   - Refer to [Jira scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information
-
 - For **Jira Site Name** (optional):
   - By default, the connection uses the first Jira site the authenticated user has access to
   - To specify a different site, enter the site name (e.g., `example`) or full URL (e.g., `example.atlassian.net`)
@@ -135,7 +133,7 @@ Authenticate using OAuth 2.0 Client Credentials.
 
 To authenticate with Atlassian Jira using OAuth 2.0 Client Credentials, an OAuth 2.0 integration must be configured in the [Atlassian Admin Hub](https://admin.atlassian.com). This connection type enables service account (machine-to-machine) access without requiring user interaction.
 
-For more information on OAuth 2.0 Client Credentials for Jira, refer to [Atlassian's OAuth 2.0 Client Credentials documentation](https://developer.atlassian.com/cloud/jira/platform/oauth-2-authorization-code-grants-3lo-for-apps/#oauth-2-0--client-credentials--grant).
+For more information on OAuth 2.0 Client Credentials for Jira, refer to [Atlassian's documentation on creating OAuth 2.0 credentials for service accounts](https://support.atlassian.com/user-management/docs/create-oauth-2-0-credential-for-service-accounts/).
 
 #### Prerequisites
 
@@ -146,10 +144,10 @@ For more information on OAuth 2.0 Client Credentials for Jira, refer to [Atlassi
 
 1. Navigate to the [Atlassian Admin Hub](https://admin.atlassian.com)
 2. Select the organization that contains the Jira site
-3. Navigate to **Security** > **API tokens** > **OAuth 2.0 credentials**
-4. Click **Create OAuth credential**
-5. Enter a name for the credential
-6. Select **Client credentials** as the grant type
+3. Navigate to **Directory** > **Service accounts**
+4. Select an existing service account, or create a new one
+5. Click **Create credentials** and select **OAuth 2.0**
+6. Enter a name for the credential
 7. Configure the required scopes:
    - For basic issue management, the following scopes are recommended:
      ```
@@ -158,9 +156,7 @@ For more information on OAuth 2.0 Client Credentials for Jira, refer to [Atlassi
    - Refer to [Jira OAuth 2.0 scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for a complete list of available scopes
 8. Click **Create** to generate the credential
 9. Copy the **Client ID** and **Client Secret** values (the secret is only shown once)
-10. Obtain the **Cloud ID** for the Jira site:
-    - The Cloud ID can be found by calling the Atlassian accessible resources endpoint with an access token
-    - Alternatively, it can be extracted from API responses or the Atlassian Admin Hub
+10. Obtain the **Cloud ID** for the Jira site by following the [Atlassian Cloud ID retrieval guide](https://support.atlassian.com/jira/kb/retrieve-my-atlassian-sites-cloud-id/)
 
 #### Configure the Connection
 
@@ -168,14 +164,11 @@ For more information on OAuth 2.0 Client Credentials for Jira, refer to [Atlassi
 - Enter the **Client Secret** from the OAuth 2.0 credential
 - Enter the **Cloud ID** of the Jira site to connect to
 - For **Scopes**, use the following default value:
-
   ```
   read:jira-user read:jira-work write:jira-work manage:jira-project manage:jira-configuration manage:jira-webhook
   ```
-
   - Ensure the scopes match those configured in the Atlassian Admin Hub credential
   - Refer to [Jira scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information
-
 - For **Version**, select the API version (typically `3` for Jira Cloud)
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.

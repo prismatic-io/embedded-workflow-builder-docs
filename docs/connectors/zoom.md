@@ -77,6 +77,26 @@ When creating a Zoom OAuth 2.0 connection in the integration:
 
 Save the connection to authenticate with Zoom.
 
+#### App Publication
+
+Zoom requires apps that will be installed across multiple Zoom accounts to go through a publication review. This process verifies the app meets Zoom's distribution policies before it can be made available to users outside the developer's organization.
+
+Zoom OAuth apps pass through two states before they are ready for broad deployment.
+
+**Unpublished (default):** The app can only be authorized by users within the developer's own Zoom account. Users from other Zoom accounts encounter an error on the Zoom consent screen and cannot complete authorization. This is the expected state during development and testing.
+
+**Published (after Zoom review):** Any Zoom account user can authorize the integration. No restriction is shown.
+
+#### Choosing a Distribution Path
+
+**Account-level app** (no review required):
+Configure the app as account-level in the [Zoom Marketplace](https://marketplace.zoom.us/). This restricts authorization to users within a single Zoom organization. This is the appropriate option for internal integrations or single-customer deployments.
+
+**Published app** (Zoom review required):
+Submit the app for publication in the [Zoom Marketplace](https://marketplace.zoom.us/). Once approved, users from any Zoom account can authorize the integration. Zoom reviews for policy compliance and functionality.
+
+For integrations deployed to multiple customers, each with their own Zoom account, the published path is required. For single-organization deployments, the account-level path avoids the review process.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

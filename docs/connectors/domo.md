@@ -209,6 +209,7 @@ Adds a task to a project list.
 | Project ID   | The ID of the project that the task belongs to.                                                                                                             |         |
 | List ID      | The ID of the list within a project that the task belongs to.                                                                                               |         |
 | Task Name    | A descriptive label for the task within the project list.                                                                                                   |         |
+| Task Details | Additional task attributes.                                                                                                                                 |         |
 | Contributors | A JSON array of user IDs assigned as contributors to the task.                                                                                              |         |
 | Description  | An optional description of the task.                                                                                                                        |         |
 | Due Date     | The date the task is expected to be completed.                                                                                                              |         |
@@ -221,21 +222,22 @@ Adds a task to a project list.
 
 Creates a new user in a Domo instance.
 
-| Input           | Comments                                                                                   | Default |
-| --------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection      | The Domo connection to use.                                                                |         |
-| Email           | The primary email address associated with the Domo user profile.                           |         |
-| Name            | The display name for the resource.                                                         |         |
-| Role            | The permission level assigned to the user (Admin, Privileged, or Participant).             | Admin   |
-| Alternate Email | The secondary email address associated with the Domo user profile.                         |         |
-| Employee Number | The employee identification number within the organization.                                |         |
-| Locale          | The locale code used to display system settings throughout the Domo application.           |         |
-| Location        | The office location or geographic area for the user profile.                               |         |
-| Phone           | The primary phone number for the Domo user profile.                                        |         |
-| Send Invite     | When true, sends an email invitation to the newly created user.                            |         |
-| Timezone        | The IANA timezone identifier used to display system times throughout the Domo application. |         |
-| Title           | The job title for the Domo user profile.                                                   |         |
-| User Body       | The user object to create.                                                                 |         |
+| Input               | Comments                                                                                   | Default |
+| ------------------- | ------------------------------------------------------------------------------------------ | ------- |
+| Connection          | The Domo connection to use.                                                                |         |
+| Email               | The primary email address associated with the Domo user profile.                           |         |
+| Role                | The permission level assigned to the user (Admin, Privileged, or Participant).             | Admin   |
+| Name                | The display name for the resource.                                                         |         |
+| Send Invite         | When true, sends an email invitation to the newly created user.                            |         |
+| Contact Information | Additional user profile details.                                                           |         |
+| Alternate Email     | The secondary email address associated with the Domo user profile.                         |         |
+| Employee Number     | The employee identification number within the organization.                                |         |
+| Locale              | The locale code used to display system settings throughout the Domo application.           |         |
+| Location            | The office location or geographic area for the user profile.                               |         |
+| Phone               | The primary phone number for the Domo user profile.                                        |         |
+| Timezone            | The IANA timezone identifier used to display system times throughout the Domo application. |         |
+| Title               | The job title for the Domo user profile.                                                   |         |
+| User Body           | The user object to create.                                                                 |         |
 
 ### Delete Account {#deleteaccount}
 
@@ -363,9 +365,10 @@ Retrieves activity log entries.
 | Start      | The start time in milliseconds for the activity log query range.          |         |
 | End        | The end time in milliseconds for the activity log query range.            |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.   | false   |
+| User       | The unique identifier for the user to filter activity log entries by.     |         |
+| Pagination | Page and page-size controls.                                              |         |
 | Limit      | The maximum number of results to return (default is 50, maximum of 1000). |         |
 | Offset     | The 0-based offset position to begin retrieving results from.             |         |
-| User       | The unique identifier for the user to filter activity log entries by.     |         |
 
 ### Get Data Set {#getdataset}
 
@@ -491,6 +494,7 @@ Lists all accounts the authenticated user has permissions for.
 | ---------- | --------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                             |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                 | false   |
+| Pagination | Page and page-size controls.                                                            |         |
 | Limit      | The number of Accounts to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of Accounts to begin the list of Accounts within the response.               |         |
 
@@ -502,10 +506,11 @@ Lists all DataSets in a Domo instance.
 | ---------- | ---------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                                    |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                        | false   |
-| Limit      | The amount of DataSets to return in the list. The default is 50 and the maximum is 50.         |         |
 | Name Like  | A case-insensitive filter that limits the list to DataSets with names containing this string.  |         |
-| Offset     | The offset of the DataSet ID to begin list of users within the response.                       |         |
 | Sort       | The DataSet field to sort by. Prefix with a negative sign to reverse the sort (e.g., '-name'). |         |
+| Pagination | Page and page-size controls.                                                                   |         |
+| Limit      | The amount of DataSets to return in the list. The default is 50 and the maximum is 50.         |         |
+| Offset     | The offset of the DataSet ID to begin list of users within the response.                       |         |
 
 ### List Groups {#listgroups}
 
@@ -515,6 +520,7 @@ Lists all groups in a Domo instance.
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
+| Pagination | Page and page-size controls.                                                          |         |
 | Limit      | The amount of groups to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the group ID to begin list of groups within the response.               |         |
 
@@ -526,6 +532,7 @@ Lists all pages in a Domo instance.
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
 | Connection | The Domo connection to use.                                                          |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
+| Pagination | Page and page-size controls.                                                         |         |
 | Limit      | The amount of pages to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the page ID to begin list of pages within the response.                |         |
 
@@ -548,6 +555,7 @@ Retrieves all tasks from a given project list.
 | Project ID | The unique identifier for the project.                                               |         |
 | List ID    | The unique identifier for the project list.                                          |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
+| Pagination | Page and page-size controls.                                                         |         |
 | Limit      | The maximum number of results to return (defaults to 10 with a maximum of 50).       |         |
 | Offset     | The number of records to skip from the beginning of the result list (defaults to 0). |         |
 
@@ -568,6 +576,7 @@ Lists all stream executions that match the specified criteria.
 | Connection | The Domo connection to use.                                                           |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
 | Stream ID  | The ID of the Stream                                                                  |         |
+| Pagination | Page and page-size controls.                                                          |         |
 | Limit      | The amount of Stream to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the Stream ID to begin list of users within the response.               |         |
 
@@ -579,6 +588,7 @@ Lists all streams the authenticated user has view permissions for.
 | ---------- | ------------------------------------------------------------------------------------- | ------- |
 | Connection | The Domo connection to use.                                                           |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
+| Pagination | Page and page-size controls.                                                          |         |
 | Limit      | The amount of Stream to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the Stream ID to begin list of users within the response.               |         |
 
@@ -590,6 +600,7 @@ Lists all users in a Domo instance.
 | ---------- | ------------------------------------------------------------------------------------ | ------- |
 | Connection | The Domo connection to use.                                                          |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.              | false   |
+| Pagination | Page and page-size controls.                                                         |         |
 | Limit      | The amount of users to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the user ID to begin list of users within the response.                |         |
 
@@ -602,6 +613,7 @@ Lists the users in a group in a Domo instance.
 | Connection | The Domo connection to use.                                                           |         |
 | Group ID   | The unique identifier for the group.                                                  |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.               | false   |
+| Pagination | Page and page-size controls.                                                          |         |
 | Limit      | The amount of groups to return in the list. The default is 50 and the maximum is 500. |         |
 | Offset     | The offset of the group ID to begin list of groups within the response.               |         |
 
@@ -729,11 +741,12 @@ Updates attributes of an existing project in a Domo instance.
 | ------------------- | ----------------------------------------------------------------------- | ------- |
 | Connection          | The Domo connection to use.                                             |         |
 | Project ID          | The unique identifier for the project.                                  |         |
-| Update Project Body | The project object to update.                                           |         |
+| Project Details     | Project attributes to update.                                           |         |
 | Description         | Updates the description of the project.                                 |         |
 | Due Date            | Updates the due date of the project.                                    |         |
 | Name                | Updates the name of the project.                                        |         |
 | Public              | Updates whether or not the project is publicly available to Domo users. |         |
+| Update Project Body | The project object to update.                                           |         |
 
 ### Update Project Members {#updateprojectmembers}
 
@@ -766,35 +779,37 @@ Updates the details of a task within a project list.
 | Task ID          | The unique identifier for the task within a project list.                                                                                                   |         |
 | List ID          | The unique identifier for the project list.                                                                                                                 |         |
 | Project ID       | The unique identifier for the project.                                                                                                                      |         |
-| Contributors     | A JSON array of user IDs assigned as contributors to the task.                                                                                              |         |
+| Task Name        | A descriptive label for the task within the project list.                                                                                                   |         |
+| Task Details     | Additional task attributes.                                                                                                                                 |         |
 | Description      | A summary of the DataSet contents and purpose.                                                                                                              |         |
+| Contributors     | A JSON array of user IDs assigned as contributors to the task.                                                                                              |         |
 | Due Date         | The due date for the project. Format: ISO 8601.                                                                                                             |         |
 | Owned By         | The unique identifier of the Domo user that owns the task.                                                                                                  |         |
 | Priority         | The priority position of the task within the list. Setting this property re-orders other tasks to maintain sequential order. Defaults to 1 if not provided. |         |
 | Tags             | A JSON array of tag labels to assign to the task for categorization.                                                                                        |         |
-| Task Name        | A descriptive label for the task within the project list.                                                                                                   |         |
 | Update Task Body | The task object to update.                                                                                                                                  |         |
 
 ### Update User {#updateuser}
 
 Updates the specified user's attributes in a Domo instance.
 
-| Input            | Comments                                                                                   | Default |
-| ---------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection       | The Domo connection to use.                                                                |         |
-| User ID          | The unique identifier for the Domo user.                                                   |         |
-| Email            | The primary email address associated with the Domo user profile.                           |         |
-| Name             | User's full name                                                                           |         |
-| Role             | The system role of the user                                                                | Admin   |
-| Alternate Email  | The secondary email address associated with the Domo user profile.                         |         |
-| Employee Number  | The employee identification number within the organization.                                |         |
-| Locale           | The locale code used to display system settings throughout the Domo application.           |         |
-| Location         | The office location or geographic area for the user profile.                               |         |
-| Phone            | The primary phone number for the Domo user profile.                                        |         |
-| Roled            | The unique identifier for the custom or system role assigned to the user.                  |         |
-| Timezone         | The IANA timezone identifier used to display system times throughout the Domo application. |         |
-| Title            | The job title for the Domo user profile.                                                   |         |
-| Update User Body | The user object to update.                                                                 |         |
+| Input               | Comments                                                                                   | Default |
+| ------------------- | ------------------------------------------------------------------------------------------ | ------- |
+| Connection          | The Domo connection to use.                                                                |         |
+| User ID             | The unique identifier for the Domo user.                                                   |         |
+| Email               | The primary email address associated with the Domo user profile.                           |         |
+| Name                | User's full name                                                                           |         |
+| Role                | The system role of the user                                                                | Admin   |
+| Role Id             | The unique identifier for the custom or system role assigned to the user.                  |         |
+| Contact Information | Additional user profile details.                                                           |         |
+| Alternate Email     | The secondary email address associated with the Domo user profile.                         |         |
+| Employee Number     | The employee identification number within the organization.                                |         |
+| Locale              | The locale code used to display system settings throughout the Domo application.           |         |
+| Location            | The office location or geographic area for the user profile.                               |         |
+| Phone               | The primary phone number for the Domo user profile.                                        |         |
+| Timezone            | The IANA timezone identifier used to display system times throughout the Domo application. |         |
+| Title               | The job title for the Domo user profile.                                                   |         |
+| Update User Body    | The user object to update.                                                                 |         |
 
 ### Upload Data Part {#uploaddatapart}
 

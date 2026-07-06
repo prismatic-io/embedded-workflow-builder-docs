@@ -49,7 +49,7 @@ Convert CSV to JSON
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Data                | CSV data to convert to JSON                                                                                                                                                                                    |         |
 | CSV Header          | Specify if your CSV contains a header row.                                                                                                                                                                     | true    |
-| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person**first,person**last' will become '{ person: { first, last } }' rather than '{ person**first, person**last }' | false   |
+| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person__first,person__last' will become '{ person: { first, last } }' rather than '{ person__first, person__last }' | false   |
 
 ### CSV to XML {#csvtoxml}
 
@@ -59,7 +59,7 @@ Convert CSV to XML
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Data                | CSV data to convert to XML                                                                                                                                                                                     |         |
 | CSV Header          | Specify if your CSV contains a header row.                                                                                                                                                                     | true    |
-| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person**first,person**last' will become '{ person: { first, last } }' rather than '{ person**first, person**last }' | false   |
+| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person__first,person__last' will become '{ person: { first, last } }' rather than '{ person__first, person__last }' | false   |
 
 ### CSV to YAML {#csvtoyaml}
 
@@ -69,7 +69,7 @@ Convert CSV to YAML
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Data                | CSV data to convert to YAML                                                                                                                                                                                    |         |
 | CSV Header          | Specify if your CSV contains a header row.                                                                                                                                                                     | true    |
-| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person**first,person**last' will become '{ person: { first, last } }' rather than '{ person**first, person**last }' | false   |
+| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person__first,person__last' will become '{ person: { first, last } }' rather than '{ person__first, person__last }' | false   |
 
 ### Deserialize BINARY {#deserializefrombinary}
 
@@ -87,7 +87,7 @@ Deserialize CSV data
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Data                | CSV text to deserialize so it can be referenced in a subsequent step.                                                                                                                                          |         |
 | CSV Header          | Specify if your CSV contains a header row.                                                                                                                                                                     | true    |
-| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person**first,person**last' will become '{ person: { first, last } }' rather than '{ person**first, person**last }' | false   |
+| Un-Flatten CSV Keys | When enabled, keys with double-underscores will be parsed as nested objects. For example, 'person__first,person__last' will become '{ person: { first, last } }' rather than '{ person__first, person__last }' | false   |
 
 ### Deserialize JSON {#deserializefromjson}
 

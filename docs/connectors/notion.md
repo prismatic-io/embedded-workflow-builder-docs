@@ -118,6 +118,19 @@ For detailed information about Notion integrations, refer to the [Notion Integra
 
 When users authenticate through OAuth 2.0, they will be redirected to Notion's authorization page where they can select which pages and databases to share with the integration. The integration will have access only to the content explicitly shared by the user, within the capabilities configured during integration setup.
 
+#### Content Access and Permissions
+
+Notion uses a page-scoped consent model. During authorization, users select specific pages and databases to share with the integration. The integration does not automatically gain access to all content in the workspace.
+
+If actions fail with permission errors or return no results for content that exists in Notion, the user may not have shared the relevant pages during authorization. To grant the integration access to additional content:
+
+1. Navigate to the Notion page or database that needs to be accessible
+2. Click **...** (menu) in the upper right corner of the page
+3. Select **Connections** and locate the integration
+4. Click to confirm access
+
+Alternatively, the user can re-authorize the integration and select the additional pages during the OAuth flow.
+
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 

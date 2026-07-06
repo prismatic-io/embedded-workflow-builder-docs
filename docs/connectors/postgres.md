@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Connector
 sidebar_label: PostgreSQL
-description: Query and manage data in a PostgreSQL database
+description: Query and manage data in a PostgreSQL database.
 ---
 
 ![PostgreSQL](./assets/postgres.png#connector-icon)
@@ -10,35 +10,43 @@ This component allows you to query a PostgreSQL database.
 
 ## Connections
 
-### PostgreSQL Connection {#postgres}
+### On-Premise Connection {#postgres}
 
 Authenticate requests to a PostgreSQL server.
 
-Create a new PostgreSQL connection and enter the host, port, and database for your PostgreSQL server.
-The **username** and **password** are optional inputs that can be put directly into a PostgreSQL connection.
+Create a new PostgreSQL connection and enter the connection details for the PostgreSQL server.
+
+#### Configure the Connection
+
+- Enter the **Host**, the hostname or IP address of the PostgreSQL server (e.g., `192.168.0.1`).
+- Enter the **Port** of the PostgreSQL server (default: `5432`).
+- Enter the **Database** name to connect to.
+- Optionally enter a **Username** and **Password** to authenticate to the PostgreSQL server.
+- Set **Require SSL** to require an SSL connection to the PostgreSQL server.
+- Optionally set a **Connection Timeout** in milliseconds to wait before timing out (default: `5000`).
 
 | Input              | Comments                                                                                                              | Default |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Host               | Provide the string value for the host of the server.                                                                  |         |
+| Host               | The hostname or IP address of the PostgreSQL server.                                                                  |         |
 | Port               | The port of the PostgreSQL server.                                                                                    | 5432    |
-| Database           | The database in PostgreSQL                                                                                            |         |
-| Username           |                                                                                                                       |         |
-| Password           |                                                                                                                       |         |
-| Require SSL        | Require SSL for the connection to the PostgreSQL server                                                               | false   |
+| Database           | The name of the database to connect to.                                                                               |         |
+| Username           | The username used to authenticate to the PostgreSQL server.                                                           |         |
+| Password           | The password used to authenticate to the PostgreSQL server.                                                           |         |
+| Require SSL        | When true, requires an SSL connection to the PostgreSQL server.                                                       | false   |
 | Connection Timeout | The amount of time (in milliseconds) to wait for a connection to be established before timing out. Default is 5000ms. | 5000    |
 
 ## Triggers
 
-### New and Updated Records to Table {#polltable}
+### New and Updated Records {#polltable}
 
-Checks for new and updated records to a table
+Checks for new and updated records in a table on a configured schedule.
 
-| Input                      | Comments                                                                                                                                                                                                                                                                                                                   | Default    |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Connection                 |                                                                                                                                                                                                                                                                                                                            |            |
-| Table Name                 |                                                                                                                                                                                                                                                                                                                            |            |
-| Cursor Field               | A field that is used to track new results. If your table has an auto incrementing integer ID, you can use the ID. If it has a 'created at' or 'updated at' timestamp, you can use those. Each time this trigger runs, it checks for records with values that are greater than the largest value from last time it was run. | updated_at |
-| Cast timestamps to strings | Select this option if your cursor field is a timestamp. PostgreSQL tracks microseconds, but JavaScript dates are measured in milliseconds. When fetching TIME, TIMETZ, TIMESTAMP, TIMESTAMPTZ fields, some precision can be lost. By casting timestamp values to strings, you can retain precision.                        | true       |
+| Input                      | Comments                                                                                                                                                                                                                                                                                             | Default    |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Connection                 | The PostgreSQL connection to use.                                                                                                                                                                                                                                                                    |            |
+| Table Name                 | The name of the table to monitor for new and updated records.                                                                                                                                                                                                                                        |            |
+| Cursor Field               | The column used to track new results. If the table has an auto incrementing integer ID, that ID can be used. If it has a 'created at' or 'updated at' timestamp, those can be used. Each time this trigger runs, it checks for records with values greater than the largest value from the last run. | updated_at |
+| Cast Timestamps to Strings | When true, timestamp values are cast to strings to retain precision. PostgreSQL tracks microseconds, but JavaScript dates are measured in milliseconds, so precision can be lost when fetching TIME, TIMETZ, TIMESTAMP, and TIMESTAMPTZ fields. Enable this when the cursor field is a timestamp.    | true       |
 
 ## Actions
 
@@ -48,7 +56,7 @@ Performs a query on a PostgreSQL database.
 
 | Input                      | Comments                                                                                                                                                                                                                                                                                        | Default |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Query Field                | The query to be executed                                                                                                                                                                                                                                                                        |         |
+| Connection                 | The PostgreSQL connection to use.                                                                                                                                                                                                                                                               |         |
+| Query Field                | The SQL statement to execute against the database. Use named parameters (i.e. ${name}) or index variables (i.e. $1) to safely interpolate values.                                                                                                                                               |         |
 | Named Parameters           | Optional named parameters to insert into a query.                                                                                                                                                                                                                                               |         |
 | Parameters Object or Array | Optional parameters to insert into a query. This should be a key-value object if you are using named inputs (i.e. ${name}), or an array if using index variables (i.e. $2) in your query. Values from this object will be merged with Named Parameters inputs if you are using named variables. |         |
-| Connection                 |                                                                                                                                                                                                                                                                                                 |         |

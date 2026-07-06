@@ -53,6 +53,19 @@ Enter the following values in the connection configuration:
 | Duro Environment        | The Duro GraphQL endpoint. Select based on data residency requirements: Main (MFG) for standard accounts, ITAR for US government compliance, or EU for European data residency. |         |
 | Custom Duro Environment | If provided, this will override the selected Duro Environment. Use for private Duro instances or custom deployments.                                                            |         |
 
+## Triggers
+
+### New and Updated Records {#pollchangestrigger}
+
+Checks for new and updated components or change orders in Duro on a configured schedule.
+
+| Input                | Comments                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------- | ------- |
+| Connection           | The Duro PLM connection to use.                                                    |         |
+| Resource Type        | The type of resource to poll for changes.                                          |         |
+| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output. | true    |
+
 ## Actions
 
 ### Create Change Order {#createchangeorder}

@@ -5,9 +5,9 @@ description: Manage tasks, lists, spaces, time tracking, and team members in Cli
 ---
 
 ![ClickUp](./assets/click-up.png#connector-icon)
-[ClickUp](https://clickup.com/) ClickUp is a CRM, collaboration, knowledge base, and project management tool.
+[ClickUp](https://clickup.com/) is a CRM, collaboration, knowledge base, and project management tool.
 
-Use the Clickup component to manage users, projects, and teams in your Clickup workspace.
+Use the ClickUp component to manage users, projects, and teams in a ClickUp workspace.
 
 ## Connections
 
@@ -15,17 +15,16 @@ Use the Clickup component to manage users, projects, and teams in your Clickup w
 
 Authenticate using OAuth 2.0.
 
-Oauth Configuration Instructions
+OAuth 2.0 Configuration Instructions
 
-To make API requests of Clickup on behalf of your customers you will need to create an "App" within Clickup. https://clickup.com/api/developer-portal/authentication/#step-1-create-an-oauth-app
+To make API requests to ClickUp on behalf of end customers, an "App" must be created within ClickUp. See the [ClickUp Authentication documentation](https://developer.clickup.com/docs/authentication) for full details.
 
 1. Log into ClickUp.
-2. Click on your avatar in the lower-left corner and select
-   **Integrations.**
-3. Click on **ClickUp API.**
-4. Click **Create an App.**
-5. Give your app a name and provide the redirect URL as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
-6. Once your app is created, you'll be provided with a client ID and Secret that may be entered in the connection
+2. Click on the avatar in the lower-left corner and select **Integrations**.
+3. Click on **ClickUp API**.
+4. Click **Create an App**.
+5. Provide an app name and set the redirect URL to `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+6. Once the app is created, a Client ID and Client Secret will be provided. Enter these values into the connection configuration.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -39,14 +38,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Authenticate using a personal access token.
 
-Personal API token Configuration Instructions
+Personal Access Token Configuration Instructions
 
-To make API requests to ClickUp using a personal API token you may generate one using the following Personal API token [steps](https://help.clickup.com/hc/en-us/articles/6303426241687-Getting-Started-with-the-ClickUp-API#personal-api-key).
+To make API requests to ClickUp using a personal access token, follow the steps below. For full details, see the [ClickUp Authentication documentation](https://developer.clickup.com/docs/authentication).
 
 1. Log into ClickUp.
-2. Click on your avatar in the lower-left corner and select **Apps.**
-3. Under API Token, click **Generate.**
-4. You can copy and paste your personal API token.
+2. Click on the avatar in the lower-left corner and select **Apps**.
+3. Under API Token, click **Generate**.
+4. Copy the personal access token and paste it into the connection configuration in the integration.
 
 | Input                 | Comments                                                                                                                                                                                                                        | Default |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

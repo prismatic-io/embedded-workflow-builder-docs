@@ -58,12 +58,12 @@ Gather the following information from the SAP Business One administrator:
 | --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Username**          | Yes      | The SAP Business One username for authentication                                                                                                                 |
 | **Password**          | Yes      | The SAP Business One password for authentication                                                                                                                 |
-| **Server Address**    | No\*     | The URL of the SAP Business One Service Layer server, including the port. Required for non-OnPrem connections. Example: `https://sapb1-server.example.com:50000` |
+| **Server Address**    | No*      | The URL of the SAP Business One Service Layer server, including the port. Required for non-OnPrem connections. Example: `https://sapb1-server.example.com:50000` |
 | **Database Instance** | No       | The SAP HANA database instance in format `DatabaseName@Host:Port`. Example: `C200@10.58.114.200:30013`                                                           |
 | **Company Name**      | No       | The company database name to connect to in SAP Business One. Example: `SBODEMOUS`                                                                                |
 | **API Version**       | No       | The Service Layer API version to use. Defaults to v1 (OData 3.0). Select v2 (OData 4.0) for new integrations                                                     |
 
-\*Required for cloud deployments. For on-premises deployments, the **Host** and **Port** fields are automatically configured by the on-premises agent.
+*Required for cloud deployments. For on-premises deployments, the **Host** and **Port** fields are automatically configured by the on-premises agent.
 
 | Input             | Comments                                                                                                                                                                                                                                                                                                                                           | Default |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
