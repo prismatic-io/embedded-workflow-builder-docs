@@ -336,15 +336,17 @@ Retrieve a list of columns from a worksheet table.
 | Worksheet ID     | The ID or name of the worksheet to list columns from.                                                                              |         |
 | Table ID         | The ID or name of the table to list columns from.                                                                                  |         |
 | Fetch All        | When true, automatically fetches all pages of results using pagination.                                                            | false   |
-| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Pagination       | Result paging controls: page size, number of items to skip, and next-page token.                                                   |         |
+| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
+| Filters          | Optional query controls to sort and refine the results.                                                                            |         |
 | Filter           | An OData filter expression to narrow down results. For example: startswith(givenName,'J').                                         |         |
-| Format           | The media format for the response. For example: json.                                                                              |         |
 | Order By         | An OData orderBy expression to sort results. For example: displayName desc.                                                        |         |
 | Search           | A search string to filter results by matching against indexed properties.                                                          |         |
 | Select           | A comma-separated list of properties to include in the response. Reduces payload size.                                             |         |
-| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Format           | The media format for the response. For example: json.                                                                              |         |
 
 ### List Rows {#listrows}
 
@@ -358,15 +360,17 @@ Retrieve a list of rows from a worksheet table.
 | Worksheet ID     | The ID or name of the worksheet to list rows from.                                                                                 |         |
 | Table ID         | The ID or name of the table to list rows from.                                                                                     |         |
 | Fetch All        | When true, automatically fetches all pages of results using pagination.                                                            | false   |
-| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Pagination       | Result paging controls: page size, number of items to skip, and next-page token.                                                   |         |
+| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
+| Filters          | Optional query controls to sort and refine the results.                                                                            |         |
 | Filter           | An OData filter expression to narrow down results. For example: startswith(givenName,'J').                                         |         |
-| Format           | The media format for the response. For example: json.                                                                              |         |
 | Order By         | An OData orderBy expression to sort results. For example: displayName desc.                                                        |         |
 | Search           | A search string to filter results by matching against indexed properties.                                                          |         |
 | Select           | A comma-separated list of properties to include in the response. Reduces payload size.                                             |         |
-| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Format           | The media format for the response. For example: json.                                                                              |         |
 
 ### List Tables {#listtables}
 
@@ -379,15 +383,17 @@ Retrieve a list of tables from a worksheet.
 | Workbook ID      | The ID of the workbook that contains the worksheet to list tables from.                                                            |         |
 | Worksheet ID     | The ID or name of the worksheet to list tables from.                                                                               |         |
 | Fetch All        | When true, automatically fetches all pages of results using pagination.                                                            | false   |
-| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Pagination       | Result paging controls: page size, number of items to skip, and next-page token.                                                   |         |
+| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
+| Filters          | Optional query controls to sort and refine the results.                                                                            |         |
 | Filter           | An OData filter expression to narrow down results. For example: startswith(givenName,'J').                                         |         |
-| Format           | The media format for the response. For example: json.                                                                              |         |
 | Order By         | An OData orderBy expression to sort results. For example: displayName desc.                                                        |         |
 | Search           | A search string to filter results by matching against indexed properties.                                                          |         |
 | Select           | A comma-separated list of properties to include in the response. Reduces payload size.                                             |         |
-| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Format           | The media format for the response. For example: json.                                                                              |         |
 
 ### List Workbooks {#listworkbooks}
 
@@ -416,15 +422,17 @@ Retrieve a list of worksheet objects.
 | Drive or Site ID | The ID of the OneDrive or SharePoint site to list workbooks from.                                                                  |         |
 | Workbook ID      | The ID of the workbook to retrieve.                                                                                                |         |
 | Fetch All        | When true, automatically fetches all pages of results using pagination.                                                            | false   |
-| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Pagination       | Result paging controls: page size, number of items to skip, and next-page token.                                                   |         |
+| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
+| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
+| Filters          | Optional query controls to sort and refine the results.                                                                            |         |
 | Filter           | An OData filter expression to narrow down results. For example: startswith(givenName,'J').                                         |         |
-| Format           | The media format for the response. For example: json.                                                                              |         |
 | Order By         | An OData orderBy expression to sort results. For example: displayName desc.                                                        |         |
 | Search           | A search string to filter results by matching against indexed properties.                                                          |         |
 | Select           | A comma-separated list of properties to include in the response. Reduces payload size.                                             |         |
-| Skip             | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results. |         |
-| Skip Token       | Retrieves the next page of results from result sets that span multiple pages.                                                      |         |
-| Top              | The maximum number of results to return per page.                                                                                  |         |
+| Expand           | A comma-separated list of related resources to expand and include in the response.                                                 |         |
+| Format           | The media format for the response. For example: json.                                                                              |         |
 
 ### Raw Request {#rawrequest}
 

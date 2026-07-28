@@ -80,6 +80,49 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Client ID     | Client Identifier of your app for ServiceNow               |         |
 | Client Secret | Client Secret of your app for ServiceNow                   |         |
 
+### OAuth 2.0 Client Credentials {#servicenowclientcredentials}
+
+OAuth 2.0 Client Credentials flow
+
+ServiceNow supports OAuth 2.0 Client Credentials authentication, which lets an integration authorize as a ServiceNow system (service) account without an interactive user. An OAuth application must be registered in the ServiceNow instance before configuring this connection.
+
+#### Prerequisites
+
+- A ServiceNow instance with administrator access
+- Access to **System OAuth > Application Registry** in the ServiceNow instance
+- An OAuth application that permits the client credentials grant type
+
+#### Setup Steps
+
+1. Log in to the ServiceNow instance as an administrator
+2. Navigate to **System OAuth > Application Registry**
+3. Click **New** and select **Create an OAuth API endpoint for external clients**
+4. Configure the application:
+   - **Name**: Enter a descriptive name
+5. Save the application
+6. Copy the **Client ID** and **Client Secret** from the application record
+
+#### Configure the Connection
+
+- **Instance URL**: Enter the base URL of the ServiceNow instance (e.g., `https://dev12345.service-now.com`). The OAuth token URL is derived from it automatically.
+- **Client ID**: Enter the Client ID from the OAuth application
+- **Client Secret**: Enter the Client Secret from the OAuth application
+- **Scopes**: Enter space-separated OAuth scopes if required (optional)
+
+:::note[Instance-Specific URL]
+The Instance URL is specific to each ServiceNow instance. Replace `dev12345` with the actual instance name.
+:::
+
+This connection uses OAuth 2.0, a common authentication mechanism for integrations.
+Read about how OAuth 2.0 works [here](../oauth2.md).
+
+| Input         | Comments                                                                          | Default |
+| ------------- | --------------------------------------------------------------------------------- | ------- |
+| Instance URL  | The base URL of your ServiceNow instance (e.g., https://dev12345.service-now.com) |         |
+| Client ID     | Client Identifier of your app for ServiceNow                                      |         |
+| Client Secret | Client Secret of your app for ServiceNow                                          |         |
+| Scopes        | Space separated OAuth 2.0 permission scopes for ServiceNow                        |         |
+
 ## Triggers
 
 ### New and Updated Records {#pollchangestrigger}

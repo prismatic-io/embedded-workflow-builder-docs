@@ -49,6 +49,7 @@ Consult the SFTP server administrator to determine which login method the server
 | Enable Unsecure Ciphers                    | When true, CBC ciphers will be added to the connection.                                                                                                   | false   |
 | Custom Server Host Key Algorithms          | A comma-separated list of custom server host key algorithms. Overrides the default server host key algorithms. Algorithm order matters. Advanced setting. |         |
 | Custom Ciphers                             | A comma-separated list of custom ciphers. Overrides the default ciphers. Cipher order matters. Advanced setting.                                          |         |
+| Custom KEX Algorithms                      | A comma-separated list of custom key exchange algorithms. Algorithm order matters. Advanced setting.                                                      |         |
 
 ### Private Key {#privatekey}
 
@@ -100,6 +101,7 @@ Authentication is performed using the username and corresponding private key.
 | Enable Unsecure Ciphers                    | When true, CBC ciphers will be added to the connection.                                                                                                   | false   |
 | Custom Server Host Key Algorithms          | A comma-separated list of custom server host key algorithms. Overrides the default server host key algorithms. Algorithm order matters. Advanced setting. |         |
 | Custom Ciphers                             | A comma-separated list of custom ciphers. Overrides the default ciphers. Cipher order matters. Advanced setting.                                          |         |
+| Custom KEX Algorithms                      | A comma-separated list of custom key exchange algorithms. Algorithm order matters. Advanced setting.                                                      |         |
 
 ## Triggers
 

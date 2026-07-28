@@ -71,17 +71,18 @@ Checks for new records in ServiceDesk Plus on a configured schedule.
 
 Create a new asset
 
-| Input                  | Comments                                                                  | Default                                                                           |
-| ---------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Asset Name             | Unique name to identify the asset                                         |                                                                                   |
-| State                  | Indicates the state of the asset. Remove the default value if not needed. | <code>{<br /> "name": "test-state",<br /> "id": "234567890123456"<br />}</code>   |
-| Product                | Product of the asset. Remove the default value if not needed.             | <code>{<br /> "name": "test-product",<br /> "id": "234567890123456"<br />}</code> |
-| Asset ID               | Unique identifier to identify the asset                                   |                                                                                   |
-| Asset Tag              | Asset tag used to identify the asset                                      |                                                                                   |
-| State History Comments | A text in a plain format. No rich text or new line characters allowed.    |                                                                                   |
-| Bar Code               | Unique barcode used to identify the asset                                 |                                                                                   |
-| Extra parameters       | Additional parameters to add to the request                               |                                                                                   |
-| Connection             |                                                                           |                                                                                   |
+| Input                  | Comments                                                                          | Default                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Asset Name             | Unique name to identify the asset                                                 |                                                                                   |
+| State                  | Indicates the state of the asset. Remove the default value if not needed.         | <code>{<br /> "name": "test-state",<br /> "id": "234567890123456"<br />}</code>   |
+| Product                | Product of the asset. Remove the default value if not needed.                     | <code>{<br /> "name": "test-product",<br /> "id": "234567890123456"<br />}</code> |
+| Asset ID               | Unique identifier to identify the asset                                           |                                                                                   |
+| Additional Fields      | Additional optional fields: includes Asset Tag, State History Comments, Bar Code. |                                                                                   |
+| Asset Tag              | Asset tag used to identify the asset                                              |                                                                                   |
+| State History Comments | A text in a plain format. No rich text or new line characters allowed.            |                                                                                   |
+| Bar Code               | Unique barcode used to identify the asset                                         |                                                                                   |
+| Extra parameters       | Additional parameters to add to the request                                       |                                                                                   |
+| Connection             |                                                                                   |                                                                                   |
 
 ### Create Configuration Item {#createconfigurationitem}
 
@@ -99,15 +100,16 @@ Create a new configuration item on the CMDB
 
 Create a new problem
 
-| Input                 | Comments                                                                                                                                                                                                         | Default |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                                  |         |
-| Problem Title         | Title of the problem.                                                                                                                                                                                            |         |
-| Problem Description   | Description of the problem.                                                                                                                                                                                      |         |
-| Problem Reported Time | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
-| Problem Due By Time   | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
-| Problem Closed Time   | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
-| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
+| Input               | Comments                                                                                                                                                                                                         | Default |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          |                                                                                                                                                                                                                  |         |
+| Problem Title       | Title of the problem.                                                                                                                                                                                            |         |
+| Problem Description | Description of the problem.                                                                                                                                                                                      |         |
+| Problem Times       | Reported, due by, and closed times.                                                                                                                                                                              |         |
+| Reported Time       | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
+| Due By Time         | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Closed Time         | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Additional Fields   | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
 
 ### Create Problem Note {#createproblemnote}
 
@@ -125,35 +127,37 @@ Create a new problem note
 
 Create a problem task
 
-| Input                    | Comments                                                                                                                                                                                                              | Default |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               |                                                                                                                                                                                                                       |         |
-| Problem ID               | ID of the problem.                                                                                                                                                                                                    |         |
-| Task Title               | Title of the task.                                                                                                                                                                                                    |         |
-| Task Description         | Contains description about the task.                                                                                                                                                                                  |         |
-| Task Type                | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
-| Owner                    | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
-| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
-| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
-| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                                                          |         |
-| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
-| Group                    | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
-| Additional Fields        | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
+| Input                 | Comments                                                                                                                                                                                                              | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                                                                                                                                       |         |
+| Problem ID            | ID of the problem.                                                                                                                                                                                                    |         |
+| Task Title            | Title of the task.                                                                                                                                                                                                    |         |
+| Task Description      | Contains description about the task.                                                                                                                                                                                  |         |
+| Task Type             | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
+| Owner                 | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
+| Estimated Effort      | Estimated minutes, hours, and days to finish.                                                                                                                                                                         |         |
+| Minutes               | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
+| Hours                 | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Days                  | Estimated number of days to finish the task.                                                                                                                                                                          |         |
+| Percentage Completion | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Group                 | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
+| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
 
 ### Create Product {#createproduct}
 
 Create a new product
 
-| Input        | Comments                                                             | Default                                                                                |
-| ------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Product Type | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
-| Name         | Unique identifier to identify the resource                           |                                                                                        |
-| ID           | Unique identifier to identify the resource                           |                                                                                        |
-| Manufacturer | Name to identify the product manufacturer.                           |                                                                                        |
-| Is Laptop    | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
-| Part No      | Part no of the productPart no of the product                         |                                                                                        |
-| Attributes   | Other attributes to add to the payload                               |                                                                                        |
-| Connection   |                                                                      |                                                                                        |
+| Input           | Comments                                                             | Default                                                                                |
+| --------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Product Type    | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
+| Name            | Unique identifier to identify the resource                           |                                                                                        |
+| ID              | Unique identifier to identify the resource                           |                                                                                        |
+| Product Details | Manufacturer, laptop indicator, and part number.                     |                                                                                        |
+| Manufacturer    | Name to identify the product manufacturer.                           |                                                                                        |
+| Is Laptop       | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
+| Part No         | Part no of the productPart no of the product                         |                                                                                        |
+| Attributes      | Other attributes to add to the payload                               |                                                                                        |
+| Connection      |                                                                      |                                                                                        |
 
 ### Create Product Type {#createproducttype}
 
@@ -378,8 +382,9 @@ Retrieve a list of assets
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
 | Connection                |                                                                                                          |         |
 
@@ -392,8 +397,9 @@ Retrieve a list of all configuration items on the CMDB
 | CI Type API Name          | Denotes the unique identifier used to identify the CI.                                                   |         |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
 | Connection                |                                                                                                          |         |
 
@@ -406,6 +412,7 @@ Retrieve a list of problem notes
 | Connection                |                                                                                                          |         |
 | Problem ID                | ID of the problem.                                                                                       |         |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
@@ -419,8 +426,9 @@ Retrieve a list of problems
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                |                                                                                                          |         |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
 
@@ -433,6 +441,7 @@ Retrieve a list of problem tasks
 | Connection                |                                                                                                          |         |
 | Problem ID                | ID of the problem.                                                                                       |         |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
 | Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
@@ -446,8 +455,9 @@ Retrieve a list of products
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
 | Connection                |                                                                                                          |         |
 
@@ -459,8 +469,9 @@ Retrieve a list of product types
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
 | Connection                |                                                                                                          |         |
 
@@ -472,8 +483,9 @@ Retrieve a list of requests
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                |                                                                                                          |         |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
 
@@ -486,8 +498,9 @@ Retrieve a list of request tasks
 | Connection                |                                                                                                          |         |
 | Request ID                | ID of the request.                                                                                       |         |
 | Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
+| Pagination                | Page number and number of rows to return per page.                                                       |         |
 | Page                      | Page number to be returned                                                                               | 1       |
+| Row Count                 | Number of rows to be returned                                                                            | 100     |
 | Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
 | Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
 
@@ -518,17 +531,18 @@ Send raw HTTP request to ServiceDesk Plus
 
 Edit an existing asset
 
-| Input                  | Comments                                                                  | Default                                                                           |
-| ---------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Asset ID               | Unique identifier to identify the asset                                   |                                                                                   |
-| Asset Name             | Unique name to identify the asset                                         |                                                                                   |
-| State                  | Indicates the state of the asset. Remove the default value if not needed. | <code>{<br /> "name": "test-state",<br /> "id": "234567890123456"<br />}</code>   |
-| Product                | Product of the asset. Remove the default value if not needed.             | <code>{<br /> "name": "test-product",<br /> "id": "234567890123456"<br />}</code> |
-| Asset Tag              | Asset tag used to identify the asset                                      |                                                                                   |
-| State History Comments | A text in a plain format. No rich text or new line characters allowed.    |                                                                                   |
-| Bar Code               | Unique barcode used to identify the asset                                 |                                                                                   |
-| Attributes             | Other attributes to add to the payload                                    |                                                                                   |
-| Connection             |                                                                           |                                                                                   |
+| Input                  | Comments                                                                          | Default                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Asset ID               | Unique identifier to identify the asset                                           |                                                                                   |
+| Asset Name             | Unique name to identify the asset                                                 |                                                                                   |
+| State                  | Indicates the state of the asset. Remove the default value if not needed.         | <code>{<br /> "name": "test-state",<br /> "id": "234567890123456"<br />}</code>   |
+| Product                | Product of the asset. Remove the default value if not needed.                     | <code>{<br /> "name": "test-product",<br /> "id": "234567890123456"<br />}</code> |
+| Additional Fields      | Additional optional fields: includes Asset Tag, State History Comments, Bar Code. |                                                                                   |
+| Asset Tag              | Asset tag used to identify the asset                                              |                                                                                   |
+| State History Comments | A text in a plain format. No rich text or new line characters allowed.            |                                                                                   |
+| Bar Code               | Unique barcode used to identify the asset                                         |                                                                                   |
+| Attributes             | Other attributes to add to the payload                                            |                                                                                   |
+| Connection             |                                                                                   |                                                                                   |
 
 ### Update Configuration Item {#updateconfigurationitem}
 
@@ -546,16 +560,17 @@ Edit an existing configuration item on the CMDB
 
 Update an existing problem
 
-| Input                 | Comments                                                                                                                                                                                                         | Default |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                                  |         |
-| To Update Problem ID  | ID of the problem to be updated.                                                                                                                                                                                 |         |
-| Problem Title         | Title of the problem.                                                                                                                                                                                            |         |
-| Problem Description   | Description of the problem.                                                                                                                                                                                      |         |
-| Problem Reported Time | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
-| Problem Due By Time   | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
-| Problem Closed Time   | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
-| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
+| Input                | Comments                                                                                                                                                                                                         | Default |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                  |         |
+| To Update Problem ID | ID of the problem to be updated.                                                                                                                                                                                 |         |
+| Problem Title        | Title of the problem.                                                                                                                                                                                            |         |
+| Problem Description  | Description of the problem.                                                                                                                                                                                      |         |
+| Problem Times        | Reported, due by, and closed times.                                                                                                                                                                              |         |
+| Reported Time        | Indicates the reported time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                         |         |
+| Due By Time          | Indicates the due by time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Closed Time          | Indicates the closed time of the problem. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details.                           |         |
+| Additional Fields    | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem.html) for details. |         |
 
 ### Update Problem Note {#updateproblemnote}
 
@@ -574,36 +589,38 @@ Update a problem note
 
 Update a problem task
 
-| Input                    | Comments                                                                                                                                                                                                              | Default |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection               |                                                                                                                                                                                                                       |         |
-| Problem ID               | ID of the problem.                                                                                                                                                                                                    |         |
-| To Update Task ID        | ID of the task to be updated.                                                                                                                                                                                         |         |
-| Task Title               | Title of the task.                                                                                                                                                                                                    |         |
-| Task Description         | Contains description about the task.                                                                                                                                                                                  |         |
-| Task Type                | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
-| Owner                    | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
-| Estimated Effort Minutes | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
-| Estimated Effort Hours   | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
-| Estimated Effort Days    | Estimated number of days to finish the task.                                                                                                                                                                          |         |
-| Percentage Completion    | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
-| Group                    | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
-| Additional Fields        | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
+| Input                 | Comments                                                                                                                                                                                                              | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                                                                                                                                       |         |
+| Problem ID            | ID of the problem.                                                                                                                                                                                                    |         |
+| To Update Task ID     | ID of the task to be updated.                                                                                                                                                                                         |         |
+| Task Title            | Title of the task.                                                                                                                                                                                                    |         |
+| Task Description      | Contains description about the task.                                                                                                                                                                                  |         |
+| Task Type             | Used to categorize the tasks of similar cases. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                      |         |
+| Owner                 | The User assigned to the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                                      |         |
+| Estimated Effort      | Estimated minutes, hours, and days to finish.                                                                                                                                                                         |         |
+| Minutes               | Estimated number of minutes to finish the task.                                                                                                                                                                       |         |
+| Hours                 | Estimated number of hours to finish the task.                                                                                                                                                                         |         |
+| Days                  | Estimated number of days to finish the task.                                                                                                                                                                          |         |
+| Percentage Completion | Indicates the progress of the task in percentage of completion.                                                                                                                                                       |         |
+| Group                 | Indicates the assigned group of the task. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details.                           |         |
+| Additional Fields     | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/problems/problem_task.html) for details. |         |
 
 ### Update Product {#updateproduct}
 
 Updates an existing product
 
-| Input        | Comments                                                             | Default                                                                                |
-| ------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| ID           | Unique identifier to identify the resource                           |                                                                                        |
-| Product Type | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
-| Name         | Unique identifier to identify the resource                           |                                                                                        |
-| Manufacturer | Name to identify the product manufacturer.                           |                                                                                        |
-| Is Laptop    | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
-| Part No      | Part no of the productPart no of the product                         |                                                                                        |
-| Attributes   | Other attributes to add to the payload                               |                                                                                        |
-| Connection   |                                                                      |                                                                                        |
+| Input           | Comments                                                             | Default                                                                                |
+| --------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| ID              | Unique identifier to identify the resource                           |                                                                                        |
+| Product Type    | Product type of the product. Remove the default value if not needed. | <code>{<br /> "name": "test-product_type",<br /> "id": "234567890123456"<br />}</code> |
+| Name            | Unique identifier to identify the resource                           |                                                                                        |
+| Product Details | Manufacturer, laptop indicator, and part number.                     |                                                                                        |
+| Manufacturer    | Name to identify the product manufacturer.                           |                                                                                        |
+| Is Laptop       | Boolean value indicating whether the product type is laptop or not.  |                                                                                        |
+| Part No         | Part no of the productPart no of the product                         |                                                                                        |
+| Attributes      | Other attributes to add to the payload                               |                                                                                        |
+| Connection      |                                                                      |                                                                                        |
 
 ### Update Product Type {#updateproducttype}
 

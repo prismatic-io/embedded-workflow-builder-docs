@@ -107,6 +107,7 @@ Generates an image using the Google Generative AI (Gemini) model.
 | ---------------- | ----------------------------------------------------------------------------------------- | ------- |
 | Model Name       | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision'). |         |
 | Prompt           | Text prompt that typically describes the images to output.                                |         |
+| Image Settings   | Output configuration for image generation including count, language, and aspect ratio.    |         |
 | Number of Images | The total count of images the model should produce per request.                           |         |
 | Language         | The locale used to interpret the prompt and generate content.                             |         |
 | Aspect Ratio     | The width-to-height proportion for the generated media output (e.g., 16:9, 1:1).          |         |
@@ -121,6 +122,7 @@ Sends a prompt to the model and returns a generated text response.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Prompt            | The text prompt to generate a response for.                                                                                                            |         |
 | Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').                                                              |         |
+| Generation Config | Sampling parameters and safety settings for controlling model output.                                                                                  |         |
 | Temperature       | Controls randomness in the output. Higher values (e.g., 0.8) make output more random, lower values (e.g., 0.2) make it more focused and deterministic. |         |
 | Max Output Tokens | Maximum number of tokens to generate in the response.                                                                                                  |         |
 | Top K             | Limits token selection to the K most likely next tokens.                                                                                               |         |
@@ -133,18 +135,19 @@ Sends a prompt to the model and returns a generated text response.
 
 Generates a video using the Google Generative AI (Gemini) model.
 
-| Input             | Comments                                                                                   | Default |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').  |         |
-| Prompt            | Text prompt that typically describes the video to output.                                  |         |
-| FPS               | The frames per second for the generated video output.                                      |         |
-| Number of Videos  | The total count of videos the model should produce per request.                            |         |
-| Person Generation | Controls whether the model can generate videos containing people and restricts age groups. |         |
-| Resolution        | The pixel dimensions (width x height) for the generated video output.                      |         |
-| Aspect Ratio      | The width-to-height proportion for the generated media output (e.g., 16:9, 1:1).           |         |
-| Duration Seconds  | The length of the generated video clip in seconds.                                         |         |
-| Extra Parameters  | Additional parameters to include in the request as key-value pairs.                        |         |
-| Connection        | The Google Gemini connection to use.                                                       |         |
+| Input             | Comments                                                                                         | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').        |         |
+| Prompt            | Text prompt that typically describes the video to output.                                        |         |
+| Video Settings    | Output configuration for video generation including frame rate, count, resolution, and duration. |         |
+| FPS               | The frames per second for the generated video output.                                            |         |
+| Number of Videos  | The total count of videos the model should produce per request.                                  |         |
+| Person Generation | Controls whether the model can generate videos containing people and restricts age groups.       |         |
+| Resolution        | The pixel dimensions (width x height) for the generated video output.                            |         |
+| Aspect Ratio      | The width-to-height proportion for the generated media output (e.g., 16:9, 1:1).                 |         |
+| Duration Seconds  | The length of the generated video clip in seconds.                                               |         |
+| Extra Parameters  | Additional parameters to include in the request as key-value pairs.                              |         |
+| Connection        | The Google Gemini connection to use.                                                             |         |
 
 ### Get File {#getfile}
 
@@ -171,6 +174,7 @@ Lists all files in the current project from Google Gemini.
 | Input      | Comments                                                                | Default |
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page size and page token for paginating through results.                |         |
 | Page Size  | The maximum number of results to return per page.                       |         |
 | Page Token | The pagination token from a previous request.                           |         |
 | Connection | The Google Gemini connection to use.                                    |         |
@@ -182,6 +186,7 @@ Retrieves a list of available models from the Google Generative AI API.
 | Input            | Comments                                                                | Default |
 | ---------------- | ----------------------------------------------------------------------- | ------- |
 | Fetch All        | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination       | Page size and page token for paginating through results.                |         |
 | Page Size        | The maximum number of results to return per page.                       |         |
 | Page Token       | The pagination token from a previous request.                           |         |
 | Filter           | A filter expression to narrow down the results returned by the API.     |         |
@@ -195,13 +200,14 @@ Sends a message to the chat. Supports providing historical messages to continue 
 | Input             | Comments                                                                                                                                               | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Prompt            | The text prompt to send as a message to the model.                                                                                                     |         |
-| Chat History      | The previous messages in the conversation, used to provide context to the model for continuity.                                                        |         |
 | Model Name        | The name of the model to get information about (e.g., 'gemini-pro', 'gemini-pro-vision').                                                              |         |
+| Generation Config | Sampling parameters, safety settings, and conversation history for controlling model output.                                                           |         |
 | Temperature       | Controls randomness in the output. Higher values (e.g., 0.8) make output more random, lower values (e.g., 0.2) make it more focused and deterministic. |         |
 | Max Output Tokens | Maximum number of tokens to generate in the response.                                                                                                  |         |
 | Top K             | Limits token selection to the K most likely next tokens.                                                                                               |         |
 | Top P             | Limits token selection to tokens with cumulative probability less than P.                                                                              |         |
 | Safety Settings   | The safety threshold configuration for content generation. Each entry specifies a harm category and its blocking threshold.                            |         |
+| Chat History      | The previous messages in the conversation, used to provide context to the model for continuity.                                                        |         |
 | Extra Parameters  | Additional parameters to include in the request as key-value pairs.                                                                                    |         |
 | Connection        | The Google Gemini connection to use.                                                                                                                   |         |
 

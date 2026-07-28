@@ -63,12 +63,12 @@ After the API client is registered in the Workday portal, note the **Client ID**
 
 Create a connection of type **OAuth 2.0** and provide the following inputs:
 
-- **Authorize URL** (required) — The OAuth 2.0 Authorization URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
-- **Token URL** (required) — The OAuth 2.0 Token URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
-- **Scopes** (optional) — Space-separated list of OAuth 2.0 scopes, if any are required.
-- **Client ID** (required) — The OAuth 2.0 client ID issued by Workday for the registered API client.
-- **Client secret** (required) — The OAuth 2.0 client secret paired with the Workday client ID.
-- **API URL** (required) — The base URL for the Workday API. Replace `<domain>` with the Workday domain.
+- **Authorize URL** (required): The OAuth 2.0 Authorization URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
+- **Token URL** (required): The OAuth 2.0 Token URL for Workday. Replace `<tenant_id>` with the Workday tenant ID.
+- **Scopes** (optional): Space-separated list of OAuth 2.0 scopes, if any are required.
+- **Client ID** (required): The OAuth 2.0 client ID issued by Workday for the registered API client.
+- **Client Secret** (required): The OAuth 2.0 client secret paired with the Workday client ID.
+- **API URL** (required): The base URL for the Workday API. Replace `<domain>` with the Workday domain.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -79,7 +79,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Token URL     | The OAuth 2.0 Token URL for Workday. Replace <tenant_id> with the tenant ID.         | https://wd2-impl-services1.workday.com/ccx/oauth2/<tenant_id>/token |
 | Scopes        | Space-separated list of OAuth 2.0 scopes, if any are required.                       |                                                                     |
 | Client ID     | The OAuth 2.0 client ID issued by Workday for the registered API client.             |                                                                     |
-| Client secret | The OAuth 2.0 client secret paired with the Workday client ID.                       |                                                                     |
+| Client Secret | The OAuth 2.0 client secret paired with the Workday client ID.                       |                                                                     |
 | API URL       | The base URL for the Workday API. Replace <domain> with the Workday domain.          | https://<domain>/ccx                                                |
 
 ## Actions
@@ -90,7 +90,7 @@ Creates a new file container.
 
 | Input      | Comments                                   | Default |
 | ---------- | ------------------------------------------ | ------- |
-| Connection |                                            |         |
+| Connection | The Workday connection to use.             |         |
 | Tenant     | The Workday tenant name used in API paths. |         |
 
 ### Create Job Change {#postjobchanges}
@@ -99,7 +99,7 @@ Creates a job change instance with the specified data.
 
 | Input                       | Comments                                                                                 | Default |
 | --------------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                          |         |
+| Connection                  | The Workday connection to use.                                                           |         |
 | Worker ID                   | Unique identifier for the Workday worker record.                                         |         |
 | Supervisory Organization ID | Supervisory organization assigned to the worker as of the effective date.                |         |
 | Job Change Reason ID        | Identifies the reason used in a Change Job business process.                             |         |
@@ -116,11 +116,11 @@ Creates a new message template.
 
 | Input                 | Comments                                                                                                                                                                                                                                       | Default |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                                                                |         |
+| Connection            | The Workday connection to use.                                                                                                                                                                                                                 |         |
+| Message Template Name | Display name given to the message template.                                                                                                                                                                                                    |         |
 | Created By ID         | Identifies the user who created the record.                                                                                                                                                                                                    |         |
 | Email Detail          | Details for the email.                                                                                                                                                                                                                         |         |
 | Push Detail           | Details for the push notification.                                                                                                                                                                                                             |         |
-| Message Template Name | Display name given to the message template.                                                                                                                                                                                                    |         |
 | Reference ID          | Reference ID used for lookups within Workday Web Services.                                                                                                                                                                                     |         |
 | Template Inactive     | When true, marks the template as inactive.                                                                                                                                                                                                     | true    |
 | Template Descriptor   | Human-readable descriptor for the template.                                                                                                                                                                                                    |         |
@@ -131,20 +131,21 @@ Creates a new message template.
 
 Creates a single customer invoice payment header instance with the specified data.
 
-| Input                  | Comments                                                         | Default |
-| ---------------------- | ---------------------------------------------------------------- | ------- |
-| Connection             |                                                                  |         |
-| Remit From Customer ID | Identifies the customer remitting the payment.                   |         |
-| Ready to Auto Apply    | When true, flags the payment as ready for automatic application. | true    |
-| Reference              | External reference string associated with the payment.           |         |
-| Transaction Number     | Bank transaction number associated with the payment.             |         |
-| Amount                 | Monetary amount for the payment.                                 |         |
-| Type ID                | Identifies the payment type.                                     |         |
-| Payment Date           | Date the payment was made.                                       |         |
-| Company ID             | Identifies the Workday company.                                  |         |
-| Memo                   | Free-text memo attached to the transaction.                      |         |
-| Payment Descriptor     | Human-readable descriptor for the payment.                       |         |
-| Payment ID             | Optional identifier to assign to the payment on creation.        |         |
+| Input                  | Comments                                                                                                               | Default |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Workday connection to use.                                                                                         |         |
+| Remit From Customer ID | Identifies the customer remitting the payment.                                                                         |         |
+| Amount                 | Monetary amount for the payment.                                                                                       |         |
+| Type ID                | Identifies the payment type.                                                                                           |         |
+| Payment Date           | Date the payment was made.                                                                                             |         |
+| Company ID             | Identifies the Workday company.                                                                                        |         |
+| Payment ID             | Optional identifier to assign to the payment on creation.                                                              |         |
+| Additional Fields      | Additional optional fields: includes Ready to Auto Apply, Reference, Transaction Number, Memo, and Payment Descriptor. |         |
+| Ready to Auto Apply    | When true, flags the payment as ready for automatic application.                                                       | true    |
+| Reference              | External reference string associated with the payment.                                                                 |         |
+| Transaction Number     | Bank transaction number associated with the payment.                                                                   |         |
+| Memo                   | Free-text memo attached to the transaction.                                                                            |         |
+| Payment Descriptor     | Human-readable descriptor for the payment.                                                                             |         |
 
 ### Create Supplier Invoice Request {#postsupplierinvoicerequests}
 
@@ -152,7 +153,7 @@ Creates a supplier invoice request with the specified data.
 
 | Input                       | Comments                                                                                                                                                                                                                                                      | Default |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                                               |         |
+| Connection                  | The Workday connection to use.                                                                                                                                                                                                                                |         |
 | Currency ID                 | Identifies the currency used for the invoice.                                                                                                                                                                                                                 |         |
 | Company ID                  | Identifies the Workday company.                                                                                                                                                                                                                               |         |
 | Tax Amount                  | Total tax amount applied to the invoice.                                                                                                                                                                                                                      |         |
@@ -171,12 +172,13 @@ Creates attachments for the specified supplier invoice.
 
 | Input                                          | Comments                                                   | Default |
 | ---------------------------------------------- | ---------------------------------------------------------- | ------- |
-| Connection                                     |                                                            |         |
+| Connection                                     | The Workday connection to use.                             |         |
 | Supplier Invoice Request ID                    | Identifies the supplier invoice request.                   |         |
+| Attachment Details                             | File length, file name, and descriptor for the attachment. |         |
 | File Length                                    | Size of the attached file in bytes.                        |         |
-| Content Type ID                                | Identifies the MIME content type of the attachment.        |         |
 | File Name                                      | Display name of the attached file.                         |         |
 | Supplier Invoice Request Attachment Descriptor | Human-readable descriptor for the attachment.              |         |
+| Content Type ID                                | Identifies the MIME content type of the attachment.        |         |
 | Supplier Invoice Request Attachment ID         | Identifies the attachment on the supplier invoice request. |         |
 
 ### Create Table {#posttable}
@@ -185,15 +187,32 @@ Creates a new table with the specified name.
 
 | Input               | Comments                                                                                                                                                                                                              | Default |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                                                                                                       |         |
+| Connection          | The Workday connection to use.                                                                                                                                                                                        |         |
 | Tenant              | The Workday tenant name used in API paths.                                                                                                                                                                            |         |
 | Display Name        | User-facing display name shown in Prism Analytics.                                                                                                                                                                    |         |
+| Name                | Internal name used to reference the table via API.                                                                                                                                                                    |         |
+| Fields              | The fields of the table. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/post-/tables) for more information. |         |
+| Additional Fields   | Additional optional fields: includes Description, Documentation, Enable For Analysis, and Tags.                                                                                                                       |         |
 | Description         | Short description shown alongside the table.                                                                                                                                                                          |         |
 | Documentation       | Long-form documentation describing how the table is used.                                                                                                                                                             |         |
 | Enable For Analysis | When true, enables the table for Prism Analytics.                                                                                                                                                                     | false   |
-| Name                | Internal name used to reference the table via API.                                                                                                                                                                    |         |
 | Tags                | The tags of the table. An array of objects with id and name.                                                                                                                                                          |         |
-| Fields              | The fields of the table. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/post-/tables) for more information. |         |
+
+### Create Time Off Request {#posttimeoffrequest}
+
+Creates a time off request for the specified worker ID and initiates the Request Time Off business process.
+
+| Input                       | Comments                                                                                                                                                                                                                                                                    | Default |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                  | The Workday connection to use.                                                                                                                                                                                                                                              |         |
+| Worker ID                   | Unique identifier for the Workday worker record.                                                                                                                                                                                                                            |         |
+| Days                        | The days for which the time off request is being made. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#absenceManagement/v5/post-/workers/-ID-/requestTimeOff) for more information. |         |
+| Action ID                   | Identifies the action to take on the business process.                                                                                                                                                                                                                      |         |
+| Overall Business Process ID | Identifies the parent business process instance.                                                                                                                                                                                                                            |         |
+| Time Off Comment            | Free-text comment attached to the time-off entry.                                                                                                                                                                                                                           |         |
+| Transaction Status ID       | Identifies the current status of the transaction.                                                                                                                                                                                                                           |         |
+| Time Off Attachments        | The attachments for the time off request.                                                                                                                                                                                                                                   |         |
+| Time Off For ID             | Target instance the time-off entry applies to; may be another business process ID when used as a sub-process.                                                                                                                                                               |         |
 
 ### Create Worker Business Title Change {#postworkerbusinesstitlechange}
 
@@ -201,7 +220,7 @@ Creates a new business title change for the specified worker.
 
 | Input                   | Comments                                                                                                                                                      | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                               |         |
+| Connection              | The Workday connection to use.                                                                                                                                |         |
 | Worker ID               | Unique identifier for the Workday worker record.                                                                                                              |         |
 | Proposed Business Title | New business title for the worker as of the effective date. If there is no business title override, this field defaults to the job title or job profile name. |         |
 | Instance ID             | Identifies the Workday instance being referenced.                                                                                                             |         |
@@ -214,7 +233,7 @@ Creates a worker time block for the specified worker.
 
 | Input               | Comments                                                                                                                                                                                                                                                        | Default |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                                                                                                                                                                 |         |
+| Connection          | The Workday connection to use.                                                                                                                                                                                                                                  |         |
 | Worker ID           | Unique identifier for the Workday worker record.                                                                                                                                                                                                                |         |
 | Do Not Bill         | When true, marks the time block as non-billable.                                                                                                                                                                                                                | false   |
 | Comment             | Free-text comment attached to the reported time block.                                                                                                                                                                                                          |         |
@@ -228,7 +247,7 @@ Deletes a time clock event with the specified ID.
 
 | Input               | Comments                                | Default |
 | ------------------- | --------------------------------------- | ------- |
-| Connection          |                                         |         |
+| Connection          | The Workday connection to use.          |         |
 | Time Clock Event ID | Identifies the time clock event record. |         |
 
 ### Delete Worker Time Block {#deleteworkertimeblock}
@@ -237,26 +256,26 @@ Deletes a worker time block with the specified ID for the specified worker.
 
 | Input                | Comments                                         | Default |
 | -------------------- | ------------------------------------------------ | ------- |
-| Connection           |                                                  |         |
+| Connection           | The Workday connection to use.                   |         |
 | Worker ID            | Unique identifier for the Workday worker record. |         |
 | Worker Time Block ID | Identifies the worker's reported time block.     |         |
 
 ### Get Customer by ID {#getcustomerbyid}
 
-Retrieves customer by ID.
+Retrieves a customer by ID.
 
 | Input       | Comments                         | Default |
 | ----------- | -------------------------------- | ------- |
-| Connection  |                                  |         |
+| Connection  | The Workday connection to use.   |         |
 | Customer ID | Identifies the customer account. |         |
 
 ### Get Data Change by ID {#getdatachangesbyid}
 
-Data change is a Prism artifact that gives users the ability to easily load data into a Prism table so that they can use the table for analysis in downstream applications (Discovery Board, Reports, apps like Accounting Center/People Analytics) Data from multiple sources.
+Retrieves the data change with the specified ID. A data change is a Prism artifact used to load data into a Prism table for analysis in downstream applications such as Discovery Board, Reports, Accounting Center, and People Analytics.
 
 | Input          | Comments                                                | Default |
 | -------------- | ------------------------------------------------------- | ------- |
-| Connection     |                                                         |         |
+| Connection     | The Workday connection to use.                          |         |
 | Tenant         | The Workday tenant name used in API paths.              |         |
 | Data Change ID | Identifies the Prism Analytics data change transaction. |         |
 
@@ -266,9 +285,10 @@ Retrieves attachments on the specified business process event that the processin
 
 | Input      | Comments                                                                                                                                                                                                                                                                               | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                                                                                                                                                        |         |
+| Connection | The Workday connection to use.                                                                                                                                                                                                                                                         |         |
 | Event ID   | Identifies the business process event.                                                                                                                                                                                                                                                 |         |
 | Fetch All  | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
+| Pagination | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                    |         |
 | Limit      | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
 | Offset     | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
 
@@ -278,7 +298,7 @@ Retrieves the business process event with the specified ID.
 
 | Input      | Comments                               | Default |
 | ---------- | -------------------------------------- | ------- |
-| Connection |                                        |         |
+| Connection | The Workday connection to use.         |         |
 | Event ID   | Identifies the business process event. |         |
 
 ### Get Files by Container ID {#getfilesbycontainerid}
@@ -287,7 +307,7 @@ Retrieves all files for a file container. Returns file metadata such as file nam
 
 | Input             | Comments                                                     | Default |
 | ----------------- | ------------------------------------------------------------ | ------- |
-| Connection        |                                                              |         |
+| Connection        | The Workday connection to use.                               |         |
 | Tenant            | The Workday tenant name used in API paths.                   |         |
 | File Container ID | Identifies the file container whose files will be retrieved. |         |
 
@@ -297,7 +317,7 @@ Retrieves a customer invoice or adjustment with the specified ID.
 
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
-| Connection |                                              |         |
+| Connection | The Workday connection to use.               |         |
 | Invoice ID | Identifies the customer invoice to retrieve. |         |
 
 ### Get Invoice PDF {#getinvoicepdf}
@@ -306,7 +326,7 @@ Retrieves printed customer invoice PDF documents.
 
 | Input          | Comments                                         | Default |
 | -------------- | ------------------------------------------------ | ------- |
-| Connection     |                                                  |         |
+| Connection     | The Workday connection to use.                   |         |
 | Invoice PDF ID | Identifies the invoice PDF resource to retrieve. |         |
 
 ### Get Message Template by ID {#getmessagetemplatebyid}
@@ -315,16 +335,16 @@ Retrieves a message template by ID.
 
 | Input               | Comments                                 | Default |
 | ------------------- | ---------------------------------------- | ------- |
-| Connection          |                                          |         |
+| Connection          | The Workday connection to use.           |         |
 | Message Template ID | Identifies the Connect message template. |         |
 
 ### Get Organization by ID {#getorganizationbyid}
 
-Retrieves an Organization by ID.
+Retrieves an organization by ID.
 
 | Input           | Comments                             | Default |
 | --------------- | ------------------------------------ | ------- |
-| Connection      |                                      |         |
+| Connection      | The Workday connection to use.       |         |
 | Organization ID | Identifies the Workday organization. |         |
 
 ### Get Payment by ID {#getpaymentbyid}
@@ -333,7 +353,7 @@ Retrieves a customer invoice payment with the specified ID.
 
 | Input      | Comments                                | Default |
 | ---------- | --------------------------------------- | ------- |
-| Connection |                                         |         |
+| Connection | The Workday connection to use.          |         |
 | Payment ID | Identifies the customer payment record. |         |
 
 ### Get Person by ID {#getpersonbyid}
@@ -342,29 +362,30 @@ Retrieves a person with the specified ID. IDs returned from 'List People' or 'Li
 
 | Input      | Comments                                              | Default |
 | ---------- | ----------------------------------------------------- | ------- |
-| Connection |                                                       |         |
+| Connection | The Workday connection to use.                        |         |
 | Person ID  | Unique identifier for a person in the Workday tenant. |         |
 
-### Get Staffing Worker By ID {#getstaffingworkerbyid}
+### Get Staffing Worker by ID {#getstaffingworkerbyid}
 
 Retrieves a worker with the specified ID and current staffing information from the Staffing service.
 
 | Input      | Comments                                         | Default |
 | ---------- | ------------------------------------------------ | ------- |
-| Connection |                                                  |         |
+| Connection | The Workday connection to use.                   |         |
 | Worker ID  | Unique identifier for the Workday worker record. |         |
 
 ### Get Staffing Workers {#getstaffingworkers}
 
 Retrieves a collection of workers and current staffing information from the Staffing service.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#staffing/v7/get-/workers                 |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                 | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                           |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                        | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                      |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                               |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                   |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#staffing/v7/get-/workers). |         |
 
 ### Get Supplier Invoice Request Attachments {#getsupplierinvoicerequestattachments}
 
@@ -372,9 +393,10 @@ Retrieves all attachments associated with supplier invoices.
 
 | Input                       | Comments                                                                                                                                                                                                                                                                               | Default |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                                                                        |         |
+| Connection                  | The Workday connection to use.                                                                                                                                                                                                                                                         |         |
 | Supplier Invoice Request ID | Identifies the supplier invoice request.                                                                                                                                                                                                                                               |         |
 | Fetch All                   | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
+| Pagination                  | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                    |         |
 | Limit                       | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
 | Offset                      | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
 
@@ -384,19 +406,19 @@ Retrieves the supplier invoice with the specified ID.
 
 | Input                       | Comments                                 | Default |
 | --------------------------- | ---------------------------------------- | ------- |
-| Connection                  |                                          |         |
+| Connection                  | The Workday connection to use.           |         |
 | Supplier Invoice Request ID | Identifies the supplier invoice request. |         |
 
 ### Get Table by ID {#gettablebyid}
 
 Retrieves the description of a table or dataset the current user has permission to access.
 
-| Input        | Comments                                                                                                                                                                                                                                                                         | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                  |         |
-| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                       |         |
-| Table ID     | Identifies the Prism Analytics table.                                                                                                                                                                                                                                            |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/tables/-id- |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                           | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                     |         |
+| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                                                         |         |
+| Table ID     | Identifies the Prism Analytics table.                                                                                                                                                                                                                                                                              |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/tables/-id-). |         |
 
 ### Get Time Clock Event by ID {#gettimeclockeventsbyid}
 
@@ -404,16 +426,16 @@ Retrieves a time clock event with the specified ID.
 
 | Input               | Comments                                | Default |
 | ------------------- | --------------------------------------- | ------- |
-| Connection          |                                         |         |
+| Connection          | The Workday connection to use.          |         |
 | Time Clock Event ID | Identifies the time clock event record. |         |
 
 ### Get Time Clock Events {#gettimeclockevents}
 
-Retrieves a collection of time clock events. You can filter by the time clock events by worker and date range.
+Retrieves a collection of time clock events. Supports filtering by worker and date range.
 
 | Input        | Comments                                                                                                          | Default |
 | ------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                   |         |
+| Connection   | The Workday connection to use.                                                                                    |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 |         |
 
 ### Get Time Off Balance by ID {#gettimeoffbalancebyid}
@@ -422,7 +444,7 @@ Retrieves the specified balance of all absence plan and leave of absence types f
 
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
-| Connection |                                              |         |
+| Connection | The Workday connection to use.               |         |
 | Balance ID | Identifies the time-off balance to retrieve. |         |
 
 ### Get Time Off Details {#gettimeoffdetails}
@@ -431,9 +453,10 @@ Retrieves Time Off Entries for the specified worker ID. Supports filtering by da
 
 | Input        | Comments                                                                                                                                                                                                                                                                                                                              | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                                                                       |         |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                                        |         |
 | Worker ID    | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                                                                      |         |
 | Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                                                     | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                                                   |         |
 | Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                                            |         |
 | Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                                                |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#absenceManagement/v5/get-/workers/-ID-/timeOffDetails). |         |
@@ -444,9 +467,10 @@ Retrieves a collection of business title changes for the specified worker.
 
 | Input      | Comments                                                                                                                                                                                                                                                                               | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                                                                                                                                                        |         |
+| Connection | The Workday connection to use.                                                                                                                                                                                                                                                         |         |
 | Worker ID  | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                       |         |
 | Fetch All  | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
+| Pagination | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                    |         |
 | Limit      | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
 | Offset     | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
 
@@ -456,21 +480,22 @@ Retrieves a worker and current staffing information by ID.
 
 | Input      | Comments                                         | Default |
 | ---------- | ------------------------------------------------ | ------- |
-| Connection |                                                  |         |
+| Connection | The Workday connection to use.                   |         |
 | Worker ID  | Unique identifier for the Workday worker record. |         |
 
 ### Get Worker Explicit Skills {#getworkerexplicitskills}
 
 Retrieves explicit skills for the specified worker ID. Supports optional filtering by skill name or skill source.
 
-| Input        | Comments                                                                                                                                                                                                                                                                                   | Default |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                            |         |
-| Worker ID    | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                           |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                          | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                 |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.     |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#staffing/v7/get-/workers/-ID-/explicitSkills |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                                     | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                               |         |
+| Worker ID    | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                                                             |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                                            | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                                          |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                                   |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                                       |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#staffing/v7/get-/workers/-ID-/explicitSkills). |         |
 
 ### Get Worker Service Dates {#getworkerservicedates}
 
@@ -478,9 +503,10 @@ Retrieves a collection of service dates (hire date, continuous service date, etc
 
 | Input      | Comments                                                                                                                                                                                                                                                                               | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                                                                                                                                                        |         |
+| Connection | The Workday connection to use.                                                                                                                                                                                                                                                         |         |
 | Worker ID  | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                       |         |
 | Fetch All  | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
+| Pagination | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                    |         |
 | Limit      | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
 | Offset     | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
 
@@ -490,7 +516,7 @@ Initiates a job change request for the specified worker. Returns a new job chang
 
 | Input                | Comments                                                                                                                                                                                                                                               | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection           |                                                                                                                                                                                                                                                        |         |
+| Connection           | The Workday connection to use.                                                                                                                                                                                                                         |         |
 | Worker ID            | Unique identifier for the Workday worker record.                                                                                                                                                                                                       |         |
 | Effective Date       | The effective date of the job change.                                                                                                                                                                                                                  |         |
 | Change Job Worker ID | Workday ID of the worker whose job is being changed. Retrieve using GET /values/jobChangesGroup/workers.                                                                                                                                               |         |
@@ -504,7 +530,7 @@ Initiates an organization assignment change for the specified worker. Returns a 
 
 | Input                | Comments                                                                                                                                                                                                                                                                  | Default |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                                                                                                                                                                           |         |
+| Connection           | The Workday connection to use.                                                                                                                                                                                                                                            |         |
 | Worker ID            | Unique identifier for the Workday worker record.                                                                                                                                                                                                                          |         |
 | Effective Date       | The effective date of the organization assignment change.                                                                                                                                                                                                                 |         |
 | Change Org Worker ID | Workday ID of the worker whose organization assignment is being changed. Retrieve using GET /values/organizationAssignmentChangesGroup/workers.                                                                                                                           |         |
@@ -515,26 +541,28 @@ Initiates an organization assignment change for the specified worker. Returns a 
 
 Returns the collection of data changes accessible to the authenticated user. Supports offset and limit query parameters. Response type is determined by the 'type' query parameter. The default response includes id, name, and displayName.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                             |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/dataChanges       |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                           | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                     |         |
+| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                                                         |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                                  | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                                |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                         |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                             |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/dataChanges). |         |
 
 ### List Events {#listevents}
 
 Retrieves a collection of business process events based on the specified parameters. Exactly one worker parameter must be specified; otherwise, a blank response is returned.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#businessProcess/v1/get-/events           |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                       | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                 |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                              | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                            |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                     |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                         |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#businessProcess/v1/get-/events). |         |
 
 ### List Invoices {#listinvoices}
 
@@ -542,7 +570,7 @@ Retrieves all customer invoices and adjustments.
 
 | Input        | Comments                                                                                                          | Default |
 | ------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                   |         |
+| Connection   | The Workday connection to use.                                                                                    |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 |         |
 
 ### List Message Templates {#listmessagetemplates}
@@ -551,29 +579,30 @@ Retrieves message templates.
 
 | Input        | Comments                                                                                                          | Default |
 | ------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                   |         |
+| Connection   | The Workday connection to use.                                                                                    |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 |         |
 
 ### List Organizations {#listorganizations}
 
-Retrieves list of Organizations.
+Retrieves a list of organizations.
 
 | Input        | Comments                                                                                                          | Default |
 | ------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                   |         |
+| Connection   | The Workday connection to use.                                                                                    |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 |         |
 
 ### List People {#listpeople}
 
 Retrieves all people in the Workday tenant.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#person/v4/get-/people                    |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                              | Default |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                        |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                     | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                   |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                            |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#person/v4/get-/people). |         |
 
 ### List Supplier Invoice Requests {#listsupplierinvoicerequests}
 
@@ -581,8 +610,9 @@ Retrieves all supplier invoices.
 
 | Input        | Comments                                                                                                                                                                                                                                                                                                                        | Default |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                                  |         |
 | Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                                               | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                                             |         |
 | Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                                      |         |
 | Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                                          |         |
 | Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#accountsPayable/v1/get-/supplierInvoiceRequests). |         |
@@ -591,42 +621,28 @@ Retrieves all supplier invoices.
 
 Retrieves a collection of tables created by the Workday REST API. Only tables or datasets permitted by the current user's security profile are returned.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                             |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/tables            |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                      | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                                |         |
+| Tenant       | The Workday tenant name used in API paths.                                                                                                                                                                                                                                                                    |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                             | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                           |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                    |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                        |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/get-/tables). |         |
 
 ### List Workers {#getworkers}
 
 Retrieves a collection of workers and current staffing information.
 
-| Input        | Comments                                                                                                                                                                                                                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                                                                                                        |         |
-| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                      | false   |
-| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                             |         |
-| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object. |         |
-| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) at https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#timeTracking/v5/get-/workers             |         |
-
-### Post Time Off Request {#posttimeoffrequest}
-
-Creates a time off request for the specified worker ID and initiates the Request Time Off business process.
-
-| Input                       | Comments                                                                                                                                                                                                                                                                    | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                                                             |         |
-| Worker ID                   | Unique identifier for the Workday worker record.                                                                                                                                                                                                                            |         |
-| Action ID                   | Identifies the action to take on the business process.                                                                                                                                                                                                                      |         |
-| Overall Business Process ID | Identifies the parent business process instance.                                                                                                                                                                                                                            |         |
-| Days                        | The days for which the time off request is being made. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#absenceManagement/v5/post-/workers/-ID-/requestTimeOff) for more information. |         |
-| Time Off Comment            | Free-text comment attached to the time-off entry.                                                                                                                                                                                                                           |         |
-| Transaction Status ID       | Identifies the current status of the transaction.                                                                                                                                                                                                                           |         |
-| Time Off Attachments        | The attachments for the time off request.                                                                                                                                                                                                                                   |         |
-| Time Off For ID             | Target instance the time-off entry applies to; may be another business process ID when used as a sub-process.                                                                                                                                                               |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                     | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection   | The Workday connection to use.                                                                                                                                                                                                                                                                               |         |
+| Fetch All    | When enabled, automatically fetches all pages of results using limit/offset pagination. Limit and Offset inputs are ignored when this is enabled.                                                                                                                                                            | false   |
+| Pagination   | Page-size and starting-position controls for the result collection.                                                                                                                                                                                                                                          |         |
+| Limit        | The maximum number of objects in a single response. The default is 20. The maximum is 100.                                                                                                                                                                                                                   |         |
+| Offset       | The zero-based index of the first object in a response collection. The default is 0. Use Offset with the Limit input to control paging of a response collection. Example: If Limit is 5 and Offset is 9, the response returns a collection of 5 objects starting with the 10th object.                       |         |
+| Query Params | Query parameters to be used in the request. This should be a list of key-value pairs. Ex. Key: worker, Value: 123 See optional (QUERY-STRING PARAMETERS) in the [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#timeTracking/v5/get-/workers). |         |
 
 ### Raw Request {#rawrequest}
 
@@ -634,7 +650,7 @@ Sends a raw HTTP request to Workday.
 
 | Input                   | Comments                                                                                                                                                                                                                                                                                           | Default |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                    |         |
+| Connection              | The Workday connection to use.                                                                                                                                                                                                                                                                     |         |
 | URL                     | Input the path only (/accountsPayable/v1/supplierInvoiceRequests), The base URL is already included (https://<domain>/ccx). For example, to connect to https://<domain>/ccx/accountsPayable/v1/supplierInvoiceRequests, only /accountsPayable/v1/supplierInvoiceRequests is entered in this field. |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                            |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                          |         |
@@ -656,14 +672,15 @@ Sends a message.
 
 | Input                | Comments                                                              | Default |
 | -------------------- | --------------------------------------------------------------------- | ------- |
-| Connection           |                                                                       |         |
+| Connection           | The Workday connection to use.                                        |         |
 | Sender Override ID   | Overrides the icon displayed for the sender.                          |         |
 | Communication ID     | Identifier of the Workday communication group.                        |         |
+| Message Details      | Email, push notification, and recipient details for the message.      |         |
 | Email Detail         | Details for the email.                                                |         |
+| Push Detail          | Details for the push notification.                                    |         |
 | Contacts             | Contacts to send the message to. This should be an array of contacts. |         |
 | Message Template ID  | Identifies the Connect message template.                              |         |
 | Notification Type ID | Identifies the notification type used for delivery.                   |         |
-| Push Detail          | Details for the push notification.                                    |         |
 
 ### Submit Supplier Invoice Request {#submitsupplierinvoicerequest}
 
@@ -671,7 +688,7 @@ Submits a supplier invoice instance with the specified ID for approval.
 
 | Input                                | Comments                                                                     | Default |
 | ------------------------------------ | ---------------------------------------------------------------------------- | ------- |
-| Connection                           |                                                                              |         |
+| Connection                           | The Workday connection to use.                                               |         |
 | Supplier Invoice Request ID          | Identifies the supplier invoice request.                                     |         |
 | Supplier Invoice Instance ID         | Identifies the supplier invoice instance to submit for approval.             |         |
 | Supplier Invoice Instance Descriptor | Human-readable descriptor for the supplier invoice instance being submitted. |         |
@@ -683,11 +700,11 @@ Updates a message template by ID.
 | Input                 | Comments                                                                                                                                                                                                                                       | Default |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Message Template ID   | Identifies the Connect message template.                                                                                                                                                                                                       |         |
-| Connection            |                                                                                                                                                                                                                                                |         |
+| Connection            | The Workday connection to use.                                                                                                                                                                                                                 |         |
+| Message Template Name | Display name given to the message template.                                                                                                                                                                                                    |         |
 | Created By ID         | Identifies the user who created the record.                                                                                                                                                                                                    |         |
 | Email Detail          | Details for the email.                                                                                                                                                                                                                         |         |
 | Push Detail           | Details for the push notification.                                                                                                                                                                                                             |         |
-| Message Template Name | Display name given to the message template.                                                                                                                                                                                                    |         |
 | Reference ID          | Reference ID used for lookups within Workday Web Services.                                                                                                                                                                                     |         |
 | Template Inactive     | When true, marks the template as inactive.                                                                                                                                                                                                     |         |
 | Template Descriptor   | Human-readable descriptor for the template.                                                                                                                                                                                                    |         |
@@ -700,16 +717,17 @@ Updates an existing table with the specified name.
 
 | Input               | Comments                                                                                                                                                                                                                  | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Table ID            | Identifies the Prism Analytics table.                                                                                                                                                                                     |         |
-| Connection          |                                                                                                                                                                                                                           |         |
+| Connection          | The Workday connection to use.                                                                                                                                                                                            |         |
 | Tenant              | The Workday tenant name used in API paths.                                                                                                                                                                                |         |
+| Table ID            | Identifies the Prism Analytics table.                                                                                                                                                                                     |         |
 | Display Name        | User-facing display name shown in Prism Analytics.                                                                                                                                                                        |         |
+| Name                | Internal name used to reference the table via API.                                                                                                                                                                        |         |
+| Fields              | The fields of the table. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/put-/tables/-id-) for more information. |         |
+| Additional Fields   | Additional optional fields: includes Description, Documentation, Enable For Analysis, and Tags.                                                                                                                           |         |
 | Description         | Short description shown alongside the table.                                                                                                                                                                              |         |
 | Documentation       | Long-form documentation describing how the table is used.                                                                                                                                                                 |         |
 | Enable For Analysis | When true, enables the table for Prism Analytics.                                                                                                                                                                         |         |
-| Name                | Internal name used to reference the table via API.                                                                                                                                                                        |         |
 | Tags                | The tags of the table. An array of objects with id and name.                                                                                                                                                              |         |
-| Fields              | The fields of the table. An array of objects. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#prismAnalytics/v3/put-/tables/-id-) for more information. |         |
 
 ### Update Time Clock Event by ID {#updatetimeclockeventsbyid}
 
@@ -717,8 +735,11 @@ Updates the time clock event for the specified ID, replacing the existing time c
 
 | Input                            | Comments                                                                                                                                                                                                                                               | Default |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection                       |                                                                                                                                                                                                                                                        |         |
+| Connection                       | The Workday connection to use.                                                                                                                                                                                                                         |         |
 | Time Clock Event ID              | Identifies the time clock event record.                                                                                                                                                                                                                |         |
+| Instance Descriptor              | Human-readable preview label for the referenced instance.                                                                                                                                                                                              |         |
+| Instance Href                    | Direct API link pointing to the referenced instance.                                                                                                                                                                                                   |         |
+| Instance ID                      | Identifies the Workday instance being referenced.                                                                                                                                                                                                      |         |
 | Clock Event Date Time            | Timestamp when the time clock event occurred.                                                                                                                                                                                                          |         |
 | Clock Event Time Zone ID         | Identifies the time zone applied to the clock event.                                                                                                                                                                                                   |         |
 | Clock Event Override Rate        | Optional rate that overrides the default pay rate for this event.                                                                                                                                                                                      |         |
@@ -728,9 +749,6 @@ Updates the time clock event for the specified ID, replacing the existing time c
 | Clock Event Project ID           | Identifies the project associated with the clock event.                                                                                                                                                                                                |         |
 | Clock Event Comment              | Free-text comment attached to the time clock event.                                                                                                                                                                                                    |         |
 | Additional Fields                | Additional fields that might not be covered by the standard inputs. See [Workday API documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#timeTracking/v5/put-/timeClockEvents/-ID-) for more information. |         |
-| Instance Descriptor              | Human-readable preview label for the referenced instance.                                                                                                                                                                                              |         |
-| Instance Href                    | Direct API link pointing to the referenced instance.                                                                                                                                                                                                   |         |
-| Instance ID                      | Identifies the Workday instance being referenced.                                                                                                                                                                                                      |         |
 
 ### Update Worker Time Block {#updateworkertimeblock}
 
@@ -739,7 +757,7 @@ Updates the worker time block for the specified worker with the specified data i
 | Input                | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Worker Time Block ID | Identifies the worker's reported time block.                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
-| Connection           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |         |
+| Connection           | The Workday connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Worker ID            | Unique identifier for the Workday worker record.                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
 | Do Not Bill          | When true, marks the time block as non-billable.                                                                                                                                                                                                                                                                                                                                                                                                                             |         |
 | Comment              | Free-text comment attached to the reported time block.                                                                                                                                                                                                                                                                                                                                                                                                                       |         |
@@ -749,11 +767,11 @@ Updates the worker time block for the specified worker with the specified data i
 
 ### Upload Files by Container ID {#postfilesbycontainerid}
 
-This resource loads the file into a file container. Creates temporary location to store file, and saves file metadata like size, checksum.
+Loads a file into the specified file container. Creates a temporary location to store the file and saves file metadata such as size and checksum.
 
 | Input             | Comments                                                                     | Default |
 | ----------------- | ---------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                              |         |
+| Connection        | The Workday connection to use.                                               |         |
 | Tenant            | The Workday tenant name used in API paths.                                   |         |
 | File Container ID | Identifies the file container whose files will be retrieved.                 |         |
 | File              | The contents to write to a file. Binary data generated from a previous step. |         |

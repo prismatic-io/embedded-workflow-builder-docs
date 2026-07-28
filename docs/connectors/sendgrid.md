@@ -5,8 +5,8 @@ description: Manage email delivery and contacts in SendGrid.
 ---
 
 ![SendGrid](./assets/sendgrid.png#connector-icon)
-[SendGrid](https://sendgrid.com/) is a cloud-based email delivery platform owned by Twilio.
-This component allows you to send transactional and marketing emails, manage contacts, and track email analytics.
+[SendGrid](https://www.twilio.com/en-us/sendgrid) is a cloud-based email delivery platform owned by Twilio.
+This component allows sending transactional and marketing emails, managing contacts, and tracking email analytics.
 
 ## API Documentation
 
@@ -16,9 +16,13 @@ This component was built using the [SendGrid API v3](https://www.twilio.com/docs
 
 ### API Key {#apikey}
 
-API Key connection for SendGrid
+Authenticate using an API key.
 
 To authenticate with SendGrid, an API key is required.
+
+#### Prerequisites
+
+- A SendGrid account
 
 #### Setup Steps
 
@@ -34,7 +38,7 @@ To generate an API key:
 6. Click **Create & View**
 7. Copy the API key value (it will only be displayed once)
 
-For more information about creating API keys, refer to the [SendGrid API Keys documentation](https://docs.sendgrid.com/ui/account-and-settings/api-keys).
+For more information about creating API keys, refer to the [SendGrid API Keys documentation](https://www.twilio.com/docs/sendgrid/ui/account-and-settings/api-keys).
 
 #### Configure the Connection
 
@@ -44,9 +48,9 @@ For more information about creating API keys, refer to the [SendGrid API Keys do
 The API key is only displayed once upon creation. Store it securely. If the key is lost, a new one must be generated.
 :::
 
-| Input   | Comments                                                                                                                                          | Default |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| API Key | API Key from your SendGrid account. Generate one in Settings > API Keys. [Learn more](https://docs.sendgrid.com/ui/account-and-settings/api-keys) |         |
+| Input   | Comments                                                                                                                                                               | Default |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| API Key | The SendGrid API key used for authentication. Generate one in Settings > API Keys. [Learn more](https://www.twilio.com/docs/sendgrid/ui/account-and-settings/api-keys) |         |
 
 ## Triggers
 
@@ -54,21 +58,31 @@ The API key is only displayed once upon creation. Store it securely. If the key 
 
 Receive event webhook notifications from SendGrid. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input         | Comments                                                         | Default                    |
-| ------------- | ---------------------------------------------------------------- | -------------------------- |
-| Connection    | The SendGrid connection to use.                                  |                            |
-| Friendly Name | A friendly name to help differentiate between multiple webhooks. |                            |
-| Events        | The events to track.                                             | <code>["delivered"]</code> |
+| Input         | Comments                                                                                              | Default                    |
+| ------------- | ----------------------------------------------------------------------------------------------------- | -------------------------- |
+| Connection    | The SendGrid connection to use.                                                                       |                            |
+| Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
+| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
 
-### Manual Webhook {#webhook}
+### New and Updated Messages {#pollchangestrigger}
 
-Receive and validate webhook requests from SendGrid for manually configured webhooks.
+Checks for new and updated messages in SendGrid on a configured schedule.
+
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The SendGrid connection to use.                                                                                                                                                                                                                                           |         |
+| Show New Records     | When true, newly created records (a `processed` event observed within the polling window) are included on the `created` branch. SendGrid surfaces a single `last_event_time` per message, so the `created` vs `updated` split is best-effort based on the event timeline. | true    |
+| Show Updated Records | When true, records whose `last_event_time` falls within the polling window are included on the `updated` branch.                                                                                                                                                          | true    |
+
+### Webhook {#webhook}
+
+Receives and validates webhook requests from SendGrid for manually configured webhook subscriptions.
 
 ## Actions
 
 ### Add or Update Contact {#addorupdatecontact}
 
-Add or update a contact. This can also be used to add contacts to a list.
+Adds or updates a contact. Can also be used to add contacts to a list.
 
 | Input      | Comments                                                                                      | Default |
 | ---------- | --------------------------------------------------------------------------------------------- | ------- |
@@ -78,59 +92,59 @@ Add or update a contact. This can also be used to add contacts to a list.
 
 ### Create List {#createlist}
 
-Create a new contact list
+Creates a new contact list.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The SendGrid connection to use. |         |
-| List Name  | The name of the list to create. |         |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| Connection | The SendGrid connection to use.            |         |
+| List Name  | The display name for the new contact list. |         |
 
 ### Create Webhook {#createwebhook}
 
-Create a new Event Webhook configuration to receive email event data.
+Creates a new Event Webhook configuration to receive email event data.
 
-| Input         | Comments                                                         | Default                    |
-| ------------- | ---------------------------------------------------------------- | -------------------------- |
-| Connection    | The SendGrid connection to use.                                  |                            |
-| Webhook URL   | The URL where SendGrid will send event data.                     |                            |
-| Friendly Name | A friendly name to help differentiate between multiple webhooks. |                            |
-| Enabled       | When true, enables the Event Webhook.                            | true                       |
-| Events        | The events to track.                                             | <code>["delivered"]</code> |
+| Input         | Comments                                                                                              | Default                    |
+| ------------- | ----------------------------------------------------------------------------------------------------- | -------------------------- |
+| Connection    | The SendGrid connection to use.                                                                       |                            |
+| Webhook URL   | The URL where SendGrid will send event data.                                                          |                            |
+| Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
+| Enabled       | When true, enables the Event Webhook.                                                                 | true                       |
+| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
 
 ### Delete Webhook {#deletewebhook}
 
-Delete an Event Webhook configuration.
+Deletes an Event Webhook configuration.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The SendGrid connection to use. |         |
-| Webhook ID | The ID of the webhook.          |         |
+| Input      | Comments                                                   | Default |
+| ---------- | ---------------------------------------------------------- | ------- |
+| Connection | The SendGrid connection to use.                            |         |
+| Webhook ID | The unique identifier for the Event Webhook configuration. |         |
 
 ### Get All Field Definitions {#getallfielddefinitions}
 
-Retrieve all custom field definitions with pagination support
+Retrieves all custom field definitions with pagination support.
 
 | Input      | Comments                                                  | Default |
 | ---------- | --------------------------------------------------------- | ------- |
 | Connection | The SendGrid connection to use.                           |         |
+| Fetch All  | When true, fetches all pages of results using pagination. | false   |
 | Page Size  | Number of results to return per page (max 100).           |         |
 | Page Token | Token for fetching the next or previous page of results.  |         |
-| Fetch All  | When true, fetches all pages of results using pagination. | false   |
 
 ### Get All Lists {#getalllists}
 
-Retrieve all contact lists with pagination support
+Retrieves all contact lists with pagination support.
 
 | Input      | Comments                                                  | Default |
 | ---------- | --------------------------------------------------------- | ------- |
 | Connection | The SendGrid connection to use.                           |         |
+| Fetch All  | When true, fetches all pages of results using pagination. | false   |
 | Page Size  | Number of results to return per page (max 100).           |         |
 | Page Token | Token for fetching the next or previous page of results.  |         |
-| Fetch All  | When true, fetches all pages of results using pagination. | false   |
 
 ### Get Contacts by Emails {#getcontactsbyemails}
 
-Retrieve contacts by their email addresses.
+Retrieves contacts by their email addresses.
 
 | Input      | Comments                                       | Default |
 | ---------- | ---------------------------------------------- | ------- |
@@ -139,7 +153,7 @@ Retrieve contacts by their email addresses.
 
 ### Get Import Status {#getimportstatus}
 
-Check the status of a contact import job
+Checks the status of a contact import job.
 
 | Input      | Comments                                                                                     | Default |
 | ---------- | -------------------------------------------------------------------------------------------- | ------- |
@@ -148,22 +162,22 @@ Check the status of a contact import job
 
 ### Get List by ID {#getlistbyid}
 
-Retrieve a specific contact list by its ID
+Retrieves a specific contact list by its ID.
 
 | Input                   | Comments                                                  | Default |
 | ----------------------- | --------------------------------------------------------- | ------- |
 | Connection              | The SendGrid connection to use.                           |         |
-| List ID                 | The ID of the list to retrieve.                           |         |
+| List ID                 | The unique identifier for the contact list to retrieve.   |         |
 | Include Sample Contacts | When true, includes a sample of contacts in the response. | false   |
 
 ### Get Webhook {#getwebhook}
 
-Retrieve an Event Webhook configuration by ID.
+Retrieves an Event Webhook configuration by ID.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The SendGrid connection to use. |         |
-| Webhook ID | The ID of the webhook.          |         |
+| Input      | Comments                                                   | Default |
+| ---------- | ---------------------------------------------------------- | ------- |
+| Connection | The SendGrid connection to use.                            |         |
+| Webhook ID | The unique identifier for the Event Webhook configuration. |         |
 
 ### Initiate Contacts Import {#initiatecontactsimport}
 
@@ -178,7 +192,7 @@ Initiates a CSV contact import. Returns a URL and headers for uploading the CSV 
 
 ### List Webhooks {#listwebhooks}
 
-List all Event Webhook configurations.
+Lists all Event Webhook configurations.
 
 | Input      | Comments                        | Default |
 | ---------- | ------------------------------- | ------- |
@@ -186,7 +200,7 @@ List all Event Webhook configurations.
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to SendGrid
+Sends a raw HTTP request to SendGrid.
 
 | Input                   | Comments                                                                                                                                                                                                      | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -208,76 +222,76 @@ Send raw HTTP request to SendGrid
 
 ### Send Email {#sendemail}
 
-Send a single email to one or more recipients
+Sends a single email to one or more recipients.
 
-| Input                 | Comments                                                                                                                                                                                                           | Default         |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
-| Connection            | The SendGrid connection to use.                                                                                                                                                                                    |                 |
-| To                    | The recipient's email address, or a comma-separated list of recipient email addresses.                                                                                                                             |                 |
-| From Email            | The sender's email address.                                                                                                                                                                                        |                 |
-| Subject               | The email subject line.                                                                                                                                                                                            |                 |
-| Text                  | The text body of the email.                                                                                                                                                                                        |                 |
-| CC                    | The recipient's email address, or a comma-separated list of recipient email addresses to CC.                                                                                                                       |                 |
-| BCC                   | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                      |                 |
-| From Name             | The sender's name.                                                                                                                                                                                                 |                 |
-| Reply To Email        | Email To Reply To.                                                                                                                                                                                                 |                 |
-| Reply To Name         | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                         |                 |
-| HTML                  | The optional HTML body of the email.                                                                                                                                                                               |                 |
-| Personalizations      | You can use this field to overwrite multiple properties of the email. For examples of which properties to use, checkout the SendGrid docs: https://docs.sendgrid.com/for-developers/sending-email/personalizations | <code>[]</code> |
-| Attachment Content    | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                               |                 |
-| Disposition           | Specifies how you would like the attachment to be displayed.                                                                                                                                                       |                 |
-| File Name             | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                           |                 |
-| File Type             | The MIME type of the content you are attaching.                                                                                                                                                                    |                 |
-| Content Id            | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                    |                 |
-| Multiple Attachments  | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                |                 |
-| Subscription Tracking | When true, inserts a subscription management link at the bottom of the text and HTML bodies of your email.                                                                                                         | false           |
+| Input                 | Comments                                                                                                                                                                                                                                             | Default         |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection            | The SendGrid connection to use.                                                                                                                                                                                                                      |                 |
+| To                    | The recipient's email address, or a comma-separated list of recipient email addresses.                                                                                                                                                               |                 |
+| From Email            | The verified sender email address that appears in the 'From' field. Must be a verified sender in SendGrid.                                                                                                                                           |                 |
+| Subject               | The subject line displayed in the recipient's inbox. Supports UTF-8 encoding.                                                                                                                                                                        |                 |
+| Text                  | The plain-text content of the email, used as a fallback when HTML is not supported by the recipient's email client.                                                                                                                                  |                 |
+| CC                    | The recipient's email address, or a comma-separated list of recipient email addresses to CC.                                                                                                                                                         |                 |
+| BCC                   | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                                                        |                 |
+| From Name             | The display name that appears alongside the sender email address in the recipient's inbox.                                                                                                                                                           |                 |
+| Reply To Email        | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                                  |                 |
+| Reply To Name         | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                           |                 |
+| HTML                  | The HTML-formatted content of the email. When provided, takes priority over the plain-text body in clients that support HTML rendering.                                                                                                              |                 |
+| Personalizations      | Allows overwriting multiple properties of the email such as recipients, subject, and send time per recipient. See [SendGrid personalizations docs](https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations) for examples. | <code>[]</code> |
+| Attachment Content    | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                                                                 |                 |
+| Disposition           | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
+| File Name             | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                                                             |                 |
+| File Type             | The MIME type of the content you are attaching.                                                                                                                                                                                                      |                 |
+| Content ID            | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                                                      |                 |
+| Multiple Attachments  | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                                                  |                 |
+| Subscription Tracking | When true, inserts a subscription management link at the bottom of the text and HTML bodies of your email.                                                                                                                                           | false           |
 
 ### Send Email with Dynamic Template {#sendemailwithdynamictemplate}
 
-Send an email using a SendGrid dynamic template with complex nested JSON data
+Sends an email using a SendGrid dynamic template with complex nested JSON data.
 
 | Input                 | Comments                                                                                                                                                                                                                                    | Default         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | Connection            | The SendGrid connection to use.                                                                                                                                                                                                             |                 |
-| Template ID           | The ID of the dynamic template to use.                                                                                                                                                                                                      |                 |
+| Template ID           | The unique identifier for the dynamic template. Found in the SendGrid dashboard under Email API > Dynamic Templates.                                                                                                                        |                 |
 | Dynamic Template Data | The data to be used for the dynamic template. Supports complex nested JSON structures including arrays and objects for order confirmations, customer data, and more.                                                                        |                 |
-| From Email            | The sender's email address.                                                                                                                                                                                                                 |                 |
+| From Email            | The verified sender email address that appears in the 'From' field. Must be a verified sender in SendGrid.                                                                                                                                  |                 |
 | To                    | The recipient's email address, or a comma-separated list of recipient email addresses. Required if 'Personalizations' is not provided. Will be ignored if 'Personalizations' is provided.                                                   |                 |
-| From Name             | The sender's name.                                                                                                                                                                                                                          |                 |
+| From Name             | The display name that appears alongside the sender email address in the recipient's inbox.                                                                                                                                                  |                 |
 | CC                    | The recipient's email address, or a comma-separated list of recipient email addresses to CC. Will be ignored if 'Personalizations' is provided.                                                                                             |                 |
 | BCC                   | The recipient's email address, or a comma-separated list of recipient email addresses to BCC. Will be ignored if 'Personalizations' is provided.                                                                                            |                 |
-| Reply To Email        | Email To Reply To.                                                                                                                                                                                                                          |                 |
+| Reply To Email        | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                         |                 |
 | Reply To Name         | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                  |                 |
 | Personalizations      | Advanced: Provide a personalizations array to send different variations to different recipients. When provided, this will override 'To', 'CC', and 'BCC' inputs. Each personalization will automatically include the dynamic template data. | <code>[]</code> |
 
 ### Send Multiple Emails {#sendmultipleemails}
 
-Send a separate email to each recipient
+Sends a separate email to each recipient.
 
-| Input                | Comments                                                                                                                                                                                                           | Default         |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
-| Connection           | The SendGrid connection to use.                                                                                                                                                                                    |                 |
-| To                   | The recipient's email address, or a comma-separated list of recipient email addresses.                                                                                                                             |                 |
-| From Email           | The sender's email address.                                                                                                                                                                                        |                 |
-| Subject              | The email subject line.                                                                                                                                                                                            |                 |
-| Text                 | The text body of the email.                                                                                                                                                                                        |                 |
-| CC                   | The recipient's email address, or a comma-separated list of recipient email addresses to CC.                                                                                                                       |                 |
-| BCC                  | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                      |                 |
-| From Name            | The sender's name.                                                                                                                                                                                                 |                 |
-| Reply To Email       | Email To Reply To.                                                                                                                                                                                                 |                 |
-| Reply To Name        | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                         |                 |
-| HTML                 | The optional HTML body of the email.                                                                                                                                                                               |                 |
-| Personalizations     | You can use this field to overwrite multiple properties of the email. For examples of which properties to use, checkout the SendGrid docs: https://docs.sendgrid.com/for-developers/sending-email/personalizations | <code>[]</code> |
-| Attachment Content   | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                               |                 |
-| Disposition          | Specifies how you would like the attachment to be displayed.                                                                                                                                                       |                 |
-| File Name            | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                           |                 |
-| File Type            | The MIME type of the content you are attaching.                                                                                                                                                                    |                 |
-| Content Id           | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                    |                 |
-| Multiple Attachments | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                |                 |
+| Input                | Comments                                                                                                                                                                                                                                             | Default         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection           | The SendGrid connection to use.                                                                                                                                                                                                                      |                 |
+| To                   | The recipient's email address, or a comma-separated list of recipient email addresses.                                                                                                                                                               |                 |
+| From Email           | The verified sender email address that appears in the 'From' field. Must be a verified sender in SendGrid.                                                                                                                                           |                 |
+| Subject              | The subject line displayed in the recipient's inbox. Supports UTF-8 encoding.                                                                                                                                                                        |                 |
+| Text                 | The plain-text content of the email, used as a fallback when HTML is not supported by the recipient's email client.                                                                                                                                  |                 |
+| CC                   | The recipient's email address, or a comma-separated list of recipient email addresses to CC.                                                                                                                                                         |                 |
+| BCC                  | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                                                        |                 |
+| From Name            | The display name that appears alongside the sender email address in the recipient's inbox.                                                                                                                                                           |                 |
+| Reply To Email       | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                                  |                 |
+| Reply To Name        | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                           |                 |
+| HTML                 | The HTML-formatted content of the email. When provided, takes priority over the plain-text body in clients that support HTML rendering.                                                                                                              |                 |
+| Personalizations     | Allows overwriting multiple properties of the email such as recipients, subject, and send time per recipient. See [SendGrid personalizations docs](https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations) for examples. | <code>[]</code> |
+| Attachment Content   | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                                                                 |                 |
+| Disposition          | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
+| File Name            | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                                                             |                 |
+| File Type            | The MIME type of the content you are attaching.                                                                                                                                                                                                      |                 |
+| Content ID           | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                                                      |                 |
+| Multiple Attachments | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                                                  |                 |
 
 ### Test Webhook {#testwebhook}
 
-Test an Event Webhook by sending a fake event notification.
+Tests an Event Webhook by sending a fake event notification.
 
 | Input      | Comments                                   | Default |
 | ---------- | ------------------------------------------ | ------- |
@@ -286,23 +300,23 @@ Test an Event Webhook by sending a fake event notification.
 
 ### Toggle Signature Verification {#togglesignatureverification}
 
-Enable or disable signature verification for an Event Webhook.
+Enables or disables signature verification for an Event Webhook.
 
 | Input                         | Comments                                                        | Default |
 | ----------------------------- | --------------------------------------------------------------- | ------- |
 | Connection                    | The SendGrid connection to use.                                 |         |
-| Webhook ID                    | The ID of the webhook.                                          |         |
+| Webhook ID                    | The unique identifier for the Event Webhook configuration.      |         |
 | Enable Signature Verification | When true, enables signature verification for webhook requests. | true    |
 
 ### Update Webhook {#updatewebhook}
 
-Update an existing Event Webhook configuration.
+Updates an existing Event Webhook configuration.
 
-| Input         | Comments                                                         | Default                    |
-| ------------- | ---------------------------------------------------------------- | -------------------------- |
-| Connection    | The SendGrid connection to use.                                  |                            |
-| Webhook ID    | The ID of the webhook.                                           |                            |
-| Webhook URL   | The URL where SendGrid will send event data.                     |                            |
-| Friendly Name | A friendly name to help differentiate between multiple webhooks. |                            |
-| Enabled       | When true, enables the Event Webhook.                            | true                       |
-| Events        | The events to track.                                             | <code>["delivered"]</code> |
+| Input         | Comments                                                                                              | Default                    |
+| ------------- | ----------------------------------------------------------------------------------------------------- | -------------------------- |
+| Connection    | The SendGrid connection to use.                                                                       |                            |
+| Webhook ID    | The unique identifier for the Event Webhook configuration.                                            |                            |
+| Webhook URL   | The URL where SendGrid will send event data.                                                          |                            |
+| Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
+| Enabled       | When true, enables the Event Webhook.                                                                 | true                       |
+| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |

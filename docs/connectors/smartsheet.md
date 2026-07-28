@@ -192,7 +192,7 @@ Adds or updates a row on a sheet.
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | Connection                  | The Smartsheet connection to use.                                                                                                              |          |
 | Sheet ID                    | The unique identifier for the sheet.                                                                                                           |          |
-| Row ID (Optional)           | The unique identifier of an existing row to update. Omit to add a new row instead.                                                             |          |
+| Row ID                      | The unique identifier of an existing row to update. Omit to add a new row instead.                                                             |          |
 | Dynamic Columns Values      | A JSON array of objects mapping column titles to cell values for the row. Use this when column titles are easier to reference than column IDs. |          |
 | Column Values               | A list of column names mapped to the values to write into them.                                                                                |          |
 | Row Position (for new rows) | The position where new rows are added to the sheet.                                                                                            | toBottom |
@@ -226,35 +226,35 @@ Copies a sheet to a specified destination.
 
 Creates a discussion on a sheet or row.
 
-| Input             | Comments                                                                    | Default |
-| ----------------- | --------------------------------------------------------------------------- | ------- |
-| Connection        | The Smartsheet connection to use.                                           |         |
-| Sheet ID          | The unique identifier for the sheet.                                        |         |
-| Row ID (Optional) | The unique identifier for the row. Leave empty to apply to the sheet level. |         |
-| Comment           | The text content to post as a new discussion comment.                       |         |
+| Input      | Comments                                                                    | Default |
+| ---------- | --------------------------------------------------------------------------- | ------- |
+| Connection | The Smartsheet connection to use.                                           |         |
+| Sheet ID   | The unique identifier for the sheet.                                        |         |
+| Row ID     | The unique identifier for the row. Leave empty to apply to the sheet level. |         |
+| Comment    | The text content to post as a new discussion comment.                       |         |
 
 ### Create Folder {#createfolder}
 
 Creates a new folder in a specified location.
 
-| Input                   | Comments                                                                                                          | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Smartsheet connection to use.                                                                                 |         |
-| Folder ID               | The unique identifier of the parent folder to create a subfolder within. Omit to create a top-level home folder.  |         |
-| Workspace ID (Optional) | The unique identifier of the workspace to create the folder in. Omit to create the folder outside of a workspace. |         |
-| Folder Name             | The display name for the folder.                                                                                  |         |
+| Input        | Comments                                                                                                          | Default |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.                                                                                 |         |
+| Folder ID    | The unique identifier of the parent folder to create a subfolder within. Omit to create a top-level home folder.  |         |
+| Workspace ID | The unique identifier of the workspace to create the folder in. Omit to create the folder outside of a workspace. |         |
+| Folder Name  | The display name for the folder.                                                                                  |         |
 
 ### Create Sheet {#createsheet}
 
 Creates a new sheet with specified columns.
 
-| Input                   | Comments                                                                                                                                            | Default                                                                                                                                                                                                                |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection              | The Smartsheet connection to use.                                                                                                                   |                                                                                                                                                                                                                        |
-| Folder ID               | The unique identifier of the folder to create the sheet in. Omit to create a top-level sheet.                                                       |                                                                                                                                                                                                                        |
-| Workspace ID (Optional) | The unique identifier for the workspace. Leave empty to use the default context.                                                                    |                                                                                                                                                                                                                        |
-| Sheet Name              | The display name for the new sheet.                                                                                                                 |                                                                                                                                                                                                                        |
-| Columns                 | See [Smartsheet API documentation](https://developers.smartsheet.com/api/smartsheet/openapi/columns) for additional information about column types. | <code>[<br /> {<br /> "title": "Favorite",<br /> "type": "CHECKBOX",<br /> "symbol": "STAR"<br /> },<br /> {<br /> "title": "Primary Column",<br /> "primary": true,<br /> "type": "TEXT_NUMBER"<br /> }<br />]</code> |
+| Input        | Comments                                                                                                                                            | Default                                                                                                                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection   | The Smartsheet connection to use.                                                                                                                   |                                                                                                                                                                                                                        |
+| Folder ID    | The unique identifier of the folder to create the sheet in. Omit to create a top-level sheet.                                                       |                                                                                                                                                                                                                        |
+| Workspace ID | The unique identifier for the workspace. Leave empty to use the default context.                                                                    |                                                                                                                                                                                                                        |
+| Sheet Name   | The display name for the new sheet.                                                                                                                 |                                                                                                                                                                                                                        |
+| Columns      | See [Smartsheet API documentation](https://developers.smartsheet.com/api/smartsheet/openapi/columns) for additional information about column types. | <code>[<br /> {<br /> "title": "Favorite",<br /> "type": "CHECKBOX",<br /> "symbol": "STAR"<br /> },<br /> {<br /> "title": "Primary Column",<br /> "primary": true,<br /> "type": "TEXT_NUMBER"<br /> }<br />]</code> |
 
 ### Create Webhook {#createwebhook}
 
@@ -434,12 +434,13 @@ Retrieves a group by its ID.
 
 Retrieves a report including one page of rows, attachments, discussions, and source sheets.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Report ID                         | The unique identifier for the report.                                                                                                                                                   |         |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                        | Default |
+| -------------------- | ----------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.               |         |
+| Report ID            | The unique identifier for the report.           |         |
+| Pagination           | Page and page-size controls.                    |         |
+| Pagination Page      | The 1-based page number to return.              | 1       |
+| Pagination Page Size | The maximum number of items to return per page. |         |
 
 ### Get Row {#rowget}
 
@@ -455,12 +456,13 @@ Retrieves the contents of a row by its ID.
 
 Retrieves a sheet by its ID.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                        | Default |
+| -------------------- | ----------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.               |         |
+| Sheet ID             | The unique identifier for the sheet.            |         |
+| Pagination           | Page and page-size controls.                    |         |
+| Pagination Page      | The 1-based page number to return.              | 1       |
+| Pagination Page Size | The maximum number of items to return per page. |         |
 
 ### Get Sheet Attachment {#attachmentsget}
 
@@ -512,85 +514,90 @@ Retrieves a webhook by its ID.
 
 Retrieves a workspace by its ID.
 
-| Input        | Comments                                                                                                                                                                                                   | Default |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Smartsheet connection to use.                                                                                                                                                                          |         |
-| Workspace ID | The unique identifier for the workspace.                                                                                                                                                                   |         |
-| Load All     | Preserved for backward compatibility. Smartsheet's redesigned API no longer supports recursive nested expansion of folders/contents in a single response; this input has no effect on the migrated action. | false   |
+| Input        | Comments                                 | Default |
+| ------------ | ---------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.        |         |
+| Workspace ID | The unique identifier for the workspace. |         |
 
 ### List Attachments on Row {#attachmentslistonrow}
 
 Lists attachments on a row of a sheet.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Row ID                            | The unique identifier for the row.                                                                                                                                                      |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Row ID               | The unique identifier for the row.                                                                      |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Attachments on Sheet {#attachmentslistonsheet}
 
 Lists all attachments on a sheet.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Columns {#columnslistonsheet}
 
 Lists all columns on a sheet.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Contacts {#listcontacts}
 
 Lists all contacts for the authenticated user.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Discussion Attachments {#discussionlistattachments}
 
 Lists all attachments on a discussion.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Discussion ID                     | The unique identifier for the discussion.                                                                                                                                               |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Discussion ID        | The unique identifier for the discussion.                                                               |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Discussions {#discussionslist}
 
 Lists discussions on a sheet or row.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Sheet ID                          | The unique identifier for the sheet.                                                                                                                                                    |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Row ID (Optional)                 | The unique identifier for the row. Leave empty to apply to the sheet level.                                                                                                             |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Sheet ID             | The unique identifier for the sheet.                                                                    |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
+| Row ID               | The unique identifier for the row. Leave empty to apply to the sheet level.                             |         |
 
 ### List Events {#listevents}
 
@@ -600,6 +607,7 @@ Lists events occurring in the Smartsheet organization account.
 | --------------- | ---------------------------------------------------------------------------------------------- | -------------------- |
 | Connection      | The Smartsheet connection to use.                                                              |                      |
 | Since           | The starting timestamp for events to return. Format: ISO 8601 (e.g. 2010-01-01T00:00:00Z).     | 2010-01-01T00:00:00Z |
+| Pagination      | Cursor and result-count controls for paging through results.                                   |                      |
 | Stream Position | The pagination cursor used to retrieve the next set of events. Returned by a previous request. |                      |
 | Max Count       | The maximum number of events to return in a single response.                                   |                      |
 
@@ -607,37 +615,36 @@ Lists events occurring in the Smartsheet organization account.
 
 Lists all favorite items for the authenticated user.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Folders {#listfolders}
 
 Lists folders, subfolders, or workspace folders.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Folder ID                         | The unique identifier of the parent folder whose subfolders should be listed. Omit to list top-level home folders.                                                                      |         |
-| Workspace ID (Optional)           | The unique identifier of the workspace whose folders should be listed. Omit to list folders outside of a workspace.                                                                     |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input        | Comments                                                                                                            | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.                                                                                   |         |
+| Folder ID    | The unique identifier of the parent folder whose subfolders should be listed. Omit to list top-level home folders.  |         |
+| Workspace ID | The unique identifier of the workspace whose folders should be listed. Omit to list folders outside of a workspace. |         |
 
 ### List Groups {#listgroups}
 
 Lists all groups in the organization.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
+| Input                | Comments                                                                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                   | false   |
+| Pagination           | Page and page-size controls.                                                                                                              |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                        | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                           |         |
+| Modified Since       | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
 
 ### List Home Contents {#listhomecontents}
 
@@ -647,16 +654,17 @@ Lists all Home objects, including dashboards, folders, reports, sheets, template
 | ---------- | --------------------------------- | ------- |
 | Connection | The Smartsheet connection to use. |         |
 
-### List Public Templates {#templateslistpublic}
+### List Public Templates (Deprecated) {#templateslistpublic}
 
-Lists publicly available templates.
+This action is deprecated. Smartsheet removed the GET /templates/public endpoint with no replacement. Use the "List User Templates" action with a Workspace ID instead.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input                | Comments                                                                                                | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                       |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned. | false   |
+| Pagination           | Page and page-size controls.                                                                            |         |
+| Pagination Page      | The 1-based page number to return.                                                                      | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                         |         |
 
 ### List Reports {#getreports}
 
@@ -671,38 +679,37 @@ Lists all reports accessible to the authenticated user.
 
 Lists all sheets accessible to the authenticated user.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
+| Input                | Comments                                                                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                   | false   |
+| Pagination           | Page and page-size controls.                                                                                                              |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                        | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                           |         |
+| Modified Since       | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
 
 ### List Users {#listusers}
 
 Lists all users in the organization.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
-| Email                             | The email address to filter users by.                                                                                                                                                   |         |
-| Modified Since                    | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z).                                               |         |
+| Input                | Comments                                                                                                                                  | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                         |         |
+| Fetch All            | When true, automatically fetches all pages of results. When false, only the specified page is returned.                                   | false   |
+| Pagination           | Page and page-size controls.                                                                                                              |         |
+| Pagination Page      | The 1-based page number to return.                                                                                                        | 1       |
+| Pagination Page Size | The maximum number of items to return per page.                                                                                           |         |
+| Email                | The email address to filter users by.                                                                                                     |         |
+| Modified Since       | When specified, the response only includes objects modified on or after this date and time. Format: ISO 8601 (e.g. 2023-01-01T00:00:00Z). |         |
 
 ### List User Templates {#templateslist}
 
 Lists user-created templates.
 
-| Input                             | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                             | Default |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release.                                                                                                                                                                                                                                                              |         |
-| Workspace ID                      | Optional. When supplied, fetches templates from this single workspace only — fast, single API call. When omitted, the action paginates ALL workspaces and aggregates templates from each — this preserves backwards compatibility with the legacy GET /templates response shape but may be slow and rate-limit-sensitive on accounts with many workspaces (chunked-parallel concurrency 5). Recommend supplying a workspace ID for production flows. |         |
+| Input        | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                 | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.                                                                                                                                                                                                                                                                                                                                                                                                        |         |
+| Workspace ID | When supplied, fetches templates from this single workspace only: fast, single API call. When omitted, the action paginates ALL workspaces and aggregates templates from each; this preserves backwards compatibility with the legacy GET /templates response shape but may be slow and rate-limit-sensitive on accounts with many workspaces (chunked-parallel concurrency 5). Recommend supplying a workspace ID for production flows. |         |
 
 ### List Webhooks {#listwebhooks}
 
@@ -717,12 +724,9 @@ Lists all webhooks owned by the authenticated user.
 
 Lists all workspaces accessible to the authenticated user.
 
-| Input                             | Comments                                                                                                                                                                                | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                        | The Smartsheet connection to use.                                                                                                                                                       |         |
-| Fetch All (Deprecated)            | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | false   |
-| Pagination Page (Deprecated)      | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. | 1       |
-| Pagination Page Size (Deprecated) | DEPRECATED — has no effect on actions migrated for the 2026-06-03 Smartsheet sunset. Preserved for backwards compatibility on those actions; will be removed in a future major release. |         |
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Smartsheet connection to use. |         |
 
 ### Move Folder {#movefolder}
 
@@ -783,11 +787,11 @@ Sends a raw HTTP request to the Smartsheet API.
 
 Searches sheets for a specified phrase.
 
-| Input               | Comments                                                                               | Default |
-| ------------------- | -------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Smartsheet connection to use.                                                      |         |
-| Sheet ID (Optional) | The unique identifier of the sheet to search within. Omit to search across all sheets. |         |
-| Search Query        | The text to search for across sheets, rows, and cells.                                 |         |
+| Input        | Comments                                                                               | Default |
+| ------------ | -------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Smartsheet connection to use.                                                      |         |
+| Sheet ID     | The unique identifier of the sheet to search within. Omit to search across all sheets. |         |
+| Search Query | The text to search for across sheets, rows, and cells.                                 |         |
 
 ### Send Sheet {#sheetsend}
 

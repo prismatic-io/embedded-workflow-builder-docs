@@ -159,52 +159,55 @@ Create a new department.
 
 Create a new package record in Jamf Pro.
 
-| Input                 | Comments                                                                                  | Default |
-| --------------------- | ----------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Jamf Pro connection to use.                                                           |         |
-| Package Name          | The display name of the package as shown in Jamf Pro.                                     |         |
-| File Name             | The filename of the package file on the Jamf distribution point (e.g., GoogleChrome.pkg). |         |
-| Category ID           | The unique identifier of the category to assign to this package.                          |         |
-| Priority              | Installation priority from 1 (highest) to 20 (lowest). Defaults to 10.                    |         |
-| Info                  | A description of the package displayed to administrators in Jamf Pro.                     |         |
-| Notes                 | Internal notes about the package visible only to administrators.                          |         |
-| Reboot Required       | Whether the device must reboot after installing this package.                             | false   |
-| OS Install            | Whether this package is an OS installer.                                                  | false   |
-| Fill User Template    | Whether to fill the user template with the package contents.                              | false   |
-| Suppress Updates      | Whether to suppress software updates during installation.                                 | false   |
-| Suppress EULA         | Whether to suppress the End User License Agreement during installation.                   | false   |
-| Suppress From Dock    | Whether to suppress the package icon from the Dock during installation.                   | false   |
-| Suppress Registration | Whether to suppress the registration window during installation.                          | false   |
+| Input                 | Comments                                                                                                                                                                                     | Default |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Jamf Pro connection to use.                                                                                                                                                              |         |
+| Package Name          | The display name of the package as shown in Jamf Pro.                                                                                                                                        |         |
+| File Name             | The filename of the package file on the Jamf distribution point (e.g., GoogleChrome.pkg).                                                                                                    |         |
+| Category ID           | The unique identifier of the category to assign to this package.                                                                                                                             |         |
+| Additional Fields     | Additional optional fields: includes Priority, Info, Notes, Reboot Required, OS Install, Fill User Template, Suppress Updates, Suppress EULA, Suppress From Dock, and Suppress Registration. |         |
+| Priority              | Installation priority from 1 (highest) to 20 (lowest). Defaults to 10.                                                                                                                       |         |
+| Info                  | A description of the package displayed to administrators in Jamf Pro.                                                                                                                        |         |
+| Notes                 | Internal notes about the package visible only to administrators.                                                                                                                             |         |
+| Reboot Required       | Whether the device must reboot after installing this package.                                                                                                                                | false   |
+| OS Install            | Whether this package is an OS installer.                                                                                                                                                     | false   |
+| Fill User Template    | Whether to fill the user template with the package contents.                                                                                                                                 | false   |
+| Suppress Updates      | Whether to suppress software updates during installation.                                                                                                                                    | false   |
+| Suppress EULA         | Whether to suppress the End User License Agreement during installation.                                                                                                                      | false   |
+| Suppress From Dock    | Whether to suppress the package icon from the Dock during installation.                                                                                                                      | false   |
+| Suppress Registration | Whether to suppress the registration window during installation.                                                                                                                             | false   |
 
 ### Create Script {#createscript}
 
 Create a new script.
 
-| Input           | Comments                                                             | Default |
-| --------------- | -------------------------------------------------------------------- | ------- |
-| Connection      | The Jamf Pro connection to use.                                      |         |
-| Name            | The display name used to identify the script in Jamf Pro.            |         |
-| Script Contents | The shell script body. Include the shebang line (e.g., #!/bin/bash). |         |
-| Category ID     | The unique identifier of the category to assign to this script.      |         |
-| Priority        | When the script runs relative to the policy.                         | AFTER   |
-| Info            | A description of the script displayed to administrators in Jamf Pro. |         |
-| Notes           | Internal notes about the script visible only to administrators.      |         |
+| Input             | Comments                                                                         | Default |
+| ----------------- | -------------------------------------------------------------------------------- | ------- |
+| Connection        | The Jamf Pro connection to use.                                                  |         |
+| Name              | The display name used to identify the script in Jamf Pro.                        |         |
+| Category ID       | The unique identifier of the category to assign to this script.                  |         |
+| Additional Fields | Additional optional fields: includes Script Contents, Priority, Info, and Notes. |         |
+| Script Contents   | The shell script body. Include the shebang line (e.g., #!/bin/bash).             |         |
+| Priority          | When the script runs relative to the policy.                                     | AFTER   |
+| Info              | A description of the script displayed to administrators in Jamf Pro.             |         |
+| Notes             | Internal notes about the script visible only to administrators.                  |         |
 
 ### Create Webhook {#createwebhook}
 
 Create a new webhook subscription in Jamf Pro.
 
-| Input               | Comments                                                                                                          | Default          |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------- |
-| Connection          | The Jamf Pro connection to use.                                                                                   |                  |
-| Name                | The display name used to identify the webhook in Jamf Pro.                                                        |                  |
-| Event               | The Jamf Pro event that triggers this webhook.                                                                    |                  |
-| URL                 | The destination URL that Jamf Pro sends webhook events to.                                                        |                  |
-| Content Type        | The payload format Jamf Pro delivers events in.                                                                   | application/json |
-| Enabled             | Whether the webhook is active and delivering events.                                                              | true             |
-| Authentication Type | How Jamf Pro authenticates to the destination URL. Header authentication sends a custom header with every event.  | NONE             |
-| Auth Header Name    | Name of the header Jamf Pro sends when Authentication Type is Header. Required when using Header authentication.  |                  |
-| Auth Header Value   | Value of the header Jamf Pro sends when Authentication Type is Header. Required when using Header authentication. |                  |
+| Input               | Comments                                                                                                                  | Default          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| Connection          | The Jamf Pro connection to use.                                                                                           |                  |
+| Name                | The display name used to identify the webhook in Jamf Pro.                                                                |                  |
+| Event               | The Jamf Pro event that triggers this webhook.                                                                            |                  |
+| URL                 | The destination URL that Jamf Pro sends webhook events to.                                                                |                  |
+| Additional Fields   | Additional optional fields: includes Content Type, Enabled, Authentication Type, Auth Header Name, and Auth Header Value. |                  |
+| Content Type        | The payload format Jamf Pro delivers events in.                                                                           | application/json |
+| Enabled             | Whether the webhook is active and delivering events.                                                                      | true             |
+| Authentication Type | How Jamf Pro authenticates to the destination URL. Header authentication sends a custom header with every event.          | NONE             |
+| Auth Header Name    | Name of the header Jamf Pro sends when Authentication Type is Header. Required when using Header authentication.          |                  |
+| Auth Header Value   | Value of the header Jamf Pro sends when Authentication Type is Header. Required when using Header authentication.         |                  |
 
 ### Delete Category {#deletecategory}
 
@@ -330,11 +333,12 @@ List all categories with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jamf Pro connection to use.                                                                                  |         |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
+| Pagination | Page and page-size controls.                                                                                     |         |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0       |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100     |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |         |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |         |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
 
 ### List Computers {#listcomputers}
 
@@ -343,12 +347,13 @@ List computer inventory records with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default                  |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | Connection | The Jamf Pro connection to use.                                                                                  |                          |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false                    |
+| Pagination | Page and page-size controls.                                                                                     |                          |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0                        |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100                      |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |                          |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |                          |
 | Section    | Section of computer details to include in the response. If not specified, General section data is returned.      | <code>["GENERAL"]</code> |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false                    |
 
 ### List Departments {#listdepartments}
 
@@ -357,11 +362,12 @@ List all departments with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jamf Pro connection to use.                                                                                  |         |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
+| Pagination | Page and page-size controls.                                                                                     |         |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0       |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100     |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |         |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |         |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
 
 ### List Mobile Devices {#listmobiledevices}
 
@@ -370,12 +376,13 @@ List mobile device inventory records with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default                  |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | Connection | The Jamf Pro connection to use.                                                                                  |                          |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false                    |
+| Pagination | Page and page-size controls.                                                                                     |                          |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0                        |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100                      |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |                          |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |                          |
 | Section    | Section of mobile device details to include in the response. If not specified, General section data is returned. | <code>["GENERAL"]</code> |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false                    |
 
 ### List Packages {#listpackages}
 
@@ -384,11 +391,12 @@ List all packages with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jamf Pro connection to use.                                                                                  |         |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
+| Pagination | Page and page-size controls.                                                                                     |         |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0       |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100     |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |         |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |         |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
 
 ### List Scripts {#listscripts}
 
@@ -397,11 +405,12 @@ List all scripts with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jamf Pro connection to use.                                                                                  |         |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
+| Pagination | Page and page-size controls.                                                                                     |         |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0       |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100     |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |         |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |         |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
 
 ### List Users {#listusers}
 
@@ -410,11 +419,12 @@ List Jamf Pro user accounts with optional filtering and pagination.
 | Input      | Comments                                                                                                         | Default |
 | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jamf Pro connection to use.                                                                                  |         |
+| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
+| Pagination | Page and page-size controls.                                                                                     |         |
 | Page       | The zero-indexed page number for paginated results. Page 0 is the first page.                                    | 0       |
 | Page Size  | The maximum number of results to return per page. Maximum 1000.                                                  | 100     |
 | Sort       | The sort criteria in the format property:asc or property:desc. Multiple criteria are comma-separated.            |         |
 | Filter     | An RSQL filter expression to narrow results. Example: name=="Apps*" or id>=5. Leave blank to return all results. |         |
-| Fetch All  | If true, fetch every page of results and ignore the Page and Page Size inputs. If false, return a single page.   | false   |
 
 ### List Webhooks {#listwebhooks}
 
@@ -482,49 +492,52 @@ Update an existing department.
 
 Update an existing package record.
 
-| Input                 | Comments                                                                                  | Default |
-| --------------------- | ----------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Jamf Pro connection to use.                                                           |         |
-| Package               | The unique identifier of the package.                                                     |         |
-| Package Name          | The display name of the package as shown in Jamf Pro.                                     |         |
-| File Name             | The filename of the package file on the Jamf distribution point (e.g., GoogleChrome.pkg). |         |
-| Category ID           | The unique identifier of the category to assign to this package.                          |         |
-| Priority              | Installation priority from 1 (highest) to 20 (lowest). Defaults to 10.                    |         |
-| Info                  | A description of the package displayed to administrators in Jamf Pro.                     |         |
-| Notes                 | Internal notes about the package visible only to administrators.                          |         |
-| Reboot Required       | Whether the device must reboot after installing this package.                             |         |
-| OS Install            | Whether this package is an OS installer.                                                  |         |
-| Fill User Template    | Whether to fill the user template with the package contents.                              |         |
-| Suppress Updates      | Whether to suppress software updates during installation.                                 |         |
-| Suppress EULA         | Whether to suppress the End User License Agreement during installation.                   |         |
-| Suppress From Dock    | Whether to suppress the package icon from the Dock during installation.                   |         |
-| Suppress Registration | Whether to suppress the registration window during installation.                          |         |
+| Input                 | Comments                                                                                                                                                                                                              | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Jamf Pro connection to use.                                                                                                                                                                                       |         |
+| Package               | The unique identifier of the package.                                                                                                                                                                                 |         |
+| Category ID           | The unique identifier of the category to assign to this package.                                                                                                                                                      |         |
+| Additional Fields     | Additional optional fields: includes Package Name, File Name, Priority, Info, Notes, Reboot Required, OS Install, Fill User Template, Suppress Updates, Suppress EULA, Suppress From Dock, and Suppress Registration. |         |
+| Package Name          | The display name of the package as shown in Jamf Pro.                                                                                                                                                                 |         |
+| File Name             | The filename of the package file on the Jamf distribution point (e.g., GoogleChrome.pkg).                                                                                                                             |         |
+| Priority              | Installation priority from 1 (highest) to 20 (lowest). Defaults to 10.                                                                                                                                                |         |
+| Info                  | A description of the package displayed to administrators in Jamf Pro.                                                                                                                                                 |         |
+| Notes                 | Internal notes about the package visible only to administrators.                                                                                                                                                      |         |
+| Reboot Required       | Whether the device must reboot after installing this package.                                                                                                                                                         |         |
+| OS Install            | Whether this package is an OS installer.                                                                                                                                                                              |         |
+| Fill User Template    | Whether to fill the user template with the package contents.                                                                                                                                                          |         |
+| Suppress Updates      | Whether to suppress software updates during installation.                                                                                                                                                             |         |
+| Suppress EULA         | Whether to suppress the End User License Agreement during installation.                                                                                                                                               |         |
+| Suppress From Dock    | Whether to suppress the package icon from the Dock during installation.                                                                                                                                               |         |
+| Suppress Registration | Whether to suppress the registration window during installation.                                                                                                                                                      |         |
 
 ### Update Script {#updatescript}
 
 Update an existing script.
 
-| Input           | Comments                                                             | Default |
-| --------------- | -------------------------------------------------------------------- | ------- |
-| Connection      | The Jamf Pro connection to use.                                      |         |
-| Script          | The unique identifier of the script.                                 |         |
-| Name            | The display name used to identify the script in Jamf Pro.            |         |
-| Script Contents | The shell script body. Include the shebang line (e.g., #!/bin/bash). |         |
-| Category ID     | The unique identifier of the category to assign to this script.      |         |
-| Priority        | When the script runs relative to the policy.                         |         |
-| Info            | A description of the script displayed to administrators in Jamf Pro. |         |
-| Notes           | Internal notes about the script visible only to administrators.      |         |
+| Input             | Comments                                                                               | Default |
+| ----------------- | -------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Jamf Pro connection to use.                                                        |         |
+| Script            | The unique identifier of the script.                                                   |         |
+| Category ID       | The unique identifier of the category to assign to this script.                        |         |
+| Additional Fields | Additional optional fields: includes Name, Script Contents, Priority, Info, and Notes. |         |
+| Name              | The display name used to identify the script in Jamf Pro.                              |         |
+| Script Contents   | The shell script body. Include the shebang line (e.g., #!/bin/bash).                   |         |
+| Priority          | When the script runs relative to the policy.                                           |         |
+| Info              | A description of the script displayed to administrators in Jamf Pro.                   |         |
+| Notes             | Internal notes about the script visible only to administrators.                        |         |
 
 ### Update Webhook {#updatewebhook}
 
 Update an existing webhook subscription.
 
-| Input        | Comments                                                   | Default |
-| ------------ | ---------------------------------------------------------- | ------- |
-| Connection   | The Jamf Pro connection to use.                            |         |
-| Webhook      | The unique identifier of the webhook.                      |         |
-| Name         | The display name used to identify the webhook in Jamf Pro. |         |
-| Event        | The Jamf Pro event that triggers this webhook.             |         |
-| URL          | The destination URL that Jamf Pro sends webhook events to. |         |
-| Content Type | The payload format Jamf Pro delivers events in.            |         |
-| Enabled      | Whether the webhook is active and delivering events.       |         |
+| Input             | Comments                                                                          | Default |
+| ----------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection        | The Jamf Pro connection to use.                                                   |         |
+| Webhook           | The unique identifier of the webhook.                                             |         |
+| Additional Fields | Additional optional fields: includes Name, Event, URL, Content Type, and Enabled. |         |
+| Name              | The display name used to identify the webhook in Jamf Pro.                        |         |
+| Event             | The Jamf Pro event that triggers this webhook.                                    |         |
+| URL               | The destination URL that Jamf Pro sends webhook events to.                        |         |
+| Content Type      | The payload format Jamf Pro delivers events in.                                   |         |
+| Enabled           | Whether the webhook is active and delivering events.                              |         |

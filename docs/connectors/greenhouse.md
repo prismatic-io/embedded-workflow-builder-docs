@@ -18,8 +18,6 @@ This component was built using the [Greenhouse Harvest API](https://developers.g
 
 Authenticate requests to Greenhouse using an API key. Deprecated: this authentication method sunsets on August 31, 2026. Use the OAuth 2.0 Client Credentials (Harvest V3) connection instead.
 
-**Deprecation Notice**: this connection authenticates against the Harvest v1/v2 API, which sunsets on August 31, 2026. Use the **OAuth 2.0 Client Credentials (Harvest V3)** connection for the Harvest v3 API instead.
-
 The Greenhouse Harvest API uses Basic Auth over HTTPS for authentication. The username is the Greenhouse API token and the password should be blank. Unauthenticated requests will return an HTTP 401 response.
 
 #### Prerequisites
@@ -44,10 +42,33 @@ The Greenhouse Harvest API uses Basic Auth over HTTPS for authentication. The us
    - Custom Field Options
 8. Optionally configure granular permissions for each section, then click **Save** to complete the setup.
 
-#### Configure the Connection
+### Notice of Deprecation
 
-1. Create a connection of type **API Key (Harvest v1/v2)**.
-2. Enter the generated API token in the **API Key** field.
+This connection authenticates against the Harvest v1/v2 API, which sunsets on **August 31, 2026**. Please migrate integrations to the **OAuth 2.0 Client Credentials (Harvest v3)** connection and accompanying actions to utilize the go forward the Harvest v3 API.
+
+#### Migrating to Harvest v3 (deadline August 31, 2026)
+
+The Harvest v1/v2 API sunsets on **August 31, 2026**. Before then, move to the
+**OAuth 2.0 Client Credentials (Harvest v3)** connection and update your actions and
+triggers to their v3 equivalents.
+
+1. In Greenhouse, open **API Credentials** > **Create new API credentials** and select
+   **Harvest v3 (OAuth)**. Choose the endpoints the credential may access, then copy the
+   **Client ID** and **Client Secret**.
+2. Create a connection of type **OAuth 2.0 Client Credentials (Harvest v3)** and enter the
+   client ID and secret. No browser-based authorization is required. Access tokens are
+   exchanged automatically at execution time.
+3. Replace each **(Harvest v1/v2)** action with its v3 counterpart. The v3 actions have the
+   same names without the **(Harvest v1/v2)** suffix, with these exceptions:
+   - **Enable User** / **Disable User** become **Activate User** / **Deactivate User**.
+   - Rejecting an application is no longer part of **Edit Application**. Use the dedicated
+     **Reject Application** and **Unreject Application** actions.
+   - Candidate attachments are now a dedicated resource. Use **List Attachments**,
+     **Create Attachment**, and **Delete Attachment**.
+4. If you poll for changes, replace the deprecated **New and Updated Applications** trigger
+   with its v3 version.
+5. Re-point any dynamic dropdowns (data sources) to the new v3 connection.
+6. Test the flow end to end, then remove this **API Key (Harvest v1/v2)** connection.
 
 | Input   | Comments                                                                                                                                          | Default |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -165,6 +186,7 @@ Creates a new candidate, optionally with an application.
 | Title                  | The job title associated with the candidate.                                                                                                                                                                                                                                                                         |                         |
 | Time Zone              | Rails-style timezone identifier. Example values: "Eastern Time (US & Canada)", "Pacific Time (US & Canada)", "UTC".                                                                                                                                                                                                  |                         |
 | Can Email              | Whether the candidate consented to receive email communication. Defaults to true when omitted.                                                                                                                                                                                                                       | false                   |
+| Contact Information    | The candidate's contact details: phone numbers, addresses, email addresses, website addresses, and social media addresses.                                                                                                                                                                                           |                         |
 | Phone Numbers          | The JSON array of phone numbers for the candidate. Passing an empty array will clear all. Format: JSON array of objects.                                                                                                                                                                                             |                         |
 | Addresses              | The JSON array of postal addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.                                                                                                                                                                                          |                         |
 | Email Addresses        | The JSON array of email addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.                                                                                                                                                                                           |                         |
@@ -213,9 +235,9 @@ Creates a new job from an existing template.
 | Notes                  | The free-form notes attached to the hiring plan.                                                                                                                         |         |
 | Requisition ID         | Partner-supplied external identifier for this job. Free-form string; non-unique across the organization.                                                                 |         |
 | Department ID          | The Greenhouse department ID to assign to this job. In v3 each job has a single department (not an array). If omitted, inherits from the template.                       |         |
-| External Department ID | Partner external identifier for the department. Mutually exclusive with Department ID — provide one or the other, never both.                                            |         |
+| External Department ID | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                             |         |
 | Office IDs             | Greenhouse office IDs to assign to the new job. In v3 this is an integer array. If omitted, inherits from the template. Mutually exclusive with External Office IDs.     |         |
-| External Office IDs    | Partner external identifiers for offices. Mutually exclusive with Office IDs — provide one or the other, never both.                                                     |         |
+| External Office IDs    | Partner external identifiers for offices. Mutually exclusive with Office IDs; provide one or the other, never both.                                                      |         |
 | Opening IDs            | Partner identifiers for each opening created, positionally paired with the openings. Must match the Number of Openings count when provided.                              |         |
 | Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                                           |         |
 
@@ -352,18 +374,19 @@ Disables an existing user.
 
 Updates an application by ID.
 
-| Input             | Comments                                                                                                                       | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Greenhouse connection to use.                                                                                              |         |
-| Application ID    | The unique identifier for the application.                                                                                     |         |
-| Source ID         | The unique identifier for the source of the application.                                                                       |         |
-| Referrer ID       | The numeric ID of the referrer.                                                                                                |         |
-| Recruiter ID      | The numeric Greenhouse user ID of the assigned recruiter.                                                                      |         |
-| Coordinator ID    | The numeric Greenhouse user ID of the assigned coordinator.                                                                    |         |
-| Prospect Pool ID  | The unique identifier for the prospect pool for the application.                                                               |         |
-| Prospect Stage ID | The unique identifier for the prospect pool stage for the application.                                                         |         |
-| Rejected At       | The rejection date for this application. Format: ISO-8601 date.                                                                |         |
-| Custom Fields     | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |         |
+| Input             | Comments                                                                                                                           | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Greenhouse connection to use.                                                                                                  |         |
+| Application ID    | The unique identifier for the application.                                                                                         |         |
+| Assignment IDs    | Greenhouse IDs to associate with the application: source, referrer, recruiter, coordinator, prospect pool, and prospect stage IDs. |         |
+| Source ID         | The unique identifier for the source of the application.                                                                           |         |
+| Referrer ID       | The numeric ID of the referrer.                                                                                                    |         |
+| Recruiter ID      | The numeric Greenhouse user ID of the assigned recruiter.                                                                          |         |
+| Coordinator ID    | The numeric Greenhouse user ID of the assigned coordinator.                                                                        |         |
+| Prospect Pool ID  | The unique identifier for the prospect pool for the application.                                                                   |         |
+| Prospect Stage ID | The unique identifier for the prospect pool stage for the application.                                                             |         |
+| Rejected At       | The rejection date for this application. Format: ISO-8601 date.                                                                    |         |
+| Custom Fields     | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.     |         |
 
 ### Edit Application (Harvest v1/v2) {#editapplication}
 
@@ -389,19 +412,21 @@ Updates an existing candidate.
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | Connection             | The Greenhouse connection to use.                                                                                                 |                         |
 | Candidate ID           | The unique identifier for the candidate.                                                                                          |                         |
+| Name Information       | The candidate's first name, last name, and preferred name.                                                                        |                         |
 | First Name             | The candidate's legal first name. If provided, cannot be blank.                                                                   |                         |
 | Last Name              | The candidate's legal last name. If provided, cannot be blank.                                                                    |                         |
 | Preferred Name         | Preferred or chosen name the candidate goes by, when different from their legal first name.                                       |                         |
-| Company                | The company name associated with the candidate.                                                                                   |                         |
-| Title                  | The job title associated with the candidate.                                                                                      |                         |
-| Time Zone              | Rails-style timezone identifier. Example values: "Eastern Time (US & Canada)", "Pacific Time (US & Canada)", "UTC".               |                         |
-| Can Email              | Whether the candidate consented to receive email communication. Defaults to true when omitted.                                    | false                   |
-| Is Private             | When true, the candidate will be marked as private.                                                                               | false                   |
+| Contact Information    | The candidate's contact details: phone numbers, addresses, email addresses, website addresses, and social media addresses.        |                         |
 | Phone Numbers          | The JSON array of phone numbers for the candidate. Passing an empty array will clear all. Format: JSON array of objects.          |                         |
 | Addresses              | The JSON array of postal addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.       |                         |
 | Email Addresses        | The JSON array of email addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.        |                         |
 | Website Addresses      | The JSON array of website addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.      |                         |
 | Social Media Addresses | The JSON array of social media addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects. |                         |
+| Company                | The company name associated with the candidate.                                                                                   |                         |
+| Title                  | The job title associated with the candidate.                                                                                      |                         |
+| Time Zone              | Rails-style timezone identifier. Example values: "Eastern Time (US & Canada)", "Pacific Time (US & Canada)", "UTC".               |                         |
+| Can Email              | Whether the candidate consented to receive email communication. Defaults to true when omitted.                                    | false                   |
+| Is Private             | When true, the candidate will be marked as private.                                                                               | false                   |
 | Tags                   | The tags to assign to the candidate as an array of strings. Passing an empty array will clear all.                                | <code>["000xxx"]</code> |
 | Linked User IDs        | Array of Greenhouse user IDs to link to this candidate. Replaces all existing linked users when provided.                         |                         |
 | Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.    |                         |
@@ -435,21 +460,21 @@ Updates an existing candidate.
 
 Updates an existing job by ID.
 
-| Input                     | Comments                                                                                                                                                                                                                                               | Default |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection                | The Greenhouse connection to use.                                                                                                                                                                                                                      |         |
-| Job ID                    | The numeric ID of the job.                                                                                                                                                                                                                             |         |
-| Job Name                  | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                                                                                                   |         |
-| Notes                     | The free-form notes attached to the hiring plan.                                                                                                                                                                                                       |         |
-| Requisition ID            | Partner-supplied external identifier. Pass null to clear. Free-form string; non-unique across the organization.                                                                                                                                        |         |
-| Team and Responsibilities | The description of the team the candidate would join and the responsibilities of the role.                                                                                                                                                             |         |
-| How to Sell This Job      | The recruiter-facing description of the desirable aspects of the job.                                                                                                                                                                                  |         |
-| Anywhere                  | When true, marks the job as remote-anywhere and clears office assignments. Cannot be combined with office_ids.                                                                                                                                         | false   |
-| Office IDs                | Greenhouse office IDs to assign to this job. IMPORTANT: this is a WHOLESALE REPLACEMENT — the supplied list entirely replaces the existing office set. Send the complete desired list, not a delta.                                                    |         |
-| External Office IDs       | Partner external identifiers for offices — wholesale replacement. Mutually exclusive with Office IDs.                                                                                                                                                  |         |
-| Department ID             | The Greenhouse department ID to assign. In v3 each job has a single department. Pass null to clear.                                                                                                                                                    |         |
-| External Department ID    | Partner external identifier for the department. Mutually exclusive with Department ID — provide one or the other, never both.                                                                                                                          |         |
-| Custom Fields             | JSON array of custom field values. IMPORTANT: this is a WHOLESALE REPLACEMENT — the supplied array entirely replaces the existing custom field collection. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |         |
+| Input                     | Comments                                                                                                                                                                                                                                              | Default |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                | The Greenhouse connection to use.                                                                                                                                                                                                                     |         |
+| Job ID                    | The numeric ID of the job.                                                                                                                                                                                                                            |         |
+| Job Name                  | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                                                                                                  |         |
+| Notes                     | The free-form notes attached to the hiring plan.                                                                                                                                                                                                      |         |
+| Requisition ID            | Partner-supplied external identifier. Pass null to clear. Free-form string; non-unique across the organization.                                                                                                                                       |         |
+| Team and Responsibilities | The description of the team the candidate would join and the responsibilities of the role.                                                                                                                                                            |         |
+| How to Sell This Job      | The recruiter-facing description of the desirable aspects of the job.                                                                                                                                                                                 |         |
+| Anywhere                  | When true, marks the job as remote-anywhere and clears office assignments. Cannot be combined with office_ids.                                                                                                                                        | false   |
+| Office IDs                | Greenhouse office IDs to assign to this job. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied list entirely replaces the existing office set. Send the complete desired list, not a delta.                                                    |         |
+| External Office IDs       | Partner external identifiers for offices; wholesale replacement. Mutually exclusive with Office IDs.                                                                                                                                                  |         |
+| Department ID             | The Greenhouse department ID to assign. In v3 each job has a single department. Pass null to clear.                                                                                                                                                   |         |
+| External Department ID    | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                                                                                                          |         |
+| Custom Fields             | JSON array of custom field values. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied array entirely replaces the existing custom field collection. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |         |
 
 ### Edit Job (Harvest v1/v2) {#editjob}
 
@@ -603,29 +628,32 @@ Retrieves a user by ID.
 
 Retrieves a list of applications.
 
-| Input                      | Comments                                                                                                                                                                                    | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                 | The Greenhouse connection to use.                                                                                                                                                           |         |
-| Fetch All                  | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                           | false   |
-| Page Size                  | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                    |         |
-| Cursor                     | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters. |         |
-| Application IDs            | Comma-separated list of specific application IDs to fetch. Maximum 50 items.                                                                                                                |         |
-| Candidate IDs              | Comma-separated list of candidate IDs to filter by. Maximum 50 items.                                                                                                                       |         |
-| Job IDs                    | Comma-separated list of current job (hiring plan) IDs to filter by. Maximum 50 items.                                                                                                       |         |
-| Prospective Job IDs        | Comma-separated list of prospective job placement IDs to filter by. Maximum 50 items.                                                                                                       |         |
-| Job Post IDs               | Comma-separated list of job post IDs to filter by. Maximum 50 items.                                                                                                                        |         |
-| Source IDs                 | Comma-separated list of source IDs to filter by. Maximum 50 items.                                                                                                                          |         |
-| Referrer IDs               | Comma-separated list of referrer IDs to filter by. Maximum 50 items.                                                                                                                        |         |
-| Stage IDs                  | Comma-separated list of interview stage IDs to filter by. Maximum 50 items.                                                                                                                 |         |
-| Status                     | The status to filter applications by. Accepted values are active, converted, hired, and rejected. If anything else is used, an empty response will be returned rather than an error.        |         |
-| Stage Name                 | Filter by interview stage name. Match is exact and case-sensitive.                                                                                                                          |         |
-| Prospect                   | When true, returns only prospect applications. When false, returns only candidate applications. Omit to return both.                                                                        | false   |
-| Created At or After        | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                               |         |
-| Created At or Before       | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                               |         |
-| Updated At or After        | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                               |         |
-| Updated At or Before       | The upper bound timestamp filter — sent as updated_at[lte]. Format: ISO-8601.                                                                                                               |         |
-| Last Activity At or After  | The lower bound timestamp filter — sent as last_activity_at[gte]. Format: ISO-8601.                                                                                                         |         |
-| Last Activity At or Before | The upper bound timestamp filter — sent as last_activity_at[lte]. Format: ISO-8601.                                                                                                         |         |
+| Input                      | Comments                                                                                                                                                                                                                         | Default |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                 | The Greenhouse connection to use.                                                                                                                                                                                                |         |
+| Fetch All                  | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                                                                | false   |
+| Pagination                 | Page-size and cursor controls for the results list.                                                                                                                                                                              |         |
+| Page Size                  | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                                                         |         |
+| Cursor                     | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters.                                      |         |
+| ID Filters                 | Optional filters that narrow results to applications matching specific record IDs: application, candidate, job, prospective job, job post, source, referrer, and stage IDs. Each accepts a comma-separated list of up to 50 IDs. |         |
+| Application IDs            | Comma-separated list of specific application IDs to fetch. Maximum 50 items.                                                                                                                                                     |         |
+| Candidate IDs              | Comma-separated list of candidate IDs to filter by. Maximum 50 items.                                                                                                                                                            |         |
+| Job IDs                    | Comma-separated list of current job (hiring plan) IDs to filter by. Maximum 50 items.                                                                                                                                            |         |
+| Prospective Job IDs        | Comma-separated list of prospective job placement IDs to filter by. Maximum 50 items.                                                                                                                                            |         |
+| Job Post IDs               | Comma-separated list of job post IDs to filter by. Maximum 50 items.                                                                                                                                                             |         |
+| Source IDs                 | Comma-separated list of source IDs to filter by. Maximum 50 items.                                                                                                                                                               |         |
+| Referrer IDs               | Comma-separated list of referrer IDs to filter by. Maximum 50 items.                                                                                                                                                             |         |
+| Stage IDs                  | Comma-separated list of interview stage IDs to filter by. Maximum 50 items.                                                                                                                                                      |         |
+| Status                     | The status to filter applications by. Accepted values are active, converted, hired, and rejected. If anything else is used, an empty response will be returned rather than an error.                                             |         |
+| Stage Name                 | Filter by interview stage name. Match is exact and case-sensitive.                                                                                                                                                               |         |
+| Prospect                   | When true, returns only prospect applications. When false, returns only candidate applications. Omit to return both.                                                                                                             | false   |
+| Date Range Filters         | Optional inclusive date-range filters. Narrow results by when applications were created, last updated, or last active.                                                                                                           |         |
+| Created At or After        | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                                                                    |         |
+| Created At or Before       | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                                                                    |         |
+| Updated At or After        | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                                                                    |         |
+| Updated At or Before       | The upper bound timestamp filter — sent as updated_at[lte]. Format: ISO-8601.                                                                                                                                                    |         |
+| Last Activity At or After  | The lower bound timestamp filter — sent as last_activity_at[gte]. Format: ISO-8601.                                                                                                                                              |         |
+| Last Activity At or Before | The upper bound timestamp filter — sent as last_activity_at[lte]. Format: ISO-8601.                                                                                                                                              |         |
 
 ### List Applications (Harvest v1/v2) {#listapplications}
 
@@ -634,6 +662,7 @@ Retrieves a list of applications.
 | Input               | Comments                                                                                                                                                                             | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection          | The Greenhouse connection to use.                                                                                                                                                    |         |
+| Pagination          | Page-size and page-number controls for the results list.                                                                                                                             |         |
 | Page Size           | The maximum number of results to return per page. Must be an integer between 1 and 500.                                                                                              |         |
 | Page                | The 1-based page number to return. Each page contains up to the configured page size.                                                                                                | 1       |
 | Job ID              | The unique identifier for the job to filter by. When supplied, only candidates that have applied to this job (or are prospects for it) are returned.                                 |         |
@@ -651,12 +680,15 @@ Retrieves a list of attachments.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Greenhouse connection to use.                                                                                                                                                           |         |
 | Fetch All            | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                           | false   |
+| Pagination           | Page-size and cursor controls for the results list.                                                                                                                                         |         |
 | Page Size            | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                    |         |
 | Cursor               | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters. |         |
+| ID Filters           | Optional filters that narrow results to attachments matching specific record IDs: attachment, application, and candidate IDs. Each accepts a comma-separated list of up to 50 IDs.          |         |
 | Attachment IDs       | Comma-separated list of specific attachment IDs to fetch. Maximum 50 items.                                                                                                                 |         |
 | Application IDs      | Comma-separated list of application IDs to filter by. Maximum 50 items.                                                                                                                     |         |
-| Candidate IDs        | Comma-separated list of candidate IDs — returns only attachments whose application belongs to one of these candidates. Maximum 50 items.                                                    |         |
+| Candidate IDs        | Comma-separated list of candidate IDs; returns only attachments whose application belongs to one of these candidates. Maximum 50 items.                                                     |         |
 | Attachment Type      | Return only attachments of this type. When omitted, all types are included.                                                                                                                 |         |
+| Date Range Filters   | Optional inclusive date-range filters. Narrow results by when attachments were created or last updated.                                                                                     |         |
 | Created At or After  | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                               |         |
 | Created At or Before | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                               |         |
 | Updated At or After  | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                               |         |
@@ -670,12 +702,14 @@ Retrieves a list of candidates.
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                 | The Greenhouse connection to use.                                                                                                                                                           |         |
 | Fetch All                  | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                           | false   |
+| Pagination                 | Page-size and cursor controls for the results list.                                                                                                                                         |         |
 | Page Size                  | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                    |         |
 | Cursor                     | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters. |         |
 | Candidate IDs              | The comma-separated list of candidate IDs to return (e.g. '123,456,789'). A maximum of 50 candidates can be returned this way.                                                              |         |
 | Email                      | Return only candidates who have this email address on their profile (exact match).                                                                                                          |         |
 | Tag                        | Filter by candidate tag name (exact match).                                                                                                                                                 |         |
 | Include Private Candidates | When true (default), private candidates are included in results. Set to false to return only non-private candidates.                                                                        | true    |
+| Date Range Filters         | Optional inclusive date-range filters. Narrow results by when candidates were created or last updated.                                                                                      |         |
 | Created At or After        | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                               |         |
 | Created At or Before       | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                               |         |
 | Updated At or After        | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                               |         |
@@ -688,6 +722,7 @@ Retrieves a list of candidates.
 | Input          | Comments                                                                                                                                                                                                                                                | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection     | The Greenhouse connection to use.                                                                                                                                                                                                                       |         |
+| Pagination     | Page-size and page-number controls for the results list.                                                                                                                                                                                                |         |
 | Page Size      | The maximum number of results to return per page. Must be an integer between 1 and 500.                                                                                                                                                                 |         |
 | Page           | The 1-based page number to return. Each page contains up to the configured page size.                                                                                                                                                                   | 1       |
 | Email          | If supplied, only return candidates who have a matching e-mail address. If supplied with job_id, only return a candidate with a matching e-mail with an application on the job. If email and candidate_ids are included, candidate_ids will be ignored. |         |
@@ -707,14 +742,17 @@ Retrieves a list of jobs.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Greenhouse connection to use.                                                                                                                                                           |         |
 | Fetch All            | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                           | false   |
+| Pagination           | Page-size and cursor controls for the results list.                                                                                                                                         |         |
 | Page Size            | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                    |         |
 | Cursor               | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters. |         |
+| ID Filters           | Optional filters that narrow results to jobs matching specific record IDs: job, department, and office IDs.                                                                                 |         |
 | Job IDs              | Comma-separated list of specific job IDs to fetch. Maximum 50 items.                                                                                                                        |         |
-| Requisition ID       | Filter by external requisition identifier. Non-unique — may match multiple jobs across the organization.                                                                                    |         |
-| Status               | Filter by job lifecycle status. One of: open, draft, or closed.                                                                                                                             |         |
 | Department ID        | The Greenhouse department ID. In v3 each job has a single department (not an array).                                                                                                        |         |
 | Office ID            | Filter by office ID. Returns jobs that include this office in their office_ids array.                                                                                                       |         |
+| Requisition ID       | Filter by external requisition identifier. Non-unique; may match multiple jobs across the organization.                                                                                     |         |
+| Status               | Filter by job lifecycle status. One of: open, draft, or closed.                                                                                                                             |         |
 | Confidential         | Filter legacy confidential jobs. When true, returns only confidential jobs.                                                                                                                 | false   |
+| Date Range Filters   | Optional inclusive date-range filters. Narrow results by when jobs were created or last updated.                                                                                            |         |
 | Created At or After  | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                               |         |
 | Created At or Before | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                               |         |
 | Updated At or After  | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                               |         |
@@ -728,6 +766,7 @@ Retrieves a list of jobs.
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection             | The Greenhouse connection to use.                                                                                                              |         |
 | API Version            | The version of the Greenhouse Harvest API to use. Defaults to "v1".                                                                            | v1      |
+| Pagination             | Page-size and page-number controls for the results list.                                                                                       |         |
 | Page Size              | The maximum number of results to return per page. Must be an integer between 1 and 500.                                                        |         |
 | Page                   | The 1-based page number to return. Each page contains up to the configured page size.                                                          | 1       |
 | Created Before         | The upper bound timestamp filter — only records created before this value are returned. Format: ISO-8601.                                      |         |
@@ -751,14 +790,17 @@ Retrieves a list of users.
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Greenhouse connection to use.                                                                                                                                                           |         |
 | Fetch All             | When true, fetches all pages of results by following the response Link headers. Page Size and Cursor are ignored.                                                                           | false   |
+| Pagination            | Page-size and cursor controls for the results list.                                                                                                                                         |         |
 | Page Size             | The maximum number of results to return per page. Must be an integer between 1 and 500. Defaults to 100.                                                                                    |         |
 | Cursor                | The opaque pagination cursor from a previous response's Link header. When provided, it is sent as the only query parameter — the API rejects cursor requests that carry additional filters. |         |
+| ID Filters            | Optional filters that narrow results to users matching specific record IDs: user, office, and department IDs. Each accepts a comma-separated list of up to 50 IDs.                          |         |
 | User IDs              | Comma-separated list of specific user IDs to fetch. Maximum 50 items.                                                                                                                       |         |
 | Office IDs            | Comma-separated list of Greenhouse office IDs to filter by. Maximum 50 items.                                                                                                               |         |
 | Department IDs        | Comma-separated list of Greenhouse department IDs to filter by. Maximum 50 items.                                                                                                           |         |
 | Deactivated           | When set, filters users by activation state. Omit to return both active and deactivated users.                                                                                              | false   |
 | Primary Email         | Exact-match filter on the user's primary email address.                                                                                                                                     |         |
 | Show Service Accounts | When true, includes integration and service-account users in results. Defaults to false.                                                                                                    | false   |
+| Date Range Filters    | Optional inclusive date-range filters. Narrow results by when users were created or last updated.                                                                                           |         |
 | Created At or After   | The lower bound timestamp filter — sent as created_at[gte]. Format: ISO-8601.                                                                                                               |         |
 | Created At or Before  | The upper bound timestamp filter — sent as created_at[lte]. Format: ISO-8601.                                                                                                               |         |
 | Updated At or After   | The lower bound timestamp filter — sent as updated_at[gte]. Format: ISO-8601.                                                                                                               |         |
@@ -772,6 +814,7 @@ Retrieves a list of users.
 | ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection              | The Greenhouse connection to use.                                                                              |         |
 | API Version             | The version of the Greenhouse Harvest API to use. Defaults to "v1".                                            | v1      |
+| Pagination              | Page-size and page-number controls for the results list.                                                       |         |
 | Page Size               | The maximum number of results to return per page. Must be an integer between 1 and 500.                        |         |
 | Page                    | The 1-based page number to return. Each page contains up to the configured page size.                          | 1       |
 | Employee ID             | The external employee identifier for the user.                                                                 |         |
@@ -831,16 +874,17 @@ Sends a raw HTTP request to Greenhouse.
 
 Rejects an application with a specified rejection reason.
 
-| Input               | Comments                                                                                                                       | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection          | The Greenhouse connection to use.                                                                                              |         |
-| Application ID      | The unique identifier for the application.                                                                                     |         |
-| Rejection Reason ID | The numeric ID of the rejection reason. Required by the Harvest v3 reject endpoint.                                            |         |
-| Rejection Notes     | Additional context about the rejection decision.                                                                               |         |
-| Send Email At       | Schedule the rejection email for a future timestamp. Format: ISO-8601 date-time.                                               |         |
-| Email Template ID   | The numeric ID of the email template to use for the rejection message.                                                         |         |
-| Email From User ID  | The numeric Greenhouse user ID to send the rejection email on behalf of.                                                       |         |
-| Custom Fields       | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |         |
+| Input               | Comments                                                                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The Greenhouse connection to use.                                                                                                                             |         |
+| Application ID      | The unique identifier for the application.                                                                                                                    |         |
+| Rejection Reason ID | The numeric ID of the rejection reason. Required by the Harvest v3 reject endpoint.                                                                           |         |
+| Rejection Notes     | Additional context about the rejection decision.                                                                                                              |         |
+| Rejection Email     | Optional rejection email settings: when to send, which template to use, and which user to send it from. Provide at least one value to send a rejection email. |         |
+| Send Email At       | Schedule the rejection email for a future timestamp. Format: ISO-8601 date-time.                                                                              |         |
+| Email Template ID   | The numeric ID of the email template to use for the rejection message.                                                                                        |         |
+| Email From User ID  | The numeric Greenhouse user ID to send the rejection email on behalf of.                                                                                      |         |
+| Custom Fields       | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                                |         |
 
 ### Unreject Application {#unrejectapplicationv3}
 

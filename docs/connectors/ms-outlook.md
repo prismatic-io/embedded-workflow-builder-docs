@@ -441,6 +441,7 @@ Lists all calendars for the user.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Outlook connection to use.                                          |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page size and offset controls for the result set.                       |         |
 | Page Limit | The maximum number of results to return per page.                       |         |
 | Page Skip  | The number of records to skip before returning results.                 |         |
 
@@ -452,6 +453,7 @@ Lists all events for the user.
 | ----------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Outlook connection to use.                                                                                   |         |
 | Fetch All   | When true, automatically fetches all pages of results using pagination.                                          | false   |
+| Pagination  | Page size and offset controls for the result set.                                                                |         |
 | Page Limit  | The maximum number of results to return per page.                                                                |         |
 | Page Skip   | The number of records to skip before returning results.                                                          |         |
 | Calendar ID | The unique identifier of the calendar to list events from. Lists all events for the current user if unspecified. |         |
@@ -464,6 +466,7 @@ Gets the mail folder collection directly under the root folder of the signed-in 
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Outlook connection to use.                                                                                               |         |
 | Fetch All        | When true, automatically fetches all pages of results using pagination.                                                      | false   |
+| Pagination       | Page size and offset controls for the result set.                                                                            |         |
 | Page Limit       | The maximum number of results to return per page.                                                                            |         |
 | Page Skip        | The number of records to skip before returning results.                                                                      |         |
 | Parent Folder ID | The unique identifier of the parent folder. Lists all folders contained within this folder. Omit to list root-level folders. |         |
@@ -476,6 +479,7 @@ Lists mail messages in a user's mailbox.
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Outlook connection to use.                                                                                                                                                                                                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                     | false   |
+| Pagination | Page size and offset controls for the result set.                                                                                                                                                                                           |         |
 | Page Limit | The maximum number of results to return per page.                                                                                                                                                                                           |         |
 | Page Skip  | The number of records to skip before returning results.                                                                                                                                                                                     |         |
 | Folder ID  | The unique identifier of the mail folder. Omit to list all messages.                                                                                                                                                                        |         |

@@ -54,13 +54,14 @@ Checks for new devices, users, or groups in TeamViewer on a configured schedule.
 
 Assigns a device to a user account.
 
-| Input              | Comments                                      | Default |
-| ------------------ | --------------------------------------------- | ------- |
-| Device ID          | The ID of the device to retrieve.             |         |
-| Current Password   | The current password of the device.           |         |
-| Enable Easy Access | Whether to enable easy access for the device. | false   |
-| Assign Mode        | The assign mode for the device.               |         |
-| Connection         |                                               |         |
+| Input              | Comments                                                                                                      | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Device ID          | The ID of the device to retrieve.                                                                             |         |
+| Assignment Options | Options controlling how the device is assigned, including the current password, easy access, and assign mode. |         |
+| Current Password   | The current password of the device.                                                                           |         |
+| Enable Easy Access | Whether to enable easy access for the device.                                                                 | false   |
+| Assign Mode        | The assign mode for the device.                                                                               |         |
+| Connection         |                                                                                                               |         |
 
 ### Create Account {#createaccount}
 
@@ -83,8 +84,8 @@ Creates a new contact.
 | Input       | Comments                                                                                     | Default |
 | ----------- | -------------------------------------------------------------------------------------------- | ------- |
 | Email       | The email of the contact.                                                                    |         |
-| Name        | The name of the contact.                                                                     |         |
 | Group ID    | The ID of the group to which the contact belongs. Either groupid or groupName is required.   |         |
+| Name        | The name of the contact.                                                                     |         |
 | Group Name  | The name of the group to which the contact belongs. Either groupid or groupName is required. |         |
 | Description | The description of the contact.                                                              |         |
 | Invite      | Whether to invite the contact to TeamViewer.                                                 | false   |
@@ -119,6 +120,7 @@ Creates a new session.
 
 | Input       | Comments                                                                                     | Default |
 | ----------- | -------------------------------------------------------------------------------------------- | ------- |
+| Group       | Group ID or group name the record belongs to.                                                |         |
 | Group ID    | The ID of the group to which the session belongs. Either groupid or groupName is required.   |         |
 | Group Name  | The name of the group to which the session belongs. Either groupid or groupName is required. |         |
 | Custom ID   | The custom ID of the session.                                                                |         |
@@ -130,23 +132,25 @@ Creates a new session.
 
 Creates a user.
 
-| Input                    | Comments                                       | Default |
-| ------------------------ | ---------------------------------------------- | ------- |
-| User Email               | User email to query from.                      |         |
-| User Name                | User name to query from.                       |         |
-| User Password            | User password.                                 |         |
-| User Role ID             | The ID of the user role to assign to the user. |         |
-| User Language            | User language.                                 |         |
-| Subscribe Newsletter     | Should subscribe to the newsletter.            | false   |
-| Log Sessions             | Should log user sessions.                      | false   |
-| Show Comment Window      | Should show comment window.                    | false   |
-| Custom Quick Support ID  | Custom Quick Support ID of the user            |         |
-| Custom Quick Join ID     | Custom Quick Join ID of the user               |         |
-| License Key              | License key of the user                        |         |
-| Meeting License Key      | Meeting License key of the user                |         |
-| SSO Customer ID          | SSO Customer ID of the user                    |         |
-| Ignored Predefined Roles | Ignored Predefined Roles                       | false   |
-| Connection               |                                                |         |
+| Input                    | Comments                                                                                                                                                          | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| User Email               | User email to query from.                                                                                                                                         |         |
+| User Name                | User name to query from.                                                                                                                                          |         |
+| User Language            | User language.                                                                                                                                                    |         |
+| User Password            | User password.                                                                                                                                                    |         |
+| User Role ID             | The ID of the user role to assign to the user.                                                                                                                    |         |
+| Custom Quick Support ID  | Custom Quick Support ID of the user                                                                                                                               |         |
+| Custom Quick Join ID     | Custom Quick Join ID of the user                                                                                                                                  |         |
+| License                  | License and meeting license keys.                                                                                                                                 |         |
+| License Key              | License key of the user                                                                                                                                           |         |
+| Meeting License Key      | Meeting License key of the user                                                                                                                                   |         |
+| SSO Customer ID          | SSO Customer ID of the user                                                                                                                                       |         |
+| Additional Fields        | Secondary account preference settings for the new user, including newsletter subscription, session logging, comment window display, and predefined role override. |         |
+| Subscribe Newsletter     | Should subscribe to the newsletter.                                                                                                                               | false   |
+| Log Sessions             | Should log user sessions.                                                                                                                                         | false   |
+| Show Comment Window      | Should show comment window.                                                                                                                                       | false   |
+| Ignored Predefined Roles | Ignored Predefined Roles                                                                                                                                          | false   |
+| Connection               |                                                                                                                                                                   |         |
 
 ### Delete Contact {#deletecontact}
 
@@ -462,6 +466,7 @@ Updates a session by its ID.
 | Input       | Comments                                                                                     | Default |
 | ----------- | -------------------------------------------------------------------------------------------- | ------- |
 | Session ID  | The ID of the session to retrieve.                                                           |         |
+| Group       | Group ID or group name the record belongs to.                                                |         |
 | Group ID    | The ID of the group to which the session belongs. Either groupid or groupName is required.   |         |
 | Group Name  | The name of the group to which the session belongs. Either groupid or groupName is required. |         |
 | Custom ID   | The custom ID of the session.                                                                |         |
@@ -473,20 +478,21 @@ Updates a session by its ID.
 
 Updates a user.
 
-| Input                   | Comments                                                       | Default |
-| ----------------------- | -------------------------------------------------------------- | ------- |
-| User ID                 | The ID of the user to retrieve.                                |         |
-| User Email              | User email to query from.                                      |         |
-| User Name               | User name to query from.                                       |         |
-| Assign User Role IDs    | Comma separated list of user role IDs to assign to the user.   |         |
-| Unassign User Role IDs  | Comma separated list of user role IDs to unassign to the user. |         |
-| User Password           | User password.                                                 |         |
-| Is User Active          | Deactivates or Activates the user account.                     | false   |
-| Log Sessions            | Should log user sessions.                                      | false   |
-| Show Comment Window     | Should show comment window.                                    | false   |
-| Custom Quick Support ID | Custom Quick Support ID of the user                            |         |
-| Custom Quick Join ID    | Custom Quick Join ID of the user                               |         |
-| License Key             | License key of the user                                        |         |
-| SSO Customer ID         | SSO Customer ID of the user                                    |         |
-| Is TFA Enforced         | Enforces Two Factor Authentication for the user.               | false   |
-| Connection              |                                                                |         |
+| Input                   | Comments                                                                                                                                 | Default |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| User ID                 | The ID of the user to retrieve.                                                                                                          |         |
+| User Email              | User email to query from.                                                                                                                |         |
+| User Name               | User name to query from.                                                                                                                 |         |
+| Assign User Role IDs    | Comma separated list of user role IDs to assign to the user.                                                                             |         |
+| Unassign User Role IDs  | Comma separated list of user role IDs to unassign to the user.                                                                           |         |
+| User Password           | User password.                                                                                                                           |         |
+| Custom Quick Support ID | Custom Quick Support ID of the user                                                                                                      |         |
+| Custom Quick Join ID    | Custom Quick Join ID of the user                                                                                                         |         |
+| SSO Customer ID         | SSO Customer ID of the user                                                                                                              |         |
+| Additional Fields       | Secondary settings for the user, including activation status, session logging, comment window display, license key, and TFA enforcement. |         |
+| Is User Active          | Deactivates or Activates the user account.                                                                                               | false   |
+| Log Sessions            | Should log user sessions.                                                                                                                | false   |
+| Show Comment Window     | Should show comment window.                                                                                                              | false   |
+| License Key             | License key of the user                                                                                                                  |         |
+| Is TFA Enforced         | Enforces Two Factor Authentication for the user.                                                                                         | false   |
+| Connection              |                                                                                                                                          |         |

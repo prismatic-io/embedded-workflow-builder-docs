@@ -79,13 +79,14 @@ Create an Asset.
 | File ID             | A file's Signed ID, returned by the Upload File action.                                                                                                                                             |         |
 | Title               | Asset title or display name.                                                                                                                                                                        |         |
 | Parent ID           | The parent Id, where the Asset should be located in. Should either be a Library, WorkspaceProject or Folder Id. Important: Cannot be used in conjunction with directory if the Id is from a Folder. |         |
-| Description         | Asset description.                                                                                                                                                                                  |         |
 | External ID         | Asset external ID.                                                                                                                                                                                  |         |
+| Tags                | List of tags to create with the Asset.                                                                                                                                                              |         |
+| Directory           | An array of strings representing the directory, if a folder does not exist, it is created. Important: Cannot be used in conjunction with parentId that is from a Folder.                            |         |
+| Additional Fields   | Additional optional fields: includes Description, Copyright Status, Copyright Notice, Skip File Metadata, Expires At, and Author.                                                                   |         |
+| Description         | Asset description.                                                                                                                                                                                  |         |
 | Copyright Status    | Asset copyright status.                                                                                                                                                                             |         |
 | Copyright Notice    | Asset copyright notice. Supports medium text length.                                                                                                                                                |         |
-| Tags                | List of tags to create with the Asset.                                                                                                                                                              |         |
 | Skip File Metadata  | Skip file's EXIF metadata. When true, it will ignore all file metadata contents.                                                                                                                    | false   |
-| Directory           | An array of strings representing the directory, if a folder does not exist, it is created. Important: Cannot be used in conjunction with parentId that is from a Folder.                            |         |
 | Expires At          | Asset will expire once the defined date is reached.                                                                                                                                                 |         |
 | Author              | Represents the Author of the Asset.                                                                                                                                                                 |         |
 
@@ -242,10 +243,11 @@ Retrieve a list of Comments relating to a given Asset.
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Asset ID            | ID of the Asset to retrieve comments for.                                         |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Asset ID            | ID of the Asset to retrieve comments for.                                         |         |
 | Reply Limit         | The limit of how may replies to show per comment.                                 | 50      |
 
 ### List Brand Libraries {#listbrandlibraries}
@@ -255,10 +257,11 @@ Retrieve list of Libraries belonging to a Brand. For full Library details, pleas
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Brand ID            | ID of the Brand to retrieve Libraries for.                                        |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Brand ID            | ID of the Brand to retrieve Libraries for.                                        |         |
 
 ### List Brands {#listbrands}
 
@@ -275,10 +278,11 @@ Retrieve list of Workspace Projects belonging to a Brand. For full details, plea
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Brand ID            | ID of the Brand to retrieve Workspace Projects for.                               |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Brand ID            | ID of the Brand to retrieve Workspace Projects for.                               |         |
 
 ### List Library Assets {#listlibraryassets}
 
@@ -287,13 +291,14 @@ Retrieve a list of Assets belonging to a Library.
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
-| Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
-| Page                | Page number                                                                       | 1       |
-| Page Size           | How many items to show per page.                                                  | 25      |
-| Brand ID            | ID of the Brand entity.                                                           |         |
 | Library ID          | ID of the Library entity.                                                         |         |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Search Query        | Limit the result set by the search term.                                          |         |
 | External ID         | Limit the result set by the external ID of an Asset.                              |         |
+| Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
+| Page                | Page number                                                                       | 1       |
+| Page Size           | How many items to show per page.                                                  | 25      |
 
 ### List Library Collaborators {#listlibrarycollaborators}
 
@@ -302,11 +307,12 @@ Retrieve a list of Collaborators belonging to a Library.
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Library ID          | ID of the Library entity.                                                         |         |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Brand ID            | ID of the Brand entity.                                                           |         |
-| Library ID          | ID of the Library entity.                                                         |         |
 
 ### List Library Collections {#listlibrarycollections}
 
@@ -315,11 +321,12 @@ Retrieve a list of Collections belonging to a Library.
 | Input               | Comments                                                                                                                                                                         | Default |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                                                                                                                  |         |
+| Library ID          | ID of the Library entity.                                                                                                                                                        |         |
+| Brand ID            | ID of the Brand entity.                                                                                                                                                          |         |
 | Fetch All           | If true, it will fetch all top-level Collections records and ignore parameters like page and page size. This toggle will not affect the Asset pagination within each Collection. | false   |
+| Pagination          | Page navigation controls.                                                                                                                                                        |         |
 | Page                | Page number                                                                                                                                                                      | 1       |
 | Page Size           | How many items to show per page.                                                                                                                                                 | 25      |
-| Brand ID            | ID of the Brand entity.                                                                                                                                                          |         |
-| Library ID          | ID of the Library entity.                                                                                                                                                        |         |
 | Page (Assets)       | Assets are paginated within collections. Use this to control the nested Asset pagination.                                                                                        | 1       |
 | Page Size (Assets)  | Assets are paginated within collections. Use this to control the nested Asset pagination.                                                                                        | 50      |
 
@@ -330,11 +337,12 @@ Retrieve a list of the top-level folders in a Library. To browse further, use th
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Library ID          | ID of the Library entity.                                                         |         |
+| Brand ID            | ID of the Brand entity.                                                           |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Brand ID            | ID of the Brand entity.                                                           |         |
-| Library ID          | ID of the Library entity.                                                         |         |
 
 ### List Related Assets {#listrelatedassets}
 
@@ -343,10 +351,11 @@ Retrieve a list of assets that relate to a specific Asset.
 | Input               | Comments                                                                          | Default |
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
+| Asset ID            | ID of the Asset to retrieve related assets for.                                   |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
-| Asset ID            | ID of the Asset to retrieve related assets for.                                   |         |
 
 ### List User Groups {#listusergroups}
 
@@ -356,6 +365,7 @@ Retrieve UserGroups list for the current Account.
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                                                                                             |         |
 | Fetch All           | If true, it will fetch all UserGroups and ignore parameters like page and page size. This toggle will not affect the User pagination within each UserGroup. | false   |
+| Pagination          | Page navigation controls.                                                                                                                                   |         |
 | Page                | Page number                                                                                                                                                 | 1       |
 | Page Size           | How many items to show per page.                                                                                                                            | 25      |
 | Page (users)        | For paging through users belonging to a userGroup.                                                                                                          | 1       |
@@ -369,6 +379,7 @@ Retrieve Users list for the current Account.
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
 
@@ -380,6 +391,7 @@ Retrieve WebhookItems related to current Account.
 | ------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection |                                                                                   |         |
 | Fetch All           | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination          | Page navigation controls.                                                         |         |
 | Page                | Page number                                                                       | 1       |
 | Page Size           | How many items to show per page.                                                  | 25      |
 
@@ -390,12 +402,13 @@ Retrieve a list of Assets belonging to a Workspace Project.
 | Input                | Comments                                                                          | Default |
 | -------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection  |                                                                                   |         |
-| Fetch All            | If true, it will fetch all records and ignore parameters like page and page size. | false   |
-| Page                 | Page number                                                                       | 1       |
-| Page Size            | How many items to show per page.                                                  | 25      |
 | Workspace Project ID | ID of the Workspace Project entity.                                               |         |
 | Search Query         | Limit the result set by the search term.                                          |         |
 | External ID          | Limit the result set by the external ID of an Asset.                              |         |
+| Fetch All            | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination           | Page navigation controls.                                                         |         |
+| Page                 | Page number                                                                       | 1       |
+| Page Size            | How many items to show per page.                                                  | 25      |
 
 ### List Workspace Project Folders {#listworkspaceprojectfolders}
 
@@ -404,10 +417,11 @@ Retrieve a list of the top-level folders in a Workspace Project. To browse furth
 | Input                | Comments                                                                          | Default |
 | -------------------- | --------------------------------------------------------------------------------- | ------- |
 | Frontify Connection  |                                                                                   |         |
+| Workspace Project ID | ID of the Workspace Project entity.                                               |         |
 | Fetch All            | If true, it will fetch all records and ignore parameters like page and page size. | false   |
+| Pagination           | Page navigation controls.                                                         |         |
 | Page                 | Page number                                                                       | 1       |
 | Page Size            | How many items to show per page.                                                  | 25      |
-| Workspace Project ID | ID of the Workspace Project entity.                                               |         |
 
 ### Move Assets {#moveassets}
 
@@ -454,17 +468,18 @@ Uninstall a Webhook.
 
 Update an existing Asset.
 
-| Input               | Comments                                             | Default |
-| ------------------- | ---------------------------------------------------- | ------- |
-| Frontify Connection |                                                      |         |
-| Asset ID            | ID of the Asset to update.                           |         |
-| File Name           | Asset filename, including extension.                 |         |
-| Title               | Asset title or display name.                         |         |
-| Description         | Asset description.                                   |         |
-| Copyright Status    | Asset copyright status.                              |         |
-| Copyright Notice    | Asset copyright notice. Supports medium text length. |         |
-| Expires At          | Asset will expire once the defined date is reached.  |         |
-| Author              | Represents the Author of the Asset.                  |         |
+| Input               | Comments                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Frontify Connection |                                                                                                               |         |
+| Asset ID            | ID of the Asset to update.                                                                                    |         |
+| File Name           | Asset filename, including extension.                                                                          |         |
+| Title               | Asset title or display name.                                                                                  |         |
+| Additional Fields   | Additional optional fields: includes Description, Copyright Status, Copyright Notice, Expires At, and Author. |         |
+| Description         | Asset description.                                                                                            |         |
+| Copyright Status    | Asset copyright status.                                                                                       |         |
+| Copyright Notice    | Asset copyright notice. Supports medium text length.                                                          |         |
+| Expires At          | Asset will expire once the defined date is reached.                                                           |         |
+| Author              | Represents the Author of the Asset.                                                                           |         |
 
 ### Update Collection {#updatecollection}
 

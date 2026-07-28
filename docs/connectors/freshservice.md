@@ -72,11 +72,12 @@ Creates a new agent in Freshservice.
 | Email                                           | The primary email address used to identify the agent.                                                                                                                             |         |
 | Roles                                           | Roles of the agent. An array of hashes. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information.                                |         |
 | Last Name                                       | The family name of the agent.                                                                                                                                                     |         |
+| Contact Information                             | Email, phone, and other contact channel details.                                                                                                                                  |         |
+| Work Phone Number                               | The office or desk phone number for the agent.                                                                                                                                    |         |
+| Mobile Phone Number                             | The cell phone number for the agent.                                                                                                                                              |         |
 | Address                                         | The physical or mailing address of the agent.                                                                                                                                     |         |
 | Occasional                                      | When true, marks the agent as an occasional (part-time) agent rather than full-time.                                                                                              | false   |
 | Job Title                                       | The role or position held by the agent.                                                                                                                                           |         |
-| Work Phone Number                               | The office or desk phone number for the agent.                                                                                                                                    |         |
-| Mobile Phone Number                             | The cell phone number for the agent.                                                                                                                                              |         |
 | Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                                          |         |
 | Can See All Tickets From Associated Departments | When true, allows the agent to view tickets filed by other members of associated departments.                                                                                     | false   |
 | Additional Fields                               | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information. |         |
@@ -115,6 +116,7 @@ Creates a new problem in Freshservice.
 | Priority          | The urgency level that determines the problem's resolution order.                                                                                                                   |         |
 | Status            | The current lifecycle stage of the problem.                                                                                                                                         |         |
 | Impact            | The scope of business disruption caused by the problem.                                                                                                                             |         |
+| Categorization    | Category, sub-category, and item-category for the record.                                                                                                                           |         |
 | Category          | The classification group for the problem (e.g., Hardware, Software).                                                                                                                |         |
 | Sub Category      | The secondary classification within the problem's category.                                                                                                                         |         |
 | Item Category     | The specific item type within the sub-category.                                                                                                                                     |         |
@@ -128,15 +130,16 @@ Creates a new requester in Freshservice.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Freshservice connection to use.                                                                                                                                                   |         |
 | First Name           | The given name of the requester.                                                                                                                                                      |         |
-| Primary Email        | The main email address used to contact the requester.                                                                                                                                 |         |
 | Last Name            | The family name of the requester.                                                                                                                                                     |         |
+| Primary Email        | The main email address used to contact the requester.                                                                                                                                 |         |
 | Job Title            | The role or position held by the requester.                                                                                                                                           |         |
+| Contact Information  | Email, phone, and other contact channel details.                                                                                                                                      |         |
+| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                  |         |
 | Work Phone Number    | The office or desk phone number for the requester.                                                                                                                                    |         |
 | Mobile Phone Number  | The cell phone number for the requester.                                                                                                                                              |         |
-| Reporting Manager ID | The unique identifier for the supervisor of the requester.                                                                                                                            |         |
-| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                  |         |
-| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                     |         |
 | Address              | The physical or mailing address of the requester.                                                                                                                                     |         |
+| Reporting Manager ID | The unique identifier for the supervisor of the requester.                                                                                                                            |         |
+| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                     |         |
 | Additional Fields    | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#requester_attributes) for more information. |         |
 
 ### Create Service Request {#createservicerequest}
@@ -322,6 +325,7 @@ Returns a list of all agents.
 | --------------------------- | ------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -334,6 +338,7 @@ Returns a list of all assets.
 | --------------------------- | ------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -346,6 +351,7 @@ Returns a list of all problems.
 | --------------------------- | ------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -358,6 +364,7 @@ Returns a list of all requesters.
 | --------------------------- | ------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -379,6 +386,7 @@ Returns a list of all tickets.
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Filter                      | The predefined view used to narrow down the ticket list.                        |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -391,6 +399,7 @@ Returns a list of all workspaces.
 | --------------------------- | ------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Freshservice connection to use.                                             |         |
 | Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
+| Pagination                  | Page and page-size controls.                                                    |         |
 | Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
 | Page Number                 | The 1-based page number to return.                                              |         |
 | Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
@@ -481,13 +490,14 @@ Updates an existing agent.
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                                      | The Freshservice connection to use.                                                                                                                                               |         |
 | Agent ID                                        | Unique ID of the agent to update.                                                                                                                                                 |         |
-| Email                                           | The primary email address used to identify the agent.                                                                                                                             |         |
 | Roles                                           | Roles of the agent. An array of hashes. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information.                                |         |
 | Scoreboard Level ID                             | The Arcade gamification level assigned to the agent.                                                                                                                              |         |
+| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                                          |         |
+| Additional Fields                               | Additional optional fields: includes Email, Address, Occasional, Signature, and Can See All Tickets From Associated Departments.                                                  |         |
+| Email                                           | The primary email address used to identify the agent.                                                                                                                             |         |
 | Address                                         | The physical or mailing address of the agent.                                                                                                                                     |         |
 | Occasional                                      | When true, marks the agent as an occasional (part-time) agent rather than full-time.                                                                                              |         |
 | Signature                                       | Signature of the agent in HTML format.                                                                                                                                            |         |
-| Department IDs                                  | Unique IDs of the departments associated with the agent.                                                                                                                          |         |
 | Can See All Tickets From Associated Departments | When true, allows the agent to view tickets filed by other members of associated departments.                                                                                     |         |
 | Additional Fields                               | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#agent_attributes) for more information. |         |
 
@@ -499,16 +509,17 @@ Updates an existing asset.
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | The Freshservice connection to use.                                                                                                                                               |         |
 | Asset Display ID  | The unique display identifier for the asset.                                                                                                                                      |         |
-| Name              | The display name used to identify the asset.                                                                                                                                      |         |
 | Asset Type ID     | The unique identifier for the asset type classification.                                                                                                                          |         |
-| Asset Tag         | The tracking label assigned to the asset for inventory purposes.                                                                                                                  |         |
-| Impact            | The business impact level if the asset becomes unavailable.                                                                                                                       |         |
-| Usage Type        | Whether the asset is permanently assigned or a loaner.                                                                                                                            |         |
-| Description       | A detailed summary of the asset specifications or purpose.                                                                                                                        |         |
 | Location ID       | The unique identifier for the location where the asset is assigned.                                                                                                               |         |
 | Agent ID          | The unique identifier for the agent managing the asset.                                                                                                                           |         |
 | Department ID     | The unique identifier for the department assigned to the asset.                                                                                                                   |         |
 | Group ID          | The unique identifier for the agent group managing the asset.                                                                                                                     |         |
+| Additional Fields | Additional optional fields: includes Name, Asset Tag, Impact, Usage Type, and Description.                                                                                        |         |
+| Name              | The display name used to identify the asset.                                                                                                                                      |         |
+| Asset Tag         | The tracking label assigned to the asset for inventory purposes.                                                                                                                  |         |
+| Impact            | The business impact level if the asset becomes unavailable.                                                                                                                       |         |
+| Usage Type        | Whether the asset is permanently assigned or a loaner.                                                                                                                            |         |
+| Description       | A detailed summary of the asset specifications or purpose.                                                                                                                        |         |
 | Additional Fields | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#asset_attributes) for more information. |         |
 
 ### Update Problem {#updateproblem}
@@ -519,6 +530,11 @@ Updates an existing problem.
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | The Freshservice connection to use.                                                                                                                                                 |         |
 | Problem ID        | ID of the Problem to update.                                                                                                                                                        |         |
+| Categorization    | Category, sub-category, and item-category for the record.                                                                                                                           |         |
+| Category          | The classification group for the problem (e.g., Hardware, Software).                                                                                                                |         |
+| Sub Category      | The secondary classification within the problem's category.                                                                                                                         |         |
+| Item Category     | The specific item type within the sub-category.                                                                                                                                     |         |
+| Additional Fields | Additional optional fields: includes Subject, Email, Description, Due By, Priority, Status, and Impact.                                                                             |         |
 | Subject           | The brief summary line describing the problem.                                                                                                                                      |         |
 | Email             | The email address of the person who reported the problem.                                                                                                                           |         |
 | Description       | The HTML body content with details about the problem.                                                                                                                               |         |
@@ -526,9 +542,6 @@ Updates an existing problem.
 | Priority          | The urgency level that determines the problem's resolution order.                                                                                                                   |         |
 | Status            | The current lifecycle stage of the problem.                                                                                                                                         |         |
 | Impact            | The scope of business disruption caused by the problem.                                                                                                                             |         |
-| Category          | The classification group for the problem (e.g., Hardware, Software).                                                                                                                |         |
-| Sub Category      | The secondary classification within the problem's category.                                                                                                                         |         |
-| Item Category     | The specific item type within the sub-category.                                                                                                                                     |         |
 | Additional Fields | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#problem_attributes) for more information. |         |
 
 ### Update Requester {#updaterequester}
@@ -539,16 +552,17 @@ Updates an existing requester.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Freshservice connection to use.                                                                                                                                                   |         |
 | Requester ID         | Unique ID of the requester to update.                                                                                                                                                 |         |
-| First Name           | The given name of the requester.                                                                                                                                                      |         |
-| Primary Email        | The main email address used to contact the requester.                                                                                                                                 |         |
-| Last Name            | The family name of the requester.                                                                                                                                                     |         |
 | Job Title            | The role or position held by the requester.                                                                                                                                           |         |
+| First Name           | The given name of the requester.                                                                                                                                                      |         |
+| Last Name            | The family name of the requester.                                                                                                                                                     |         |
+| Contact Information  | Email, phone, and other contact channel details.                                                                                                                                      |         |
+| Primary Email        | The main email address used to contact the requester.                                                                                                                                 |         |
+| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                  |         |
 | Work Phone Number    | The office or desk phone number for the requester.                                                                                                                                    |         |
 | Mobile Phone Number  | The cell phone number for the requester.                                                                                                                                              |         |
-| Reporting Manager ID | The unique identifier for the supervisor of the requester.                                                                                                                            |         |
-| Secondary Emails     | Additional/secondary emails associated with the requester. Array of email addresses.                                                                                                  |         |
-| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                     |         |
 | Address              | The physical or mailing address of the requester.                                                                                                                                     |         |
+| Reporting Manager ID | The unique identifier for the supervisor of the requester.                                                                                                                            |         |
+| Department IDs       | Unique IDs of the departments associated with the requester. Array of ID numbers.                                                                                                     |         |
 | Additional Fields    | A JSON object of additional fields not covered by the standard inputs. See [Freshservice API documentation](https://api.freshservice.com/#requester_attributes) for more information. |         |
 
 ### Update Software {#updatesoftware}
@@ -559,11 +573,12 @@ Updates an existing software application.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection        | The Freshservice connection to use.                                                                                                                                                  |         |
 | Application ID    | The unique identifier for the software application.                                                                                                                                  |         |
+| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                               |         |
+| Additional Fields | Additional optional fields: includes Name, Description, Application Type, Status, Notes, Category, and Source.                                                                       |         |
 | Name              | The display name used to identify the software application.                                                                                                                          |         |
 | Description       | A summary of the software's purpose and capabilities.                                                                                                                                |         |
 | Application Type  | The deployment model of the software (Desktop, SaaS, or Mobile).                                                                                                                     |         |
 | Status            | The current lifecycle stage of the software in the organization.                                                                                                                     |         |
-| Managed By ID     | ID of the user managing the software (must be a user in Freshservice).                                                                                                               |         |
 | Notes             | Free-text remarks or additional context about the software.                                                                                                                          |         |
 | Category          | The classification group for the software (e.g., service desk application).                                                                                                          |         |
 | Source            | The origin system from where the software details were imported or updated.                                                                                                          |         |
@@ -577,6 +592,7 @@ Updates an existing ticket.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection        | The Freshservice connection to use.                                                                                                                                                                                                                                                                                            |         |
 | Ticket ID         | ID of the ticket to update.                                                                                                                                                                                                                                                                                                    |         |
+| Additional Fields | Additional optional fields: includes Priority, Status, Source, and Bypass Mandatory.                                                                                                                                                                                                                                           |         |
 | Priority          | The urgency level that determines the ticket's resolution order.                                                                                                                                                                                                                                                               |         |
 | Status            | The current lifecycle stage of the ticket.                                                                                                                                                                                                                                                                                     |         |
 | Source            | The channel through which the ticket was created.                                                                                                                                                                                                                                                                              |         |

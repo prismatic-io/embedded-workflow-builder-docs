@@ -129,17 +129,19 @@ Checks for new and updated contacts in Zoho Books on a configured schedule.
 
 Checks for new and updated contacts in Zoho CRM on a configured schedule.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Zoho connection to use. |         |
+| Input             | Comments                                                                                                                                                                                             | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Zoho connection to use.                                                                                                                                                                          |         |
+| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records. |         |
 
 ### New and Updated CRM Leads {#leadspollingtrigger}
 
 Checks for new and updated leads in Zoho CRM on a configured schedule.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Zoho connection to use. |         |
+| Input             | Comments                                                                                                                                                                                             | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Zoho connection to use.                                                                                                                                                                          |         |
+| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records. |         |
 
 ## Actions
 

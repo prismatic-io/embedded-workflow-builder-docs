@@ -254,8 +254,10 @@ Retrieves a list of customers based on specified criteria.
 | Country Code   | The two-letter ISO country code to filter customers.                    |         |
 | Marketplace ID | The unique identifier for the marketplace to filter results by.         |         |
 | Tag ID         | The unique identifier for the tag to filter results by.                 |         |
+| Sorting        | Field and direction to sort results by.                                 |         |
 | Sort By        | The API field name used to sort the returned results.                   |         |
 | Sort Direction | The direction to sort results (asc or desc).                            |         |
+| Pagination     | Page number and page size controls for the returned results.            |         |
 | Page           | The page number to retrieve (starts at 1).                              |         |
 | Page Size      | The maximum number of results to return per page. Maximum: 500.         |         |
 
@@ -306,8 +308,10 @@ Retrieves a list of products that match the specified criteria.
 | Tag ID              | The unique identifier for the tag to filter results by.                  |         |
 | Start Date          | The start date to filter products by creation date in YYYY-MM-DD format. |         |
 | End Date            | The end date to filter products by creation date in YYYY-MM-DD format.   |         |
+| Sorting             | Field and direction to sort results by.                                  |         |
 | Sort By             | The API field name used to sort the returned results.                    |         |
 | Sort Direction      | The direction to sort results (asc or desc).                             |         |
+| Pagination          | Page number and page size controls for the returned results.             |         |
 | Page                | The page number to retrieve (starts at 1).                               |         |
 | Page Size           | The maximum number of results to return per page. Maximum: 500.          |         |
 | Show Inactive       | When true, includes inactive stores in the results.                      | false   |
@@ -325,18 +329,21 @@ Retrieves the list of available shipping services for the specified carrier.
 
 Retrieves a list of shipments that match the specified criteria.
 
-| Input                  | Comments                                                                  | Default |
-| ---------------------- | ------------------------------------------------------------------------- | ------- |
-| Connection             | The ShipStation connection to use.                                        |         |
-| Tracking Number        | The carrier-assigned tracking number for the shipment.                    |         |
-| Create Date Start      | The start date to filter shipments by creation date in YYYY-MM-DD format. |         |
-| Create Date End        | The end date to filter shipments by creation date in YYYY-MM-DD format.   |         |
-| Ship Date Start        | The start date to filter shipments by ship date in YYYY-MM-DD format.     |         |
-| Ship Date End          | The end date to filter shipments by ship date in YYYY-MM-DD format.       |         |
-| Recipient Name         | The name of the person or business receiving the shipment.                |         |
-| Recipient Country Code | The two-letter ISO country code to filter shipments by recipient country. |         |
-| Page                   | The page number to retrieve (starts at 1).                                |         |
-| Page Size              | The maximum number of results to return per page. Maximum: 500.           |         |
+| Input                  | Comments                                                                          | Default |
+| ---------------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection             | The ShipStation connection to use.                                                |         |
+| Shipment Filters       | Tracking number, recipient name, and recipient country code to filter results by. |         |
+| Tracking Number        | The carrier-assigned tracking number for the shipment.                            |         |
+| Recipient Name         | The name of the person or business receiving the shipment.                        |         |
+| Recipient Country Code | The two-letter ISO country code to filter shipments by recipient country.         |         |
+| Date Range Filters     | Create date and ship date ranges to filter results by.                            |         |
+| Create Date Start      | The start date to filter shipments by creation date in YYYY-MM-DD format.         |         |
+| Create Date End        | The end date to filter shipments by creation date in YYYY-MM-DD format.           |         |
+| Ship Date Start        | The start date to filter shipments by ship date in YYYY-MM-DD format.             |         |
+| Ship Date End          | The end date to filter shipments by ship date in YYYY-MM-DD format.               |         |
+| Pagination             | Page number and page size controls for the returned results.                      |         |
+| Page                   | The page number to retrieve (starts at 1).                                        |         |
+| Page Size              | The maximum number of results to return per page. Maximum: 500.                   |         |
 
 ### List Stores {#liststores}
 
