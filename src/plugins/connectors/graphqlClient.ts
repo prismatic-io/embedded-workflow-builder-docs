@@ -22,7 +22,7 @@ export const getPrismaticConnection = () => {
   }
 
   // Otherwise, read the access token from the prism config file
-  const { accessToken } = readConfig();
+  const accessToken = readConfig()?.profiles.default.accessToken;
   return {
     PRISMATIC_API_KEY: accessToken,
     PRISMATIC_URL: PRISMATIC_URL || "https://app.prismatic.io",
