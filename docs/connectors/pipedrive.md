@@ -334,6 +334,15 @@ Deletes a deal field.
 | Connection    | The Pipedrive connection to use.          |         |
 | Deal Field ID | The unique identifier for the deal field. |         |
 
+### Delete Deal Field (V2) {#deletedealfieldv2}
+
+Deletes a deal field.
+
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.  |         |
+| Field Code | The field code of the deal field. |         |
+
 ### Delete Deal Follower {#deletedealfollower}
 
 Deletes a follower from a deal.
@@ -437,6 +446,15 @@ Deletes a person field.
 | Connection      | The Pipedrive connection to use.            |         |
 | Person Field ID | The unique identifier for the person field. |         |
 
+### Delete Person Field (V2) {#deletepersonfieldv2}
+
+Deletes a person field.
+
+| Input      | Comments                            | Default |
+| ---------- | ----------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.    |         |
+| Field Code | The field code of the person field. |         |
+
 ### Delete Person Follower {#deletepersonfollower}
 
 Deletes a follower from a person.
@@ -482,6 +500,15 @@ Deletes a product field.
 | ---------------- | -------------------------------- | ------- |
 | Connection       | The Pipedrive connection to use. |         |
 | Product Field ID | The ID of the product field      |         |
+
+### Delete Product Field (V2) {#deleteproductfieldv2}
+
+Deletes a product field.
+
+| Input      | Comments                             | Default |
+| ---------- | ------------------------------------ | ------- |
+| Connection | The Pipedrive connection to use.     |         |
+| Field Code | The field code of the product field. |         |
 
 ### Delete Product Follower {#deleteproductfollower}
 
@@ -580,6 +607,17 @@ Gets all activity fields.
 | ---------- | -------------------------------- | ------- |
 | Connection | The Pipedrive connection to use. |         |
 
+### Get Activity Fields (V2) {#getactivityfieldsv2}
+
+Gets all activity fields.
+
+| Input      | Comments                                                                                                | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                                                                        |         |
+| Fetch All  | When true, automatically fetches all pages of results. When false, only the requested page is returned. | false   |
+| Limit      | The maximum number of results to return per page.                                                       |         |
+| Cursor     | The pagination cursor from a previous request.                                                          |         |
+
 ### Get Activity Types {#getactivitytypes}
 
 Gets all activity types.
@@ -663,6 +701,26 @@ Gets all deal fields.
 | Connection | The Pipedrive connection to use.                  |         |
 | Start      | The 0-based offset of the first item to return.   | 0       |
 | Limit      | The maximum number of results to return per page. |         |
+
+### Get Deal Fields (V2) {#getdealfieldsv2}
+
+Gets all deal fields.
+
+| Input      | Comments                                                                                                | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                                                                        |         |
+| Fetch All  | When true, automatically fetches all pages of results. When false, only the requested page is returned. | false   |
+| Limit      | The maximum number of results to return per page.                                                       |         |
+| Cursor     | The pagination cursor from a previous request.                                                          |         |
+
+### Get Deal Field (V2) {#getdealfieldv2}
+
+Gets one deal field.
+
+| Input      | Comments                          | Default |
+| ---------- | --------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.  |         |
+| Field Code | The field code of the deal field. |         |
 
 ### Get Deal Files {#getdealfiles}
 
@@ -1071,69 +1129,3 @@ Lists activities associated with a person.
 | Limit      | The maximum number of results to return per page. |         |
 | Cursor     | The pagination cursor from a previous request.    |         |
 | Done       | When true, returns only completed activities      | false   |
-
-### Get Person Deals {#getpersondeals}
-
-Lists deals associated with a person.
-
-| Input          | Comments                                          | Default |
-| -------------- | ------------------------------------------------- | ------- |
-| Connection     | The Pipedrive connection to use.                  |         |
-| Person ID      | The unique identifier for the person.             |         |
-| Limit          | The maximum number of results to return per page. |         |
-| Cursor         | The pagination cursor from a previous request.    |         |
-| Status         | Only fetch deals with a specific status           |         |
-| Sort By        | The field name used to order the results.         |         |
-| Sort Direction | The direction in which results are ordered.       |         |
-
-### Get Person Field {#getpersonfield}
-
-Gets one person field.
-
-| Input           | Comments                                    | Default |
-| --------------- | ------------------------------------------- | ------- |
-| Connection      | The Pipedrive connection to use.            |         |
-| Person Field ID | The unique identifier for the person field. |         |
-
-### Get Person Field Details {#getpersonfielddetails}
-
-Gets details of a specific field for a person.
-
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Connection | The Pipedrive connection to use.                  |         |
-| Field ID   | The ID of the field to fetch details for a person |         |
-
-### Get Person Fields {#getpersonfields}
-
-Gets all person fields.
-
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Connection | The Pipedrive connection to use.                  |         |
-| Start      | The 0-based offset of the first item to return.   | 0       |
-| Limit      | The maximum number of results to return per page. |         |
-
-### Get Person Files {#getpersonfiles}
-
-Lists files attached to a person.
-
-| Input                 | Comments                                                                                            | Default |
-| --------------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Pipedrive connection to use.                                                                    |         |
-| Person ID             | The unique identifier for the person.                                                               |         |
-| Start                 | The 0-based offset of the first item to return.                                                     | 0       |
-| Limit                 | The maximum number of results to return per page.                                                   |         |
-| Include Deleted Files | When enabled, the list of files will also include deleted files                                     |         |
-| Sort                  | The field names and sorting mode separated by a comma (e.g. "field_name_1 ASC, field_name_2 DESC"). |         |
-
-### Get Person Followers {#getpersonfollowers}
-
-Lists followers of a person.
-
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Person ID  | The unique identifier for the person.             |         |
-| Limit      | The maximum number of results to return per page. |         |
-| Cursor     | The pagination cursor from a previous request.    |         |
-| Connection | The Pipedrive connection to use.                  |         |

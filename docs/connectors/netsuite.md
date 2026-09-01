@@ -6,7 +6,7 @@ description: Manage records and execute queries in Oracle NetSuite.
 
 ![Oracle NetSuite](./assets/netsuite.png#connector-icon)
 [Oracle NetSuite](https://www.netsuite.com/) is a unified business management suite, encompassing ERP/Financials, CRM and ecommerce.
-This component allows you to create, read, update, delete, and list records in NetSuite, as well as execute SuiteQL queries.
+This component allows creating, reading, updating, deleting, and listing records in NetSuite, as well as executing SuiteQL queries.
 
 ## API Documentation
 
@@ -110,7 +110,7 @@ Refer to [NetSuite's OAuth Client Credentials documentation](https://docs.oracle
      - **REST WEB SERVICES**
      - **CLIENT CREDENTIALS (MACHINE TO MACHINE) GRANT**
    - Under **SCOPE**, enable **REST WEB SERVICES**
-   - After saving, copy the **CONSUMER KEY** — it will not be shown again in NetSuite
+   - After saving, copy the **CONSUMER KEY**. It will not be shown again in NetSuite
 
 3. Generate Certificate and Private Key for JWT:
 
@@ -142,7 +142,7 @@ The `private.pem` file contains the private key and must be kept secure. Never c
    - Choose the appropriate **Entity** and **Role**
    - Select the **Application** created in step 2
    - For **Certificate**, upload the `public.pem` file generated in step 3
-   - After saving, NetSuite will generate a **Certificate ID** (a unique identifier). Copy this value — it is needed to configure the connection. The Certificate ID will be a string similar to `zzP3z13fkaZsCcwCbmMpd5GvvPs9DTPIquAI83MnNx4`.
+   - After saving, NetSuite will generate a **Certificate ID** (a unique identifier). Copy this value. It is needed to configure the connection. The Certificate ID will be a string similar to `zzP3z13fkaZsCcwCbmMpd5GvvPs9DTPIquAI83MnNx4`.
 
 5. Assign Roles:
    - Ensure that the entity used in the OAuth 2.0 Client setup has been assigned appropriate [roles and permissions](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771510070.html)
@@ -189,7 +189,7 @@ Checks for new and updated records in a selected NetSuite record type on a confi
 
 ### Create Record {#createrecord}
 
-Create record of specified type
+Create record of specified type.
 
 | Input       | Comments                                                                                                                                                                             | Default                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -199,7 +199,7 @@ Create record of specified type
 
 ### Delete Record {#deleterecord}
 
-Delete record of the specified type
+Delete record of the specified type.
 
 | Input       | Comments                                                                                                                                                                                                                    | Default |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -209,7 +209,7 @@ Delete record of the specified type
 
 ### Get Record {#getrecord}
 
-Get record of specified type
+Get record of specified type.
 
 | Input                | Comments                                                                                                                                                                                                                    | Default |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -222,53 +222,55 @@ Get record of specified type
 
 ### List Records {#listrecord}
 
-List records of specified type
+List records of specified type.
 
-| Input             | Comments                                                                                                                                                                                                             | Default |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The NetSuite connection to use.                                                                                                                                                                                      |         |
-| Record Type       | Record type to perform the action against.                                                                                                                                                                           |         |
-| Query             | Query string to filter records. Use operators like START_WITH, EQUAL, CONTAIN. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details. |         |
-| Pagination Limit  | The maximum number of records to fetch per page. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details.                               | 1000    |
-| Pagination Offset | The number of records to skip before starting to fetch results. Used for pagination.                                                                                                                                 |         |
+| Input       | Comments                                                                                                                                                                                                             | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The NetSuite connection to use.                                                                                                                                                                                      |         |
+| Record Type | Record type to perform the action against.                                                                                                                                                                           |         |
+| Query       | Query string to filter records. Use operators like START_WITH, EQUAL, CONTAIN. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details. |         |
+| Pagination  | Page and page-size controls.                                                                                                                                                                                         |         |
+| Limit       | The maximum number of records to fetch per page. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details.                               | 1000    |
+| Offset      | The number of records to skip before starting to fetch results. Used for pagination.                                                                                                                                 |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to NetSuite
+Send raw HTTP request to NetSuite.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                      | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The NetSuite connection to use.                                                                                                                                                                                                                                                               |         |
-| URL                     | Input the path only (/contact), The base URL is already included (https://{accountId}.suitetalk.api.netsuite.com/services/rest/record/v1). For example, to connect to https://{accountId}.suitetalk.api.netsuite.com/services/rest/record/v1/contact, only /contact is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                       |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                     |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                          |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                              |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                        |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                           |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                   |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                      | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                           |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                           | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                              | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                           | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                 | false   |
-| Service Type            | The type of service to use.                                                                                                                                                                                                                                                                   | record  |
+| Input                   | Comments                                                                                                                                                                                                                                                                                              | Default |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The NetSuite connection to use.                                                                                                                                                                                                                                                                       |         |
+| URL                     | The request path only, relative to the base URL. The base URL is supplied automatically from the connection and the selected Service Type (https://{accountId}.suitetalk.api.netsuite.com/services/rest/record/v1 or .../query/v1). For example, enter /contact to reach the contact record endpoint. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                               |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                             |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                  |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                      |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                   |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                           |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                              | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                   |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                   | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                      | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                   | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                         | false   |
+| Service Type            | Selects which NetSuite REST service the request targets: the record service for CRUD operations, or the query service for SuiteQL.                                                                                                                                                                    | record  |
 
 ### SuiteQL Query {#suiteqlquery}
 
-Execute a SuiteQL Query through Netsuite's REST Web Service
+Execute a SuiteQL query through NetSuite's REST Web Services.
 
-| Input             | Comments                                                                                                                                                                               | Default                                                          |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Connection        | The NetSuite connection to use.                                                                                                                                                        |                                                                  |
-| Pagination Limit  | The maximum number of records to fetch per page. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details. | 1000                                                             |
-| Pagination Offset | The number of records to skip before starting to fetch results. Used for pagination.                                                                                                   |                                                                  |
-| SuiteQL Payload   | SuiteQL query string to execute. See [Executing SuiteQL Queries](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157909186990.html) for details.                 | SELECT email, COUNT(\*) as count FROM transaction GROUP BY email |
+| Input           | Comments                                                                                                                                                                               | Default                                                          |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Connection      | The NetSuite connection to use.                                                                                                                                                        |                                                                  |
+| SuiteQL Payload | SuiteQL query string to execute. See [Executing SuiteQL Queries](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157909186990.html) for details.                 | SELECT email, COUNT(\*) as count FROM transaction GROUP BY email |
+| Pagination      | Page and page-size controls.                                                                                                                                                           |                                                                  |
+| Limit           | The maximum number of records to fetch per page. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for details. | 1000                                                             |
+| Offset          | The number of records to skip before starting to fetch results. Used for pagination.                                                                                                   |                                                                  |
 
 ### Update Record {#updaterecord}
 
-Update record of the specified type
+Update record of the specified type.
 
 | Input                   | Comments                                                                                                                                                                                                                    | Default                                                                                                                                  |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |

@@ -10,7 +10,7 @@ The **Monday** component allows managing boards and items within a Monday accoun
 
 ## API Documentation
 
-This component was built using the [Monday GraphQL API](https://developer.monday.com/api-reference/reference/about-the-api-reference), currently utilizing version 2026-01.
+This component was built using the [Monday GraphQL API](https://developer.monday.com/api-reference/reference/about-the-api-reference), currently utilizing version 2026-07.
 
 ## Connections
 
@@ -160,7 +160,7 @@ Issues any GraphQL query or mutation with variables.
 | Query or Mutation | The GraphQL query or mutation to execute against the Monday.com API.                                         | <code>{<br />me {<br />id<br />email<br />}<br />}</code> |
 | Variables         | Key-value pairs of variables to pass to the GraphQL query or mutation. Use this for simple variable input.   |                                                           |
 | Variables Object  | A JSON object of variables to pass to the GraphQL query or mutation. Use this for structured variable input. |                                                           |
-| API Version       | The Monday.com API version to use. If not provided, the default 2026-01 version will be used.                |                                                           |
+| API Version       | The Monday.com API version to use. If not provided, the default 2026-07 version will be used.                |                                                           |
 
 ### Get Board {#getboard}
 
@@ -202,8 +202,9 @@ Lists all available boards in the Monday account.
 | ------------ | ------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection   | The Monday.com connection to use.                                                                                        |         |
 | Fetch All    | When true, automatically fetches all pages of results using pagination. Ignores the Result Limit and Page Offset inputs. | false   |
-| Result Limit | The maximum number of results to return. Accepts a value from 1 to 500.                                                  |         |
+| Pagination   | Page and page-size controls.                                                                                             |         |
 | Page Offset  | The page number to retrieve from paginated results. Uses 1-based indexing.                                               |         |
+| Result Limit | The maximum number of results to return. Accepts a value from 1 to 500.                                                  |         |
 
 ### List Webhooks {#listwebhooks}
 

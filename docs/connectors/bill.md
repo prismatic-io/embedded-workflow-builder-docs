@@ -67,7 +67,7 @@ Checks for new and updated records in a selected Bill.com resource type on a con
 
 ### Authenticate MFA Session {#mfaauthenticate}
 
-Use this action to authenticate an MFA session. Session only last 30 days.
+Authenticate an MFA session. Sessions last only 30 days.
 
 | Input        | Comments                                                                  | Default |
 | ------------ | ------------------------------------------------------------------------- | ------- |
@@ -163,80 +163,80 @@ Bulk update vendor objects.
 
 Create a bill object.
 
-| Input                          | Comments                                                                                                                                      | Default |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The Bill.com connection to use.                                                                                                               |         |
-| Vendor ID                      | The unique identifier for the vendor.                                                                                                         |         |
-| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                  |         |
-| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                           |         |
-| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                             |         |
-| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/createbill) for more information.          |         |
-| Allow Duplicate Invoice Number | When true, allows duplicate invoice numbers.                                                                                                  | false   |
-| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createbill for more information. |         |
+| Input                          | Comments                                                                                                                                                                        | Default |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Bill.com connection to use.                                                                                                                                                 |         |
+| Vendor ID                      | The unique identifier for the vendor.                                                                                                                                           |         |
+| Invoice Number                 | User-generated invoice number. This value can be a chosen number scheme or the bill due date.                                                                                   |         |
+| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                                                             |         |
+| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                                                               |         |
+| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/createbill) for more information.                                            |         |
+| Allow Duplicate Invoice Number | When true, allows duplicate invoice numbers.                                                                                                                                    | false   |
+| Additional Fields              | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createbill) for more information. |         |
 
 ### Create Customer {#createcustomer}
 
 Create a customer object.
 
-| Input             | Comments                                                                                                                                          | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                   |         |
-| Customer Name     | The name of the customer.                                                                                                                         |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createcustomer for more information. |         |
+| Input             | Comments                                                                                                                                                                            | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                     |         |
+| Customer Name     | The name of the customer.                                                                                                                                                           |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createcustomer) for more information. |         |
 
 ### Create Customer Bank Account {#createcustomerbankaccount}
 
 Create a customer bank account object.
 
-| Input             | Comments                                                                                                                                                     | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                              |         |
-| Customer ID       | The unique identifier for the customer.                                                                                                                      |         |
-| Name on Account   | Customer bank account name.                                                                                                                                  |         |
-| Routing Number    | The customer bank routing number.                                                                                                                            |         |
-| Account Number    | The customer bank account number.                                                                                                                            |         |
-| Agreed with TOS   | When true, indicates agreement with the BILL Payment Terms Of Service.                                                                                       | true    |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createcustomerbankaccount for more information. |         |
+| Input             | Comments                                                                                                                                                                                       | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                                |         |
+| Customer ID       | The unique identifier for the customer.                                                                                                                                                        |         |
+| Name on Account   | Customer bank account name.                                                                                                                                                                    |         |
+| Routing Number    | The customer bank routing number.                                                                                                                                                              |         |
+| Account Number    | The customer bank account number.                                                                                                                                                              |         |
+| Agreed with TOS   | When true, indicates agreement with the BILL Payment Terms Of Service.                                                                                                                         | true    |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createcustomerbankaccount) for more information. |         |
 
 ### Create Invoice {#createinvoice}
 
 Create an invoice object.
 
-| Input              | Comments                                                                                                                                         | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection         | The Bill.com connection to use.                                                                                                                  |         |
-| Customer ID        | The unique identifier for the customer.                                                                                                          |         |
-| Invoice Number     | User-generated invoice number. This value can be your chosen number scheme or invoice due date.                                                  |         |
-| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.                                                         |         |
-| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                                                                             |         |
-| Invoice Line Items | An array of invoice line items.                                                                                                                  |         |
-| Additional Fields  | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createinvoice for more information. |         |
+| Input              | Comments                                                                                                                                                                           | Default |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Bill.com connection to use.                                                                                                                                                    |         |
+| Customer ID        | The unique identifier for the customer.                                                                                                                                            |         |
+| Invoice Number     | User-generated invoice number. This value can be a chosen number scheme or the invoice due date.                                                                                   |         |
+| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.                                                                                           |         |
+| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                                                                                                               |         |
+| Invoice Line Items | An array of invoice line items.                                                                                                                                                    |         |
+| Additional Fields  | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createinvoice) for more information. |         |
 
 ### Create Vendor {#createvendor}
 
 Create a vendor object.
 
-| Input             | Comments                                                                                                                                        | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                 |         |
-| Vendor Name       | Unique vendor name.                                                                                                                             |         |
-| Company Name      | Vendor organization full name.                                                                                                                  |         |
-| Email             | Vendor email address.                                                                                                                           |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createvendor for more information. |         |
+| Input             | Comments                                                                                                                                                                          | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                   |         |
+| Vendor Name       | Unique vendor name.                                                                                                                                                               |         |
+| Company Name      | Vendor organization full name.                                                                                                                                                    |         |
+| Email             | Vendor email address.                                                                                                                                                             |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createvendor) for more information. |         |
 
 ### Create Vendor Bank Account {#createvendorbankaccount}
 
 Create a vendor bank account object.
 
-| Input             | Comments                                                                                                                                                   | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                            |         |
-| MFA ID            | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                           |         |
-| Device ID         | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                |         |
-| Vendor ID         | The unique identifier for the vendor.                                                                                                                      |         |
-| Account Number    | The vendor bank account number.                                                                                                                            |         |
-| Routing Number    | The vendor bank routing number.                                                                                                                            |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/createvendorbankaccount for more information. |         |
+| Input             | Comments                                                                                                                                                                                     | Default |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                              |         |
+| MFA ID            | The unique identifier for the MFA session. Retrieved from the 'Authenticate MFA session' action.                                                                                             |         |
+| Device ID         | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.                                                                                                  |         |
+| Vendor ID         | The unique identifier for the vendor.                                                                                                                                                        |         |
+| Account Number    | The vendor bank account number.                                                                                                                                                              |         |
+| Routing Number    | The vendor bank routing number.                                                                                                                                                              |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/createvendorbankaccount) for more information. |         |
 
 ### Delete Bill {#deletebill}
 
@@ -285,14 +285,13 @@ Delete a vendor bank account object.
 | Device ID              | The unique identifier for the device. Retrieved from the 'Authenticate MFA session' action.      |         |
 | Vendor Bank Account ID | ID of the vendor bank account.                                                                   |         |
 
-### Generate an MFA Challenge ID {#generatemfachallengeid}
+### Generate MFA Challenge ID {#generatemfachallengeid}
 
-Use this action to create a trusted MFA session.
+Create a trusted MFA session. Secondary (backup) phone MFA is no longer supported.
 
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Connection | The Bill.com connection to use.                   |         |
-| Use backup | When true, uses the backup mobile device for MFA. | false   |
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Bill.com connection to use. |         |
 
 ### Get Bill {#getbill}
 
@@ -452,51 +451,51 @@ Send raw HTTP request to Bill.
 
 Update a bill object.
 
-| Input                          | Comments                                                                                                                                      | Default |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The Bill.com connection to use.                                                                                                               |         |
-| Bill ID                        | The unique identifier for the bill.                                                                                                           |         |
-| Vendor ID                      | The unique identifier for the vendor.                                                                                                         |         |
-| Invoice Number                 | User-generated invoice number. This value can be your chosen number scheme or bill due date.                                                  |         |
-| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                           |         |
-| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                             |         |
-| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/updatebill) for more information.          |         |
-| Allow Duplicate Invoice Number | Allow duplicate invoice numbers.                                                                                                              |         |
-| Additional Fields              | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatebill for more information. |         |
+| Input                          | Comments                                                                                                                                                                        | Default |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                     | The Bill.com connection to use.                                                                                                                                                 |         |
+| Bill ID                        | The unique identifier for the bill.                                                                                                                                             |         |
+| Vendor ID                      | The unique identifier for the vendor.                                                                                                                                           |         |
+| Invoice Number                 | User-generated invoice number. This value can be a chosen number scheme or the bill due date.                                                                                   |         |
+| Invoice Date                   | Date when the bill is sent. This value is in the YYYY-MM-DD format.                                                                                                             |         |
+| Due Date                       | Date when the bill is due. The value is in the YYYY-MM-DD format.                                                                                                               |         |
+| Bill Line Items                | An array of bill line items. See [Bill.com API documentation](https://developer.bill.com/reference/updatebill) for more information.                                            |         |
+| Allow Duplicate Invoice Number | Allow duplicate invoice numbers.                                                                                                                                                |         |
+| Additional Fields              | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/updatebill) for more information. |         |
 
 ### Update Customer {#updatecustomer}
 
 Update a customer object.
 
-| Input             | Comments                                                                                                                                          | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                   |         |
-| Customer ID       | The unique identifier for the customer.                                                                                                           |         |
-| Customer Name     | The name of the customer.                                                                                                                         |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatecustomer for more information. |         |
+| Input             | Comments                                                                                                                                                                            | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                     |         |
+| Customer ID       | The unique identifier for the customer.                                                                                                                                             |         |
+| Customer Name     | The name of the customer.                                                                                                                                                           |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/updatecustomer) for more information. |         |
 
 ### Update Invoice {#updateinvoice}
 
 Update an invoice object.
 
-| Input              | Comments                                                                                        | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Bill.com connection to use.                                                                 |         |
-| Invoice ID         | The ID of the invoice.                                                                          |         |
-| Customer ID        | The unique identifier for the customer.                                                         |         |
-| Invoice Number     | User-generated invoice number. This value can be your chosen number scheme or invoice due date. |         |
-| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.        |         |
-| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                            |         |
-| Invoice Line Items | An array of invoice line items.                                                                 |         |
-| Additional Fields  | Additional fields that might not be covered by the standard inputs.                             |         |
+| Input              | Comments                                                                                         | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection         | The Bill.com connection to use.                                                                  |         |
+| Invoice ID         | The ID of the invoice.                                                                           |         |
+| Customer ID        | The unique identifier for the customer.                                                          |         |
+| Invoice Number     | User-generated invoice number. This value can be a chosen number scheme or the invoice due date. |         |
+| Invoice Date       | Date when the invoice is issued to the customer. This value is in the YYYY-MM-DD format.         |         |
+| Due Date           | Date when the invoice is due. The value is in the YYYY-MM-DD format.                             |         |
+| Invoice Line Items | An array of invoice line items.                                                                  |         |
+| Additional Fields  | Additional fields that might not be covered by the standard inputs.                              |         |
 
 ### Update Vendor {#updatevendor}
 
 Update a vendor object.
 
-| Input             | Comments                                                                                                                                        | Default |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Bill.com connection to use.                                                                                                                 |         |
-| Vendor ID         | The unique identifier for the vendor.                                                                                                           |         |
-| Vendor Name       | Unique vendor name.                                                                                                                             |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. See https://developer.bill.com/reference/updatevendor for more information. |         |
+| Input             | Comments                                                                                                                                                                          | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Bill.com connection to use.                                                                                                                                                   |         |
+| Vendor ID         | The unique identifier for the vendor.                                                                                                                                             |         |
+| Vendor Name       | Unique vendor name.                                                                                                                                                               |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. See the [Bill.com API documentation](https://developer.bill.com/reference/updatevendor) for more information. |         |

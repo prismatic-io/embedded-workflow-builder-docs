@@ -204,8 +204,9 @@ Submit a single metric data point to Datadog. For bulk submissions, use the Subm
 | Metric Name   | The name of the timeseries metric (e.g., system.load.1, custom.my_metric).                                                              |         |
 | Value         | The numeric value for the metric data point (64-bit float).                                                                             |         |
 | Timestamp     | Unix timestamp in seconds. Defaults to the current time if not provided. Must be within 10 minutes in the future or 1 hour in the past. |         |
-| Metric Type   | The type of metric. Gauge is the default if unspecified. Count and Rate types require an interval.                                      |         |
 | Tags          | Tags associated with the metric. Each tag is a string in "key:value" format.                                                            |         |
+| Metric Fields | Optional metric configuration and resource details.                                                                                     |         |
+| Metric Type   | The type of metric. Gauge is the default if unspecified. Count and Rate types require an interval.                                      |         |
 | Unit          | The unit of the metric value (e.g., byte, second, request).                                                                             |         |
 | Interval      | The interval in seconds. Required if the metric type is rate or count.                                                                  |         |
 | Resource Name | The name of the resource to associate with this metric (e.g., hostname).                                                                |         |

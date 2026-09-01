@@ -8,6 +8,10 @@ description: Manage records in an Odoo database.
 [Odoo](https://www.odoo.com/) is a suite of open source business apps that include CRM, eCommerce, accounting, inventory, project management, etc.
 This component allows querying and managing records in an Odoo database.
 
+## API Documentation
+
+This component was built using the [Odoo External API Documentation](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html), currently utilizing the JSON-2 API on Odoo 19.0.
+
 ## Connections
 
 ### API Key {#odooapikey}
@@ -89,14 +93,14 @@ Create a connection of type **Basic Authentication (Deprecated)** and configure 
 
 ### New and Updated Records {#pollchangestrigger}
 
-Polls an Odoo model for records whose `write_date` is at or after the last poll. Records whose `create_date` is also after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+Polls an Odoo model on a configured schedule for records whose `write_date` is at or after the last poll. Records whose `create_date` is also after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
 
-| Input                | Comments                                                                                                                             | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection           | The Odoo connection to use.                                                                                                          |         |
-| Model                | The type of record to query. Use the 'List Models' action for a list of available models.                                            |         |
-| Show New Records     | When enabled, records whose `create_date` falls after the last poll will be emitted on the `created` branch.                         | true    |
-| Show Updated Records | When enabled, records whose `write_date` falls after the last poll but were created earlier will be emitted on the `updated` branch. | true    |
+| Input                | Comments                                                                                                                      | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Odoo connection to use.                                                                                                   |         |
+| Model                | The type of record to query. Use the 'List Models' action for a list of available models.                                     |         |
+| Show New Records     | When true, records whose `create_date` falls after the last poll are emitted in the `created` bucket.                         | true    |
+| Show Updated Records | When true, records whose `write_date` falls after the last poll but were created earlier are emitted in the `updated` bucket. | true    |
 
 ## Actions
 
@@ -153,26 +157,28 @@ List all fields for a given model.
 
 Fetch a list of models installed in the Odoo database.
 
-| Input        | Comments                                                                                                                                                                      | Default |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Odoo connection to use.                                                                                                                                                   |         |
-| Fetch All    | When true, automatically fetches all pages of records. Overrides the Limit and Offset inputs.                                                                                 | false   |
-| Limit        | The maximum number of records to return per page. See [Pagination](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html#pagination).                 |         |
-| Offset       | The number of records to skip before starting the page (0-based). See [Pagination](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html#pagination). |         |
-| Name Search  | Filter results to entries whose name contains this case-insensitive search term.                                                                                              |         |
-| Model Search | Filter results to entries whose technical model identifier contains this case-insensitive search term.                                                                        |         |
+| Input        | Comments                                                                                               | Default |
+| ------------ | ------------------------------------------------------------------------------------------------------ | ------- |
+| Connection   | The Odoo connection to use.                                                                            |         |
+| Fetch All    | When true, automatically fetches all pages of records. Overrides the Limit and Offset inputs.          | false   |
+| Pagination   | Page size and starting offset for paging through results.                                              |         |
+| Limit        | The maximum number of records to return per page.                                                      |         |
+| Offset       | The number of records to skip before starting the page (0-based).                                      |         |
+| Name Search  | Filter results to entries whose name contains this case-insensitive search term.                       |         |
+| Model Search | Filter results to entries whose technical model identifier contains this case-insensitive search term. |         |
 
 ### List Records {#listrecords}
 
 Fetch a list of records of a given type.
 
-| Input      | Comments                                                                                                                                                                      | Default |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Odoo connection to use.                                                                                                                                                   |         |
-| Model      | The type of record to query. Use the 'List Models' action for a list of available models.                                                                                     |         |
-| Fetch All  | When true, automatically fetches all pages of records. Overrides the Limit and Offset inputs.                                                                                 | false   |
-| Limit      | The maximum number of records to return per page. See [Pagination](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html#pagination).                 |         |
-| Offset     | The number of records to skip before starting the page (0-based). See [Pagination](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html#pagination). |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Odoo connection to use.                                                                   |         |
+| Model      | The type of record to query. Use the 'List Models' action for a list of available models.     |         |
+| Fetch All  | When true, automatically fetches all pages of records. Overrides the Limit and Offset inputs. | false   |
+| Pagination | Page size and starting offset for paging through results.                                     |         |
+| Limit      | The maximum number of records to return per page.                                             |         |
+| Offset     | The number of records to skip before starting the page (0-based).                             |         |
 
 ### Raw Request (API Key) {#rawhttprequest}
 

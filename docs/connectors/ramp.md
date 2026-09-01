@@ -19,20 +19,28 @@ This component was built using the [Ramp REST API V1](https://docs.ramp.com/deve
 
 Authenticate with Ramp using OAuth 2.0 authorization code flow.
 
-Create an OAuth application:
+#### Prerequisites
 
-Registering your application in the Ramp developer dashboard is the first step of building an integration based on Ramp API:
+A Ramp account with developer or admin access is required to register an application.
+
+#### Setup Steps
+
+Registering an application in the Ramp developer dashboard is the first step of building an integration based on Ramp API:
 
 1. From the [Ramp developer](https://app.ramp.com/settings/ramp-developer) settings page, click on **Create new app** to register a new application.
-2. Now you have registered a new application. Click into it and configure the following parameters:
-   1. Client ID and client secret: Credentials for your application; store securely.
+2. Once the application is registered, click into it and configure the following parameters:
+   1. Client ID and client secret: Credentials for the application; store securely.
    2. App name and description
    3. Grant types: A list of grant types that the application may use to get access token. See [authorization guide](https://docs.ramp.com/developer-api/v1/authorization) for more information.
    4. Scopes: Defines [scopes](https://docs.ramp.com/developer-api/v1/authorization/scopes) that may be granted to access token.
-   5. Redirect URIs: Enter`https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+   5. Redirect URIs: Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`.
+
+#### Configure the Connection
 
 Supply the following values to the **OAuth 2.0** connection:
 
+- **Authorize URL**: Select the target environment, **Production** or **Sandbox**, for the OAuth 2.0 authorization endpoint
+- **Token URL**: Select the target environment, **Production** or **Sandbox**, for the OAuth 2.0 token endpoint. This must match the environment selected for **Authorize URL**
 - **Client ID**
 - **Client Secret**
 - **Scopes**
@@ -73,7 +81,7 @@ Create a custom accounting field
 | Custom Accounting Field ID | The ID of the custom accounting field to create                               |         |
 | Name                       | The name of the custom accounting field to create                             |         |
 | Input Type                 | The input type could be SINGLE_CHOICE, BOOLEAN or FREE_FORM_TEXT              |         |
-| Is Splitable               | If set to True, the accounting field can be used to annotate split line items |         |
+| Is Splittable              | If set to True, the accounting field can be used to annotate split line items |         |
 | Connection                 |                                                                               |         |
 
 ### Create Department {#createdepartment}
@@ -89,11 +97,11 @@ Create a new department
 
 Create a new location
 
-| Input      | Comments                                    | Default |
-| ---------- | ------------------------------------------- | ------- |
-| Name       | The name of the location                    |         |
-| Entity ID  | The ID of the entity to create the location |         |
-| Connection |                                             |         |
+| Input      | Comments                                                     | Default |
+| ---------- | ------------------------------------------------------------ | ------- |
+| Name       | The name of the location                                     |         |
+| Entity ID  | The ID of the business entity to associate with the location |         |
+| Connection |                                                              |         |
 
 ### Delete Custom Accounting Field {#deletecustomaccountingfield}
 
@@ -108,10 +116,10 @@ Delete a custom accounting field
 
 Delete a custom accounting field option
 
-| Input                             | Comments                                              | Default |
-| --------------------------------- | ----------------------------------------------------- | ------- |
-| Custom Accounting Field Option ID | The ID of the custom accouting field option to delete |         |
-| Connection                        |                                                       |         |
+| Input                             | Comments                                               | Default |
+| --------------------------------- | ------------------------------------------------------ | ------- |
+| Custom Accounting Field Option ID | The ID of the custom accounting field option to delete |         |
+| Connection                        |                                                        |         |
 
 ### Delete General Ledger Account {#deletegeneralledgeraccount}
 
@@ -225,133 +233,143 @@ Retrieve a vendor by ID
 
 Retrieve a list of all bills
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Business Entities {#listbusinessentities}
 
 Retrieve a list of all business entities
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
-
-### List Custom Accounting Field {#listcustomaccountingfield}
-
-List custom accounting fields
-
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Custom Accounting Field Options {#listcustomaccountingfieldoptions}
 
 List options for a given custom accounting field
 
-| Input                      | Comments                                                                                     | Default |
-| -------------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Custom Accounting Field ID | The ID of the custom accounting field to list options for                                    |         |
-| Connection                 |                                                                                              |         |
-| Fetch All                  | If true, will fetch all results                                                              | false   |
-| Start                      | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size                  | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params        | Custom query parameters to be included in the request                                        |         |
+| Input                      | Comments                                                                                         | Default |
+| -------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Custom Accounting Field ID | The ID of the custom accounting field to list options for                                        |         |
+| Connection                 |                                                                                                  |         |
+| Fetch All                  | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination                 | Page size and starting point for paginated results.                                              |         |
+| Start                      | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size                  | Number of results to retrieve per page                                                           |         |
+| Custom Query Params        | Custom query parameters to be included in the request                                            |         |
+
+### List Custom Accounting Fields {#listcustomaccountingfield}
+
+List custom accounting fields
+
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Departments {#listdepartments}
 
 Retrieve a list of all Departments
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List General Ledger Accounts {#listgeneralledgeraccounts}
 
 Retrieve a list of all general ledger accounts
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Locations {#listlocations}
 
 Retrieve a list of all locations
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Reimbursements {#listreimbursements}
 
 Retrieve a list of all reimbursements
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Transactions {#listtransactions}
 
 Retrieve a list of all transactions
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### List Vendors {#listvendors}
 
 Retrieve a list of all vendors
 
-| Input               | Comments                                                                                     | Default |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                              |         |
-| Fetch All           | If true, will fetch all results                                                              | false   |
-| Start               | The starting point for the list of results. Is fetchAll is true, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page. Default is 50                                        | 50      |
-| Custom Query Params | Custom query parameters to be included in the request                                        |         |
+| Input               | Comments                                                                                         | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| Connection          |                                                                                                  |         |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
+| Pagination          | Page size and starting point for paginated results.                                              |         |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
+| Page Size           | Number of results to retrieve per page                                                           |         |
+| Custom Query Params | Custom query parameters to be included in the request                                            |         |
 
 ### Post Sync Status {#postsyncstatus}
 
-This endpoint allows customers to notify Ramp of a list of sync results
+Notify Ramp of a list of accounting sync results
 
 | Input            | Comments                                                                                                                                                                                                        | Default |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Idempotency Key  | An idempotency key is a unique value generated by the client which the server uses to recognize subsequent retries of the same request. To avoid collisions, we encourage clients to use random generated UUIDs |         |
 | Sync Type        | The type of object to sync                                                                                                                                                                                      |         |
 | Failed Syncs     | A list of objects that failed to be synced                                                                                                                                                                      |         |
-| Successful Syncs | A list of objects that failed to be synced                                                                                                                                                                      |         |
+| Successful Syncs | A list of objects that were successfully synced                                                                                                                                                                 |         |
 | Connection       |                                                                                                                                                                                                                 |         |
 
 ### Raw Request {#rawrequest}
@@ -384,7 +402,7 @@ Update an existing custom accounting field
 | -------------------------- | ----------------------------------------------------------------------------- | ------- |
 | Custom Accounting Field ID | The ID of the custom accounting field to update                               |         |
 | Name                       | The name of the custom accounting field                                       |         |
-| Is Splitable               | If set to True, the accounting field can be used to annotate split line items |         |
+| Is Splittable              | If set to True, the accounting field can be used to annotate split line items |         |
 | Connection                 |                                                                               |         |
 
 ### Update Custom Accounting Field Option {#updatecustomaccountingfieldoption}
@@ -412,14 +430,14 @@ Update a department by ID
 
 Update an existing general ledger account
 
-| Input                     | Comments                                                                                                                                                                                                                             | Default |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| General Ledger Account ID | The ID of the general ledger account to update                                                                                                                                                                                       |         |
-| Code                      | The code of the general ledger account; you could provide an empty string if you want to reset the remote code                                                                                                                       |         |
-| Name                      | Name of the general ledger account                                                                                                                                                                                                   |         |
-| Reactivate                | Reactivate a deleted general ledger account                                                                                                                                                                                          |         |
-| Subsidiaries              | IDs of a list of subsidiaries which a general ledger account can be used with. The Ramp-assigned IDs should be used here. you could provide an empty list if you want to reset the subsidiaries list for this general ledger account |         |
-| Connection                |                                                                                                                                                                                                                                      |         |
+| Input                     | Comments                                                                                                                                                                                                        | Default |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| General Ledger Account ID | The ID of the general ledger account to update                                                                                                                                                                  |         |
+| Code                      | The code of the general ledger account; provide an empty string to reset the remote code.                                                                                                                       |         |
+| Name                      | Name of the general ledger account                                                                                                                                                                              |         |
+| Reactivate                | Reactivate a deleted general ledger account                                                                                                                                                                     |         |
+| Subsidiaries              | IDs of a list of subsidiaries which a general ledger account can be used with. The Ramp-assigned IDs should be used here. Provide an empty list to reset the subsidiaries list for this general ledger account. |         |
+| Connection                |                                                                                                                                                                                                                 |         |
 
 ### Update Location {#updatelocation}
 
@@ -436,14 +454,14 @@ Update an existing location
 
 Update an existing vendor
 
-| Input        | Comments                                                                                                                                                            | Default |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Vendor ID    | The ID of the vendor to update                                                                                                                                      |         |
-| Code         | Code of the vendor; you could provide an empty string to reset the remote code                                                                                      |         |
-| Name         | Name of a vendor                                                                                                                                                    |         |
-| Reactivate   | Reactivate a deleted vendor                                                                                                                                         |         |
-| Subsidiaries | IDs of a list of subsidiaries associated with the vendor. The Ramp-assigned IDs should be used here. You could provide an empty list to reset the subsidiaries list |         |
-| Connection   |                                                                                                                                                                     |         |
+| Input        | Comments                                                                                                                                                   | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Vendor ID    | The ID of the vendor to update                                                                                                                             |         |
+| Code         | Code of the vendor; provide an empty string to reset the remote code.                                                                                      |         |
+| Name         | Name of a vendor                                                                                                                                           |         |
+| Reactivate   | Reactivate a deleted vendor                                                                                                                                |         |
+| Subsidiaries | IDs of a list of subsidiaries associated with the vendor. The Ramp-assigned IDs should be used here. Provide an empty list to reset the subsidiaries list. |         |
+| Connection   |                                                                                                                                                            |         |
 
 ### Upload Custom Accounting Field Option {#uploadcustomaccountingfieldoption}
 

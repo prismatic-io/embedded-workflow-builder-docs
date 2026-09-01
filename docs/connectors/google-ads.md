@@ -5,11 +5,11 @@ description: Manage campaigns, conversions, customers, and local services in Goo
 ---
 
 ![Google Ads](./assets/google-ads.png#connector-icon)
-[Google Ads](https://ads.google.com/) is an online advertising platform that allows businesses to create and manage ad campaigns across Google Search, YouTube, and partner websites. This component allows managing campaigns, uploading conversions, handling customer accounts, and working with Local Services ads in Google Ads.
+[Google Ads](https://business.google.com/us/google-ads/) is an online advertising platform that allows businesses to create and manage ad campaigns across Google Search, YouTube, and partner websites. This component allows managing campaigns, uploading conversions, handling customer accounts, and working with Local Services ads in Google Ads.
 
 ## API Documentation
 
-This component was built using the [Google Ads API](https://developers.google.com/google-ads/api/docs/get-started/introduction), currently utilizing v23 by default. Older versions (v21, v22) are supported by specifying the API Version in the connection.
+This component was built using the [Google Ads API](https://developers.google.com/google-ads/api/docs/get-started/introduction), currently utilizing v25 by default. Every version Google still supports (v22 through v25) can be selected by specifying the API Version in the connection.
 
 ## EU Political Advertising Self-Declaration (v22+)
 
@@ -40,7 +40,7 @@ This connection uses OAuth 2.0 to connect to the Google [Data Manager API](https
 - A Google Ads account that owns the conversion actions to ingest into
 - The numeric **Customer ID** of the Google Ads account that will receive the offline conversions (configured per-action, not on the connection)
 
-#### Configure Google Cloud Project
+#### Setup Steps
 
 1. Sign in to the [Google Cloud Console](https://console.cloud.google.com/) and select or create a project.
 1. Select **APIs & Services** -> **Enabled APIs & services** from the left hand menu.
@@ -62,6 +62,8 @@ This connection uses OAuth 2.0 to connect to the Google [Data Manager API](https
 
 #### Configure the Connection
 
+Create a connection of type **Data Manager OAuth 2.0** and provide the following values:
+
 - **Client ID**: From the Google Cloud Console OAuth client credentials
 - **Client Secret**: From the Google Cloud Console OAuth client credentials
 - **API Version**: The Google Data Manager API version to use. Defaults to `v1`. Refer to the [Data Manager API reference](https://developers.google.com/data-manager/api/reference/rest) for the latest version.
@@ -80,7 +82,7 @@ The component supports the following Google Data Manager API versions through th
 | ------- | --------------------- |
 | **v1**  | Recommended (default) |
 
-Refer to the official [Data Manager API release notes](https://developers.google.com/data-manager/api/release-notes) for the latest version information.
+Refer to the official [Data Manager API release notes](https://ads-developers.googleblog.com/search/label/data_manager_api) for the latest version information.
 
 #### App Verification
 
@@ -136,7 +138,7 @@ This component uses OAuth 2.0 to connect to the Google Ads API.
 - The Customer ID of the Ads Manager account (the hyphenated number in the top-left corner of the Ads app) must be noted
 - A [Google Developer account](https://console.cloud.google.com/) is required
 
-#### Developer Token
+#### Setup Steps
 
 The Developer Token is obtained from a Google Ads Manager account:
 
@@ -172,26 +174,45 @@ The Developer Token is obtained from a Google Ads Manager account:
 
 #### Configure the Connection
 
+Create a connection of type **OAuth 2.0** and provide the following values:
+
 - **Client ID**: From the Google Cloud Console OAuth client credentials
 - **Client Secret**: From the Google Cloud Console OAuth client credentials
 - **Developer Token**: From the Google Ads API Center
 - **API Version**: The Google Ads API version to use. Refer to the [Google Ads API release notes](https://developers.google.com/google-ads/api/docs/release-notes) for the latest version.
+- **Scopes**: Defaults to `https://www.googleapis.com/auth/adwords`. Refer to [Google's OAuth 2.0 scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes) for additional scope information.
 
 #### Supported API Versions
 
-The component supports multiple API versions through the **API Version** connection field:
+The component supports the following Google Ads API versions through the **API Version** connection field. Versions below the minimum are automatically upgraded to the minimum supported version.
 
-| Version | Status                | Tentative Sunset  |
-| ------- | --------------------- | ----------------- |
-| **v23** | Recommended (default) | January 2027      |
-| **v22** | Stable                | October 2026      |
-| **v21** | Stable                | August 2026       |
-| **v20** | Stable                | June 2026         |
-| ~~v19~~ | Sunset                | February 11, 2026 |
+The minimum tracks Google's own sunset schedule, so every version Google still supports can be selected here.
 
-Sunset dates are tentative and subject to change. See the official [deprecation and sunset schedule](https://developers.google.com/google-ads/api/docs/sunset-dates) for the latest information.
+| Version         | Status in this component             | Google Sunset                                                  |
+| --------------- | ------------------------------------ | -------------------------------------------------------------- |
+| **v25**         | Recommended (default)                | August 2027                                                    |
+| **v24**         | Supported                            | May 2027                                                       |
+| **v23**         | Supported                            | February 2027                                                  |
+| **v22**         | Supported (minimum)                  | October 2026 (tentative)                                       |
+| v21 and earlier | Not selectable: auto-upgraded to v22 | v21: August 2026 (tentative) · v20 and earlier: already sunset |
+
+Because v22 is the minimum, the EU Political Advertising self-declaration requirement (v22 and later) applies to every version this component can use.
+
+Google publishes nearer-term sunsets as tentative and firms them up closer to the date, so treat these as subject to change. v22 in particular retires in October 2026. Minor releases (for example v25.1) do not need to be selected here; Google updates the major-version endpoint automatically. See the official [deprecation and sunset schedule](https://developers.google.com/google-ads/api/docs/sunset-dates) for the latest information.
 
 After entering the credentials, authorize the connection by signing in with the Google account used to create the Developer Token and OAuth credentials.
+
+#### Passkey Requirement
+
+Beginning **August 5, 2026**, Google requires a passkey to authorize new Google Ads API access. Passwords alone and 2-factor methods such as authenticator app codes or SMS codes are no longer accepted for this step.
+
+What this means when setting up a connection:
+
+- **Existing connections keep working.** Refresh tokens issued before this change continue to function, and no reauthorization is prompted.
+- **New authorizations require a passkey.** Anyone authorizing the connection for the first time is prompted to create one if their account does not already have it.
+- **Plan for a delay.** A newly created passkey may take up to **7 days** to become trusted and usable. Create the passkey in advance of configuring the connection to avoid being blocked mid-setup.
+
+To create a passkey, visit [Google's passkeys page](https://www.google.com/account/about/passkeys/), then follow the prompts for the device being used. Full details are in [Google's announcement](https://ads-developers.googleblog.com/2026/07/passkey-authentication-requirement-for.html).
 
 #### App Verification
 
@@ -225,13 +246,13 @@ Refer to [Google's OAuth consent screen documentation](https://support.google.co
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input           | Comments                                                                                                                                                                                                                                                                    | Default                                 |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Scopes          | Space-separated OAuth 2.0 permission scopes for the Google Ads and Data Manager APIs. See [OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes).                                                                                     | https://www.googleapis.com/auth/adwords |
-| Client ID       | The Client ID for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                                |                                         |
-| Client Secret   | The Client Secret for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                            |                                         |
-| Developer Token | The Developer Token for the Google Ads Manager account. Obtain from the [Google Ads API Center](https://ads.google.com/aw/apicenter).                                                                                                                                       |                                         |
-| API Version     | The version of the Google Ads API to use. Defaults to v23. Older versions (v21, v22) are supported by specifying the version explicitly. Note: v20 sunsets in June 2026. See [API versions documentation](https://developers.google.com/google-ads/api/docs/release-notes). | v23                                     |
+| Input           | Comments                                                                                                                                                                                                                                                                                                                                            | Default                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Scopes          | Space-separated OAuth 2.0 permission scopes for the Google Ads and Data Manager APIs. See [OAuth scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes).                                                                                                                                                             | https://www.googleapis.com/auth/adwords |
+| Client ID       | The Client ID for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                                                                                                        |                                         |
+| Client Secret   | The Client Secret for the Google Ads API application. Obtain from the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).                                                                                                                                                                                                    |                                         |
+| Developer Token | The Developer Token for the Google Ads Manager account. Obtain from the [Google Ads API Center](https://ads.google.com/aw/apicenter).                                                                                                                                                                                                               |                                         |
+| API Version     | The version of the Google Ads API to use. Defaults to v25. Any version from v22 through v25 can be set explicitly; anything below v22 has already been sunset by Google and is automatically upgraded to v22. Note: v22 sunsets in October 2026. See [API versions documentation](https://developers.google.com/google-ads/api/docs/release-notes). | v25                                     |
 
 ## Triggers
 
@@ -295,15 +316,16 @@ Create an invitation to link a client account to a manager account.
 
 ### Get Account Reports {#accountreports}
 
-Retrieve account reports showing performance and metrics for Local Services accounts linked to a Manager account.
+Retrieves account reports showing performance and metrics for Local Services accounts linked to a Manager account.
 
 | Input               | Comments                                                                                                                                                                                                                                                                                                                                                 | Default |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                        |         |
 | Manager Customer ID | The unique identifier for the Google Ads Manager account. Accepts hyphenated or number forms. When used in conjunction with a sub account as the customer ID, this value is used as the 'login-customer-id' header for the HTTP request. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid). |         |
-| Customer IDs        | The Google Ads customer IDs to filter the Local Services report. Leave empty to include all accessible customers.                                                                                                                                                                                                                                        |         |
+| Pagination          | Page size and cursor controls for the result set.                                                                                                                                                                                                                                                                                                        |         |
 | Page Size           | The maximum number of results to return per page.                                                                                                                                                                                                                                                                                                        | 1000    |
 | Page Token          | The pagination cursor from a previous request. Returned in previous page responses.                                                                                                                                                                                                                                                                      |         |
+| Customer IDs        | The Google Ads customer IDs to filter the Local Services report. Leave empty to include all accessible customers.                                                                                                                                                                                                                                        |         |
 | Start Date          | The start date of the date range, inclusive. Format: MM-DD-YYYY.                                                                                                                                                                                                                                                                                         |         |
 | End Date            | The end date of the date range, inclusive. Format: MM-DD-YYYY.                                                                                                                                                                                                                                                                                           |         |
 
@@ -331,15 +353,16 @@ Retrieve Customer data for a customer account.
 
 ### Get Detailed Lead Reports {#detailedleadreports}
 
-Retrieve detailed lead reports providing an in-depth view of leads for Local Services accounts linked to a Manager account.
+Retrieves detailed lead reports providing an in-depth view of leads for Local Services accounts linked to a Manager account.
 
 | Input               | Comments                                                                                                                                                                                                                                                                                                                                                 | Default |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                        |         |
 | Manager Customer ID | The unique identifier for the Google Ads Manager account. Accepts hyphenated or number forms. When used in conjunction with a sub account as the customer ID, this value is used as the 'login-customer-id' header for the HTTP request. See [Customer ID documentation](https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid). |         |
-| Customer IDs        | The Google Ads customer IDs to filter the Local Services report. Leave empty to include all accessible customers.                                                                                                                                                                                                                                        |         |
+| Pagination          | Page size and cursor controls for the result set.                                                                                                                                                                                                                                                                                                        |         |
 | Page Size           | The maximum number of results to return per page.                                                                                                                                                                                                                                                                                                        | 1000    |
 | Page Token          | The pagination cursor from a previous request. Returned in previous page responses.                                                                                                                                                                                                                                                                      |         |
+| Customer IDs        | The Google Ads customer IDs to filter the Local Services report. Leave empty to include all accessible customers.                                                                                                                                                                                                                                        |         |
 | Start Date          | The start date of the date range, inclusive. Format: MM-DD-YYYY.                                                                                                                                                                                                                                                                                         |         |
 | End Date            | The end date of the date range, inclusive. Format: MM-DD-YYYY.                                                                                                                                                                                                                                                                                           |         |
 
@@ -357,7 +380,7 @@ Import offline conversion events into Google Ads using the Data Manager API.
 
 ### Invite User {#inviteuser}
 
-Invite a user by email to a customer.
+Invites a user by email to a customer.
 
 | Input         | Comments                                                                                                                                                                                                     | Default |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -368,7 +391,7 @@ Invite a user by email to a customer.
 
 ### List Accessible Customers {#listaccessiblecustomers}
 
-Get a list of customers accessible to the logged in user.
+Gets a list of customers accessible to the authenticated user.
 
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
@@ -376,7 +399,7 @@ Get a list of customers accessible to the logged in user.
 
 ### List Customers by Manager {#listcustomers}
 
-List all customers under a manager account.
+Lists all customers under a manager account.
 
 | Input               | Comments                                                                                                                                                                                                                                                                                                                                                 | Default |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -413,29 +436,29 @@ Creates, updates, or removes campaign criteria as well as local services campaig
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Google Ads.
+Sends a raw HTTP request to the Google Ads API.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                          | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
-| URL                     | Input the path only (/v23/customers:listAccessibleCustomers), The base URL is already included (https://googleads.googleapis.com). For example, to connect to https://googleads.googleapis.com/v23/customers:listAccessibleCustomers, only /v23/customers:listAccessibleCustomers is entered in this field. Note: If using the Raw Request action, you must specify the API version in the path (e.g., /v23/) to override the connection default. | /v23/   |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                                                                                           |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                                                                                         |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                              |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                  |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                                                                                            |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                                                                               |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                                                                                       |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                                                                                          | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                                                                               |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                                                                                               | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                                                                                  | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                                                                                               | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                                                                                                                     | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                             | Default |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Google Ads connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
+| URL                     | Input the path only (/v25/customers:listAccessibleCustomers), The base URL is already included (https://googleads.googleapis.com). For example, to connect to https://googleads.googleapis.com/v25/customers:listAccessibleCustomers, only /v25/customers:listAccessibleCustomers is entered in this field. Note: When using the Raw Request action, the API version must be specified in the path (e.g., /v25/) to override the connection default. | /v25/   |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                                                                                                                              |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                                                                                                                            |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                                                                                                                                     |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                                                                                                                               |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                                                                                                                                  |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                                                                                                                          |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                                                                                                                             | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                                                                                                                                  |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                                                                                                                                  | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                                                                                                                                     | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                                                                                                                                  | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                                                                                                                        | false   |
 
 ### Search Ads {#searchadslocalservices}
 
-Returns rows matching a GAQL query against Local Services resources.
+Returns rows matching a GAQL query against Google Ads resources.
 
 | Input                      | Comments                                                                                                                                                                                                                                                                                                                                                 | Default |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

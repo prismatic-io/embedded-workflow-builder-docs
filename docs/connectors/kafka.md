@@ -65,15 +65,19 @@ For production environments, use SCRAM-SHA-256 or SCRAM-SHA-512 with SSL/TLS ena
 Certificates must be in PEM format. If the certificates are in other formats (JKS, PKCS12), convert them to PEM before pasting into the connection configuration.
 :::
 
-| Input                    | Comments                                                                            | Default |
-| ------------------------ | ----------------------------------------------------------------------------------- | ------- |
-| Username                 | Username.                                                                           |         |
-| Password                 | Password.                                                                           |         |
-| Authentication Mechanism | Desired authorization method for passing username/password.                         |         |
-| Enable SSL/TLS           | Enable SSL/TLS for secure connections.                                              | false   |
-| CA Certificate           | Certificate Authority (CA) certificate in PEM format. Required for SSL connections. |         |
-| Client Certificate       | Client certificate in PEM format (if required by the Kafka cluster).                |         |
-| Client Key               | Client private key in PEM format (if required by the Kafka cluster).                |         |
+| Input                       | Comments                                                                                  | Default |
+| --------------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| Username                    | Username.                                                                                 |         |
+| Password                    | Password.                                                                                 |         |
+| Authentication Mechanism    | Desired authorization method for passing username/password.                               |         |
+| Enable SSL/TLS              | Enable SSL/TLS for secure connections.                                                    | false   |
+| CA Certificate              | Certificate Authority (CA) certificate in PEM format. Required for SSL connections.       |         |
+| Client Certificate          | Client certificate in PEM format (if required by the Kafka cluster).                      |         |
+| Client Key                  | Client private key in PEM format (if required by the Kafka cluster).                      |         |
+| Enable Avro Deserialization | Enable Confluent Schema Registry Avro decoding for consumed messages.                     | false   |
+| Schema Registry URL         | The Confluent Schema Registry endpoint (e.g., https://psrc-xxxxx.region.confluent.cloud). |         |
+| Schema Registry API Key     | API key for authenticating with the Schema Registry.                                      |         |
+| Schema Registry API Secret  | API secret for authenticating with the Schema Registry.                                   |         |
 
 ## Triggers
 
@@ -81,18 +85,20 @@ Certificates must be in PEM format. If the certificates are in other formats (JK
 
 Consume messages from Kafka topics on a schedule.
 
-| Input                   | Comments                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                |         |
-| Client ID               | A Client Id is an optional identifier of a Kafka consumer that is passed to a Kafka broker with every request. |         |
-| Brokers                 | A Kafka broker allows consumers to fetch messages by topic, partition and offset.                              |         |
-| Consumer Group ID       | The consumer group ID to use for this consumer.                                                                |         |
-| Topics                  | List of topics to subscribe to.                                                                                |         |
-| Max Messages            | Maximum number of messages to consume per trigger execution.                                                   | 100     |
-| Session Timeout (ms)    | The timeout for consumer session in milliseconds.                                                              | 30000   |
-| Heartbeat Interval (ms) | The interval for sending heartbeats to the broker in milliseconds.                                             | 3000    |
-| From Beginning          | Whether to start consuming from the beginning of the topic.                                                    | false   |
-| Auto Commit             | Whether to automatically commit offsets after processing messages.                                             | true    |
+| Input                    | Comments                                                                                                                   | Default |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection               | The Kafka connection to use.                                                                                               |         |
+| Client ID                | A Client Id is an optional identifier of a Kafka consumer that is passed to a Kafka broker with every request.             |         |
+| Brokers                  | A Kafka broker allows consumers to fetch messages by topic, partition and offset.                                          |         |
+| Consumer Group ID        | The consumer group ID to use for this consumer.                                                                            |         |
+| Topics                   | List of topics to subscribe to.                                                                                            |         |
+| Max Messages             | Maximum number of messages to consume per trigger execution.                                                               | 100     |
+| Session Timing           | Session timeout and heartbeat interval settings in milliseconds.                                                           |         |
+| Session Timeout (ms)     | The timeout for consumer session in milliseconds.                                                                          | 30000   |
+| Heartbeat Interval (ms)  | The interval for sending heartbeats to the broker in milliseconds.                                                         | 3000    |
+| From Beginning           | When true, starts consuming from the beginning of the topic instead of the last committed offset.                          | false   |
+| Auto Commit              | When true, automatically commits offsets after processing messages.                                                        | true    |
+| Deserialize Keys as Avro | When true, also deserializes message keys from Avro format. Requires Avro deserialization to be enabled on the connection. | false   |
 
 ## Actions
 
@@ -102,7 +108,7 @@ Get the status and lag information for a consumer group. Specify topics for bett
 
 | Input             | Comments                                                                                                       | Default |
 | ----------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                |         |
+| Connection        | The Kafka connection to use.                                                                                   |         |
 | Client ID         | A Client Id is an optional identifier of a Kafka consumer that is passed to a Kafka broker with every request. |         |
 | Brokers           | A Kafka broker allows consumers to fetch messages by topic, partition and offset.                              |         |
 | Consumer Group ID | The consumer group ID to check status for.                                                                     |         |
@@ -114,18 +120,18 @@ List all topics in the Kafka cluster.
 
 | Input      | Comments                                                                                                       | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                |         |
+| Connection | The Kafka connection to use.                                                                                   |         |
 | Client ID  | A Client Id is an optional identifier of a Kafka consumer that is passed to a Kafka broker with every request. |         |
 | Brokers    | A Kafka broker allows consumers to fetch messages by topic, partition and offset.                              |         |
 
 ### Publish Messages {#publishmessages}
 
-Publish a message to an Apache Kafka topic.
+Publish one or more messages to an Apache Kafka topic.
 
 | Input      | Comments                                                                                                       | Default |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                |         |
+| Connection | The Kafka connection to use.                                                                                   |         |
 | Client ID  | A Client Id is an optional identifier of a Kafka consumer that is passed to a Kafka broker with every request. |         |
 | Brokers    | A Kafka broker allows consumers to fetch messages by topic, partition and offset.                              |         |
 | Topic      | A Topic is a category/feed name to which records are stored and published.                                     |         |
-| Messages   | Provide a string for a message to be sent to the Kafka topic.                                                  |         |
+| Messages   | The messages to publish. Each entry's value is sent as the message body; keys are not used.                    |         |

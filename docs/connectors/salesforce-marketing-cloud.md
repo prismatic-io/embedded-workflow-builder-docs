@@ -22,21 +22,30 @@ This connection uses the **OAuth 2.0 Authorization Code** flow to authenticate w
 
 #### Prerequisites
 
+- A Marketing Cloud Engagement account
+- The **Installed Package | Administer** permission (included in the Administrator and Marketing Cloud Administrator roles)
+
+#### Setup Steps
+
 1. In Marketing Cloud, navigate to **Setup > Apps > Installed Packages**
 2. Create a new package or select an existing one
 3. Add an **API Integration** component with the **Web App** integration type
-4. Note the **Client ID**, **Client Secret**, and the **Subdomain**
+4. Under **Redirect URIs**, enter the OAuth 2.0 callback URL: `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
+5. Assign the permission scopes the integration requires
+6. Click **Save**, then note the **Client ID**, **Client Secret**, and the **Subdomain**
+
+Refer to [Create an OAuth 2.0 API Integration in Enhanced Packages](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/create-integration-enhanced.html) for the full procedure and to [Access Token for Web and Public App Integrations](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/access-token-app.html) for details on the Authorization Code token exchange.
 
 #### Configure the Connection
 
 Create a connection of type **OAuth 2.0** and enter:
 
-| Field             | Description                                                                                                             |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details. |
-| **Client ID**     | The Client ID from the installed package's API Integration component.                                                   |
-| **Client Secret** | The Client Secret from the installed package's API Integration component.                                               |
-| **Scopes**        | Space-separated OAuth scopes. Include `offline` to enable persistent refresh tokens.                                    |
+| Field             | Description                                                                                                                                                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details.                                                                                                                                  |
+| **Client ID**     | The Client ID from the installed package's API Integration component.                                                                                                                                                                                    |
+| **Client Secret** | The Client Secret from the installed package's API Integration component.                                                                                                                                                                                |
+| **Scopes**        | Space-separated OAuth scopes. Include `offline` to enable persistent refresh tokens. Refer to [API Integration Permission Scopes](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html) for the full list. |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -56,21 +65,29 @@ This connection uses the **OAuth 2.0 Client Credentials** flow for server-to-ser
 
 #### Prerequisites
 
+- A Marketing Cloud Engagement account
+- The **Installed Package | Administer** permission (included in the Administrator and Marketing Cloud Administrator roles)
+
+#### Setup Steps
+
 1. In Marketing Cloud, navigate to **Setup > Apps > Installed Packages**
 2. Create a new package or select an existing one
 3. Add an **API Integration** component with the **Server-to-Server** integration type
-4. Note the **Client ID**, **Client Secret**, and the **Subdomain**
+4. Assign the permission scopes the integration requires
+5. Click **Save**, then note the **Client ID**, **Client Secret**, and the **Subdomain**
+
+Refer to [Create an OAuth 2.0 API Integration in Enhanced Packages](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/create-integration-enhanced.html) for the full procedure and to [Access Token for Server-to-Server Integrations](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/access-token-s2s.html) for details on the Client Credentials token exchange.
 
 #### Configure the Connection
 
 Create a connection of type **OAuth 2.0 Client Credentials** and enter:
 
-| Field             | Description                                                                                                             |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details. |
-| **Client ID**     | The Client ID from the installed package's API Integration component.                                                   |
-| **Client Secret** | The Client Secret from the installed package's API Integration component.                                               |
-| **Scopes**        | Space-separated OAuth scopes. Maximum 125 characters.                                                                   |
+| Field             | Description                                                                                                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Subdomain**     | The Marketing Cloud subdomain (28-character string starting with 'mc'). Found in the API Integration component details.                                                                                                   |
+| **Client ID**     | The Client ID from the installed package's API Integration component.                                                                                                                                                     |
+| **Client Secret** | The Client Secret from the installed package's API Integration component.                                                                                                                                                 |
+| **Scopes**        | Space-separated OAuth scopes. Maximum 125 characters. Refer to [API Integration Permission Scopes](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html) for the full list. |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -126,7 +143,7 @@ Create a new automation in Automation Studio.
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection             | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
 | Automation Name        | The display name for the automation.                                                                                              |         |
-| Automation Description | A description of the automation.                                                                                                  |         |
+| Automation Description | Details about what the automation does, shown in Automation Studio.                                                               |         |
 | Extra Body             | Additional properties to include in the automation request body (e.g., steps, schedule).                                          |         |
 
 ### Create Campaign {#createcampaign}
@@ -137,6 +154,7 @@ Create a new campaign in Marketing Cloud.
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
 | Campaign Name        | The display name for the campaign shown in Marketing Cloud.                                                                       |         |
+| Additional Fields    | Additional optional fields: includes Campaign Description, Campaign Code, Color, and Extra Body.                                  |         |
 | Campaign Description | Optional description providing details about the campaign's purpose and content.                                                  |         |
 | Campaign Code        | An optional campaign code for tracking.                                                                                           |         |
 | Color                | The display color for the campaign in the Marketing Cloud UI (hex format).                                                        |         |
@@ -150,7 +168,7 @@ Create a new Content Builder category (folder).
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection         | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
 | Category Name      | The display name for the Content Builder folder/category.                                                                         |         |
-| Parent Category ID | The ID of the parent category. Omit to create a top-level category.                                                               |         |
+| Parent Category ID | The ID of the parent Content Builder category the new category is created under.                                                  |         |
 
 ### Create Contact {#createcontact}
 
@@ -217,8 +235,8 @@ Create a new journey (interaction) in Marketing Cloud.
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection           | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
 | Journey Key          | The customer key as a GUID (UUID) to be used while referencing this journey.                                                      |         |
-| Journey Name         | The name of this journey.                                                                                                         |         |
-| Journey Description  | A description of this journey.                                                                                                    |         |
+| Journey Name         | The display name for the journey, shown in Journey Builder.                                                                       |         |
+| Journey Description  | Details about the journey's purpose, shown in Journey Builder.                                                                    |         |
 | Workflow API Version | The Journey Spec version to use for this journey. Possible values: 0.5, 1.0.                                                      | 1.0     |
 | Extra Body           | Additional properties to include in the request body.                                                                             |         |
 
@@ -462,8 +480,9 @@ List Content Builder assets with optional pagination.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List Automations {#listautomations}
 
@@ -473,8 +492,9 @@ List Automation Studio automations with optional pagination.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List Campaigns {#listcampaigns}
 
@@ -484,8 +504,9 @@ List campaigns with optional pagination.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List Categories {#listcategories}
 
@@ -495,8 +516,9 @@ List Content Builder categories (folders).
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List Data Extensions {#listdataextensions}
 
@@ -507,8 +529,9 @@ Retrieve a list of data extensions that match a search string, with optional pag
 | Connection    | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Search String | A string to search for in the name of the custom object.                                                                                                       |         |
 | Fetch All     | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size     | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination    | Page and page-size controls.                                                                                                                                   |         |
 | Page          | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size     | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List Email Definitions {#listemaildefinitions}
 
@@ -518,8 +541,9 @@ List transactional email send definitions with optional pagination.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List ENS Callbacks {#listcallbacks}
 
@@ -547,8 +571,9 @@ List journeys (interactions) with optional filtering.
 | Status      | Filter journeys by status.                                                                                                                                     |         |
 | Name Filter | Filter journeys by name (partial match).                                                                                                                       |         |
 | Fetch All   | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size   | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination  | Page and page-size controls.                                                                                                                                   |         |
 | Page        | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size   | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### List SMS Definitions {#listsmsdefinitions}
 
@@ -558,8 +583,9 @@ List transactional SMS send definitions with optional pagination.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                        | false   |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### Query Assets {#queryassets}
 
@@ -570,8 +596,9 @@ Search Content Builder assets using the query API with filters and sorting.
 | Connection | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                              |         |
 | Query      | A query filter object for searching assets. Uses the Content Builder query syntax.                                                                             |         |
 | Fields     | Comma-separated list of fields to include in the response. Reduces payload size.                                                                               |         |
-| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
+| Pagination | Page and page-size controls.                                                                                                                                   |         |
 | Page       | The page number to retrieve (starts at 1).                                                                                                                     |         |
+| Page Size  | The maximum number of results returned per page. The allowed maximum depends on the endpoint. A Page value must be provided for this parameter to take effect. |         |
 
 ### Raw Request {#rawrequest}
 
@@ -620,7 +647,7 @@ Send a transactional email to a single recipient using a send definition.
 | Input                 | Comments                                                                                                                          | Default |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Message Key           | The unique identifier of the email definition you want to send.                                                                   |         |
+| Message Key           | A unique identifier for this send request, used to track its delivery status. Must be unique per send.                            |         |
 | Definition Key        | The unique key identifying the transactional email definition.                                                                    |         |
 | Recipient Contact Key | The contact key (subscriber key) of the email recipient.                                                                          |         |
 | Recipient Email       | The email address to send to.                                                                                                     |         |
@@ -643,7 +670,7 @@ Send a transactional SMS to a single recipient using a send definition.
 | Input                 | Comments                                                                                                                          | Default |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Message Key           | A unique identifier that you can use to track the status of the message. The key can contain up to 100 characters.                |         |
+| Message Key           | A unique identifier used to track the status of the message. The key can contain up to 100 characters.                            |         |
 | Definition Key        | The unique key identifying the transactional SMS definition.                                                                      |         |
 | Recipient Contact Key | The contact key (subscriber key) of the SMS recipient.                                                                            |         |
 | Recipient Phone       | The phone number to send the SMS to, including country code (e.g., +15551234567).                                                 |         |
@@ -677,22 +704,22 @@ Update an existing Content Builder asset.
 
 Update an automation by ID. Use this to modify properties like name, description, or toggle isActive to pause/resume a scheduled automation.
 
-| Input         | Comments                                                                                                                          | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Automation ID | The unique identifier for the automation in Marketing Cloud.                                                                      |         |
-| Extra Body    | A JSON object of properties to update on the automation (e.g., name, description, isActive, steps, schedule).                     |         |
+| Input                 | Comments                                                                                                                          | Default |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
+| Automation ID         | The unique identifier for the automation in Marketing Cloud.                                                                      |         |
+| Automation Properties | A JSON object of properties to update on the automation (e.g., name, description, isActive, steps, schedule).                     |         |
 
 ### Update Category {#updatecategory}
 
-Update a Content Builder category (folder) by ID. Provide only the fields you want to change.
+Update a Content Builder category (folder) by ID. Provide only the fields to change.
 
 | Input              | Comments                                                                                                                          | Default |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection         | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
 | Category ID        | The unique identifier of the Content Builder category (folder).                                                                   |         |
 | Category Name      | The display name for the Content Builder folder/category.                                                                         |         |
-| Parent Category ID | The ID of the parent category. Omit to create a top-level category.                                                               |         |
+| Parent Category ID | The ID of the parent Content Builder category the new category is created under.                                                  |         |
 
 ### Update Contact {#updatecontact}
 
@@ -749,7 +776,7 @@ Update an existing journey (interaction). This operation requires the full journ
 | Journey ID           | The unique identifier of the journey (interaction).                                                                               |         |
 | Journey Key          | The customer key as a GUID (UUID) to be used while referencing this journey.                                                      |         |
 | Workflow API Version | The Journey Spec version to use for this journey. Possible values: 0.5, 1.0.                                                      | 1.0     |
-| Version              | The version of this journey.                                                                                                      |         |
+| Version              | The version number of the journey to update.                                                                                      |         |
 | Extra Body           | Additional properties to include in the request body.                                                                             |         |
 
 ### Update SMS Definition {#updatesmsdefinition}

@@ -10,7 +10,7 @@ Manage contacts, companies, deals, products, engagements, and custom objects in 
 
 ## API Documentation
 
-This component was built using the [HubSpot API Documentation](https://developers.hubspot.com/docs/api/overview) currently utilizing v3
+This component was built using the [HubSpot API Documentation](https://developers.hubspot.com/docs/api-reference/latest/overview) currently utilizing v3
 
 ## Connections
 
@@ -84,7 +84,7 @@ The CLI-based approach is recommended for new HubSpot OAuth integrations as it p
 
 - Enter the **Client ID** and **Client Secret** from the app's Auth page
 - For **Scopes**, choose from the available scopes based on integration needs
-  - Refer to [HubSpot OAuth documentation](https://developers.hubspot.com/docs/api/working-with-oauth) for scope details
+  - Refer to [HubSpot OAuth documentation](https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth) for scope details
 
 <details>
 <summary>Recommended Scopes</summary>
@@ -119,7 +119,7 @@ The following scopes provide comprehensive access to HubSpot CRM functionality t
 crm.objects.contacts.read crm.objects.contacts.write crm.objects.deals.read crm.objects.deals.write crm.objects.owners.read
 ```
 
-For a complete list of available scopes, refer to the [HubSpot OAuth scopes documentation](https://developers.hubspot.com/docs/api/oauth/scopes).
+For a complete list of available scopes, refer to the [HubSpot OAuth scopes documentation](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/scopes).
 
 </details>
 
@@ -263,27 +263,29 @@ Receive CRM event notifications from HubSpot. Automatically creates and manages 
 
 ### New and Updated Custom Records {#pollchangescustomobjectstrigger}
 
-Checks for new and updated records in a specified custom object type on a configured schedule.
+Retrieves existing and ongoing records for a specified HubSpot custom object type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                                | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Show New Records     | When true, includes new records in the results.                                                                                                                                                                                                         | true    |
-| Show Updated Records | When true, includes updated records in the results.                                                                                                                                                                                                     | true    |
-| Connection           | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                           |         |
-| Object Type          | The type of custom object to search for.                                                                                                                                                                                                                |         |
-| Search Properties    | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
+| Input                | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the visibility toggles.                                                                                                                                                                                                      |         |
+| Show New Records     | When true, includes new records in the results.                                                                                                                                                                                                                                                                                                                                                                                                                               | true    |
+| Show Updated Records | When true, includes updated records in the results.                                                                                                                                                                                                                                                                                                                                                                                                                           | true    |
+| Connection           | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Object Type          | The type of custom object to search for.                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
+| Search Properties    | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. On the polling triggers, `sorts` is ignored (they sort by the object's last-modified property ascending so polling can resume) and `filters`/`filterGroups` are combined with the recurrence's date window using AND. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected HubSpot object type on a configured schedule.
+Retrieves existing and ongoing records for a specified HubSpot object type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                                | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Show New Records     | When true, includes new records in the results.                                                                                                                                                                                                         | true    |
-| Show Updated Records | When true, includes updated records in the results.                                                                                                                                                                                                     | true    |
-| Connection           | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                           |         |
-| Search Endpoint      | The endpoint to search for objects or engagements. For Custom objects don't forget to fill the Object Type input.                                                                                                                                       |         |
-| Search Properties    | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
+| Input                | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the visibility toggles.                                                                                                                                                                                                      |         |
+| Show New Records     | When true, includes new records in the results.                                                                                                                                                                                                                                                                                                                                                                                                                               | true    |
+| Show Updated Records | When true, includes updated records in the results.                                                                                                                                                                                                                                                                                                                                                                                                                           | true    |
+| Connection           | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Search Endpoint      | The endpoint to search for objects or engagements. For Custom objects don't forget to fill the Object Type input.                                                                                                                                                                                                                                                                                                                                                             |         |
+| Search Properties    | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. On the polling triggers, `sorts` is ignored (they sort by the object's last-modified property ascending so polling can resume) and `filters`/`filterGroups` are combined with the recurrence's date window using AND. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
 
 ### Webhook {#webhook}
 
@@ -299,15 +301,15 @@ Receive and validate webhook requests from HubSpot for manually configured webho
 
 Remove the associations between two provided objects
 
-| Input               | Comments                                                                                                                                                                                                      | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| From Object Type    | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined. |         |
-| To Object Type      | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined.   |         |
-| From ID             | The unique identifier of the first object                                                                                                                                                                     |         |
-| To ID               | The unique identifier of the second object                                                                                                                                                                    |         |
-| Type Of Association | Provide a value for the type of association to perform. You can get the set of available values for this input by making a step using the "List Association Types"                                            |         |
-| Timeout             | The maximum time a client will await a request                                                                                                                                                                |         |
-| Connection          | The connection to use for authenticating requests to HubSpot.                                                                                                                                                 |         |
+| Input               | Comments                                                                                                                                                                                                            | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| From Object Type    | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account. |         |
+| To Object Type      | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account.   |         |
+| From ID             | The unique identifier of the first object                                                                                                                                                                           |         |
+| To ID               | The unique identifier of the second object                                                                                                                                                                          |         |
+| Type Of Association | Provide a value for the type of association to perform. You can get the set of available values for this input by making a step using the "List Association Types"                                                  |         |
+| Timeout             | The maximum time a client will await a request                                                                                                                                                                      |         |
+| Connection          | The connection to use for authenticating requests to HubSpot.                                                                                                                                                       |         |
 
 ### Archive Batch Contacts {#archivebatchcontacts}
 
@@ -344,15 +346,15 @@ Cancels an active import.
 
 Create an association between the objects identified in the step
 
-| Input               | Comments                                                                                                                                                                                                      | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| From Object Type    | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined. |         |
-| To Object Type      | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined.   |         |
-| From ID             | The unique identifier of the first object                                                                                                                                                                     |         |
-| To ID               | The unique identifier of the second object                                                                                                                                                                    |         |
-| Type Of Association | Provide a value for the type of association to perform. You can get the set of available values for this input by making a step using the "List Association Types"                                            |         |
-| Timeout             | The maximum time a client will await a request                                                                                                                                                                |         |
-| Connection          | The connection to use for authenticating requests to HubSpot.                                                                                                                                                 |         |
+| Input               | Comments                                                                                                                                                                                                            | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| From Object Type    | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account. |         |
+| To Object Type      | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account.   |         |
+| From ID             | The unique identifier of the first object                                                                                                                                                                           |         |
+| To ID               | The unique identifier of the second object                                                                                                                                                                          |         |
+| Type Of Association | Provide a value for the type of association to perform. You can get the set of available values for this input by making a step using the "List Association Types"                                                  |         |
+| Timeout             | The maximum time a client will await a request                                                                                                                                                                      |         |
+| Connection          | The connection to use for authenticating requests to HubSpot.                                                                                                                                                       |         |
 
 ### Create Batch Contacts {#createbatchcontacts}
 
@@ -433,20 +435,20 @@ Creates new custom object schema
 
 Create a new deal
 
-| Input          | Comments                                                                                                                                                                  | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Amount         | The amount value for the deal.                                                                                                                                            |         |
-| Close Date     | The date when the sale will close.                                                                                                                                        |         |
-| Deal Name      | The name of the deal.                                                                                                                                                     |         |
-| Owner ID       | The owner ID of the resource.                                                                                                                                             |         |
-| Pipeline       | The pipeline to interact with.                                                                                                                                            |         |
-| Deal Stage     | The stage of the deal. Deal stages allow you to categorize and track the progress of the deals.                                                                           |         |
-| Priority       | The priority of the deal.                                                                                                                                                 |         |
-| Deal Type      | The type of deal. By default, categorize your deal as either New Business or Existing Business. The picklist of values for this property is configurable through HubSpot. |         |
-| Values         | The names of the fields and their values to use when creating/updating a record.                                                                                          |         |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                             |         |
-| Timeout        | The maximum time a client will await a request                                                                                                                            |         |
-| Connection     | The connection to use for authenticating requests to HubSpot.                                                                                                             |         |
+| Input          | Comments                                                                                                                                                                   | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Amount         | The amount value for the deal.                                                                                                                                             |         |
+| Close Date     | The date when the sale will close.                                                                                                                                         |         |
+| Deal Name      | The name of the deal.                                                                                                                                                      |         |
+| Owner ID       | The owner ID of the resource.                                                                                                                                              |         |
+| Pipeline       | The pipeline to interact with.                                                                                                                                             |         |
+| Deal Stage     | The stage of the deal. Deal stages categorize deals and track their progress.                                                                                              |         |
+| Priority       | The priority of the deal.                                                                                                                                                  |         |
+| Deal Type      | The type of deal. By default, a deal is categorized as either New Business or Existing Business. The picklist of values for this property is configurable through HubSpot. |         |
+| Values         | The names of the fields and their values to use when creating/updating a record.                                                                                           |         |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                              |         |
+| Timeout        | The maximum time a client will await a request                                                                                                                             |         |
+| Connection     | The connection to use for authenticating requests to HubSpot.                                                                                                              |         |
 
 ### Create Engagement {#createengagement}
 
@@ -607,12 +609,12 @@ Begins exporting CRM data for the portal as specified in the request body.
 | Schema Type                                                  | Schema type for the export.                                                                                                                                                                                                                                 | VIEW    |
 | Format                                                       | The format of the export file.                                                                                                                                                                                                                              | CSV     |
 | Export Name                                                  | The name of the export.                                                                                                                                                                                                                                     |         |
-| Object Properties                                            | A list of the properties you want included in your export.                                                                                                                                                                                                  |         |
+| Object Properties                                            | A list of the properties to include in the export.                                                                                                                                                                                                          |         |
 | Object Type                                                  | The name or ID of the object you're exporting. For standard objects, you can use the object's name (e.g., CONTACT), but for custom objects, you must use the objectTypeId value, you can find this value in the response of the List Custom Objects action. |         |
 | Language                                                     | The language of the export file.                                                                                                                                                                                                                            |         |
 | List Id (Only and required for PublicExportListRequest)      | The ILS List ID of the list to export.                                                                                                                                                                                                                      |         |
 | Public CRM Search Request (Only for PublicExportViewRequest) | Indicates which data should be exported based on certain property values and search queries.                                                                                                                                                                |         |
-| Associated Object Type                                       | The name or ID of an associated object to include in the export. If you include an associated object, the export will contain the associated record IDs of that object and the records' primary display property value.                                     |         |
+| Associated Object Type                                       | The name or ID of an associated object to include in the export. When an associated object is included, the export contains the associated record IDs of that object and the records' primary display property value.                                       |         |
 | Timeout                                                      | The maximum time a client will await a request                                                                                                                                                                                                              |         |
 
 ### Get Batch Contacts {#getbatchcontacts}
@@ -633,16 +635,16 @@ Read a batch of contacts by internal ID, or unique property values.
 
 Retrieve the information or metadata of a company by Id, domain, or name
 
-| Input                           | Comments                                                                         | Default |
-| ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-| Company ID                      | The unique identifier of the company.                                            |         |
-| Company Name                    | The name of the company                                                          |         |
-| Domain                          | The domain of the company                                                        |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response. |         |
-| Associations List               | For each item, provide an object type to retrieve the associated Ids for.        |         |
-| Return Archived Results         | When true, returns only results that have been archived.                         | false   |
-| Timeout                         | The maximum time a client will await a request                                   |         |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                    |         |
+| Input                           | Comments                                                                  | Default |
+| ------------------------------- | ------------------------------------------------------------------------- | ------- |
+| Company ID                      | The unique identifier of the company.                                     |         |
+| Company Name                    | The name of the company                                                   |         |
+| Domain                          | The domain of the company                                                 |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.              |         |
+| Associations List               | For each item, provide an object type to retrieve the associated Ids for. |         |
+| Return Archived Results         | When true, returns only results that have been archived.                  | false   |
+| Timeout                         | The maximum time a client will await a request                            |         |
+| Connection                      | The connection to use for authenticating requests to HubSpot.             |         |
 
 ### Get Contact {#getcontact}
 
@@ -652,7 +654,7 @@ Get the information and metadata of a contact by Id or Email
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Contact ID                      | The unique identifier of the contact.                                                                                                              |         |
 | Email                           | The email of the contact. Getting contacts by email performs a search function and will return a successful output even when no results are found. |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                                                                   |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                                                                       |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                                                                          |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                                                           | false   |
 | Timeout                         | The maximum time a client will await a request                                                                                                     |         |
@@ -681,15 +683,15 @@ Retrieves a specific custom object
 
 Retrieve information and metadata about a deal by its Id or name
 
-| Input                           | Comments                                                                         | Default |
-| ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-| Deal ID                         | The unique identifier of the deal.                                               |         |
-| Deal Name                       | The name of the deal.                                                            |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response. |         |
-| Associations List               | For each item, provide an object type to retrieve the associated Ids for.        |         |
-| Return Archived Results         | When true, returns only results that have been archived.                         | false   |
-| Timeout                         | The maximum time a client will await a request                                   |         |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                    |         |
+| Input                           | Comments                                                                  | Default |
+| ------------------------------- | ------------------------------------------------------------------------- | ------- |
+| Deal ID                         | The unique identifier of the deal.                                        |         |
+| Deal Name                       | The name of the deal.                                                     |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.              |         |
+| Associations List               | For each item, provide an object type to retrieve the associated Ids for. |         |
+| Return Archived Results         | When true, returns only results that have been archived.                  | false   |
+| Timeout                         | The maximum time a client will await a request                            |         |
+| Connection                      | The connection to use for authenticating requests to HubSpot.             |         |
 
 ### Get Engagement {#getengagement}
 
@@ -721,45 +723,45 @@ Get a complete summary of an import record, including any updates.
 
 Retrieve the information and metadata of a line item by Id
 
-| Input                           | Comments                                                                         | Default |
-| ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-| Line Item ID                    | The unique identifier of the line item.                                          |         |
-| Name                            | The name of the line item.                                                       |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response. |         |
-| Associations List               | For each item, provide an object type to retrieve the associated Ids for.        |         |
-| Return Archived Results         | When true, returns only results that have been archived.                         | false   |
-| Timeout                         | The maximum time a client will await a request                                   |         |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                    |         |
+| Input                           | Comments                                                                  | Default |
+| ------------------------------- | ------------------------------------------------------------------------- | ------- |
+| Line Item ID                    | The unique identifier of the line item.                                   |         |
+| Name                            | The name of the line item.                                                |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.              |         |
+| Associations List               | For each item, provide an object type to retrieve the associated Ids for. |         |
+| Return Archived Results         | When true, returns only results that have been archived.                  | false   |
+| Timeout                         | The maximum time a client will await a request                            |         |
+| Connection                      | The connection to use for authenticating requests to HubSpot.             |         |
 
 ### Get Product {#getproduct}
 
 Retrieve the information and metadata of a product by Id or name
 
-| Input                           | Comments                                                                         | Default |
-| ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-| Product ID                      | The unique identifier of the product.                                            |         |
-| Product Name                    | The name of the product.                                                         |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response. |         |
-| Associations List               | For each item, provide an object type to retrieve the associated Ids for.        |         |
-| Return Archived Results         | When true, returns only results that have been archived.                         | false   |
-| Timeout                         | The maximum time a client will await a request                                   |         |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                    |         |
+| Input                           | Comments                                                                  | Default |
+| ------------------------------- | ------------------------------------------------------------------------- | ------- |
+| Product ID                      | The unique identifier of the product.                                     |         |
+| Product Name                    | The name of the product.                                                  |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.              |         |
+| Associations List               | For each item, provide an object type to retrieve the associated Ids for. |         |
+| Return Archived Results         | When true, returns only results that have been archived.                  | false   |
+| Timeout                         | The maximum time a client will await a request                            |         |
+| Connection                      | The connection to use for authenticating requests to HubSpot.             |         |
 
 ### Import CRM Data {#importcrmdata}
 
 Import CRM records and activities into your HubSpot account, such as contacts, companies, and notes.
 
-| Input                           | Comments                                                                                                                                                                                                                                                                                                                                                                                                | Default        |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                                                                                                                                                                           |                |
-| Name                            | The name of the import.                                                                                                                                                                                                                                                                                                                                                                                 |                |
-| Files                           | An array containing the import file information. For more information, see [HubSpot CRM Imports API](https://developers.hubspot.com/docs/api/crm/imports).                                                                                                                                                                                                                                              |                |
-| Data CSV File                   | The CSV file to import, this should be binary data from a previous step. Key name should be the file name and the value should be the binary data.                                                                                                                                                                                                                                                      |                |
-| Import Operations               | Indicates whether the import should create and update, only create, or only update records for a certain object or activity. Include the objectTypeId for the object/activity and whether you want to UPSERT (create and update), CREATE, or UPDATE records. For objectTypeId's, check [HubSpot CRM Object Type IDs](https://developers.hubspot.com/docs/api/crm/understanding-the-crm#object-type-id). |                |
-| Date Format                     | The format for dates included in the file. By default, this is set to MONTH_DAY_YEAR, but you can also use DAY_MONTH_YEAR or YEAR_MONTH_DAY.                                                                                                                                                                                                                                                            | MONTH_DAY_YEAR |
-| Marketable Contact Import       | When true, the contacts being imported are marketable.                                                                                                                                                                                                                                                                                                                                                  | true           |
-| Create Contact List From Import | When true, creates a static list of the contacts from your import.                                                                                                                                                                                                                                                                                                                                      | false          |
-| Timeout                         | The maximum time a client will await a request                                                                                                                                                                                                                                                                                                                                                          |                |
+| Input                           | Comments                                                                                                                                                                                                                                                                                                                                                                                       | Default        |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| Connection                      | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                                                                                                                                                                  |                |
+| Name                            | The name of the import.                                                                                                                                                                                                                                                                                                                                                                        |                |
+| Files                           | An array containing the import file information. For more information, see [HubSpot CRM Imports API](https://developers.hubspot.com/docs/api/crm/imports).                                                                                                                                                                                                                                     |                |
+| Data CSV File                   | The CSV file to import, this should be binary data from a previous step. Key name should be the file name and the value should be the binary data.                                                                                                                                                                                                                                             |                |
+| Import Operations               | Indicates whether the import should create and update, only create, or only update records for a certain object or activity. Include the objectTypeId for the object/activity and whether to UPSERT (create and update), CREATE, or UPDATE records. For objectTypeId's, check [HubSpot CRM Object Type IDs](https://developers.hubspot.com/docs/api/crm/understanding-the-crm#object-type-id). |                |
+| Date Format                     | The format for dates included in the file. Defaults to MONTH_DAY_YEAR; DAY_MONTH_YEAR and YEAR_MONTH_DAY are also accepted.                                                                                                                                                                                                                                                                    | MONTH_DAY_YEAR |
+| Marketable Contact Import       | When true, the contacts being imported are marketable.                                                                                                                                                                                                                                                                                                                                         | true           |
+| Create Contact List From Import | When true, creates a static list of the contacts from the import.                                                                                                                                                                                                                                                                                                                              | false          |
+| Timeout                         | The maximum time a client will await a request                                                                                                                                                                                                                                                                                                                                                 |                |
 
 ### List Active Imports {#listactiveimports}
 
@@ -774,12 +776,12 @@ Returns a paged list of active imports for this account.
 
 Retrieve a list of all association types available between two objects
 
-| Input            | Comments                                                                                                                                                                                                      | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The connection to use for authenticating requests to HubSpot.                                                                                                                                                 |         |
-| From Object Type | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined. |         |
-| To Object Type   | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined.   |         |
-| Timeout          | The maximum time a client will await a request                                                                                                                                                                |         |
+| Input            | Comments                                                                                                                                                                                                            | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The connection to use for authenticating requests to HubSpot.                                                                                                                                                       |         |
+| From Object Type | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account. |         |
+| To Object Type   | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account.   |         |
+| Timeout          | The maximum time a client will await a request                                                                                                                                                                      |         |
 
 ### List Companies {#listcompanies}
 
@@ -788,7 +790,7 @@ Retrieve a list of all companies
 | Input                           | Comments                                                                                                | Default |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                      | The connection to use for authenticating requests to HubSpot.                                           |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                        |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                            |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                               |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                | false   |
 | Timeout                         | The maximum time a client will await a request                                                          |         |
@@ -803,7 +805,7 @@ Retrieve a list of all contacts
 | Input                           | Comments                                                                                                | Default |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                      | The connection to use for authenticating requests to HubSpot.                                           |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                        |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                            |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                               |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                | false   |
 | Timeout                         | The maximum time a client will await a request                                                          |         |
@@ -815,12 +817,12 @@ Retrieve a list of all contacts
 
 Retrieve all custom objects
 
-| Input                           | Comments                                                                         | Default |
-| ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection                      | The connection to use for authenticating requests to HubSpot.                    |         |
-| Timeout                         | The maximum time a client will await a request                                   |         |
-| Return Archived Results         | When true, returns only results that have been archived.                         | false   |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response. |         |
+| Input                           | Comments                                                      | Default |
+| ------------------------------- | ------------------------------------------------------------- | ------- |
+| Connection                      | The connection to use for authenticating requests to HubSpot. |         |
+| Timeout                         | The maximum time a client will await a request                |         |
+| Return Archived Results         | When true, returns only results that have been archived.      | false   |
+| Additional Properties To Return | For each item, provide a property to return in the response.  |         |
 
 ### List Deals {#listdeals}
 
@@ -830,7 +832,7 @@ Retrieve a list of all deals
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                      | The connection to use for authenticating requests to HubSpot.                                           |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                | false   |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                        |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                            |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                               |         |
 | Timeout                         | The maximum time a client will await a request                                                          |         |
 | Fetch All                       | When true, automatically fetches all pages of results using pagination.                                 | false   |
@@ -856,7 +858,7 @@ Retrieve a list of all line items
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                      | The connection to use for authenticating requests to HubSpot.                                           |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                | false   |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                        |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                            |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                               |         |
 | Timeout                         | The maximum time a client will await a request                                                          |         |
 | Fetch All                       | When true, automatically fetches all pages of results using pagination.                                 | false   |
@@ -870,7 +872,7 @@ Retrieve a list of all products
 | Input                           | Comments                                                                                                | Default |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                      | The connection to use for authenticating requests to HubSpot.                                           |         |
-| Additional Properties To Return | For each item, provide a property you would like to be returned in the response.                        |         |
+| Additional Properties To Return | For each item, provide a property to return in the response.                                            |         |
 | Associations List               | For each item, provide an object type to retrieve the associated Ids for.                               |         |
 | Return Archived Results         | When true, returns only results that have been archived.                                                | false   |
 | Timeout                         | The maximum time a client will await a request                                                          |         |
@@ -923,41 +925,41 @@ Send raw HTTP request to HubSpot
 
 Get the Ids of the objects associated with those specified in the step
 
-| Input            | Comments                                                                                                                                                                                                      | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| From Object Type | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined. |         |
-| To Object Type   | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object you have defined.   |         |
-| From ID          | The unique identifier of the first object                                                                                                                                                                     |         |
-| Timeout          | The maximum time a client will await a request                                                                                                                                                                |         |
-| Connection       | The connection to use for authenticating requests to HubSpot.                                                                                                                                                 |         |
+| Input            | Comments                                                                                                                                                                                                            | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| From Object Type | The type of the "from" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account. |         |
+| To Object Type   | The type of the "to" object. Choose from "Contacts", "Companies", "Deals", "Tickets", "Calls", "Quotes", "Line_items", "Meetings", "Products", "Feedback_submissions", or a custom object defined in the account.   |         |
+| From ID          | The unique identifier of the first object                                                                                                                                                                           |         |
+| Timeout          | The maximum time a client will await a request                                                                                                                                                                      |         |
+| Connection       | The connection to use for authenticating requests to HubSpot.                                                                                                                                                       |         |
 
 ### Search Deals {#searchdeals}
 
 Returns a list of deals that match the given properties
 
-| Input         | Comments                                                                                                        | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
-| Property Name | The property to search on. Ensure the spelling and capitalization are correct for the property you want to use. |         |
-| Value         | The value corresponding to the given property name.                                                             |         |
-| Operator      | The operator used to search on.                                                                                 |         |
-| Limit         | The maximum number of items that will be returned by the search.                                                |         |
-| Start After   | Specify the pagination token that's returned by a previous request to retrieve the next page of results         |         |
-| Timeout       | The maximum time a client will await a request                                                                  |         |
-| Connection    | The connection to use for authenticating requests to HubSpot.                                                   |         |
+| Input         | Comments                                                                                                | Default |
+| ------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Property Name | The property to search on. Ensure the spelling and capitalization match the property exactly.           |         |
+| Value         | The value corresponding to the given property name.                                                     |         |
+| Operator      | The operator used to search on.                                                                         |         |
+| Limit         | The maximum number of items that will be returned by the search.                                        |         |
+| Start After   | Specify the pagination token that's returned by a previous request to retrieve the next page of results |         |
+| Timeout       | The maximum time a client will await a request                                                          |         |
+| Connection    | The connection to use for authenticating requests to HubSpot.                                           |         |
 
 ### Search Records {#search}
 
 Filter, sort, and search objects, records, and engagements across the CRM.
 
-| Input             | Comments                                                                                                                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                           |         |
-| Search Endpoint   | The endpoint to search for objects or engagements. For Custom objects don't forget to fill the Object Type input.                                                                                                                                       |         |
-| Search Properties | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
-| Object Type       | The type of custom object to search for. Required for the Custom objects search endpoint.                                                                                                                                                               |         |
-| Search Limit      | The number of records to return. The maximum value is 200.                                                                                                                                                                                              | 10      |
-| Fetch All         | Turn this ON to get more than 200 results. Note that this can be a large amount of data.                                                                                                                                                                | false   |
-| Timeout           | The maximum time a client will await a request                                                                                                                                                                                                          |         |
+| Input             | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The connection to use for authenticating requests to HubSpot.                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Search Endpoint   | The endpoint to search for objects or engagements. For Custom objects don't forget to fill the Object Type input.                                                                                                                                                                                                                                                                                                                                                             |         |
+| Search Properties | Include properties such as filters and sorts, or specify the properties to be returned. If empty, only the default properties will be returned. On the polling triggers, `sorts` is ignored (they sort by the object's last-modified property ascending so polling can resume) and `filters`/`filterGroups` are combined with the recurrence's date window using AND. For more information, see [HubSpot CRM Search API](https://developers.hubspot.com/docs/api/crm/search). |         |
+| Object Type       | The type of custom object to search for. Required for the Custom objects search endpoint.                                                                                                                                                                                                                                                                                                                                                                                     |         |
+| Search Limit      | The number of records to return. The maximum value is 200.                                                                                                                                                                                                                                                                                                                                                                                                                    | 10      |
+| Fetch All         | Turn this ON to get more than 200 results. Note that this can be a large amount of data.                                                                                                                                                                                                                                                                                                                                                                                      | false   |
+| Timeout           | The maximum time a client will await a request                                                                                                                                                                                                                                                                                                                                                                                                                                |         |
 
 ### Update Batch Contacts {#updatebatchcontacts}
 
@@ -1037,21 +1039,21 @@ Updates an object's schema
 
 Update the information or metadata of an existing deal
 
-| Input          | Comments                                                                                                                                                                  | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Deal ID        | The unique identifier of the deal.                                                                                                                                        |         |
-| Amount         | The amount value for the deal.                                                                                                                                            |         |
-| Close Date     | The date when the sale will close.                                                                                                                                        |         |
-| Deal Name      | The name of the deal.                                                                                                                                                     |         |
-| Owner ID       | The owner ID of the resource.                                                                                                                                             |         |
-| Pipeline       | The pipeline to interact with.                                                                                                                                            |         |
-| Deal Stage     | The stage of the deal. Deal stages allow you to categorize and track the progress of the deals.                                                                           |         |
-| Priority       | The priority of the deal.                                                                                                                                                 |         |
-| Deal Type      | The type of deal. By default, categorize your deal as either New Business or Existing Business. The picklist of values for this property is configurable through HubSpot. |         |
-| Values         | The names of the fields and their values to use when creating/updating a record.                                                                                          |         |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                             |         |
-| Timeout        | The maximum time a client will await a request                                                                                                                            |         |
-| Connection     | The connection to use for authenticating requests to HubSpot.                                                                                                             |         |
+| Input          | Comments                                                                                                                                                                   | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Deal ID        | The unique identifier of the deal.                                                                                                                                         |         |
+| Amount         | The amount value for the deal.                                                                                                                                             |         |
+| Close Date     | The date when the sale will close.                                                                                                                                         |         |
+| Deal Name      | The name of the deal.                                                                                                                                                      |         |
+| Owner ID       | The owner ID of the resource.                                                                                                                                              |         |
+| Pipeline       | The pipeline to interact with.                                                                                                                                             |         |
+| Deal Stage     | The stage of the deal. Deal stages categorize deals and track their progress.                                                                                              |         |
+| Priority       | The priority of the deal.                                                                                                                                                  |         |
+| Deal Type      | The type of deal. By default, a deal is categorized as either New Business or Existing Business. The picklist of values for this property is configurable through HubSpot. |         |
+| Values         | The names of the fields and their values to use when creating/updating a record.                                                                                           |         |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                              |         |
+| Timeout        | The maximum time a client will await a request                                                                                                                             |         |
+| Connection     | The connection to use for authenticating requests to HubSpot.                                                                                                              |         |
 
 ### Update Engagement {#updateengagement}
 

@@ -6,7 +6,7 @@ description: Manage Google Analytics GA4 accounts and data
 
 ![Google Analytics - GA4](./assets/google-analytics-ga4.png#connector-icon)
 [Google Analytics](https://analytics.google.com/) is Google's platform of analytics tooling.
-This component allows you to manage Analytics GA4 data.
+This component allows managing accounts and properties, running reports, and sending Measurement Protocol events in Google Analytics GA4.
 
 ## Connections
 
@@ -18,9 +18,9 @@ The Google Analytics component authenticates requests through Google's OAuth 2.0
 
 To create a Google Analytics developer account and authenticate, follow their [Configure OAuth Consent guide](https://developers.google.com/workspace/guides/configure-oauth-consent)
 
-Now, you will have to configure OAuth 2.0 settings. Create a new Google Analytics connection of type **OAuth 2.0**.
+Configure OAuth 2.0 settings. Create a new Google Analytics connection of type **OAuth 2.0**.
 
-- For **Client ID** and **Client Secret** enter the values that you got from the Google Cloud Platform auth settings.
+- Enter the **Client ID** and **Client Secret** obtained from the Google Cloud Platform auth settings.
 - For **Scopes** choose from the list found on [Google's service scopes documentation](https://developers.google.com/identity/protocols/oauth2/scopes#analytics)
 
 #### App Verification
@@ -29,7 +29,7 @@ Google requires OAuth apps that request access to user data to pass a verificati
 
 Google OAuth apps pass through three stages before they are ready for production use.
 
-**Testing (unpublished):** The app is only accessible to users manually added as test users in the OAuth consent screen. Up to 100 test users are allowed — all other users receive an error. This is the expected state during initial development.
+**Testing (unpublished):** The app is only accessible to users manually added as test users in the OAuth consent screen. Up to 100 test users are allowed. All other users receive an error. This is the expected state during initial development.
 
 **Published, unverified:** After publishing the app, all Google users can authenticate. However, for sensitive scopes, users see a **"This app isn't verified"** warning. Users can proceed by clicking **Advanced** → **Go to [app name] (unsafe)**, but this warning reduces trust and may be blocked by organizations with strict Google Workspace policies.
 
@@ -48,7 +48,7 @@ The scopes used by this component are classified as **sensitive** by Google. Sub
 
 1. On the **OAuth consent screen**, click **Prepare for verification**
 2. Provide a privacy policy URL, authorized domain, and app logo
-3. Submit for review — Google typically responds within several weeks
+3. Submit for review. Google typically responds within several weeks
 
 Refer to [Google's OAuth consent screen documentation](https://support.google.com/cloud/answer/10311615) for the full verification requirements.
 
@@ -81,34 +81,36 @@ Checks for new and updated records in Google Analytics GA4 on a configured sched
 
 Get property by ID
 
-| Input       | Comments                              | Default |
-| ----------- | ------------------------------------- | ------- |
-| Account ID  | The Google Analytics Account ID.      |         |
-| Property ID | The Google Analytics GA4 Property ID. |         |
-| Connection  |                                       |         |
+| Input       | Comments                                                                                                                | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Account ID  | The unique identifier for the GA4 account that owns the properties, in accounts/NNNNNNNNN form.                         |         |
+| Property ID | The unique identifier for the GA4 property, in properties/NNNNNNNNN form. A bare numeric ID is accepted and normalized. |         |
+| Connection  |                                                                                                                         |         |
 
 ### List Accounts {#listaccounts}
 
 Return a list of accounts accessible by the caller
 
-| Input      | Comments                                                                                                                                                                                                                   | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All  | When true, retrieves all pages of results.                                                                                                                                                                                 | false   |
-| Page Size  | The maximum number of resources contained in the underlying API response. The API may return fewer values in a page, even if there are additional values to return. If unspecified, the default is 50; the maximum is 200. |         |
-| Page Token | If a previous response was truncated, the response includes a `nextPageToken`. To retrieve the next page of results, set this parameter to the value of `nextPageToken` from the previous response.                        |         |
-| Connection |                                                                                                                                                                                                                            |         |
+| Input      | Comments                                                                                                                                                                                                                         | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All  | When true, retrieves all pages of results.                                                                                                                                                                                       | false   |
+| Pagination | Page and page-size controls.                                                                                                                                                                                                     |         |
+| Page Size  | The maximum number of resources contained in the underlying API response. The API may return fewer values in a page, even if there are additional values to return. If unspecified, 200 is requested, which is also the maximum. |         |
+| Page Token | If a previous response was truncated, the response includes a `nextPageToken`. To retrieve the next page of results, set this parameter to the value of `nextPageToken` from the previous response.                              |         |
+| Connection |                                                                                                                                                                                                                                  |         |
 
 ### List Properties {#listproperties}
 
 List Google Analytics GA4 properties for an account
 
-| Input      | Comments                                                                                                                                                                                                                   | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All  | When true, retrieves all pages of results.                                                                                                                                                                                 | false   |
-| Page Size  | The maximum number of resources contained in the underlying API response. The API may return fewer values in a page, even if there are additional values to return. If unspecified, the default is 50; the maximum is 200. |         |
-| Page Token | If a previous response was truncated, the response includes a `nextPageToken`. To retrieve the next page of results, set this parameter to the value of `nextPageToken` from the previous response.                        |         |
-| Account ID | The Google Analytics Account ID.                                                                                                                                                                                           |         |
-| Connection |                                                                                                                                                                                                                            |         |
+| Input      | Comments                                                                                                                                                                                                                         | Default |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Account ID | The unique identifier for the GA4 account that owns the properties, in accounts/NNNNNNNNN form.                                                                                                                                  |         |
+| Fetch All  | When true, retrieves all pages of results.                                                                                                                                                                                       | false   |
+| Pagination | Page and page-size controls.                                                                                                                                                                                                     |         |
+| Page Size  | The maximum number of resources contained in the underlying API response. The API may return fewer values in a page, even if there are additional values to return. If unspecified, 200 is requested, which is also the maximum. |         |
+| Page Token | If a previous response was truncated, the response includes a `nextPageToken`. To retrieve the next page of results, set this parameter to the value of `nextPageToken` from the previous response.                              |         |
+| Connection |                                                                                                                                                                                                                                  |         |
 
 ### Raw Request {#rawrequest}
 
@@ -118,7 +120,7 @@ Send raw HTTP request to Google Analytics GA4
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection              |                                                                                                                                                                                                  |         |
 | Base URL                |                                                                                                                                                                                                  |         |
-| URL                     | Input the path only (/accounts), the base URL comes from the Base URL input. For example, to connect to <INPUT_BASE_URL>/accounts, only /accounts is entered in this field.                      |         |
+| URL                     | Input the path only (/accounts), the base URL comes from the Base URL input. For example, to connect to the selected base URL followed by /accounts, only /accounts is entered in this field.    |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                          |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
 | Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
@@ -135,22 +137,22 @@ Send raw HTTP request to Google Analytics GA4
 
 ### Run Report {#runreport}
 
-Run a customized report on your Google Analytics event data
+Run a customized report on Google Analytics event data.
 
-| Input        | Comments                                                                                                                                                                                                       | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection   |                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Account ID   | The Google Analytics Account ID.                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Property ID  | The Google Analytics GA4 Property ID.                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Request Body | See [Google Analytics API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) for details on what dimensions, metrics, etc., you can specify. | <code>{<br /> "dimensions": [<br /> {<br /> "name": "pageTitle"<br /> }<br /> ],<br /> "metrics": [<br /> {<br /> "name": "sessions"<br /> }<br /> ],<br /> "dateRanges": [<br /> {<br /> "startDate": "7daysAgo",<br /> "endDate": "yesterday"<br /> }<br /> ],<br /> "dimensionFilter": {<br /> "notExpression": {<br /> "filter": {<br /> "fieldName": "pageTitle",<br /> "stringFilter": {<br /> "value": "My Homepage"<br /> }<br /> }<br /> }<br /> }<br />}</code> |
+| Input        | Comments                                                                                                                                                                                                        | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection   |                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Account ID   | The unique identifier for the GA4 account that owns the properties, in accounts/NNNNNNNNN form.                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Property ID  | The unique identifier for the GA4 property, in properties/NNNNNNNNN form. A bare numeric ID is accepted and normalized.                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Request Body | See [Google Analytics API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) for details on what dimensions, metrics, etc., can be specified. | <code>{<br /> "dimensions": [<br /> {<br /> "name": "pageTitle"<br /> }<br /> ],<br /> "metrics": [<br /> {<br /> "name": "sessions"<br /> }<br /> ],<br /> "dateRanges": [<br /> {<br /> "startDate": "7daysAgo",<br /> "endDate": "yesterday"<br /> }<br /> ],<br /> "dimensionFilter": {<br /> "notExpression": {<br /> "filter": {<br /> "fieldName": "pageTitle",<br /> "stringFilter": {<br /> "value": "My Homepage"<br /> }<br /> }<br /> }<br /> }<br />}</code> |
 
 ### Send Measurement Protocol Events {#sendmeasurementprotocolevents}
 
-Sends Measurement Protocol Events to your Google Analytics G4 Account
+Sends Measurement Protocol Events to the Google Analytics GA4 account.
 
-| Input           | Comments                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Firebase App ID | The Firebase App ID, found in the Firebase console under Project Settings > General > Your Apps > App ID |         |
-| App Instance ID | Your App's instance ID.                                                                                  |         |
-| API Secret      | The API secret for your Google Analytics G4. Generated in the Google Analytics UI                        |         |
-| Events To Send  | The events to send to Google Analytics                                                                   |         |
+| Input           | Comments                                                                                                                                    | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Firebase App ID | The Firebase App ID, found in the Firebase console under Project Settings > General > Your Apps > App ID                                    |         |
+| App Instance ID | The unique identifier assigned to an app installation on a device. Sent as app_instance_id in the Measurement Protocol payload.             |         |
+| API Secret      | The Measurement Protocol API secret. Generate one in the Google Analytics UI under Admin > Data Streams > Measurement Protocol API secrets. |         |
+| Events To Send  | The events to send to Google Analytics                                                                                                      |         |

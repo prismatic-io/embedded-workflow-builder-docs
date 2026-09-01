@@ -16,7 +16,7 @@ This component was built using the [Box REST API](https://developer.box.com/refe
 
 ### Developer Token {#apikey}
 
-Developer Token connection for Box
+Authenticate requests using a developer token.
 
 A **Developer Token** is a short-lived (60-minute) token that can be used for testing purposes. Developer tokens allow access to the Box API for a personal Box account only.
 
@@ -58,7 +58,7 @@ Developer tokens expire after 60 minutes. Generate a new token if authentication
 
 ### OAuth 2.0 {#oauth2}
 
-OAuth 2.0 connection for Box
+Authenticate using OAuth 2.0.
 
 To connect to Box using OAuth 2.0, create a Box OAuth 2.0 app to authorize the integration to access customer Box accounts.
 
@@ -124,11 +124,11 @@ If the Box app is deleted and recreated, a new Client ID is generated and admin 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                                                                       | Default                       |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| Scopes        | A space-delimited set of one or more scopes. Leave blank to use your app's configured default scopes. See [Box OAuth Scopes](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/) for available options. | root_readwrite manage_webhook |
-| Client ID     | The OAuth 2.0 client ID from your Box app configuration. Obtain from [Box Developer Console](https://app.box.com/developers/console).                                                                                          |                               |
-| Client Secret | The OAuth 2.0 client secret from your Box app configuration. Obtain from [Box Developer Console](https://app.box.com/developers/console).                                                                                      |                               |
+| Input         | Comments                                                                                                                                                                                                                     | Default                       |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Client ID     | The OAuth 2.0 client ID from the Box app configuration. Obtain from [Box Developer Console](https://app.box.com/developers/console).                                                                                         |                               |
+| Client Secret | The OAuth 2.0 client secret from the Box app configuration. Obtain from [Box Developer Console](https://app.box.com/developers/console).                                                                                     |                               |
+| Scopes        | A space-delimited set of one or more scopes. Leave blank to use the app's configured default scopes. See [Box OAuth Scopes](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes) for available options. | root_readwrite manage_webhook |
 
 ## Triggers
 
@@ -136,18 +136,23 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive and validate webhook requests from Box. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input                   | Comments                                                                                                                                                          | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Box connection to use.                                                                                                                                        |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                                        |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                                  |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.                   |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
+| Input                   | Comments                                                                                                                                                 | Default |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Box connection to use.                                                                                                                               |         |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |         |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |         |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          |         |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
 
 ### Manual Webhook {#webhook}
 
 Receive and validate webhook requests from Box for manually configured webhook subscriptions.
+
+| Input                   | Comments                                                                                                                                                 | Default |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
 
 ### New and Updated Files {#neworupdatedfile}
 
@@ -180,35 +185,37 @@ Checks for new folders in a specified folder on a configured schedule.
 
 ### Add Shared Link to File {#addsharedlinktofile}
 
-Adds a shared link to a file
+Adds a shared link to a file.
 
-| Input                   | Comments                                                                                                                                                                                      | Default                                                                                             |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| File ID                 | The unique identifier of the file.                                                                                                                                                            |                                                                                                     |
-| Shared Link             | The URL of the shared link.                                                                                                                                                                   |                                                                                                     |
-| Shared Link Access      | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links/) for details.                            |                                                                                                     |
-| Shared Link Password    | The password for the shared link, if one is set.                                                                                                                                              |                                                                                                     |
-| Shared Link Permissions | The permissions for the shared link (file). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-files-id/#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_edit": true,<br /> "can_preview": true<br />}</code> |
-| Shared Link Vanity Name | The custom vanity name for the shared link URL. Creates a URL like https://app.box.com/v/your-vanity-name.                                                                                    |                                                                                                     |
-| Connection              | The Box connection to use.                                                                                                                                                                    |                                                                                                     |
+| Input                   | Comments                                                                                                                                                                                     | Default                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| File ID                 | The unique identifier of the file.                                                                                                                                                           |                                                                                                     |
+| Shared Link             | The URL of the shared link.                                                                                                                                                                  |                                                                                                     |
+| Shared Link Access      | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links) for details.                            |                                                                                                     |
+| Additional Fields       | Additional optional fields: includes Shared Link Password, Shared Link Permissions, and Shared Link Vanity Name.                                                                             |                                                                                                     |
+| Shared Link Password    | The password for the shared link, if one is set.                                                                                                                                             |                                                                                                     |
+| Shared Link Permissions | The permissions for the shared link (file). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-files-id#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_edit": true,<br /> "can_preview": true<br />}</code> |
+| Shared Link Vanity Name | The custom vanity name for the shared link URL. Creates a URL like `https://app.box.com/v/your-vanity-name`.                                                                                 |                                                                                                     |
+| Connection              | The Box connection to use.                                                                                                                                                                   |                                                                                                     |
 
 ### Add Shared Link to Folder {#addsharedlinktofolder}
 
-Adds a shared link to a folder
+Adds a shared link to a folder.
 
-| Input                          | Comments                                                                                                                                                                                          | Default                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Folder ID                      | The unique identifier of the folder.                                                                                                                                                              |                                                                             |
-| Shared Link                    | The URL of the shared link.                                                                                                                                                                       |                                                                             |
-| Shared Link Access             | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links/) for details.                                |                                                                             |
-| Shared Link Password           | The password for the shared link, if one is set.                                                                                                                                                  |                                                                             |
-| Shared Link Permissions Folder | The permissions for the shared link (folder). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-folders-id/#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_preview": true<br />}</code> |
-| Shared Link Vanity Name        | The custom vanity name for the shared link URL. Creates a URL like https://app.box.com/v/your-vanity-name.                                                                                        |                                                                             |
-| Connection                     | The Box connection to use.                                                                                                                                                                        |                                                                             |
+| Input                          | Comments                                                                                                                                                                                         | Default                                                                     |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Folder ID                      | The unique identifier of the folder.                                                                                                                                                             |                                                                             |
+| Shared Link                    | The URL of the shared link.                                                                                                                                                                      |                                                                             |
+| Shared Link Access             | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links) for details.                                |                                                                             |
+| Additional Fields              | Additional optional fields: includes Shared Link Password, Shared Link Permissions Folder, and Shared Link Vanity Name.                                                                          |                                                                             |
+| Shared Link Password           | The password for the shared link, if one is set.                                                                                                                                                 |                                                                             |
+| Shared Link Permissions Folder | The permissions for the shared link (folder). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-folders-id#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_preview": true<br />}</code> |
+| Shared Link Vanity Name        | The custom vanity name for the shared link URL. Creates a URL like `https://app.box.com/v/your-vanity-name`.                                                                                     |                                                                             |
+| Connection                     | The Box connection to use.                                                                                                                                                                       |                                                                             |
 
 ### Copy Object {#copyobject}
 
-Copy a Folder or File from one path to another
+Copy a Folder or File from one path to another.
 
 | Input      | Comments                                                                                                        | Default |
 | ---------- | --------------------------------------------------------------------------------------------------------------- | ------- |
@@ -218,7 +225,7 @@ Copy a Folder or File from one path to another
 
 ### Create Folder {#createfolder}
 
-Create a Folder at the specified path
+Create a Folder at the specified path.
 
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
@@ -227,21 +234,21 @@ Create a Folder at the specified path
 
 ### Create Webhook {#createwebhook}
 
-Create a webhook to send data from Box to an instance URL
+Create a webhook to send data from Box to an instance URL.
 
-| Input                   | Comments                                                                                                                                                          | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                                       |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                                        |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                                  |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.                   |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/handle/verify-signatures/) for details. |         |
-| Connection              | The Box connection to use.                                                                                                                                        |         |
+| Input                   | Comments                                                                                                                                                 | Default |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                              |         |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |         |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |         |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          |         |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
+| Connection              | The Box connection to use.                                                                                                                               |         |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
-Delete all Box webhooks that point to a flow in this instance
+Delete all Box webhooks that point to a flow in this instance.
 
 | Input      | Comments                   | Default |
 | ---------- | -------------------------- | ------- |
@@ -249,7 +256,7 @@ Delete all Box webhooks that point to a flow in this instance
 
 ### Delete Object {#deleteobject}
 
-Delete a Folder or File at the specified path
+Delete a Folder or File at the specified path.
 
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
@@ -258,7 +265,7 @@ Delete a Folder or File at the specified path
 
 ### Delete Webhook {#deletewebhook}
 
-Delete a webhook by ID
+Delete a webhook by ID.
 
 | Input      | Comments                              | Default |
 | ---------- | ------------------------------------- | ------- |
@@ -267,38 +274,38 @@ Delete a webhook by ID
 
 ### Download File {#downloadfile}
 
-Download the file at the specified path
+Download the file at the specified path.
 
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Path       | The full path to the file or folder. Must include a leading forward slash (/). |         |
 | Connection | The Box connection to use.                                                     |         |
 
-### Find File For Shared Link {#findfileforsharedlink}
+### Find File for Shared Link {#findfileforsharedlink}
 
-Returns the file represented by a shared link
+Returns the file represented by a shared link.
 
-| Input                | Comments                                                                                                                                                           | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Shared Link          | The URL of the shared link.                                                                                                                                        |         |
-| Shared Link Password | The password for the shared link, if one is set.                                                                                                                   |         |
-| Fields               | A comma-separated list of attributes to include in the response. See [Box File Fields](https://developer.box.com/reference/resources/file/) for available options. |         |
-| Connection           | The Box connection to use.                                                                                                                                         |         |
+| Input                | Comments                                                                                                                                                                | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Shared Link          | The URL of the shared link.                                                                                                                                             |         |
+| Shared Link Password | The password for the shared link, if one is set.                                                                                                                        |         |
+| Fields               | A comma-separated list of attributes to include in the response. See [Box File Fields](https://developer.box.com/reference/files-resources#file) for available options. |         |
+| Connection           | The Box connection to use.                                                                                                                                              |         |
 
-### Find Folder For Shared Link {#findfolderforsharedlink}
+### Find Folder for Shared Link {#findfolderforsharedlink}
 
-Returns the folder represented by a shared link
+Returns the folder represented by a shared link.
 
-| Input                | Comments                                                                                                                                                           | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Shared Link          | The URL of the shared link.                                                                                                                                        |         |
-| Shared Link Password | The password for the shared link, if one is set.                                                                                                                   |         |
-| Fields               | A comma-separated list of attributes to include in the response. See [Box File Fields](https://developer.box.com/reference/resources/file/) for available options. |         |
-| Connection           | The Box connection to use.                                                                                                                                         |         |
+| Input                | Comments                                                                                                                                                                | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Shared Link          | The URL of the shared link.                                                                                                                                             |         |
+| Shared Link Password | The password for the shared link, if one is set.                                                                                                                        |         |
+| Fields               | A comma-separated list of attributes to include in the response. See [Box File Fields](https://developer.box.com/reference/files-resources#file) for available options. |         |
+| Connection           | The Box connection to use.                                                                                                                                              |         |
 
 ### Get Current User {#getcurrentuser}
 
-Get the information and metadata of the user that is currently logged in
+Get the information and metadata of the user that is currently logged in.
 
 | Input      | Comments                   | Default |
 | ---------- | -------------------------- | ------- |
@@ -306,25 +313,34 @@ Get the information and metadata of the user that is currently logged in
 
 ### Get File Download URL {#getfiledownloadurl}
 
-Get a URL to download the file at the specified path
+Get a URL to download the file at the specified path.
 
 | Input      | Comments                                                                       | Default |
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Path       | The full path to the file or folder. Must include a leading forward slash (/). |         |
 | Connection | The Box connection to use.                                                     |         |
 
-### Get Shared Link For File {#getsharedlinkforfile}
+### Get Path Details {#pathdetails}
 
-Gets the shared link for a file
+Get detailed information about folders/files in the specified path.
+
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Path       | The full path to the file or folder. Must include a leading forward slash (/). |         |
+| Connection | The Box connection to use.                                                     |         |
+
+### Get Shared Link for File {#getsharedlinkforfile}
+
+Gets the shared link for a file.
 
 | Input      | Comments                           | Default |
 | ---------- | ---------------------------------- | ------- |
 | File ID    | The unique identifier of the file. |         |
 | Connection | The Box connection to use.         |         |
 
-### Get Shared Link For Folder {#getsharedlinkforfolder}
+### Get Shared Link for Folder {#getsharedlinkforfolder}
 
-Gets the shared link for a folder
+Gets the shared link for a folder.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
@@ -335,15 +351,16 @@ Gets the shared link for a folder
 
 List Folder contents at the specified path.
 
-| Input           | Comments                                                                                                                                                                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All       | When true, retrieves all results using automatic pagination.                                                                                                                                                                                | false   |
-| Path            | The full path to the file or folder. Must include a leading forward slash (/).                                                                                                                                                              |         |
-| Fields/Metadata | Comma-separated attributes to include in the response. Supports metadata queries (e.g., metadata.enterprise_12345.contractTemplate). See [Box File Fields](https://developer.box.com/reference/resources/file--full) for available options. |         |
-| Limit           | The maximum number of items to return (1-1000).                                                                                                                                                                                             |         |
-| Marker          | The pagination marker returned by a previous request to retrieve the next page of results.                                                                                                                                                  |         |
-| Offset          | The position to start returning results from (zero-based index).                                                                                                                                                                            |         |
-| Connection      | The Box connection to use.                                                                                                                                                                                                                  |         |
+| Input           | Comments                                                                                                                                                                                                                                         | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Path            | The full path to the file or folder. Must include a leading forward slash (/).                                                                                                                                                                   |         |
+| Fetch All       | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                          | false   |
+| Fields/Metadata | Comma-separated attributes to include in the response. Supports metadata queries (e.g., metadata.enterprise_12345.contractTemplate). See [Box File Fields](https://developer.box.com/reference/files-resources#file-full) for available options. |         |
+| Pagination      | Marker, limit, and offset controls for paging through results.                                                                                                                                                                                   |         |
+| Limit           | The maximum number of items to return (1-1000).                                                                                                                                                                                                  |         |
+| Marker          | The pagination marker returned by a previous request to retrieve the next page of results.                                                                                                                                                       |         |
+| Offset          | The position to start returning results from (zero-based index).                                                                                                                                                                                 |         |
+| Connection      | The Box connection to use.                                                                                                                                                                                                                       |         |
 
 ### List Folder (Deprecated) {#listfolder}
 
@@ -352,6 +369,7 @@ List Folder contents at the specified path. This version of the action is being 
 | Input      | Comments                                                                                   | Default |
 | ---------- | ------------------------------------------------------------------------------------------ | ------- |
 | Path       | The full path to the file or folder. Must include a leading forward slash (/).             |         |
+| Pagination | Marker, limit, and offset controls for paging through results.                             |         |
 | Limit      | The maximum number of items to return (1-1000).                                            |         |
 | Marker     | The pagination marker returned by a previous request to retrieve the next page of results. |         |
 | Offset     | The position to start returning results from (zero-based index).                           |         |
@@ -359,19 +377,20 @@ List Folder contents at the specified path. This version of the action is being 
 
 ### List Webhooks {#listwebhooks}
 
-List all webhooks configured in Box, including those for other integrations
+List all webhooks configured in Box, including those for other integrations.
 
 | Input                       | Comments                                                                                   | Default |
 | --------------------------- | ------------------------------------------------------------------------------------------ | ------- |
 | Connection                  | The Box connection to use.                                                                 |         |
+| Fetch All                   | When true, automatically fetches all pages of results using pagination.                    | false   |
+| Pagination                  | Marker and limit controls for paging through results.                                      |         |
 | Limit                       | The maximum number of items to return (1-1000).                                            |         |
 | Marker                      | The pagination marker returned by a previous request to retrieve the next page of results. |         |
-| Fetch All                   | When true, retrieves all results using automatic pagination.                               | false   |
-| Show Only Instance Webhooks | Show only webhooks that point to this instance                                             | true    |
+| Show Only Instance Webhooks | When true, returns only webhooks that point to this instance.                              | true    |
 
 ### Move Object {#moveobject}
 
-Move a Folder or File from one path to another
+Move a Folder or File from one path to another.
 
 | Input      | Comments                                                                                                        | Default |
 | ---------- | --------------------------------------------------------------------------------------------------------------- | ------- |
@@ -379,41 +398,32 @@ Move a Folder or File from one path to another
 | To Path    | The full path to the destination location including the new filename. Must include a leading forward slash (/). |         |
 | Connection | The Box connection to use.                                                                                      |         |
 
-### Path Details {#pathdetails}
-
-Get detailed information about folders/files in the specified path
-
-| Input      | Comments                                                                       | Default |
-| ---------- | ------------------------------------------------------------------------------ | ------- |
-| Path       | The full path to the file or folder. Must include a leading forward slash (/). |         |
-| Connection | The Box connection to use.                                                     |         |
-
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Box
+Send raw HTTP request to Box.
 
-| Input                   | Comments                                                                                                                                                                                            | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Box connection to use.                                                                                                                                                                          |         |
-| URL                     | Input the path only (/2.0/folders), The base URL is already included (https://api.box.com). For example, to connect to https://api.box.com/2.0/folders, only /2.0/folders is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                             |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                           |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                    |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                              |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                 |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                         |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                            | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                 |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                 | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.    | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                 | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                       | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection              | The Box connection to use.                                                                                                                                                                       |         |
+| URL                     | Input the path only, such as `/2.0/folders`. The base URL `https://api.box.com` is already included. For example, to call `https://api.box.com/2.0/folders`, enter `/2.0/folders` in this field. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
 
 ### Remove Shared Link from File {#removesharedlinkfromfile}
 
-Removes a shared link from a file
+Removes a shared link from a file.
 
 | Input      | Comments                           | Default |
 | ---------- | ---------------------------------- | ------- |
@@ -422,7 +432,7 @@ Removes a shared link from a file
 
 ### Remove Shared Link from Folder {#removesharedlinkfromfolder}
 
-Removes a shared link from a folder
+Removes a shared link from a folder.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
@@ -431,35 +441,37 @@ Removes a shared link from a folder
 
 ### Update Shared Link on File {#updatesharedlinktofile}
 
-Updates a shared link on a file
+Updates a shared link on a file.
 
-| Input                   | Comments                                                                                                                                                                                      | Default                                                                                             |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| File ID                 | The unique identifier of the file.                                                                                                                                                            |                                                                                                     |
-| Shared Link             | The URL of the shared link.                                                                                                                                                                   |                                                                                                     |
-| Shared Link Access      | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links/) for details.                            |                                                                                                     |
-| Shared Link Password    | The password for the shared link, if one is set.                                                                                                                                              |                                                                                                     |
-| Shared Link Permissions | The permissions for the shared link (file). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-files-id/#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_edit": true,<br /> "can_preview": true<br />}</code> |
-| Shared Link Vanity Name | The custom vanity name for the shared link URL. Creates a URL like https://app.box.com/v/your-vanity-name.                                                                                    |                                                                                                     |
-| Connection              | The Box connection to use.                                                                                                                                                                    |                                                                                                     |
+| Input                   | Comments                                                                                                                                                                                     | Default                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| File ID                 | The unique identifier of the file.                                                                                                                                                           |                                                                                                     |
+| Shared Link             | The URL of the shared link.                                                                                                                                                                  |                                                                                                     |
+| Shared Link Access      | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links) for details.                            |                                                                                                     |
+| Additional Fields       | Additional optional fields: includes Shared Link Password, Shared Link Permissions, and Shared Link Vanity Name.                                                                             |                                                                                                     |
+| Shared Link Password    | The password for the shared link, if one is set.                                                                                                                                             |                                                                                                     |
+| Shared Link Permissions | The permissions for the shared link (file). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-files-id#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_edit": true,<br /> "can_preview": true<br />}</code> |
+| Shared Link Vanity Name | The custom vanity name for the shared link URL. Creates a URL like `https://app.box.com/v/your-vanity-name`.                                                                                 |                                                                                                     |
+| Connection              | The Box connection to use.                                                                                                                                                                   |                                                                                                     |
 
 ### Update Shared Link on Folder {#updatesharedlinkonfolder}
 
-Updates a shared link on a folder
+Updates a shared link on a folder.
 
-| Input                          | Comments                                                                                                                                                                                          | Default                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Folder ID                      | The unique identifier of the folder.                                                                                                                                                              |                                                                             |
-| Shared Link                    | The URL of the shared link.                                                                                                                                                                       |                                                                             |
-| Shared Link Access             | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links/) for details.                                |                                                                             |
-| Shared Link Password           | The password for the shared link, if one is set.                                                                                                                                                  |                                                                             |
-| Shared Link Permissions Folder | The permissions for the shared link (folder). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-folders-id/#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_preview": true<br />}</code> |
-| Shared Link Vanity Name        | The custom vanity name for the shared link URL. Creates a URL like https://app.box.com/v/your-vanity-name.                                                                                        |                                                                             |
-| Connection                     | The Box connection to use.                                                                                                                                                                        |                                                                             |
+| Input                          | Comments                                                                                                                                                                                         | Default                                                                     |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Folder ID                      | The unique identifier of the folder.                                                                                                                                                             |                                                                             |
+| Shared Link                    | The URL of the shared link.                                                                                                                                                                      |                                                                             |
+| Shared Link Access             | The level of access for the shared link. Values: open, company, collaborators. See [Box Shared Links](https://developer.box.com/guides/shared-links) for details.                                |                                                                             |
+| Additional Fields              | Additional optional fields: includes Shared Link Password, Shared Link Permissions Folder, and Shared Link Vanity Name.                                                                          |                                                                             |
+| Shared Link Password           | The password for the shared link, if one is set.                                                                                                                                                 |                                                                             |
+| Shared Link Permissions Folder | The permissions for the shared link (folder). Specify which actions are allowed. See [Box Shared Link Permissions](https://developer.box.com/reference/put-folders-id#request-body) for details. | <code>{<br /> "can_download": true,<br /> "can_preview": true<br />}</code> |
+| Shared Link Vanity Name        | The custom vanity name for the shared link URL. Creates a URL like `https://app.box.com/v/your-vanity-name`.                                                                                     |                                                                             |
+| Connection                     | The Box connection to use.                                                                                                                                                                       |                                                                             |
 
 ### Upload File {#uploadfile}
 
-Upload a file to the specified path
+Upload a file to the specified path.
 
 | Input         | Comments                                                                                              | Default |
 | ------------- | ----------------------------------------------------------------------------------------------------- | ------- |

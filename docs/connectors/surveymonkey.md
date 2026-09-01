@@ -158,17 +158,18 @@ Receive real-time notifications for SurveyMonkey events. Automatically creates a
 
 Create a new collector for a survey. Non-weblink collectors require a paid plan.
 
-| Input                    | Comments                                                                 | Default |
-| ------------------------ | ------------------------------------------------------------------------ | ------- |
-| Connection               | The SurveyMonkey connection to use.                                      |         |
-| Survey ID                | The unique identifier of the survey.                                     |         |
-| Collector Type           | Type of collector. Note: Non-weblink collectors may require a paid plan. | weblink |
-| Collector Name           | The name of the collector.                                               |         |
-| Thank You Message        | Message shown to respondents after completing the survey.                |         |
-| Close Date               | Date/time to close the collector (ISO 8601 format).                      |         |
-| Redirect URL             | URL to redirect respondents to after completing the survey.              |         |
-| Allow Multiple Responses | When true, respondents can submit multiple responses.                    | false   |
-| Extra Body Fields        | Additional body fields to include in the request as a JSON object.       |         |
+| Input                    | Comments                                                                    | Default |
+| ------------------------ | --------------------------------------------------------------------------- | ------- |
+| Connection               | The SurveyMonkey connection to use.                                         |         |
+| Survey ID                | The unique identifier of the survey.                                        |         |
+| Collector Type           | Type of collector. Note: Non-weblink collectors may require a paid plan.    | weblink |
+| Collector Name           | The name of the collector.                                                  |         |
+| Collector Settings       | Thank you message, close date, redirect URL, and multiple-response setting. |         |
+| Thank You Message        | Message shown to respondents after completing the survey.                   |         |
+| Close Date               | Date/time to close the collector (ISO 8601 format).                         |         |
+| Redirect URL             | URL to redirect respondents to after completing the survey.                 |         |
+| Allow Multiple Responses | When true, respondents can submit multiple responses.                       | false   |
+| Extra Body Fields        | Additional body fields to include in the request as a JSON object.          |         |
 
 ### Create Contact {#createcontact}
 
@@ -384,6 +385,7 @@ List all collectors for a survey.
 | Connection | The SurveyMonkey connection to use.                                                                                 |         |
 | Survey ID  | The unique identifier of the survey.                                                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page       | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page   | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -395,6 +397,7 @@ List all contact lists in your account.
 | ---------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The SurveyMonkey connection to use.                                                                                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page       | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page   | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -406,6 +409,7 @@ List all contacts in your account.
 | ---------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The SurveyMonkey connection to use.                                                                                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page       | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page   | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -419,6 +423,7 @@ List summary information for all responses to a survey.
 | Survey ID       | The unique identifier of the survey.                                                                                |         |
 | Response Status | Filter responses by status.                                                                                         |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination      | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page            | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page        | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -432,6 +437,7 @@ Bulk export responses with full answer details. More efficient for large exports
 | Survey ID       | The unique identifier of the survey.                                                                                |         |
 | Response Status | Filter responses by status.                                                                                         |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination      | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page            | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page        | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -443,6 +449,7 @@ List all surveys accessible to the authenticated user.
 | ---------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The SurveyMonkey connection to use.                                                                                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page       | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page   | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -454,6 +461,7 @@ List all webhooks in your account.
 | ---------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The SurveyMonkey connection to use.                                                                                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. The API returns up to 100 results per page. | false   |
+| Pagination | Page number and results-per-page page-navigation controls.                                                          |         |
 | Page       | The page number to retrieve (starts at 1).                                                                          |         |
 | Per Page   | The maximum number of results to return per page. Maximum: 100.                                                     |         |
 
@@ -483,16 +491,17 @@ Send raw HTTP request to SurveyMonkey API.
 
 Update an existing collector's settings.
 
-| Input                    | Comments                                                           | Default |
-| ------------------------ | ------------------------------------------------------------------ | ------- |
-| Connection               | The SurveyMonkey connection to use.                                |         |
-| Collector ID             | The unique identifier of the collector.                            |         |
-| Collector Name           | The name of the collector.                                         |         |
-| Thank You Message        | Message shown to respondents after completing the survey.          |         |
-| Close Date               | Date/time to close the collector (ISO 8601 format).                |         |
-| Redirect URL             | URL to redirect respondents to after completing the survey.        |         |
-| Allow Multiple Responses | When true, respondents can submit multiple responses.              |         |
-| Extra Body Fields        | Additional body fields to include in the request as a JSON object. |         |
+| Input                    | Comments                                                                    | Default |
+| ------------------------ | --------------------------------------------------------------------------- | ------- |
+| Connection               | The SurveyMonkey connection to use.                                         |         |
+| Collector ID             | The unique identifier of the collector.                                     |         |
+| Collector Name           | The name of the collector.                                                  |         |
+| Collector Settings       | Thank you message, close date, redirect URL, and multiple-response setting. |         |
+| Thank You Message        | Message shown to respondents after completing the survey.                   |         |
+| Close Date               | Date/time to close the collector (ISO 8601 format).                         |         |
+| Redirect URL             | URL to redirect respondents to after completing the survey.                 |         |
+| Allow Multiple Responses | When true, respondents can submit multiple responses.                       |         |
+| Extra Body Fields        | Additional body fields to include in the request as a JSON object.          |         |
 
 ### Update Contact {#updatecontact}
 

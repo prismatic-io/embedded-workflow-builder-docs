@@ -1,7 +1,7 @@
 ---
 title: AWS Glue Connector
 sidebar_label: AWS Glue
-description: Manage AWS Glue crawlers, jobs and triggers
+description: Manage AWS Glue crawlers, jobs, and triggers.
 ---
 
 ![AWS Glue](./assets/aws-glue.png#connector-icon)
@@ -14,9 +14,9 @@ This component was built using the [AWS Glue Developer Guide](https://docs.aws.a
 
 ## Connections
 
-### AWS Glue Access Key and Secret {#apikeysecret}
+### Access Key and Secret {#apikeysecret}
 
-Authenticates requests to AWS Glue using an API Key and API Secret.
+Authenticate requests to AWS Glue using an Access Key and Secret.
 
 An AWS IAM [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) is required to interact with AWS Glue.
 Ensure the key pair generated in AWS has proper permissions to the AWS Glue resources to access.
@@ -47,10 +47,10 @@ The **Secret access key** is only shown once during creation. If it is not copie
 - Enter the **Access Key ID** into the connection configuration
 - Enter the **Secret Access Key** into the connection configuration
 
-| Input             | Comments                     | Default |
-| ----------------- | ---------------------------- | ------- |
-| Access Key ID     | An AWS IAM Access Key ID     |         |
-| Secret Access Key | An AWS IAM Secret Access Key |         |
+| Input             | Comments                                                     | Default |
+| ----------------- | ------------------------------------------------------------ | ------- |
+| Access Key ID     | The AWS IAM Access Key ID used to authenticate requests.     |         |
+| Secret Access Key | The AWS IAM Secret Access Key used to authenticate requests. |         |
 
 ### AWS Role ARN {#awsassumerole}
 
@@ -128,106 +128,106 @@ The IAM user credentials assume the role, which provides temporary credentials w
 
 Retrieves the metadata for a given job run.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string value for the name (NOT the ARN).                      |         |
-| Run Id     | Provide a string value for the run Id.                                  |         |
-| Connection |                                                                         |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name       | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Run ID     | The unique identifier for the job run.                                                        |         |
+| Connection | The AWS Glue connection to use.                                                               |         |
 
 ### List Crawlers {#listcrawlers}
 
-List Crawlers available in AWS Glue
+Lists crawlers available in AWS Glue.
 
-| Input      | Comments                                                                                                      | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                       |         |
-| Max Items  | Provide an integer value for the maximum amount of items that will be returned. Provide a value from 1 to 50. |         |
-| Marker     | Specify the pagination token that's returned by a previous request to retrieve the next page of results       |         |
-| Connection |                                                                                                               |         |
+| Input      | Comments                                                                                        | Default |
+| ---------- | ----------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                         |         |
+| Max Items  | The maximum number of results to return. Provide a value from 1 to 50.                          |         |
+| Marker     | The pagination token returned by a previous request, used to retrieve the next page of results. |         |
+| Connection | The AWS Glue connection to use.                                                                 |         |
 
 ### List Jobs {#listjobs}
 
-List job schemas available in AWS Glue
+Lists jobs available in AWS Glue.
 
-| Input      | Comments                                                                                                      | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                       |         |
-| Marker     | Specify the pagination token that's returned by a previous request to retrieve the next page of results       |         |
-| Max Items  | Provide an integer value for the maximum amount of items that will be returned. Provide a value from 1 to 50. |         |
-| Connection |                                                                                                               |         |
+| Input      | Comments                                                                                        | Default |
+| ---------- | ----------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                         |         |
+| Marker     | The pagination token returned by a previous request, used to retrieve the next page of results. |         |
+| Max Items  | The maximum number of results to return. Provide a value from 1 to 50.                          |         |
+| Connection | The AWS Glue connection to use.                                                                 |         |
 
 ### List Triggers {#listtriggers}
 
-List the names of all triggers in the account.
+Lists the names of all triggers in the account.
 
-| Input      | Comments                                                                                                      | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                       |         |
-| Max Items  | Provide an integer value for the maximum amount of items that will be returned. Provide a value from 1 to 50. |         |
-| Marker     | Specify the pagination token that's returned by a previous request to retrieve the next page of results       |         |
-| Connection |                                                                                                               |         |
+| Input      | Comments                                                                                        | Default |
+| ---------- | ----------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                         |         |
+| Max Items  | The maximum number of results to return. Provide a value from 1 to 50.                          |         |
+| Marker     | The pagination token returned by a previous request, used to retrieve the next page of results. |         |
+| Connection | The AWS Glue connection to use.                                                                 |         |
 
 ### Start Crawler {#startcrawler}
 
 Starts an existing crawler in AWS Glue.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string value for the name (NOT the ARN).                      |         |
-| Connection |                                                                         |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name       | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Connection | The AWS Glue connection to use.                                                               |         |
 
 ### Start Job Run {#startjobrun}
 
-Starts a job run using a AWS Glue job definition.
+Starts a job run using an AWS Glue job definition.
 
-| Input                  | Comments                                                                                                                                                                            | Default |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region             | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                             |         |
-| Name                   | Provide a string value for the name (NOT the ARN).                                                                                                                                  |         |
-| Allocated Capacity     | The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. If this is omitted, Glue will use the default number of DPUs configured for your job. |         |
-| Security Configuration | The name of the SecurityConfiguration structure to be used with this job. This can be left blank if you do not have a security configuration.                                       |         |
-| args                   | Optional key value parameters to pass into a job.                                                                                                                                   |         |
-| Connection             |                                                                                                                                                                                     |         |
+| Input                  | Comments                                                                                                                                                                           | Default |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| AWS Region             | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                            |         |
+| Name                   | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN.                                                                                      |         |
+| Allocated Capacity     | The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. If this is omitted, Glue will use the default number of DPUs configured for the job. |         |
+| Security Configuration | The name of the SecurityConfiguration structure to be used with this job. This can be left blank if there is no security configuration.                                            |         |
+| Arguments              | Optional key value parameters to pass into a job.                                                                                                                                  |         |
+| Connection             | The AWS Glue connection to use.                                                                                                                                                    |         |
 
 ### Start Trigger {#starttrigger}
 
 Starts an existing trigger in AWS Glue.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string value for the name (NOT the ARN).                      |         |
-| Connection |                                                                         |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name       | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Connection | The AWS Glue connection to use.                                                               |         |
 
 ### Stop Crawler {#stopcrawler}
 
-If the specified crawler is running, stops the crawl
+Stops the specified crawler if it is currently running.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string value for the name (NOT the ARN).                      |         |
-| Connection |                                                                         |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name       | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Connection | The AWS Glue connection to use.                                                               |         |
 
 ### Stop Job Run {#stopjobrun}
 
-Stops one or more job runs for a specified job definition
+Stops one or more job runs for a specified job definition.
 
-| Input       | Comments                                                                | Default |
-| ----------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region  | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name        | Provide a string value for the name (NOT the ARN).                      |         |
-| Job Run Ids | Provide a list of job run Ids                                           |         |
-| Connection  |                                                                         |         |
+| Input       | Comments                                                                                      | Default |
+| ----------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region  | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name        | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Job Run IDs | The job run identifiers to stop for the specified job.                                        |         |
+| Connection  | The AWS Glue connection to use.                                                               |         |
 
-### Stop trigger {#stoptrigger}
+### Stop Trigger {#stoptrigger}
 
-Stops a specified trigger
+Stops a specified trigger.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1. |         |
-| Name       | Provide a string value for the name (NOT the ARN).                      |         |
-| Connection |                                                                         |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| AWS Region | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
+| Name       | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
+| Connection | The AWS Glue connection to use.                                                               |         |

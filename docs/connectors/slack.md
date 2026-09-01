@@ -234,12 +234,14 @@ Get the history of a conversation.
 | Connection           | The Slack connection to use.                                                                                            |         |
 | Channel Name or ID   | The name or static ID of the Slack channel.                                                                             |         |
 | Fetch All            | When true, fetches all pages of results.                                                                                | false   |
+| Pagination           | Cursor and page-size controls for paging through results.                                                               |         |
 | Limit                | The maximum number of results to return.                                                                                |         |
 | Cursor               | The pagination cursor from a previous request.                                                                          |         |
 | Include All Metadata | When true, includes all metadata in results.                                                                            | false   |
-| Inclusive            | When true, includes messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified. | false   |
-| Latest               | Only messages before this Unix timestamp will be included in results. Default is current time.                          |         |
+| Time Range           | Timestamp bounds and inclusivity for the messages returned in results.                                                  |         |
 | Oldest               | Only messages after this Unix timestamp will be included in results.                                                    |         |
+| Latest               | Only messages before this Unix timestamp will be included in results. Default is current time.                          |         |
+| Inclusive            | When true, includes messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified. | false   |
 
 ### Get User By Email {#getuser}
 
@@ -282,30 +284,33 @@ Leave an existing conversation.
 
 List all members of a conversation.
 
-| Input              | Comments                                       | Default |
-| ------------------ | ---------------------------------------------- | ------- |
-| Connection         | The Slack connection to use.                   |         |
-| Channel Name or ID | The name or static ID of the Slack channel.    |         |
-| Fetch All          | When true, fetches all pages of results.       | false   |
-| Limit              | The maximum number of results to return.       |         |
-| Cursor             | The pagination cursor from a previous request. |         |
+| Input              | Comments                                                  | Default |
+| ------------------ | --------------------------------------------------------- | ------- |
+| Connection         | The Slack connection to use.                              |         |
+| Channel Name or ID | The name or static ID of the Slack channel.               |         |
+| Fetch All          | When true, fetches all pages of results.                  | false   |
+| Pagination         | Cursor and page-size controls for paging through results. |         |
+| Limit              | The maximum number of results to return.                  |         |
+| Cursor             | The pagination cursor from a previous request.            |         |
 
 ### List Conversations {#listconversations}
 
 List all conversations.
 
-| Input                           | Comments                                                          | Default |
-| ------------------------------- | ----------------------------------------------------------------- | ------- |
-| Connection                      | The Slack connection to use.                                      |         |
-| Fetch All                       | When true, fetches all pages of results.                          | false   |
-| Limit                           | The maximum number of results to return.                          |         |
-| Cursor                          | The pagination cursor from a previous request.                    |         |
-| Team ID                         | The unique identifier for the Slack team.                         |         |
-| Exclude Archived                | When true, archived results will be excluded from the result set. | false   |
-| Include Public Channels         | When true, includes public channels in results.                   | true    |
-| Include Private Channels        | When true, includes private channels in results.                  | false   |
-| Include Multi-Party IM Channels | When true, includes multi-party IM (mpim) channels in results.    | false   |
-| Include IM Channels             | When true, includes direct message (IM) channels in results.      | false   |
+| Input                           | Comments                                                                                     | Default |
+| ------------------------------- | -------------------------------------------------------------------------------------------- | ------- |
+| Connection                      | The Slack connection to use.                                                                 |         |
+| Fetch All                       | When true, fetches all pages of results.                                                     | false   |
+| Pagination                      | Cursor and page-size controls for paging through results.                                    |         |
+| Limit                           | The maximum number of results to return.                                                     |         |
+| Cursor                          | The pagination cursor from a previous request.                                               |         |
+| Team ID                         | The unique identifier for the Slack team.                                                    |         |
+| Exclude Archived                | When true, archived results will be excluded from the result set.                            | false   |
+| Channel Types                   | Which channel types to include in results: public, private, multi-party IM, and IM channels. |         |
+| Include Public Channels         | When true, includes public channels in results.                                              | true    |
+| Include Private Channels        | When true, includes private channels in results.                                             | false   |
+| Include Multi-Party IM Channels | When true, includes multi-party IM (mpim) channels in results.                               | false   |
+| Include IM Channels             | When true, includes direct message (IM) channels in results.                                 | false   |
 
 ### List Files {#listfiles}
 
@@ -329,26 +334,28 @@ List all scheduled messages.
 
 List all conversations for a user.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection | The Slack connection to use.                   |         |
-| User ID    | The unique identifier for the Slack user.      |         |
-| Fetch All  | When true, fetches all pages of results.       | false   |
-| Limit      | The maximum number of results to return.       |         |
-| Cursor     | The pagination cursor from a previous request. |         |
-| Team ID    | The unique identifier for the Slack team.      |         |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Slack connection to use.                              |         |
+| User ID    | The unique identifier for the Slack user.                 |         |
+| Fetch All  | When true, fetches all pages of results.                  | false   |
+| Pagination | Cursor and page-size controls for paging through results. |         |
+| Limit      | The maximum number of results to return.                  |         |
+| Cursor     | The pagination cursor from a previous request.            |         |
+| Team ID    | The unique identifier for the Slack team.                 |         |
 
 ### List Users {#listusers}
 
 List all users in the workspace.
 
-| Input      | Comments                                       | Default |
-| ---------- | ---------------------------------------------- | ------- |
-| Connection | The Slack connection to use.                   |         |
-| Fetch All  | When true, fetches all pages of results.       | false   |
-| Limit      | The maximum number of results to return.       |         |
-| Cursor     | The pagination cursor from a previous request. |         |
-| Team ID    | The unique identifier for the Slack team.      |         |
+| Input      | Comments                                                  | Default |
+| ---------- | --------------------------------------------------------- | ------- |
+| Connection | The Slack connection to use.                              |         |
+| Fetch All  | When true, fetches all pages of results.                  | false   |
+| Pagination | Cursor and page-size controls for paging through results. |         |
+| Limit      | The maximum number of results to return.                  |         |
+| Cursor     | The pagination cursor from a previous request.            |         |
+| Team ID    | The unique identifier for the Slack team.                 |         |
 
 ### Open View {#openview}
 
@@ -476,6 +483,7 @@ Searches for messages and files matching a query.
 | -------------- | ------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection     | The Slack connection to use.                                                                                 |         |
 | Query          | The search query. May contain boolean operators (AND, OR, NOT) and modifiers.                                |         |
+| Pagination     | Page and page-size controls.                                                                                 |         |
 | Count          | The number of items to return per page.                                                                      |         |
 | Page           | The page number of results to return (1-based).                                                              | 1       |
 | Highlight      | When true, enables query highlight markers in results.                                                       | false   |
@@ -491,6 +499,7 @@ Searches for files matching a query.
 | -------------- | ------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection     | The Slack connection to use.                                                                                 |         |
 | Query          | The search query. May contain boolean operators (AND, OR, NOT) and modifiers.                                |         |
+| Pagination     | Page and page-size controls.                                                                                 |         |
 | Count          | The number of items to return per page.                                                                      |         |
 | Page           | The page number of results to return (1-based).                                                              | 1       |
 | Highlight      | When true, enables query highlight markers in results.                                                       | false   |
@@ -506,6 +515,7 @@ Searches for messages matching a query.
 | -------------- | ------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection     | The Slack connection to use.                                                                                 |         |
 | Query          | The search query. May contain boolean operators (AND, OR, NOT) and modifiers.                                |         |
+| Pagination     | Page and page-size controls.                                                                                 |         |
 | Count          | The number of items to return per page.                                                                      |         |
 | Page           | The page number of results to return (1-based).                                                              | 1       |
 | Highlight      | When true, enables query highlight markers in results.                                                       | false   |

@@ -1,7 +1,7 @@
 ---
 title: PDQ Connector
 sidebar_label: PDQ
-description: PDQ provides a suite of management tools to automate software deployment, manage patches, and track inventory across a company’s networks. Use the PDQ component to manage deployments, devices, groups, and packages.
+description: Manage deployments, devices, groups, and packages in PDQ.
 ---
 
 ![PDQ](./assets/pdq.png#connector-icon)
@@ -17,19 +17,19 @@ The component was built using the [PDQ V1 API](https://app.pdq.com/v1/docs)
 
 ### API Key {#pdq-api-key}
 
-Connection to the PDQ API
+Authenticate requests using an API key
 
 Follow these steps to [generate a new API key](https://connect.pdq.com/hc/en-us/articles/22929727991451-PDQ-Connect-API) in PDQ:
 
-1. Login to your PDQ Connect account and select the settings icon represented by a cog located in the lower left corner.
+1. Log in to the PDQ Connect account and select the settings icon represented by a cog located in the lower left corner.
 2. Navigate to the **API keys** section and select **Create API Key.**
 3. Provide a unique name for the API key and select **Create.**
 4. Copy and save the generated API key as it will not be shown again.
-5. Enter the generated API key into the connection configuration of your integration.
+5. Enter the generated API key into the connection configuration of the integration.
 
-| Input   | Comments        | Default |
-| ------- | --------------- | ------- |
-| API Key | The PDQ API Key |         |
+| Input   | Comments                                                                                                                                                   | Default |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| API Key | The API key generated from the PDQ Connect settings page. See [PDQ Connect API](https://connect.pdq.com/hc/en-us/articles/22929727991451-PDQ-Connect-API). |         |
 
 ## Triggers
 
@@ -39,90 +39,96 @@ Checks for new Devices or Groups added to PDQ on a configured schedule.
 
 | Input         | Comments                                                                                     | Default |
 | ------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection    |                                                                                              |         |
+| Connection    | The PDQ connection to use.                                                                   |         |
 | Resource Type | Select the PDQ resource to poll for newly added records. Choose Devices or Groups. Required. | Devices |
 
 ## Actions
 
 ### Create Deployment {#createdeployment}
 
-Deploy a package version to target devices or groups
+Deploy a package version to target devices or groups.
 
-| Input      | Comments                                  | Default |
-| ---------- | ----------------------------------------- | ------- |
-| Package    | The package id to deploy.                 |         |
-| Targets    | Comma-delimitted Device IDs or Group IDs. |         |
-| Connection |                                           |         |
+| Input      | Comments                                 | Default |
+| ---------- | ---------------------------------------- | ------- |
+| Package ID | The package id to deploy.                |         |
+| Targets    | Comma-delimited Device IDs or Group IDs. |         |
+| Connection | The PDQ connection to use.               |         |
 
 ### Get Device {#getdevice}
 
-Retrieve a device by ID
+Retrieve a device by ID.
 
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
 | Device ID  | The ID of the device to retrieve. |         |
-| Connection |                                   |         |
+| Connection | The PDQ connection to use.        |         |
 
 ### Get Package {#getpackage}
 
-Retrieve a package by ID
+Retrieve a package by ID.
 
-| Input      | Comments              | Default |
-| ---------- | --------------------- | ------- |
-| Package ID | The ID of the package |         |
-| Connection |                       |         |
+| Input      | Comments                                           | Default |
+| ---------- | -------------------------------------------------- | ------- |
+| Package ID | The unique identifier for the package to retrieve. |         |
+| Connection | The PDQ connection to use.                         |         |
 
 ### List Devices {#listdevices}
 
-Retrieve a list of devices
+Retrieve a list of devices.
 
 | Input               | Comments                                                                                                                                  | Default |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | If true, fetch all data.                                                                                                                  | false   |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
+| Pagination          | Page number and page size to control result paging.                                                                                       |         |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
 | Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Page                | The page number to return.                                                                                                                |         |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
 | Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
 | Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Custom fields filter                                                                                                                      |         |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
 | Includes            | Include related resources.                                                                                                                |         |
-| Group               | The id of the group to filter by.                                                                                                         |         |
-| Connection          |                                                                                                                                           |         |
+| Group ID            | The id of the group to filter by.                                                                                                         |         |
+| Connection          | The PDQ connection to use.                                                                                                                |         |
 
 ### List Groups {#listgroups}
 
-Retrieve a list of groups
+Retrieve a list of groups.
 
 | Input               | Comments                                                                                                                                  | Default |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | If true, fetch all data.                                                                                                                  | false   |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
+| Pagination          | Page number and page size to control result paging.                                                                                       |         |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
 | Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Page                | The page number to return.                                                                                                                |         |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
 | Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
 | Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Custom fields filter                                                                                                                      |         |
-| Connection          |                                                                                                                                           |         |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
+| Connection          | The PDQ connection to use.                                                                                                                |         |
 
 ### List Packages {#listpackages}
 
-Retrieve a list of packages
+Retrieve a list of packages.
 
 | Input               | Comments                                                                                                                                  | Default |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | If true, fetch all data.                                                                                                                  | false   |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
+| Pagination          | Page number and page size to control result paging.                                                                                       |         |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
 | Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Page                | The page number to return.                                                                                                                |         |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
 | Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
 | Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Custom fields filter                                                                                                                      |         |
-| Connection          |                                                                                                                                           |         |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
+| Connection          | The PDQ connection to use.                                                                                                                |         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to the PDQ API
+Send raw HTTP request to the PDQ API.
 
 | Input                   | Comments                                                                                                                                                                                                                            | Default |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                     |         |
+| Connection              | The PDQ connection to use.                                                                                                                                                                                                          |         |
 | URL                     | Input the path only (/deployments), The base URL is already included (https://app.pdq.com/v1/api). For example, to connect to https://app.pdq.com/v1/api/deployments, only /deployments is entered in this field. e.g. /deployments |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                                                             |         |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                           |         |

@@ -144,6 +144,14 @@ Edit an existing webhook
 | Webhook URL | The URL where webhook events will be sent.                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Triggers    | A JSON object specifying the triggers for the webhook. Use the default structure as a guideline. | <code>{<br /> "Open": {<br /> "Enabled": true,<br /> "PostFirstOpenOnly": false<br /> },<br /> "Click": {<br /> "Enabled": true<br /> },<br /> "Delivery": {<br /> "Enabled": true<br /> },<br /> "Bounce": {<br /> "Enabled": false,<br /> "IncludeContent": false<br /> },<br /> "SpamComplaint": {<br /> "Enabled": false,<br /> "IncludeContent": false<br /> },<br /> "SubscriptionChange": {<br /> "Enabled": false<br /> }<br />}</code> |
 
+### Get Server {#getserver}
+
+Get server information
+
+| Input      | Comments                        | Default |
+| ---------- | ------------------------------- | ------- |
+| Connection | The Postmark connection to use. |         |
+
 ### Get Server {#getservers}
 
 Get an existing server by ID
@@ -152,14 +160,6 @@ Get an existing server by ID
 | ---------- | -------------------------------------------- | ------- |
 | Server ID  | The unique numeric identifier of the server. |         |
 | Connection | The Postmark connection to use.              |         |
-
-### Get Server {#getserver}
-
-Get server information
-
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The Postmark connection to use. |         |
 
 ### Get Webhook {#getwebhook}
 

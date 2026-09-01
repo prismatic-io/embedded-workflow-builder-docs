@@ -1,7 +1,7 @@
 ---
 title: ServiceTitan Connector
 sidebar_label: ServiceTitan
-description: ServiceTitan is a comprehensive field service management solution that helps businesses manage their operations, workforce, and customer service.
+description: Manage jobs, customers, invoices, and technicians in ServiceTitan.
 ---
 
 ![ServiceTitan](./assets/servicetitan.png#connector-icon)
@@ -9,55 +9,74 @@ description: ServiceTitan is a comprehensive field service management solution t
 
 Use the ServiceTitan component to manage Technicians, Jobs, Appointments, and more.
 
-API Documentation:
-[ServiceTitan API Reference](https://developer.servicetitan.io/apis/)
+## API Documentation
+
+This component was built using the [ServiceTitan API Reference](https://developer.servicetitan.io/apis/).
 
 ## Connections
 
-### OAuth 2.0 {#servicetitanconnection}
+### OAuth 2.0 Client Credentials {#servicetitanconnection}
 
-Connect to Service Titan using OAuth 2.0
+Authenticate using OAuth 2.0 client credentials.
 
-To authenticate ServiceTitan integrations with OAuth 2.0 requires a developer account and the configuration of an application from the [ServiceTitan Developer Portal](https://developer.servicetitan.io/).
+Authenticating with ServiceTitan using OAuth 2.0 Client Credentials requires a developer account and an application configured in the [ServiceTitan Developer Portal](https://developer.servicetitan.io/).
 
-To Create an app:
+#### Prerequisites
 
-1. Login to the [Developer Portal](https://developer.servicetitan.io/)
+- A ServiceTitan developer account
+- Access to the [ServiceTitan Developer Portal](https://developer.servicetitan.io/)
+
+#### Setup Steps
+
+**Creating a new app:**
+
+1. Log in to the [Developer Portal](https://developer.servicetitan.io/)
 2. Select **My Apps** at the top of the page
 3. Select **+ New App**
-4. Fill all the required fields and scopes
-5. Under **Client Credentials Management**”, select **I, the app developer, will configure the credentials on behalf of each tenant**
+4. Fill in all required fields and scopes
+5. Under **Client Credentials Management**, select **I, the app developer, will configure the credentials on behalf of each tenant**
 6. Click **Create App**
 
-For Existing apps:
+**For existing apps:**
 
-1. Login to the [Developer Portal](https://developer.servicetitan.io/)
+1. Log in to the [Developer Portal](https://developer.servicetitan.io/)
 2. Select **My Apps** at the top of the page
-3. Click **Edit** on your application
-4. Under **Client Credentials Management**”, select **I, the app developer, will configure the credentials on behalf of each tenant**
-5. Click Save
+3. Click **Edit** on the application
+4. Under **Client Credentials Management**, select **I, the app developer, will configure the credentials on behalf of each tenant**
+5. Click **Save**
 
-To obtain a Client Secret and Client ID:
+**Obtaining a Client Secret and Client ID:**
 
-If you haven’t done so already, please add the client’s Tenant ID to your application. Once the Tenant Admin has allowed access and connected to your application through their “API Application Access” settings, you can begin the process of obtaining the tenant’s client ID and client secret in your developer portal:
+Add the client’s Tenant ID to the application. Once the Tenant Admin has allowed access and connected to the application through their **API Application Access** settings, obtain the tenant’s Client ID and Client Secret from the developer portal:
 
-1. Login to the [Developer Portal](https://developer.servicetitan.io/)
+1. Log in to the [Developer Portal](https://developer.servicetitan.io/)
 2. Select **My Apps** at the top of the page
-3. Click **View Connections** for your app
+3. Click **View Connections** for the app
 4. Click **Generate** under Client Secret to create a new **Client Secret**
 5. Reference the tenant’s **Client ID** on this page as well
+
+#### Configure the Connection
+
+Create a connection of type **OAuth 2.0 Client Credentials** and configure the following fields:
+
+- **Token URL**: Select the appropriate environment token URL (Production or Integration)
+- **Client ID**: Enter the Client ID obtained from the developer portal
+- **Client Secret**: Enter the Client Secret generated in the developer portal
+- **Tenant**: Enter the Tenant ID used to scope API requests to a specific account
+- **Application Key**: Enter the application key found in the developer portal
+- **Environment**: Select **Production** for live data or **Integration** for testing
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input           | Comments                                  | Default |
-| --------------- | ----------------------------------------- | ------- |
-| Token URL       | The OAuth 2.0 Token URL for the API       |         |
-| Client ID       | Client Identifier of your app for the API |         |
-| Client Secret   | Client Secret of your app for the API     |         |
-| Tenant          | The client tenant.                        |         |
-| Application Key | The ID of the payment.                    |         |
-| Environment     | The environment to connect to             |         |
+| Input           | Comments                                                                                | Default |
+| --------------- | --------------------------------------------------------------------------------------- | ------- |
+| Token URL       | The OAuth 2.0 token URL for the API. Select the appropriate environment.                |         |
+| Client ID       | The client identifier for the application, found in the Service Titan developer portal. |         |
+| Client Secret   | The client secret for the application, found in the Service Titan developer portal.     |         |
+| Tenant          | The client tenant.                                                                      |         |
+| Application Key | The ID of the payment.                                                                  |         |
+| Environment     | The environment to connect to                                                           |         |
 
 ## Triggers
 
@@ -168,24 +187,25 @@ Create a contact for a customer
 
 Create a new Installed equipment
 
-| Input                           | Comments                                     | Default                                                                                                                            |
-| ------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Connection                      |                                              |                                                                                                                                    |
-| Location ID                     | The location id of the installed equipment   |                                                                                                                                    |
-| Name                            | The name of the installed equipment          |                                                                                                                                    |
-| Installed On                    | The date the equipment was installed         |                                                                                                                                    |
-| Serial Number                   | Serial number of the installed equipment     |                                                                                                                                    |
-| Memo                            | The memo of the installed equipment          |                                                                                                                                    |
-| Manufacturer                    | Manufacturer of the installed equipment      |                                                                                                                                    |
-| Model                           | Model of the installed equipment             |                                                                                                                                    |
-| Cost                            | Cost of the installed equipment              |                                                                                                                                    |
-| Manufacturer Warranty Start     | Manufacturer warranty start date             |                                                                                                                                    |
-| Manufacturer Warranty End       | Manufacturer warranty end date               |                                                                                                                                    |
-| Service Provider Warranty Start | Service Provider Warranty Start date         |                                                                                                                                    |
-| Service Provider Warranty End   | Service Provider Warranty End date           |                                                                                                                                    |
-| Custom Fields                   | The custom fields of the installed equipment | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
-| Attachments                     | List of attachments                          | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
-| Tag Type IDs                    | A list of tags ID's                          |                                                                                                                                    |
+| Input                           | Comments                                                        | Default                                                                                                                            |
+| ------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Connection                      |                                                                 |                                                                                                                                    |
+| Location ID                     | The location id of the installed equipment                      |                                                                                                                                    |
+| Name                            | The name of the installed equipment                             |                                                                                                                                    |
+| Installed On                    | The date the equipment was installed                            |                                                                                                                                    |
+| Serial Number                   | Serial number of the installed equipment                        |                                                                                                                                    |
+| Memo                            | The memo of the installed equipment                             |                                                                                                                                    |
+| Manufacturer                    | Manufacturer of the installed equipment                         |                                                                                                                                    |
+| Model                           | Model of the installed equipment                                |                                                                                                                                    |
+| Cost                            | Cost of the installed equipment                                 |                                                                                                                                    |
+| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |                                                                                                                                    |
+| Manufacturer Warranty Start     | Manufacturer warranty start date                                |                                                                                                                                    |
+| Manufacturer Warranty End       | Manufacturer warranty end date                                  |                                                                                                                                    |
+| Service Provider Warranty Start | Service Provider Warranty Start date                            |                                                                                                                                    |
+| Service Provider Warranty End   | Service Provider Warranty End date                              |                                                                                                                                    |
+| Custom Fields                   | The custom fields of the installed equipment                    | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
+| Attachments                     | List of attachments                                             | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
+| Tag Type IDs                    | A list of tags ID's                                             |                                                                                                                                    |
 
 ### Create Installed Equipment Attachment {#createinstalledequipmentattachment}
 
@@ -211,6 +231,7 @@ Create adjustment invoice
 | Subtotal         | The subtotal of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Tax              | The tax of the invoice.                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Summary          | The summary of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Details  | Royalty status, date, sent on, and memo.       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Status   | The royalty status of the invoice.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Date     | The royalty date of the invoice.               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Sent On  | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -258,9 +279,9 @@ Creates a new location
 | Tag Type IDs  | A list of tags ID's                       |                                                                                                                                                                           |
 | External Data | External data to attach to the request.   | <code>{<br /> "applicationGuid": "string",<br /> "externalData": [<br /> {<br /> "key": "string",<br /> "value": "string"<br /> }<br /> ]<br />}</code>                   |
 
-### Create Payment {#createpayment}
+### Create Payment (Deprecated) {#createpayment}
 
-Create a payment in Service Titan
+Deprecated: ServiceTitan removed the POST /payments endpoint from the V2 API. Payment creation is no longer supported via the API
 
 | Input        | Comments                                   | Default                                                                       |
 | ------------ | ------------------------------------------ | ----------------------------------------------------------------------------- |
@@ -312,11 +333,12 @@ Create new technician
 | Password                       | Technician's password                                                |                                                                                                                                                                           |
 | Business Unit ID               | The ID of the business unit to which the technician will be assigned |                                                                                                                                                                           |
 | Azure Active Directory User Id | Azure Active Directory User Id                                       |                                                                                                                                                                           |
+| Memo                           | Memo for the technician                                              |                                                                                                                                                                           |
+| Additional Fields              | Additional optional fields.                                          |                                                                                                                                                                           |
 | Team                           | Team name                                                            |                                                                                                                                                                           |
 | Daily Goal                     | Daily revenue goal                                                   |                                                                                                                                                                           |
 | Burden Rate                    | Burden rate (hourly)                                                 |                                                                                                                                                                           |
 | Biography                      | Biography of the technician                                          |                                                                                                                                                                           |
-| Memo                           | Memo for the technician                                              |                                                                                                                                                                           |
 | Job Filter                     | Upcoming appointment visibility                                      |                                                                                                                                                                           |
 | Job History Date Filter        | Appointment history visibility                                       |                                                                                                                                                                           |
 | Address                        | The home address of the technician                                   | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |
@@ -442,6 +464,7 @@ Retrieve a list of appointment assignments
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -456,6 +479,7 @@ Retrieve a list of appointments
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -471,6 +495,7 @@ Retrieves a list of bookings
 | Connection          |                                                                                                                        |         |
 | Booking Provider    | The ID of the booking provider.                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -485,6 +510,7 @@ Retrieves a list of bookings
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -499,6 +525,7 @@ Gets a list of business units
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -514,6 +541,7 @@ Gets a list of contacts for the specified customer
 | Connection           |                                                                                 |         |
 | Customer ID          | The customer ID.                                                                |         |
 | Fetch All            | If true, fetch all records, if false, will use the pageSize and page parameters | false   |
+| Pagination           | Page number and page size.                                                      |         |
 | Page                 | The page number to filter by                                                    |         |
 | Page Size            | How many records to return (50 by default)                                      |         |
 | Include Total        | Include total count of records. If fetchAll is true, this will be ignored.      | false   |
@@ -528,6 +556,7 @@ Retrieve a list of Customers
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order. |         |
@@ -542,6 +571,7 @@ Retrieve a list of installed equipment
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -565,6 +595,7 @@ Retrieves a list of invoices
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -579,6 +610,7 @@ Retrieve a list of job cancel reasons
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -593,6 +625,7 @@ Retrieve a list of jobs
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -607,6 +640,7 @@ Retrieve a list of Locations
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -621,6 +655,7 @@ Retrieve a list of payments
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -635,6 +670,7 @@ Retrieve a list of Projects
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -663,6 +699,7 @@ Gets a list of user roles
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection          |                                                                                                                        |         |
 | Fetch All           | If true, fetch all records, if false, will use the pageSize and page parameters                                        | false   |
+| Pagination          | Page number and page size.                                                                                             |         |
 | Page                | The page number to filter by                                                                                           |         |
 | Page Size           | How many records to return (50 by default)                                                                             |         |
 | Include Total       | Include total count of records. If fetchAll is true, this will be ignored.                                             | false   |
@@ -760,24 +797,25 @@ Updates a contact on the customers
 
 Update installed equipment by ID
 
-| Input                           | Comments                                     | Default                                                                                                                            |
-| ------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Connection                      |                                              |                                                                                                                                    |
-| Installed Equipment ID          | ID of the installed equipment                |                                                                                                                                    |
-| Name                            | The name of the installed equipment          |                                                                                                                                    |
-| Installed On                    | The date the equipment was installed         |                                                                                                                                    |
-| Serial Number                   | Serial number of the installed equipment     |                                                                                                                                    |
-| Memo                            | The memo of the installed equipment          |                                                                                                                                    |
-| Manufacturer                    | Manufacturer of the installed equipment      |                                                                                                                                    |
-| Model                           | Model of the installed equipment             |                                                                                                                                    |
-| Cost                            | Cost of the installed equipment              |                                                                                                                                    |
-| Manufacturer Warranty Start     | Manufacturer warranty start date             |                                                                                                                                    |
-| Manufacturer Warranty End       | Manufacturer warranty end date               |                                                                                                                                    |
-| Service Provider Warranty Start | Service Provider Warranty Start date         |                                                                                                                                    |
-| Service Provider Warranty End   | Service Provider Warranty End date           |                                                                                                                                    |
-| Custom Fields                   | The custom fields of the installed equipment | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
-| Attachments                     | List of attachments                          | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
-| Tag Type IDs                    | A list of tags ID's                          |                                                                                                                                    |
+| Input                           | Comments                                                        | Default                                                                                                                            |
+| ------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Connection                      |                                                                 |                                                                                                                                    |
+| Installed Equipment ID          | ID of the installed equipment                                   |                                                                                                                                    |
+| Name                            | The name of the installed equipment                             |                                                                                                                                    |
+| Installed On                    | The date the equipment was installed                            |                                                                                                                                    |
+| Serial Number                   | Serial number of the installed equipment                        |                                                                                                                                    |
+| Memo                            | The memo of the installed equipment                             |                                                                                                                                    |
+| Manufacturer                    | Manufacturer of the installed equipment                         |                                                                                                                                    |
+| Model                           | Model of the installed equipment                                |                                                                                                                                    |
+| Cost                            | Cost of the installed equipment                                 |                                                                                                                                    |
+| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |                                                                                                                                    |
+| Manufacturer Warranty Start     | Manufacturer warranty start date                                |                                                                                                                                    |
+| Manufacturer Warranty End       | Manufacturer warranty end date                                  |                                                                                                                                    |
+| Service Provider Warranty Start | Service Provider Warranty Start date                            |                                                                                                                                    |
+| Service Provider Warranty End   | Service Provider Warranty End date                              |                                                                                                                                    |
+| Custom Fields                   | The custom fields of the installed equipment                    | <code>[<br /> {<br /> "typeId": 0,<br /> "value": "string"<br /> }<br />]</code>                                                   |
+| Attachments                     | List of attachments                                             | <code>[<br /> {<br /> "alias": "string",<br /> "fileName": "string",<br /> "type": {},<br /> "url": "string"<br /> }<br />]</code> |
+| Tag Type IDs                    | A list of tags ID's                                             |                                                                                                                                    |
 
 ### Update Invoice {#updateinvoice}
 
@@ -793,6 +831,7 @@ Update Invoice
 | Subtotal        | The subtotal of the invoice.                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Tax             | The tax of the invoice.                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Summary         | The summary of the invoice.                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Royalty Details | Royalty status, date, sent on, and memo.       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Status  | The royalty status of the invoice.             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Date    | The royalty date of the invoice.               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Royalty Sent On | The royalty sent date of the invoice.          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -825,6 +864,7 @@ Update invoice items
 | SKU ID                               | The ID of the SKU.                                   |         |
 | SKU Name                             | The name of the SKU.                                 |         |
 | Technician ID                        | The ID of the technician.                            |         |
+| Additional Fields                    | Additional optional fields.                          |         |
 | Unit Price                           | The unit price of the SKU.                           |         |
 | Cost                                 | The cost of the SKU.                                 |         |
 | Is Add On                            | Is the SKU an add on.                                |         |
@@ -941,11 +981,12 @@ Update a technician
 | Positions                      | List of company positions                                            |                                                                                                                                                                           |
 | Azure Active Directory User Id | Azure Active Directory User Id                                       |                                                                                                                                                                           |
 | License Type                   | License type                                                         |                                                                                                                                                                           |
+| Memo                           | Memo for the technician                                              |                                                                                                                                                                           |
+| Additional Fields              | Additional optional fields.                                          |                                                                                                                                                                           |
 | Team                           | Team name                                                            |                                                                                                                                                                           |
 | Daily Goal                     | Daily revenue goal                                                   |                                                                                                                                                                           |
 | Burden Rate                    | Burden rate (hourly)                                                 |                                                                                                                                                                           |
 | Biography                      | Biography of the technician                                          |                                                                                                                                                                           |
-| Memo                           | Memo for the technician                                              |                                                                                                                                                                           |
 | Job Filter                     | Upcoming appointment visibility                                      |                                                                                                                                                                           |
 | Job History Date Filter        | Appointment history visibility                                       |                                                                                                                                                                           |
 | Address                        | The home address of the technician                                   | <code>{<br /> "street": "string",<br /> "unit": "string",<br /> "city": "string",<br /> "state": "string",<br /> "zip": "string",<br /> "country": "string"<br />}</code> |

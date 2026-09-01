@@ -430,6 +430,7 @@ Checks for new and updated items in a specified SharePoint drive on a configured
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.  |         |
+| Site Id    | The unique identifier of a SharePoint site.  |         |
 | Drive      | The unique identifier of a SharePoint drive. |         |
 
 ### New and Updated Folder Items {#folderpollingtrigger}
@@ -439,6 +440,7 @@ Checks for new and updated items in a specified folder within a SharePoint drive
 | Input              | Comments                                                              | Default |
 | ------------------ | --------------------------------------------------------------------- | ------- |
 | Connection         | The Microsoft SharePoint connection to use.                           |         |
+| Site Id            | The unique identifier of a SharePoint site.                           |         |
 | Drive              | The unique identifier of a SharePoint drive.                          |         |
 | Folder ID          | The ID of the folder to monitor for changes.                          |         |
 | Include Subfolders | When enabled, changes in subfolders will also be tracked recursively. | false   |
@@ -541,11 +543,13 @@ Delete a Subscription by ID
 
 Download a file from the specified drive
 
-| Input      | Comments                                     | Default |
-| ---------- | -------------------------------------------- | ------- |
-| Connection | The Microsoft SharePoint connection to use.  |         |
-| Drive      | The unique identifier of a SharePoint drive. |         |
-| Item Id    | The unique identifier of a SharePoint item.  |         |
+| Input      | Comments                                         | Default |
+| ---------- | ------------------------------------------------ | ------- |
+| Connection | The Microsoft SharePoint connection to use.      |         |
+| Site Id    | The unique identifier of a SharePoint site.      |         |
+| List Id    | The unique identifier of a SharePoint site list. |         |
+| Drive      | The unique identifier of a SharePoint drive.     |         |
+| Item Id    | The unique identifier of a SharePoint item.      |         |
 
 ### Get Current User {#getcurrentuser}
 
@@ -562,17 +566,20 @@ Returns the information and metadata of a SharePoint drive
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.  |         |
+| Site Id    | The unique identifier of a SharePoint site.  |         |
 | Drive      | The unique identifier of a SharePoint drive. |         |
 
 ### Get File {#getfile}
 
 Get a file from a Drive
 
-| Input      | Comments                                     | Default |
-| ---------- | -------------------------------------------- | ------- |
-| Connection | The Microsoft SharePoint connection to use.  |         |
-| Drive      | The unique identifier of a SharePoint drive. |         |
-| Item Id    | The unique identifier of a SharePoint item.  |         |
+| Input      | Comments                                         | Default |
+| ---------- | ------------------------------------------------ | ------- |
+| Connection | The Microsoft SharePoint connection to use.      |         |
+| Site Id    | The unique identifier of a SharePoint site.      |         |
+| List Id    | The unique identifier of a SharePoint site list. |         |
+| Drive      | The unique identifier of a SharePoint drive.     |         |
+| Item Id    | The unique identifier of a SharePoint item.      |         |
 
 ### Get Item from Site List {#getiteminsite}
 
@@ -645,6 +652,7 @@ List all the files from a Drive
 | Input      | Comments                                                                          | Default |
 | ---------- | --------------------------------------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.                                       |         |
+| Site Id    | The unique identifier of a SharePoint site.                                       |         |
 | Drive      | The unique identifier of a SharePoint drive.                                      |         |
 | Page Limit | The maximum number of results to return per page.                                 |         |
 | Page Token | The token for the desired page from a previous response.                          |         |
@@ -658,6 +666,7 @@ List all the files from a Drive. This version of the action is being deprecated.
 | Input      | Comments                                     | Default |
 | ---------- | -------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.  |         |
+| Site Id    | The unique identifier of a SharePoint site.  |         |
 | Drive      | The unique identifier of a SharePoint drive. |         |
 
 ### List Folder Files in Drive {#getfilesfromdrivefolderwithpagination}
@@ -667,6 +676,7 @@ List all the files inside of a folder from a Drive
 | Input      | Comments                                                                      | Default |
 | ---------- | ----------------------------------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.                                   |         |
+| Site Id    | The unique identifier of a SharePoint site.                                   |         |
 | Drive      | The unique identifier of a SharePoint drive.                                  |         |
 | Folder ID  | The unique identifier of a SharePoint folder. Leave empty to use root folder. |         |
 | Page Limit | The maximum number of results to return per page.                             |         |
@@ -680,6 +690,7 @@ List all the files inside of a folder from a Drive. This version of the action i
 | Input      | Comments                                                                      | Default |
 | ---------- | ----------------------------------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.                                   |         |
+| Site Id    | The unique identifier of a SharePoint site.                                   |         |
 | Drive      | The unique identifier of a SharePoint drive.                                  |         |
 | Folder ID  | The unique identifier of a SharePoint folder. Leave empty to use root folder. |         |
 
@@ -701,6 +712,7 @@ List Items in a Folder
 | Input      | Comments                                           | Default |
 | ---------- | -------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.        |         |
+| Site Id    | The unique identifier of a SharePoint site.        |         |
 | Drive      | Provide the id of the drive to list the items in.  |         |
 | Folder ID  | Provide the id of the folder to list the items in. |         |
 
@@ -762,6 +774,8 @@ Move a File in a Drive
 | Input                 | Comments                                                          | Default |
 | --------------------- | ----------------------------------------------------------------- | ------- |
 | Connection            | The Microsoft SharePoint connection to use.                       |         |
+| Site Id               | The unique identifier of a SharePoint site.                       |         |
+| List Id               | The unique identifier of a SharePoint site list.                  |         |
 | Drive                 | Provide the id of the drive to move the file in.                  |         |
 | Item Id               | Provide the id of the file to move.                               |         |
 | Destination Parent Id | Provide the Id of the destination parent element to move file to. |         |
@@ -827,6 +841,8 @@ Update a file to the specified drive
 | Input      | Comments                                                                                              | Default |
 | ---------- | ----------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.                                                           |         |
+| Site Id    | The unique identifier of a SharePoint site.                                                           |         |
+| List Id    | The unique identifier of a SharePoint site list.                                                      |         |
 | Drive      | The unique identifier of a SharePoint drive.                                                          |         |
 | Item Id    | The unique identifier of a SharePoint item.                                                           |         |
 | File Data  | The file content to upload to SharePoint. Reference a file from a previous step or provide file data. |         |
@@ -848,6 +864,7 @@ Upload a file to the specified drive or folder's drive
 | Input      | Comments                                                                                              | Default |
 | ---------- | ----------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Microsoft SharePoint connection to use.                                                           |         |
+| Site Id    | The unique identifier of a SharePoint site.                                                           |         |
 | Drive      | The unique identifier of a SharePoint drive.                                                          |         |
 | File Name  | The name of the file including extension.                                                             |         |
 | File Data  | The file content to upload to SharePoint. Reference a file from a previous step or provide file data. |         |
