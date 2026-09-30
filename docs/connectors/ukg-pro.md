@@ -107,6 +107,7 @@ Retrieve contract details for all employees.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -120,6 +121,7 @@ Retrieve employment details for all employees within a specific company.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -133,6 +135,7 @@ Retrieve person details for all employees across all companies.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -147,6 +150,7 @@ Retrieve employees with changes since a specified date. Note: Date must be at le
 | Connection | Select your UKG Pro connection.                                              |         |
 | Start Date | Start date for filtering results. Format: YYYY-MM-DD                         |         |
 | End Date   | End date for filtering results. Format: YYYY-MM-DD                           |         |
+| Pagination | Page and page-size controls.                                                 |         |
 | Page       | The page number to retrieve (1-indexed). Defaults to 1.                      |         |
 | Per Page   | Number of records to return per page. Defaults to API default (usually 100). |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.      | false   |
@@ -168,6 +172,7 @@ Retrieve demographic details for employees, optionally filtered by date range.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -187,6 +192,7 @@ Retrieve employee's employment details according to the specified query paramete
 | Primary Project Code       | Filter by one or more project codes (comma-separated). Example: PROJ-001,PROJ-002                                                                       |         |
 | Deduction Group Code       | Filter by one or more deduction group codes (comma-separated).                                                                                          |         |
 | Earning Group Code         | Filter by one or more earning group codes (comma-separated).                                                                                            |         |
+| Pagination                 | Page and page-size controls.                                                                                                                            |         |
 | Page                       | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page                   | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All                  | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -201,6 +207,7 @@ Retrieve employment details for a specific employee by company and employee ID.
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
 | Employee ID       | The unique identifier for the employee in UKG Pro.                                                                                                      |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -214,6 +221,7 @@ Retrieve the complete job history for a specific employee.
 | ----------- | ---------------------------------------------------------------------------- | ------- |
 | Connection  | Select your UKG Pro connection.                                              |         |
 | Employee ID | The unique identifier for the employee in UKG Pro.                           |         |
+| Pagination  | Page and page-size controls.                                                 |         |
 | Page        | The page number to retrieve (1-indexed). Defaults to 1.                      |         |
 | Per Page    | Number of records to return per page. Defaults to API default (usually 100). |         |
 | Fetch All   | When true, automatically fetches all pages of results using pagination.      | false   |
@@ -262,6 +270,7 @@ Retrieve person details for all employees within a specific company.
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -305,6 +314,7 @@ Retrieve a list of all companies defined in the organization.
 | Master Company ID | Filter by master company ID.                                                                                                                            |         |
 | Company Code      | Filter by company code.                                                                                                                                 |         |
 | Is Master Company | When true, filters to only master companies.                                                                                                            | false   |
+| Pagination        | Page and page-size controls.                                                                                                                            |         |
 | Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -317,6 +327,7 @@ Retrieve a list of job definitions in the organization.
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | Select your UKG Pro connection.                                                                                                                         |         |
 | Company ID | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
+| Pagination | Page and page-size controls.                                                                                                                            |         |
 | Page       | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page   | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
@@ -347,6 +358,7 @@ Retrieve a list of positions defined in the organization.
 | Is Prorated              | When true, filters to only prorated employee positions.                                                                                                 | false   |
 | Is Approved              | When true, filters to only approved employee positions.                                                                                                 | false   |
 | Is Eligible For Benefits | When true, filters to only employee positions eligible for benefits.                                                                                    | false   |
+| Pagination               | Page and page-size controls.                                                                                                                            |         |
 | Page                     | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
 | Per Page                 | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
 | Fetch All                | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |

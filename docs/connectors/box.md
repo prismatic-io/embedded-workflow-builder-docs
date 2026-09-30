@@ -6,11 +6,11 @@ description: Manage files stored in Box
 
 ![Box](./assets/box.png#connector-icon)
 [Box](https://www.box.com/) is a file sharing platform that allows teams to collaborate and share files with one another.
-The Box component allows you to create, list, fetch, move, or delete files and folders in a customer's Box account.
+The Box component allows creating, listing, fetching, moving, and deleting files and folders in a customer's Box account.
 
 ## API Documentation
 
-This component was built using the [Box REST API](https://developer.box.com/reference/)
+This component was built using the [Box REST API](https://developer.box.com/reference)
 
 ## Connections
 
@@ -42,7 +42,7 @@ To generate a developer token:
 7. Click **Generate Developer Token**
 8. Copy the generated token (valid for 60 minutes)
 
-For more information, refer to the [Box Developer Token documentation](https://developer.box.com/guides/authentication/tokens/developer-tokens/).
+For more information, refer to the [Box Developer Token documentation](https://developer.box.com/guides/authentication/tokens/developer-tokens).
 
 #### Configure the Connection
 
@@ -62,7 +62,7 @@ Authenticate using OAuth 2.0.
 
 To connect to Box using OAuth 2.0, create a Box OAuth 2.0 app to authorize the integration to access customer Box accounts.
 
-Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authentication/oauth2/oauth2-setup/) for detailed information.
+Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authentication/oauth2/oauth2-setup) for detailed information.
 
 #### Prerequisites
 
@@ -82,7 +82,7 @@ Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authen
    - Under **Application Scopes**, select the appropriate permissions:
      - For full access, select **Write all files and folders stored in Box**
      - For read-only access, select **Read all files and folders stored in Box**
-     - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/) for more granular permissions
+     - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes) for more granular permissions
    - Leave **CORS Domains** blank
 7. Click **Save Changes**
 
@@ -92,7 +92,7 @@ Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authen
 - For **Scopes**, either:
   - Leave blank to use the **Application Scopes** configured in the Box app
   - Enter specific scopes as a space-separated list (e.g., `root_readwrite manage_webhook`)
-  - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/) for available scopes
+  - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes) for available scopes
 
 :::note[Box Enterprise Features]
 Some Box features require an Enterprise account. Ensure the Box account has appropriate subscription level for the required functionality.
@@ -361,19 +361,6 @@ List Folder contents at the specified path.
 | Marker          | The pagination marker returned by a previous request to retrieve the next page of results.                                                                                                                                                       |         |
 | Offset          | The position to start returning results from (zero-based index).                                                                                                                                                                                 |         |
 | Connection      | The Box connection to use.                                                                                                                                                                                                                       |         |
-
-### List Folder (Deprecated) {#listfolder}
-
-List Folder contents at the specified path. This version of the action is being deprecated. Please replace action with List Folder.
-
-| Input      | Comments                                                                                   | Default |
-| ---------- | ------------------------------------------------------------------------------------------ | ------- |
-| Path       | The full path to the file or folder. Must include a leading forward slash (/).             |         |
-| Pagination | Marker, limit, and offset controls for paging through results.                             |         |
-| Limit      | The maximum number of items to return (1-1000).                                            |         |
-| Marker     | The pagination marker returned by a previous request to retrieve the next page of results. |         |
-| Offset     | The position to start returning results from (zero-based index).                           |         |
-| Connection | The Box connection to use.                                                                 |         |
 
 ### List Webhooks {#listwebhooks}
 

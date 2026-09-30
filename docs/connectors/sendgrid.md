@@ -61,22 +61,23 @@ Receive event webhook notifications from SendGrid. Automatically creates and man
 | Input         | Comments                                                                                              | Default                    |
 | ------------- | ----------------------------------------------------------------------------------------------------- | -------------------------- |
 | Connection    | The SendGrid connection to use.                                                                       |                            |
-| Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
 | Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
+| Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
 
 ### New and Updated Messages {#pollchangestrigger}
 
-Checks for new and updated messages in SendGrid on a configured schedule.
+Retrieves existing and ongoing messages from the SendGrid Email Activity Feed. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The SendGrid connection to use.                                                                                                                                                                                                                                           |         |
-| Show New Records     | When true, newly created records (a `processed` event observed within the polling window) are included on the `created` branch. SendGrid surfaces a single `last_event_time` per message, so the `created` vs `updated` split is best-effort based on the event timeline. | true    |
-| Show Updated Records | When true, records whose `last_event_time` falls within the polling window are included on the `updated` branch.                                                                                                                                                          | true    |
+| Input                | Comments                                                                                                                                                                                                                                           | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The SendGrid connection to use.                                                                                                                                                                                                                    |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. SendGrid retains activity for 30 days, so dates older than 30 days are clamped to the retention floor. Leave empty to sync the full 30-day retention window. |         |
+| Show New Records     | SendGrid surfaces a single `last_event_time` per message with no per-event timeline, so newly created messages cannot be distinguished from updated ones. Every matching record is reported on the `updated` branch, so this input has no effect.  | true    |
+| Show Updated Records | When true, records whose `last_event_time` falls within the polling window are included on the `updated` branch.                                                                                                                                   | true    |
 
 ### Webhook {#webhook}
 
-Receives and validates webhook requests from SendGrid for manually configured webhook subscriptions.
+Receives webhook requests from SendGrid for manually configured webhook subscriptions.
 
 ## Actions
 
@@ -107,9 +108,9 @@ Creates a new Event Webhook configuration to receive email event data.
 | ------------- | ----------------------------------------------------------------------------------------------------- | -------------------------- |
 | Connection    | The SendGrid connection to use.                                                                       |                            |
 | Webhook URL   | The URL where SendGrid will send event data.                                                          |                            |
+| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
 | Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
 | Enabled       | When true, enables the Event Webhook.                                                                 | true                       |
-| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
 
 ### Delete Webhook {#deletewebhook}
 
@@ -124,23 +125,25 @@ Deletes an Event Webhook configuration.
 
 Retrieves all custom field definitions with pagination support.
 
-| Input      | Comments                                                  | Default |
-| ---------- | --------------------------------------------------------- | ------- |
-| Connection | The SendGrid connection to use.                           |         |
-| Fetch All  | When true, fetches all pages of results using pagination. | false   |
-| Page Size  | Number of results to return per page (max 100).           |         |
-| Page Token | Token for fetching the next or previous page of results.  |         |
+| Input      | Comments                                                      | Default |
+| ---------- | ------------------------------------------------------------- | ------- |
+| Connection | The SendGrid connection to use.                               |         |
+| Fetch All  | When true, fetches all pages of results using pagination.     | false   |
+| Pagination | Page size and page token controls for paging through results. |         |
+| Page Size  | Number of results to return per page (max 100).               |         |
+| Page Token | Token for fetching the next or previous page of results.      |         |
 
 ### Get All Lists {#getalllists}
 
 Retrieves all contact lists with pagination support.
 
-| Input      | Comments                                                  | Default |
-| ---------- | --------------------------------------------------------- | ------- |
-| Connection | The SendGrid connection to use.                           |         |
-| Fetch All  | When true, fetches all pages of results using pagination. | false   |
-| Page Size  | Number of results to return per page (max 100).           |         |
-| Page Token | Token for fetching the next or previous page of results.  |         |
+| Input      | Comments                                                      | Default |
+| ---------- | ------------------------------------------------------------- | ------- |
+| Connection | The SendGrid connection to use.                               |         |
+| Fetch All  | When true, fetches all pages of results using pagination.     | false   |
+| Pagination | Page size and page token controls for paging through results. |         |
+| Page Size  | Number of results to return per page (max 100).               |         |
+| Page Token | Token for fetching the next or previous page of results.      |         |
 
 ### Get Contacts by Emails {#getcontactsbyemails}
 
@@ -235,16 +238,17 @@ Sends a single email to one or more recipients.
 | BCC                   | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                                                        |                 |
 | From Name             | The display name that appears alongside the sender email address in the recipient's inbox.                                                                                                                                                           |                 |
 | Reply To Email        | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                                  |                 |
-| Reply To Name         | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                           |                 |
+| Reply To Name         | The display name used for replies. Required when Reply To Email is provided.                                                                                                                                                                         |                 |
 | HTML                  | The HTML-formatted content of the email. When provided, takes priority over the plain-text body in clients that support HTML rendering.                                                                                                              |                 |
 | Personalizations      | Allows overwriting multiple properties of the email such as recipients, subject, and send time per recipient. See [SendGrid personalizations docs](https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations) for examples. | <code>[]</code> |
 | Attachment Content    | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                                                                 |                 |
-| Disposition           | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
 | File Name             | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                                                             |                 |
-| File Type             | The MIME type of the content you are attaching.                                                                                                                                                                                                      |                 |
-| Content ID            | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                                                      |                 |
+| Attachment Details    | Configure a single file attachment including its display mode, MIME type, and content ID.                                                                                                                                                            |                 |
+| Disposition           | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
+| File Type             | The MIME type of the attached content (e.g., text/plain, application/pdf).                                                                                                                                                                           |                 |
+| Content ID            | The content ID of the attachment, used to reference inline attachments in HTML via a cid: URL. Required when Disposition is set to 'inline'.                                                                                                         |                 |
 | Multiple Attachments  | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                                                  |                 |
-| Subscription Tracking | When true, inserts a subscription management link at the bottom of the text and HTML bodies of your email.                                                                                                                                           | false           |
+| Subscription Tracking | When true, inserts a subscription management link at the bottom of the text and HTML bodies of the email.                                                                                                                                            | false           |
 
 ### Send Email with Dynamic Template {#sendemailwithdynamictemplate}
 
@@ -261,7 +265,7 @@ Sends an email using a SendGrid dynamic template with complex nested JSON data.
 | CC                    | The recipient's email address, or a comma-separated list of recipient email addresses to CC. Will be ignored if 'Personalizations' is provided.                                                                                             |                 |
 | BCC                   | The recipient's email address, or a comma-separated list of recipient email addresses to BCC. Will be ignored if 'Personalizations' is provided.                                                                                            |                 |
 | Reply To Email        | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                         |                 |
-| Reply To Name         | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                  |                 |
+| Reply To Name         | The display name used for replies. Required when Reply To Email is provided.                                                                                                                                                                |                 |
 | Personalizations      | Advanced: Provide a personalizations array to send different variations to different recipients. When provided, this will override 'To', 'CC', and 'BCC' inputs. Each personalization will automatically include the dynamic template data. | <code>[]</code> |
 
 ### Send Multiple Emails {#sendmultipleemails}
@@ -279,14 +283,15 @@ Sends a separate email to each recipient.
 | BCC                  | The recipient's email address, or a comma-separated list of recipient email addresses to BCC.                                                                                                                                                        |                 |
 | From Name            | The display name that appears alongside the sender email address in the recipient's inbox.                                                                                                                                                           |                 |
 | Reply To Email       | The email address recipients see when they reply. Only used when different from the sender address.                                                                                                                                                  |                 |
-| Reply To Name        | Name to reply to. This field is only required when you provide a value for Reply To Email.                                                                                                                                                           |                 |
+| Reply To Name        | The display name used for replies. Required when Reply To Email is provided.                                                                                                                                                                         |                 |
 | HTML                 | The HTML-formatted content of the email. When provided, takes priority over the plain-text body in clients that support HTML rendering.                                                                                                              |                 |
 | Personalizations     | Allows overwriting multiple properties of the email such as recipients, subject, and send time per recipient. See [SendGrid personalizations docs](https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations) for examples. | <code>[]</code> |
 | Attachment Content   | Provide attachment data to send with the email. The 'File Name' field is required when using this input and should reference the data output from a previous action.                                                                                 |                 |
-| Disposition          | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
 | File Name            | Provide a name for the file to attach. The 'Attachment Content' field is required when using this input.                                                                                                                                             |                 |
-| File Type            | The MIME type of the content you are attaching.                                                                                                                                                                                                      |                 |
-| Content ID           | Provide the content Id of the attachment. This value is only required when you select 'inline'.                                                                                                                                                      |                 |
+| Attachment Details   | Configure a single file attachment including its display mode, MIME type, and content ID.                                                                                                                                                            |                 |
+| Disposition          | Specifies how the attachment is displayed. Use 'inline' for embedded content or 'attachment' for a downloadable file.                                                                                                                                |                 |
+| File Type            | The MIME type of the attached content (e.g., text/plain, application/pdf).                                                                                                                                                                           |                 |
+| Content ID           | The content ID of the attachment, used to reference inline attachments in HTML via a cid: URL. Required when Disposition is set to 'inline'.                                                                                                         |                 |
 | Multiple Attachments | Provide an array of attachments to send with the email. See [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send#request-body) for more information.                                                  |                 |
 
 ### Test Webhook {#testwebhook}
@@ -317,6 +322,6 @@ Updates an existing Event Webhook configuration.
 | Connection    | The SendGrid connection to use.                                                                       |                            |
 | Webhook ID    | The unique identifier for the Event Webhook configuration.                                            |                            |
 | Webhook URL   | The URL where SendGrid will send event data.                                                          |                            |
+| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |
 | Friendly Name | A friendly name to help differentiate between multiple webhooks.                                      |                            |
 | Enabled       | When true, enables the Event Webhook.                                                                 | true                       |
-| Events        | The email event types to subscribe to. Selected events trigger webhook notifications when they occur. | <code>["delivered"]</code> |

@@ -659,16 +659,6 @@ List all the files from a Drive
 | Fetch All  | When true, retrieves all results by automatically following pagination.           | false   |
 | Recursive  | When true, returns files from all subfolders in addition to the specified folder. | false   |
 
-### List Files in Drive (Deprecated) {#getfilesfromdrive}
-
-List all the files from a Drive. This version of the action is being deprecated. Please replace action with List Files In Drive.
-
-| Input      | Comments                                     | Default |
-| ---------- | -------------------------------------------- | ------- |
-| Connection | The Microsoft SharePoint connection to use.  |         |
-| Site Id    | The unique identifier of a SharePoint site.  |         |
-| Drive      | The unique identifier of a SharePoint drive. |         |
-
 ### List Folder Files in Drive {#getfilesfromdrivefolderwithpagination}
 
 List all the files inside of a folder from a Drive
@@ -682,17 +672,6 @@ List all the files inside of a folder from a Drive
 | Page Limit | The maximum number of results to return per page.                             |         |
 | Page Token | The token for the desired page from a previous response.                      |         |
 | Fetch All  | When true, retrieves all results by automatically following pagination.       | false   |
-
-### List Folder Files in Drive (Deprecated) {#getfilesfromdrivefolder}
-
-List all the files inside of a folder from a Drive. This version of the action is being deprecated. Please replace action with List Folder Files In Drive.
-
-| Input      | Comments                                                                      | Default |
-| ---------- | ----------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft SharePoint connection to use.                                   |         |
-| Site Id    | The unique identifier of a SharePoint site.                                   |         |
-| Drive      | The unique identifier of a SharePoint drive.                                  |         |
-| Folder ID  | The unique identifier of a SharePoint folder. Leave empty to use root folder. |         |
 
 ### List Followed Sites {#listfollowedsites}
 

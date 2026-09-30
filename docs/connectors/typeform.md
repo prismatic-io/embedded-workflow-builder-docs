@@ -92,21 +92,22 @@ Create a workspace in a specific account.
 
 Create a form
 
-| Input             | Comments                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Title             | Title to use for the typeform.                                                                                                                |         |
-| Type              | Type of the form.                                                                                                                             |         |
-| Theme             | URL of the workspace to use for the typeform. If you don't specify a URL for the workspace, Typeform saves the form in the default workspace. |         |
-| Workspace URL     | URL of the workspace to use for the typeform. If you don't specify a URL for the workspace, Typeform saves the form in the default workspace. |         |
-| CUI Settings      | The CUI settings for the form.                                                                                                                |         |
-| Fields            | The fields for the form.                                                                                                                      |         |
-| Hidden            | The hidden fields for the form.                                                                                                               |         |
-| Logic             | The logic for the form.                                                                                                                       |         |
-| Settings          | The settings for the form.                                                                                                                    |         |
-| Thank You Screens | The thank you screens for the form.                                                                                                           |         |
-| Variables         | The variables for the form.                                                                                                                   |         |
-| Welcome Screens   | The welcome screens for the form.                                                                                                             |         |
-| Connection        |                                                                                                                                               |         |
+| Input             | Comments                                                                                                                                                     | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Title             | Title to use for the typeform.                                                                                                                               |         |
+| Type              | Type of the form.                                                                                                                                            |         |
+| Additional Fields | Additional optional fields: includes Theme, Workspace URL, CUI Settings, Fields, Hidden, Logic, Settings, Thank You Screens, Variables, and Welcome Screens. |         |
+| Theme             | URL of the workspace to use for the typeform. If you don't specify a URL for the workspace, Typeform saves the form in the default workspace.                |         |
+| Workspace URL     | URL of the workspace to use for the typeform. If you don't specify a URL for the workspace, Typeform saves the form in the default workspace.                |         |
+| CUI Settings      | The CUI settings for the form.                                                                                                                               |         |
+| Fields            | The fields for the form.                                                                                                                                     |         |
+| Hidden            | The hidden fields for the form.                                                                                                                              |         |
+| Logic             | The logic for the form.                                                                                                                                      |         |
+| Settings          | The settings for the form.                                                                                                                                   |         |
+| Thank You Screens | The thank you screens for the form.                                                                                                                          |         |
+| Variables         | The variables for the form.                                                                                                                                  |         |
+| Welcome Screens   | The welcome screens for the form.                                                                                                                            |         |
+| Connection        |                                                                                                                                                              |         |
 
 ### Create or Update Webhook {#createwebhook}
 
@@ -117,6 +118,7 @@ Create or Update a Webhook
 | Form Id               | Unique ID for the form.                                                                                       |         |
 | Tag                   | Unique name you want to use for the webhook.                                                                  |         |
 | Secret                | Will be used to sign the webhook payload with HMAC SHA256, so that you can verify that it came from Typeform. |         |
+| Delivery Settings     | Optional delivery controls: destination URL, enabled state, and response event toggles.                       |         |
 | URL                   | Webhook URL.                                                                                                  |         |
 | Enabled               | True if you want to send responses to the webhook immediately. Otherwise, false.                              | true    |
 | Form Response         | True if you want to send full responses to the webhook. Otherwise, false.                                     |         |
@@ -238,6 +240,7 @@ Retrieve all workspaces you have access to within the specific account.
 | Connection |                                                                             |         |
 | Account Id | The unique identifier of the item to retrieve.                              |         |
 | Fetch All  | If true, it will fetch all the records ignoring the rest of the parameters. | false   |
+| Pagination | Page, page-size, and search controls.                                       |         |
 | Page       | The page of results to retrieve.                                            |         |
 | Page Size  | Number of results to retrieve per page. Default is 10. Maximum is 200.      |         |
 | Search     | Returns items that contain the specified string.                            |         |
@@ -250,12 +253,13 @@ Retrieves a list of JSON descriptions for all forms in your Typeform account (pu
 | ------------ | --------------------------------------------------------------------------- | ------- |
 | Connection   |                                                                             |         |
 | Fetch All    | If true, it will fetch all the records ignoring the rest of the parameters. | false   |
+| Pagination   | Page, page-size, search, and sorting controls.                              |         |
 | Page         | The page of results to retrieve.                                            |         |
 | Page Size    | Number of results to retrieve per page. Default is 10. Maximum is 200.      |         |
 | Search       | Returns items that contain the specified string.                            |         |
-| Workspace Id | Retrieve typeforms for the specified workspace.                             |         |
 | Sort By      | Field to sort the results by.                                               |         |
 | Order By     | Order type.                                                                 |         |
+| Workspace Id | Retrieve typeforms for the specified workspace.                             |         |
 
 ### List Responses {#listresponses}
 
@@ -265,6 +269,7 @@ Returns form responses and date and time of form landing and submission.
 | ------------------- | --------------------------------------------------------------------------- | ------- |
 | Form Id             | Unique ID for the form.                                                     |         |
 | Fetch All           | If true, it will fetch all the records ignoring the rest of the parameters. | false   |
+| Pagination          | Page, page-size, and search controls.                                       |         |
 | Page                | The page of results to retrieve.                                            |         |
 | Page Size           | Number of results to retrieve per page. Default is 10. Maximum is 200.      |         |
 | Search              | Returns items that contain the specified string.                            |         |
@@ -288,6 +293,7 @@ Retrieve all workspaces the user has access to.
 | ---------- | --------------------------------------------------------------------------- | ------- |
 | Connection |                                                                             |         |
 | Fetch All  | If true, it will fetch all the records ignoring the rest of the parameters. | false   |
+| Pagination | Page, page-size, and search controls.                                       |         |
 | Page       | The page of results to retrieve.                                            |         |
 | Page Size  | Number of results to retrieve per page. Default is 10. Maximum is 200.      |         |
 | Search     | Returns items that contain the specified string.                            |         |

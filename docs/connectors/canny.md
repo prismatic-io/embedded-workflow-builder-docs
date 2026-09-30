@@ -42,13 +42,14 @@ To authenticate with Canny, an API key is required.
 
 ### New and Updated Posts {#pollchangestrigger}
 
-Checks for new and updated Posts in Canny on a configured schedule.
+Retrieves existing and ongoing posts from Canny. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                      | Default |
-| -------------------- | --------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Canny connection to use.                                                                  |         |
-| Show New Records     | When true, posts created since the last poll are included in the trigger output.              | true    |
-| Show Updated Records | When true, posts whose status changed since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                                           | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Canny connection to use.                                                                                                                                                                                                                                                                       |         |
+| Show New Records     | When true, posts created since the last poll are included in the trigger output.                                                                                                                                                                                                                   | true    |
+| Show Updated Records | When true, posts whose status changed since the last poll are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each post created or status-changed on or after this date once, ignoring the field and visibility filters. |         |
 
 ### Webhook {#webhook}
 
@@ -78,84 +79,88 @@ Changes the status of a post.
 
 Creates a new category in a board.
 
-| Input              | Comments                                      | Default |
-| ------------------ | --------------------------------------------- | ------- |
-| Connection         | The Canny connection to use.                  |         |
-| Board ID           | The unique identifier of the board.           |         |
-| Name               | The name of the category.                     |         |
-| Subscribe Admins   | When true, subscribes admins to the category. | false   |
-| Parent Category ID | Parent category ID for subcategories.         |         |
+| Input              | Comments                                                 | Default |
+| ------------------ | -------------------------------------------------------- | ------- |
+| Connection         | The Canny connection to use.                             |         |
+| Board ID           | The unique identifier of the board.                      |         |
+| Name               | The display name shown when grouping posts on the board. |         |
+| Subscribe Admins   | When true, subscribes admins to the category.            | false   |
+| Parent Category ID | Parent category ID for subcategories.                    |         |
 
 ### Create Changelog Entry {#createentry}
 
 Creates a new changelog entry.
 
-| Input             | Comments                                                            | Default |
-| ----------------- | ------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                        |         |
-| Title             | The changelog entry title.                                          |         |
-| Details           | The entry content (markdown supported).                             |         |
-| Type              | Entry type: new, improved, or fixed.                                |         |
-| Notify            | When true, sends an email notification for the changelog entry.     | false   |
-| Published         | When true, publishes the changelog entry immediately.               | false   |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. |         |
+| Input             | Comments                                                                       | Default |
+| ----------------- | ------------------------------------------------------------------------------ | ------- |
+| Connection        | The Canny connection to use.                                                   |         |
+| Title             | The headline shown at the top of the changelog entry.                          |         |
+| Details           | The entry content (markdown supported).                                        |         |
+| Type              | Entry type: new, improved, or fixed.                                           |         |
+| Additional Fields | Additional optional fields: includes Notify, Published, and Additional Fields. |         |
+| Notify            | When true, sends an email notification for the changelog entry.                | false   |
+| Published         | When true, publishes the changelog entry immediately.                          | false   |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.            |         |
 
 ### Create Comment {#createcomment}
 
 Creates a new comment on a post.
 
-| Input             | Comments                                                              | Default |
-| ----------------- | --------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                          |         |
-| Post ID           | The unique identifier of the post.                                    |         |
-| Author ID         | The unique identifier of the comment author.                          |         |
-| Comment Text      | The text content of the comment.                                      |         |
-| Internal          | When true, the comment is internal-only and not visible to end users. | false   |
-| Parent Comment ID | Parent comment ID for threaded replies.                               |         |
-| Image URLs        | JSON array of image URLs to attach.                                   |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs.   |         |
+| Input             | Comments                                                                          | Default |
+| ----------------- | --------------------------------------------------------------------------------- | ------- |
+| Connection        | The Canny connection to use.                                                      |         |
+| Post ID           | The unique identifier of the post.                                                |         |
+| Author ID         | The unique identifier of the comment author.                                      |         |
+| Comment Text      | The body of the comment as it appears on the post. Plain text.                    |         |
+| Parent Comment ID | Parent comment ID for threaded replies.                                           |         |
+| Additional Fields | Additional optional fields: includes Internal, Image URLs, and Additional Fields. |         |
+| Internal          | When true, the comment is internal-only and not visible to end users.             | false   |
+| Image URLs        | JSON array of image URLs to attach.                                               |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.               |         |
 
 ### Create or Update User {#createorupdateuser}
 
 Creates a new user or updates an existing one by email.
 
-| Input             | Comments                                                            | Default |
-| ----------------- | ------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                        |         |
-| Email             | The user's email address.                                           |         |
-| Name              | The user's display name.                                            |         |
-| User ID           | The unique identifier of the user.                                  |         |
-| Companies         | JSON array of company objects to associate with the user.           |         |
-| Custom Fields     | Custom field key-value pairs as JSON.                               |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. |         |
+| Input             | Comments                                                                              | Default |
+| ----------------- | ------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Canny connection to use.                                                          |         |
+| Email             | The user's email address.                                                             |         |
+| Name              | The user's display name.                                                              |         |
+| User ID           | The unique identifier of the user.                                                    |         |
+| Additional Fields | Additional optional fields: includes Companies, Custom Fields, and Additional Fields. |         |
+| Companies         | JSON array of company objects to associate with the user.                             |         |
+| Custom Fields     | Custom field key-value pairs as JSON.                                                 |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.                   |         |
 
 ### Create Post {#createpost}
 
 Creates a new feedback post.
 
-| Input             | Comments                                                            | Default |
-| ----------------- | ------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                        |         |
-| Board ID          | The unique identifier of the board.                                 |         |
-| Author ID         | The unique identifier of the post author.                           |         |
-| Title             | The title of the post.                                              |         |
-| Details           | The content or description of the post.                             |         |
-| Category ID       | Category to assign to the post.                                     |         |
-| Custom Fields     | Custom field key-value pairs as JSON.                               |         |
-| ETA               | Estimated delivery date in MM/YYYY format.                          |         |
-| ETA Public        | When true, the ETA is visible to all users.                         | false   |
-| Image URLs        | JSON array of image URLs to attach.                                 |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. |         |
+| Input             | Comments                                                                                                | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Canny connection to use.                                                                            |         |
+| Board ID          | The unique identifier of the board.                                                                     |         |
+| Author ID         | The unique identifier of the post author.                                                               |         |
+| Title             | The headline shown in the board list and used for search matching.                                      |         |
+| Details           | The content or description of the post.                                                                 |         |
+| Category ID       | Category to assign to the post.                                                                         |         |
+| Additional Fields | Additional optional fields: includes Custom Fields, ETA, ETA Public, Image URLs, and Additional Fields. |         |
+| Custom Fields     | Custom field key-value pairs as JSON.                                                                   |         |
+| ETA               | Estimated delivery date in MM/YYYY format.                                                              |         |
+| ETA Public        | When true, the ETA is visible to all users.                                                             | false   |
+| Image URLs        | JSON array of image URLs to attach.                                                                     |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.                                     |         |
 
 ### Create Tag {#createtag}
 
 Creates a new tag in a board.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection | The Canny connection to use.        |         |
-| Board ID   | The unique identifier of the board. |         |
-| Name       | The name of the tag.                |         |
+| Input      | Comments                                                                  | Default |
+| ---------- | ------------------------------------------------------------------------- | ------- |
+| Connection | The Canny connection to use.                                              |         |
+| Board ID   | The unique identifier of the board.                                       |         |
+| Name       | The label applied to posts for filtering, such as bug or feature-request. |         |
 
 ### Create Vote {#createvote}
 
@@ -239,6 +244,7 @@ Lists categories with optional board filter and pagination.
 | Connection | The Canny connection to use.                                            |         |
 | Board ID   | Filter results by board.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Number of results to return per page.                                   |         |
 | Skip       | The number of results to skip before returning data (0-based).          |         |
 
@@ -252,6 +258,7 @@ Lists changelog entries with optional filtering.
 | Type       | Entry type: new, improved, or fixed.                                    |         |
 | Sort       | Sort order for changelog entries.                                       |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Number of results to return per page.                                   |         |
 | Skip       | The number of results to skip before returning data (0-based).          |         |
 
@@ -267,6 +274,7 @@ Lists comments with optional filtering and cursor-based pagination.
 | Author ID  | Filter by or specify the post author.                                   |         |
 | Company ID | Filter results by company.                                              |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Cursor and page-size controls for paging through results.               |         |
 | Cursor     | Pagination cursor from a previous response.                             |         |
 | Limit      | Number of results to return per page.                                   |         |
 
@@ -274,32 +282,35 @@ Lists comments with optional filtering and cursor-based pagination.
 
 Lists companies with cursor-based pagination.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| Connection | The Canny connection to use.                                            |         |
-| Search     | Search term to filter companies.                                        |         |
-| Segment    | Filter by segment.                                                      |         |
-| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
-| Cursor     | Pagination cursor from a previous response.                             |         |
-| Limit      | Number of results to return per page.                                   |         |
+| Input      | Comments                                                                                      | Default |
+| ---------- | --------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Canny connection to use.                                                                  |         |
+| Search     | Search term to filter companies.                                                              |         |
+| Segment    | Restricts results to companies in a single segment, matched exactly against the segment name. |         |
+| Fetch All  | When true, automatically fetches all pages of results using pagination.                       | false   |
+| Pagination | Cursor and page-size controls for paging through results.                                     |         |
+| Cursor     | Pagination cursor from a previous response.                                                   |         |
+| Limit      | Number of results to return per page.                                                         |         |
 
 ### List Posts {#listposts}
 
 Lists posts with optional filtering and pagination.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| Connection | The Canny connection to use.                                            |         |
-| Board ID   | Filter results by board.                                                |         |
-| Author ID  | Filter by or specify the post author.                                   |         |
-| Company ID | Filter results by company.                                              |         |
-| Tag IDs    | JSON array of tag IDs to filter by.                                     |         |
-| Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
-| Limit      | Number of results to return per page.                                   |         |
-| Skip       | The number of results to skip before returning data (0-based).          |         |
-| Search     | Search term to filter posts.                                            |         |
-| Sort       | Sort order for post results.                                            |         |
-| Status     | Comma-separated list of statuses to filter by.                          |         |
+| Input         | Comments                                                                | Default |
+| ------------- | ----------------------------------------------------------------------- | ------- |
+| Connection    | The Canny connection to use.                                            |         |
+| Board ID      | Filter results by board.                                                |         |
+| Author ID     | Filter by or specify the post author.                                   |         |
+| Company ID    | Filter results by company.                                              |         |
+| Tag IDs       | JSON array of tag IDs to filter by.                                     |         |
+| Fetch All     | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination    | Page and page-size controls.                                            |         |
+| Limit         | Number of results to return per page.                                   |         |
+| Skip          | The number of results to skip before returning data (0-based).          |         |
+| List Controls | Search, sort, and status filter controls.                               |         |
+| Search        | Search term to filter posts.                                            |         |
+| Sort          | Sort order for post results.                                            |         |
+| Status        | Comma-separated list of statuses to filter by.                          |         |
 
 ### List Status Changes {#liststatuschanges}
 
@@ -310,6 +321,7 @@ Lists post status changes with optional filtering and cursor-based pagination.
 | Connection | The Canny connection to use.                                            |         |
 | Board ID   | Filter results by board.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Cursor and page-size controls for paging through results.               |         |
 | Cursor     | Pagination cursor from a previous response.                             |         |
 | Limit      | Number of results to return per page.                                   |         |
 
@@ -322,6 +334,7 @@ Lists tags with optional board filter and pagination.
 | Connection | The Canny connection to use.                                            |         |
 | Board ID   | Filter results by board.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Number of results to return per page.                                   |         |
 | Skip       | The number of results to skip before returning data (0-based).          |         |
 
@@ -333,6 +346,7 @@ Lists users with cursor-based pagination.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Canny connection to use.                                            |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Cursor and page-size controls for paging through results.               |         |
 | Cursor     | Pagination cursor from a previous response.                             |         |
 | Limit      | Number of results to return per page.                                   |         |
 
@@ -348,6 +362,7 @@ Lists votes with optional filtering and cursor-based pagination (v2).
 | Company ID | Filter results by company.                                              |         |
 | User ID    | Filter results by user.                                                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Cursor and page-size controls for paging through results.               |         |
 | Cursor     | Pagination cursor from a previous response.                             |         |
 | Limit      | Number of results to return per page.                                   |         |
 
@@ -440,26 +455,28 @@ Retrieves a single vote by ID.
 
 Updates an existing company.
 
-| Input             | Comments                                                            | Default |
-| ----------------- | ------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                        |         |
-| Company ID        | The unique identifier of the company.                               |         |
-| Name              | The company name (0-100 characters).                                |         |
-| Monthly Spend     | Monthly recurring revenue in dollars.                               |         |
-| Custom Fields     | Custom field key-value pairs as JSON.                               |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. |         |
+| Input             | Comments                                                                                  | Default |
+| ----------------- | ----------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Canny connection to use.                                                              |         |
+| Company ID        | The unique identifier of the company.                                                     |         |
+| Name              | The company name (0-100 characters).                                                      |         |
+| Additional Fields | Additional optional fields: includes Monthly Spend, Custom Fields, and Additional Fields. |         |
+| Monthly Spend     | Monthly recurring revenue in dollars.                                                     |         |
+| Custom Fields     | Custom field key-value pairs as JSON.                                                     |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.                       |         |
 
 ### Update Post {#updatepost}
 
 Updates an existing post.
 
-| Input             | Comments                                                            | Default |
-| ----------------- | ------------------------------------------------------------------- | ------- |
-| Connection        | The Canny connection to use.                                        |         |
-| Post ID           | The unique identifier of the post.                                  |         |
-| Title             | Updated post title.                                                 |         |
-| Details           | Updated post content.                                               |         |
-| Custom Fields     | Custom field key-value pairs as JSON.                               |         |
-| ETA               | Estimated delivery date in MM/YYYY format.                          |         |
-| Image URLs        | JSON array of image URLs to attach.                                 |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. |         |
+| Input             | Comments                                                                                    | Default |
+| ----------------- | ------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Canny connection to use.                                                                |         |
+| Post ID           | The unique identifier of the post.                                                          |         |
+| Title             | Replaces the post headline. Leave blank to keep the current title.                          |         |
+| Details           | Replaces the post body. Leave blank to keep the current details.                            |         |
+| Additional Fields | Additional optional fields: includes Custom Fields, ETA, Image URLs, and Additional Fields. |         |
+| Custom Fields     | Custom field key-value pairs as JSON.                                                       |         |
+| ETA               | Estimated delivery date in MM/YYYY format.                                                  |         |
+| Image URLs        | JSON array of image URLs to attach.                                                         |         |
+| Additional Fields | Additional fields that might not be covered by the standard inputs.                         |         |

@@ -6,7 +6,7 @@ description: Manage repositories, issues, pull requests, and workflows in GitHub
 
 ![GitHub](./assets/github.png#connector-icon)
 [GitHub](https://github.com) is a development platform that provides Git repository hosting, code collaboration, and project management tools.
-This component allows you to manage repositories, issues, pull requests, workflows, and users within your GitHub organization.
+This component allows managing repositories, issues, pull requests, workflows, and users within a GitHub organization.
 
 ## API Documentation
 
@@ -16,9 +16,14 @@ This component was built using the [GitHub REST API Documentation](https://docs.
 
 ### OAuth 2.0 {#oauth2}
 
-Authenticates with your Github account using OAuth 2.0
+Authenticate using OAuth 2.0.
 
 To connect to GitHub, [create a new OAuth 2.0 application](https://github.com/settings/applications/new).
+
+#### Prerequisites
+
+- A GitHub account with permission to create OAuth Apps for the user or organization that owns the repositories
+- Access to the repositories or organizations the integration will work with
 
 #### Setup Steps
 
@@ -34,7 +39,7 @@ To connect to GitHub, [create a new OAuth 2.0 application](https://github.com/se
 #### Configure the Connection
 
 - Enter the **Client ID** and **Client Secret** from the OAuth App.
-- Determine [what scopes the use case requires](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) and add those to **Scopes**, separating each with a space.
+- Determine [what scopes the use case requires](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps) and add those to **Scopes**, separating each with a space.
   - Common scopes include: `repo`, `user`, `admin:org`, `workflow`
   - For full repository access and workflow permissions, use: `repo user admin:org workflow`
 
@@ -45,7 +50,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 | Input         | Comments                                                                                                                                                                       | Default |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Scopes        | Space-separated list of OAuth scopes. See [GitHub's documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) for available scopes. |         |
+| Scopes        | Space-separated list of OAuth scopes. See [GitHub's documentation](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps) for available scopes. |         |
 | Client ID     | The Client ID from your GitHub OAuth App. Find this in GitHub Settings > Developer settings > OAuth Apps.                                                                      |         |
 | Client Secret | The Client Secret from your GitHub OAuth App. Keep this value secure.                                                                                                          |         |
 
@@ -53,7 +58,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### Event Webhook {#eventwebhook}
 
-Automatically create and manage GitHub webhooks for specified events. Webhooks are created on deployment and removed when the instance is deleted.
+Receive event notifications from GitHub. Automatically creates and manages a webhook subscription for the selected event types when the instance is deployed, and removes the subscription when the instance is deleted.
 
 | Input           | Comments                                                                                                                  | Default |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -64,23 +69,24 @@ Automatically create and manage GitHub webhooks for specified events. Webhooks a
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated issues (including pull requests) in a GitHub repository on a configured schedule.
+Retrieves existing and ongoing issues (including pull requests) for a specified GitHub repository. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                  | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                                           |         |
-| Owner                | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
-| Repository Name      | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
-| Show New Records     | When true, issues created after the last poll are emitted on the `created` branch.                                        | true    |
-| Show Updated Records | When true, issues updated since the last poll but created earlier are emitted on the `updated` branch.                    | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                           |         |
+| Owner                | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.                                                                                                                                                      |         |
+| Repository Name      | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'.                                                                                                                                                 |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, issues created after the last poll are emitted on the `created` branch.                                                                                                                                                                                        | true    |
+| Show Updated Records | When true, issues updated since the last poll but created earlier are emitted on the `updated` branch.                                                                                                                                                                    | true    |
 
 ### Webhook {#webhook}
 
-Receive and validate webhook requests from Github for webhooks you configure.
+Receive and validate webhook requests from GitHub for webhooks you configure.
 
-| Input          | Comments                                                                                                                                                                                     | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Webhook Secret | An optional secret used to verify webhook authenticity. See [GitHub's documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks) for details. |         |
+| Input          | Comments                                                                                                                                                                            | Default |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Webhook Secret | An optional secret used to verify webhook authenticity. See [GitHub's documentation](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries) for details. |         |
 
 ## Actions
 
@@ -106,7 +112,7 @@ Create a blob
 | Connection      |                                                                                                                           |         |
 | Owner           | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
 | Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
-| Content         | The new blob"s content                                                                                                    |         |
+| Content         | The content of the new blob                                                                                               |         |
 | Encoding        | The encoding used for "content"                                                                                           | utf-8   |
 
 ### Git Create Ref {#gitcreateref}
@@ -168,8 +174,9 @@ List issue comments
 | Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
 | Issue Number    | The number that identifies the issue                                                                                      |         |
 | Since           | Only show notifications updated after the given time                                                                      |         |
-| Per Page        | The number of results per page (max 100)                                                                                  | 30      |
+| Pagination      | Page number and results-per-page controls.                                                                                |         |
 | Page            | Page number of the results to fetch                                                                                       | 1       |
+| Per Page        | The number of results per page (max 100)                                                                                  | 30      |
 
 ### Issues List For Repo {#issueslistforrepo}
 
@@ -180,45 +187,47 @@ List repository issues
 | Connection      |                                                                                                                           |         |
 | Owner           | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
 | Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
-| Fetch All       | Whether to fetch all results                                                                                              | false   |
+| Fetch All       | When true, automatically fetches all pages of results.                                                                    | false   |
 | Milestone       | If an "integer" is passed, it should refer to a milestone by its "number" field                                           |         |
 | State           | Indicates the state of the issues to return                                                                               | open    |
 | Assignee        | The user that is assigned to the issue, use 'none' for issues with no assignee, or '*' for issues assigned to any user    |         |
 | Creator         | The user that created the issue                                                                                           |         |
-| Mentioned       | A user that"s mentioned in the issue                                                                                      |         |
+| Mentioned       | A user that is mentioned in the issue.                                                                                    |         |
 | Labels          | A list of comma separated label names                                                                                     |         |
 | Sort            | What to sort results by                                                                                                   | created |
 | Direction       | The direction to sort the results by                                                                                      | asc     |
 | Since           | Only show notifications updated after the given time                                                                      |         |
-| Per Page        | The number of results per page (max 100)                                                                                  | 30      |
+| Pagination      | Page number and results-per-page controls.                                                                                |         |
 | Page            | Page number of the results to fetch                                                                                       | 1       |
+| Per Page        | The number of results per page (max 100)                                                                                  | 30      |
 
 ### Orgs List For Authenticated User {#orgslistforauthenticateduser}
 
 List organizations for the authenticated user
 
-| Input      | Comments                                 | Default |
-| ---------- | ---------------------------------------- | ------- |
-| Connection |                                          |         |
-| Per Page   | The number of results per page (max 100) | 30      |
-| Page       | Page number of the results to fetch      | 1       |
+| Input      | Comments                                   | Default |
+| ---------- | ------------------------------------------ | ------- |
+| Connection |                                            |         |
+| Pagination | Page number and results-per-page controls. |         |
+| Page       | Page number of the results to fetch        | 1       |
+| Per Page   | The number of results per page (max 100)   | 30      |
 
 ### Pulls Create {#pullscreate}
 
 Create a pull request
 
-| Input                 | Comments                                                                                                                                                                                                                                                  | Default |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            |                                                                                                                                                                                                                                                           |         |
-| Owner                 | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.                                                                                                                                      |         |
-| Repository Name       | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'.                                                                                                                                 |         |
-| Title                 | The title of the pull request. Required unless using the issue parameter.                                                                                                                                                                                 |         |
-| Head                  | The name of the branch where your changes are implemented. For cross-repository pull requests, use the format 'username:branch'.                                                                                                                          |         |
-| Base                  | The name of the branch you want the changes pulled into. This should be an existing branch in the repository.                                                                                                                                             |         |
-| Body                  | The contents/description of the pull request. Supports markdown formatting.                                                                                                                                                                               |         |
-| Maintainer Can Modify | When true, maintainers can modify the pull request. See [GitHub's documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) for details. | false   |
-| Draft                 | When true, creates the pull request as a draft. Draft pull requests cannot be merged until marked as ready for review.                                                                                                                                    | false   |
-| Issue Number          | The number that identifies the issue                                                                                                                                                                                                                      |         |
+| Input                 | Comments                                                                                                                                                                                                                      | Default |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            |                                                                                                                                                                                                                               |         |
+| Owner                 | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.                                                                                                          |         |
+| Repository Name       | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'.                                                                                                     |         |
+| Title                 | The title of the pull request. Required unless using the issue parameter.                                                                                                                                                     |         |
+| Head                  | The name of the branch where the changes are implemented. For cross-repository pull requests, use the format 'username:branch'.                                                                                               |         |
+| Base                  | The name of the branch the changes are pulled into. This should be an existing branch in the repository.                                                                                                                      |         |
+| Body                  | The contents/description of the pull request. Supports markdown formatting.                                                                                                                                                   |         |
+| Maintainer Can Modify | When true, maintainers can modify the pull request. See [GitHub's documentation](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) for details. | false   |
+| Draft                 | When true, creates the pull request as a draft. Draft pull requests cannot be merged until marked as ready for review.                                                                                                        | false   |
+| Issue Number          | The number that identifies the issue                                                                                                                                                                                          |         |
 
 ### Pulls List {#pullslist}
 
@@ -234,12 +243,13 @@ List pull requests
 | Base            | Filter pull requests by base branch name.                                                                                   |         |
 | Sort            | The field to sort results by.                                                                                               | created |
 | Direction       | The direction to sort results (ascending or descending).                                                                    |         |
-| Per Page        | The number of results per page (max 100).                                                                                   | 30      |
-| Page            | The page number of the results to fetch.                                                                                    | 1       |
+| Pagination      | Page number and results-per-page controls.                                                                                  |         |
+| Page            | Page number of the results to fetch                                                                                         | 1       |
+| Per Page        | The number of results per page (max 100)                                                                                    | 30      |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Github
+Send raw HTTP request to GitHub.
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -263,14 +273,14 @@ Send raw HTTP request to Github
 
 Create a repository webhook
 
-| Input           | Comments                                                                                                                                                                                     | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                                                              |         |
-| Owner           | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.                                                                         |         |
-| Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'.                                                                    |         |
-| Callback URL    | The URL where webhook events will be sent.                                                                                                                                                   |         |
-| Events          | The list of event types that will trigger the webhook.                                                                                                                                       |         |
-| Webhook Secret  | An optional secret used to verify webhook authenticity. See [GitHub's documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks) for details. |         |
+| Input           | Comments                                                                                                                                                                            | Default |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection      |                                                                                                                                                                                     |         |
+| Owner           | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.                                                                |         |
+| Repository Name | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'.                                                           |         |
+| Callback URL    | The URL where webhook events will be sent.                                                                                                                                          |         |
+| Events          | The list of event types that will trigger the webhook.                                                                                                                              |         |
+| Webhook Secret  | An optional secret used to verify webhook authenticity. See [GitHub's documentation](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries) for details. |         |
 
 ### Repos Delete Instance Webhooks {#reposdeleteinstancewebhooks}
 
@@ -297,15 +307,16 @@ Delete a repository webhook by ID
 
 List organization repositories
 
-| Input      | Comments                                              | Default |
-| ---------- | ----------------------------------------------------- | ------- |
-| Connection |                                                       |         |
-| Org        | The organization name                                 |         |
-| Type       | Specifies the types of repositories you want returned |         |
-| Sort       | The property to sort the results by                   | created |
-| Direction  | The order to sort by                                  |         |
-| Per Page   | The number of results per page (max 100)              | 30      |
-| Page       | Page number of the results to fetch                   | 1       |
+| Input      | Comments                                      | Default |
+| ---------- | --------------------------------------------- | ------- |
+| Connection |                                               |         |
+| Org        | The organization name                         |         |
+| Type       | Specifies the types of repositories to return |         |
+| Sort       | The property to sort the results by           | created |
+| Direction  | The order to sort by                          |         |
+| Pagination | Page number and results-per-page controls.    |         |
+| Page       | Page number of the results to fetch           | 1       |
+| Per Page   | The number of results per page (max 100)      | 30      |
 
 ### Repos List Webhooks {#reposlistwebhooks}
 
@@ -316,7 +327,7 @@ List webhooks of a repository
 | Connection                  |                                                                                                                           |         |
 | Owner                       | The account owner of the repository. For example, in https://github.com/octocat/Hello-World, the owner is 'octocat'.      |         |
 | Repository Name             | The name of the repository. For example, in https://github.com/octocat/Hello-World, the repository name is 'Hello-World'. |         |
-| Show only instance webhooks | When true, shows only webhooks that point to this instance.                                                               | true    |
+| Show Only Instance Webhooks | When true, shows only webhooks that point to this instance.                                                               | true    |
 
 ### Users Get Authenticated {#usersgetauthenticated}
 

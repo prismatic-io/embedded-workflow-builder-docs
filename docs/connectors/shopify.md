@@ -10,7 +10,7 @@ This component allows managing the products and customers connected to a Shopify
 
 ## API Documentation
 
-This component was built using the [Shopify GraphQL Admin API Reference](https://shopify.dev/docs/api/admin-graphql).
+This component was built using the [Shopify GraphQL Admin API Reference](https://shopify.dev/docs/api/admin-graphql/latest).
 
 ## Connections
 
@@ -18,32 +18,36 @@ This component was built using the [Shopify GraphQL Admin API Reference](https:/
 
 Authenticate requests to Shopify using an Admin API access token.
 
-An **admin API access token** can be used for testing purposes during integration development.
+An **admin API access token** from an admin-created custom app can be used for testing purposes during integration development.
 
-Personal access tokens are recommended for testing only. For production integrations, use OAuth 2.0 to allow users to authenticate with their own credentials.
+Admin API access tokens are recommended for testing only. For production integrations, use OAuth 2.0 to allow users to authenticate with their own credentials.
+
+:::warning[New Admin-Created Custom Apps Can No Longer Be Created]
+Shopify stopped allowing new admin-created custom apps on **January 1, 2026**. The **Develop apps** flow in a store's settings can no longer create one. Existing admin-created custom apps are unaffected and their tokens continue to work.
+
+To create a new app, use the [Dev Dashboard](https://shopify.dev/docs/apps/build/dev-dashboard/create-apps-using-dev-dashboard) or the [Shopify CLI](https://shopify.dev/docs/apps/build/cli-for-apps) and authenticate with the **OAuth 2.0** connection instead.
+:::
 
 #### Prerequisites
 
-- A Shopify store (for testing purposes)
+- A Shopify store with an existing admin-created custom app (for testing purposes)
+- A staff or collaborator account with the **Develop apps** permission
 
 #### Setup Steps
 
-To generate an admin API access token:
+To copy the admin API access token from an existing custom app:
 
 1. Log in to the Shopify admin dashboard.
-2. Navigate to **Settings** > **Apps and sales channels**.
-3. Click **Develop apps**.
-4. If prompted, click **Allow custom app development**.
-5. Click **Create an app** and provide a name for the app.
-6. Click **Configure Admin API scopes** and select the required scopes for the integration.
-7. Click **Save**.
-8. Navigate to the **API credentials** tab.
-9. Under **Admin API access token**, click **Install app** to generate the token.
-10. Copy the **Admin API access token** value.
+2. Navigate to **Apps** > **Develop apps**.
+3. Click the name of the app.
+4. Navigate to the **API credentials** tab.
+5. Copy the **Admin API access token**.
+
+The token is shown only once, when it is generated, so it may no longer be retrievable. Shopify does not support rotating the token in place: generating a new one means uninstalling and reinstalling the app from the Shopify admin, which keeps the app itself intact but disrupts its requests and webhooks until the new token is entered here.
 
 The token will have a format similar to `shpat_00000000000000000000000000000000`.
 
-Refer to [Shopify's Admin API access token documentation](https://shopify.dev/docs/apps/auth/admin-app-access-tokens) for more information.
+Refer to [Shopify's admin-created custom apps documentation](https://shopify.dev/docs/apps/build/authentication-authorization/legacy/admin-custom-apps) for more information.
 
 #### Configure the Connection
 
@@ -51,17 +55,17 @@ Create a connection of type **Access Token** and configure the following fields:
 
 - Enter the **Admin API Access Token** into the connection configuration.
 - Enter the **Host** (the Shopify domain without `https://`, e.g., `example-store.myshopify.com`).
-- Optionally configure the **API Version** (defaults to latest version).
+- Optionally set the **API Version**. It defaults to the version this component ships with, currently `2026-07`. Refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for the versions Shopify currently accepts and how long each remains available.
 
 :::warning[Production Use]
-Admin API access tokens are tied to custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
+Admin API access tokens are tied to admin-created custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
 :::
 
-| Input                  | Comments                                                                                                                                                     | Default                           |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| Admin API Access Token | Generate from the 'API credentials' tab of a private Shopify app. Learn more at [Shopify Admin API](https://shopify.dev/docs/api/admin-rest#authentication). |                                   |
-| Host                   | The domain of the Shopify store without https:// (e.g., my-store.myshopify.com).                                                                             | YOUR-SHOPIFY-DOMAIN.myshopify.com |
-| API Version            | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                              | 2026-01                           |
+| Input                  | Comments                                                                                                                                                                                                              | Default                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| Admin API Access Token | Generate from the 'API credentials' tab of an admin-created custom app. Learn more at [Shopify admin-created custom apps](https://shopify.dev/docs/apps/build/authentication-authorization/legacy/admin-custom-apps). |                                   |
+| Host                   | The domain of the Shopify store without https:// (e.g., my-store.myshopify.com).                                                                                                                                      | YOUR-SHOPIFY-DOMAIN.myshopify.com |
+| API Version            | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                                                       | 2026-07                           |
 
 ### OAuth 2.0 {#oauth2-dynamic-inputs}
 
@@ -73,7 +77,7 @@ Shopify uses OAuth 2.0 for app authentication. This connection type simplifies c
 
 - A [Shopify Partners account](https://www.shopify.com/partners)
 - Access to the [Dev Dashboard](https://dev.shopify.com/dashboard) or [Shopify CLI](https://shopify.dev/docs/apps/build/scaffold-app) for app creation
-- A [development store](https://shopify.dev/docs/apps/tools/development-stores) for testing
+- A [development store](https://shopify.dev/docs/apps/build/stores/development-stores) for testing
 
 :::caution[Legacy Custom App Deprecation]
 As of January 1, 2026, merchants can no longer create new legacy custom apps. Existing apps are not affected. Partners can still create new custom apps and transfer stores to merchants, but once transferred, new custom app creation is disabled on the store. Use the Partner Dashboard or Shopify CLI to create apps going forward.
@@ -104,7 +108,7 @@ Refer to the [Dev Dashboard documentation](https://shopify.dev/docs/apps/build/d
 
 The Shopify CLI scaffolds a complete app project with best practices built in. This method is suitable for apps that need embedded UI, checkout extensions, or full-stack capabilities.
 
-1. Install the [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) if not already installed.
+1. Install the [Shopify CLI](https://shopify.dev/docs/apps/build/cli-for-apps) if not already installed.
 2. Navigate to the desired project directory and run:
    ```bash
    shopify app init
@@ -134,8 +138,8 @@ Regardless of the creation method, retrieve the OAuth credentials:
 
 Create a connection of type **OAuth 2.0** and configure the following fields:
 
-- **API Key**: Enter the **Client ID** copied from the Shopify app credentials (Shopify labels this as "API key").
-- **API Secret**: Enter the **Client secret** copied from the Shopify app credentials (Shopify labels this as "API secret key").
+- **Client ID (API Key)**: Enter the **Client ID** copied from the Shopify app credentials (Shopify labels this as "API key").
+- **Client Secret (API Secret)**: Enter the **Client secret** copied from the Shopify app credentials (Shopify labels this as "API secret key").
 - **Shop Name**: Enter the Shopify domain without `.myshopify.com` (e.g., `example-store`).
 - **Scopes**: Configure based on the required permissions. Default scopes include:
   ```
@@ -144,8 +148,8 @@ Create a connection of type **OAuth 2.0** and configure the following fields:
   write_draft_orders write_fulfillments write_inventory
   write_orders write_products write_locations
   ```
-  Refer to [Shopify's access scopes documentation](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for a complete list of available scopes.
-- **API Version** (optional): Specify the Shopify API version to use. Defaults to `2026-01`. Refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.
+  Refer to [Shopify's access scopes documentation](https://shopify.dev/docs/api/usage/access-scopes) for a complete list of available scopes.
+- **API Version** (optional): Specify the Shopify API version to use. Defaults to the version this component ships with, currently `2026-07`. Shopify keeps each version available for at least 12 months, so refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for the versions it currently accepts and how long each remains available.
 
 Save the integration to connect and authenticate to Shopify.
 
@@ -159,26 +163,26 @@ Shopify vets all apps intended for distribution to multiple merchants through a 
 
 Shopify app distribution determines which merchants can install the app and is a permanent, non-reversible choice.
 
-**Custom apps** are created directly within a merchant's Shopify admin and are restricted to that single store. Custom apps do not appear in the Shopify App Store and cannot be installed by other merchants. This is the appropriate choice for single-merchant integrations.
+**Custom apps** are installed on a single Shopify store, on multiple stores belonging to the same Plus organization, or on transfer-disabled development stores. They do not appear in the Shopify App Store and cannot be installed by other merchants, which makes them the appropriate choice for single-merchant integrations. New custom apps are created through the Dev Dashboard or the Shopify CLI; the older path of creating one directly in a merchant's Shopify admin was closed on January 1, 2026.
 
 **Public apps** are created through the Shopify Partners program and can be distributed to multiple merchants. Public apps must be submitted for review and listed in the [Shopify App Store](https://apps.shopify.com/) before other merchants can install them.
 
-:::note[Unlisted Apps Deprecated]
-Shopify deprecated unlisted public apps on December 9, 2019. There is no longer an option to distribute to multiple merchants without an App Store listing. For multi-merchant distribution, create a public app and submit it for App Store review.
+:::note[No Unlisted Distribution]
+Shopify offers no option to distribute an app to many merchants without an App Store listing. For multi-merchant distribution, create a public app and submit it for App Store review.
 :::
 
-For information on the App Store review process, refer to [Shopify's app distribution documentation](https://shopify.dev/docs/apps/distribution).
+For information on the App Store review process, refer to [Shopify's app distribution documentation](https://shopify.dev/docs/apps/launch/distribution).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input                      | Comments                                                                                                                                                                        | Default                                                                                                                                                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shop Name                  | The Shopify shop name without the .myshopify.com suffix (e.g., my-store).                                                                                                       |                                                                                                                                                                                                                              |
-| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
-| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                                           |                                                                                                                                                                                                                              |
-| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                                                    |                                                                                                                                                                                                                              |
-| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                 | 2026-01                                                                                                                                                                                                                      |
+| Input                      | Comments                                                                                                                                                 | Default                                                                                                                                                                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Shop Name                  | The Shopify shop name without the .myshopify.com suffix (e.g., my-store).                                                                                |                                                                                                                                                                                                                              |
+| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/docs/api/usage/access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
+| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                    |                                                                                                                                                                                                                              |
+| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                             |                                                                                                                                                                                                                              |
+| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                          | 2026-07                                                                                                                                                                                                                      |
 
 ### OAuth 2.0 (Deprecated) {#oauth2}
 
@@ -187,15 +191,15 @@ Authenticate requests to Shopify using values obtained from the Developer Consol
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input                      | Comments                                                                                                                                                                        | Default                                                                                                                                                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Authorize URL              | The OAuth 2.0 Authorization URL for Shopify.                                                                                                                                    | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/authorize                                                                                                                                                              |
-| Token URL                  | The OAuth 2.0 Token URL for Shopify.                                                                                                                                            | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/access_token?expiring=1                                                                                                                                                |
-| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/api/usage/access-scopes#authenticated-access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
-| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                                           |                                                                                                                                                                                                                              |
-| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                                                    |                                                                                                                                                                                                                              |
-| Host                       | The domain of the Shopify store without https:// (e.g., my-store.myshopify.com).                                                                                                | YOUR-SHOPIFY-DOMAIN.myshopify.com                                                                                                                                                                                            |
-| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                 | 2026-01                                                                                                                                                                                                                      |
+| Input                      | Comments                                                                                                                                                 | Default                                                                                                                                                                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorize URL              | The OAuth 2.0 Authorization URL for Shopify.                                                                                                             | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/authorize                                                                                                                                                              |
+| Token URL                  | The OAuth 2.0 Token URL for Shopify.                                                                                                                     | https://YOUR-SHOPIFY-DOMAIN.myshopify.com/admin/oauth/access_token?expiring=1                                                                                                                                                |
+| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/docs/api/usage/access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
+| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                    |                                                                                                                                                                                                                              |
+| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                             |                                                                                                                                                                                                                              |
+| Host                       | The domain of the Shopify store without https:// (e.g., my-store.myshopify.com).                                                                         | YOUR-SHOPIFY-DOMAIN.myshopify.com                                                                                                                                                                                            |
+| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                          | 2026-07                                                                                                                                                                                                                      |
 
 ## Triggers
 
@@ -209,39 +213,32 @@ Receive event notifications from Shopify. Automatically creates and manages a we
 | Secret Key    | The Shopify app's client secret, viewable from the Partner Dashboard.       |         |
 | Webhook Topic | The topic for the webhook. This is the event that will trigger the webhook. |         |
 
-### Event Topic Webhook (Deprecated) {#eventtopicwebhook}
-
-Set event based webhooks and get notified when these event types are created, updated, or deleted. This version of the trigger is being deprecated. Please replace trigger with Event Topic Webhook.
-
-| Input            | Comments                                                              | Default |
-| ---------------- | --------------------------------------------------------------------- | ------- |
-| Secret Key       | The Shopify app's client secret, viewable from the Partner Dashboard. |         |
-| Connection       | The Shopify connection to use.                                        |         |
-| Event Topic Name | Event that triggers the webhook.                                      |         |
-
 ### New and Updated Customers {#customerspollingtrigger}
 
-Checks for new and updated customers in Shopify on a configured schedule.
+Retrieves existing and ongoing customer changes from Shopify. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Connection | The Shopify connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                                                                                                                                                                        |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync reports every record updated on or after this date. |         |
 
 ### New and Updated Orders {#orderspollingtrigger}
 
-Checks for new and updated orders in Shopify on a configured schedule.
+Retrieves existing and ongoing order changes from Shopify. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Connection | The Shopify connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                                                                                                                                                                        |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync reports every record updated on or after this date. |         |
 
 ### New and Updated Products {#productspollingtrigger}
 
-Checks for new and updated products in Shopify on a configured schedule.
+Retrieves existing and ongoing product changes from Shopify. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Connection | The Shopify connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                                                                                                                                                                        |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync reports every record updated on or after this date. |         |
 
 ### Webhook {#webhook}
 
@@ -383,7 +380,7 @@ Creates a new customer.
 | Verified Email    | When true, emails will be sent to the customer.                                                                                      | false   |
 | Values            | Key-value pairs for creating or updating a record. Specify any property key and value.                                               |         |
 | Tags              | Tags for the product. Each list item is a tag string.                                                                                |         |
-| Additional Fields | Additional optional customer fields: includes Phone, Notes, Currency Format, Tax Exempt, and Metafields.                             |         |
+| Additional Fields | Additional optional fields: includes Phone, Notes, Currency Format, Tax Exempt, and Metafields.                                      |         |
 | Phone             | The phone number of the customer in E.164 format.                                                                                    |         |
 | Notes             | Additional notes about the customer.                                                                                                 |         |
 | Currency Format   | The currency format code.                                                                                                            |         |
@@ -468,12 +465,12 @@ Creates a new variant for the specified product.
 
 Creates a webhook for the specified topic.
 
-| Input          | Comments                                                                                                                                                                | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Shopify connection to use.                                                                                                                                          |         |
-| Webhook Topic  | The event topic for the webhook. See [Shopify webhook topics](https://shopify.dev/docs/api/admin-rest/2023-04/resources/webhook#event-topics) for all available topics. |         |
-| Post URL       | The URL where the newly created webhook will post to. Used to configure the Shopify trigger.                                                                            |         |
-| Webhook Format | The format for the webhook response.                                                                                                                                    | json    |
+| Input          | Comments                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                                                                        |         |
+| Webhook Topic  | The event topic for the webhook. See [Shopify webhook topics](https://shopify.dev/docs/api/webhooks/latest) for all available topics. |         |
+| Post URL       | The URL where the newly created webhook will post to. Used to configure the Shopify trigger.                                          |         |
+| Webhook Format | The format for the webhook response.                                                                                                  | json    |
 
 ### Delete Collection {#deletecollectiongql}
 
@@ -863,30 +860,6 @@ Lists all orders.
 | Limit              | The maximum number of results to return per page. Maximum: 250.                                                         |         |
 | Page Offset Cursor | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                   |         |
 
-### List Orders (Deprecated) {#listorders}
-
-List all orders. This version of the action is being deprecated. Please replace action with List Orders.
-
-| Input              | Comments                                                                                                                                      | Default |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Shopify connection to use.                                                                                                                |         |
-| Fetch All          | When true, fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
-| Page Offset Token  | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                         |         |
-| Limit              | The maximum number of results to return per page. Maximum: 250.                                                                               |         |
-| Attribution App ID | Show orders attributed to a certain app, specified by the app ID.                                                                             |         |
-| Created At Max     | Show orders created at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                           |         |
-| Created At Min     | Show orders created at or after this date. Use ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss-HH:mm).                                     |         |
-| Fields             | Retrieve only certain fields, specified by a comma-separated list of fields names.                                                            |         |
-| Financial Status   | Filter orders by their financial status.                                                                                                      |         |
-| Fulfillment Status | Filter orders by their fulfillment status.                                                                                                    |         |
-| IDs                | Retrieve only orders specified by a comma-separated list of order IDs.                                                                        |         |
-| Processed At Max   | Show orders imported at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                          |         |
-| Processed At Min   | Show orders imported at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                           |         |
-| Since ID           | Show orders after the specified ID.                                                                                                           |         |
-| Status             | Filter orders by their status.                                                                                                                |         |
-| Updated At Max     | Show orders last updated at or before date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                      |         |
-| Updated At Min     | Show orders last updated at or after date. ISO 8601 format like 2021-10-01 or 2021-10-01T00:00:00-04:00 for exact time.                       |         |
-
 ### List Product Images {#listproductimages}
 
 Lists all product images for the specified product.
@@ -937,7 +910,7 @@ Sends a raw GraphQL request to Shopify.
 | Input             | Comments                                                                                                                                | Default |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | The Shopify connection to use.                                                                                                          |         |
-| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2026-01 |
+| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2026-07 |
 | Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                  |         |
 | Variables         | Variables to pass to the query or mutation.                                                                                             |         |
 | Variables Object  | Variables to pass to the query or mutation.                                                                                             |         |
@@ -964,7 +937,7 @@ Send raw HTTP request to Shopify. This version of the action uses REST and is be
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false   |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0       |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false   |
-| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2026-01 |
+| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2026-07 |
 | Return Headers          | When true, response headers will be included in the output object.                                                                                                                                                                                                                               | false   |
 
 ### Set Metafield {#setmetafieldgql}
@@ -994,7 +967,7 @@ Updates an existing customer by ID.
 | Address List      | Provide a JSON array containing address objects.                                           |         |
 | Phone             | The phone number of the customer.                                                          |         |
 | Notes             | A note about the customer.                                                                 |         |
-| Tags              | For each list item, provide a string you would like to tag the product with.               |         |
+| Tags              | For each list item, provide a string to tag the product with.                              |         |
 | Tax Exempt        | Determines if the customer is tax exempt.                                                  |         |
 | Metafields        | Provide a JSON array containing metadata objects.                                          |         |
 | Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
@@ -1039,7 +1012,7 @@ Updates an existing product by ID.
 | Product Status    | Specify the status of the product.                                                         |         |
 | Image URL         | Provide a URL for the image of the product.                                                |         |
 | Image Alt Text    | Provide the alt text for the image of the product.                                         |         |
-| Tags              | For each list item, provide a string you would like to tag the product with.               |         |
+| Tags              | For each list item, provide a string to tag the product with.                              |         |
 | Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
 
 ### Update Variant {#updatevariantgql}

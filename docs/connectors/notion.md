@@ -5,7 +5,7 @@ description: Manage Notion pages, databases, and users
 ---
 
 ![Notion](./assets/notion.png#connector-icon)
-[Notion](https://www.notion.so) is a productivity and collaboration platform that combines note taking, project management, and database capabilities. This component allows you to manage pages, databases, and users within your Notion workspace.
+[Notion](https://www.notion.com/) is a productivity and collaboration platform that combines note taking, project management, and database capabilities. This component allows managing pages, databases, and users within a Notion workspace.
 
 ## API Documentation
 
@@ -24,12 +24,12 @@ For detailed information about Notion integrations, refer to the [Notion Integra
 #### Prerequisites
 
 - A Notion account with permission to create integrations in the workspace
-- Access to the [Notion integration settings](https://notion.so/my-integrations)
+- Access to the [Notion integration settings](https://app.notion.com/developers/connections)
 - Permission to connect the integration to specific pages or databases in the workspace
 
 #### Setup Steps
 
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
+1. Visit [Notion's integrations settings](https://app.notion.com/developers/connections) and log into Notion.
 2. Click **Create new integration**.
 3. Fill in the required integration details:
    - **Name**: Enter a descriptive name for the integration
@@ -51,7 +51,7 @@ For detailed information about Notion integrations, refer to the [Notion Integra
 
 #### Configure the Connection
 
-- Enter the **Internal Integration Token** into the connection configuration.
+- Enter the **Internal Integration Secret** into the connection configuration.
 
 #### Connect to Content
 
@@ -64,9 +64,9 @@ After creating the integration and configuring the connection, the integration m
 
 The integration will now have access to that content based on the capabilities configured during setup. Repeat this process for each page or database that the integration needs to access.
 
-| Input                       | Comments                                                                                                                                                            | Default |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Internal Integration Secret | Your Notion Internal Integration Secret. Create an integration in your [Notion integrations settings](https://www.notion.com/my-integrations) to obtain this token. |         |
+| Input                       | Comments                                                                                                                                                                 | Default |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Internal Integration Secret | The Notion Internal Integration Secret. Create an integration in the [Notion integrations settings](https://app.notion.com/developers/connections) to obtain this token. |         |
 
 ### OAuth 2.0 {#notionoauth}
 
@@ -79,11 +79,11 @@ For detailed information about Notion integrations, refer to the [Notion Integra
 #### Prerequisites
 
 - A Notion account with permission to create integrations
-- Access to the [Notion integration settings](https://notion.so/my-integrations)
+- Access to the [Notion integration settings](https://app.notion.com/developers/connections)
 
 #### Setup Steps
 
-1. Visit [notion.so/my-integrations](https://notion.so/my-integrations) and log into Notion.
+1. Visit [Notion's integrations settings](https://app.notion.com/developers/connections) and log into Notion.
 2. Click **Create new integration**.
 3. Fill in the required integration details:
    - **Name**: Enter a descriptive name for the integration
@@ -134,37 +134,40 @@ Alternatively, the user can re-authorize the integration and select the addition
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Client ID     | Client ID of your Notion app. Find this in your [Notion integrations settings](https://www.notion.com/my-integrations).     |         |
-| Client Secret | Client Secret of your Notion app. Find this in your [Notion integrations settings](https://www.notion.com/my-integrations). |         |
+| Input         | Comments                                                                                                                             | Default |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Client ID     | The Client ID of the Notion app. Find this in the [Notion integrations settings](https://app.notion.com/developers/connections).     |         |
+| Client Secret | The Client Secret of the Notion app. Find this in the [Notion integrations settings](https://app.notion.com/developers/connections). |         |
 
 ## Triggers
 
-### New and Updated Database Items {#datasourceitemspollingtrigger}
+### New and Updated Data Source Items {#datasourceitemspollingtrigger}
 
-Checks for new and updated items in a Notion database on a configured schedule.
+Retrieves existing and ongoing items for a specified Notion data source. Load history once, check for changes on a schedule, or both.
 
-| Input          | Comments                                                                                                                                                                                   | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     | The Notion connection to use.                                                                                                                                                              |         |
-| Data Source ID | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases). |         |
+| Input          | Comments                                                                                                                                                                                                                                                 | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                                                                                            |         |
+| Data Source ID | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases).                                                               |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the first recurrence returns every record created or last edited on or after this date. |         |
 
-### New and Updated Databases {#datasourcespollingtrigger}
+### New and Updated Data Sources {#datasourcespollingtrigger}
 
-Checks for new and updated databases in Notion on a configured schedule.
+Retrieves existing and ongoing data sources from Notion. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Notion connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                                 | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                                                                                            |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the first recurrence returns every record created or last edited on or after this date. |         |
 
 ### New and Updated Pages {#pagespollingtrigger}
 
-Checks for new and updated pages in Notion on a configured schedule.
+Retrieves existing and ongoing pages from Notion. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                      | Default |
-| ---------- | ----------------------------- | ------- |
-| Connection | The Notion connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                                 | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Notion connection to use.                                                                                                                                                                                                                            |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the first recurrence returns every record created or last edited on or after this date. |         |
 
 ## Actions
 
@@ -181,17 +184,6 @@ Creates a database as a subpage in the specified parent page, with the specified
 | Icon                           | The icon of the new page. Either an [emoji object](https://developers.notion.com/reference/emoji-object) or an [external file object](https://developers.notion.com/reference/file-object). |         |
 | Description                    | The description of the data source formatted as a rich text array. See [Notion Rich Text Reference](https://developers.notion.com/reference/rich-text).                                     |         |
 | Cover Image                    | The cover image of the new page, represented as a [file object](https://developers.notion.com/reference/file-object).                                                                       |         |
-
-### Create Database (Deprecated) {#createdatabase}
-
-Creates a database as a subpage in the specified parent page, with the specified properties schema. Currently, the parent of a new database must be a Notion page or a wiki database.
-
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Notion connection to use.                                                                                                                                   |         |
-| Parent     | The parent page where the database will be created. Format: {"type": "page_id", "page_id": "..."}                                                               |         |
-| Title      | The title of the database as it appears in Notion, formatted as a rich text array.                                                                              |         |
-| Properties | Property schema of database. The keys are the names of properties as they appear in Notion. For relation properties, use data_source_id instead of database_id. |         |
 
 ### Create Database Item {#createdatabaseitem}
 
@@ -239,15 +231,6 @@ Get the currently logged in user
 | ---------- | ----------------------------- | ------- |
 | Connection | The Notion connection to use. |         |
 
-### Get Database (Deprecated) {#getdatabase}
-
-Retrieve a database by ID
-
-| Input       | Comments                                                                                                                                                                                                                                           | Default |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Notion connection to use.                                                                                                                                                                                                                      |         |
-| Database ID | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
-
 ### Get Page {#getpage}
 
 Retrieve a page by ID with optional property filters
@@ -267,16 +250,6 @@ Get a user by their ID
 | Connection | The Notion connection to use.                                                                                               |         |
 | User ID    | The unique identifier of the user in Notion. See [Notion API User Reference](https://developers.notion.com/reference/user). |         |
 
-### List Databases (Deprecated) {#listdatabases}
-
-List all databases or data sources
-
-| Input        | Comments                                                                                                                                 | Default |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Notion connection to use.                                                                                                            |         |
-| Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
-| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
-
 ### List Data Sources {#listdatasources}
 
 List all data sources accessible to the integration.
@@ -284,8 +257,8 @@ List all data sources accessible to the integration.
 | Input        | Comments                                                                                                                                 | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Notion connection to use.                                                                                                            |         |
+| Fetch All    | When true, automatically fetches all pages of results using pagination. This ignores the Start Cursor input.                             | false   |
 | Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
-| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
 
 ### List Pages {#listpages}
 
@@ -294,8 +267,8 @@ List all pages
 | Input        | Comments                                                                                                                                 | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Notion connection to use.                                                                                                            |         |
+| Fetch All    | When true, automatically fetches all pages of results using pagination. This ignores the Start Cursor input.                             | false   |
 | Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
-| Fetch All    | When true, fetches all pages using pagination. This ignores the start cursor input.                                                      | false   |
 
 ### List Users {#listusers}
 
@@ -304,19 +277,10 @@ List all users in the workspace with optional page size
 | Input        | Comments                                                                                                                                 | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Notion connection to use.                                                                                                            |         |
+| Fetch All    | When true, automatically fetches all pages of results using pagination. This ignores the Start Cursor and Page Size inputs.              | false   |
+| Pagination   | Cursor and page-size controls for paging through results.                                                                                |         |
 | Start Cursor | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination. |         |
-| Page Size    | The number of items to return per page. Maximum: 100.                                                                                    | 50      |
-| Fetch All    | Turn this on to fetch all pages. This will ignore the start cursor and page size inputs.                                                 | false   |
-
-### Query Database (Deprecated) {#querydatabase}
-
-Query a Notion database or data source
-
-| Input         | Comments                                                                                                                                                                                                                                           | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Notion connection to use.                                                                                                                                                                                                                      |         |
-| Database ID   | The unique identifier of the database. For single-source databases, this is also the data source ID. Find this in the Notion URL or database settings menu. See [Notion API Database Reference](https://developers.notion.com/reference/database). |         |
-| Filter Object | Filter conditions to apply to the database query. Supports compound filters using 'and' and 'or' operators. See [Notion API Filter Documentation](https://developers.notion.com/reference/post-database-query-filter).                             |         |
+| Page Size    | The number of items to return per page. Maximum: 100.                                                                                    |         |
 
 ### Query Data Source {#querydatasource}
 
@@ -326,11 +290,12 @@ Query a data source to retrieve pages with optional filtering and sorting.
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | Connection        | The Notion connection to use.                                                                                                                                                                                          |          |
 | Data Source ID    | The unique identifier of the data source. Find this in the Notion URL or database settings menu. See [Notion API Data Sources](https://developers.notion.com/docs/working-with-databases).                             |          |
-| Fetch All         | When true, fetches all pages using pagination. This ignores the start cursor input.                                                                                                                                    | false    |
+| Fetch All         | When true, automatically fetches all pages of results using pagination. This ignores the Start Cursor input.                                                                                                           | false    |
 | Sort              | Array of sort objects defining the order of query results. Earlier sorts take precedence. See [Notion API Sort Documentation](https://developers.notion.com/reference/post-database-query-sort).                       |          |
 | Filter Object     | Filter conditions to apply to the database query. Supports compound filters using 'and' and 'or' operators. See [Notion API Filter Documentation](https://developers.notion.com/reference/post-database-query-filter). |          |
+| Pagination        | Cursor and page-size controls for paging through results.                                                                                                                                                              |          |
 | Start Cursor      | The start cursor returned from a previous list or query action when at least one more page of records is available. Used for pagination.                                                                               |          |
-| Page Size         | The number of items to return per page. Maximum: 100.                                                                                                                                                                  | 50       |
+| Page Size         | The number of items to return per page. Maximum: 100.                                                                                                                                                                  |          |
 | Result Type       | Type of results to return. Use 'data_source' (recommended) for the new API or 'database' for legacy support.                                                                                                           | database |
 | Filter Properties | Limit the properties included in the response. Provide an object where keys are property names and values are property values or arrays of values.                                                                     |          |
 
@@ -390,7 +355,7 @@ Update database-level attributes such as title, icon, cover, and inline status. 
 
 ### Update Data Source {#updatedatasource}
 
-Update a data source object including its properties (schema), title, description, and trash status.
+Update a data source object including its property schema, title, icon, and parent database.
 
 | Input          | Comments                                                                                                                                                                                    | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

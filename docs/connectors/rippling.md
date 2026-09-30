@@ -225,6 +225,7 @@ GET Company Activity.
 | Start Date | ISO 8601 timestamp to list activity after (inclusive).                  |         |
 | End Date   | ISO 8601 timestamp to list activity before (inclusive).                 |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Next       | Pagination cursor token for retrieving the next page of results.        |         |
 | Limit      | Maximum number of results per page. Maximum: 1000. Default: 1000.       |         |
 
@@ -236,6 +237,7 @@ GET Custom Fields.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -256,6 +258,7 @@ GET Departments.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -287,6 +290,7 @@ GET Employees (Including Terminated).
 | Connection | The Rippling connection to use.                                                                                                      |         |
 | EIN        | Employer Identification Number (EIN), also known as the Federal Employer Identification Number or Federal Tax Identification Number. |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                              | false   |
+| Pagination | Page and page-size controls.                                                                                                         |         |
 | Limit      | Sets a limit on the number of returned values.                                                                                       |         |
 | Offset     | Number of results to skip before returning values.                                                                                   |         |
 
@@ -298,6 +302,7 @@ GET Employees.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -331,19 +336,20 @@ Retrieve a specific job function by ID.
 
 GET Leave Requests.
 
-| Input        | Comments                                                                       | Default |
-| ------------ | ------------------------------------------------------------------------------ | ------- |
-| Connection   | The Rippling connection to use.                                                |         |
-| ID           | The unique identifier of the leave request.                                    |         |
-| Role         | The role associated with the leave request.                                    |         |
-| Requested By | The identifier or email of the person who requested the leave.                 |         |
-| Status       | The status of the leave request.                                               |         |
-| Start Date   | The start date of the leave in YYYY-MM-DD format.                              |         |
-| End Date     | The end date of the leave in YYYY-MM-DD format.                                |         |
-| Leave Policy | The leave policy identifier or name.                                           |         |
-| Processed By | The identifier or email of the person who processed the leave request.         |         |
-| From         | Filter start date to capture leave requests that overlap with this date range. |         |
-| To           | Filter end date to capture leave requests that overlap with this date range.   |         |
+| Input              | Comments                                                                       | Default |
+| ------------------ | ------------------------------------------------------------------------------ | ------- |
+| Connection         | The Rippling connection to use.                                                |         |
+| ID                 | The unique identifier of the leave request.                                    |         |
+| Role               | The role associated with the leave request.                                    |         |
+| Requested By       | The identifier or email of the person who requested the leave.                 |         |
+| Status             | The status of the leave request.                                               |         |
+| Leave Policy       | The leave policy identifier or name.                                           |         |
+| Processed By       | The identifier or email of the person who processed the leave request.         |         |
+| Date Range Filters | Optional inclusive date-range filters to narrow results by date.               |         |
+| Start Date         | The start date of the leave in YYYY-MM-DD format.                              |         |
+| End Date           | The end date of the leave in YYYY-MM-DD format.                                |         |
+| From               | Filter start date to capture leave requests that overlap with this date range. |         |
+| To                 | Filter end date to capture leave requests that overlap with this date range.   |         |
 
 ### Get Levels (V1) {#getlevels}
 
@@ -353,6 +359,7 @@ GET Levels.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -407,6 +414,7 @@ GET Teams.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -447,6 +455,7 @@ GET Work Locations.
 | ---------- | ----------------------------------------------------------------------- | ------- |
 | Connection | The Rippling connection to use.                                         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. | false   |
+| Pagination | Page and page-size controls.                                            |         |
 | Limit      | Sets a limit on the number of returned values.                          |         |
 | Offset     | Number of results to skip before returning values.                      |         |
 
@@ -468,6 +477,7 @@ Retrieve a list of business partner groups.
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: default_business_partner.                    |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -481,6 +491,7 @@ Retrieve a list of business partners.
 | Filter     | Filterable fields: worker_id, business_partner_group_id. Example: worker_id eq 'abc123'. |         |
 | Expand     | Comma-separated fields to expand: business_partner_group, worker, client_group.          |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                  | false   |
+| Pagination | Sort order and cursor controls for paging through results.                               |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                   |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response.           |         |
 
@@ -493,6 +504,7 @@ Retrieve a list of companies.
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent_legal_entity, legal_entities.         |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -504,6 +516,7 @@ Retrieve a list of custom fields.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -515,6 +528,7 @@ Retrieve a list of custom objects.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -527,6 +541,7 @@ Retrieve a list of departments.
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent, department_hierarchy.                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -538,6 +553,7 @@ Retrieve a list of employment types.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -549,6 +565,7 @@ Retrieve a list of entitlements.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -560,6 +577,7 @@ Retrieve a list of job functions.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -571,6 +589,7 @@ Retrieve a list of object categories.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -583,6 +602,7 @@ Retrieve supergroups matching the input parameters.
 | Connection | The Rippling connection to use.                                                 |         |
 | Filter     | Filterable fields: app_owner_id, group_type. Example: app_owner_id eq 'abc123'. |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.         | false   |
+| Pagination | Sort order and cursor controls for paging through results.                      |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.          |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response.  |         |
 
@@ -595,6 +615,7 @@ Retrieve a list of teams.
 | Connection | The Rippling connection to use.                                                |         |
 | Expand     | Comma-separated fields to expand: parent.                                      |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -606,6 +627,7 @@ Retrieve a list of users.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -619,6 +641,7 @@ Retrieve a list of workers with filtering, expansion, and sorting support.
 | Filter     | Filter expression. Filterable fields: status, work_email, user_id, created_at, updated_at. Example: status eq 'ACTIVE'.                                   |         |
 | Expand     | Comma-separated fields to expand: user, manager, legal_entity, employment_type, compensation, department, teams, level, custom_fields, business_partners. |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.                                                                                   | false   |
+| Pagination | Sort order and cursor controls for paging through results.                                                                                                |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.                                                                                    |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response.                                                                            |         |
 
@@ -630,6 +653,7 @@ Retrieve a list of work locations.
 | ---------- | ------------------------------------------------------------------------------ | ------- |
 | Connection | The Rippling connection to use.                                                |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination.        | false   |
+| Pagination | Sort order and cursor controls for paging through results.                     |         |
 | Order By   | Sortable fields: id, created_at, updated_at. Example: created_at desc.         |         |
 | Cursor     | Pagination cursor token from the next_link field in the previous API response. |         |
 
@@ -637,36 +661,40 @@ Retrieve a list of work locations.
 
 PATCH Group.
 
-| Input      | Comments                                         | Default |
-| ---------- | ------------------------------------------------ | ------- |
-| Connection | The Rippling connection to use.                  |         |
-| Group ID   | The unique identifier for the group in Rippling. |         |
-| Name       | The name of the Group.                           |         |
-| Spoke ID   | The external identifier of the Group.            |         |
-| Users      | The array of users within the Group.             |         |
-| Version    | The version identifier of the group.             |         |
+| Input             | Comments                                                                 | Default |
+| ----------------- | ------------------------------------------------------------------------ | ------- |
+| Connection        | The Rippling connection to use.                                          |         |
+| Group ID          | The unique identifier for the group in Rippling.                         |         |
+| Additional Fields | Additional optional fields: includes Name, Spoke ID, Users, and Version. |         |
+| Name              | The name of the Group.                                                   |         |
+| Spoke ID          | The external identifier of the Group.                                    |         |
+| Users             | The array of users within the Group.                                     |         |
+| Version           | The version identifier of the group.                                     |         |
 
 ### Post Ats Candidates Push Candidate (V1) {#postatscandidatespushcandidate}
 
 POST New Candidate.
 
-| Input           | Comments                                                                                              | Default |
-| --------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The Rippling connection to use.                                                                       |         |
-| Name            | The candidate's full name.                                                                            |         |
-| Email           | The candidate's email address.                                                                        |         |
-| Phone Number    | The candidate's phone number.                                                                         |         |
-| Job Title       | The job title for the candidate's position.                                                           |         |
-| Candidate ID    | The unique identifier of the candidate from your ATS (Applicant Tracking System).                     |         |
-| Start Date      | The expected start date for the candidate in YYYY-MM-DD format.                                       |         |
-| Department      | The name of the department the candidate will join.                                                   |         |
-| Salary Unit     | The frequency at which the candidate will be paid.                                                    |         |
-| Salary Per Unit | The monetary amount the candidate will be paid per salary unit.                                       |         |
-| Signing Bonus   | The one-time signing bonus amount given to the candidate.                                             |         |
-| Equity Shares   | The number of equity shares to be granted to the candidate.                                           |         |
-| Currency        | The currency code in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format (e.g., USD, EUR, GBP). |         |
-| Employment Type | The type of employment for the candidate.                                                             |         |
-| Attachments     | URLs or identifiers for attachments related to the candidate.                                         |         |
+| Input                      | Comments                                                                                                  | Default |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                 | The Rippling connection to use.                                                                           |         |
+| Name & Contact Information | Name, email, and phone contact details.                                                                   |         |
+| Name                       | The candidate's full name.                                                                                |         |
+| Email                      | The candidate's email address.                                                                            |         |
+| Phone Number               | The candidate's phone number.                                                                             |         |
+| Candidate ID               | The unique identifier of the candidate from your ATS (Applicant Tracking System).                         |         |
+| Compensation               | Optional compensation package details: salary, bonus, equity, and currency.                               |         |
+| Salary Unit                | The frequency at which the candidate will be paid.                                                        |         |
+| Salary Per Unit            | The monetary amount the candidate will be paid per salary unit.                                           |         |
+| Signing Bonus              | The one-time signing bonus amount given to the candidate.                                                 |         |
+| Equity Shares              | The number of equity shares to be granted to the candidate.                                               |         |
+| Currency                   | The currency code in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format (e.g., USD, EUR, GBP).     |         |
+| Additional Fields          | Additional optional fields: includes Job Title, Start Date, Department, Employment Type, and Attachments. |         |
+| Job Title                  | The job title for the candidate's position.                                                               |         |
+| Start Date                 | The expected start date for the candidate in YYYY-MM-DD format.                                           |         |
+| Department                 | The name of the department the candidate will join.                                                       |         |
+| Employment Type            | The type of employment for the candidate.                                                                 |         |
+| Attachments                | URLs or identifiers for attachments related to the candidate.                                             |         |
 
 ### Post Groups (V1) {#postgroups}
 
@@ -701,14 +729,15 @@ POST Process Leave Request.
 
 PUT Group.
 
-| Input      | Comments                                         | Default |
-| ---------- | ------------------------------------------------ | ------- |
-| Connection | The Rippling connection to use.                  |         |
-| Group ID   | The unique identifier for the group in Rippling. |         |
-| Name       | The name of the Group.                           |         |
-| Spoke ID   | The external identifier of the Group.            |         |
-| Users      | The array of users within the Group.             |         |
-| Version    | The version identifier of the group.             |         |
+| Input             | Comments                                                                 | Default |
+| ----------------- | ------------------------------------------------------------------------ | ------- |
+| Connection        | The Rippling connection to use.                                          |         |
+| Group ID          | The unique identifier for the group in Rippling.                         |         |
+| Additional Fields | Additional optional fields: includes Name, Spoke ID, Users, and Version. |         |
+| Name              | The name of the Group.                                                   |         |
+| Spoke ID          | The external identifier of the Group.                                    |         |
+| Users             | The array of users within the Group.                                     |         |
+| Version           | The version identifier of the group.                                     |         |
 
 ### Raw Request (V1) {#rawrequest}
 
@@ -758,15 +787,16 @@ Send raw HTTP request to Rippling API.
 
 Update an existing custom object.
 
-| Input                  | Comments                                     | Default |
-| ---------------------- | -------------------------------------------- | ------- |
-| Connection             | The Rippling connection to use.              |         |
-| Custom Object API Name | The API name of the custom object to update. |         |
-| Name                   | The new name for the custom object.          |         |
-| Description            | The new description for the custom object.   |         |
-| Category               | The new category for the custom object.      |         |
-| Plural Label           | The plural label for the custom object.      |         |
-| Owner Role             | The owner role for the custom object.        |         |
+| Input                  | Comments                                                                                        | Default |
+| ---------------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Rippling connection to use.                                                                 |         |
+| Custom Object API Name | The API name of the custom object to update.                                                    |         |
+| Additional Fields      | Additional optional fields: includes Name, Description, Category, Plural Label, and Owner Role. |         |
+| Name                   | The new name for the custom object.                                                             |         |
+| Description            | The new description for the custom object.                                                      |         |
+| Category               | The new category for the custom object.                                                         |         |
+| Plural Label           | The plural label for the custom object.                                                         |         |
+| Owner Role             | The owner role for the custom object.                                                           |         |
 
 ### Update Object Category (V2) {#updateobjectcategory}
 

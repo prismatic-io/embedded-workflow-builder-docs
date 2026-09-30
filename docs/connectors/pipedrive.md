@@ -273,16 +273,6 @@ Adds a new stage.
 | Rotten Flag      | Whether deals in this stage can become rotten                              | false   |
 | Rotten Days      | The number of days the deals not updated in this stage would become rotten |         |
 
-### Cancel Recurring Subscription (Deprecated) {#cancelrecurringsubscription}
-
-Cancels a recurring subscription.
-
-| Input           | Comments                                    | Default |
-| --------------- | ------------------------------------------- | ------- |
-| Connection      | The Pipedrive connection to use.            |         |
-| Subscription ID | The unique identifier for the subscription. |         |
-| End Date        | The subscription termination date           |         |
-
 ### Create Webhook {#createwebhook}
 
 Creates a new webhook.
@@ -529,15 +519,6 @@ Deletes a stage.
 | Connection | The Pipedrive connection to use.     |         |
 | Stage ID   | The unique identifier for the stage. |         |
 
-### Delete Subscription (Deprecated) {#deletesubscription}
-
-Deletes a subscription.
-
-| Input           | Comments                                    | Default |
-| --------------- | ------------------------------------------- | ------- |
-| Connection      | The Pipedrive connection to use.            |         |
-| Subscription ID | The unique identifier for the subscription. |         |
-
 ### Delete Webhook {#deletewebhook}
 
 Deletes a webhook.
@@ -555,15 +536,6 @@ Downloads one file.
 | ---------- | ----------------------------------- | ------- |
 | Connection | The Pipedrive connection to use.    |         |
 | File ID    | The unique identifier for the file. |         |
-
-### Find Subscription By Deal (Deprecated) {#findsubscriptionbydeal}
-
-Finds a subscription by deal.
-
-| Input      | Comments                         | Default |
-| ---------- | -------------------------------- | ------- |
-| Connection | The Pipedrive connection to use. |         |
-| Deal ID    | The ID of the deal               |         |
 
 ### Find Users By Name {#findusersbyname}
 
@@ -770,19 +742,6 @@ Lists participants of a deal.
 | Start      | The 0-based offset of the first item to return.   | 0       |
 | Limit      | The maximum number of results to return per page. |         |
 | Cursor     | The pagination cursor from a previous request.    |         |
-
-### Get Deal Persons (Deprecated) {#getdealpersons}
-
-Lists all persons associated with a deal.
-
-| Input          | Comments                                          | Default |
-| -------------- | ------------------------------------------------- | ------- |
-| Connection     | The Pipedrive connection to use.                  |         |
-| Deal ID        | The unique identifier for the deal.               |         |
-| Limit          | The maximum number of results to return per page. |         |
-| Cursor         | The pagination cursor from a previous request.    |         |
-| Sort By        | The field name used to order the results.         |         |
-| Sort Direction | The direction in which results are ordered.       |         |
 
 ### Get Deal Products {#getdealproducts}
 
@@ -1129,3 +1088,45 @@ Lists activities associated with a person.
 | Limit      | The maximum number of results to return per page. |         |
 | Cursor     | The pagination cursor from a previous request.    |         |
 | Done       | When true, returns only completed activities      | false   |
+
+### Get Person Deals {#getpersondeals}
+
+Lists deals associated with a person.
+
+| Input          | Comments                                          | Default |
+| -------------- | ------------------------------------------------- | ------- |
+| Connection     | The Pipedrive connection to use.                  |         |
+| Person ID      | The unique identifier for the person.             |         |
+| Limit          | The maximum number of results to return per page. |         |
+| Cursor         | The pagination cursor from a previous request.    |         |
+| Status         | Only fetch deals with a specific status           |         |
+| Sort By        | The field name used to order the results.         |         |
+| Sort Direction | The direction in which results are ordered.       |         |
+
+### Get Person Field {#getpersonfield}
+
+Gets one person field.
+
+| Input           | Comments                                    | Default |
+| --------------- | ------------------------------------------- | ------- |
+| Connection      | The Pipedrive connection to use.            |         |
+| Person Field ID | The unique identifier for the person field. |         |
+
+### Get Person Field Details {#getpersonfielddetails}
+
+Gets details of a specific field for a person.
+
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Field ID   | The ID of the field to fetch details for a person |         |
+
+### Get Person Fields {#getpersonfields}
+
+Gets all person fields.
+
+| Input      | Comments                                          | Default |
+| ---------- | ------------------------------------------------- | ------- |
+| Connection | The Pipedrive connection to use.                  |         |
+| Start      | The 0-based offset of the first item to return.   | 0       |
+| Limit      | The maximum number of results to return per page. |         |

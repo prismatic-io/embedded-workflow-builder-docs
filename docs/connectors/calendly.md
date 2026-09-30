@@ -1,7 +1,7 @@
 ---
 title: Calendly Connector
 sidebar_label: Calendly
-description: Calendly is an industry leading scheduling solution for businesses. Use the Calendly component to manage the scheduling of events; attendee availability; and retrieve pertinent data on users and attendees.
+description: Manage the scheduling of events, attendee availability, and retrieve data on users and attendees.
 ---
 
 ![Calendly](./assets/calendly.png#connector-icon)
@@ -17,7 +17,7 @@ This component was built using the [Calendly API Documentation](https://develope
 
 ### OAuth 2.0 {#calendlyoauth2connection}
 
-Authenticate using OAuth 2.0
+Authenticate using OAuth 2.0.
 
 A Calendly Developer Account is required to create applications for OAuth. Refer to the following [guide](https://developer.calendly.com/create-a-developer-account) for more information.
 
@@ -40,21 +40,21 @@ Create a connection of type **OAuth 2.0** and enter:
 
 - **Authorize URL**: The OAuth 2.0 Authorization URL (default: `https://auth.calendly.com/oauth/authorize`)
 - **Token URL**: The OAuth 2.0 Token URL (default: `https://auth.calendly.com/oauth/token`)
-- **Scopes**: Set the desired scopes (default: `default`)
+- **Scopes**: Space-separated OAuth permission scopes. The default includes all scopes required by this component: `activity_log:read`, `availability:read`, `data_compliance:write`, `event_types:read`, `organizations:read`, `organizations:write`, `routing_forms:read`, `scheduled_events:read`, `scheduled_events:write`, `scheduling_links:write`, `shares:write`, `users:read`, `webhooks:read`, `webhooks:write`
 - **Client ID**: Enter the Client ID from the Calendly application
 - **Client Secret**: Enter the Client Secret from the Calendly application
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input           | Comments                                                           | Default                                   |
-| --------------- | ------------------------------------------------------------------ | ----------------------------------------- |
-| Authorize URL   | The OAuth 2.0 Authorization URL for the Calendly API.              | https://auth.calendly.com/oauth/authorize |
-| Token URL       | The OAuth 2.0 Token URL for the Calendly API.                      | https://auth.calendly.com/oauth/token     |
-| Scopes          | Space-separated list of OAuth permission scopes.                   | default                                   |
-| Client ID       | The Client ID from the OAuth application credentials.              |                                           |
-| Client Secret   | The Client Secret from the OAuth application credentials.          |                                           |
-| Use Live Server | When true, uses the live server. When false, uses the mock server. | false                                     |
+| Input           | Comments                                                                                                                                                                                                                                                 | Default                                                                                                                                                                                                                                                       |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorize URL   | The OAuth 2.0 Authorization URL for the Calendly API. See [Calendly API docs](https://developer.calendly.com/api-docs) for details.                                                                                                                      | https://auth.calendly.com/oauth/authorize                                                                                                                                                                                                                     |
+| Token URL       | The OAuth 2.0 Token URL for the Calendly API. See [Calendly API docs](https://developer.calendly.com/api-docs) for details.                                                                                                                              | https://auth.calendly.com/oauth/token                                                                                                                                                                                                                         |
+| Scopes          | Space-separated list of OAuth permission scopes. The default includes all scopes required by this component's actions, triggers, and datasources. See [Calendly scopes](https://developer.calendly.com/docs/authentication/scopes) for available scopes. | activity_log:read availability:read data_compliance:write event_types:read organizations:read organizations:write routing_forms:read scheduled_events:read scheduled_events:write scheduling_links:write shares:write users:read webhooks:read webhooks:write |
+| Client ID       | The Client ID from the Calendly OAuth application. See [Calendly API docs](https://developer.calendly.com/api-docs) for setup instructions.                                                                                                              |                                                                                                                                                                                                                                                               |
+| Client Secret   | The Client Secret from the Calendly OAuth application. See [Calendly API docs](https://developer.calendly.com/api-docs) for setup instructions.                                                                                                          |                                                                                                                                                                                                                                                               |
+| Use Live Server | When true, uses the live server. When false, uses the mock server.                                                                                                                                                                                       | false                                                                                                                                                                                                                                                         |
 
 ## Triggers
 
@@ -62,13 +62,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Checks for new and updated Events in Calendly on a configured schedule.
 
-| Input                | Comments                                                                          | Default |
-| -------------------- | --------------------------------------------------------------------------------- | ------- |
-| Connection           | The Calendly connection to use.                                                   |         |
-| Organization         | Poll events scheduled with the organization at this URI.                          |         |
-| User                 | Return events scheduled with the user associated with this URI.                   |         |
-| Show New Records     | When true, events created since the last poll are included in the trigger output. | true    |
-| Show Updated Records | When true, events updated since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Calendly connection to use.                                                                                                                                                                                           |         |
+| Organization         | Poll events scheduled with the organization at this URI.                                                                                                                                                                  |         |
+| User                 | Return events scheduled with the user associated with this URI.                                                                                                                                                           |         |
+| Look-Back Date       | Optional ISO 8601 date used as the initial cursor on first deploy, allowing pre-existing events created or updated after this date to be included. When omitted the first poll seeds the cursor to now and emits nothing. |         |
+| Show New Records     | When true, events created since the last poll are included in the trigger output.                                                                                                                                         | true    |
+| Show Updated Records | When true, events updated since the last poll are included in the trigger output.                                                                                                                                         | true    |
 
 ### Scheduled Event {#calendlytrigger}
 
@@ -98,7 +99,7 @@ Cancels specified event.
 
 ### Create Share {#createshare}
 
-Allows you to create an endpoint for the Customize Once and Share feature.
+Creates an endpoint for the Customize Once and Share feature.
 
 | Input                   | Comments                                                                                                                            | Default                                                                                                                                                |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -135,7 +136,7 @@ Create a Webhook Subscription for an Organization or User.
 | Connection   | The Calendly connection to use.                                                                                                                                                                             |         |
 | Organization | The unique reference to the organization that the webhook will be tied to.                                                                                                                                  |         |
 | User         | The unique reference to the user that the webhook will be tied to.                                                                                                                                          |         |
-| URL          | The URL where you want to receive POST requests for events you are subscribed to.                                                                                                                           |         |
+| URL          | The URL to receive POST requests for subscribed events.                                                                                                                                                     |         |
 | Event        | Event to subscribe to.                                                                                                                                                                                      |         |
 | Scope        | Indicates if the webhook subscription scope will be 'organization' or 'user'.                                                                                                                               |         |
 | Signing Key  | Optional secret key shared between your application and Calendly. See [Calendly API documentation](https://developer.calendly.com/api-docs/ZG9jOjM2MzE2MDM4-webhook-signatures) for additional information. |         |
@@ -153,7 +154,7 @@ Delete all webhooks that point to a flow in this instance.
 
 ### Delete Invitee Data {#deleteinviteedata}
 
-To submit a request to remove invitee data from all previously booked events in your organization, use this endpoint.
+Submits a request to remove invitee data from all previously booked events in the organization.
 
 | Input      | Comments                        | Default |
 | ---------- | ------------------------------- | ------- |
@@ -162,7 +163,7 @@ To submit a request to remove invitee data from all previously booked events in 
 
 ### Delete Scheduled Event Data {#deletescheduledeventdata}
 
-To submit a request to remove scheduled events data within a time range for your organization, use this endpoint.
+Submits a request to remove scheduled events data within a time range for the organization.
 
 | Input      | Comments                                                                                           | Default |
 | ---------- | -------------------------------------------------------------------------------------------------- | ------- |
@@ -181,7 +182,7 @@ Delete a Webhook Subscription.
 
 ### Get Current User {#getcurrentuser}
 
-Returns basic information about your user account.
+Returns basic information about the authenticated user account.
 
 | Input      | Comments                        | Default |
 | ---------- | ------------------------------- | ------- |
@@ -267,7 +268,7 @@ Returns information about a specified User.
 
 ### Get User Availability Schedule {#getuseravailabilityschedule}
 
-This will return the availability schedule of the given UUID.
+Returns the availability schedule of the given UUID.
 
 | Input      | Comments                               | Default |
 | ---------- | -------------------------------------- | ------- |
@@ -363,7 +364,7 @@ Returns a list of Organization Invitations that were sent to the organization's 
 
 ### List Organization Memberships {#listorganizationmemberships}
 
-Use this to list the Organization Memberships for all users belonging to an organization.
+Lists the Organization Memberships for all users belonging to an organization.
 
 | Input        | Comments                                                     | Default |
 | ------------ | ------------------------------------------------------------ | ------- |
@@ -441,7 +442,7 @@ Get a list of Webhook Subscriptions for a specified Organization or User.
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Calendly
+Send raw HTTP request to Calendly.
 
 | Input                   | Comments                                                                                                                                                                                             | Default |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -473,7 +474,7 @@ Removes a user from an organization.
 
 ### Revoke User's Organization Invitation {#revokeuserorganizationinvitation}
 
-Use this to revoke an Organization Invitation to an organization.
+Revokes an Organization Invitation to an organization.
 
 | Input             | Comments                                         | Default |
 | ----------------- | ------------------------------------------------ | ------- |

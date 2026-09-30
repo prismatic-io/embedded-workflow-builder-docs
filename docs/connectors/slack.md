@@ -84,6 +84,21 @@ The `Auth URL`, then, will look something like this: `https://slack.com/oauth/v2
 The bot's username and icon are set when creating the Slack app.
 To override the bot's username within the integration, request the `chat:write.customize` scope in addition to `chat:write`.
 
+#### Enterprise Grid
+
+A Slack app can be installed into a single workspace, which is the default described above, or across an entire [Enterprise Grid organization](https://docs.slack.dev/enterprise/developing-for-enterprise-orgs/). Installing per workspace on a Grid workspace needs no extra configuration.
+
+To install org-wide instead:
+
+1. In the Slack app, select **OAuth & Permissions** and confirm at least one **Bot Token Scope** is set
+1. Select **Org Level Apps** from the sidebar, choose **Opt-In**, then confirm **Yes, Opt-in**
+1. Have an Org Admin install the app to the organization rather than to a single workspace
+
+Two things change once the token is org-level:
+
+- **Team ID becomes required.** Slack can no longer infer which workspace to act on, so actions that expose a **Team ID** input need a value. The **List Teams** action returns the available IDs, and the **Team ID** input offers them in a dropdown. A workspace-level token accepts and ignores **Team ID**, so it is safe to always set it.
+- **Admin scopes become available.** Admin actions only work on an org-level install. **List Teams** requires `admin.teams:read` and **Search Conversation** requires `admin.conversations:read`. Other `admin.*` methods can be reached through the **Raw Request** action once the matching scope is added.
+
 #### GovSlack
 
 Slack offers [GovSlack](https://slack.com/solutions/govslack) for government organizations that require compliance with FIPS 140-2, FedRAMP, ITAR, etc.
@@ -93,16 +108,16 @@ The component will automatically point API requests towards the Slack Gov API en
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input          | Comments                                                                                                                                                                                                                                                                             | Default                                                                                       |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| Authorize URL  | The OAuth 2.0 Authorization URL for Slack. To request access to the API on behalf of a User, append a `user_scope` query parameter to the end of the Authorize URL (e.g., `https://slack.com/oauth/v2/authorize?user_scope=chat:write,channels:read,groups:read,im:read,mpim:read`). | https://slack.com/oauth/v2/authorize                                                          |
-| Token URL      | The OAuth 2.0 Token URL for Slack.                                                                                                                                                                                                                                                   | https://slack.com/api/oauth.v2.access                                                         |
-| Revoke URL     | The OAuth 2.0 Revocation URL for Slack.                                                                                                                                                                                                                                              | https://slack.com/api/auth.revoke                                                             |
-| Scopes (Bot)   | A space-delimited set of one or more scopes used to obtain the Bot token. To access the API as a User, append a `user_scope` query parameter to the Authorize URL and set the 'Is User' flag to true.                                                                                | chat:write chat:write.public chat:write.customize channels:read groups:read im:read mpim:read |
-| Client ID      | The client ID issued by Slack for the OAuth 2.0 application.                                                                                                                                                                                                                         |                                                                                               |
-| Client Secret  | The client secret issued by Slack for the OAuth 2.0 application.                                                                                                                                                                                                                     |                                                                                               |
-| Signing Secret | The signing secret used to verify the authenticity of inbound webhook requests from Slack.                                                                                                                                                                                           |                                                                                               |
-| Is User        | When true, requests access to the API as a User instead of a Bot. When enabled, the Authorize URL must include a `user_scope` query parameter. Leaving this false grants a Bot token instead.                                                                                        | false                                                                                         |
+| Input          | Comments                                                                                                                                                                                                                                                                                                                                              | Default                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Authorize URL  | The OAuth 2.0 Authorization URL for Slack. To request access to the API on behalf of a User, append a `user_scope` query parameter to the end of the Authorize URL (e.g., `https://slack.com/oauth/v2/authorize?user_scope=chat:write,channels:read,groups:read,im:read,mpim:read`). For GovSlack, change the domain from slack.com to slack-gov.com. | https://slack.com/oauth/v2/authorize                                                          |
+| Token URL      | The OAuth 2.0 Token URL for Slack. For GovSlack, change the domain from slack.com to slack-gov.com.                                                                                                                                                                                                                                                   | https://slack.com/api/oauth.v2.access                                                         |
+| Revoke URL     | The OAuth 2.0 Revocation URL for Slack. For GovSlack, change the domain from slack.com to slack-gov.com.                                                                                                                                                                                                                                              | https://slack.com/api/auth.revoke                                                             |
+| Scopes (Bot)   | A space-delimited set of one or more scopes used to obtain the Bot token. To access the API as a User, append a `user_scope` query parameter to the Authorize URL and set the 'Is User' flag to true.                                                                                                                                                 | chat:write chat:write.public chat:write.customize channels:read groups:read im:read mpim:read |
+| Client ID      | The client ID issued by Slack for the OAuth 2.0 application.                                                                                                                                                                                                                                                                                          |                                                                                               |
+| Client Secret  | The client secret issued by Slack for the OAuth 2.0 application.                                                                                                                                                                                                                                                                                      |                                                                                               |
+| Signing Secret | The signing secret used to verify the authenticity of inbound webhook requests from Slack.                                                                                                                                                                                                                                                            |                                                                                               |
+| Is User        | When true, requests access to the API as a User instead of a Bot. When enabled, the Authorize URL must include a `user_scope` query parameter. Leaving this false grants a Bot token instead.                                                                                                                                                         | false                                                                                         |
 
 ### Webhook URL {#webhookurl}
 
@@ -155,6 +170,7 @@ Checks for new messages in a selected Slack channel on a configured schedule. Me
 | Channel ID           | The static ID of the Slack channel.                                                                                                                                                                                                                                                           |         |
 | Show New Records     | When true, new messages in the channel are included in the trigger output.                                                                                                                                                                                                                    | true    |
 | Show Updated Records | When true, includes updated messages in the trigger output. Reserved for shape consistency with other polling triggers — Slack messages are immutable through `conversations.history`, so the `updated` bucket is always empty (use the webhook trigger to receive `message_changed` events). | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once.                                                       |         |
 
 ### Slash Command Webhook {#slashcommandwebhook}
 
@@ -198,12 +214,12 @@ Returns true if the conversation already exists.
 
 Create a new conversation.
 
-| Input             | Comments                                           | Default |
-| ----------------- | -------------------------------------------------- | ------- |
-| Connection        | The Slack connection to use.                       |         |
-| Conversation Name | The display name for the Slack conversation.       |         |
-| Is Private        | When true, the Slack conversation will be private. | false   |
-| Team ID           | The unique identifier for the Slack team.          |         |
+| Input             | Comments                                                                                                                | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Slack connection to use.                                                                                            |         |
+| Conversation Name | The display name for the Slack conversation.                                                                            |         |
+| Is Private        | When true, the Slack conversation will be private.                                                                      | false   |
+| Team ID           | The unique identifier for the Slack team. Required when an org-level token is used; ignored on a workspace-level token. |         |
 
 ### Delete Message {#deletemessage}
 
@@ -297,20 +313,20 @@ List all members of a conversation.
 
 List all conversations.
 
-| Input                           | Comments                                                                                     | Default |
-| ------------------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection                      | The Slack connection to use.                                                                 |         |
-| Fetch All                       | When true, fetches all pages of results.                                                     | false   |
-| Pagination                      | Cursor and page-size controls for paging through results.                                    |         |
-| Limit                           | The maximum number of results to return.                                                     |         |
-| Cursor                          | The pagination cursor from a previous request.                                               |         |
-| Team ID                         | The unique identifier for the Slack team.                                                    |         |
-| Exclude Archived                | When true, archived results will be excluded from the result set.                            | false   |
-| Channel Types                   | Which channel types to include in results: public, private, multi-party IM, and IM channels. |         |
-| Include Public Channels         | When true, includes public channels in results.                                              | true    |
-| Include Private Channels        | When true, includes private channels in results.                                             | false   |
-| Include Multi-Party IM Channels | When true, includes multi-party IM (mpim) channels in results.                               | false   |
-| Include IM Channels             | When true, includes direct message (IM) channels in results.                                 | false   |
+| Input                           | Comments                                                                                                                | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                      | The Slack connection to use.                                                                                            |         |
+| Fetch All                       | When true, fetches all pages of results.                                                                                | false   |
+| Pagination                      | Cursor and page-size controls for paging through results.                                                               |         |
+| Limit                           | The maximum number of results to return.                                                                                |         |
+| Cursor                          | The pagination cursor from a previous request.                                                                          |         |
+| Team ID                         | The unique identifier for the Slack team. Required when an org-level token is used; ignored on a workspace-level token. |         |
+| Exclude Archived                | When true, archived results will be excluded from the result set.                                                       | false   |
+| Channel Types                   | Which channel types to include in results: public, private, multi-party IM, and IM channels.                            |         |
+| Include Public Channels         | When true, includes public channels in results.                                                                         | true    |
+| Include Private Channels        | When true, includes private channels in results.                                                                        | false   |
+| Include Multi-Party IM Channels | When true, includes multi-party IM (mpim) channels in results.                                                          | false   |
+| Include IM Channels             | When true, includes direct message (IM) channels in results.                                                            | false   |
 
 ### List Files {#listfiles}
 
@@ -330,32 +346,44 @@ List all scheduled messages.
 | ---------- | ---------------------------- | ------- |
 | Connection | The Slack connection to use. |         |
 
-### List User Conversations {#listusersconversations}
+### List Teams {#listteams}
 
-List all conversations for a user.
+List the workspaces in an Enterprise Grid organization along with their team IDs.
 
 | Input      | Comments                                                  | Default |
 | ---------- | --------------------------------------------------------- | ------- |
 | Connection | The Slack connection to use.                              |         |
-| User ID    | The unique identifier for the Slack user.                 |         |
 | Fetch All  | When true, fetches all pages of results.                  | false   |
 | Pagination | Cursor and page-size controls for paging through results. |         |
 | Limit      | The maximum number of results to return.                  |         |
 | Cursor     | The pagination cursor from a previous request.            |         |
-| Team ID    | The unique identifier for the Slack team.                 |         |
+
+### List User Conversations {#listusersconversations}
+
+List all conversations for a user.
+
+| Input      | Comments                                                                                                                | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Slack connection to use.                                                                                            |         |
+| User ID    | The unique identifier for the Slack user.                                                                               |         |
+| Fetch All  | When true, fetches all pages of results.                                                                                | false   |
+| Pagination | Cursor and page-size controls for paging through results.                                                               |         |
+| Limit      | The maximum number of results to return.                                                                                |         |
+| Cursor     | The pagination cursor from a previous request.                                                                          |         |
+| Team ID    | The unique identifier for the Slack team. Required when an org-level token is used; ignored on a workspace-level token. |         |
 
 ### List Users {#listusers}
 
 List all users in the workspace.
 
-| Input      | Comments                                                  | Default |
-| ---------- | --------------------------------------------------------- | ------- |
-| Connection | The Slack connection to use.                              |         |
-| Fetch All  | When true, fetches all pages of results.                  | false   |
-| Pagination | Cursor and page-size controls for paging through results. |         |
-| Limit      | The maximum number of results to return.                  |         |
-| Cursor     | The pagination cursor from a previous request.            |         |
-| Team ID    | The unique identifier for the Slack team.                 |         |
+| Input      | Comments                                                                                                                | Default |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection | The Slack connection to use.                                                                                            |         |
+| Fetch All  | When true, fetches all pages of results.                                                                                | false   |
+| Pagination | Cursor and page-size controls for paging through results.                                                               |         |
+| Limit      | The maximum number of results to return.                                                                                |         |
+| Cursor     | The pagination cursor from a previous request.                                                                          |         |
+| Team ID    | The unique identifier for the Slack team. Required when an org-level token is used; ignored on a workspace-level token. |         |
 
 ### Open View {#openview}
 
@@ -447,23 +475,23 @@ Push a view onto the stack of a root view.
 
 Send raw HTTP request to Slack.
 
-| Input                   | Comments                                                                                                                                                                                                         | Default |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Slack connection to use.                                                                                                                                                                                     |         |
-| URL                     | The path portion of the Slack API URL only (e.g., `/team.info`). The base URL `https://slack.com/api` is already included. For example, to call `https://slack.com/api/team.info`, enter only `/team.info` here. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                 | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                         | Default |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection              | The Slack connection to use.                                                                                                                                                                                                                                                     |         |
+| URL                     | The path portion of the Slack API URL only (e.g., `/team.info`). The base URL is taken from the connection (`https://slack.com/api`, or the Slack Gov equivalent) and is already included. For example, to call `https://slack.com/api/team.info`, enter only `/team.info` here. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                          |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                        |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                             |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                 |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                           |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                              |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                      |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                         | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                              |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                              | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                 | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                              | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                    | false   |
 
 ### Rename Conversation {#renameconversation}
 
@@ -490,6 +518,24 @@ Searches for messages and files matching a query.
 | Sort           | The method to sort the results. For example, member_count will sort by the number of members in the channel. | score   |
 | Sort Direction | The direction to sort the results. For example, desc will sort the results in descending order.              | desc    |
 | Team ID        | The encoded team ID to search in. Required when an org-level token is used.                                  |         |
+
+### Search Conversation {#searchconversation}
+
+Search for public or private channels in an Enterprise organization.
+
+| Input                | Comments                                                                                                                                             | Default      |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Connection           | The Slack connection to use.                                                                                                                         |              |
+| Channel Name or ID   | The name or static ID of the Slack channel.                                                                                                          |              |
+| Pagination           | Cursor and page-size controls for paging through results.                                                                                            |              |
+| Limit                | The maximum number of results to return.                                                                                                             |              |
+| Cursor               | The pagination cursor from a previous request.                                                                                                       |              |
+| Connected Team IDs   | An array of encoded team IDs identifying external orgs to search through.                                                                            |              |
+| Search Channel Types | The type of channel to include or exclude in the search. For example, private will search private channels, while private_exclude will exclude them. |              |
+| Sort                 | The method to sort the results. For example, member_count will sort by the number of members in the channel.                                         | member_count |
+| Sort Direction       | The direction to sort the results. For example, desc will sort the results in descending order.                                                      | desc         |
+| Team IDs             | An array of team IDs identifying internal workspaces to search through.                                                                              |              |
+| Total Count Only     | When true, returns only the total_count of channels. Omits channel data and allows access for admins without channel manager permissions.            | false        |
 
 ### Search Files {#searchfiles}
 

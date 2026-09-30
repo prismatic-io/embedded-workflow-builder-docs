@@ -183,17 +183,6 @@ Fetches items that have a certain column value.
 | Column Value  | The value to match against the specified column when searching for items.                                                                                                                          |         |
 | Get All Items | When true, automatically fetches all pages of items matching the column value. When false, a maximum of 500 items will be returned.                                                                | false   |
 
-### Get Items By Column Value (Deprecated) {#getitemsbycolumnvalue}
-
-Fetches items that have a certain column value. This version of the action is deprecated. Please use Get Items By Column Value instead.
-
-| Input        | Comments                                                                                                                                                                                           | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Monday.com connection to use.                                                                                                                                                                  |         |
-| Board ID     | The unique identifier for the Monday.com board that the action targets.                                                                                                                            |         |
-| Column ID    | The ID of the column to filter by. For possible values see the [Monday.com column types reference](https://developer.monday.com/api-reference/reference/column-types-reference#supported-columns). |         |
-| Column Value | The value to match against the specified column when searching for items.                                                                                                                          |         |
-
 ### List Boards {#listboards}
 
 Lists all available boards in the Monday account.

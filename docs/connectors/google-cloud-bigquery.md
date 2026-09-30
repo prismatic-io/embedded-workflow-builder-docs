@@ -473,22 +473,6 @@ Lists all routines in the specified dataset.
 | Filter      | An expression for filtering the results of the request by label. The syntax is 'labels.<name>[:<value>]'. Multiple filters can be ANDed together by connecting with a space. Example: 'labels.department:receiving labels.active'. See [Filtering datasets](https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels) using labels for details. |         |
 | Read Mask   | If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned. This is a comma-separated list of fully qualified names of fields. Example: 'user.displayName,photo'.                                                                                                                                                |         |
 
-### List Table Data (Deprecated) {#listtabledata}
-
-Lists the content of a table in rows. Note: This action now uses jobs.query API as the tabledata.list API has been deprecated by Google.
-
-| Input           | Comments                                                                                                                              | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The Google Cloud BigQuery connection to use.                                                                                          |         |
-| Dataset ID      | The unique identifier for the dataset.                                                                                                |         |
-| Project ID      | The unique identifier for the Google Cloud project.                                                                                   |         |
-| Table ID        | The unique identifier for the table.                                                                                                  |         |
-| Selected Fields | Subset of fields to return, supports select into sub fields. Example: selectedFields = 'a,e.d.f';                                     |         |
-| Pagination      | Page navigation controls for the results.                                                                                             |         |
-| Page Token      | Page token returned by a previous call to request the next page of results.                                                           |         |
-| Max Results     | The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection. |         |
-| Start Index     | Zero-based index of the starting row.                                                                                                 |         |
-
 ### List Tables {#listtables}
 
 Lists all tables in the specified dataset.

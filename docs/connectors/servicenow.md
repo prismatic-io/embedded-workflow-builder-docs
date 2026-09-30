@@ -1,7 +1,7 @@
 ---
 title: ServiceNow Connector
 sidebar_label: ServiceNow
-description: Create records and incidents within ServiceNow
+description: Create records and incidents within ServiceNow.
 ---
 
 ![ServiceNow](./assets/servicenow.png#connector-icon)
@@ -127,16 +127,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected ServiceNow table on a configured schedule.
+Retrieves existing and ongoing records for a specified ServiceNow table. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                            | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                     |         |
-| Instance URL         | The URL of the specific ServiceNow instance to use for API requests                                 |         |
-| API Version          | The version of the ServiceNow API file_name, to use                                                 |         |
-| Table                | The name of the ServiceNow table in which to create a record                                        |         |
-| Show New Records     | When enabled, newly created records will be included in the trigger output.                         | true    |
-| Show Updated Records | When enabled, records that were updated after the last poll will be included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The ServiceNow connection to use.                                                                                                                                                                                                                                                   |         |
+| Instance URL         | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                 |         |
+| API Version          | The version of the ServiceNow API to use                                                                                                                                                                                                                                            |         |
+| Table                | The name of the ServiceNow table in which to create a record                                                                                                                                                                                                                        |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the trigger's visibility filters. |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.                                                                                                                                                                                                         | true    |
+| Show Updated Records | When enabled, records that were updated after the last poll will be included in the trigger output.                                                                                                                                                                                 | true    |
 
 ## Actions
 
@@ -146,9 +147,9 @@ Creates a single configuration item (CI) with the specified outbound and inbound
 
 | Input                                 | Comments                                                                                                                                                              | Default |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                            |                                                                                                                                                                       |         |
+| Connection                            | The ServiceNow connection to use.                                                                                                                                     |         |
 | Instance URL                          | The URL of the specific ServiceNow instance to use for API requests                                                                                                   |         |
-| API Version                           | The version of the ServiceNow API file_name, to use                                                                                                                   |         |
+| API Version                           | The version of the ServiceNow API to use                                                                                                                              |         |
 | Class Name                            | CMDB class name. This is the name of the table that contains the desired CI records                                                                                   |         |
 | Configuration Item Attributes         | The attributes of the configuration item to create.                                                                                                                   |         |
 | Configuration Item Inbound Relations  | The inbound relations of the configuration item to create.                                                                                                            |         |
@@ -161,47 +162,48 @@ Creates an Incident with the specified field names and values
 
 | Input        | Comments                                                               | Default |
 | ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
+| Connection   | The ServiceNow connection to use.                                      |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
+| API Version  | The version of the ServiceNow API to use                               |         |
 | Values       | The names of the fields and their values to use when creating a record |         |
 
 ### Create Table Record {#createtablerecord}
 
-Creates a record in the specified table with the specified field names and values
+Creates a record in the specified table with the specified field names and values.
 
 | Input        | Comments                                                               | Default |
 | ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
+| Connection   | The ServiceNow connection to use.                                      |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
+| API Version  | The version of the ServiceNow API to use                               |         |
 | Table        | The name of the ServiceNow table in which to create a record           |         |
 | Values       | The names of the fields and their values to use when creating a record |         |
 
 ### Create User {#createuser}
 
-Creates a User with the specified field names and values
+Creates a user with the specified field names and values.
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
-| First Name   | The User's First Name                                                  |         |
-| Last Name    | The User's Last Name                                                   |         |
-| Email        | The Email of the User                                                  |         |
-| User Id      | The Username of the User                                               |         |
+| Input                      | Comments                                                               | Default |
+| -------------------------- | ---------------------------------------------------------------------- | ------- |
+| Connection                 | The ServiceNow connection to use.                                      |         |
+| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |         |
+| API Version                | The version of the ServiceNow API to use                               |         |
+| Values                     | The names of the fields and their values to use when creating a record |         |
+| Name & Contact Information | First name, last name, and email address.                              |         |
+| First Name                 | The given name of the user.                                            |         |
+| Last Name                  | The family name of the user.                                           |         |
+| Email                      | The email address used to contact the user.                            |         |
+| Username                   | The login username used to authenticate the user.                      |         |
 
 ### Delete Attachment {#deleteattachment}
 
-This method deletes the attachment with a specific sys_id value.
+Deletes the attachment with a specific sys_id value.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | Sys_id value of the attachment to delete.                           |         |
 
 ### Delete Configuration Item {#deleteconfigurationitem}
@@ -210,45 +212,45 @@ Deletes the relation for the specified configuration item (CI).
 
 | Input               | Comments                                                                            | Default |
 | ------------------- | ----------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                     |         |
+| Connection          | The ServiceNow connection to use.                                                   |         |
 | Instance URL        | The URL of the specific ServiceNow instance to use for API requests                 |         |
-| API Version         | The version of the ServiceNow API file_name, to use                                 |         |
+| API Version         | The version of the ServiceNow API to use                                            |         |
 | Class Name          | CMDB class name. This is the name of the table that contains the desired CI records |         |
 | Sys ID              | The Sys ID of the record being queried                                              |         |
 | Relationship Sys ID | Sys Id of the relation to perform the operation on.                                 |         |
 
 ### Delete Incident {#deleteincident}
 
-Delete an Incident
+Delete an incident.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Delete Table Record {#deletetablerecord}
 
-Delete a record for a given ID in the specified Table
+Delete a record for a given ID in the specified table.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Table        | The name of the ServiceNow table in which to create a record        |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Delete User {#deleteuser}
 
-Deletes a User
+Deletes a user.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Get Attachment {#getattachment}
@@ -257,9 +259,9 @@ Returns the metadata for the attachment file with a specific sys_id value.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Get Attachment File {#getattachmentfile}
@@ -268,43 +270,43 @@ Returns the binary file attachment with a specific sys_id value.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Get CMDB Class Metadata {#getcmdbclassmetadata}
 
-Returns the meta data for the specified CMDB class
+Returns the metadata for the specified CMDB class.
 
 | Input        | Comments                                                                            | Default |
 | ------------ | ----------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests                 |         |
-| API Version  | The version of the ServiceNow API file_name, to use                                 |         |
+| API Version  | The version of the ServiceNow API to use                                            |         |
 | Class Name   | CMDB class name. This is the name of the table that contains the desired CI records |         |
 
 ### Get Configuration Item Attributes {#getconfigurationitemattributes}
 
-Returns attributes and relationship information for a specified configuration item (CI) record
+Returns attributes and relationship information for a specified configuration item (CI) record.
 
 | Input        | Comments                                                                            | Default |
 | ------------ | ----------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests                 |         |
-| API Version  | The version of the ServiceNow API file_name, to use                                 |         |
+| API Version  | The version of the ServiceNow API to use                                            |         |
 | Class Name   | CMDB class name. This is the name of the table that contains the desired CI records |         |
 | Sys ID       | The Sys ID of the record being queried                                              |         |
 
 ### Get Incident {#getincident}
 
-Gets an Incident by ID
+Gets an incident by ID.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Get Knowledge Article {#getknowledgearticle}
@@ -313,9 +315,9 @@ Returns specific knowledge article content and its field values.
 
 | Input        | Comments                                                                                                                                                                                             | Default |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                      |         |
+| Connection   | The ServiceNow connection to use.                                                                                                                                                                    |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                  |         |
-| API Version  | The version of the ServiceNow API file_name, to use                                                                                                                                                  |         |
+| API Version  | The version of the ServiceNow API to use                                                                                                                                                             |         |
 | Article ID   | Sys_id or knowledge base (KB) number of a knowledge article in the Knowledge [kb_knowledge] table.                                                                                                   |         |
 | Fields       | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                   |         |
 | Language     | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.           |         |
@@ -329,45 +331,45 @@ Returns a knowledge article attachment as a file.
 
 | Input             | Comments                                                                                                                         | Default |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        |                                                                                                                                  |         |
+| Connection        | The ServiceNow connection to use.                                                                                                |         |
 | Instance URL      | The URL of the specific ServiceNow instance to use for API requests                                                              |         |
-| API Version       | The version of the ServiceNow API file_name, to use                                                                              |         |
+| API Version       | The version of the ServiceNow API to use                                                                                         |         |
 | Article Sys ID    | Sys_id of the knowledge article with the attachment you intend to retrieve. Located in the Knowledge Bases [kb_knowledge] table. |         |
 | Attachment Sys ID | Sys_id of record to which the attachment belongs.                                                                                |         |
 
 ### Get Table Record {#gettablerecord}
 
-Get a record for a given ID in the specified Table
+Get a record for a given ID in the specified table.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Table        | The name of the ServiceNow table in which to create a record        |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
-### Get User by Id {#getuser}
+### Get User by ID {#getuser}
 
-Gets a User by their Id
+Gets a user by ID.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
 | Sys ID       | The Sys ID of the record being queried                              |         |
 
 ### Get User by Username {#getuserbyusername}
 
-Get a record for a given ID in the specified Table
+Retrieve a user by username.
 
 | Input        | Comments                                                            | Default |
 | ------------ | ------------------------------------------------------------------- | ------- |
-| Connection   |                                                                     |         |
+| Connection   | The ServiceNow connection to use.                                   |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests |         |
-| API Version  | The version of the ServiceNow API file_name, to use                 |         |
-| User Id      | The Username of the User                                            |         |
+| API Version  | The version of the ServiceNow API to use                            |         |
+| Username     | The login username used to authenticate the user.                   |         |
 
 ### List Attachments {#listattachments}
 
@@ -375,56 +377,61 @@ Returns the metadata for multiple attachments.
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
-| API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| API Version    | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                                                                                                                        |         |
 | Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                   |         |
 | Sysparm Limit  | Limit to be applied on pagination. Default is 1000. Unusually large values can impact system performance.                                                                                                                                                                                                                                                                                                       |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
 
 ### List Configuration Items {#listconfigurationitems}
 
-Returns the available configuration items (CI) for a specified Configuration Management Database (CMDB) class (table)
+Returns the available configuration items (CI) for a specified Configuration Management Database (CMDB) class (table).
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
-| API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
+| API Version    | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
 | Class Name     | CMDB class name. This is the name of the table that contains the desired CI records                                                                                                                                                                                                                                                                                                                                                                                                                                      |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                                                                                                                                      | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |         |
 | Sysparm Limit  | Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval. Allows numbers from 0 to 100.                                                                                                                                                                                                                                                                                                                                       |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records.Don't pass a negative number in the sysparm_offset parameter. |         |
-| Sysparm Query  | All parameters are case-sensitive. Queries can contain more than one entry, such as sysparm_query=<col_name><operator><value>[<operator><col_name><operator><value>]. Refer to https://www.servicenow.com/docs/bundle/yokohama-api-reference/page/integrate/inbound-rest/concept/cmdb-instance-api.html#title_cmdb-GET-instance-classname for more information.                                                                                                                                                          |         |
+| Sysparm Query  | All parameters are case-sensitive. Queries can contain more than one entry, such as sysparm_query=<col_name><operator><value>[<operator><col_name><operator><value>]. Refer to https://www.servicenow.com/docs/r/yokohama/api-reference/rest-apis/cmdb-instance-api.html#cmdb-GET-instance-classname for more information.                                                                                                                                                                                               |         |
 
 ### List Featured Knowledge Articles {#listfeaturedknowledgearticles}
 
 Returns a list of the most-viewed knowledge articles and featured knowledge articles.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                |         |
-| Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
-| API Version             | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                            |         |
-| Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
-| Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
-| Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
-| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
-| Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
-| Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
+| Input                  | Comments                                                                                                                                                                                                                                                                                                       | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The ServiceNow connection to use.                                                                                                                                                                                                                                                                              |         |
+| Instance URL           | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
+| API Version            | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                       |         |
+| Filters                | Optional query controls to sort and refine the results.                                                                                                                                                                                                                                                        |         |
+| Fields                 | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
+| Knowledge Base Sys IDs | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
+| Language               | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Fetch All              | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
+| Pagination             | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                  |         |
+| Limit                  | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
+| Offset                 | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
 
 ### List Incidents {#listincidents}
 
-Gets a list of all Incidents
+Gets a list of all incidents.
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
-| API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| API Version    | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                                                                                                                        |         |
 | Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                   |         |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
 
@@ -432,76 +439,83 @@ Gets a list of all Incidents
 
 Returns a list of knowledge base (KB) articles which can be searched and filtered using various parameters.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                |         |
-| Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
-| API Version             | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                            |         |
-| Filter                  | Encoded query to use to filter the result set.                                                                                                                                                                                                                                                                 |         |
-| Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
-| Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
-| Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
-| Query                   | Text to search for, can be empty.                                                                                                                                                                                                                                                                              |         |
-| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
-| Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
-| Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
+| Input                  | Comments                                                                                                                                                                                                                                                                                                       | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The ServiceNow connection to use.                                                                                                                                                                                                                                                                              |         |
+| Instance URL           | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
+| API Version            | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                       |         |
+| Filters                | Optional query controls to sort and refine the results.                                                                                                                                                                                                                                                        |         |
+| Filter                 | Encoded query to use to filter the result set.                                                                                                                                                                                                                                                                 |         |
+| Fields                 | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
+| Knowledge Base Sys IDs | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
+| Language               | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Query                  | Text to search for, can be empty.                                                                                                                                                                                                                                                                              |         |
+| Fetch All              | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
+| Pagination             | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                  |         |
+| Limit                  | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
+| Offset                 | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
 
 ### List Most Viewed Knowledge Articles {#listmostviewedknowledgearticles}
 
 Returns a list of knowledge articles prioritized by most-viewed.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                |         |
-| Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
-| API Version             | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                            |         |
-| Fields                  | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
-| Knowledge Base Sys ID's | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
-| Language                | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
-| Fetch All               | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
-| Limit                   | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
-| Offset                  | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
+| Input                  | Comments                                                                                                                                                                                                                                                                                                       | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The ServiceNow connection to use.                                                                                                                                                                                                                                                                              |         |
+| Instance URL           | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                            |         |
+| API Version            | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                       |         |
+| Filters                | Optional query controls to sort and refine the results.                                                                                                                                                                                                                                                        |         |
+| Fields                 | Comma-separated list of fields from the Knowledge [kb_knowledge] table to show details in results.                                                                                                                                                                                                             |         |
+| Knowledge Base Sys IDs | Comma-separated list of knowledge base sys_ids from the Knowledge Bases [kb_knowledge_base] table to restrict results to.                                                                                                                                                                                      |         |
+| Language               | List of comma-separated languages in two-letter ISO 639-1 language code format to restrict results to. Alternatively type 'all' to search in all valid installed languages on an instance.                                                                                                                     |         |
+| Fetch All              | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                            | false   |
+| Pagination             | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                  |         |
+| Limit                  | Maximum number of records to return. Unusually large limit values can impact system performance. For requests that exceed this number of records, use the Offset input to paginate record retrieval.                                                                                                           |         |
+| Offset                 | Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time this endpoint is called, offset is set to '0'. |         |
 
 ### List Table Records {#listtablerecords}
 
-Lists records in the specified table
+Lists records in the specified table.
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
-| API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| API Version    | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                                                                                                                        |         |
 | Table          | The name of the ServiceNow table in which to create a record                                                                                                                                                                                                                                                                                                                                                    |         |
 | Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                   |         |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
 
 ### List Tables {#listtables}
 
-Retrieve a list of all tables
+Retrieve a list of all tables.
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
 | Sysparm Fields | Comma-separated list of fields to return. If not specified, all fields are returned.                                                                                                                                                                                                                                                                                                                            |         |
 | Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                   |         |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
 
 ### List Users {#listusers}
 
-Gets a list of all Users
+Gets a list of all users.
 
 | Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Connection     | The ServiceNow connection to use.                                                                                                                                                                                                                                                                                                                                                                               |         |
 | Instance URL   | The URL of the specific ServiceNow instance to use for API requests                                                                                                                                                                                                                                                                                                                                             |         |
-| API Version    | The version of the ServiceNow API file_name, to use                                                                                                                                                                                                                                                                                                                                                             |         |
+| API Version    | The version of the ServiceNow API to use                                                                                                                                                                                                                                                                                                                                                                        |         |
 | Sysparm Query  | Encoded query used to filter the result set. Syntax: sysparm_query=<col_name><operator><value>.                                                                                                                                                                                                                                                                                                                 |         |
 | Fetch All      | When enabled, automatically fetches all pages of results. The offset/limit inputs are ignored when this is enabled.                                                                                                                                                                                                                                                                                             | false   |
+| Pagination     | Page size and offset for paginated retrieval.                                                                                                                                                                                                                                                                                                                                                                   |         |
 | Sysparm Limit  | Max number of records to return. Large values can impact performance. For pagination with large data sets include the Sysparm Offset                                                                                                                                                                                                                                                                            |         |
 | Sysparm Offset | Starting record index for which to begin retrieving records. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks. For example, the first time you call this endpoint, sysparm_offset is set to '0'. To simply page through all available records, use sysparm_offset=sysparm_offset+sysparm_limit, until you reach the end of all records. |         |
 
@@ -511,9 +525,9 @@ Uploads a multipart file attachment.
 
 | Input        | Comments                                                                          | Default |
 | ------------ | --------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                   |         |
+| Connection   | The ServiceNow connection to use.                                                 |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests               |         |
-| API Version  | The version of the ServiceNow API file_name, to use                               |         |
+| API Version  | The version of the ServiceNow API to use                                          |         |
 | File         | The file to attach to the record.                                                 |         |
 | File Name    | Name to give the attachment.                                                      |         |
 | Table        | Name of the table to which you want to attach the file.                           |         |
@@ -521,13 +535,13 @@ Uploads a multipart file attachment.
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to ServiceNow
+Send raw HTTP request to ServiceNow.
 
 | Input                   | Comments                                                                                                                                                                                         | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
+| Connection              | The ServiceNow connection to use.                                                                                                                                                                |         |
 | Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                              |         |
-| API Version             | The version of the ServiceNow API file_name, to use                                                                                                                                              |         |
+| API Version             | The version of the ServiceNow API to use                                                                                                                                                         |         |
 | Table                   | The name of the ServiceNow table in which to create a record                                                                                                                                     |         |
 | Sys ID                  | The Sys ID of the record being queried                                                                                                                                                           |         |
 | Method                  | The HTTP method to use.                                                                                                                                                                          |         |
@@ -550,10 +564,10 @@ Updates a single configuration item (CI) with the specified outbound and inbound
 
 | Input                         | Comments                                                                                                                                                              | Default |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                    |                                                                                                                                                                       |         |
+| Connection                    | The ServiceNow connection to use.                                                                                                                                     |         |
 | Instance URL                  | The URL of the specific ServiceNow instance to use for API requests                                                                                                   |         |
 | Sys ID                        | The Sys ID of the record being queried                                                                                                                                |         |
-| API Version                   | The version of the ServiceNow API file_name, to use                                                                                                                   |         |
+| API Version                   | The version of the ServiceNow API to use                                                                                                                              |         |
 | Class Name                    | CMDB class name. This is the name of the table that contains the desired CI records                                                                                   |         |
 | Configuration Item Source     | Entity that created/updated the information. This must be one of the choice values specified in the discovery_source field in the Configuration Item [cmdb_ci] table. |         |
 | Configuration Item Attributes | The attributes of the configuration item to create.                                                                                                                   |         |
@@ -564,40 +578,41 @@ Updates an Incident with the specified field names and values
 
 | Input        | Comments                                                               | Default |
 | ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
+| Connection   | The ServiceNow connection to use.                                      |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
+| API Version  | The version of the ServiceNow API to use                               |         |
 | Sys ID       | The Sys ID of the record being queried                                 |         |
 | Values       | The names of the fields and their values to use when creating a record |         |
 
 ### Update Table Record {#updatetablerecord}
 
-Updates a record in the specified table with the specified field names and values
+Updates a record in the specified table with the specified field names and values.
 
 | Input        | Comments                                                               | Default |
 | ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
+| Connection   | The ServiceNow connection to use.                                      |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
+| API Version  | The version of the ServiceNow API to use                               |         |
 | Table        | The name of the ServiceNow table in which to create a record           |         |
 | Sys ID       | The Sys ID of the record being queried                                 |         |
 | Values       | The names of the fields and their values to use when creating a record |         |
 
 ### Update User {#updateuser}
 
-Updates a User with the specified field names and values
+Updates a user with the specified field names and values.
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   |                                                                        |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API file_name, to use                    |         |
-| Sys ID       | The Sys ID of the record being queried                                 |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
-| User Id      | The Username of the User                                               |         |
-| Email        | The Email of the User                                                  |         |
-| First Name   | The User's First Name                                                  |         |
-| Last Name    | The User's Last Name                                                   |         |
+| Input                      | Comments                                                               | Default |
+| -------------------------- | ---------------------------------------------------------------------- | ------- |
+| Connection                 | The ServiceNow connection to use.                                      |         |
+| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |         |
+| API Version                | The version of the ServiceNow API to use                               |         |
+| Sys ID                     | The Sys ID of the record being queried                                 |         |
+| Values                     | The names of the fields and their values to use when creating a record |         |
+| Username                   | The login username used to authenticate the user.                      |         |
+| Name & Contact Information | First name, last name, and email address.                              |         |
+| First Name                 | The given name of the user.                                            |         |
+| Last Name                  | The family name of the user.                                           |         |
+| Email                      | The email address used to contact the user.                            |         |
 
 ### Upload Attachment {#uploadattachment}
 
@@ -605,9 +620,9 @@ Uploads a specified binary file as an attachment to a specified record.
 
 | Input        | Comments                                                                                       | Default |
 | ------------ | ---------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                |         |
+| Connection   | The ServiceNow connection to use.                                                              |         |
 | Instance URL | The URL of the specific ServiceNow instance to use for API requests                            |         |
-| API Version  | The version of the ServiceNow API file_name, to use                                            |         |
+| API Version  | The version of the ServiceNow API to use                                                       |         |
 | File         | The file to attach to the record.                                                              |         |
 | File Name    | Name to give the attachment.                                                                   |         |
 | Table        | Name of the table to attach the file to.                                                       |         |

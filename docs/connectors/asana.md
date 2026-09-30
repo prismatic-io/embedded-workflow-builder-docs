@@ -1,13 +1,17 @@
 ---
 title: Asana Connector
 sidebar_label: Asana
-description: Manage users, projects, and teams in your Asana workspace.
+description: Manage users, projects, and teams in an Asana workspace.
 ---
 
 ![Asana](./assets/asana.png#connector-icon)
 [Asana](https://app.asana.com/) is a web and mobile application designed to help teams organize, track, and manage their work.
 
 Use the Asana component to manage users, projects, and teams in an Asana workspace.
+
+## API Documentation
+
+[Asana REST API](https://developers.asana.com/reference/rest-api-reference)
 
 ## Connections
 
@@ -33,7 +37,7 @@ To connect to Asana using OAuth 2.0, create an OAuth application within Asana's 
 
 #### Configure the Connection
 
-- Enter the **Client ID** and **Client secret** from the OAuth application
+- Enter the **Client ID** and **Client Secret** from the OAuth application
 - For **Scopes**, specify the required permissions using the format `<resource>:<action>`:
   - Leave blank to request full access (all available scopes)
   - Refer to [Asana's OAuth scopes documentation](https://developers.asana.com/docs/oauth-scopes) for a complete list of available scopes
@@ -121,14 +125,15 @@ Receive comment and activity notifications from Asana. Automatically creates and
 
 ### New and Updated Tasks {#pollchangestrigger}
 
-Checks for new and updated tasks in a selected Asana project on a configured schedule.
+Retrieves existing and ongoing tasks for a specified Asana project. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                           | Default |
-| -------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection           | The Asana connection to use.                                                       |         |
-| Project ID           | The unique identifier for the project.                                             |         |
-| Show New Records     | When true, tasks created since the last poll are returned in the trigger payload.  | true    |
-| Show Updated Records | When true, tasks modified since the last poll are returned in the trigger payload. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Asana connection to use.                                                                                                                                                                                                                                                        |         |
+| Project ID           | The unique identifier for the project.                                                                                                                                                                                                                                              |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the trigger's visibility filters. |         |
+| Show New Records     | When true, tasks created since the last poll are returned in the trigger payload.                                                                                                                                                                                                   | true    |
+| Show Updated Records | When true, tasks modified since the last poll are returned in the trigger payload.                                                                                                                                                                                                  | true    |
 
 ### Project Tasks {#projecttaskstrigger}
 
@@ -249,11 +254,11 @@ Add existing users to the given project.
 
 Add an existing user to the given team.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection | The Asana connection to use.        |         |
-| Team ID    | The unique identifier for the team. |         |
-| User ID    | The unique identifier for the user. |         |
+| Input      | Comments                                                              | Default |
+| ---------- | --------------------------------------------------------------------- | ------- |
+| Connection | The Asana connection to use.                                          |         |
+| Team ID    | The unique identifier for the team.                                   |         |
+| User ID    | The unique identifier for the user, or me for the authenticated user. |         |
 
 ### Add User to Workspace {#adduser}
 
@@ -262,7 +267,7 @@ Add a new user to the given workspace.
 | Input        | Comments                                                                                    | Default |
 | ------------ | ------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Asana connection to use.                                                                |         |
-| User ID      | The unique identifier for the user.                                                         |         |
+| User ID      | The unique identifier for the user, or me for the authenticated user.                       |         |
 | Workspace ID | The unique identifier for the workspace. Required when the account has multiple workspaces. |         |
 
 ### Attach File to Task {#attachfiletotask}
@@ -297,19 +302,19 @@ Create a new project inside an existing team or organization.
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection          | The Asana connection to use.                                                                                                                                          |                                                                                                                                                                                              |
 | Default View        | The default view to display when opening the project in Asana.                                                                                                        | list                                                                                                                                                                                         |
-| Due On              | The date the project or task is due. Format: YYYY-MM-DD. Should not be used together with Due At.                                                                     |                                                                                                                                                                                              |
-| Followers           | A comma-separated list of user gids to add as followers of the resource.                                                                                              |                                                                                                                                                                                              |
-| HTML Notes          | The rich-text notes for the resource as HTML. See [Rich text in the Asana API](https://developers.asana.com/docs/rich-text) for supported markup.                     |                                                                                                                                                                                              |
+| Owner ID            | The unique identifier of the user who will own the project. The owner has full administrative rights over the project.                                                |                                                                                                                                                                                              |
+| Team ID             | The team that this project is shared with. Only exists for projects in organizations — including this field for non-organization projects causes the request to fail. |                                                                                                                                                                                              |
 | Name                | The display name of the resource. A short sentence fragment that fits on a single line in the UI for maximum readability.                                             |                                                                                                                                                                                              |
 | Notes               | Free-form plain-text description associated with the resource. For rich formatting use HTML Notes instead.                                                            |                                                                                                                                                                                              |
-| Optional Properties | A comma-separated list of fields to include in the API response. The default value contains the standard fields for this action. Add or remove fields as needed.      | team,workspace,html_notes,notes,color,custom_field_settings,custom_fields,followers,members,archived,modified_at,created_at,start_on,due_on,current_status,owner,name,completed,completed_at |
-| Owner ID            | The unique identifier of the user who will own the project. The owner has full administrative rights over the project.                                                |                                                                                                                                                                                              |
+| HTML Notes          | The rich-text notes for the resource as HTML. See [Rich text in the Asana API](https://developers.asana.com/docs/rich-text) for supported markup.                     |                                                                                                                                                                                              |
+| Due On              | The date the project or task is due. Format: YYYY-MM-DD. Should not be used together with Due At.                                                                     |                                                                                                                                                                                              |
+| Start On            | The date work for this project begins, or null if no start date is set. Format: YYYY-MM-DD.                                                                           |                                                                                                                                                                                              |
+| Followers           | A comma-separated list of user gids to add as followers of the resource.                                                                                              |                                                                                                                                                                                              |
 | Project Settings    | Archived, Privacy Setting, and Project Color.                                                                                                                         |                                                                                                                                                                                              |
 | Archived            | When true, the project is archived and hidden from the UI by default. Archived projects may be treated differently for queries.                                       | false                                                                                                                                                                                        |
 | Privacy Setting     | The privacy setting of the project. Administrators in the organization may restrict these values.                                                                     |                                                                                                                                                                                              |
 | Project Color       | The display color associated with the project in the Asana UI.                                                                                                        | light-green                                                                                                                                                                                  |
-| Start On            | The date work for this project begins, or null if no start date is set. Format: YYYY-MM-DD.                                                                           |                                                                                                                                                                                              |
-| Team ID             | The team that this project is shared with. Only exists for projects in organizations — including this field for non-organization projects causes the request to fail. |                                                                                                                                                                                              |
+| Optional Properties | A comma-separated list of fields to include in the API response. The default value contains the standard fields for this action. Add or remove fields as needed.      | team,workspace,html_notes,notes,color,custom_field_settings,custom_fields,followers,members,archived,modified_at,created_at,start_on,due_on,current_status,owner,name,completed,completed_at |
 | Workspace ID        | Include this value if you would like this project to be included in a workspace.                                                                                      |                                                                                                                                                                                              |
 
 ### Create Section {#createsection}
@@ -329,16 +334,16 @@ Create a new section within a project.
 
 Create a status update on a project, portfolio, or goal.
 
-| Input                                           | Comments                                                                                       | Default  |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------- | -------- |
-| Connection                                      | The Asana connection to use.                                                                   |          |
-| Project, Portfolio, or Goal ID                  | The unique identifier for the parent project, portfolio, or goal the status update belongs to. |          |
-| Status Title                                    | The title of the project status update.                                                        |          |
-| Status Text                                     | The text content of the status update.                                                         |          |
-| This represents the current state of the object |                                                                                                | on_track |
-| Pagination                                      | Limit and offset for paginated results.                                                        |          |
-| Limit                                           | The maximum number of items to return per page (between 1 and 100).                            |          |
-| Offset                                          | The pagination offset token returned from a previous query that had a next_page property.      |          |
+| Input                          | Comments                                                                                       | Default  |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- | -------- |
+| Connection                     | The Asana connection to use.                                                                   |          |
+| Project, Portfolio, or Goal ID | The unique identifier for the parent project, portfolio, or goal the status update belongs to. |          |
+| Status Title                   | The title of the project status update.                                                        |          |
+| Status Text                    | The text content of the status update.                                                         |          |
+| Status Type                    | The current state of the project, portfolio, or goal (e.g. on track, at risk).                 | on_track |
+| Pagination                     | Limit and offset for paginated results.                                                        |          |
+| Limit                          | The maximum number of items to return per page (between 1 and 100).                            |          |
+| Offset                         | The pagination offset token returned from a previous query that had a next_page property.      |          |
 
 ### Create Tag {#createtag}
 
@@ -392,8 +397,8 @@ Create a new team within an organization.
 | ---------------------------- | ----------------------------------------------------------------------------- | ------- |
 | Connection                   | The Asana connection to use.                                                  |         |
 | Organization or Workspace ID | The unique identifier for the organization or workspace.                      |         |
-| Description                  | Free-form description of the team's purpose, shown on the team page in Asana. |         |
-| Name                         | The display name for the team.                                                |         |
+| Team Description             | Free-form description of the team's purpose, shown on the team page in Asana. |         |
+| Team Name                    | The display name for the team.                                                |         |
 
 ### Create Webhook {#createwebhook}
 
@@ -401,10 +406,10 @@ Create a webhook to send data from Asana to an instance URL.
 
 | Input       | Comments                                                                                                                                                                        | Default                                                                                                                                                                                                               |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Webhook URL | Reference a flow's URL from the trigger payload.                                                                                                                                |                                                                                                                                                                                                                       |
+| Connection  | The Asana connection to use.                                                                                                                                                    |                                                                                                                                                                                                                       |
+| Webhook URL | The URL that Asana will send webhook events to. Typically a flow's webhook URL from the trigger payload.                                                                        |                                                                                                                                                                                                                       |
 | Resource ID | The GID of a project, portfolio, goal, task, etc - the resource to listen for.                                                                                                  |                                                                                                                                                                                                                       |
 | Filter      | The filter parameters for the webhook expressed as a JSON array. See the [Asana webhooks guide](https://developers.asana.com/docs/webhooks-guide) for available filter options. | <code>[<br /> {<br /> "action": "changed",<br /> "fields": [<br /> "due_at",<br /> "due_on",<br /> "dependencies"<br /> ],<br /> "resource_subtype": "milestone",<br /> "resource_type": "task"<br /> }<br />]</code> |
-| Connection  | The Asana connection to use.                                                                                                                                                    |                                                                                                                                                                                                                       |
 
 ### Delete Attachment {#deleteattachment}
 
@@ -485,10 +490,10 @@ Delete an existing task.
 
 Delete an existing webhook by ID.
 
-| Input      | Comments                     | Default |
-| ---------- | ---------------------------- | ------- |
-| Connection | The Asana connection to use. |         |
-| Webhook ID | The gid of the workspace     |         |
+| Input      | Comments                               | Default |
+| ---------- | -------------------------------------- | ------- |
+| Connection | The Asana connection to use.           |         |
+| Webhook ID | The unique identifier for the webhook. |         |
 
 ### Find Tag by Name {#findtagbyname}
 
@@ -527,10 +532,10 @@ Find a user by name or email address within a workspace.
 
 Find a workspace by name.
 
-| Input          | Comments                     | Default |
-| -------------- | ---------------------------- | ------- |
-| Connection     | The Asana connection to use. |         |
-| Workspace Name |                              |         |
+| Input          | Comments                                         | Default |
+| -------------- | ------------------------------------------------ | ------- |
+| Connection     | The Asana connection to use.                     |         |
+| Workspace Name | The display name of the workspace to search for. |         |
 
 ### Get Attachment {#getattachment}
 
@@ -643,10 +648,10 @@ Get the information and metadata of a team.
 
 Get the information and metadata of a user.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection | The Asana connection to use.        |         |
-| User ID    | The unique identifier for the user. |         |
+| Input      | Comments                                                              | Default |
+| ---------- | --------------------------------------------------------------------- | ------- |
+| Connection | The Asana connection to use.                                          |         |
+| User ID    | The unique identifier for the user, or me for the authenticated user. |         |
 
 ### Get Workspace {#getworkspace}
 
@@ -664,11 +669,11 @@ List all custom fields in a workspace.
 | Input               | Comments                                                                                                                                                         | Default                                                             |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | Connection          | The Asana connection to use.                                                                                                                                     |                                                                     |
+| Workspace ID        | The unique identifier for the workspace. Required when the account has multiple workspaces.                                                                      |                                                                     |
 | Optional Properties | A comma-separated list of fields to include in the API response. The default value contains the standard fields for this action. Add or remove fields as needed. | precision,enum_options,description,name,resource_subtype,text_value |
 | Pagination          | Limit and offset for paginated results.                                                                                                                          |                                                                     |
 | Limit               | The maximum number of items to return per page (between 1 and 100).                                                                                              |                                                                     |
 | Offset              | The pagination offset token returned from a previous query that had a next_page property.                                                                        |                                                                     |
-| Workspace ID        | The unique identifier for the workspace. Required when the account has multiple workspaces.                                                                      |                                                                     |
 
 ### List Portfolio Items {#listportfolioitems}
 
@@ -677,10 +682,10 @@ List all items in a given portfolio.
 | Input        | Comments                                                                                  | Default |
 | ------------ | ----------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Asana connection to use.                                                              |         |
+| Portfolio ID | The unique identifier for the portfolio.                                                  |         |
 | Pagination   | Limit and offset for paginated results.                                                   |         |
 | Limit        | The maximum number of items to return per page (between 1 and 100).                       |         |
 | Offset       | The pagination offset token returned from a previous query that had a next_page property. |         |
-| Portfolio ID | The unique identifier for the portfolio.                                                  |         |
 
 ### List Portfolios {#listportfolios}
 
@@ -727,12 +732,12 @@ List all subtasks within a given task.
 | Input                    | Comments                                                                                                                                                         | Default                                                                                                                                                                                                                                                                                              |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection               | The Asana connection to use.                                                                                                                                     |                                                                                                                                                                                                                                                                                                      |
+| Task ID                  | The unique identifier for the task.                                                                                                                              |                                                                                                                                                                                                                                                                                                      |
 | List All Nested Subtasks | When true, recursively lists subtasks of subtasks rather than only direct subtasks of the parent task.                                                           | false                                                                                                                                                                                                                                                                                                |
 | Optional Properties      | A comma-separated list of fields to include in the API response. The default value contains the standard fields for this action. Add or remove fields as needed. | projects,resource_subtype,assignee,assignee_status,created_at,completed,completed_at,dependencies,custom_fields,dependents,due_on,due_at,followers,external,is_rendered_as_separator,liked,likes,memberships,modified_at,name,notes,html_notes,num_likes,num_subtasks,parent,start_on,workspace,tags |
 | Pagination               | Limit and offset for paginated results.                                                                                                                          |                                                                                                                                                                                                                                                                                                      |
 | Limit                    | The maximum number of items to return per page (between 1 and 100).                                                                                              |                                                                                                                                                                                                                                                                                                      |
 | Offset                   | The pagination offset token returned from a previous query that had a next_page property.                                                                        |                                                                                                                                                                                                                                                                                                      |
-| Task ID                  | The unique identifier for the task.                                                                                                                              |                                                                                                                                                                                                                                                                                                      |
 
 ### List Tags {#listtags}
 
@@ -767,10 +772,10 @@ List all attachments in a given task.
 | Input      | Comments                                                                                  | Default |
 | ---------- | ----------------------------------------------------------------------------------------- | ------- |
 | Connection | The Asana connection to use.                                                              |         |
+| Task ID    | The unique identifier for the task.                                                       |         |
 | Pagination | Limit and offset for paginated results.                                                   |         |
 | Limit      | The maximum number of items to return per page (between 1 and 100).                       |         |
 | Offset     | The pagination offset token returned from a previous query that had a next_page property. |         |
-| Task ID    | The unique identifier for the task.                                                       |         |
 
 ### List Tasks {#listtasks}
 
@@ -807,7 +812,19 @@ List all users accessible to the authenticated user.
 | Pagination          | Limit and offset for paginated results.                                                                                                                          |                       |
 | Limit               | The maximum number of items to return per page (between 1 and 100).                                                                                              |                       |
 | Offset              | The pagination offset token returned from a previous query that had a next_page property.                                                                        |                       |
-| Workspace ID        | Optionally filter by workspace ID                                                                                                                                |                       |
+| Workspace ID        | The unique identifier for the workspace. When provided, only users in this workspace are returned.                                                               |                       |
+
+### List Users in Team {#listusersinteam}
+
+List all users within a given team.
+
+| Input        | Comments                                                                                    | Default |
+| ------------ | ------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Asana connection to use.                                                                |         |
+| Limit        | The maximum number of items to return per page (between 1 and 100).                         |         |
+| Offset       | The pagination offset token returned from a previous query that had a next_page property.   |         |
+| Team ID      | The unique identifier for the team.                                                         |         |
+| Workspace ID | The unique identifier for the workspace. Required when the account has multiple workspaces. |         |
 
 ### List Workspaces {#listworkspaces}
 
@@ -824,14 +841,14 @@ List all workspaces accessible to the authenticated user.
 
 List all webhooks configured in Asana, including those for other integrations.
 
-| Input                       | Comments                                                                                    | Default |
-| --------------------------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Asana connection to use.                                                                |         |
-| Workspace ID                | The unique identifier for the workspace. Required when the account has multiple workspaces. |         |
-| Show only instance webhooks | Show only webhooks that point to this instance                                              | true    |
-| Pagination                  | Limit and offset for paginated results.                                                     |         |
-| Limit                       | The maximum number of items to return per page (between 1 and 100).                         |         |
-| Offset                      | The pagination offset token returned from a previous query that had a next_page property.   |         |
+| Input                       | Comments                                                                                        | Default |
+| --------------------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| Connection                  | The Asana connection to use.                                                                    |         |
+| Workspace ID                | The unique identifier for the workspace. Required when the account has multiple workspaces.     |         |
+| Show Only Instance Webhooks | When true, filters results to only webhooks whose target URL matches this integration instance. | true    |
+| Pagination                  | Limit and offset for paginated results.                                                         |         |
+| Limit                       | The maximum number of items to return per page (between 1 and 100).                             |         |
+| Offset                      | The pagination offset token returned from a previous query that had a next_page property.       |         |
 
 ### Raw Request {#rawrequest}
 

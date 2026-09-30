@@ -121,19 +121,21 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Pages {#pagespollingtrigger}
 
-Checks for new and updated pages on a configured schedule.
+Retrieves existing and ongoing pages from Confluence. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                          | Default |
-| ---------- | --------------------------------- | ------- |
-| Connection | The Confluence connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                     | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Confluence connection to use.                                                                                                                                                                                                            |         |
+| Look-back Date | Optional ISO 8601 date used as the initial cursor on first deploy, allowing pre-existing records created or updated after this date to be included on the first poll. When omitted the first poll seeds the cursor to now and emits nothing. |         |
 
 ### New Spaces {#newspacespollingtrigger}
 
-Checks for new spaces on a configured schedule.
+Retrieves existing and ongoing spaces from Confluence. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                          | Default |
-| ---------- | --------------------------------- | ------- |
-| Connection | The Confluence connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                     | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Confluence connection to use.                                                                                                                                                                                                            |         |
+| Look-back Date | Optional ISO 8601 date used as the initial cursor on first deploy, allowing pre-existing records created or updated after this date to be included on the first poll. When omitted the first poll seeds the cursor to now and emits nothing. |         |
 
 ## Actions
 
@@ -144,7 +146,7 @@ Creates a new content property for an attachment.
 | Input         | Comments                                       | Default                                                                               |
 | ------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Connection    | The Confluence connection to use.              |                                                                                       |
-| Attachment Id | The unique identifier of the attachment.       |                                                                                       |
+| Attachment ID | The unique identifier of the attachment.       |                                                                                       |
 | Body Data     | The content property data to create or update. | <code>{<br /> "key": "my-property-key",<br /> "value": "property-value"<br />}</code> |
 
 ### Create Content Property for Custom Content {#createcontentpropertyforcustomcontent}
@@ -154,7 +156,7 @@ Creates a new content property for a Custom Content.
 | Input             | Comments                                       | Default                                                                               |
 | ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Connection        | The Confluence connection to use.              |                                                                                       |
-| Custom Content Id | The unique identifier of the custom content.   |                                                                                       |
+| Custom Content ID | The unique identifier of the custom content.   |                                                                                       |
 | Body Data         | The content property data to create or update. | <code>{<br /> "key": "my-property-key",<br /> "value": "property-value"<br />}</code> |
 
 ### Create Content Property for Page {#createcontentpropertyforpage}
@@ -164,7 +166,7 @@ Creates a new content property for a page.
 | Input      | Comments                                       | Default                                                                               |
 | ---------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Connection | The Confluence connection to use.              |                                                                                       |
-| Page Id    | The unique identifier of the page.             |                                                                                       |
+| Page ID    | The unique identifier of the page.             |                                                                                       |
 | Body Data  | The content property data to create or update. | <code>{<br /> "key": "my-property-key",<br /> "value": "property-value"<br />}</code> |
 
 ### Create Page {#createpage}
@@ -174,14 +176,14 @@ Creates a page in the space.
 | Input            | Comments                                                                                                             | Default                                                                            |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | Connection       | The Confluence connection to use.                                                                                    |                                                                                    |
-| Space Id         | The unique identifier of the space.                                                                                  |                                                                                    |
+| Space ID         | The unique identifier of the space.                                                                                  |                                                                                    |
 | Status           | The status of the page.                                                                                              |                                                                                    |
 | Title            | The title of the page.                                                                                               |                                                                                    |
-| Parent Id        | The unique identifier of the parent page.                                                                            |                                                                                    |
-| Body             | The body of the page.                                                                                                | <code>{<br /> "representation": "storage",<br /> "value": "<string>"<br />}</code> |
+| Parent ID        | The unique identifier of the parent page.                                                                            |                                                                                    |
+| Body             | The page body content, as a representation object (e.g. storage format).                                             | <code>{<br /> "representation": "storage",<br /> "value": "<string>"<br />}</code> |
 | Embedded         | When true, tags the content as embedded and creates content in NCS.                                                  | false                                                                              |
 | Private          | When true, the page will be private and only the user who creates the page will have permission to view and edit it. | false                                                                              |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                   |                                                                                    |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                       |                                                                                    |
 
 ### Delete Attachment {#deleteattachment}
 
@@ -190,7 +192,7 @@ Deletes a specific attachment.
 | Input         | Comments                                                                     | Default |
 | ------------- | ---------------------------------------------------------------------------- | ------- |
 | Connection    | The Confluence connection to use.                                            |         |
-| Attachment Id | The unique identifier of the attachment.                                     |         |
+| Attachment ID | The unique identifier of the attachment.                                     |         |
 | Purge         | When true, permanently deletes the attachment instead of moving it to trash. | false   |
 
 ### Delete Content Property for a Custom Content {#deletecontentpropertyforcustomcontent}
@@ -200,8 +202,8 @@ Deletes a content property for a Custom Content by its id.
 | Input             | Comments                                       | Default |
 | ----------------- | ---------------------------------------------- | ------- |
 | Connection        | The Confluence connection to use.              |         |
-| Custom Content Id | The unique identifier of the custom content.   |         |
-| Property Id       | The unique identifier of the content property. |         |
+| Custom Content ID | The unique identifier of the custom content.   |         |
+| Property ID       | The unique identifier of the content property. |         |
 
 ### Delete Content Property for an Attachment {#deletecontentpropertyforattachment}
 
@@ -210,8 +212,8 @@ Deletes a content property for an attachment by its id.
 | Input         | Comments                                       | Default |
 | ------------- | ---------------------------------------------- | ------- |
 | Connection    | The Confluence connection to use.              |         |
-| Attachment Id | The unique identifier of the attachment.       |         |
-| Property Id   | The unique identifier of the content property. |         |
+| Attachment ID | The unique identifier of the attachment.       |         |
+| Property ID   | The unique identifier of the content property. |         |
 
 ### Delete Content Property for Page {#deletecontentpropertyforpage}
 
@@ -220,8 +222,8 @@ Deletes a content property for a page by its id.
 | Input       | Comments                                       | Default |
 | ----------- | ---------------------------------------------- | ------- |
 | Connection  | The Confluence connection to use.              |         |
-| Page Id     | The unique identifier of the page.             |         |
-| Property Id | The unique identifier of the content property. |         |
+| Page ID     | The unique identifier of the page.             |         |
+| Property ID | The unique identifier of the content property. |         |
 
 ### Delete Page {#deletepage}
 
@@ -230,7 +232,7 @@ Delete a page by id.
 | Input      | Comments                                                               | Default |
 | ---------- | ---------------------------------------------------------------------- | ------- |
 | Connection | The Confluence connection to use.                                      |         |
-| Page Id    | The unique identifier of the page.                                     |         |
+| Page ID    | The unique identifier of the page.                                     |         |
 | Purge      | When true, permanently deletes the page instead of moving it to trash. | false   |
 | Draft      | When true, deletes a page that is in draft status.                     | false   |
 
@@ -238,23 +240,24 @@ Delete a page by id.
 
 Returns a specific attachment.
 
-| Input            | Comments                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                  |         |
-| Attachment Id    | The unique identifier of the attachment.                                           |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true |         |
+| Input            | Comments                                                                                       | Default |
+| ---------------- | ---------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Confluence connection to use.                                                              |         |
+| Attachment ID    | The unique identifier of the attachment.                                                       |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. |         |
 
 ### Get Attachments for Page {#getpageattachment}
 
-Returns the attachments of specific page.
+Returns the attachments of a specific page.
 
 | Input            | Comments                                                                                                                                                                           | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Page Id          | The unique identifier of the page.                                                                                                                                                 |         |
+| Page ID          | The unique identifier of the page.                                                                                                                                                 |         |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### Get Content Properties for Custom Content {#getcontentpropertiesforcustomcontent}
 
@@ -263,8 +266,8 @@ Retrieves a specific Content Property by ID that is attached to a specified cust
 | Input             | Comments                                       | Default |
 | ----------------- | ---------------------------------------------- | ------- |
 | Connection        | The Confluence connection to use.              |         |
-| Custom Content Id | The unique identifier of the custom content.   |         |
-| Property Id       | The unique identifier of the content property. |         |
+| Custom Content ID | The unique identifier of the custom content.   |         |
+| Property ID       | The unique identifier of the content property. |         |
 
 ### Get Content Property for Attachment {#getcontentpropertiesforattachments}
 
@@ -273,8 +276,8 @@ Retrieves a specific Content Property by ID that is attached to a specified atta
 | Input         | Comments                                       | Default |
 | ------------- | ---------------------------------------------- | ------- |
 | Connection    | The Confluence connection to use.              |         |
-| Attachment Id | The unique identifier of the attachment.       |         |
-| Property Id   | The unique identifier of the content property. |         |
+| Attachment ID | The unique identifier of the attachment.       |         |
+| Property ID   | The unique identifier of the content property. |         |
 
 ### Get Content Property for Page {#getcontentpropertiesforpage}
 
@@ -283,37 +286,38 @@ Retrieves a specific Content Property by ID that is attached to a specified page
 | Input       | Comments                                       | Default |
 | ----------- | ---------------------------------------------- | ------- |
 | Connection  | The Confluence connection to use.              |         |
-| Page Id     | The unique identifier of the page.             |         |
-| Property Id | The unique identifier of the content property. |         |
+| Page ID     | The unique identifier of the page.             |         |
+| Property ID | The unique identifier of the content property. |         |
 
 ### Get Page {#getpage}
 
 Returns a specific Page.
 
-| Input                                    | Comments                                                                                                                                                            | Default |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                               | The Confluence connection to use.                                                                                                                                   |         |
-| Page Id                                  | The unique identifier of the page.                                                                                                                                  |         |
-| Body Format                              | The content format types to be returned in the body field of the response.                                                                                          |         |
-| Get Draft                                | Retrieve the draft version of this page.                                                                                                                            |         |
-| Version                                  | Allows you to retrieve a previously published version. Specify the previous version's number to retrieve its details.                                               |         |
-| Include Labels                           | When true, includes labels associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.             | false   |
-| Include Properties                       | When true, includes content properties associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order. | false   |
-| Include Operations                       | When true, includes operations associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.         | false   |
-| Include Likes                            | When true, includes likes associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.              | false   |
-| Include Versions                         | When true, includes versions associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.           | false   |
-| Include Version                          | When true, includes the current version associated with this page in the response.                                                                                  | true    |
-| Include Favorited By Current User Status | When true, includes whether this page has been favorited by the current user.                                                                                       | false   |
+| Input                                    | Comments                                                                                                                                                                                                                      | Default |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                               | The Confluence connection to use.                                                                                                                                                                                             |         |
+| Page ID                                  | The unique identifier of the page.                                                                                                                                                                                            |         |
+| Additional Fields                        | Additional optional fields: includes Body Format, Get Draft, Version, Include Labels, Include Properties, Include Operations, Include Likes, Include Versions, Include Version, and Include Favorited By Current User Status. |         |
+| Body Format                              | The content format types to be returned in the body field of the response.                                                                                                                                                    |         |
+| Get Draft                                | When true, retrieves the draft version of the page.                                                                                                                                                                           |         |
+| Version                                  | Retrieves a previously published version. Specify the previous version's number to retrieve its details.                                                                                                                      |         |
+| Include Labels                           | When true, includes labels associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.                                                                       | false   |
+| Include Properties                       | When true, includes content properties associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.                                                           | false   |
+| Include Operations                       | When true, includes operations associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.                                                                   | false   |
+| Include Likes                            | When true, includes likes associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.                                                                        | false   |
+| Include Versions                         | When true, includes versions associated with this page in the response. The number of results will be limited to 50 and sorted in the default sort order.                                                                     | false   |
+| Include Version                          | When true, includes the current version associated with this page in the response.                                                                                                                                            | true    |
+| Include Favorited By Current User Status | When true, includes whether this page has been favorited by the current user.                                                                                                                                                 | false   |
 
 ### Get Space {#getspace}
 
 Returns a specific space.
 
-| Input            | Comments                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                  |         |
-| Space Id         | The unique identifier of the space.                                                |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true |         |
+| Input            | Comments                                                                                       | Default |
+| ---------------- | ---------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Confluence connection to use.                                                              |         |
+| Space ID         | The unique identifier of the space.                                                            |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. |         |
 
 ### List Attachments {#listattachments}
 
@@ -322,10 +326,11 @@ Returns all attachments.
 | Input            | Comments                                                                                                                                                                           | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Fetch All        | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### List Content Properties for Attachments {#listcontentpropertiesforattachments}
 
@@ -334,12 +339,13 @@ Retrieves all Content Properties tied to a specified attachment.
 | Input            | Comments                                                                                                                                                                           | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Attachment Id    | The unique identifier of the attachment.                                                                                                                                           |         |
-| Fetch All        | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Attachment ID    | The unique identifier of the attachment.                                                                                                                                           |         |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
 | Sort             | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### List Content Properties for Custom Content {#listcontentpropertiesforcustomcontent}
 
@@ -348,12 +354,13 @@ Retrieves Content Properties tied to a specified Custom Content.
 | Input             | Comments                                                                                                                                                                           | Default |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection        | The Confluence connection to use.                                                                                                                                                  |         |
-| Custom Content Id | The unique identifier of the custom content.                                                                                                                                       |         |
-| Fetch All         | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Custom Content ID | The unique identifier of the custom content.                                                                                                                                       |         |
+| Fetch All         | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination        | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit             | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor            | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
 | Sort              | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters  | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters  | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### List Content Properties for Page {#listcontentpropertiesforpage}
 
@@ -362,12 +369,13 @@ Retrieves Content Properties tied to a specified page.
 | Input            | Comments                                                                                                                                                                           | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Page Id          | The unique identifier of the page.                                                                                                                                                 |         |
-| Fetch All        | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Page ID          | The unique identifier of the page.                                                                                                                                                 |         |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
 | Sort             | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### List Pages {#listpages}
 
@@ -376,11 +384,12 @@ Returns all pages.
 | Input       | Comments                                                                                                                                                                           | Default |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Confluence connection to use.                                                                                                                                                  |         |
-| Fetch All   | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Fetch All   | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination  | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit       | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor      | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Id          | Filter the results based on page IDs. Multiple page IDs can be specified as a comma-separated list.                                                                                |         |
-| Space Id    | Filter the results based on space IDs. Multiple space IDs can be specified as a comma-separated list.                                                                              |         |
+| Page IDs    | Filter the results based on page IDs. Multiple page IDs can be specified as a comma-separated list.                                                                                |         |
+| Space IDs   | Filter the results based on space IDs. Multiple space IDs can be specified as a comma-separated list.                                                                              |         |
 | Sort        | Used to sort the result by a particular field.                                                                                                                                     |         |
 | Status      | Filter the results to pages based on their status. By default, current and archived are used. Valid values: current, archived, deleted, trashed                                    |         |
 | Title       | Filter the results to pages based on their title.                                                                                                                                  |         |
@@ -393,13 +402,14 @@ Returns all pages in a space.
 | Input       | Comments                                                                                                                                                                           | Default |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Confluence connection to use.                                                                                                                                                  |         |
-| Space Id    | The unique identifier of the space.                                                                                                                                                |         |
-| Fetch All   | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Space ID    | The unique identifier of the space.                                                                                                                                                |         |
+| Fetch All   | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
 | Depth       | Filter the results to pages at the root level of the space or to all pages in the space.                                                                                           |         |
 | Sort        | Used to sort the result by a particular field.                                                                                                                                     |         |
 | Status      | The status of the page.                                                                                                                                                            |         |
 | Title       | Filter the results to pages based on their title.                                                                                                                                  |         |
 | Body Format | The content format types to be returned in the body field of the response.                                                                                                         |         |
+| Pagination  | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit       | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor      | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
 
@@ -410,25 +420,26 @@ Returns all spaces.
 | Input            | Comments                                                                                                                                                                           | Default |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Fetch All        | When enabled, fetches all results by automatically paginating through all pages. When disabled, returns a single page of results.                                                  | false   |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
 | Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
 | Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to your request. Ex. Key: include-versions Value: true                                                                                                 |         |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
 
 ### Raw GraphQL Request {#graphqlrequest}
 
-Send raw GraphQL request to Confluence
+Send raw GraphQL request to Confluence.
 
 | Input             | Comments                                       | Default                                                                                                                                                                                                 |
 | ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        | The Confluence connection to use.              |                                                                                                                                                                                                         |
 | Query or Mutation |                                                | query ($customerName: String!) {<br />    customers(name: $customerName) {<br /> nodes {<br /> id<br /> labels<br /> users {<br /> nodes {<br /> id<br /> email<br /> }<br /> }<br /> }<br /> }<br /> } |
-| Variables         | Variables to pass in to your query or mutation |                                                                                                                                                                                                         |
-| Headers           | Custom headers to send along with your request |                                                                                                                                                                                                         |
+| Variables         | Variables to pass in to the query or mutation. |                                                                                                                                                                                                         |
+| Headers           | Custom headers to send along with the request. |                                                                                                                                                                                                         |
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Confluence
+Send raw HTTP request to Confluence.
 
 | Input                   | Comments                                                                                                                                                                                                                                                            | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -455,8 +466,8 @@ Update a content property for attachment by its id.
 | Input         | Comments                                       | Default                                                                                                                                              |
 | ------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection    | The Confluence connection to use.              |                                                                                                                                                      |
-| Attachment Id | The unique identifier of the attachment.       |                                                                                                                                                      |
-| Property Id   | The unique identifier of the content property. |                                                                                                                                                      |
+| Attachment ID | The unique identifier of the attachment.       |                                                                                                                                                      |
+| Property ID   | The unique identifier of the content property. |                                                                                                                                                      |
 | Body Data     | The content property data to create or update. | <code>{<br /> "key": "<string>",<br /> "value": "<string>",<br /> "version": {<br /> "number": 84,<br /> "message": "<string>"<br /> }<br />}</code> |
 
 ### Update Content Property for Custom Content {#updatecontentpropertyforcustomcontent}
@@ -466,8 +477,8 @@ Update a content property for a Custom Content by its id.
 | Input             | Comments                                       | Default                                                                                                                                              |
 | ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        | The Confluence connection to use.              |                                                                                                                                                      |
-| Custom Content Id | The unique identifier of the custom content.   |                                                                                                                                                      |
-| Property Id       | The unique identifier of the content property. |                                                                                                                                                      |
+| Custom Content ID | The unique identifier of the custom content.   |                                                                                                                                                      |
+| Property ID       | The unique identifier of the content property. |                                                                                                                                                      |
 | Body Data         | The content property data to create or update. | <code>{<br /> "key": "<string>",<br /> "value": "<string>",<br /> "version": {<br /> "number": 84,<br /> "message": "<string>"<br /> }<br />}</code> |
 
 ### Update Content Property for Page {#updatecontentpropertyforpage}
@@ -477,21 +488,21 @@ Update a content property for a page by its id.
 | Input       | Comments                                       | Default                                                                                                                                              |
 | ----------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection  | The Confluence connection to use.              |                                                                                                                                                      |
-| Page Id     | The unique identifier of the page.             |                                                                                                                                                      |
-| Property Id | The unique identifier of the content property. |                                                                                                                                                      |
+| Page ID     | The unique identifier of the page.             |                                                                                                                                                      |
+| Property ID | The unique identifier of the content property. |                                                                                                                                                      |
 | Body Data   | The content property data to create or update. | <code>{<br /> "key": "<string>",<br /> "value": "<string>",<br /> "version": {<br /> "number": 84,<br /> "message": "<string>"<br /> }<br />}</code> |
 
 ### Update Page {#updatepage}
 
 Update a page by id.
 
-| Input      | Comments                                  | Default                                                                            |
-| ---------- | ----------------------------------------- | ---------------------------------------------------------------------------------- |
-| Connection | The Confluence connection to use.         |                                                                                    |
-| Page Id    | The unique identifier of the page.        |                                                                                    |
-| Status     | The status of the page.                   |                                                                                    |
-| Title      | The title of the page.                    |                                                                                    |
-| Body       | The body of the page.                     | <code>{<br /> "representation": "storage",<br /> "value": "<string>"<br />}</code> |
-| Version    | The version of the page.                  | <code>{<br /> "number": 47,<br /> "message": "<string>"<br />}</code>              |
-| Space Id   | The unique identifier of the space.       |                                                                                    |
-| Parent Id  | The unique identifier of the parent page. |                                                                                    |
+| Input      | Comments                                                                                  | Default                                                                            |
+| ---------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Connection | The Confluence connection to use.                                                         |                                                                                    |
+| Page ID    | The unique identifier of the page.                                                        |                                                                                    |
+| Status     | The status of the page.                                                                   |                                                                                    |
+| Title      | The title of the page.                                                                    |                                                                                    |
+| Body       | The page body content, as a representation object (e.g. storage format).                  | <code>{<br /> "representation": "storage",<br /> "value": "<string>"<br />}</code> |
+| Version    | The page version object, including the new version number and an optional change message. | <code>{<br /> "number": 47,<br /> "message": "<string>"<br />}</code>              |
+| Space ID   | The unique identifier of the space.                                                       |                                                                                    |
+| Parent ID  | The unique identifier of the parent page.                                                 |                                                                                    |

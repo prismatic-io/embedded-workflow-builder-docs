@@ -265,12 +265,13 @@ Creates a purchase invoice object in Microsoft Business Central.
 | Pay To Vendor Number    | Specifies the number of the vendor to pay to.                     |         |
 | Ship To Name            | The name for the ship-to address.                                 |         |
 | Ship To Contact         | The contact name for the ship-to address.                         |         |
+| Buy From Address        | Buy-from street, city, state, postal code, and country.           |         |
 | Buy From Address Line 1 | The first line of the buy-from address.                           |         |
 | Buy From Address Line 2 | The second line of the buy-from address.                          |         |
 | Buy From City           | The city of the buy-from address.                                 |         |
 | Buy From State          | The state of the buy-from address.                                |         |
-| Buy From Country        | The country of the buy-from address.                              |         |
 | Buy From Post Code      | The postal code of the buy-from address.                          |         |
+| Buy From Country        | The country of the buy-from address.                              |         |
 | Currency ID             | The unique identifier of the currency.                            |         |
 | Currency Code           | The currency code.                                                |         |
 | Prices Include Tax      | Specifies if prices include tax.                                  | false   |
@@ -369,14 +370,16 @@ Creates a vendor object in Microsoft Business Central.
 | Connection              | The Microsoft Business Central connection to use.                                                    |         |
 | Company ID              | The ID of the company you want to create the vendor in.                                              |         |
 | Display Name            | Specifies the vendor's name.                                                                         |         |
+| Address                 | Street, city, state, postal code, and country.                                                       |         |
 | Address Line 1          | Specifies the first line of the vendor's address.                                                    |         |
 | Address Line 2          | Specifies the second line of the vendor's address.                                                   |         |
 | City                    | Specifies the city of the vendor's address.                                                          |         |
 | State                   | Specifies the state of the vendor's address.                                                         |         |
 | Country                 | Specifies the country of the vendor's address.                                                       |         |
 | Postal Code             | Specifies the postal code of the vendor's address.                                                   |         |
-| Phone Number            | Specifies the vendor's phone number.                                                                 |         |
+| Contact Information     | Email, phone, and other contact channel details.                                                     |         |
 | Email                   | Specifies the vendor's email address.                                                                |         |
+| Phone Number            | Specifies the vendor's phone number.                                                                 |         |
 | Website                 | Specifies the vendor's website.                                                                      |         |
 | Tax Liable              | When true, the vendor is liable for sales tax.                                                       | false   |
 | Tax Registration Number | Specifies the vendor's tax registration number.                                                      |         |
@@ -747,162 +750,170 @@ Retrieve the properties and relationships of all customer objects in your Busine
 
 Retrieve all general ledger entries in your Business Central organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Item Ledger Entries {#listitemledgerentries}
 
 Retrieve all item ledger entries in your Business Central organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Items {#listitems}
 
 List all item objects from your Business Central Organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Purchase Invoices {#listpurchaseinvoices}
 
 Retrieve all purchase invoices in your Business Central organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Purchase Order Lines {#listpurchaseorderlines}
 
 List all purchase order line objects in your Business Central Organization.
 
-| Input             | Comments                                                                                                                                                        | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID        | The ID of the company you want to interact with.                                                                                                                |         |
-| Purchase Order ID | The unique ID of the purchase order.                                                                                                                            |         |
-| Fetch All         | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter            | Filters results (rows).                                                                                                                                         |         |
-| Select            | Filters properties (columns).                                                                                                                                   |         |
-| Expand            | Retrieves related resources.                                                                                                                                    |         |
-| Order By          | Orders results.                                                                                                                                                 |         |
-| Top               | Sets the page size of results.                                                                                                                                  |         |
-| Skip              | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count             | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search            | Returns results based on search criteria.                                                                                                                       |         |
-| Format            | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token        | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Purchase Order ID      | The unique ID of the purchase order.                                                                                                                            |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Purchase Orders {#listpurchaseorders}
 
 List all purchase order objects in your Business Central Organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Purchase Receipt Lines {#listpurchasereceiptlines}
 
 List all purchase receipt line objects in your Business Central Organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Purchase Receipts {#listpurchasereceipts}
 
 List all purchase receipt objects in your Business Central Organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### List Sales Invoices {#listsalesinvoices}
 
@@ -997,21 +1008,22 @@ List all subscriptions for Microsoft Business Central.
 
 Retrieve all vendors in your Business Central organization.
 
-| Input      | Comments                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Microsoft Business Central connection to use.                                                                                                               |         |
-| Company ID | The ID of the company you want to interact with.                                                                                                                |         |
-| Fetch All  | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
-| Filter     | Filters results (rows).                                                                                                                                         |         |
-| Select     | Filters properties (columns).                                                                                                                                   |         |
-| Expand     | Retrieves related resources.                                                                                                                                    |         |
-| Order By   | Orders results.                                                                                                                                                 |         |
-| Top        | Sets the page size of results.                                                                                                                                  |         |
-| Skip       | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
-| Count      | When true, retrieves the total count of matching resources.                                                                                                     | false   |
-| Search     | Returns results based on search criteria.                                                                                                                       |         |
-| Format     | Returns the results in the specified media format.                                                                                                              |         |
-| Skip Token | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
+| Input                  | Comments                                                                                                                                                        | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Business Central connection to use.                                                                                                               |         |
+| Company ID             | The ID of the company you want to interact with.                                                                                                                |         |
+| Fetch All              | When enabled, automatically fetches all pages of results by following @odata.nextLink. Page Size, Skip, and Skip Token inputs are ignored when this is enabled. | false   |
+| OData Query Parameters | OData system query options for filtering, sorting, selecting, and expanding results.                                                                            |         |
+| Filter                 | Filters results (rows).                                                                                                                                         |         |
+| Select                 | Filters properties (columns).                                                                                                                                   |         |
+| Expand                 | Retrieves related resources.                                                                                                                                    |         |
+| Order By               | Orders results.                                                                                                                                                 |         |
+| Top                    | Sets the page size of results.                                                                                                                                  |         |
+| Skip                   | Indexes into a result set. Also used by some APIs to implement paging and can be used together with $top to manually page results.                              |         |
+| Count                  | When true, retrieves the total count of matching resources.                                                                                                     | false   |
+| Search                 | Returns results based on search criteria.                                                                                                                       |         |
+| Format                 | Returns the results in the specified media format.                                                                                                              |         |
+| Skip Token             | Retrieves the next page of results from result sets that span multiple pages.                                                                                   |         |
 
 ### Post Purchase Invoice {#postpurchaseinvoice}
 
@@ -1066,15 +1078,17 @@ Update the properties of a company information object in your Business Central o
 | Company ID                     | The ID of the company you want to interact with.            |         |
 | Company Information ID         | The unique identifier of the company information object.    |         |
 | Display Name                   | The name of the company as it should be displayed to users. |         |
+| Address                        | Street, city, state, postal code, and country.              |         |
 | Address Line 1                 | The first line of the company's address.                    |         |
 | Address Line 2                 | The second line of the company's address.                   |         |
 | City                           | The city where the company is located.                      |         |
 | State                          | The state where the company is located.                     |         |
 | Country                        | The country where the company is located.                   |         |
 | Postal Code                    | The postal code of the company's address.                   |         |
+| Contact Information            | Email, phone, and other contact channel details.            |         |
+| Email                          | The company's email address.                                |         |
 | Phone Number                   | The company's phone number.                                 |         |
 | Fax Number                     | The company's fax number.                                   |         |
-| Email                          | The company's email address.                                |         |
 | Website                        | The company's website URL.                                  |         |
 | Tax Registration Number        | The company's tax registration number.                      |         |
 | Currency Code                  | The currency code used by the company.                      |         |
@@ -1165,12 +1179,13 @@ Update a purchase invoice object in your Business Central organization.
 | Pay To Vendor Number    | Specifies the number of the vendor to pay to.                |         |
 | Ship To Name            | The name for the ship-to address.                            |         |
 | Ship To Contact         | The contact name for the ship-to address.                    |         |
+| Buy From Address        | Buy-from street, city, state, postal code, and country.      |         |
 | Buy From Address Line 1 | The first line of the buy-from address.                      |         |
 | Buy From Address Line 2 | The second line of the buy-from address.                     |         |
 | Buy From City           | The city of the buy-from address.                            |         |
 | Buy From State          | The state of the buy-from address.                           |         |
-| Buy From Country        | The country of the buy-from address.                         |         |
 | Buy From Post Code      | The postal code of the buy-from address.                     |         |
+| Buy From Country        | The country of the buy-from address.                         |         |
 | Currency ID             | The unique identifier of the currency.                       |         |
 | Currency Code           | The currency code.                                           |         |
 | Prices Include Tax      | Specifies if prices include tax.                             |         |
@@ -1275,14 +1290,16 @@ Update a vendor object in your Business Central organization.
 | Company ID              | The ID of the company to which the vendor belongs.                                                   |         |
 | Vendor ID               | The unique identifier of the vendor.                                                                 |         |
 | Display Name            | Specifies the vendor's name.                                                                         |         |
+| Address                 | Street, city, state, postal code, and country.                                                       |         |
 | Address Line 1          | Specifies the first line of the vendor's address.                                                    |         |
 | Address Line 2          | Specifies the second line of the vendor's address.                                                   |         |
 | City                    | Specifies the city of the vendor's address.                                                          |         |
 | State                   | Specifies the state of the vendor's address.                                                         |         |
 | Country                 | Specifies the country of the vendor's address.                                                       |         |
 | Postal Code             | Specifies the postal code of the vendor's address.                                                   |         |
-| Phone Number            | Specifies the vendor's phone number.                                                                 |         |
+| Contact Information     | Email, phone, and other contact channel details.                                                     |         |
 | Email                   | Specifies the vendor's email address.                                                                |         |
+| Phone Number            | Specifies the vendor's phone number.                                                                 |         |
 | Website                 | Specifies the vendor's website.                                                                      |         |
 | Tax Liable              | When true, the vendor is liable for sales tax.                                                       |         |
 | Tax Registration Number | Specifies the vendor's tax registration number.                                                      |         |

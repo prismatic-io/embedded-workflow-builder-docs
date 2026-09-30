@@ -175,7 +175,7 @@ When configuring the NetSuite OAuth 2.0 Client Credentials connection, enter the
 
 ### New and Updated Records {#pollrecords}
 
-Checks for new and updated records in a selected NetSuite record type on a configured schedule.
+Retrieves existing and ongoing records for a specified NetSuite record type. Load history once, check for changes on a schedule, or both.
 
 | Input                | Comments                                                                                                                                                                                                                                                                    | Default |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -183,6 +183,7 @@ Checks for new and updated records in a selected NetSuite record type on a confi
 | Show Updated Records | When true, includes updated records in the results.                                                                                                                                                                                                                         | true    |
 | Connection           | The NetSuite connection to use.                                                                                                                                                                                                                                             |         |
 | Record Type          | Record type to perform the action against.                                                                                                                                                                                                                                  |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the additional filter.    |         |
 | Additional Filter    | Additional WHERE clause conditions to append to the polling query. Do not include 'AND' prefix - it will be added automatically. See [Record Collection Filtering](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1545222128.html) for query syntax. |         |
 
 ## Actions
