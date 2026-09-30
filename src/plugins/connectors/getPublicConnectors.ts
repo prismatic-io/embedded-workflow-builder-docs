@@ -7,6 +7,7 @@ import { type Component, GET_PUBLIC_COMPONENTS } from "./queries";
 
 // Connectors to omit from docs, as they aren't relevant to embedded workflow builder users
 const filteredConnectors = [
+  "arena-plm",
   "customHttp",
   "jsonforms",
   "management-triggers",
