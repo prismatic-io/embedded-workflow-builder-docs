@@ -111,11 +111,12 @@ Receive and validate webhook requests from Jamf Pro for manually configured webh
 
 ### New Computers {#pollnewcomputers}
 
-Checks for newly enrolled computers in Jamf Pro on a configured schedule.
+Retrieves existing and newly enrolled computers in Jamf Pro. Load history once, check for new enrollments on a schedule, or both.
 
-| Input      | Comments                        | Default |
-| ---------- | ------------------------------- | ------- |
-| Connection | The Jamf Pro connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                   | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Jamf Pro connection to use.                                                                                                                                                                                                            |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each computer enrolled on or after this date once. |         |
 
 ### New Mobile Devices {#pollnewmobiledevices}
 

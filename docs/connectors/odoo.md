@@ -93,14 +93,15 @@ Create a connection of type **Basic Authentication (Deprecated)** and configure 
 
 ### New and Updated Records {#pollchangestrigger}
 
-Polls an Odoo model on a configured schedule for records whose `write_date` is at or after the last poll. Records whose `create_date` is also after the last poll go to the `created` bucket; older records modified since the last poll go to `updated`.
+Retrieves existing and ongoing records for a specified Odoo model. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                      | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Odoo connection to use.                                                                                                   |         |
-| Model                | The type of record to query. Use the 'List Models' action for a list of available models.                                     |         |
-| Show New Records     | When true, records whose `create_date` falls after the last poll are emitted in the `created` bucket.                         | true    |
-| Show Updated Records | When true, records whose `write_date` falls after the last poll but were created earlier are emitted in the `updated` bucket. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Odoo connection to use.                                                                                                                                                                                                                                                         |         |
+| Model                | The type of record to query. Use the 'List Models' action for a list of available models.                                                                                                                                                                                           |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the trigger's visibility filters. |         |
+| Show New Records     | When true, records whose `create_date` falls after the last poll are emitted in the `created` bucket.                                                                                                                                                                               | true    |
+| Show Updated Records | When true, records whose `write_date` falls after the last poll but were created earlier are emitted in the `updated` bucket.                                                                                                                                                       | true    |
 
 ## Actions
 

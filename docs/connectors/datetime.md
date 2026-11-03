@@ -44,34 +44,34 @@ Convert the given Date/Time to an ISO string in local time using specified timez
 
 Convert the given Date to a seconds/milliseconds Epoch.
 
-| Input                    | Comments                                                                                     | Default |
-| ------------------------ | -------------------------------------------------------------------------------------------- | ------- |
-| Date/Time                | A reference to a JavaScript Date object or an ISO timestamp string                           |         |
-| Display Epoch In Seconds | If true, action will format the given date to Epoch time in seconds instead of milliseconds. | false   |
+| Input                    | Comments                                                                            | Default |
+| ------------------------ | ----------------------------------------------------------------------------------- | ------- |
+| Date/Time                | A reference to a JavaScript Date object or an ISO timestamp string                  |         |
+| Display Epoch In Seconds | When true, formats the given date as Epoch time in seconds instead of milliseconds. | false   |
 
 ### Convert Epoch Timestamp To Date {#convertfromepoch}
 
 Convert the given Epoch timestamp to a ISO String Date.
 
-| Input                      | Comments                                                                               | Default |
-| -------------------------- | -------------------------------------------------------------------------------------- | ------- |
-| Epoch Timestamp            | The epoch timestamp you would like to convert to a date.                               |         |
-| Epoch Timestamp in Seconds | If true, action will assume the given timestamp is in seconds instead of milliseconds. | false   |
+| Input                      | Comments                                                                  | Default |
+| -------------------------- | ------------------------------------------------------------------------- | ------- |
+| Epoch Timestamp            | The epoch timestamp to convert to a date.                                 |         |
+| Epoch Timestamp in Seconds | When true, treats the given timestamp as seconds instead of milliseconds. | false   |
 
 ### Format Date/Time {#formatdatetime}
 
 Change the format of a timestamp given a format string
 
-| Input     | Comments                                                                                                                                                                                                 | Default                  |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| Date/Time | A reference to a JavaScript Date object or an ISO timestamp string                                                                                                                                       |                          |
-| Time Zone | Specifies the timezone to use for converting to a localized ISO timestamp string                                                                                                                         | etc/UTC                  |
-| Format    | The format of timestamp you would like. Use YYYY for year, MM for month, DD for day, HH for 24 hour, hh for 12 hour clock, mm for minute, ss for second, SSS for milliseconds and Z for timezone offset. | YYYY-MM-DDTHH:mm:ss.SSSZ |
+| Input     | Comments                                                                                                                                                                                             | Default                  |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Date/Time | A reference to a JavaScript Date object or an ISO timestamp string                                                                                                                                   |                          |
+| Time Zone | Specifies the timezone to use for converting to a localized ISO timestamp string                                                                                                                     | Etc/UTC                  |
+| Format    | The format of the output timestamp. Use YYYY for year, MM for month, DD for day, HH for 24 hour, hh for 12 hour clock, mm for minute, ss for second, SSS for milliseconds and Z for timezone offset. | YYYY-MM-DDTHH:mm:ss.SSSZ |
 
 ### Get Current Date/Time {#getcurrentdatetime}
 
 Return the current Date/Time in UTC
 
-| Input                    | Comments                                                     | Default |
-| ------------------------ | ------------------------------------------------------------ | ------- |
-| Display Epoch In Seconds | If true, the current Date/Time will be displayed in seconds. | false   |
+| Input                    | Comments                                                           | Default |
+| ------------------------ | ------------------------------------------------------------------ | ------- |
+| Display Epoch In Seconds | When true, returns the current Date/Time as Epoch time in seconds. | false   |

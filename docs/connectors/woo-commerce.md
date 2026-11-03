@@ -38,12 +38,13 @@ For additional information regarding authentication, please refer to the [WooCom
 
 ### New Records {#pollnewrecordstrigger}
 
-Checks for new records in a selected WooCommerce resource type on a configured schedule.
+Retrieves existing and ongoing records for a specified WooCommerce resource type. Load history once, check for changes on a schedule, or both.
 
-| Input         | Comments                                                      | Default |
-| ------------- | ------------------------------------------------------------- | ------- |
-| Connection    | The connection to be used.                                    |         |
-| Resource Type | Select the WooCommerce resource type to poll for new records. |         |
+| Input          | Comments                                                                                                                                                                                                                                | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The connection to be used.                                                                                                                                                                                                              |         |
+| Resource Type  | Select the WooCommerce resource type to poll for new records.                                                                                                                                                                           |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once. |         |
 
 ## Actions
 

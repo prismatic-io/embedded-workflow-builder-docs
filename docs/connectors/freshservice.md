@@ -392,47 +392,47 @@ Retrieves details of a software application by ID.
 
 Retrieves details of a ticket by ID.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Ticket ID                   | ID of the ticket to retrieve.                                                   |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Ticket ID                   | ID of the ticket to retrieve.                                                   |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### Get Workspace {#getworkspace}
 
 Retrieves details of a workspace by ID.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Workspace ID                | ID of the workspace to retrieve.                                                |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Workspace ID                | ID of the workspace to retrieve.                                                |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Agents {#listagents}
 
 Returns a list of all agents.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Assets (Deprecated) {#listassets}
 
 Returns a list of all assets. Applies to Freshservice accounts created before the March 31, 2026 IT Asset Management release.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Assets (ITAM) {#listitamassets}
 
@@ -464,27 +464,27 @@ Returns a list of devices.
 
 Returns a list of all problems.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Requesters {#listrequesters}
 
 Returns a list of all requesters.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Software {#listsoftware}
 
@@ -498,28 +498,28 @@ Returns a list of all software applications.
 
 Returns a list of all tickets.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Filter                      | The predefined view used to narrow down the ticket list.                        |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Filter                      | The predefined view used to narrow down the ticket list.                        |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### List Workspaces {#listworkspaces}
 
 Returns a list of all workspaces.
 
-| Input                       | Comments                                                                        | Default |
-| --------------------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection                  | The Freshservice connection to use.                                             |         |
-| Fetch All                   | When true, automatically fetches all pages of results.                          | false   |
-| Pagination                  | Page and page-size controls.                                                    |         |
-| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |         |
-| Page Number                 | The 1-based page number to return.                                              |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. |         |
+| Input                       | Comments                                                                        | Default         |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Freshservice connection to use.                                             |                 |
+| Fetch All                   | When true, automatically fetches all pages of results.                          | false           |
+| Pagination                  | Page and page-size controls.                                                    |                 |
+| Items Per Page              | The maximum number of results to return per page. Maximum is 100.               |                 |
+| Page Number                 | The 1-based page number to return.                                              |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options. | <code>[]</code> |
 
 ### Move Asset (Deprecated) {#moveasset}
 
@@ -571,33 +571,33 @@ Moves a ticket to a different workspace.
 
 Sends a raw HTTP request to the Freshservice API.
 
-| Input                   | Comments                                                                                                                                                                                                 | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Freshservice connection to use.                                                                                                                                                                      |         |
-| URL                     | The path to append to the base URL. The base URL (https://example.freshservice.com/api/v2) is already included. For example, to reach https://example.freshservice.com/api/v2/problems, enter /problems. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                  |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                     |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                         |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                   |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                      |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                              |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                 | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                      |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                      | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.         | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                      | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                            | false   |
+| Input                   | Comments                                                                                                                                                                                                 | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Freshservice connection to use.                                                                                                                                                                      |                 |
+| URL                     | The path to append to the base URL. The base URL (https://example.freshservice.com/api/v2) is already included. For example, to reach https://example.freshservice.com/api/v2/problems, enter /problems. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                  |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                     | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                         | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                   | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                      | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                              | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                 | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                      |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                      | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.         | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                      | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                            | false           |
 
 ### Search Asset (Deprecated) {#searchasset}
 
 Searches for assets matching a query. Applies to Freshservice accounts created before the March 31, 2026 IT Asset Management release.
 
-| Input                       | Comments                                                                                         | Default |
-| --------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection                  | The Freshservice connection to use.                                                              |         |
-| Search Query                | The filter expression to search assets. Supported fields are name, asset_tag, and serial_number. |         |
-| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options.                  |         |
+| Input                       | Comments                                                                                         | Default         |
+| --------------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection                  | The Freshservice connection to use.                                                              |                 |
+| Search Query                | The filter expression to search assets. Supported fields are name, asset_tag, and serial_number. |                 |
+| Additional Query Parameters | Key-value pairs appended to the request URL for filtering or other API options.                  | <code>[]</code> |
 
 ### Update Agent {#updateagent}
 

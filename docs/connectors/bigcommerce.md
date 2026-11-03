@@ -53,14 +53,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Orders {#pollchangestrigger}
 
-Checks for new and updated orders in BigCommerce on a configured schedule.
+Retrieves existing and ongoing orders in BigCommerce. Load history once, check for changes on a schedule, or both.
 
-| Input                  | Comments                                                                                                                                                                      | Default |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| BigCommerce Connection | The BigCommerce connection to use.                                                                                                                                            |         |
-| Store Hash             | The unique identifier for the BigCommerce store. Find this in the store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}). |         |
-| Show New Orders        | When enabled, orders created since the last poll will be included in the trigger output.                                                                                      | true    |
-| Show Updated Orders    | When enabled, orders updated since the last poll will be included in the trigger output.                                                                                      | true    |
+| Input                  | Comments                                                                                                                                                                                                                                                                 | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| BigCommerce Connection | The BigCommerce connection to use.                                                                                                                                                                                                                                       |         |
+| Store Hash             | The unique identifier for the BigCommerce store. Find this in the store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}).                                                                                            |         |
+| Show New Orders        | When enabled, orders created since the last poll will be included in the trigger output.                                                                                                                                                                                 | true    |
+| Show Updated Orders    | When enabled, orders updated since the last poll will be included in the trigger output.                                                                                                                                                                                 | true    |
+| Look-back Date         | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each order modified on or after this date once, ignoring the visibility filters. |         |
 
 ### Webhook {#mytrigger}
 
@@ -645,24 +646,24 @@ Returns a list of all webhooks on a store.
 
 Sends a raw HTTP request to BigCommerce.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
-| BigCommerce Connection  | The BigCommerce connection to use.                                                                                                                                                               |         |
-| Store Hash              | The unique identifier for the BigCommerce store. Find this in the store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}).                    |         |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
+| BigCommerce Connection  | The BigCommerce connection to use.                                                                                                                                                               |                 |
+| Store Hash              | The unique identifier for the BigCommerce store. Find this in the store's API credentials or URL (e.g., the store hash from https://api.bigcommerce.com/stores/{store_hash}).                    |                 |
 
 ### Update Brand {#updatebrand}
 

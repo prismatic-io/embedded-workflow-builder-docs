@@ -11,7 +11,7 @@ The Contentful component allows managing spaces, environments, content types, en
 
 ## API Documentation
 
-This component was built using the [Contentful Content Management API Reference](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction).
+This component was built using the [Contentful Content Management API Reference](https://www.contentful.com/developers/docs/references/content-management-api/overview/).
 
 ## Connections
 
@@ -31,13 +31,9 @@ To connect to Contentful, create a new OAuth application.
 2. Click **Create New Application**
 3. Enter the **Redirect URI** as `https://oauth2.%WHITE_LABEL_BASE_URL%/callback`
 4. Select **Confidential** for the client type
-5. Select the applicable scope (e.g., **Content management manage**)
+5. Select a single scope (e.g., **Content management manage**). The manage scope includes read access.
 6. Save the application
 7. Copy the **Client ID** and **Client Secret**
-
-:::note[Single Scope Requirement]
-Contentful only accepts a single scope per authorization request. The `content_management_manage` scope includes read access, so a separate `content_management_read` scope is not needed.
-:::
 
 #### Available Scopes
 
@@ -52,16 +48,16 @@ Create a connection of type **OAuth 2.0** and enter:
 
 - **Client ID**: Enter the Client ID from the OAuth application
 - **Client Secret**: Enter the Client Secret from the OAuth application
-- **Scopes**: Enter a single scope (e.g., `content_management_manage`)
+- **Scopes**: Select the scope chosen for the OAuth application: **Content Management Manage** (the default) or **Content Management Read**
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                                                                                                           | Default                   |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| Scopes        | A single OAuth 2.0 scope. Contentful accepts one scope per authorization. Valid values: content_management_manage, content_management_read. The manage scope includes read access. | content_management_manage |
-| Client ID     | The Client ID from the OAuth application credentials.                                                                                                                              |                           |
-| Client Secret | The Client Secret from the OAuth application credentials.                                                                                                                          |                           |
+| Input         | Comments                                                                                                                                                                                                                                 | Default                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| Scopes        | A single OAuth 2.0 scope. Contentful accepts one scope per authorization. The manage scope includes read access.                                                                                                                         | content_management_manage |
+| Client ID     | The Client ID of your Contentful OAuth 2.0 application, shown under your account profile's Developers > Applications page. See [Creating an OAuth 2.0 application](https://www.contentful.com/developers/docs/extensibility/oauth/).     |                           |
+| Client Secret | The Client Secret of your Contentful OAuth 2.0 application, shown under your account profile's Developers > Applications page. See [Creating an OAuth 2.0 application](https://www.contentful.com/developers/docs/extensibility/oauth/). |                           |
 
 ## Triggers
 
@@ -69,32 +65,35 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive event notifications from Contentful. Automatically creates and manages a webhook subscription for selected topics when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input      | Comments                                          | Default |
-| ---------- | ------------------------------------------------- | ------- |
-| Connection | The Contentful connection to use.                 |         |
-| Space ID   | The unique identifier for the Contentful space.   |         |
-| Events     | The event types to subscribe to for this webhook. |         |
+| Input                  | Comments                                                                                                                                                                                                                                                                   | Default         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection             | The Contentful connection to use.                                                                                                                                                                                                                                          |                 |
+| Space ID               | The unique identifier for the Contentful space.                                                                                                                                                                                                                            |                 |
+| Events                 | The event types to subscribe to for this webhook.                                                                                                                                                                                                                          | <code>[]</code> |
+| Webhook Signing Secret | The space's webhook signing secret, set in Contentful under Settings, Webhooks, Settings with request verification enabled. When provided, each request's signature is verified and unsigned, altered, or expired requests are rejected. Leave empty to skip verification. |                 |
 
 ### New and Updated Entries {#pollchangestrigger}
 
-Checks for new and updated entries in a selected Contentful environment on a configured schedule.
+Retrieves existing and ongoing entries for a specified Contentful environment. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                         | Default |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Contentful connection to use.                                                                                                |         |
-| Space ID             | The unique identifier for the Contentful space.                                                                                  |         |
-| Environment ID       | The unique identifier for the Contentful environment.                                                                            |         |
-| Content Type ID      | Restrict polling to a single content type. Leave blank to poll all entries in the environment.                                   |         |
-| Show New Entries     | When true, entries whose `sys.createdAt` falls after the last poll are emitted on the `created` branch.                          | true    |
-| Show Updated Entries | When true, entries whose `sys.updatedAt` falls after the last poll but were created earlier are emitted on the `updated` branch. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                 | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Contentful connection to use.                                                                                                                                                                                                                                        |         |
+| Space ID             | The unique identifier for the Contentful space.                                                                                                                                                                                                                          |         |
+| Environment ID       | The unique identifier for the Contentful environment.                                                                                                                                                                                                                    |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each entry modified on or after this date once, ignoring the visibility filters. |         |
+| Content Type ID      | Restrict polling to a single content type. Leave blank to poll all entries in the environment.                                                                                                                                                                           |         |
+| Show New Entries     | When true, entries whose `sys.createdAt` falls after the last poll are emitted on the `created` branch.                                                                                                                                                                  | true    |
+| Show Updated Entries | When true, entries whose `sys.updatedAt` falls after the last poll but were created earlier are emitted on the `updated` branch.                                                                                                                                         | true    |
 
 ### Webhook {#webhook}
 
-Receive and validate webhook requests from Contentful for webhooks you configure.
+Receive and validate webhook requests from Contentful for manually configured webhook subscriptions.
 
-| Input      | Comments                          | Default |
-| ---------- | --------------------------------- | ------- |
-| Connection | The Contentful connection to use. |         |
+| Input                  | Comments                                                                                                                                                                                                                                                                   | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Contentful connection to use.                                                                                                                                                                                                                                          |         |
+| Webhook Signing Secret | The space's webhook signing secret, set in Contentful under Settings, Webhooks, Settings with request verification enabled. When provided, each request's signature is verified and unsigned, altered, or expired requests are rejected. Leave empty to skip verification. |         |
 
 ## Actions
 
@@ -163,24 +162,24 @@ Creates a new environment.
 
 Creates a new space.
 
-| Input           | Comments                                    | Default |
-| --------------- | ------------------------------------------- | ------- |
-| Connection      | The Contentful connection to use.           |         |
-| Organization ID | The unique identifier for the organization. |         |
-| Space Name      | The display name for the space.             |         |
-| Default Locale  | The default locale code for the space.      |         |
+| Input           | Comments                                                              | Default |
+| --------------- | --------------------------------------------------------------------- | ------- |
+| Connection      | The Contentful connection to use.                                     |         |
+| Organization ID | The unique identifier for the organization.                           |         |
+| Space Name      | The display name for the space.                                       |         |
+| Default Locale  | The locale code (such as en-US) to set as the space's default locale. |         |
 
 ### Create Webhook {#createwebhook}
 
 Creates a new webhook.
 
-| Input      | Comments                                                                 | Default |
-| ---------- | ------------------------------------------------------------------------ | ------- |
-| Connection | The Contentful connection to use.                                        |         |
-| Space ID   | The unique identifier for the Contentful space.                          |         |
-| Name       | A descriptive label to identify the webhook in the Contentful dashboard. |         |
-| URL        | The URL where webhook events will be sent.                               |         |
-| Events     | The event types to subscribe to for this webhook.                        |         |
+| Input      | Comments                                                                 | Default         |
+| ---------- | ------------------------------------------------------------------------ | --------------- |
+| Connection | The Contentful connection to use.                                        |                 |
+| Space ID   | The unique identifier for the Contentful space.                          |                 |
+| Name       | A descriptive label to identify the webhook in the Contentful dashboard. |                 |
+| URL        | The URL where webhook events will be sent.                               |                 |
+| Events     | The event types to subscribe to for this webhook.                        | <code>[]</code> |
 
 ### Delete Asset {#deleteasset}
 
@@ -482,23 +481,23 @@ Replaces all fields of an existing entry with the provided data.
 
 Sends a raw HTTP request to the Contentful API.
 
-| Input                   | Comments                                                                                                                                                                                           | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Contentful connection to use.                                                                                                                                                                  |         |
-| URL                     | Input the path only (/spaces), The base URL is already included (https://api.contentful.com). For example, to connect to https://api.contentful.com/spaces, only /spaces is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                            |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                          |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                               |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                   |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                             |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                        |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                           | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.   | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                      | false   |
+| Input                   | Comments                                                                                                                                                                                           | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Contentful connection to use.                                                                                                                                                                  |                 |
+| URL                     | Input the path only (/spaces), The base URL is already included (https://api.contentful.com). For example, to connect to https://api.contentful.com/spaces, only /spaces is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                            |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                          |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                               | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                   | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                             | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                        | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                           | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.   | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                      | false           |
 
 ### Unarchive Entry {#unarchiveentry}
 
@@ -561,16 +560,16 @@ Updates an existing asset.
 
 Updates an existing content type.
 
-| Input               | Comments                                                      | Default                                                                                                                                                                                                                                                                                  |
-| ------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Connection          | The Contentful connection to use.                             |                                                                                                                                                                                                                                                                                          |
-| Space ID            | The unique identifier for the Contentful space.               |                                                                                                                                                                                                                                                                                          |
-| Environment ID      | The unique identifier for the Contentful environment.         |                                                                                                                                                                                                                                                                                          |
-| Content Type ID     | The unique identifier for the content type.                   |                                                                                                                                                                                                                                                                                          |
-| Content Type Name   | The updated name for the content type.                        |                                                                                                                                                                                                                                                                                          |
-| Content Type Fields | The updated field definitions for the content type.           | <code>[<br /> {<br /> "id": "title",<br /> "name": "Title",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> },<br /> {<br /> "id": "body",<br /> "name": "Body",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> }<br />]</code> |
-| Display Field       | The updated field used as the main display field for entries. |                                                                                                                                                                                                                                                                                          |
-| Description         | The updated description for the content type.                 |                                                                                                                                                                                                                                                                                          |
+| Input               | Comments                                                                                                                                           | Default                                                                                                                                                                                                                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection          | The Contentful connection to use.                                                                                                                  |                                                                                                                                                                                                                                                                                          |
+| Space ID            | The unique identifier for the Contentful space.                                                                                                    |                                                                                                                                                                                                                                                                                          |
+| Environment ID      | The unique identifier for the Contentful environment.                                                                                              |                                                                                                                                                                                                                                                                                          |
+| Content Type ID     | The unique identifier for the content type.                                                                                                        |                                                                                                                                                                                                                                                                                          |
+| Content Type Name   | The new display name for the content type. Leave blank to keep the current name.                                                                   |                                                                                                                                                                                                                                                                                          |
+| Content Type Fields | The field definitions as a JSON array of field objects. Replaces all existing fields on the content type; when empty, the current fields are kept. | <code>[<br /> {<br /> "id": "title",<br /> "name": "Title",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> },<br /> {<br /> "id": "body",<br /> "name": "Body",<br /> "required": true,<br /> "localized": true,<br /> "type": "Text"<br /> }<br />]</code> |
+| Display Field       | The updated field used as the main display field for entries.                                                                                      |                                                                                                                                                                                                                                                                                          |
+| Description         | A brief explanation of what this content type is used for. Leave blank to keep the current description.                                            |                                                                                                                                                                                                                                                                                          |
 
 ### Update Environment {#updateenvironment}
 
@@ -581,7 +580,7 @@ Updates an existing environment.
 | Connection       | The Contentful connection to use.                     |         |
 | Space ID         | The unique identifier for the Contentful space.       |         |
 | Environment ID   | The unique identifier for the Contentful environment. |         |
-| Environment Name | The updated name for the environment.                 |         |
+| Environment Name | The display name for the environment.                 |         |
 
 ### Update Organization {#updateorganization}
 
@@ -601,18 +600,18 @@ Updates an existing space.
 | ---------- | ----------------------------------------------- | ------- |
 | Connection | The Contentful connection to use.               |         |
 | Space ID   | The unique identifier for the Contentful space. |         |
-| Space Name | The updated name for the space.                 |         |
+| Space Name | The display name for the space.                 |         |
 
 ### Update Webhook {#updatewebhook}
 
 Updates an existing webhook.
 
-| Input      | Comments                                        | Default |
-| ---------- | ----------------------------------------------- | ------- |
-| Connection | The Contentful connection to use.               |         |
-| Space ID   | The unique identifier for the Contentful space. |         |
-| Name       | The updated name for the webhook.               |         |
-| Webhook ID | The unique identifier for the webhook.          |         |
+| Input      | Comments                                                                 | Default |
+| ---------- | ------------------------------------------------------------------------ | ------- |
+| Connection | The Contentful connection to use.                                        |         |
+| Space ID   | The unique identifier for the Contentful space.                          |         |
+| Name       | A descriptive label to identify the webhook in the Contentful dashboard. |         |
+| Webhook ID | The unique identifier for the webhook.                                   |         |
 
 ### Upload File {#uploadfile}
 

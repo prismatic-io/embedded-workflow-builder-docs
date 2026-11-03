@@ -97,14 +97,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected Bynder resource type on a configured schedule.
+Retrieves existing and ongoing records for a selected Bynder resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                  | Default |
-| -------------------- | --------------------------------------------------------- | ------- |
-| Connection           | The Bynder connection to use.                             |         |
-| Resource Type        | The type of resource to poll for new and updated records. |         |
-| Show New Records     | Include newly created records in trigger results.         | true    |
-| Show Updated Records | Include updated records in trigger results.               | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Bynder connection to use.                                                                                                                                                                                                                                                        |         |
+| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                                                            |         |
+| Show New Records     | Include newly created records in trigger results.                                                                                                                                                                                                                                    | true    |
+| Show Updated Records | Include updated records in trigger results.                                                                                                                                                                                                                                          | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created or modified on or after this date once, ignoring the visibility filters. |         |
 
 ## Actions
 
@@ -112,12 +113,12 @@ Checks for new and updated records in a selected Bynder resource type on a confi
 
 Add metaproperty options to an asset
 
-| Input                    | Comments                                                      | Default |
-| ------------------------ | ------------------------------------------------------------- | ------- |
-| Asset ID                 | Id of the asset.                                              |         |
-| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |         |
-| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. |         |
-| Connection               |                                                               |         |
+| Input                    | Comments                                                      | Default         |
+| ------------------------ | ------------------------------------------------------------- | --------------- |
+| Asset ID                 | Id of the asset.                                              |                 |
+| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |                 |
+| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. | <code>[]</code> |
+| Connection               |                                                               |                 |
 
 ### Close Campaign {#closecampaign}
 
@@ -193,12 +194,12 @@ Delete an existing asset
 
 Remove metaproperty options from an asset
 
-| Input                    | Comments                                                      | Default |
-| ------------------------ | ------------------------------------------------------------- | ------- |
-| Asset ID                 | Id of the asset.                                              |         |
-| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |         |
-| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. |         |
-| Connection               |                                                               |         |
+| Input                    | Comments                                                      | Default         |
+| ------------------------ | ------------------------------------------------------------- | --------------- |
+| Asset ID                 | Id of the asset.                                              |                 |
+| Metaproperty ID          | Id of the metaproperty from which you want to add options.    |                 |
+| Metaproperty Options IDs | List of metaproperty option ids you want to add to the asset. | <code>[]</code> |
+| Connection               |                                                               |                 |
 
 ### Delete Campaign {#deletecampaign}
 
@@ -417,15 +418,15 @@ Initialize a new file upload.
 
 Retrieve all assets
 
-| Input            | Comments                                                                                                                               | Default |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Page             | The page number to retrieve                                                                                                            |         |
-| Limit            | Maximum number of results. Maximum: 1000. Default: 50                                                                                  |         |
-| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false   |
-| Total            | Indicating whether or not the response should include the total count of results.                                                      | false   |
-| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true    |
-| Extra Parameters | Extra parameters to be included in the request.                                                                                        |         |
-| Connection       |                                                                                                                                        |         |
+| Input            | Comments                                                                                                                               | Default         |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Page             | The page number to retrieve                                                                                                            |                 |
+| Limit            | Maximum number of results. Maximum: 1000. Default: 50                                                                                  |                 |
+| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false           |
+| Total            | Indicating whether or not the response should include the total count of results.                                                      | false           |
+| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true            |
+| Extra Parameters | Extra parameters to be included in the request.                                                                                        | <code>[]</code> |
+| Connection       |                                                                                                                                        |                 |
 
 ### List Brands {#listbrands}
 
@@ -447,49 +448,49 @@ Retrieve all campaigns
 
 Retrieve all collections
 
-| Input            | Comments                                                                                                                               | Default |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Page             | The page number to retrieve                                                                                                            |         |
-| Limit            | Maximum results to return. If limit is not provided, all results are returned.                                                         |         |
-| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false   |
-| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true    |
-| Extra Parameters | Extra parameters to be included in the request.                                                                                        |         |
-| Connection       |                                                                                                                                        |         |
+| Input            | Comments                                                                                                                               | Default         |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Page             | The page number to retrieve                                                                                                            |                 |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned.                                                         |                 |
+| Count            | Indicating whether or not the response should include count results. This parameter when passed as true overrides the total parameter. | false           |
+| Fetch All        | Whether to fetch all results. If true, limit and page parameters are ignored.                                                          | true            |
+| Extra Parameters | Extra parameters to be included in the request.                                                                                        | <code>[]</code> |
+| Connection       |                                                                                                                                        |                 |
 
 ### List Jobs {#listjobs}
 
 Retrieve all jobs
 
-| Input            | Comments                                                                       | Default |
-| ---------------- | ------------------------------------------------------------------------------ | ------- |
-| Page             | The page number to retrieve                                                    |         |
-| Limit            | Maximum results to return. If limit is not provided, all results are returned. |         |
-| Extra Parameters | Extra parameters to be included in the request.                                |         |
-| Connection       |                                                                                |         |
+| Input            | Comments                                                                       | Default         |
+| ---------------- | ------------------------------------------------------------------------------ | --------------- |
+| Page             | The page number to retrieve                                                    |                 |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned. |                 |
+| Extra Parameters | Extra parameters to be included in the request.                                | <code>[]</code> |
+| Connection       |                                                                                |                 |
 
 ### List Jobs By Campaign {#listjobsbycampaign}
 
 Retrieve jobs tied to a campaign
 
-| Input            | Comments                                                                       | Default |
-| ---------------- | ------------------------------------------------------------------------------ | ------- |
-| Campaign ID      | The ID of the campaign to retrieve jobs for                                    |         |
-| Page             | The page number to retrieve                                                    |         |
-| Limit            | Maximum results to return. If limit is not provided, all results are returned. |         |
-| Extra Parameters | Extra parameters to be included in the request.                                |         |
-| Connection       |                                                                                |         |
+| Input            | Comments                                                                       | Default         |
+| ---------------- | ------------------------------------------------------------------------------ | --------------- |
+| Campaign ID      | The ID of the campaign to retrieve jobs for                                    |                 |
+| Page             | The page number to retrieve                                                    |                 |
+| Limit            | Maximum results to return. If limit is not provided, all results are returned. |                 |
+| Extra Parameters | Extra parameters to be included in the request.                                | <code>[]</code> |
+| Connection       |                                                                                |                 |
 
 ### List Metaproperties {#listmetaproperties}
 
 Retrieve all metaproperties.
 
-| Input      | Comments                                                                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Count      | Indicates whether or not the response should include asset count results for metaproperty-options.                                      | false   |
-| Type       | List of asset types. Filters the count results by asset type. It only makes sense to be defined if the count parameter was set to true. |         |
-| Format     | Indicates whether or not the response should include the metaproperty options of each metaproperty.                                     | false   |
-| IDs        | List of metaproperty ids. Will return a metaproperty for each existing id.                                                              |         |
-| Connection |                                                                                                                                         |         |
+| Input      | Comments                                                                                                                                | Default         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Count      | Indicates whether or not the response should include asset count results for metaproperty-options.                                      | false           |
+| Type       | List of asset types. Filters the count results by asset type. It only makes sense to be defined if the count parameter was set to true. | <code>[]</code> |
+| Format     | Indicates whether or not the response should include the metaproperty options of each metaproperty.                                     | false           |
+| IDs        | List of metaproperty ids. Will return a metaproperty for each existing id.                                                              | <code>[]</code> |
+| Connection |                                                                                                                                         |                 |
 
 ### List Orders {#listorders}
 
@@ -523,23 +524,23 @@ Retrieve all users
 
 Send raw HTTP request to Bynder
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Register Uploaded Chunk {#registeruploadedchunk}
 

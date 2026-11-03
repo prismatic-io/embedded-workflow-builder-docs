@@ -37,11 +37,12 @@ If you believe your API key has been compromised, please contact Yoti Client Sup
 
 ### New Envelopes {#pollchangestrigger}
 
-Fetches Yoti Sign Envelopes created on a recurring schedule.
+Retrieves existing and ongoing envelopes from Yoti Sign. Load history once, check for new envelopes on a schedule, or both.
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| Connection |          |         |
+| Input          | Comments                                                                                                                                                                                                                                | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                                                                                                                                         |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once. |         |
 
 ## Actions
 

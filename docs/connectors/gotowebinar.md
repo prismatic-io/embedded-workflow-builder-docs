@@ -53,12 +53,13 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New Registrants {#pollchangestrigger}
 
-Fetches new registrants added to a GoTo Webinar webinar on a configured schedule.
+Retrieves existing and ongoing registrants for a specified GoTo Webinar webinar. Load history once, check for changes on a schedule, or both.
 
-| Input       | Comments                               | Default |
-| ----------- | -------------------------------------- | ------- |
-| Connection  |                                        |         |
-| Webinar Key | The unique identifier for the webinar. |         |
+| Input          | Comments                                                                                                                                                                                                                                           | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     |                                                                                                                                                                                                                                                    |         |
+| Webinar Key    | The unique identifier for the webinar.                                                                                                                                                                                                             |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each registrant who registered on or after this date once. |         |
 
 ### User Subscription {#usersubscriptiontrigger}
 
@@ -87,28 +88,30 @@ Cancels a specific webinar.
 
 Register an attendee for a scheduled webinar.
 
-| Input                  | Comments                                                                                                           | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection             |                                                                                                                    |         |
-| Webinar Key            | The unique identifier for the webinar.                                                                             |         |
-| First Name             | The first name of the registrant.                                                                                  |         |
-| Last Name              | The last name of the registrant.                                                                                   |         |
-| Email                  | The email address of the registrant.                                                                               |         |
-| Source                 | The source that led to the registration. This can be any string like 'Newsletter 123' or 'Marketing campaign ABC'. |         |
-| Address                | The street address of the registrant.                                                                              |         |
-| City                   | The city of the registrant.                                                                                        |         |
-| State                  | The state or province of the registrant.                                                                           |         |
-| Zip Code               | The postal code of the registrant.                                                                                 |         |
-| Country                | The country of the registrant.                                                                                     |         |
-| Phone                  | The phone number of the registrant.                                                                                |         |
-| Organization           | The organization the registrant belongs to.                                                                        |         |
-| Job Title              | The job title of the registrant.                                                                                   |         |
-| Questions and Comments | Any questions or comments submitted by the registrant.                                                             |         |
-| Industry               | The industry the registrant works in.                                                                              |         |
-| Number of Employees    | The number of employees in the registrant's organization.                                                          |         |
-| Purchasing Time Frame  | The time frame within which the product will be purchased.                                                         |         |
-| Purchasing Role        | The role of the registrant in the purchasing process.                                                              |         |
-| Responses              | The answers to the webinar's custom registration questions. Provide a JSON array of question/response objects.     |         |
+| Input                  | Comments                                                                                                                                                                    | Default |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             |                                                                                                                                                                             |         |
+| First Name             | The first name of the registrant.                                                                                                                                           |         |
+| Last Name              | The last name of the registrant.                                                                                                                                            |         |
+| Webinar Key            | The unique identifier for the webinar.                                                                                                                                      |         |
+| Email                  | The email address of the registrant.                                                                                                                                        |         |
+| Phone                  | The phone number of the registrant.                                                                                                                                         |         |
+| Source                 | The source that led to the registration. This can be any string like 'Newsletter 123' or 'Marketing campaign ABC'.                                                          |         |
+| Address                | Street address, city, state, zip code, and country.                                                                                                                         |         |
+| Address                | The street address of the registrant.                                                                                                                                       |         |
+| City                   | The city of the registrant.                                                                                                                                                 |         |
+| State                  | The state or province of the registrant.                                                                                                                                    |         |
+| Zip Code               | The postal code of the registrant.                                                                                                                                          |         |
+| Country                | The country of the registrant.                                                                                                                                              |         |
+| Additional Fields      | Additional optional fields: includes Organization, Job Title, Industry, Number of Employees, Purchasing Time Frame, Purchasing Role, Questions and Comments, and Responses. |         |
+| Organization           | The organization the registrant belongs to.                                                                                                                                 |         |
+| Job Title              | The job title of the registrant.                                                                                                                                            |         |
+| Industry               | The industry the registrant works in.                                                                                                                                       |         |
+| Number of Employees    | The number of employees in the registrant's organization.                                                                                                                   |         |
+| Purchasing Time Frame  | The time frame within which the product will be purchased.                                                                                                                  |         |
+| Purchasing Role        | The role of the registrant in the purchasing process.                                                                                                                       |         |
+| Questions and Comments | Any questions or comments submitted by the registrant.                                                                                                                      |         |
+| Responses              | The answers to the webinar's custom registration questions. Provide a JSON array of question/response objects.                                                              |         |
 
 ### Create User Subscription {#createusersubscription}
 
@@ -129,20 +132,22 @@ Creates a single session webinar, a sequence of webinars, or a series of webinar
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                           |                                                                                                                                                                                                                                                        |         |
 | Subject                              | The title displayed for the webinar.                                                                                                                                                                                                                   |         |
-| Description                          | A summary of what the webinar covers.                                                                                                                                                                                                                  |         |
 | Webinar Type                         | The scheduling format for the webinar. Select 'Single Session' for a one-time event, 'Series' for multiple related sessions, or 'Sequence' for an ordered set of sessions.                                                                             |         |
-| Experience Type                      | The experience type of the webinar.                                                                                                                                                                                                                    | CLASSIC |
 | Time Range for Webinar               | Time Range Array for the webinar. Please note that the examples provided describe the expected payload given all webinar types. Only one array should be used based on the webinar type.                                                               |         |
+| Description                          | A summary of what the webinar covers.                                                                                                                                                                                                                  |         |
+| Experience Type                      | The experience type of the webinar.                                                                                                                                                                                                                    | CLASSIC |
 | Timezone                             | The time zone where the webinar is taking place (must be a valid time zone ID). If this parameter is not passed, the timezone of the organizer's profile will be used.                                                                                 |         |
-| Locale                               | The language and region used for the webinar's display text.                                                                                                                                                                                           |         |
-| Recording Asset Key                  | The recording asset with which the simulive webinar should be created from. In case the recordingasset was created as an online recording the simulive webinar settings, poll and surveys would be copied from the webinar whose session was recorded. |         |
-| Is On Demand                         | A boolean flag indicating if the webinar should be On-Demand.                                                                                                                                                                                          | false   |
-| Is Breakout                          | A boolean flag indicating if the webinar should be breakout.                                                                                                                                                                                           | false   |
-| Is Password Protected                | Indicates if the webinar is password protected.                                                                                                                                                                                                        | false   |
+| Email Settings                       | Configure which automated emails are sent to registrants for the webinar.                                                                                                                                                                              |         |
 | Should Send Confirmation Email       | Whether or not to send a confirmation email to the registrants.                                                                                                                                                                                        |         |
 | Should Send Reminder Email           | Whether or not to send a reminder email to the registrants.                                                                                                                                                                                            |         |
 | Should Send Absentee Follow Up Email | Whether or not to send an absentee follow up email to the registrants.                                                                                                                                                                                 |         |
 | Should Send Attendee Follow Up Email | Whether or not to send an attendee follow up email to the registrants.                                                                                                                                                                                 |         |
+| Additional Fields                    | Additional optional fields: includes Recording Asset Key, Is On Demand, Is Breakout, Is Password Protected, and Locale.                                                                                                                                |         |
+| Recording Asset Key                  | The recording asset with which the simulive webinar should be created from. In case the recordingasset was created as an online recording the simulive webinar settings, poll and surveys would be copied from the webinar whose session was recorded. |         |
+| Is On Demand                         | A boolean flag indicating if the webinar should be On-Demand.                                                                                                                                                                                          | false   |
+| Is Breakout                          | A boolean flag indicating if the webinar should be breakout.                                                                                                                                                                                           | false   |
+| Is Password Protected                | Indicates if the webinar is password protected.                                                                                                                                                                                                        | false   |
+| Locale                               | The language and region used for the webinar's display text.                                                                                                                                                                                           |         |
 
 ### Delete Instanced Subscriptions {#deleteinstancedwebhooksaction}
 
@@ -206,15 +211,16 @@ Retrieve a user subscription by User Subscription Key.
 
 Returns upcoming and past webinars for the currently authenticated organizer that are scheduled within the specified date/time range.
 
-| Input       | Comments                                                                                                                                 | Default |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                                          |         |
-| From Time   | The start of the date/time range to query, in ISO 8601 UTC format. Format: YYYY-MM-DDThh:mm:ssZ.                                         |         |
-| To Time     | The end of the date/time range to query, in ISO 8601 UTC format. Format: YYYY-MM-DDThh:mm:ssZ.                                           |         |
-| Fetch All   | When true, automatically fetches all pages of results using pagination. When false, only the first page is fetched.                      | false   |
-| Page Number | The zero-based index of the page to return. The first page is 0.                                                                         |         |
-| Page Size   | The maximum number of results to return per page. The maximum value is 200.                                                              |         |
-| Account Key | The unique identifier for the account. When provided instead of the organizer key, the action retrieves webinars scoped to this account. |         |
+| Input       | Comments                                                                                                                       | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection  |                                                                                                                                |         |
+| From Time   | The start of the date/time range to query, in ISO 8601 UTC format. Format: YYYY-MM-DDThh:mm:ssZ.                               |         |
+| To Time     | The end of the date/time range to query, in ISO 8601 UTC format. Format: YYYY-MM-DDThh:mm:ssZ.                                 |         |
+| Account Key | The key of the account. If using this input instead of the organizer key, the action will retrieve the webinars by Account Key |         |
+| Fetch All   | When true, automatically fetches all pages of results using pagination. When false, only the first page is fetched.            | false   |
+| Pagination  | Page number and page size for paginated results.                                                                               |         |
+| Page Number | The zero-based index of the page to return. The first page is 0.                                                               |         |
+| Page Size   | The maximum number of results to return per page. The maximum value is 200.                                                    |         |
 
 ### List Attendees {#listattendees}
 
@@ -234,6 +240,7 @@ Retrieve registration details for all registrants of a specific webinar.
 | ----------- | --------------------------------------------------------------------------- | ------- |
 | Connection  |                                                                             |         |
 | Webinar Key | The unique identifier for the webinar.                                      |         |
+| Pagination  | Page number and page size for paginated results.                            |         |
 | Page Number | The zero-based index of the page to return. The first page is 0.            |         |
 | Page Size   | The maximum number of results to return per page. The maximum value is 200. |         |
 
@@ -303,6 +310,7 @@ Updates a specific webinar.
 | Time Range for Webinar               | The time range of the webinar.                                                                                                                                         |         |
 | Timezone                             | The time zone where the webinar is taking place (must be a valid time zone ID). If this parameter is not passed, the timezone of the organizer's profile will be used. |         |
 | Locale                               | The language and region used for the webinar's display text.                                                                                                           |         |
+| Email Settings                       | Configure which automated emails are sent to registrants for the webinar.                                                                                              |         |
 | Should Send Confirmation Email       | Whether or not to send a confirmation email to the registrants.                                                                                                        |         |
 | Should Send Reminder Email           | Whether or not to send a reminder email to the registrants.                                                                                                            |         |
 | Should Send Absentee Follow Up Email | Whether or not to send an absentee follow up email to the registrants.                                                                                                 |         |

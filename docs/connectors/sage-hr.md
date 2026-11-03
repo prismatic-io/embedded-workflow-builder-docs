@@ -29,7 +29,7 @@ To activate API:
 
 ## Triggers
 
-### Poll Changes {#pollchangestrigger}
+### New Records {#pollchangestrigger}
 
 Checks for new records in Sage HR on a configured schedule.
 

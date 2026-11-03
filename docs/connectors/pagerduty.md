@@ -102,12 +102,13 @@ Receive incident webhook notifications from PagerDuty when a selected incident e
 
 ### New Incidents {#pollchangestrigger}
 
-Fetches incidents created since the last execution on a recurring schedule.
+Retrieves existing and ongoing incidents from PagerDuty. Load history once, check for changes on a schedule, or both.
 
-| Input              | Comments                                                                      | Default |
-| ------------------ | ----------------------------------------------------------------------------- | ------- |
-| Connection         | The PagerDuty connection to use.                                              |         |
-| Show New Incidents | When enabled, newly created incidents will be included in the trigger output. | true    |
+| Input              | Comments                                                                                                                                                                                                                                                                            | Default |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The PagerDuty connection to use.                                                                                                                                                                                                                                                    |         |
+| Show New Incidents | When enabled, newly created incidents will be included in the trigger output.                                                                                                                                                                                                       | true    |
+| Look-back Date     | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
 
 ### Service Webhook {#servicetrigger}
 

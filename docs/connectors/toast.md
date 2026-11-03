@@ -31,14 +31,15 @@ To authenticate via OAuth 2.0 You must provide a client identifier (clientId) an
 
 ### New and Updated Time Entries {#pollchangestrigger}
 
-Checks for new and updated time entries in Toast on a configured schedule.
+Retrieves existing and ongoing time entries for a specified Toast restaurant. Load history once, check for changes on a schedule, or both.
 
-| Input                     | Comments                                                                                                                                          | Default |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                   |         |
-| Restaurant External ID    | The GUID of the restaurant that is the context of the request. Use the List Accessible Restaurants action to get the external ID of a restaurant. |         |
-| Show New Time Entries     | When true, newly created time entries will be included in the trigger output.                                                                     | true    |
-| Show Updated Time Entries | When true, time entries modified after the last poll will be included in the trigger output.                                                      | true    |
+| Input                     | Comments                                                                                                                                                                                                                                                                                                                                                                                          | Default |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                |                                                                                                                                                                                                                                                                                                                                                                                                   |         |
+| Restaurant External ID    | The GUID of the restaurant that is the context of the request. Use the List Accessible Restaurants action to get the external ID of a restaurant.                                                                                                                                                                                                                                                 |         |
+| Look-back Date            | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. The Toast API limits the query window to 30 days, so dates further back are clamped to 30 days before the current time. |         |
+| Show New Time Entries     | When true, newly created time entries will be included in the trigger output.                                                                                                                                                                                                                                                                                                                     | true    |
+| Show Updated Time Entries | When true, time entries modified after the last poll will be included in the trigger output.                                                                                                                                                                                                                                                                                                      | true    |
 
 ### Webhook {#webhook}
 

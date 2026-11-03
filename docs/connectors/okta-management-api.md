@@ -59,28 +59,31 @@ Receive event hooks from Okta when a specified event occurs.
 
 ### New System Logs {#newsystemlogspollingtrigger}
 
-Fetches system logs created on a recurring schedule.
+Retrieves existing and ongoing system log events from Okta. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                                                                                                                                                                                                                                                               | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Filter     | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |         |
-| Connection | The Okta connection to use.                                                                                                                                                                                                                                            |         |
+| Input          | Comments                                                                                                                                                                                                                                                               | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Okta connection to use.                                                                                                                                                                                                                                            |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each event published on or after this date once.                               |         |
+| Filter         | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |         |
 
 ### New Users {#newuserspollingtrigger}
 
-Fetches users created on a recurring schedule.
+Retrieves existing and ongoing users created in Okta. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Okta connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Okta connection to use.                                                                                                                                                                                                           |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each user created on or after this date once. |         |
 
 ### Updated Users {#updateduserspollingtrigger}
 
-Fetches users updated on a recurring schedule.
+Retrieves existing and ongoing users updated in Okta. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Okta connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                              | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Okta connection to use.                                                                                                                                                                                                           |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each user updated on or after this date once. |         |
 
 ## Actions
 

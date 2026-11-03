@@ -188,23 +188,24 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive real-time notifications when Jira issues are created, updated, or deleted. Automatically creates and manages a webhook subscription for selected issue events when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input            | Comments                                                                                                                                                                                                                             | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection       | The Jira connection to use.                                                                                                                                                                                                          |         |
-| Event Types      | One or more Jira issue events that will trigger this webhook.                                                                                                                                                                        |         |
-| JQL Filter       | JQL (Jira Query Language) filter to limit which issues trigger the webhook. For more information, see [JQL Documentation](https://support.atlassian.com/jira-software-cloud/docs/use-advanced-search-with-jira-query-language-jql/). |         |
-| Field IDs Filter | An optional list of field IDs to monitor. Only changes to these specific fields will trigger the webhook. Leave empty to monitor all field changes.                                                                                  |         |
+| Input            | Comments                                                                                                                                                                                                                             | Default         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection       | The Jira connection to use.                                                                                                                                                                                                          |                 |
+| Event Types      | One or more Jira issue events that will trigger this webhook.                                                                                                                                                                        | <code>[]</code> |
+| JQL Filter       | JQL (Jira Query Language) filter to limit which issues trigger the webhook. For more information, see [JQL Documentation](https://support.atlassian.com/jira-software-cloud/docs/use-advanced-search-with-jira-query-language-jql/). |                 |
+| Field IDs Filter | An optional list of field IDs to monitor. Only changes to these specific fields will trigger the webhook. Leave empty to monitor all field changes.                                                                                  | <code>[]</code> |
 
 ### New and Updated Issues {#pollchangestrigger}
 
-Checks for new and updated issues in Jira on a configured schedule, separated into new and updated buckets using JQL on /search/jql.
+Retrieves existing and ongoing issues from Jira. Load history once, check for changes on a schedule, or both.
 
-| Input                 | Comments                                                                                                                                           | Default |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Jira connection to use.                                                                                                                        |         |
-| Additional JQL Filter | Optional JQL clause appended (with AND) to the built-in `updated >= <lastPolledAt>` filter. Use to narrow results by project, type, assignee, etc. |         |
-| Show New Issues       | When enabled, issues created since the last poll will be included in the trigger output.                                                           | true    |
-| Show Updated Issues   | When enabled, issues updated since the last poll will be included in the trigger output.                                                           | true    |
+| Input                 | Comments                                                                                                                                                                                                                                                                           | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Jira connection to use.                                                                                                                                                                                                                                                        |         |
+| Look-back Date        | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each issue created or updated on or after this date once, ignoring the visibility filters. |         |
+| Additional JQL Filter | Optional JQL clause appended (with AND) to the built-in `updated >=` last-poll filter. Use to narrow results by project, type, assignee, etc.                                                                                                                                      |         |
+| Show New Issues       | When true, includes issues created since the last poll in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Issues   | When true, includes issues updated since the last poll in the trigger output.                                                                                                                                                                                                      | true    |
 
 ## Actions
 
@@ -212,80 +213,82 @@ Checks for new and updated issues in Jira on a configured schedule, separated in
 
 Add a comment to an existing issue.
 
-| Input          | Comments                                                                                                                                                         | Default |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Jira connection to use.                                                                                                                                      |         |
-| Issue ID       | The unique identifier of the Jira issue.                                                                                                                         |         |
-| Comment        | The plain-text body of the comment.                                                                                                                              |         |
-| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |         |
-| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            |         |
+| Input          | Comments                                                                                                                                                         | Default         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Jira connection to use.                                                                                                                                      |                 |
+| Issue ID       | The unique identifier of the Jira issue.                                                                                                                         |                 |
+| Comment        | The plain-text body of the comment.                                                                                                                              |                 |
+| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |                 |
+| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            | <code>[]</code> |
 
 ### Add Issue Attachment {#addissueattachment}
 
 Add a file attachment to an issue.
 
-| Input      | Comments                                                     | Default |
-| ---------- | ------------------------------------------------------------ | ------- |
-| Connection | The Jira connection to use.                                  |         |
-| Issue ID   | The unique identifier of the Jira issue.                     |         |
-| File       | The file to upload - either string contents or a binary file |         |
-| File Name  | The name of the file to upload                               |         |
+| Input      | Comments                                                             | Default |
+| ---------- | -------------------------------------------------------------------- | ------- |
+| Connection | The Jira connection to use.                                          |         |
+| Issue ID   | The unique identifier of the Jira issue.                             |         |
+| File       | The file to upload - either string contents or a binary file         |         |
+| File Name  | The file name, including extension, shown on the attachment in Jira. |         |
 
 ### Create Issue {#createissue}
 
 Create an issue within a given project.
 
-| Input               | Comments                                                                                                                                                                                                                                                | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Jira connection to use.                                                                                                                                                                                                                             |         |
-| Project ID          | The unique identifier or name of the Jira project.                                                                                                                                                                                                      |         |
-| Summary             | A short one-line title for the issue, shown in lists and search results.                                                                                                                                                                                |         |
-| Description         | A detailed description of the issue.                                                                                                                                                                                                                    |         |
-| ADF Description     | The Atlassian Document Format (ADF) JSON representation of the issue description. Provide this OR Description — not both. Use the [ADF playground](https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/) to generate the JSON. |         |
-| Issue Type Name     | The human-readable name of the issue type to assign to the issue. Provide this field OR Issue Type ID — not both.                                                                                                                                       |         |
-| Issue Type ID       | The unique identifier of the issue type to assign to the issue. Provide this field OR Issue Type Name — not both.                                                                                                                                       |         |
-| Assignee Account ID | The Atlassian account ID of the user to assign the issue to.                                                                                                                                                                                            |         |
-| Reporter Account ID | The Atlassian account ID of the user reporting the issue.                                                                                                                                                                                               |         |
-| Due Date            | The date when the issue is due. Format: `YYYY-MM-DD`.                                                                                                                                                                                                   |         |
-| Priority            | The priority to assign to the issue. Accepts the priority ID, key, or name of the desired record.                                                                                                                                                       |         |
-| Labels              | A list of labels to attach to the issue. Each label must not contain spaces.                                                                                                                                                                            |         |
-| Versions            | The affected version(s) for the issue as a JSON array of objects. Each object must contain an `id` referencing an existing version.                                                                                                                     |         |
-| Fix Versions        | The fix version(s) for the issue as a JSON object containing an `id` property referencing an existing version.                                                                                                                                          |         |
-| Dynamic Fields      | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`.                                                                                        |         |
-| Values              | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                                                                                                                   |         |
+| Input               | Comments                                                                                                                                                                                                                                                | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Jira connection to use.                                                                                                                                                                                                                             |                 |
+| Project ID          | The unique identifier or name of the Jira project.                                                                                                                                                                                                      |                 |
+| Summary             | A short one-line title for the issue, shown in lists and search results.                                                                                                                                                                                |                 |
+| Description         | A detailed description of the issue.                                                                                                                                                                                                                    |                 |
+| ADF Description     | The Atlassian Document Format (ADF) JSON representation of the issue description. Provide this OR Description — not both. Use the [ADF playground](https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/) to generate the JSON. |                 |
+| Issue Type Name     | The name of the issue type. Provide this OR Issue Type ID; one is required, not both.                                                                                                                                                                   |                 |
+| Issue Type ID       | The ID of the issue type. Provide this OR Issue Type Name; one is required, not both.                                                                                                                                                                   |                 |
+| Assignee Account ID | The Atlassian account ID of the user to assign the issue to.                                                                                                                                                                                            |                 |
+| Reporter Account ID | The Atlassian account ID of the user reporting the issue.                                                                                                                                                                                               |                 |
+| Priority            | The ID of the priority to assign to the issue. Choose from the dropdown or enter a priority ID.                                                                                                                                                         |                 |
+| Labels              | A list of labels to attach to the issue. Each label must not contain spaces.                                                                                                                                                                            | <code>[]</code> |
+| Additional Fields   | Additional optional fields: includes Due Date, Versions, and Fix Versions.                                                                                                                                                                              |                 |
+| Due Date            | The date when the issue is due. Format: `YYYY-MM-DD`.                                                                                                                                                                                                   |                 |
+| Versions            | The affected version(s) for the issue as a JSON array of objects. Each object must contain an `id` referencing an existing version.                                                                                                                     |                 |
+| Fix Versions        | The fix version(s) for the issue as a JSON object containing an `id` property referencing an existing version.                                                                                                                                          |                 |
+| Dynamic Fields      | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`.                                                                                        |                 |
+| Values              | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                                                                                                                   | <code>[]</code> |
 
 ### Create User {#createuser}
 
 Create a new user record.
 
-| Input          | Comments                                                                                                                                                         | Default |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Jira connection to use.                                                                                                                                      |         |
-| Email Address  | The email address of the user.                                                                                                                                   |         |
-| Username       | The username for the Jira user account.                                                                                                                          |         |
-| Password       | The password to assign to the new user account.                                                                                                                  |         |
-| Notifications  | When true, the user will receive email notifications for relevant events.                                                                                        | false   |
-| Display Name   | The display name for the user account.                                                                                                                           |         |
-| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |         |
-| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            |         |
+| Input          | Comments                                                                                                                                                         | Default         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Jira connection to use.                                                                                                                                      |                 |
+| Email Address  | The email address of the user.                                                                                                                                   |                 |
+| Username       | The username for the Jira user account.                                                                                                                          |                 |
+| Password       | The password to assign to the new user account.                                                                                                                  |                 |
+| Notifications  | When true, the user will receive email notifications for relevant events.                                                                                        | false           |
+| Display Name   | The full name shown for the user across Jira, such as in assignee and reporter fields.                                                                           |                 |
+| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |                 |
+| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            | <code>[]</code> |
 
 ### Create Version {#createversion}
 
 Create a new version.
 
-| Input          | Comments                                                                                                                                                         | Default |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Jira connection to use.                                                                                                                                      |         |
-| Description    | A detailed description of the issue.                                                                                                                             |         |
-| Version Name   | The display name of the version (e.g., a release tag or date).                                                                                                   |         |
-| Archived       | When true, marks the version as archived.                                                                                                                        | false   |
-| Released       | When true, marks the version as released.                                                                                                                        | false   |
-| Start Date     | The date when work on this version starts. Format: `YYYY-MM-DD`.                                                                                                 |         |
-| Release Date   | The date when this version is released. Format: `YYYY-MM-DD`.                                                                                                    |         |
-| Project Key    | The project key identifier (e.g., PROJ, ENG, SALES).                                                                                                             |         |
-| Project ID     | The unique identifier or name of the Jira project.                                                                                                               |         |
-| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |         |
-| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            |         |
+| Input           | Comments                                                                                                                                                         | Default         |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      | The Jira connection to use.                                                                                                                                      |                 |
+| Description     | A short summary of what the version delivers, shown on the release page.                                                                                         |                 |
+| Version Name    | The display name of the version (e.g., a release tag or date).                                                                                                   |                 |
+| Release Details | Status flags and schedule dates.                                                                                                                                 |                 |
+| Archived        | When true, marks the version as archived.                                                                                                                        | false           |
+| Released        | When true, marks the version as released.                                                                                                                        | false           |
+| Start Date      | The date when work on this version starts. Format: `YYYY-MM-DD`.                                                                                                 |                 |
+| Release Date    | The date when this version is released. Format: `YYYY-MM-DD`.                                                                                                    |                 |
+| Project Key     | The project key identifier (e.g., PROJ, ENG, SALES).                                                                                                             |                 |
+| Project ID      | The unique identifier or name of the Jira project.                                                                                                               |                 |
+| Dynamic Fields  | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |                 |
+| Values          | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            | <code>[]</code> |
 
 ### Create Webhook {#createwebhook}
 
@@ -342,28 +345,28 @@ Find an issue by attribute.
 | Input        | Comments                                                                                                                                                                                                                         | Default |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Jira connection to use.                                                                                                                                                                                                      |         |
-| Search Type  | Attribute to search                                                                                                                                                                                                              |         |
-| Search Value | Value to search for                                                                                                                                                                                                              |         |
+| Search Type  | The field to match against: Number (issue key or ID) or Summary (text match).                                                                                                                                                    |         |
+| Search Value | The text to look for. Matching ignores case and surrounding whitespace.                                                                                                                                                          |         |
 | Fields       | A comma-separated list of fields to include in each returned issue. Defaults to common navigable fields (summary, status, assignee, reporter, priority, issuetype, project, created, updated). Use `*all` to return every field. |         |
 
 ### Find Project {#findproject}
 
 Find a project by attribute.
 
-| Input        | Comments                    | Default |
-| ------------ | --------------------------- | ------- |
-| Connection   | The Jira connection to use. |         |
-| Search Type  | Attribute to search         |         |
-| Search Value | Value to search for         |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Jira connection to use.                                             |         |
+| Search Type  | The project field to match against: Name or Key.                        |         |
+| Search Value | The text to look for. Matching ignores case and surrounding whitespace. |         |
 
 ### Find User {#finduser}
 
 Find a user by attribute.
 
-| Input        | Comments                    | Default |
-| ------------ | --------------------------- | ------- |
-| Connection   | The Jira connection to use. |         |
-| Search Value | Value to search for         |         |
+| Input        | Comments                                                                | Default |
+| ------------ | ----------------------------------------------------------------------- | ------- |
+| Connection   | The Jira connection to use.                                             |         |
+| Search Value | The text to look for. Matching ignores case and surrounding whitespace. |         |
 
 ### Get Board {#getboard}
 
@@ -417,8 +420,9 @@ Return a list of statuses for a project.
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
 | Project ID  | The unique identifier or name of the Jira project.                 |         |
-| Max Results | The maximum number of results to return per page.                  |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
+| Max Results | The maximum number of results to return per page.                  |         |
 
 ### Get User {#getuser}
 
@@ -447,6 +451,7 @@ Return a list of users assignable to the given project.
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
 | Project Key | The project key identifier (e.g., PROJ, ENG, SALES).               |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
 | Max Results | The maximum number of results to return per page.                  |         |
 
@@ -457,9 +462,10 @@ Retrieve a list of existing boards.
 | Input       | Comments                                                                                                                                                             | Default |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Jira connection to use.                                                                                                                                          |         |
+| Filter      | The scope used to limit returned dashboards. Common values are `my` (dashboards owned by the current user) and `favourite` (dashboards starred by the current user). | my      |
+| Pagination  | Page and page-size controls.                                                                                                                                         |         |
 | Start At    | The index of the first item to return in the result set (0-based).                                                                                                   | 0       |
 | Max Results | The maximum number of results to return per page.                                                                                                                    |         |
-| Filter      | The scope used to limit returned dashboards. Common values are `my` (dashboards owned by the current user) and `favourite` (dashboards starred by the current user). | my      |
 
 ### List Board Sprints {#listboardssprints}
 
@@ -469,6 +475,7 @@ List all sprints within a board.
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
 | Board ID    | The unique identifier of the Jira board.                           |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
 | Max Results | The maximum number of results to return per page.                  |         |
 
@@ -513,6 +520,7 @@ Return a list of issues for a specific project.
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection      | The Jira connection to use.                                                                                                                                                                                                      |         |
 | Project ID      | The unique identifier or name of the Jira project.                                                                                                                                                                               |         |
+| Pagination      | Cursor and page-size controls for paging through results.                                                                                                                                                                        |         |
 | Next Page Token | The pagination cursor returned from a previous response. Use it to fetch the next page of results. Leave empty for the first page.                                                                                               |         |
 | Max Results     | The maximum number of results to return per page.                                                                                                                                                                                |         |
 | Fields          | A comma-separated list of fields to include in each returned issue. Defaults to common navigable fields (summary, status, assignee, reporter, priority, issuetype, project, created, updated). Use `*all` to return every field. |         |
@@ -550,8 +558,9 @@ Return a list of all priorities.
 | Input       | Comments                                                           | Default |
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
-| Max Results | The maximum number of results to return per page.                  |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
+| Max Results | The maximum number of results to return per page.                  |         |
 
 ### List Projects {#listprojects}
 
@@ -560,8 +569,9 @@ Retrieve a list of all projects.
 | Input       | Comments                                                           | Default |
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
-| Max Results | The maximum number of results to return per page.                  |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
+| Max Results | The maximum number of results to return per page.                  |         |
 
 ### List Versions {#listversions}
 
@@ -571,8 +581,9 @@ Return a list of all versions for a project.
 | ----------- | ------------------------------------------------------------------ | ------- |
 | Connection  | The Jira connection to use.                                        |         |
 | Project ID  | The unique identifier or name of the Jira project.                 |         |
-| Max Results | The maximum number of results to return per page.                  |         |
+| Pagination  | Page and page-size controls.                                       |         |
 | Start At    | The index of the first item to return in the result set (0-based). | 0       |
+| Max Results | The maximum number of results to return per page.                  |         |
 
 ### List Webhooks {#listwebhooks}
 
@@ -587,43 +598,43 @@ List all configured webhooks, including those for other integrations.
 
 Search the entire Jira site using a JQL query.
 
-| Input       | Comments                                                                                                                             | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection  | The Jira connection to use.                                                                                                          |         |
-| Search      | The text to match against records when searching.                                                                                    |         |
-| Expand      | A comma-separated list of additional fields to include in the response. Values come from the `_expandable` property of the resource. |         |
-| Max Results | The maximum number of results to return per page.                                                                                    |         |
+| Input       | Comments                                                                                                                                                                                     | Default |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection  | The Jira connection to use.                                                                                                                                                                  |         |
+| Search      | The JQL query to run, sent to Jira unchanged. For syntax, see [JQL Documentation](https://support.atlassian.com/jira-software-cloud/docs/use-advanced-search-with-jira-query-language-jql/). |         |
+| Expand      | A comma-separated list of additional fields to include in the response. Values come from the `_expandable` property of the resource.                                                         |         |
+| Max Results | The maximum number of results to return per page.                                                                                                                                            |         |
 
 ### Raw Request {#rawrequest}
 
 Send a raw HTTP request to Jira.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                        | Default                    |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| Connection              | The Jira connection to use.                                                                                                                                                                                                                                                                     |                            |
-| URL                     | Input the path only (/rest/api/3/project/recent), The base URL is already included (https://api.atlassian.com/ex/jira/<CLOUD_ID>). For example, to connect to https://api.atlassian.com/ex/jira/<CLOUD_ID>/rest/api/3/project/recent, only /rest/api/3/project/recent is entered in this field. | /rest/api/3/project/recent |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                         |                            |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                       |                            |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                            |                            |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                |                            |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                          |                            |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                             |                            |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                     |                            |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                        | json                       |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                             |                            |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                             | 0                          |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                | false                      |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                             | 0                          |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                   | false                      |
+| Input                   | Comments                                                                                                                                                                                                                                                          | Default                    |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| Connection              | The Jira connection to use.                                                                                                                                                                                                                                       |                            |
+| URL                     | The path only, such as `/rest/api/3/project/recent`. The base URL `https://api.atlassian.com/ex/jira/{cloudId}` is already included, so to call `https://api.atlassian.com/ex/jira/{cloudId}/rest/api/3/project/recent`, enter only `/rest/api/3/project/recent`. | /rest/api/3/project/recent |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                           |                            |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                         |                            |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                              | <code>[]</code>            |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                  | <code>[]</code>            |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                            | <code>[]</code>            |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                               | <code>[]</code>            |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                       | <code>[]</code>            |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                          | json                       |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                               |                            |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                               | 0                          |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                  | false                      |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                               | 0                          |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                     | false                      |
 
 ### Refresh Webhook {#refreshwebhook}
 
 Refresh a webhook expiration by ID.
 
-| Input      | Comments                     | Default |
-| ---------- | ---------------------------- | ------- |
-| Connection | The Jira connection to use.  |         |
-| Webhook ID | ID of the webhook to refresh |         |
+| Input      | Comments                                                              | Default |
+| ---------- | --------------------------------------------------------------------- | ------- |
+| Connection | The Jira connection to use.                                           |         |
+| Webhook ID | The unique identifier of the webhook whose expiration date to extend. |         |
 
 ### Search Issues {#searchissues}
 
@@ -647,7 +658,7 @@ Return a list of projects that match the given string of text.
 
 ### Search Users {#searchusers}
 
-Return a single user that matches the given string of text.
+Return a list of users that match the given string of text.
 
 | Input      | Comments                                          | Default |
 | ---------- | ------------------------------------------------- | ------- |
@@ -668,54 +679,56 @@ Transition an existing issue by ID.
 
 Update the contents and metadata of an existing comment.
 
-| Input          | Comments                                                                                                                                                         | Default |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Jira connection to use.                                                                                                                                      |         |
-| Issue ID       | The unique identifier of the Jira issue.                                                                                                                         |         |
-| Comment ID     | The unique identifier of the comment.                                                                                                                            |         |
-| Comment        | The plain-text body of the comment.                                                                                                                              |         |
-| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |         |
-| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            |         |
+| Input          | Comments                                                                                                                                                         | Default         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Jira connection to use.                                                                                                                                      |                 |
+| Issue ID       | The unique identifier of the Jira issue.                                                                                                                         |                 |
+| Comment ID     | The unique identifier of the comment.                                                                                                                            |                 |
+| Comment        | The plain-text body of the comment.                                                                                                                              |                 |
+| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |                 |
+| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            | <code>[]</code> |
 
 ### Update Issue {#updateissue}
 
 Update an existing issue within a given project.
 
-| Input               | Comments                                                                                                                                                                                                                                                | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Jira connection to use.                                                                                                                                                                                                                             |         |
-| Issue ID            | The unique identifier of the Jira issue.                                                                                                                                                                                                                |         |
-| Project ID          | The unique identifier or name of the Jira project.                                                                                                                                                                                                      |         |
-| Summary             | A short one-line title for the issue, shown in lists and search results.                                                                                                                                                                                |         |
-| Description         | A detailed description of the issue.                                                                                                                                                                                                                    |         |
-| ADF Description     | The Atlassian Document Format (ADF) JSON representation of the issue description. Provide this OR Description — not both. Use the [ADF playground](https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/) to generate the JSON. |         |
-| Issue Type Name     | The human-readable name of the issue type to assign to the issue. Provide this field OR Issue Type ID — not both.                                                                                                                                       |         |
-| Issue Type ID       | The unique identifier of the issue type to assign to the issue. Provide this field OR Issue Type Name — not both.                                                                                                                                       |         |
-| Assignee Account ID | The Atlassian account ID of the user to assign the issue to.                                                                                                                                                                                            |         |
-| Reporter Account ID | The Atlassian account ID of the user reporting the issue.                                                                                                                                                                                               |         |
-| Fix Versions        | The fix version(s) for the issue as a JSON object containing an `id` property referencing an existing version.                                                                                                                                          |         |
-| Priority            | The priority to assign to the issue. Accepts the priority ID, key, or name of the desired record.                                                                                                                                                       |         |
-| Labels              | A list of labels to attach to the issue. Each label must not contain spaces.                                                                                                                                                                            |         |
-| Due Date            | The date when the issue is due. Format: `YYYY-MM-DD`.                                                                                                                                                                                                   |         |
-| Versions            | The affected version(s) for the issue as a JSON array of objects. Each object must contain an `id` referencing an existing version.                                                                                                                     |         |
-| Dynamic Fields      | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`.                                                                                        |         |
-| Values              | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                                                                                                                   |         |
+| Input               | Comments                                                                                                                                                                                                                                                | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Jira connection to use.                                                                                                                                                                                                                             |                 |
+| Issue ID            | The unique identifier of the Jira issue.                                                                                                                                                                                                                |                 |
+| Project ID          | The unique identifier or name of the Jira project.                                                                                                                                                                                                      |                 |
+| Summary             | A short one-line title for the issue, shown in lists and search results.                                                                                                                                                                                |                 |
+| Description         | A detailed description of the issue.                                                                                                                                                                                                                    |                 |
+| ADF Description     | The Atlassian Document Format (ADF) JSON representation of the issue description. Provide this OR Description — not both. Use the [ADF playground](https://developer.atlassian.com/cloud/jira/platform/apis/document/playground/) to generate the JSON. |                 |
+| Issue Type Name     | The human-readable name of the issue type to assign to the issue. Provide this field OR Issue Type ID — not both.                                                                                                                                       |                 |
+| Issue Type ID       | The unique identifier of the issue type to assign to the issue. Provide this field OR Issue Type Name — not both.                                                                                                                                       |                 |
+| Assignee Account ID | The Atlassian account ID of the user to assign the issue to.                                                                                                                                                                                            |                 |
+| Reporter Account ID | The Atlassian account ID of the user reporting the issue.                                                                                                                                                                                               |                 |
+| Priority            | The ID of the priority to assign to the issue. Choose from the dropdown or enter a priority ID.                                                                                                                                                         |                 |
+| Labels              | A list of labels to attach to the issue. Each label must not contain spaces.                                                                                                                                                                            | <code>[]</code> |
+| Additional Fields   | Additional optional fields: includes Due Date, Versions, and Fix Versions.                                                                                                                                                                              |                 |
+| Due Date            | The date when the issue is due. Format: `YYYY-MM-DD`.                                                                                                                                                                                                   |                 |
+| Versions            | The affected version(s) for the issue as a JSON array of objects. Each object must contain an `id` referencing an existing version.                                                                                                                     |                 |
+| Fix Versions        | The fix version(s) for the issue as a JSON object containing an `id` property referencing an existing version.                                                                                                                                          |                 |
+| Dynamic Fields      | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`.                                                                                        |                 |
+| Values              | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                                                                                                                   | <code>[]</code> |
 
 ### Update Version {#updateversion}
 
 Update an existing version by ID.
 
-| Input          | Comments                                                                                                                                                         | Default |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Jira connection to use.                                                                                                                                      |         |
-| Version ID     | The unique identifier of the version.                                                                                                                            |         |
-| Description    | A detailed description of the issue.                                                                                                                             |         |
-| Version Name   | The display name of the version (e.g., a release tag or date).                                                                                                   |         |
-| Archived       | When true, marks the version as archived.                                                                                                                        | false   |
-| Released       | When true, marks the version as released.                                                                                                                        | false   |
-| Start Date     | The date when work on this version starts. Format: `YYYY-MM-DD`.                                                                                                 |         |
-| Release Date   | The date when this version is released. Format: `YYYY-MM-DD`.                                                                                                    |         |
-| Project Key    | The project key identifier (e.g., PROJ, ENG, SALES).                                                                                                             |         |
-| Project ID     | The unique identifier or name of the Jira project.                                                                                                               |         |
-| Dynamic Fields | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |         |
-| Values         | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            |         |
+| Input           | Comments                                                                                                                                                         | Default         |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      | The Jira connection to use.                                                                                                                                      |                 |
+| Version ID      | The unique identifier of the version.                                                                                                                            |                 |
+| Description     | A short summary of what the version delivers, shown on the release page.                                                                                         |                 |
+| Version Name    | The display name of the version (e.g., a release tag or date).                                                                                                   |                 |
+| Release Details | Status flags and schedule dates.                                                                                                                                 |                 |
+| Archived        | When true, marks the version as archived.                                                                                                                        | false           |
+| Released        | When true, marks the version as released.                                                                                                                        | false           |
+| Start Date      | The date when work on this version starts. Format: `YYYY-MM-DD`.                                                                                                 |                 |
+| Release Date    | The date when this version is released. Format: `YYYY-MM-DD`.                                                                                                    |                 |
+| Project Key     | The project key identifier (e.g., PROJ, ENG, SALES).                                                                                                             |                 |
+| Project ID      | The unique identifier or name of the Jira project.                                                                                                               |                 |
+| Dynamic Fields  | Dynamic field key/value pairs supplied as JSON. Use a key/value config variable to configure these at deploy time. Each item must contain a `key` and a `value`. |                 |
+| Values          | Additional field names and their values to include when creating or updating the record. Each row is merged into the request payload.                            | <code>[]</code> |

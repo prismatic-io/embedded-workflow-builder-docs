@@ -36,13 +36,14 @@ Authenticate with Guru using a user token for read/write access
 
 ### New and Updated Cards {#pollchangestrigger}
 
-Checks for new and updated Cards in Guru on a configured schedule.
+Retrieves existing and ongoing Cards from Guru. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                         | Default |
-| -------------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                  |         |
-| Show New Records     | When true, cards created since the last poll are included in the trigger output. | true    |
-| Show Updated Records | When true, cards updated since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                                     |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
+| Show New Records     | When true, cards created since the last poll are included in the trigger output.                                                                                                                                                                                                    | true    |
+| Show Updated Records | When true, cards updated since the last poll are included in the trigger output.                                                                                                                                                                                                    | true    |
 
 ### Webhook Events {#webhook}
 

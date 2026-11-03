@@ -57,14 +57,15 @@ Enter the following values in the connection configuration:
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated components or change orders in Duro on a configured schedule.
+Retrieves existing and ongoing components or change orders in Duro. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                           | Default |
-| -------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection           | The Duro PLM connection to use.                                                    |         |
-| Resource Type        | The type of resource to poll for changes.                                          |         |
-| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
-| Show Updated Records | When true, records updated after the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Duro PLM connection to use.                                                                                                                                                                                                                                           |         |
+| Resource Type        | The type of resource to poll for changes.                                                                                                                                                                                                                                 |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output.                                                                                                                                                                                        | true    |
 
 ## Actions
 
@@ -132,5 +133,5 @@ Make a generic request to the Duro API
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        | The Duro PLM connection to use.                                                                                                        |                                                                                                                                                                                                                                                          |
 | Query or Mutation | GraphQL query or mutation to execute against the Duro API. See the Duro GraphQL API documentation for available queries and mutations. | <code>{<br /> components(libraryType: GENERAL) {<br /> connection(<br /> first: 10<br /> ) {<br /> totalCount<br /> edges {<br /> cursor<br /> node {<br /> id<br /> name<br /> created<br /> lastModified<br /> }<br /> }<br /> }<br /> }<br />}</code> |
-| Variables         | GraphQL variables to pass to the query or mutation. Each variable should be a key-value pair.                                          |                                                                                                                                                                                                                                                          |
+| Variables         | GraphQL variables to pass to the query or mutation. Each variable should be a key-value pair.                                          | <code>[]</code>                                                                                                                                                                                                                                          |
 | Variables Object  | Alternative way to provide GraphQL variables as a JSON object. Use this instead of the Variables field for complex nested variables.   |                                                                                                                                                                                                                                                          |

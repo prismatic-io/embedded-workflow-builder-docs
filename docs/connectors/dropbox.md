@@ -204,12 +204,12 @@ Get the status of a file download from a URL to Dropbox
 
 Return the lock metadata for the given list of paths
 
-| Input          | Comments                                                                                                             | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Dropbox connection to use.                                                                                       |         |
-| Team Member ID | Used to specify the user to act on behalf of.                                                                        |         |
-| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.     |         |
-| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both. |         |
+| Input          | Comments                                                                                                             | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Dropbox connection to use.                                                                                       |                 |
+| Team Member ID | Used to specify the user to act on behalf of.                                                                        |                 |
+| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.     | <code>[]</code> |
+| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both. |                 |
 
 ### Get Metadata for File or Folder {#getmetadata}
 
@@ -324,15 +324,15 @@ List Folder contents at the specified path
 
 List shared folders in the account.
 
-| Input          | Comments                                                                                                                                                                                                                                    | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Dropbox connection to use.                                                                                                                                                                                                              |         |
-| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                                                                                                        |         |
-| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. |         |
-| Fetch All      | When true, automatically fetches all pages of results using pagination. Cursor and Limit inputs are ignored when this is enabled.                                                                                                           | false   |
-| Pagination     | Cursor and page-size controls for paging through results.                                                                                                                                                                                   |         |
-| Cursor         | The pagination cursor returned by a previous request, from Dropbox's `list_folder` and `list_folder/continue` endpoints. Leave empty to start from the first page.                                                                          |         |
-| Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases.                                                                                     |         |
+| Input          | Comments                                                                                                                                                                                                                                    | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Dropbox connection to use.                                                                                                                                                                                                              |                 |
+| Directory Path | The path to a directory within a Dropbox share. Include a leading /.                                                                                                                                                                        |                 |
+| Folder Actions | A list of `FolderAction`s corresponding to `FolderPermission`s that should appear in the response's SharedFolderMetadata.permissions field describing the actions the authenticated user can perform on the folder. This field is optional. | <code>[]</code> |
+| Fetch All      | When true, automatically fetches all pages of results using pagination. Cursor and Limit inputs are ignored when this is enabled.                                                                                                           | false           |
+| Pagination     | Cursor and page-size controls for paging through results.                                                                                                                                                                                   |                 |
+| Cursor         | The pagination cursor returned by a previous request, from Dropbox's `list_folder` and `list_folder/continue` endpoints. Leave empty to start from the first page.                                                                          |                 |
+| Limit          | The maximum number of results to return per request. Note: This is an approximate number and there can be slightly more entries returned in some cases.                                                                                     |                 |
 
 ### List Shared Links {#listsharedlinks}
 
@@ -365,12 +365,12 @@ List team folders.
 
 Lock the files at the given paths
 
-| Input          | Comments                                                                                                             | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Dropbox connection to use.                                                                                       |         |
-| Team Member ID | Used to specify the user to act on behalf of.                                                                        |         |
-| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.     |         |
-| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both. |         |
+| Input          | Comments                                                                                                             | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Dropbox connection to use.                                                                                       |                 |
+| Team Member ID | Used to specify the user to act on behalf of.                                                                        |                 |
+| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.     | <code>[]</code> |
+| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both. |                 |
 
 ### Move Object {#moveobject}
 
@@ -386,25 +386,25 @@ Move a Folder or File from one path to another
 
 Send raw HTTP request to Dropbox
 
-| Input                   | Comments                                                                                                                                                                                                                | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Dropbox connection to use.                                                                                                                                                                                          |         |
-| Team User Type          | The team member context the request runs as: Admin acts with team admin privileges, User acts as the member themselves. This takes effect only when Team Member ID is also set.                                         |         |
-| Team Member ID          | The ID of the team member. Required if Team User Type is set                                                                                                                                                            |         |
-| URL                     | The API path only, such as `/file_requests/create`. The base URL `https://api.dropboxapi.com/2` is applied automatically, so to call `https://api.dropboxapi.com/2/file_requests/create` enter `/file_requests/create`. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                 |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                               |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                    |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                        |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                  |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                     |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                             |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                     |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                        | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                     | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                           | false   |
+| Input                   | Comments                                                                                                                                                                                                                | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Dropbox connection to use.                                                                                                                                                                                          |                 |
+| Team User Type          | The team member context the request runs as: Admin acts with team admin privileges, User acts as the member themselves. This takes effect only when Team Member ID is also set.                                         |                 |
+| Team Member ID          | The ID of the team member. Required if Team User Type is set                                                                                                                                                            |                 |
+| URL                     | The API path only, such as `/file_requests/create`. The base URL `https://api.dropboxapi.com/2` is applied automatically, so to call `https://api.dropboxapi.com/2/file_requests/create` enter `/file_requests/create`. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                 |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                               |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                    | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                        | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                  | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                     | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                             | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                     |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                     | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                        | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                     | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                           | false           |
 
 ### Save From URL {#savefromurl}
 
@@ -472,13 +472,13 @@ Share a folder with collaborators. Most sharing will be completed synchronously.
 
 Unlock the files at the given paths
 
-| Input          | Comments                                                                                                                                                                        | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Dropbox connection to use.                                                                                                                                                  |         |
-| Team User Type | The team member context the request runs as: Admin acts with team admin privileges, User acts as the member themselves. This takes effect only when Team Member ID is also set. |         |
-| Team Member ID | The ID of the team member. Required if Team User Type is set                                                                                                                    |         |
-| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.                                                                |         |
-| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both.                                                            |         |
+| Input          | Comments                                                                                                                                                                        | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Dropbox connection to use.                                                                                                                                                  |                 |
+| Team User Type | The team member context the request runs as: Admin acts with team admin privileges, User acts as the member themselves. This takes effect only when Team Member ID is also set. |                 |
+| Team Member ID | The ID of the team member. Required if Team User Type is set                                                                                                                    |                 |
+| File Path      | The paths of the files to act on. Each path must include a leading /. Supply this input, Dynamic Paths, or both.                                                                | <code>[]</code> |
+| Dynamic Paths  | A list of file paths referenced from a previous step, each with a leading /. Supply this input, File Paths, or both.                                                            |                 |
 
 ### Unshare File {#unsharefile}
 

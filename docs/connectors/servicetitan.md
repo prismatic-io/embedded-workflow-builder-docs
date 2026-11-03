@@ -98,11 +98,11 @@ Retrieves existing and ongoing records for a selected ServiceTitan resource type
 
 Assigns the list of technicians to the appointment.
 
-| Input              | Comments                                     | Default |
-| ------------------ | -------------------------------------------- | ------- |
-| Connection         | The ServiceTitan connection to use.          |         |
-| Job Appointment ID | ID of the job appointment                    |         |
-| Technician IDs     | Assign these technicians to the appointment. |         |
+| Input              | Comments                                     | Default         |
+| ------------------ | -------------------------------------------- | --------------- |
+| Connection         | The ServiceTitan connection to use.          |                 |
+| Job Appointment ID | ID of the job appointment                    |                 |
+| Technician IDs     | Assign these technicians to the appointment. | <code>[]</code> |
 
 ### Cancel Job {#canceljob}
 
@@ -134,43 +134,43 @@ Adds a new appointment to an existing job.
 
 Create a booking for a booking provider.
 
-| Input                   | Comments                                                                                               | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The ServiceTitan connection to use.                                                                    |         |
-| Booking Provider ID     | The ID of the booking provider that submitted the booking.                                             |         |
-| Summary                 | A short summary describing the booking.                                                                |         |
-| Is First Time Client    | When true, marks the booking's customer as a first-time client.                                        |         |
-| External ID             | The booking's identifier in the originating external system.                                           |         |
-| Source                  | The lead source that generated this booking.                                                           |         |
-| Name                    | Booking name                                                                                           |         |
-| Address                 | The street address, including unit, city, state, ZIP code, and country.                                |         |
-| Contacts                | The contact methods to attach, each with a type such as Phone or Email, a value, and an optional memo. |         |
-| Customer Type           | Whether the customer is Residential or Commercial.                                                     |         |
-| Start                   | Start date/time (in UTC)                                                                               |         |
-| Campaign ID             | The ID of the marketing campaign that generated the record.                                            |         |
-| Business Unit ID        | The ID of the business unit.                                                                           |         |
-| Job Type ID             | The ID of the job type to assign.                                                                      |         |
-| Priority                | Booking priority                                                                                       |         |
-| Uploaded Images         | The images to attach to the booking, one entry per image.                                              |         |
-| Send Confirmation Email | When true, sends a booking confirmation email to the customer.                                         |         |
+| Input                   | Comments                                                                                               | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The ServiceTitan connection to use.                                                                    |                 |
+| Booking Provider ID     | The ID of the booking provider that submitted the booking.                                             |                 |
+| Summary                 | A short summary describing the booking.                                                                |                 |
+| Is First Time Client    | When true, marks the booking's customer as a first-time client.                                        |                 |
+| External ID             | The booking's identifier in the originating external system.                                           |                 |
+| Source                  | The lead source that generated this booking.                                                           |                 |
+| Name                    | Booking name                                                                                           |                 |
+| Address                 | The street address, including unit, city, state, ZIP code, and country.                                |                 |
+| Contacts                | The contact methods to attach, each with a type such as Phone or Email, a value, and an optional memo. |                 |
+| Customer Type           | Whether the customer is Residential or Commercial.                                                     |                 |
+| Start                   | Start date/time (in UTC)                                                                               |                 |
+| Campaign ID             | The ID of the marketing campaign that generated the record.                                            |                 |
+| Business Unit ID        | The ID of the business unit.                                                                           |                 |
+| Job Type ID             | The ID of the job type to assign.                                                                      |                 |
+| Priority                | Booking priority                                                                                       |                 |
+| Uploaded Images         | The images to attach to the booking, one entry per image.                                              | <code>[]</code> |
+| Send Confirmation Email | When true, sends a booking confirmation email to the customer.                                         |                 |
 
 ### Create Customer {#createcustomer}
 
 Create a new customer.
 
-| Input          | Comments                                                                                               | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     | The ServiceTitan connection to use.                                                                    |         |
-| Name           | The full name of the customer or business.                                                             |         |
-| Location       | Locations for the customer                                                                             |         |
-| Address        | Bill-To address of the customer record                                                                 |         |
-| Customer Type  | Whether the customer is Residential or Commercial.                                                     |         |
-| Do Not Mail    | Customer has been flagged as “do not mail”                                                             |         |
-| Do Not Service | Customer has been flagged as “do not service”                                                          |         |
-| Contacts       | The contact methods to attach, each with a type such as Phone or Email, a value, and an optional memo. |         |
-| Custom Fields  | Custom field values to set, as an array of type ID and value pairs.                                    |         |
-| Tag Type IDs   | The IDs of the tag types to apply.                                                                     |         |
-| External Data  | External data to attach to the request.                                                                |         |
+| Input          | Comments                                                                                               | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection     | The ServiceTitan connection to use.                                                                    |                 |
+| Name           | The full name of the customer or business.                                                             |                 |
+| Location       | Locations for the customer                                                                             |                 |
+| Address        | Bill-To address of the customer record                                                                 |                 |
+| Customer Type  | Whether the customer is Residential or Commercial.                                                     |                 |
+| Do Not Mail    | Customer has been flagged as “do not mail”                                                             |                 |
+| Do Not Service | Customer has been flagged as “do not service”                                                          |                 |
+| Contacts       | The contact methods to attach, each with a type such as Phone or Email, a value, and an optional memo. |                 |
+| Custom Fields  | Custom field values to set, as an array of type ID and value pairs.                                    |                 |
+| Tag Type IDs   | The IDs of the tag types to apply.                                                                     | <code>[]</code> |
+| External Data  | External data to attach to the request.                                                                |                 |
 
 ### Create Customer Contact {#createcustomercontact}
 
@@ -188,25 +188,25 @@ Create a contact for a customer.
 
 Create a new installed equipment record.
 
-| Input                           | Comments                                                        | Default |
-| ------------------------------- | --------------------------------------------------------------- | ------- |
-| Connection                      | The ServiceTitan connection to use.                             |         |
-| Location ID                     | The ID of the location of the installed equipment               |         |
-| Name                            | The name of the installed equipment                             |         |
-| Installed On                    | The date the equipment was installed                            |         |
-| Serial Number                   | Serial number of the installed equipment                        |         |
-| Memo                            | The memo of the installed equipment                             |         |
-| Manufacturer                    | Manufacturer of the installed equipment                         |         |
-| Model                           | Model of the installed equipment                                |         |
-| Cost                            | Cost of the installed equipment                                 |         |
-| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |         |
-| Manufacturer Warranty Start     | Manufacturer warranty start date                                |         |
-| Manufacturer Warranty End       | Manufacturer warranty end date                                  |         |
-| Service Provider Warranty Start | Service Provider Warranty Start date                            |         |
-| Service Provider Warranty End   | Service Provider Warranty End date                              |         |
-| Custom Fields                   | The custom fields of the installed equipment                    |         |
-| Attachments                     | List of attachments                                             |         |
-| Tag Type IDs                    | The IDs of the tag types to apply.                              |         |
+| Input                           | Comments                                                        | Default         |
+| ------------------------------- | --------------------------------------------------------------- | --------------- |
+| Connection                      | The ServiceTitan connection to use.                             |                 |
+| Location ID                     | The ID of the location of the installed equipment               |                 |
+| Name                            | The name of the installed equipment                             |                 |
+| Installed On                    | The date the equipment was installed                            |                 |
+| Serial Number                   | Serial number of the installed equipment                        |                 |
+| Memo                            | The memo of the installed equipment                             |                 |
+| Manufacturer                    | Manufacturer of the installed equipment                         |                 |
+| Model                           | Model of the installed equipment                                |                 |
+| Cost                            | Cost of the installed equipment                                 |                 |
+| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |                 |
+| Manufacturer Warranty Start     | Manufacturer warranty start date                                |                 |
+| Manufacturer Warranty End       | Manufacturer warranty end date                                  |                 |
+| Service Provider Warranty Start | Service Provider Warranty Start date                            |                 |
+| Service Provider Warranty End   | Service Provider Warranty End date                              |                 |
+| Custom Fields                   | The custom fields of the installed equipment                    |                 |
+| Attachments                     | List of attachments                                             |                 |
+| Tag Type IDs                    | The IDs of the tag types to apply.                              | <code>[]</code> |
 
 ### Create Installed Equipment Attachment {#createinstalledequipmentattachment}
 
@@ -260,7 +260,7 @@ Create a job.
 | Project ID                    | ID of the job's project                                                                                                                               |                                                                                                                                                                                                          |
 | Summary                       | Job summary                                                                                                                                           |                                                                                                                                                                                                          |
 | Custom Fields                 | Custom fields for the job                                                                                                                             |                                                                                                                                                                                                          |
-| Tag Type IDs                  | Tag type IDs for the job                                                                                                                              |                                                                                                                                                                                                          |
+| Tag Type IDs                  | Tag type IDs for the job                                                                                                                              | <code>[]</code>                                                                                                                                                                                          |
 | External Data                 | External data to attach to the request.                                                                                                               |                                                                                                                                                                                                          |
 | Invoice Signature Is Required | When true, the invoice for this job requires a signature. When left empty, the location and job type rules apply.                                     |                                                                                                                                                                                                          |
 | Customer PO                   | The customer's purchase order number to record on the job.                                                                                            |                                                                                                                                                                                                          |
@@ -269,16 +269,16 @@ Create a job.
 
 Creates a new location.
 
-| Input         | Comments                                                            | Default |
-| ------------- | ------------------------------------------------------------------- | ------- |
-| Connection    | The ServiceTitan connection to use.                                 |         |
-| Name          | The name of the location                                            |         |
-| Address       | The address of the location                                         |         |
-| Customer ID   | The customer ID.                                                    |         |
-| Contacts      | The contacts associated with the location                           |         |
-| Custom Fields | Custom field values to set, as an array of type ID and value pairs. |         |
-| Tag Type IDs  | The IDs of the tag types to apply.                                  |         |
-| External Data | External data to attach to the request.                             |         |
+| Input         | Comments                                                            | Default         |
+| ------------- | ------------------------------------------------------------------- | --------------- |
+| Connection    | The ServiceTitan connection to use.                                 |                 |
+| Name          | The name of the location                                            |                 |
+| Address       | The address of the location                                         |                 |
+| Customer ID   | The customer ID.                                                    |                 |
+| Contacts      | The contacts associated with the location                           |                 |
+| Custom Fields | Custom field values to set, as an array of type ID and value pairs. |                 |
+| Tag Type IDs  | The IDs of the tag types to apply.                                  | <code>[]</code> |
+| External Data | External data to attach to the request.                             |                 |
 
 ### Create Payment (Deprecated) {#createpayment}
 
@@ -300,50 +300,50 @@ Deprecated: ServiceTitan removed the POST /payments endpoint from the V2 API. Pa
 
 Create a new project.
 
-| Input                  | Comments                                                                         | Default |
-| ---------------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection             | The ServiceTitan connection to use.                                              |         |
-| Location ID            | The ID of the location.                                                          |         |
-| Customer ID            | ID of the project's customer                                                     |         |
-| Project Manager IDs    | IDs of the project's managers                                                    |         |
-| Name                   | Name of the project                                                              |         |
-| Summary                | Summary of the project                                                           |         |
-| Status ID              | The ID of the project status to set.                                             |         |
-| Sub Status ID          | The ID of the project sub-status to set.                                         |         |
-| Start                  | Start date of the project                                                        |         |
-| Target Completion Date | Target completion date of the project                                            |         |
-| Actual Completion Date | Actual completion date of the project                                            |         |
-| Custom Fields          | Custom fields for the project                                                    |         |
-| External Data          | External data items to attach to the project, grouped under an application GUID. |         |
+| Input                  | Comments                                                                         | Default         |
+| ---------------------- | -------------------------------------------------------------------------------- | --------------- |
+| Connection             | The ServiceTitan connection to use.                                              |                 |
+| Location ID            | The ID of the location.                                                          |                 |
+| Customer ID            | ID of the project's customer                                                     |                 |
+| Project Manager IDs    | IDs of the project's managers                                                    | <code>[]</code> |
+| Name                   | Name of the project                                                              |                 |
+| Summary                | Summary of the project                                                           |                 |
+| Status ID              | The ID of the project status to set.                                             |                 |
+| Sub Status ID          | The ID of the project sub-status to set.                                         |                 |
+| Start                  | Start date of the project                                                        |                 |
+| Target Completion Date | Target completion date of the project                                            |                 |
+| Actual Completion Date | Actual completion date of the project                                            |                 |
+| Custom Fields          | Custom fields for the project                                                    |                 |
+| External Data          | External data items to attach to the project, grouped under an application GUID. |                 |
 
 ### Create Technician {#createtechnician}
 
 Create a new technician.
 
-| Input                          | Comments                                                                                                                | Default |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The ServiceTitan connection to use.                                                                                     |         |
-| Name                           | The name of the technician                                                                                              |         |
-| Account Creation Method        | Determines how the technician's login is created: defer it, send an invite, or assign a username and password now.      |         |
-| Role ID                        | The ID of the user role to assign to the technician.                                                                    |         |
-| Positions                      | List of company positions                                                                                               |         |
-| License Type                   | The type of ServiceTitan license to assign to the technician.                                                           |         |
-| Phone Number                   | Technician's phone number                                                                                               |         |
-| Email                          | Technician's email address                                                                                              |         |
-| Login Username                 | Technician's username                                                                                                   |         |
-| Password                       | The password to assign when the technician's login is created now rather than deferred or invited.                      |         |
-| Business Unit ID               | The ID of the business unit to which the technician will be assigned                                                    |         |
-| Azure Active Directory User ID | The GUID of the technician's user account in Azure Active Directory.                                                    |         |
-| Memo                           | Memo for the technician                                                                                                 |         |
-| Additional Fields              | Additional optional fields: includes Team, Daily Goal, Burden Rate, Biography, Job Filter, and Job History Date Filter. |         |
-| Team                           | Team name                                                                                                               |         |
-| Daily Goal                     | Daily revenue goal                                                                                                      |         |
-| Burden Rate                    | Burden rate (hourly)                                                                                                    |         |
-| Biography                      | Biography of the technician                                                                                             |         |
-| Job Filter                     | Upcoming appointment visibility                                                                                         |         |
-| Job History Date Filter        | Appointment history visibility                                                                                          |         |
-| Address                        | The home address of the technician                                                                                      |         |
-| Custom Fields                  | Custom fields for the technician                                                                                        |         |
+| Input                          | Comments                                                                                                                | Default         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                     | The ServiceTitan connection to use.                                                                                     |                 |
+| Name                           | The name of the technician                                                                                              |                 |
+| Account Creation Method        | Determines how the technician's login is created: defer it, send an invite, or assign a username and password now.      |                 |
+| Role ID                        | The ID of the user role to assign to the technician.                                                                    |                 |
+| Positions                      | List of company positions                                                                                               | <code>[]</code> |
+| License Type                   | The type of ServiceTitan license to assign to the technician.                                                           |                 |
+| Phone Number                   | Technician's phone number                                                                                               |                 |
+| Email                          | Technician's email address                                                                                              |                 |
+| Login Username                 | Technician's username                                                                                                   |                 |
+| Password                       | The password to assign when the technician's login is created now rather than deferred or invited.                      |                 |
+| Business Unit ID               | The ID of the business unit to which the technician will be assigned                                                    |                 |
+| Azure Active Directory User ID | The GUID of the technician's user account in Azure Active Directory.                                                    |                 |
+| Memo                           | Memo for the technician                                                                                                 |                 |
+| Additional Fields              | Additional optional fields: includes Team, Daily Goal, Burden Rate, Biography, Job Filter, and Job History Date Filter. |                 |
+| Team                           | Team name                                                                                                               |                 |
+| Daily Goal                     | Daily revenue goal                                                                                                      |                 |
+| Burden Rate                    | Burden rate (hourly)                                                                                                    |                 |
+| Biography                      | Biography of the technician                                                                                             |                 |
+| Job Filter                     | Upcoming appointment visibility                                                                                         |                 |
+| Job History Date Filter        | Appointment history visibility                                                                                          |                 |
+| Address                        | The home address of the technician                                                                                      |                 |
+| Custom Fields                  | Custom fields for the technician                                                                                        |                 |
 
 ### Delete Appointment {#deleteappointment}
 
@@ -461,77 +461,77 @@ Retrieve a technician by ID.
 
 Retrieve a list of appointment assignments.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Appointments {#listappointments}
 
 Retrieve a list of appointments.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Bookings by Provider {#listbookingbyprovider}
 
 Retrieves a list of bookings for a booking provider.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Booking Provider ID | The ID of the booking provider that submitted the booking.                                                                        |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Booking Provider ID | The ID of the booking provider that submitted the booking.                                                                        |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Bookings by Tenant {#listbookingbytenant}
 
 Retrieves a list of bookings for the tenant.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Business Units {#listbusinessunits}
 
 Gets a list of business units.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Customer Contacts {#listcustomerscontact}
 
@@ -553,31 +553,31 @@ Gets a list of contacts for the specified customer.
 
 Retrieve a list of customers.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Installed Equipment {#listinstalledequipment}
 
 Retrieve a list of installed equipment.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Installed Equipment Attachments {#listinstalledequipmentattachments}
 
@@ -592,194 +592,194 @@ Retrieve installed equipment attachments.
 
 Retrieves a list of invoices.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Job Cancel Reasons {#listjobcancelreasons}
 
 Retrieve a list of job cancel reasons.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Jobs {#listjobs}
 
 Retrieve a list of jobs.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Locations {#listlocations}
 
 Retrieve a list of locations.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Payments {#listpayments}
 
 Retrieve a list of payments.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Projects {#listprojects}
 
 Retrieve a list of projects.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List Technicians {#listtechnicians}
 
 Retrieve a list of technicians.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### List User Roles {#listuserroles}
 
 Gets a list of user roles.
 
-| Input               | Comments                                                                                                                          | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The ServiceTitan connection to use.                                                                                               |         |
-| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false   |
-| Pagination          | Page number and page size.                                                                                                        |         |
-| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |         |
-| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |         |
-| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false   |
-| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |         |
-| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    |         |
+| Input               | Comments                                                                                                                          | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The ServiceTitan connection to use.                                                                                               |                 |
+| Fetch All           | When true, automatically fetches all pages of results and ignores the page and page size values.                                  | false           |
+| Pagination          | Page number and page size.                                                                                                        |                 |
+| Page                | The page of results to return. Paging is 1-based, so the first page is 1.                                                         |                 |
+| Page Size           | The maximum number of records to return per page. A page never contains more than this many records. Defaults to 50 when omitted. |                 |
+| Include Total       | When true, includes the total count of matching records in the response. Ignored when Fetch All is true.                          | false           |
+| Sort                | Applies sorting by the specified field:'?sort=+FieldName' for ascending order,'?sort=-FieldName' for descending order.            |                 |
+| Custom Query Params | Additional query-string parameters to append to the request, supplied as name and value pairs.                                    | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to ServiceTitan.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The ServiceTitan connection to use.                                                                                                                                                                                                                                                            |         |
-| URL Type                | The URL type to connect to. For example, jpm, crm, accounting, etc.                                                                                                                                                                                                                            |         |
-| URL                     | Input the path only. The base URL is built from the connection environment and the URL Type above, in the form https://api.servicetitan.io/{URL Type}/v2/tenant/{tenant}. For example, with a URL Type of jpm, entering /jobs reaches https://api.servicetitan.io/jpm/v2/tenant/{tenant}/jobs. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                            |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                            | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                               | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                  | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                       | Default         |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The ServiceTitan connection to use.                                                                                                                                                                                                                                                            |                 |
+| URL Type                | The URL type to connect to. For example, jpm, crm, accounting, etc.                                                                                                                                                                                                                            |                 |
+| URL                     | Input the path only. The base URL is built from the connection environment and the URL Type above, in the form https://api.servicetitan.io/{URL Type}/v2/tenant/{tenant}. For example, with a URL Type of jpm, entering /jobs reaches https://api.servicetitan.io/jpm/v2/tenant/{tenant}/jobs. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                        |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                      |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                           | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                               | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                         | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                            | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                    | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                       | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                            |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                            | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                               | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                            | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                  | false           |
 
 ### Unassign Technicians from Appointment {#unassigntechnicians}
 
 Un-assigns the list of technicians from the appointment.
 
-| Input              | Comments                                         | Default |
-| ------------------ | ------------------------------------------------ | ------- |
-| Connection         | The ServiceTitan connection to use.              |         |
-| Job Appointment ID | ID of the job appointment                        |         |
-| Technician IDs     | Unassign these technicians from the appointment. |         |
+| Input              | Comments                                         | Default         |
+| ------------------ | ------------------------------------------------ | --------------- |
+| Connection         | The ServiceTitan connection to use.              |                 |
+| Job Appointment ID | ID of the job appointment                        |                 |
+| Technician IDs     | Unassign these technicians from the appointment. | <code>[]</code> |
 
 ### Update Booking {#updatebooking}
 
 Update a booking.
 
-| Input                | Comments                                                                | Default |
-| -------------------- | ----------------------------------------------------------------------- | ------- |
-| Connection           | The ServiceTitan connection to use.                                     |         |
-| Booking Provider ID  | The ID of the booking provider that submitted the booking.              |         |
-| Booking ID           | The ID of the booking to act on.                                        |         |
-| Summary              | Summary of the booking                                                  |         |
-| Is First Time Client | When true, marks the booking's customer as a first-time client.         |         |
-| External ID          | The booking's identifier in the originating external system.            |         |
-| Source               | The lead source that generated this booking.                            |         |
-| Name                 | The full name of the customer or business.                              |         |
-| Address              | The street address, including unit, city, state, ZIP code, and country. |         |
-| Customer Type        | Whether the customer is Residential or Commercial.                      |         |
-| Start                | Start date/time (in UTC)                                                |         |
-| Campaign ID          | The ID of the marketing campaign that generated the record.             |         |
-| Business Unit ID     | The ID of the business unit.                                            |         |
-| Job Type ID          | The ID of the job type to assign.                                       |         |
-| Priority             | Booking priority                                                        |         |
-| Uploaded Images      | The images to attach to the booking, one entry per image.               |         |
+| Input                | Comments                                                                | Default         |
+| -------------------- | ----------------------------------------------------------------------- | --------------- |
+| Connection           | The ServiceTitan connection to use.                                     |                 |
+| Booking Provider ID  | The ID of the booking provider that submitted the booking.              |                 |
+| Booking ID           | The ID of the booking to act on.                                        |                 |
+| Summary              | Summary of the booking                                                  |                 |
+| Is First Time Client | When true, marks the booking's customer as a first-time client.         |                 |
+| External ID          | The booking's identifier in the originating external system.            |                 |
+| Source               | The lead source that generated this booking.                            |                 |
+| Name                 | The full name of the customer or business.                              |                 |
+| Address              | The street address, including unit, city, state, ZIP code, and country. |                 |
+| Customer Type        | Whether the customer is Residential or Commercial.                      |                 |
+| Start                | Start date/time (in UTC)                                                |                 |
+| Campaign ID          | The ID of the marketing campaign that generated the record.             |                 |
+| Business Unit ID     | The ID of the business unit.                                            |                 |
+| Job Type ID          | The ID of the job type to assign.                                       |                 |
+| Priority             | Booking priority                                                        |                 |
+| Uploaded Images      | The images to attach to the booking, one entry per image.               | <code>[]</code> |
 
 ### Update Customer {#updatecustomer}
 
 Update a customer.
 
-| Input          | Comments                                                                | Default |
-| -------------- | ----------------------------------------------------------------------- | ------- |
-| Connection     | The ServiceTitan connection to use.                                     |         |
-| Customer ID    | The customer ID.                                                        |         |
-| Name           | The full name of the customer or business.                              |         |
-| Customer Type  | Whether the customer is Residential or Commercial.                      |         |
-| Address        | The street address, including unit, city, state, ZIP code, and country. |         |
-| Custom Fields  | Custom field values to set, as an array of type ID and value pairs.     |         |
-| External Data  | External data to attach to the request.                                 |         |
-| Do Not Mail    | Customer has been flagged as “do not mail”                              |         |
-| Do Not Service | Customer has been flagged as “do not service”                           |         |
-| Active         | Whether the customer is active                                          |         |
-| Tag Type IDs   | The IDs of the tag types to apply.                                      |         |
+| Input          | Comments                                                                | Default         |
+| -------------- | ----------------------------------------------------------------------- | --------------- |
+| Connection     | The ServiceTitan connection to use.                                     |                 |
+| Customer ID    | The customer ID.                                                        |                 |
+| Name           | The full name of the customer or business.                              |                 |
+| Customer Type  | Whether the customer is Residential or Commercial.                      |                 |
+| Address        | The street address, including unit, city, state, ZIP code, and country. |                 |
+| Custom Fields  | Custom field values to set, as an array of type ID and value pairs.     |                 |
+| External Data  | External data to attach to the request.                                 |                 |
+| Do Not Mail    | Customer has been flagged as “do not mail”                              |                 |
+| Do Not Service | Customer has been flagged as “do not service”                           |                 |
+| Active         | Whether the customer is active                                          |                 |
+| Tag Type IDs   | The IDs of the tag types to apply.                                      | <code>[]</code> |
 
 ### Update Customer Contact {#updatecustomercontact}
 
@@ -798,25 +798,25 @@ Updates a contact on a customer.
 
 Update installed equipment by ID.
 
-| Input                           | Comments                                                        | Default |
-| ------------------------------- | --------------------------------------------------------------- | ------- |
-| Connection                      | The ServiceTitan connection to use.                             |         |
-| Installed Equipment ID          | ID of the installed equipment                                   |         |
-| Name                            | The name of the installed equipment                             |         |
-| Installed On                    | The date the equipment was installed                            |         |
-| Serial Number                   | Serial number of the installed equipment                        |         |
-| Memo                            | The memo of the installed equipment                             |         |
-| Manufacturer                    | Manufacturer of the installed equipment                         |         |
-| Model                           | Model of the installed equipment                                |         |
-| Cost                            | Cost of the installed equipment                                 |         |
-| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |         |
-| Manufacturer Warranty Start     | Manufacturer warranty start date                                |         |
-| Manufacturer Warranty End       | Manufacturer warranty end date                                  |         |
-| Service Provider Warranty Start | Service Provider Warranty Start date                            |         |
-| Service Provider Warranty End   | Service Provider Warranty End date                              |         |
-| Custom Fields                   | The custom fields of the installed equipment                    |         |
-| Attachments                     | List of attachments                                             |         |
-| Tag Type IDs                    | The IDs of the tag types to apply.                              |         |
+| Input                           | Comments                                                        | Default         |
+| ------------------------------- | --------------------------------------------------------------- | --------------- |
+| Connection                      | The ServiceTitan connection to use.                             |                 |
+| Installed Equipment ID          | ID of the installed equipment                                   |                 |
+| Name                            | The name of the installed equipment                             |                 |
+| Installed On                    | The date the equipment was installed                            |                 |
+| Serial Number                   | Serial number of the installed equipment                        |                 |
+| Memo                            | The memo of the installed equipment                             |                 |
+| Manufacturer                    | Manufacturer of the installed equipment                         |                 |
+| Model                           | Model of the installed equipment                                |                 |
+| Cost                            | Cost of the installed equipment                                 |                 |
+| Warranty Dates                  | Manufacturer and service provider warranty start and end dates. |                 |
+| Manufacturer Warranty Start     | Manufacturer warranty start date                                |                 |
+| Manufacturer Warranty End       | Manufacturer warranty end date                                  |                 |
+| Service Provider Warranty Start | Service Provider Warranty Start date                            |                 |
+| Service Provider Warranty End   | Service Provider Warranty End date                              |                 |
+| Custom Fields                   | The custom fields of the installed equipment                    |                 |
+| Attachments                     | List of attachments                                             |                 |
+| Tag Type IDs                    | The IDs of the tag types to apply.                              | <code>[]</code> |
 
 ### Update Invoice {#updateinvoice}
 
@@ -884,40 +884,40 @@ Update invoice items.
 
 Update a job.
 
-| Input                       | Comments                                                                                                                                              | Default |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  | The ServiceTitan connection to use.                                                                                                                   |         |
-| Job ID                      | The job ID.                                                                                                                                           |         |
-| Customer ID                 | The customer ID.                                                                                                                                      |         |
-| Location ID                 | The ID of the location.                                                                                                                               |         |
-| Business Unit ID            | ID of the job's business unit                                                                                                                         |         |
-| Job Generated Lead Source   | The lead source that generated this job. Provide jobId (the job this one was generated from) and employeeId (the office user or technician credited). |         |
-| Job Type ID                 | ID of the job's type                                                                                                                                  |         |
-| Priority                    | Priority of the job                                                                                                                                   |         |
-| Campaign ID                 | ID of the job's campaign                                                                                                                              |         |
-| Summary                     | Job summary                                                                                                                                           |         |
-| Should Update Invoice Items | If set to true, update the business unit of invoice items on job's invoice                                                                            |         |
-| Custom Fields               | Custom fields for the job                                                                                                                             |         |
-| Tag Type IDs                | Tag type IDs for the job                                                                                                                              |         |
-| External Data               | External data to attach to the request.                                                                                                               |         |
-| Customer PO                 | The customer's purchase order number to record on the job.                                                                                            |         |
+| Input                       | Comments                                                                                                                                              | Default         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The ServiceTitan connection to use.                                                                                                                   |                 |
+| Job ID                      | The job ID.                                                                                                                                           |                 |
+| Customer ID                 | The customer ID.                                                                                                                                      |                 |
+| Location ID                 | The ID of the location.                                                                                                                               |                 |
+| Business Unit ID            | ID of the job's business unit                                                                                                                         |                 |
+| Job Generated Lead Source   | The lead source that generated this job. Provide jobId (the job this one was generated from) and employeeId (the office user or technician credited). |                 |
+| Job Type ID                 | ID of the job's type                                                                                                                                  |                 |
+| Priority                    | Priority of the job                                                                                                                                   |                 |
+| Campaign ID                 | ID of the job's campaign                                                                                                                              |                 |
+| Summary                     | Job summary                                                                                                                                           |                 |
+| Should Update Invoice Items | If set to true, update the business unit of invoice items on job's invoice                                                                            |                 |
+| Custom Fields               | Custom fields for the job                                                                                                                             |                 |
+| Tag Type IDs                | Tag type IDs for the job                                                                                                                              | <code>[]</code> |
+| External Data               | External data to attach to the request.                                                                                                               |                 |
+| Customer PO                 | The customer's purchase order number to record on the job.                                                                                            |                 |
 
 ### Update Location {#updatelocation}
 
 Update a location.
 
-| Input         | Comments                                                            | Default |
-| ------------- | ------------------------------------------------------------------- | ------- |
-| Connection    | The ServiceTitan connection to use.                                 |         |
-| Location ID   | The ID of the location.                                             |         |
-| Customer ID   | The customer ID associated with the location                        |         |
-| Name          | The name of the location                                            |         |
-| Address       | The address of the location                                         |         |
-| Active        | If false, the location will be marked as inactive                   |         |
-| Tax Zone ID   | ID of the location tax zone                                         |         |
-| Custom Fields | Custom field values to set, as an array of type ID and value pairs. |         |
-| Tag Type IDs  | The IDs of the tag types to apply.                                  |         |
-| External Data | External data to attach to the request.                             |         |
+| Input         | Comments                                                            | Default         |
+| ------------- | ------------------------------------------------------------------- | --------------- |
+| Connection    | The ServiceTitan connection to use.                                 |                 |
+| Location ID   | The ID of the location.                                             |                 |
+| Customer ID   | The customer ID associated with the location                        |                 |
+| Name          | The name of the location                                            |                 |
+| Address       | The address of the location                                         |                 |
+| Active        | If false, the location will be marked as inactive                   |                 |
+| Tax Zone ID   | ID of the location tax zone                                         |                 |
+| Custom Fields | Custom field values to set, as an array of type ID and value pairs. |                 |
+| Tag Type IDs  | The IDs of the tag types to apply.                                  | <code>[]</code> |
+| External Data | External data to attach to the request.                             |                 |
 
 ### Update Payment {#updatepayment}
 
@@ -949,46 +949,46 @@ Update custom fields for specified payments.
 
 Update a project.
 
-| Input                  | Comments                                                                         | Default |
-| ---------------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection             | The ServiceTitan connection to use.                                              |         |
-| Project ID             | ID of the project to update                                                      |         |
-| Project Manager IDs    | IDs of the project's managers                                                    |         |
-| Job IDs                | IDs of the project's jobs                                                        |         |
-| Name                   | Name of the project                                                              |         |
-| Summary                | Summary of the project                                                           |         |
-| Status ID              | The ID of the project status to set.                                             |         |
-| Sub Status ID          | The ID of the project sub-status to set.                                         |         |
-| Start                  | Start date of the project                                                        |         |
-| Target Completion Date | Target completion date of the project                                            |         |
-| Actual Completion Date | Actual completion date of the project                                            |         |
-| Custom Fields          | Custom fields for the project                                                    |         |
-| External Data          | External data items to attach to the project, grouped under an application GUID. |         |
+| Input                  | Comments                                                                         | Default         |
+| ---------------------- | -------------------------------------------------------------------------------- | --------------- |
+| Connection             | The ServiceTitan connection to use.                                              |                 |
+| Project ID             | ID of the project to update                                                      |                 |
+| Project Manager IDs    | IDs of the project's managers                                                    | <code>[]</code> |
+| Job IDs                | IDs of the project's jobs                                                        | <code>[]</code> |
+| Name                   | Name of the project                                                              |                 |
+| Summary                | Summary of the project                                                           |                 |
+| Status ID              | The ID of the project status to set.                                             |                 |
+| Sub Status ID          | The ID of the project sub-status to set.                                         |                 |
+| Start                  | Start date of the project                                                        |                 |
+| Target Completion Date | Target completion date of the project                                            |                 |
+| Actual Completion Date | Actual completion date of the project                                            |                 |
+| Custom Fields          | Custom fields for the project                                                    |                 |
+| External Data          | External data items to attach to the project, grouped under an application GUID. |                 |
 
 ### Update Technician {#updatetechnician}
 
 Update a technician.
 
-| Input                          | Comments                                                                                                                | Default |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                     | The ServiceTitan connection to use.                                                                                     |         |
-| Technician ID                  | The ID of the technician to update                                                                                      |         |
-| Name                           | The name of the technician                                                                                              |         |
-| Phone Number                   | Technician's phone number                                                                                               |         |
-| Email                          | Technician's email address                                                                                              |         |
-| Login Username                 | Technician's username                                                                                                   |         |
-| Business Unit ID               | The ID of the business unit to which the technician will be assigned                                                    |         |
-| Role ID                        | The ID of the user role to assign to the technician.                                                                    |         |
-| Positions                      | List of company positions                                                                                               |         |
-| Azure Active Directory User ID | The GUID of the technician's user account in Azure Active Directory.                                                    |         |
-| License Type                   | The type of ServiceTitan license to assign to the technician.                                                           |         |
-| Memo                           | Memo for the technician                                                                                                 |         |
-| Additional Fields              | Additional optional fields: includes Team, Daily Goal, Burden Rate, Biography, Job Filter, and Job History Date Filter. |         |
-| Team                           | Team name                                                                                                               |         |
-| Daily Goal                     | Daily revenue goal                                                                                                      |         |
-| Burden Rate                    | Burden rate (hourly)                                                                                                    |         |
-| Biography                      | Biography of the technician                                                                                             |         |
-| Job Filter                     | Upcoming appointment visibility                                                                                         |         |
-| Job History Date Filter        | Appointment history visibility                                                                                          |         |
-| Address                        | The home address of the technician                                                                                      |         |
-| Custom Fields                  | Custom fields for the technician                                                                                        |         |
+| Input                          | Comments                                                                                                                | Default         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                     | The ServiceTitan connection to use.                                                                                     |                 |
+| Technician ID                  | The ID of the technician to update                                                                                      |                 |
+| Name                           | The name of the technician                                                                                              |                 |
+| Phone Number                   | Technician's phone number                                                                                               |                 |
+| Email                          | Technician's email address                                                                                              |                 |
+| Login Username                 | Technician's username                                                                                                   |                 |
+| Business Unit ID               | The ID of the business unit to which the technician will be assigned                                                    |                 |
+| Role ID                        | The ID of the user role to assign to the technician.                                                                    |                 |
+| Positions                      | List of company positions                                                                                               | <code>[]</code> |
+| Azure Active Directory User ID | The GUID of the technician's user account in Azure Active Directory.                                                    |                 |
+| License Type                   | The type of ServiceTitan license to assign to the technician.                                                           |                 |
+| Memo                           | Memo for the technician                                                                                                 |                 |
+| Additional Fields              | Additional optional fields: includes Team, Daily Goal, Burden Rate, Biography, Job Filter, and Job History Date Filter. |                 |
+| Team                           | Team name                                                                                                               |                 |
+| Daily Goal                     | Daily revenue goal                                                                                                      |                 |
+| Burden Rate                    | Burden rate (hourly)                                                                                                    |                 |
+| Biography                      | Biography of the technician                                                                                             |                 |
+| Job Filter                     | Upcoming appointment visibility                                                                                         |                 |
+| Job History Date Filter        | Appointment history visibility                                                                                          |                 |
+| Address                        | The home address of the technician                                                                                      |                 |
+| Custom Fields                  | Custom fields for the technician                                                                                        |                 |

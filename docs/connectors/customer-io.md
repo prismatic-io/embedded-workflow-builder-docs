@@ -60,48 +60,48 @@ Delete a customer by unique ID.
 
 Create or update a customer.
 
-| Input         | Comments                                                                                                                                   | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| ID            | The unique identifier that targets a specific customer record.                                                                             |         |
-| Region        | The region in which the account is configured.                                                                                             |         |
-| Customer Data | The key and value pairs that make up a customer record. The key must be a string, and the value can be a string, number, array, or object. |         |
-| Connection    | The Customer.io connection to use.                                                                                                         |         |
+| Input         | Comments                                                                                                                                   | Default         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| ID            | The unique identifier that targets a specific customer record.                                                                             |                 |
+| Region        | The region in which the account is configured.                                                                                             |                 |
+| Customer Data | The key and value pairs that make up a customer record. The key must be a string, and the value can be a string, number, array, or object. | <code>[]</code> |
+| Connection    | The Customer.io connection to use.                                                                                                         |                 |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Customer.io.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Customer.io connection to use.                                                                                                                                                               |         |
-| Region                  | The region in which the account is configured.                                                                                                                                                   |         |
-| URL                     | The path to append to the base URL. Enter the path only (for example, /v1/accounts/region); the base URL (https://track.customer.io/api) is already included.                                    |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Customer.io connection to use.                                                                                                                                                               |                 |
+| Region                  | The region in which the account is configured.                                                                                                                                                   |                 |
+| URL                     | The path to append to the base URL. Enter the path only (for example, /v1/accounts/region); the base URL (https://track.customer.io/api) is already included.                                    |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Track {#track}
 
 Track customer events.
 
-| Input      | Comments                                                                | Default |
-| ---------- | ----------------------------------------------------------------------- | ------- |
-| ID         | The unique identifier that targets a specific customer record.          |         |
-| Region     | The region in which the account is configured.                          |         |
-| Event Data | The key and value pairs that describe the event the customer performed. |         |
-| Event Name | The identifier recorded for the tracked event.                          |         |
-| Connection | The Customer.io connection to use.                                      |         |
+| Input      | Comments                                                                | Default         |
+| ---------- | ----------------------------------------------------------------------- | --------------- |
+| ID         | The unique identifier that targets a specific customer record.          |                 |
+| Region     | The region in which the account is configured.                          |                 |
+| Event Data | The key and value pairs that describe the event the customer performed. | <code>[]</code> |
+| Event Name | The identifier recorded for the tracked event.                          |                 |
+| Connection | The Customer.io connection to use.                                      |                 |
 
 ### Track Page View {#trackpageview}
 

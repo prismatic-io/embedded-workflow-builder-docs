@@ -136,14 +136,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive and validate webhook requests from Box. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input                   | Comments                                                                                                                                                 | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Box connection to use.                                                                                                                               |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
+| Input                   | Comments                                                                                                                                                 | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Box connection to use.                                                                                                                               |                 |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |                 |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |                 |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          | <code>[]</code> |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |                 |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |                 |
 
 ### Manual Webhook {#webhook}
 
@@ -156,30 +156,33 @@ Receive and validate webhook requests from Box for manually configured webhook s
 
 ### New and Updated Files {#neworupdatedfile}
 
-Checks for new and updated files in a specified folder on a configured schedule.
+Retrieves existing and ongoing files in a specified Box folder. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                             | Default |
-| ---------- | ------------------------------------ | ------- |
-| Connection | The Box connection to use.           |         |
-| Folder ID  | The unique identifier of the folder. |         |
+| Input          | Comments                                                                                                                                               | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Box connection to use.                                                                                                                             |         |
+| Folder ID      | The unique identifier of the folder.                                                                                                                   |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. |         |
 
 ### New File Comments {#newfilecomments}
 
-Checks for new comments on a specified file on a configured schedule.
+Retrieves existing and ongoing comments on a specified Box file. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection | The Box connection to use.         |         |
-| File ID    | The unique identifier of the file. |         |
+| Input          | Comments                                                                                                                                               | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Box connection to use.                                                                                                                             |         |
+| File ID        | The unique identifier of the file.                                                                                                                     |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. |         |
 
 ### New Folders {#newfolder}
 
-Checks for new folders in a specified folder on a configured schedule.
+Retrieves existing and ongoing folders in a specified Box folder. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                             | Default |
-| ---------- | ------------------------------------ | ------- |
-| Connection | The Box connection to use.           |         |
-| Folder ID  | The unique identifier of the folder. |         |
+| Input          | Comments                                                                                                                                               | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Box connection to use.                                                                                                                             |         |
+| Folder ID      | The unique identifier of the folder.                                                                                                                   |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. |         |
 
 ## Actions
 
@@ -236,15 +239,15 @@ Create a Folder at the specified path.
 
 Create a webhook to send data from Box to an instance URL.
 
-| Input                   | Comments                                                                                                                                                 | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                              |         |
-| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |         |
-| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |         |
-| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          |         |
-| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
-| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |         |
-| Connection              | The Box connection to use.                                                                                                                               |         |
+| Input                   | Comments                                                                                                                                                 | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Webhook URL             | The URL where webhook events will be sent. Reference a flow's URL from the trigger payload.                                                              |                 |
+| Target ID               | The unique identifier of the file or folder that will trigger the webhook.                                                                               |                 |
+| Target Type             | The type of item that will trigger the webhook (file or folder).                                                                                         |                 |
+| Trigger Type            | Select which event types will trigger this webhook. See [Box Events](https://developer.box.com/guides/webhooks/triggers) for available options.          | <code>[]</code> |
+| Primary Signature Key   | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |                 |
+| Secondary Signature Key | A signature key used to validate webhook requests. See [Box Webhook Signatures](https://developer.box.com/guides/webhooks/v2/signatures-v2) for details. |                 |
+| Connection              | The Box connection to use.                                                                                                                               |                 |
 
 ### Delete Instance Webhooks {#deleteinstancewebhooks}
 
@@ -355,11 +358,11 @@ List Folder contents at the specified path.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Path            | The full path to the file or folder. Must include a leading forward slash (/).                                                                                                                                                                   |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                          | false   |
-| Fields/Metadata | Comma-separated attributes to include in the response. Supports metadata queries (e.g., metadata.enterprise_12345.contractTemplate). See [Box File Fields](https://developer.box.com/reference/files-resources#file-full) for available options. |         |
 | Pagination      | Marker, limit, and offset controls for paging through results.                                                                                                                                                                                   |         |
 | Limit           | The maximum number of items to return (1-1000).                                                                                                                                                                                                  |         |
 | Marker          | The pagination marker returned by a previous request to retrieve the next page of results.                                                                                                                                                       |         |
 | Offset          | The position to start returning results from (zero-based index).                                                                                                                                                                                 |         |
+| Fields/Metadata | Comma-separated attributes to include in the response. Supports metadata queries (e.g., metadata.enterprise_12345.contractTemplate). See [Box File Fields](https://developer.box.com/reference/files-resources#file-full) for available options. |         |
 | Connection      | The Box connection to use.                                                                                                                                                                                                                       |         |
 
 ### List Webhooks {#listwebhooks}
@@ -389,24 +392,24 @@ Move a Folder or File from one path to another.
 
 Send raw HTTP request to Box.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Box connection to use.                                                                                                                                                                       |         |
-| URL                     | Input the path only, such as `/2.0/folders`. The base URL `https://api.box.com` is already included. For example, to call `https://api.box.com/2.0/folders`, enter `/2.0/folders` in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Box connection to use.                                                                                                                                                                       |                 |
+| URL                     | Input the path only, such as `/2.0/folders`. The base URL `https://api.box.com` is already included. For example, to call `https://api.box.com/2.0/folders`, enter `/2.0/folders` in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Remove Shared Link from File {#removesharedlinkfromfile}
 

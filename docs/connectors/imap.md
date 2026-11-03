@@ -89,14 +89,15 @@ Create a connection of type **IMAP Connection** and enter the following values:
 
 ### New Emails {#newemailspollingtrigger}
 
-Fetches new emails from a specified mailbox on a recurring schedule.
+Retrieves existing and new emails for a specified IMAP mailbox. Load history once, check for changes on a schedule, or both.
 
-| Input         | Comments                                                                     | Default |
-| ------------- | ---------------------------------------------------------------------------- | ------- |
-| Connection    | The IMAP connection to use.                                                  |         |
-| Mailbox       | Provide a string value for the name of the mailbox.                          |         |
-| Fetch Content | When enabled, downloads and parses the full message body for each new email. | false   |
-| Mark as Read  | When enabled, sets the Seen flag on new emails after polling.                | false   |
+| Input          | Comments                                                                                                                                                                                                                                   | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The IMAP connection to use.                                                                                                                                                                                                                |         |
+| Mailbox        | Provide a string value for the name of the mailbox.                                                                                                                                                                                        |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync delivers each email received on or after this date once. |         |
+| Fetch Content  | When enabled, downloads and parses the full message body for each new email.                                                                                                                                                               | false   |
+| Mark as Read   | When enabled, sets the Seen flag on new emails after polling.                                                                                                                                                                              | false   |
 
 ## Actions
 
@@ -104,12 +105,12 @@ Fetches new emails from a specified mailbox on a recurring schedule.
 
 Add new flags to an existing message
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                             |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
-| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                | Default         |
+| ---------- | --------------------------------------------------------------------------------------- | --------------- |
+| Connection | The IMAP connection to use.                                                             |                 |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |                 |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |                 |
+| Flags      | For each item, provide a string value to be added to an existing message.               | <code>[]</code> |
 
 ### Append Message {#appendmessage}
 
@@ -183,12 +184,12 @@ Returns a list of available mailboxes
 
 Remove existing flags from an existing message
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                             |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
-| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                | Default         |
+| ---------- | --------------------------------------------------------------------------------------- | --------------- |
+| Connection | The IMAP connection to use.                                                             |                 |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |                 |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |                 |
+| Flags      | For each item, provide a string value to be added to an existing message.               | <code>[]</code> |
 
 ### Rename Mailbox {#renamemailbox}
 
@@ -217,9 +218,9 @@ Returns all messages in the given mailbox
 
 Set a value for an existing message flag
 
-| Input      | Comments                                                                                | Default |
-| ---------- | --------------------------------------------------------------------------------------- | ------- |
-| Connection | The IMAP connection to use.                                                             |         |
-| Mailbox    | Provide a string value for the name of the mailbox.                                     |         |
-| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |         |
-| Flags      | For each item, provide a string value to be added to an existing message.               |         |
+| Input      | Comments                                                                                | Default         |
+| ---------- | --------------------------------------------------------------------------------------- | --------------- |
+| Connection | The IMAP connection to use.                                                             |                 |
+| Mailbox    | Provide a string value for the name of the mailbox.                                     |                 |
+| Range      | Provide a range of messages. Alternatively you can specify * to get the latest message. |                 |
+| Flags      | For each item, provide a string value to be added to an existing message.               | <code>[]</code> |

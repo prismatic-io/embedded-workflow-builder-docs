@@ -1,7 +1,7 @@
 ---
 title: Datadog Connector
 sidebar_label: Datadog
-description: Interact with the Datadog API to submit metrics, manage webhooks, and monitor your infrastructure and application performance.
+description: Interact with the Datadog API to submit metrics, manage webhooks, and monitor infrastructure and application performance.
 ---
 
 ![Datadog](./assets/datadog.png#connector-icon)
@@ -10,7 +10,7 @@ This component allows submitting metrics, managing webhook integrations, and rec
 
 ## API Documentation
 
-This component was built using the [Datadog API Reference](https://docs.datadoghq.com/api/latest/) utilizing the v2 Metrics API and v1 Webhooks Integration API.
+This component was built using the [Datadog API Reference](https://docs.datadoghq.com/api/latest/) utilizing the v2 Metrics API for submitting metrics and the v1 Metrics and Webhooks Integration APIs for listing and searching metrics and managing webhooks.
 
 - [Metrics API (v2)](https://docs.datadoghq.com/api/latest/metrics/)
 - [Webhooks Integration API (v1)](https://docs.datadoghq.com/api/latest/webhooks-integration/)
@@ -20,7 +20,7 @@ This component was built using the [Datadog API Reference](https://docs.datadogh
 
 ### API Key + Application Key {#apikey}
 
-Authenticate using a Datadog API Key and Application Key. The API Key authenticates your organization, and the Application Key authorizes management operations.
+Authenticate using a Datadog API Key and Application Key. The API Key authenticates the organization, and the Application Key authorizes management operations.
 
 #### Prerequisites
 
@@ -32,7 +32,7 @@ To configure this connection, the following are required:
 
 #### Setup Steps
 
-1. Log in to the [Datadog account](https://app.datadoghq.com/).
+1. Log in to the [Datadog account](https://app.datadoghq.com/account/login).
 2. Navigate to **Organization Settings** > **API Keys**.
 3. Click **+ New Key** to create an API Key. Copy the key value.
 4. Navigate to **Organization Settings** > **Application Keys**.
@@ -51,7 +51,7 @@ Create a connection of type **API Key + Application Key** and enter:
 
 | Input           | Comments                                                                                                                                    | Default                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| Datadog Site    | Select the Datadog site that matches your organization. This determines the API base URL.                                                   | https://api.datadoghq.com |
+| Datadog Site    | Select the Datadog site that matches the organization. This determines the API base URL.                                                    | https://api.datadoghq.com |
 | API Key         | The Datadog API Key. Create one at Organization Settings > API Keys in Datadog.                                                             |                           |
 | Application Key | The Datadog Application Key. Required for management and read endpoints. Create one at Organization Settings > Application Keys in Datadog. |                           |
 
@@ -71,30 +71,30 @@ To configure this connection, the following are required:
 
 1. Register the application with Datadog as an integration partner.
 2. Obtain the Client ID and Client Secret from the Datadog Developer Platform.
-3. Configure the required OAuth scopes for the use case (e.g., metrics_read, create_webhooks).
-4. Note the Datadog site/region (e.g., US1, EU, US3).
+3. Enter the OAuth callback URL `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the **Redirect URI** of the OAuth application.
+4. Configure the required OAuth scopes for the use case (e.g., metrics_read, create_webhooks).
+5. Note the Datadog site/region (e.g., US1, EU, US3).
 
 #### Configure the Connection
 
 Create a connection of type **OAuth 2.0 Authorization Code** and enter:
 
-| Field             | Description                                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Datadog Site**  | Select the Datadog site that matches the organization.                                                        |
-| **Scopes**        | Space-separated OAuth scopes. Available: metrics_read, timeseries_query, metric_tags_manage, create_webhooks. |
-| **Client ID**     | The Client ID from the Datadog OAuth application.                                                             |
-| **Client Secret** | The Client Secret from the Datadog OAuth application.                                                         |
+| Field             | Description                                            |
+| ----------------- | ------------------------------------------------------ |
+| **Datadog Site**  | Select the Datadog site that matches the organization. |
+| **Client ID**     | The Client ID from the Datadog OAuth application.      |
+| **Client Secret** | The Client Secret from the Datadog OAuth application.  |
 
-The Authorize URL and Token URL are pre-configured for the standard Datadog OAuth endpoints.
+The Authorize URL and Token URL are pre-configured for the standard Datadog OAuth endpoints. The connection requests the scopes `metrics_read`, `timeseries_query`, `metric_tags_manage`, and `create_webhooks` by default.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                                                                  | Default                   |
-| ------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
-| Datadog Site  | Select the Datadog site that matches your organization. This determines the API base URL. | https://api.datadoghq.com |
-| Client ID     | The Client ID from your Datadog OAuth application.                                        |                           |
-| Client Secret | The Client Secret from your Datadog OAuth application.                                    |                           |
+| Input         | Comments                                                                                 | Default                   |
+| ------------- | ---------------------------------------------------------------------------------------- | ------------------------- |
+| Datadog Site  | Select the Datadog site that matches the organization. This determines the API base URL. | https://api.datadoghq.com |
+| Client ID     | The Client ID from the Datadog OAuth application.                                        |                           |
+| Client Secret | The Client Secret from the Datadog OAuth application.                                    |                           |
 
 ## Triggers
 
@@ -157,24 +157,24 @@ List active metric names that have reported data since a given timestamp, with o
 
 Send a raw HTTP request to any Datadog API endpoint.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Datadog connection to use for authentication.                                                                                                                                                |         |
-| URL                     | The URL path to send the request to. The base URL is determined by the Datadog Site configured in the connection. For example, to call the Submit Metrics endpoint, enter /api/v2/series.        |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Datadog connection to use for authentication.                                                                                                                                                |                 |
+| URL                     | The URL path to send the request to. The base URL is determined by the Datadog Site configured in the connection. For example, to call the Submit Metrics endpoint, enter /api/v2/series.        |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Search Metrics {#searchmetrics}
 
@@ -198,19 +198,19 @@ Submit time-series metric data to Datadog for graphing on dashboards. Uses the v
 
 Submit a single metric data point to Datadog. For bulk submissions, use the Submit Metrics action.
 
-| Input         | Comments                                                                                                                                | Default |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Datadog connection to use for authentication.                                                                                       |         |
-| Metric Name   | The name of the timeseries metric (e.g., system.load.1, custom.my_metric).                                                              |         |
-| Value         | The numeric value for the metric data point (64-bit float).                                                                             |         |
-| Timestamp     | Unix timestamp in seconds. Defaults to the current time if not provided. Must be within 10 minutes in the future or 1 hour in the past. |         |
-| Tags          | Tags associated with the metric. Each tag is a string in "key:value" format.                                                            |         |
-| Metric Fields | Optional metric configuration and resource details.                                                                                     |         |
-| Metric Type   | The type of metric. Gauge is the default if unspecified. Count and Rate types require an interval.                                      |         |
-| Unit          | The unit of the metric value (e.g., byte, second, request).                                                                             |         |
-| Interval      | The interval in seconds. Required if the metric type is rate or count.                                                                  |         |
-| Resource Name | The name of the resource to associate with this metric (e.g., hostname).                                                                |         |
-| Resource Type | The type of resource (e.g., "host").                                                                                                    |         |
+| Input         | Comments                                                                                                                                | Default         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection    | The Datadog connection to use for authentication.                                                                                       |                 |
+| Metric Name   | The name of the timeseries metric (e.g., system.load.1, custom.my_metric).                                                              |                 |
+| Value         | The numeric value for the metric data point (64-bit float).                                                                             |                 |
+| Timestamp     | Unix timestamp in seconds. Defaults to the current time if not provided. Must be within 10 minutes in the future or 1 hour in the past. |                 |
+| Tags          | Tags associated with the metric. Each tag is a string in "key:value" format.                                                            | <code>[]</code> |
+| Metric Fields | Optional metric configuration and resource details.                                                                                     |                 |
+| Type          | The type of metric. Gauge is the default if unspecified. Count and Rate types require an interval.                                      |                 |
+| Unit          | The unit of the metric value (e.g., byte, second, request).                                                                             |                 |
+| Interval      | The interval in seconds. Required if the metric type is rate or count.                                                                  |                 |
+| Resource Name | The name of the resource to associate with this metric (e.g., hostname).                                                                |                 |
+| Resource Type | The type of resource (e.g., "host").                                                                                                    |                 |
 
 ### Update Webhook {#updatewebhook}
 

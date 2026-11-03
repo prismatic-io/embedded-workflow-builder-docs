@@ -255,14 +255,15 @@ Receive mail message notifications from Outlook. Automatically creates and manag
 
 ### New and Updated Messages {#pollchangestrigger}
 
-Checks for new and updated mail messages in Microsoft Outlook on a configured schedule.
+Retrieves existing and ongoing mail messages for a specified Microsoft Outlook mail folder. Load history once, check for changes on a schedule, or both.
 
-| Input                 | Comments                                                                                                                  | Default |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Outlook connection to use.                                                                                            |         |
-| Mail Folder ID        | The unique identifier of a mail folder to limit polling to (e.g., Inbox). Leave empty to poll all folders in the mailbox. |         |
-| Show New Messages     | When true, messages created since the last poll are included in the trigger output.                                       | true    |
-| Show Updated Messages | When true, messages updated since the last poll are included in the trigger output.                                       | true    |
+| Input                 | Comments                                                                                                                                                                                                                                                                             | Default |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection            | The Outlook connection to use.                                                                                                                                                                                                                                                       |         |
+| Look-back Date        | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each message created or updated on or after this date once, ignoring the visibility filters. |         |
+| Mail Folder ID        | The unique identifier of a mail folder to limit polling to (e.g., Inbox). Leave empty to poll all folders in the mailbox.                                                                                                                                                            |         |
+| Show New Messages     | When true, messages created since the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
+| Show Updated Messages | When true, messages updated since the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
 
 ### Webhook {#webhook}
 

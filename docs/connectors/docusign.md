@@ -120,7 +120,7 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 | Token URL            | The OAuth 2.0 Token URL for the API                                                                                                                                               | https://account-d.docusign.com/oauth/token |
 | Integration Key      | Integration Identifier of your app for the API                                                                                                                                    |                                            |
 | Secret Key           | Secret Key of your app for the API                                                                                                                                                |                                            |
-| Authorization Header | You must supply an Authorization header to get a token. Key input value should be 'Authorization' and Headers value should be 'Basic <base64 encoded integration_key:secret_key>' |                                            |
+| Authorization Header | You must supply an Authorization header to get a token. Key input value should be 'Authorization' and Headers value should be 'Basic <base64 encoded integration_key:secret_key>' | <code>[]</code>                            |
 | Use Live Environment | Use the live DocuSign API environment                                                                                                                                             | false                                      |
 
 ## Triggers
@@ -129,11 +129,11 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Get notified when an event occurs at the account.
 
-| Input         | Comments                                                                                                                                                                                                             | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connect Key   | This key is used to create the HMAC hash that DocuSign will send along with the message. Check https://developers.docusign.com/platform/webhooks/connect/setting-up-hmac/ for instructions on how to generate a key. |         |
-| Connection    |                                                                                                                                                                                                                      |         |
-| Webhook Event | The list of event types to subscribe to.                                                                                                                                                                             |         |
+| Input         | Comments                                                                                                                                                                                                             | Default         |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connect Key   | This key is used to create the HMAC hash that DocuSign will send along with the message. Check https://developers.docusign.com/platform/webhooks/connect/setting-up-hmac/ for instructions on how to generate a key. |                 |
+| Connection    |                                                                                                                                                                                                                      |                 |
+| Webhook Event | The list of event types to subscribe to.                                                                                                                                                                             | <code>[]</code> |
 
 ## Actions
 
@@ -219,13 +219,13 @@ Creates one or more template definitions, using a multipart request for each tem
 
 Create a new webhook (Account Level).
 
-| Input                                | Comments                                                                        | Default |
-| ------------------------------------ | ------------------------------------------------------------------------------- | ------- |
-| Connection                           |                                                                                 |         |
-| URL To Publish To                    | The URL that DocuSign will publish events to.                                   |         |
-| Connect (Webhook) Configuration Name | A name for the configuration.                                                   |         |
-| Webhook Event                        | The list of event types to subscribe to.                                        |         |
-| Include HMAC                         | When true, the HMAC hash is included in the message along with the API request. | false   |
+| Input                                | Comments                                                                        | Default         |
+| ------------------------------------ | ------------------------------------------------------------------------------- | --------------- |
+| Connection                           |                                                                                 |                 |
+| URL To Publish To                    | The URL that DocuSign will publish events to.                                   |                 |
+| Connect (Webhook) Configuration Name | A name for the configuration.                                                   |                 |
+| Webhook Event                        | The list of event types to subscribe to.                                        | <code>[]</code> |
+| Include HMAC                         | When true, the HMAC hash is included in the message along with the API request. | false           |
 
 ### Delete Account {#deleteaccount}
 
@@ -276,31 +276,31 @@ This method deletes a contact associated with an account.
 
 Deletes one or more documents from an existing envelope that has not yet been completed.
 
-| Input        | Comments                          | Default |
-| ------------ | --------------------------------- | ------- |
-| Connection   |                                   |         |
-| Envelope ID  | The envelope's GUID.              |         |
-| Document IDs | A list of document IDs to delete. |         |
+| Input        | Comments                          | Default         |
+| ------------ | --------------------------------- | --------------- |
+| Connection   |                                   |                 |
+| Envelope ID  | The envelope's GUID.              |                 |
+| Document IDs | A list of document IDs to delete. | <code>[]</code> |
 
 ### Delete Template Document {#deletetemplatedocument}
 
 This method deletes one or more documents from an existing template.
 
-| Input        | Comments                          | Default |
-| ------------ | --------------------------------- | ------- |
-| Connection   |                                   |         |
-| Template ID  | The ID of the template.           |         |
-| Document IDs | A list of document IDs to delete. |         |
+| Input        | Comments                          | Default         |
+| ------------ | --------------------------------- | --------------- |
+| Connection   |                                   |                 |
+| Template ID  | The ID of the template.           |                 |
+| Document IDs | A list of document IDs to delete. | <code>[]</code> |
 
 ### Delete User {#deleteuser}
 
 Closes one or more users in the account, preventing them from accessing account features.
 
-| Input      | Comments                                                                                                                        | Default |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                 |         |
-| User IDs   | A list of user IDs to delete.                                                                                                   |         |
-| Delete     | A list of groups to remove the user from. A comma-separated list of the following: Groups, PermissionSet or SigningGroupsEmail. |         |
+| Input      | Comments                                                                                                                        | Default         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection |                                                                                                                                 |                 |
+| User IDs   | A list of user IDs to delete.                                                                                                   | <code>[]</code> |
+| Delete     | A list of groups to remove the user from. A comma-separated list of the following: Groups, PermissionSet or SigningGroupsEmail. |                 |
 
 ### Delete Webhook {#deletewebhook}
 
@@ -552,24 +552,24 @@ Retrieve all webhooks.
 
 Send raw HTTP request to DocuSign.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                          | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                                                                                   |         |
-| URL                     | Input the path only (/ACCOUNT_ID/folders), The base URL is already included (https://account.docusign.com for live environment or https://account-d.docusign.com for development). For example, to connect to https://account.docusign.com/ACCOUNT_ID/folders, only /ACCOUNT_ID/folders is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                           |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                         |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                              |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                  |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                            |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                               |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                       |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                          | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                               |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                              | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                               | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                  | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                               | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                     | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                          | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                                                                                                   |                 |
+| URL                     | Input the path only (/ACCOUNT_ID/folders), The base URL is already included (https://account.docusign.com for live environment or https://account-d.docusign.com for development). For example, to connect to https://account.docusign.com/ACCOUNT_ID/folders, only /ACCOUNT_ID/folders is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                           |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                         |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                              | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                  | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                            | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                               | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                       | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                          | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                               |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                                              | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                               | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                  | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                               | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                     | false           |
 
 ### Update Account Signature {#updateaccountsignature}
 

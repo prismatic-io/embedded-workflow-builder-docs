@@ -57,19 +57,15 @@ Create a connection of type **Access Token** and configure the following fields:
 - Enter the **Host** (the Shopify domain without `https://`, e.g., `example-store.myshopify.com`).
 - Optionally set the **API Version**. It defaults to the version this component ships with, currently `2026-07`. Refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for the versions Shopify currently accepts and how long each remains available.
 
-:::warning[Production Use]
-Admin API access tokens are tied to admin-created custom apps and recommended for testing only. For production integrations, OAuth 2.0 authentication provides a better user experience and allows users to authenticate with their own credentials.
-:::
-
-| Input                  | Comments                                                                                                                                                                                                              | Default                           |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| Admin API Access Token | Generate from the 'API credentials' tab of an admin-created custom app. Learn more at [Shopify admin-created custom apps](https://shopify.dev/docs/apps/build/authentication-authorization/legacy/admin-custom-apps). |                                   |
-| Host                   | The domain of the Shopify store without https:// (e.g., my-store.myshopify.com).                                                                                                                                      | YOUR-SHOPIFY-DOMAIN.myshopify.com |
-| API Version            | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                                                       | 2026-07                           |
+| Input                  | Comments                                                                                                                                                                                                                                                               | Default                           |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| Admin API Access Token | Generate from the 'API credentials' tab of an admin-created custom app. Learn more at [Shopify admin-created custom apps](https://shopify.dev/docs/apps/build/authentication-authorization/legacy/admin-custom-apps).                                                  |                                   |
+| Host                   | The store handle (e.g., `my-store`). The full `my-store.myshopify.com` domain is also accepted, and any `https://` prefix or trailing path is ignored. Custom domains are not supported. Find the handle in the Shopify admin URL bar or under **Settings > Domains**. | YOUR-SHOPIFY-DOMAIN.myshopify.com |
+| API Version            | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                                                                                                        | 2026-07                           |
 
 ### OAuth 2.0 {#oauth2-dynamic-inputs}
 
-Authenticate requests to Shopify using values obtained from the Developer Console. Allows for using a single domain input instead of entering separate authorization URLs.
+Authenticate requests to Shopify using OAuth 2.0.
 
 Shopify uses OAuth 2.0 for app authentication. This connection type simplifies configuration by using a single **Shop Name** input to automatically construct the authorization and token URLs.
 
@@ -83,7 +79,7 @@ Shopify uses OAuth 2.0 for app authentication. This connection type simplifies c
 As of January 1, 2026, merchants can no longer create new legacy custom apps. Existing apps are not affected. Partners can still create new custom apps and transfer stores to merchants, but once transferred, new custom app creation is disabled on the store. Use the Partner Dashboard or Shopify CLI to create apps going forward.
 :::
 
-#### Creating a Shopify App
+#### Setup Steps
 
 Choose one of the following methods to create a Shopify app.
 
@@ -153,10 +149,6 @@ Create a connection of type **OAuth 2.0** and configure the following fields:
 
 Save the integration to connect and authenticate to Shopify.
 
-:::info[Shop Name Format]
-The **Shop Name** should be the subdomain portion of the Shopify store URL. For example, if the store URL is `example-store.myshopify.com`, enter `example-store` as the Shop Name.
-:::
-
 #### App Distribution
 
 Shopify vets all apps intended for distribution to multiple merchants through a formal App Store review to ensure quality and security standards. The distribution type (custom or public) is chosen at app creation and is permanent. Understanding the difference upfront avoids having to rebuild the app later.
@@ -167,22 +159,18 @@ Shopify app distribution determines which merchants can install the app and is a
 
 **Public apps** are created through the Shopify Partners program and can be distributed to multiple merchants. Public apps must be submitted for review and listed in the [Shopify App Store](https://apps.shopify.com/) before other merchants can install them.
 
-:::note[No Unlisted Distribution]
-Shopify offers no option to distribute an app to many merchants without an App Store listing. For multi-merchant distribution, create a public app and submit it for App Store review.
-:::
-
 For information on the App Store review process, refer to [Shopify's app distribution documentation](https://shopify.dev/docs/apps/launch/distribution).
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input                      | Comments                                                                                                                                                 | Default                                                                                                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shop Name                  | The Shopify shop name without the .myshopify.com suffix (e.g., my-store).                                                                                |                                                                                                                                                                                                                              |
-| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/docs/api/usage/access-scopes) for all available scopes. | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
-| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                    |                                                                                                                                                                                                                              |
-| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                             |                                                                                                                                                                                                                              |
-| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                          | 2026-07                                                                                                                                                                                                                      |
+| Input                      | Comments                                                                                                                                                                                                                                                                                     | Default                                                                                                                                                                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Shop Name                  | The myshopify.com subdomain handle (the part before `.myshopify.com` in the store URL). Do not paste the `.myshopify.com` suffix, `https://`, a full URL, or a custom domain. Find it in the Shopify admin URL bar (`https://<handle>.myshopify.com/admin`) or under **Settings > Domains**. |                                                                                                                                                                                                                              |
+| Scopes                     | Space-separated list of OAuth permission scopes. See [Shopify access scopes](https://shopify.dev/docs/api/usage/access-scopes) for all available scopes.                                                                                                                                     | read_customers read_draft_orders read_fulfillments read_inventory read_orders read_products read_locations write_customers write_draft_orders write_fulfillments write_inventory write_orders write_products write_locations |
+| Client ID (API Key)        | The Client ID (also called API Key) from the Shopify app credentials.                                                                                                                                                                                                                        |                                                                                                                                                                                                                              |
+| Client Secret (API Secret) | The Client Secret (also called API Secret) from the Shopify app credentials.                                                                                                                                                                                                                 |                                                                                                                                                                                                                              |
+| API Version                | Shopify API version to use. See [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for available versions.                                                                                                                                                              | 2026-07                                                                                                                                                                                                                      |
 
 ### OAuth 2.0 (Deprecated) {#oauth2}
 
@@ -207,11 +195,11 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive event notifications from Shopify. Automatically creates and manages a webhook subscription for selected event topics when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input         | Comments                                                                    | Default |
-| ------------- | --------------------------------------------------------------------------- | ------- |
-| Connection    | The Shopify connection to use.                                              |         |
-| Secret Key    | The Shopify app's client secret, viewable from the Partner Dashboard.       |         |
-| Webhook Topic | The topic for the webhook. This is the event that will trigger the webhook. |         |
+| Input         | Comments                                                                    | Default         |
+| ------------- | --------------------------------------------------------------------------- | --------------- |
+| Connection    | The Shopify connection to use.                                              |                 |
+| Secret Key    | The Shopify app's client secret, viewable from the Partner Dashboard.       |                 |
+| Webhook Topic | The topic for the webhook. This is the event that will trigger the webhook. | <code>[]</code> |
 
 ### New and Updated Customers {#customerspollingtrigger}
 
@@ -280,7 +268,7 @@ Marks a draft order as complete.
 | Input          | Comments                                   | Default |
 | -------------- | ------------------------------------------ | ------- |
 | Connection     | The Shopify connection to use.             |         |
-| Draft Order Id | The unique identifier for the draft order. |         |
+| Draft Order ID | The unique identifier for the draft order. |         |
 
 ### Connect Inventory Item To Location {#connectinventorylevelgql}
 
@@ -290,7 +278,7 @@ Connects an existing inventory item to a location.
 | ----------------- | ----------------------------------------------------------- | ------- |
 | Connection        | The Shopify connection to use.                              |         |
 | Location ID       | The ID of the location that the inventory level belongs to. |         |
-| Inventory Item Id | The unique identifier for the inventory item.               |         |
+| Inventory Item ID | The unique identifier for the inventory item.               |         |
 
 ### Count Collections {#countcollectionsgql}
 
@@ -370,37 +358,37 @@ Creates an account activation URL for an existing customer.
 
 Creates a new customer.
 
-| Input             | Comments                                                                                                                             | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Shopify connection to use.                                                                                                       |         |
-| First Name        | The first name of the customer.                                                                                                      |         |
-| Last Name         | The last name of the customer.                                                                                                       |         |
-| Email             | The email address of the customer.                                                                                                   |         |
-| Address List      | A JSON array of address objects for the customer. Each object should include fields like address1, city, province, country, and zip. |         |
-| Verified Email    | When true, emails will be sent to the customer.                                                                                      | false   |
-| Values            | Key-value pairs for creating or updating a record. Specify any property key and value.                                               |         |
-| Tags              | Tags for the product. Each list item is a tag string.                                                                                |         |
-| Additional Fields | Additional optional fields: includes Phone, Notes, Currency Format, Tax Exempt, and Metafields.                                      |         |
-| Phone             | The phone number of the customer in E.164 format.                                                                                    |         |
-| Notes             | Additional notes about the customer.                                                                                                 |         |
-| Currency Format   | The currency format code.                                                                                                            |         |
-| Tax Exempt        | When true, the customer is tax exempt.                                                                                               | false   |
-| Metafields        | JSON array containing metadata objects.                                                                                              |         |
+| Input             | Comments                                                                                                                             | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Shopify connection to use.                                                                                                       |                 |
+| First Name        | The first name of the customer.                                                                                                      |                 |
+| Last Name         | The last name of the customer.                                                                                                       |                 |
+| Email             | The email address of the customer.                                                                                                   |                 |
+| Address List      | A JSON array of address objects for the customer. Each object should include fields like address1, city, province, country, and zip. |                 |
+| Verified Email    | When true, emails will be sent to the customer.                                                                                      | false           |
+| Values            | Key-value pairs for creating or updating a record. Specify any property key and value.                                               | <code>[]</code> |
+| Tags              | Tags for the product. Each list item is a tag string.                                                                                | <code>[]</code> |
+| Additional Fields | Additional optional fields: includes Phone, Notes, Currency Format, Tax Exempt, and Metafields.                                      |                 |
+| Phone             | The phone number of the customer in E.164 format.                                                                                    |                 |
+| Notes             | Additional notes about the customer.                                                                                                 |                 |
+| Currency Format   | The three-letter ISO 4217 currency code (e.g. USD, EUR) for the customer's transactions.                                             |                 |
+| Tax Exempt        | When true, the customer is tax exempt.                                                                                               | false           |
+| Metafields        | JSON array containing metadata objects.                                                                                              |                 |
 
 ### Create Draft Order {#createdraftordergql}
 
 Creates a new draft order.
 
-| Input                | Comments                                                                                   | Default |
-| -------------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection           | The Shopify connection to use.                                                             |         |
-| Customer             | The unique identifier for the customer.                                                    |         |
-| Line items           | Provide a JSON array containing line item objects.                                         |         |
-| Use Customer Address | This flag determines if the order will use the customers default address.                  | true    |
-| Note                 | A note on the draft order.                                                                 |         |
-| Tax Exempt           | Whether or not taxes are exempt for the draft order.                                       | false   |
-| Tags                 | Provide a list of tags for the draft order.                                                |         |
-| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
+| Input                | Comments                                                                                   | Default         |
+| -------------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection           | The Shopify connection to use.                                                             |                 |
+| Customer             | The unique identifier for the customer.                                                    |                 |
+| Line Items           | Provide a JSON array containing line item objects.                                         |                 |
+| Use Customer Address | This flag determines if the order will use the customers default address.                  | true            |
+| Note                 | A note on the draft order.                                                                 |                 |
+| Tax Exempt           | Whether or not taxes are exempt for the draft order.                                       | false           |
+| Tags                 | Provide a list of tags for the draft order.                                                | <code>[]</code> |
+| Additional Fields    | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
 
 ### Create Fulfillment Service {#createfulfillmentservicegql}
 
@@ -427,18 +415,18 @@ Creates a new order.
 
 Creates a new product.
 
-| Input             | Comments                                                                                   | Default |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Shopify connection to use.                                                             |         |
-| Title             | Provide a string value for the title of the product.                                       |         |
-| Description HTML  | Provide an HTML string for the description of the product.                                 |         |
-| Product Type      | Provide a value for the type of product.                                                   |         |
-| Vendor            | Provide a value for the vendor of the product.                                             |         |
-| Product Status    | Specify the status of the product.                                                         |         |
-| Image URL         | Provide a URL for the image of the product.                                                |         |
-| Image Alt Text    | Provide the alt text for the image of the product.                                         |         |
-| Tags              | Provide a list of tags for the product.                                                    |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
+| Input             | Comments                                                                                   | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Shopify connection to use.                                                             |                 |
+| Title             | Provide a string value for the title of the product.                                       |                 |
+| Description HTML  | Provide an HTML string for the description of the product.                                 |                 |
+| Product Type      | Provide a value for the type of product.                                                   |                 |
+| Vendor            | Provide a value for the vendor of the product.                                             |                 |
+| Product Status    | Specify the status of the product.                                                         |                 |
+| Image URL         | Provide a URL for the image of the product.                                                |                 |
+| Image Alt Text    | Provide the alt text for the image of the product.                                         |                 |
+| Tags              | Provide a list of tags for the product.                                                    | <code>[]</code> |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
 
 ### Create Product Image {#createproductimagegql}
 
@@ -470,7 +458,7 @@ Creates a webhook for the specified topic.
 | Connection     | The Shopify connection to use.                                                                                                        |         |
 | Webhook Topic  | The event topic for the webhook. See [Shopify webhook topics](https://shopify.dev/docs/api/webhooks/latest) for all available topics. |         |
 | Post URL       | The URL where the newly created webhook will post to. Used to configure the Shopify trigger.                                          |         |
-| Webhook Format | The format for the webhook response.                                                                                                  | json    |
+| Webhook Format | Specifies whether the webhook payload is delivered as JSON or XML.                                                                    | json    |
 
 ### Delete Collection {#deletecollectiongql}
 
@@ -497,7 +485,7 @@ Deletes an existing draft order.
 | Input          | Comments                                   | Default |
 | -------------- | ------------------------------------------ | ------- |
 | Connection     | The Shopify connection to use.             |         |
-| Draft Order Id | The unique identifier for the draft order. |         |
+| Draft Order ID | The unique identifier for the draft order. |         |
 
 ### Delete Fulfillment Service {#deletefulfillmentservicegql}
 
@@ -523,7 +511,7 @@ Deletes an inventory level.
 | Input              | Comments                                       | Default |
 | ------------------ | ---------------------------------------------- | ------- |
 | Connection         | The Shopify connection to use.                 |         |
-| Inventory Level Id | The unique identifier for the inventory level. |         |
+| Inventory Level ID | The unique identifier for the inventory level. |         |
 
 ### Delete Metafield {#deletemetafieldgql}
 
@@ -608,7 +596,7 @@ Retrieves a draft order by ID.
 | Input          | Comments                                   | Default |
 | -------------- | ------------------------------------------ | ------- |
 | Connection     | The Shopify connection to use.             |         |
-| Draft Order Id | The unique identifier for the draft order. |         |
+| Draft Order ID | The unique identifier for the draft order. |         |
 
 ### Get Fulfillment {#getfulfillmentgql}
 
@@ -617,7 +605,7 @@ Retrieves a fulfillment by ID.
 | Input          | Comments                                   | Default |
 | -------------- | ------------------------------------------ | ------- |
 | Connection     | The Shopify connection to use.             |         |
-| Fulfillment Id | The unique identifier for the fulfillment. |         |
+| Fulfillment ID | The unique identifier for the fulfillment. |         |
 
 ### Get Fulfillment Order {#getfulfillmentorder}
 
@@ -643,7 +631,7 @@ Retrieves an inventory item by ID.
 
 | Input             | Comments                                      | Default |
 | ----------------- | --------------------------------------------- | ------- |
-| Inventory Item Id | The unique identifier for the inventory item. |         |
+| Inventory Item ID | The unique identifier for the inventory item. |         |
 | Connection        | The Shopify connection to use.                |         |
 
 ### Get Inventory Levels {#getinventorylevelsgql}
@@ -653,7 +641,7 @@ Retrieves an inventory level by ID.
 | Input              | Comments                                       | Default |
 | ------------------ | ---------------------------------------------- | ------- |
 | Connection         | The Shopify connection to use.                 |         |
-| Inventory Level Id | The unique identifier for the inventory level. |         |
+| Inventory Level ID | The unique identifier for the inventory level. |         |
 
 ### Get Location {#getlocationsgql}
 
@@ -675,7 +663,7 @@ Retrieves an order by ID.
 
 ### Get Order (Deprecated) {#getorder}
 
-Get the information and metadata about an order. This version of the action is being deprecated. Please replace action with Get Order.
+Retrieves the information and metadata about an order. This version of the action is being deprecated. Please replace action with Get Order.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -907,38 +895,38 @@ Lists all webhooks or webhooks for the current instance.
 
 Sends a raw GraphQL request to Shopify.
 
-| Input             | Comments                                                                                                                                | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Shopify connection to use.                                                                                                          |         |
-| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2026-07 |
-| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                  |         |
-| Variables         | Variables to pass to the query or mutation.                                                                                             |         |
-| Variables Object  | Variables to pass to the query or mutation.                                                                                             |         |
+| Input             | Comments                                                                                                                                | Default         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Shopify connection to use.                                                                                                          |                 |
+| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2026-07         |
+| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                  |                 |
+| Variables         | Variables to pass to the query or mutation.                                                                                             | <code>[]</code> |
+| Variables Object  | Variables to pass to the query or mutation.                                                                                             |                 |
 
 ### Raw Request (Deprecated) {#rawrequest}
 
-Send raw HTTP request to Shopify. This version of the action uses REST and is being deprecated. Please replace action with the Raw Request utilizing GraphQL.
+Sends a raw HTTP request to Shopify. This version of the action uses REST and is being deprecated. Please replace action with the Raw Request utilizing GraphQL.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Shopify connection to use.                                                                                                                                                                                                                                                                   |         |
-| URL                     | Input the path only (/users/current.json), The base URL is already included (https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION). For example, to connect to https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION/users/current.json, only /users/current.json is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false   |
-| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2026-07 |
-| Return Headers          | When true, response headers will be included in the output object.                                                                                                                                                                                                                               | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Shopify connection to use.                                                                                                                                                                                                                                                                   |                 |
+| URL                     | Input the path only (/users/current.json), The base URL is already included (https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION). For example, to connect to https://YOUR-DOMAIN.myshopify.com/admin/api/API-VERSION/users/current.json, only /users/current.json is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false           |
+| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2026-07         |
+| Return Headers          | When true, response headers will be included in the output object.                                                                                                                                                                                                                               | false           |
 
 ### Set Metafield {#setmetafieldgql}
 
@@ -957,20 +945,20 @@ Sets a resource metafield. Note: This action currently utilizes an unstable vers
 
 Updates an existing customer by ID.
 
-| Input             | Comments                                                                                   | Default |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Shopify connection to use.                                                             |         |
-| Customer          | The unique identifier for the customer.                                                    |         |
-| First Name        | The first name of the customer.                                                            |         |
-| Last Name         | The last name of the customer.                                                             |         |
-| Email             | The email address of the customer.                                                         |         |
-| Address List      | Provide a JSON array containing address objects.                                           |         |
-| Phone             | The phone number of the customer.                                                          |         |
-| Notes             | A note about the customer.                                                                 |         |
-| Tags              | For each list item, provide a string to tag the product with.                              |         |
-| Tax Exempt        | Determines if the customer is tax exempt.                                                  |         |
-| Metafields        | Provide a JSON array containing metadata objects.                                          |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
+| Input             | Comments                                                                                   | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Shopify connection to use.                                                             |                 |
+| Customer          | The unique identifier for the customer.                                                    |                 |
+| First Name        | The first name of the customer.                                                            |                 |
+| Last Name         | The last name of the customer.                                                             |                 |
+| Email             | The email address of the customer.                                                         |                 |
+| Address List      | Provide a JSON array containing address objects.                                           |                 |
+| Phone             | The phone number of the customer.                                                          |                 |
+| Notes             | A note about the customer.                                                                 |                 |
+| Tags              | For each list item, provide a string to tag the product with.                              | <code>[]</code> |
+| Tax Exempt        | Determines if the customer is tax exempt.                                                  |                 |
+| Metafields        | Provide a JSON array containing metadata objects.                                          |                 |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
 
 ### Update Fulfillment Service {#updatefulfillmentservicegql}
 
@@ -992,7 +980,7 @@ Updates an existing inventory item.
 | Input             | Comments                                                                                   | Default |
 | ----------------- | ------------------------------------------------------------------------------------------ | ------- |
 | Connection        | The Shopify connection to use.                                                             |         |
-| Inventory Item Id | The unique identifier for the inventory item.                                              |         |
+| Inventory Item ID | The unique identifier for the inventory item.                                              |         |
 | SKU               | The SKU (stock keeping unit) of the inventory item.                                        |         |
 | Cost              | Unit cost associated with the inventory item, the currency is the shop's default currency. |         |
 | Tracked           | Whether the inventory item is tracked.                                                     |         |
@@ -1001,19 +989,19 @@ Updates an existing inventory item.
 
 Updates an existing product by ID.
 
-| Input             | Comments                                                                                   | Default |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Shopify connection to use.                                                             |         |
-| Product ID        | The unique identifier for the product.                                                     |         |
-| Title             | Provide a string value for the title of the product.                                       |         |
-| Description HTML  | Provide an HTML string for the description of the product.                                 |         |
-| Product Type      | Provide a value for the type of product.                                                   |         |
-| Vendor            | Provide a value for the vendor of the product.                                             |         |
-| Product Status    | Specify the status of the product.                                                         |         |
-| Image URL         | Provide a URL for the image of the product.                                                |         |
-| Image Alt Text    | Provide the alt text for the image of the product.                                         |         |
-| Tags              | For each list item, provide a string to tag the product with.                              |         |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |         |
+| Input             | Comments                                                                                   | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Shopify connection to use.                                                             |                 |
+| Product ID        | The unique identifier for the product.                                                     |                 |
+| Title             | Provide a string value for the title of the product.                                       |                 |
+| Description HTML  | Provide an HTML string for the description of the product.                                 |                 |
+| Product Type      | Provide a value for the type of product.                                                   |                 |
+| Vendor            | Provide a value for the vendor of the product.                                             |                 |
+| Product Status    | Specify the status of the product.                                                         |                 |
+| Image URL         | Provide a URL for the image of the product.                                                |                 |
+| Image Alt Text    | Provide the alt text for the image of the product.                                         |                 |
+| Tags              | For each list item, provide a string to tag the product with.                              | <code>[]</code> |
+| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
 
 ### Update Variant {#updatevariantgql}
 

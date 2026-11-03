@@ -120,13 +120,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Applications {#pollchangestriggerv3}
 
-Checks for new and updated applications in Greenhouse on a configured schedule.
+Retrieves existing and ongoing applications in Greenhouse. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                          | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Greenhouse connection to use.                                                                 |         |
-| Show New Records     | When true, newly created applications are included in the trigger output.                         | true    |
-| Show Updated Records | When true, applications with new activity since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Greenhouse connection to use.                                                                                                                                                                                                                                         |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, newly created applications are included in the trigger output.                                                                                                                                                                                                 | true    |
+| Show Updated Records | When true, applications with new activity since the last poll are included in the trigger output.                                                                                                                                                                         | true    |
 
 ### New and Updated Applications (Harvest v1/v2) {#pollchangestrigger}
 

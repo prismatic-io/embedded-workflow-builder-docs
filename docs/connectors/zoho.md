@@ -119,29 +119,32 @@ Receive CRM event notifications from Zoho CRM. Automatically creates and manages
 
 ### New and Updated Books Contacts {#bookcontactspollingtrigger}
 
-Checks for new and updated contacts in Zoho Books on a configured schedule.
+Retrieves existing and ongoing contacts from Zoho Books. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                    | Default |
-| ---------- | --------------------------- | ------- |
-| Connection | The Zoho connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                                 | Default |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Zoho connection to use.                                                                                                                                                                                                              |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once. |         |
 
 ### New and Updated CRM Contacts {#contactspollingtrigger}
 
-Checks for new and updated contacts in Zoho CRM on a configured schedule.
+Retrieves existing and ongoing contacts from Zoho CRM. Load history once, check for changes on a schedule, or both.
 
-| Input             | Comments                                                                                                                                                                                             | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Zoho connection to use.                                                                                                                                                                          |         |
-| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records. |         |
+| Input             | Comments                                                                                                                                                                                                                                 | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Zoho connection to use.                                                                                                                                                                                                              |         |
+| Look-back Date    | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once. |         |
+| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records.                                     |         |
 
 ### New and Updated CRM Leads {#leadspollingtrigger}
 
-Checks for new and updated leads in Zoho CRM on a configured schedule.
+Retrieves existing and ongoing leads from Zoho CRM. Load history once, check for changes on a schedule, or both.
 
-| Input             | Comments                                                                                                                                                                                             | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Zoho connection to use.                                                                                                                                                                          |         |
-| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records. |         |
+| Input             | Comments                                                                                                                                                                                                                                 | Default |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Zoho connection to use.                                                                                                                                                                                                              |         |
+| Look-back Date    | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once. |         |
+| Additional Fields | Additional CRM field names to include in the trigger results. `Created_Time`, `Modified_Time`, and `Full_Name` are always requested because the trigger uses them to detect new and updated records.                                     |         |
 
 ## Actions
 

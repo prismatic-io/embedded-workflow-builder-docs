@@ -131,13 +131,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New Records {#pollchangestrigger}
 
-Checks for new records in a selected Power BI resource type on a configured schedule.
+Retrieves existing and ongoing records for a selected Power BI resource type. Load history once, check for changes on a schedule, or both.
 
-| Input            | Comments                                          | Default |
-| ---------------- | ------------------------------------------------- | ------- |
-| Connection       |                                                   |         |
-| Resource Type    | The type of resource to poll for new records.     |         |
-| Show New Records | Include newly created records in trigger results. | true    |
+| Input            | Comments                                                                                                                                                                                                                                                                                                                 | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection       |                                                                                                                                                                                                                                                                                                                          |         |
+| Resource Type    | The type of resource to poll for new records.                                                                                                                                                                                                                                                                            |         |
+| Show New Records | Include newly created records in trigger results.                                                                                                                                                                                                                                                                        | true    |
+| Look-back Date   | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, for resource types that record a creation date, ignoring the visibility filters. |         |
 
 ## Actions
 
@@ -218,23 +219,23 @@ Returns a list of tables tables within the specified dataset from 'My Workspace'
 
 Send raw HTTP request to Microsoft Power BI
 
-| Input                   | Comments                                                                                                                                                                                                                 | Default  |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
-| Connection              |                                                                                                                                                                                                                          |          |
-| URL                     | Input the path only (/profiles), The base URL is already included (https://api.powerbi.com/v1.0/myorg). For example, to connect to https://api.powerbi.com/v1.0/myorg/profiles, only /profiles is entered in this field. | /imports |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                  |          |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                |          |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                     |          |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                         |          |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                   |          |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                      |          |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                              |          |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                 | json     |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                      |          |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                      | 0        |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                         | false    |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                      | 0        |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                            | false    |
+| Input                   | Comments                                                                                                                                                                                                                 | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                                          |                 |
+| URL                     | Input the path only (/profiles), The base URL is already included (https://api.powerbi.com/v1.0/myorg). For example, to connect to https://api.powerbi.com/v1.0/myorg/profiles, only /profiles is entered in this field. | /imports        |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                  |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                     | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                         | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                   | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                      | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                              | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                 | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                      |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                      | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                         | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                      | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                            | false           |
 
 ### Update Table {#updatetable}
 

@@ -152,21 +152,23 @@ The connection sends requests to `https://api.atlassian.com/jsm/ops/integration/
 
 ### New Ops Alerts {#onnewopsalert}
 
-Fetches new alerts created in Jira Service Management Ops on a recurring schedule.
+Retrieves existing and ongoing alerts from Jira Service Management Ops. Load history once, check for changes on a schedule, or both.
 
-| Input            | Comments                                                                                                  | Default |
-| ---------------- | --------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Jira Service Management connection to use.                                                            |         |
-| Additional Query | Atlassian Ops query terms appended to the built-in createdAt filter. Uses OpsGenie query language syntax. |         |
+| Input            | Comments                                                                                                                                                                                                                               | Default |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Jira Service Management connection to use.                                                                                                                                                                                         |         |
+| Look-back Date   | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each alert created on or after this date once. |         |
+| Additional Query | Atlassian Ops query terms appended to the built-in createdAt filter. Uses OpsGenie query language syntax.                                                                                                                              |         |
 
 ### New Service Requests {#onnewrequest}
 
-Fetches new service requests created in Jira Service Management on a recurring schedule.
+Retrieves existing and ongoing service requests for a specified Jira Service Management service desk (or all accessible service desks, if omitted). Load history once, check for changes on a schedule, or both.
 
-| Input           | Comments                                                                                                               | Default |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The Jira Service Management connection to use.                                                                         |         |
-| Service Desk ID | Limits new requests to a specific service desk. When omitted, requests from all accessible service desks are returned. |         |
+| Input           | Comments                                                                                                                                                                                                                                         | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection      | The Jira Service Management connection to use.                                                                                                                                                                                                   |         |
+| Look-back Date  | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each service request created on or after this date once. |         |
+| Service Desk ID | Limits new requests to a specific service desk. When omitted, requests from all accessible service desks are returned.                                                                                                                           |         |
 
 ## Actions
 
@@ -316,22 +318,23 @@ Creates a portal-only customer account, adds them to the specified service desk,
 
 Ingests a new alert into JSM Ops via the integration API. Returns an asynchronous request ID; use Get Integration Alert Request to check processing status.
 
-| Input       | Comments                                                                                                                                            | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Jira Service Management connection to use.                                                                                                      |         |
-| Message     | The alert message that summarises what happened. Truncated to 130 characters by Atlassian.                                                          |         |
-| Alias       | Client-defined identifier for deduplication. Subsequent alerts with the same alias and OPEN status are de-duplicated to the first one.              |         |
-| Description | Detailed message body. Markdown is supported. Truncated to 15,000 characters by Atlassian.                                                          |         |
-| Responders  | JSON array of responder objects to assign. Each item must include `type` (team, user, escalation, schedule) and one of `id`, `name`, or `username`. |         |
-| Visible To  | JSON array restricting alert visibility to specific teams or users. Same shape as Responders.                                                       |         |
-| Actions     | JSON array of custom action names that can later be invoked on the alert.                                                                           |         |
-| Tags        | JSON array of string tags to attach to the alert.                                                                                                   |         |
-| Details     | JSON object of arbitrary key/value pairs stored alongside the alert.                                                                                |         |
-| Entity      | Optional entity field used to specify which domain the alert is related to (e.g. a server name).                                                    |         |
-| Source      | Source of the alert. Defaults to the IP address of the request when omitted.                                                                        |         |
-| Priority    | Priority level of the alert. Defaults to P3.                                                                                                        | P3      |
-| User        | Display name of the user performing the action. Used to attribute the alert action in audit history.                                                |         |
-| Note        | Additional note posted alongside the alert action.                                                                                                  |         |
+| Input             | Comments                                                                                                                                            | Default |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection        | The Jira Service Management connection to use.                                                                                                      |         |
+| Message           | The alert message that summarises what happened. Truncated to 130 characters by Atlassian.                                                          |         |
+| Alias             | Client-defined identifier for deduplication. Subsequent alerts with the same alias and OPEN status are de-duplicated to the first one.              |         |
+| Description       | Detailed message body. Markdown is supported. Truncated to 15,000 characters by Atlassian.                                                          |         |
+| Additional Fields | Additional optional fields: includes Responders, Visible To, Actions, Tags, Details, Entity, Source, Priority, User, and Note.                      |         |
+| Responders        | JSON array of responder objects to assign. Each item must include `type` (team, user, escalation, schedule) and one of `id`, `name`, or `username`. |         |
+| Visible To        | JSON array restricting alert visibility to specific teams or users. Same shape as Responders.                                                       |         |
+| Actions           | JSON array of custom action names that can later be invoked on the alert.                                                                           |         |
+| Tags              | JSON array of string tags to attach to the alert.                                                                                                   |         |
+| Details           | JSON object of arbitrary key/value pairs stored alongside the alert.                                                                                |         |
+| Entity            | Optional entity field used to specify which domain the alert is related to (e.g. a server name).                                                    |         |
+| Source            | Source of the alert. Defaults to the IP address of the request when omitted.                                                                        |         |
+| Priority          | Priority level of the alert. Defaults to P3.                                                                                                        | P3      |
+| User              | Display name of the user performing the action. Used to attribute the alert action in audit history.                                                |         |
+| Note              | Additional note posted alongside the alert action.                                                                                                  |         |
 
 ### Create Ops Alert {#createopsalert}
 
@@ -530,6 +533,7 @@ Returns the approvals for a service request.
 | Connection      | The Jira Service Management connection to use.                                                                                                    |         |
 | Issue ID or Key | The ID or key of the service request issue (e.g., IT-42 or 10001). Use the Select Request data source or List Requests action to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                        | false   |
+| Pagination      | Start index and page size controls.                                                                                                               |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                                        | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                                   |         |
 
@@ -541,6 +545,7 @@ Returns all Assets/CMDB object schemas in the workspace.
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection                  | The Jira Service Management connection to use.                                                                                            |         |
 | Fetch All                   | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                | false   |
+| Pagination                  | Start index and page size controls.                                                                                                       |         |
 | Start At                    | Index of the first result to return.                                                                                                      | 0       |
 | Max Results                 | Maximum number of results per page.                                                                                                       | 50      |
 | Additional Query Parameters | Extra query string parameters to merge into the request URL alongside the standard inputs. Provide a JSON object keyed by parameter name. |         |
@@ -554,6 +559,7 @@ Returns comments for a service request.
 | Connection      | The Jira Service Management connection to use.                                                                                                    |         |
 | Issue ID or Key | The ID or key of the service request issue (e.g., IT-42 or 10001). Use the Select Request data source or List Requests action to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                        | false   |
+| Pagination      | Start index and page size controls.                                                                                                               |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                                        | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                                   |         |
 
@@ -566,6 +572,7 @@ Returns customers associated with a service desk.
 | Connection      | The Jira Service Management connection to use.                                                                                   |         |
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -580,6 +587,7 @@ Returns alerts in JSM Ops, optionally filtered by query.
 | Sort                        | Field to sort the alerts by (e.g. `createdAt`, `priority`).                                                                               |         |
 | Order                       | Sort order applied alongside the Sort field.                                                                                              | desc    |
 | Fetch All                   | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                | false   |
+| Pagination                  | Offset and page size controls.                                                                                                            |         |
 | Offset                      | Index of the first result to return.                                                                                                      | 0       |
 | Size                        | Maximum number of results per page (Atlassian max: 100).                                                                                  | 20      |
 | Additional Query Parameters | Extra query string parameters to merge into the request URL alongside the standard inputs. Provide a JSON object keyed by parameter name. |         |
@@ -593,6 +601,7 @@ Returns all on-call schedules configured in JSM Ops.
 | Connection                  | The Jira Service Management connection to use.                                                                                            |         |
 | Fetch All                   | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                | false   |
 | Query                       | Filters schedules by name (substring match).                                                                                              |         |
+| Pagination                  | Offset and page size controls.                                                                                                            |         |
 | Offset                      | Index of the first result to return.                                                                                                      | 0       |
 | Size                        | Maximum number of results per page (Atlassian max: 50).                                                                                   | 25      |
 | Additional Query Parameters | Extra query string parameters to merge into the request URL alongside the standard inputs. Provide a JSON object keyed by parameter name. |         |
@@ -614,6 +623,7 @@ Returns all organizations in the Jira Service Management instance.
 | ---------- | ---------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jira Service Management connection to use.                                                             |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true. | false   |
+| Pagination | Start index and page size controls.                                                                        |         |
 | Start      | The starting index of the returned items. First item is 0.                                                 | 0       |
 | Limit      | The maximum number of items to return per page.                                                            |         |
 
@@ -626,6 +636,7 @@ Returns users associated with an organization.
 | Connection      | The Jira Service Management connection to use.                                                                |         |
 | Organization ID | The unique identifier of the organization. Use the List Organizations action or the Organization data source. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.    | false   |
+| Pagination      | Start index and page size controls.                                                                           |         |
 | Start           | The starting index of the returned items. First item is 0.                                                    | 0       |
 | Limit           | The maximum number of items to return per page.                                                               |         |
 
@@ -639,6 +650,7 @@ Returns the issues in a service desk queue.
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Queue ID        | The unique identifier of the queue. Use the List Queues action or the Queue data source.                                         |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -651,6 +663,7 @@ Returns queues for a service desk.
 | Connection      | The Jira Service Management connection to use.                                                                                   |         |
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -663,6 +676,7 @@ Returns service requests for the given service desk.
 | Connection      | The Jira Service Management connection to use.                                                                                   |         |
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -675,6 +689,7 @@ Returns all request types for a service desk.
 | Connection      | The Jira Service Management connection to use.                                                                                   |         |
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -697,6 +712,7 @@ Returns organizations linked to a service desk.
 | Connection      | The Jira Service Management connection to use.                                                                                   |         |
 | Service Desk ID | The unique identifier of the service desk. Use the List Service Desks action or the Service Desk data source to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                       | false   |
+| Pagination      | Start index and page size controls.                                                                                              |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                       | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                  |         |
 
@@ -708,6 +724,7 @@ Returns all service desks in the Jira Service Management instance.
 | ---------- | ---------------------------------------------------------------------------------------------------------- | ------- |
 | Connection | The Jira Service Management connection to use.                                                             |         |
 | Fetch All  | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true. | false   |
+| Pagination | Start index and page size controls.                                                                        |         |
 | Start      | The starting index of the returned items. First item is 0.                                                 | 0       |
 | Limit      | The maximum number of items to return per page.                                                            |         |
 
@@ -720,6 +737,7 @@ Returns SLA information for a service request.
 | Connection      | The Jira Service Management connection to use.                                                                                                    |         |
 | Issue ID or Key | The ID or key of the service request issue (e.g., IT-42 or 10001). Use the Select Request data source or List Requests action to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                        | false   |
+| Pagination      | Start index and page size controls.                                                                                                               |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                                        | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                                   |         |
 
@@ -732,6 +750,7 @@ Returns available status transitions for a service request.
 | Connection      | The Jira Service Management connection to use.                                                                                                    |         |
 | Issue ID or Key | The ID or key of the service request issue (e.g., IT-42 or 10001). Use the Select Request data source or List Requests action to find this value. |         |
 | Fetch All       | When true, automatically fetches all pages of results using pagination. Ignores start and limit when true.                                        | false   |
+| Pagination      | Start index and page size controls.                                                                                                               |         |
 | Start           | The starting index of the returned items. First item is 0.                                                                                        | 0       |
 | Limit           | The maximum number of items to return per page.                                                                                                   |         |
 
@@ -805,6 +824,7 @@ Searches Assets/CMDB objects using AQL (Asset Query Language).
 | Connection         | The Jira Service Management connection to use.                                                                 |         |
 | AQL Query          | Asset Query Language expression used to filter objects (e.g. `objectType = "Computer" AND Name LIKE "web-*"`). |         |
 | Include Attributes | When true, full attribute values are returned for each object. Disable to reduce payload size.                 | true    |
+| Pagination         | Start index and page size controls.                                                                            |         |
 | Start At           | Index of the first result to return.                                                                           | 0       |
 | Max Results        | Maximum number of results per page.                                                                            | 50      |
 

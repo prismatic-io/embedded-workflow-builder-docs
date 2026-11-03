@@ -112,14 +112,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in Xero on a configured schedule.
+Retrieves existing and ongoing records for a selected Xero resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                       | Default |
-| -------------------- | -------------------------------------------------------------- | ------- |
-| Connection           | The Xero connection to use.                                    |         |
-| Resource Type        | The type of Xero resource to poll for new and updated records. |         |
-| Show New Records     | Include newly created records in trigger results.              | true    |
-| Show Updated Records | Include updated records in trigger results.                    | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                                     | Default |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Xero connection to use.                                                                                                                                                                                                                                                                  |         |
+| Resource Type        | The type of Xero resource to poll for new and updated records.                                                                                                                                                                                                                               |         |
+| Show New Records     | Include newly created records in trigger results.                                                                                                                                                                                                                                            | true    |
+| Show Updated Records | Include updated records in trigger results.                                                                                                                                                                                                                                                  | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync returns each record modified on or after this date once, as a new record, ignoring the visibility filters. |         |
 
 ### Webhook {#webhook}
 
@@ -173,15 +174,15 @@ Archive a contact by ID.
 
 Create a new account.
 
-| Input                  | Comments                                                                                                                                           | Default |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection             | The Xero connection to use.                                                                                                                        |         |
-| Account Code           | A customer-defined alphanumeric code that identifies the account.                                                                                  |         |
-| Account Name           | The display name shown for the account.                                                                                                            |         |
-| Account Type           | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts). |         |
-| Bank Account Number    | The bank account number. Required when the account type is BANK.                                                                                   |         |
-| Show In Expense Claims | When true, the account appears in expense claims. Required for certain account types.                                                              | false   |
-| Optional Values        | For each item, provide a key and value to be used in the request body.                                                                             |         |
+| Input                  | Comments                                                                                                                                           | Default         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection             | The Xero connection to use.                                                                                                                        |                 |
+| Account Code           | A customer-defined alphanumeric code that identifies the account.                                                                                  |                 |
+| Account Name           | The display name shown for the account.                                                                                                            |                 |
+| Account Type           | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts). |                 |
+| Bank Account Number    | The bank account number. Required when the account type is BANK.                                                                                   |                 |
+| Show In Expense Claims | When true, the account appears in expense claims. Required for certain account types.                                                              | false           |
+| Optional Values        | For each item, provide a key and value to be used in the request body.                                                                             | <code>[]</code> |
 
 ### Create Attachment {#createattachment}
 
@@ -455,23 +456,23 @@ Create a new payment on an existing AP/AR invoice.
 
 Send a raw HTTP request to Xero.
 
-| Input                   | Comments                                                                                                                                                                                                             | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Xero connection to use.                                                                                                                                                                                          |         |
-| URL                     | Input the path only (/Accounts), The base URL is already included (https://api.xero.com/api.xro/2.0). For example, to connect to https://api.xero.com/api.xro/2.0/Accounts, only /Accounts is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                              |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                            |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                 |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                     |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                               |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                  |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                          |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                             | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                  |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                  | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                     | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                  | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                        | false   |
+| Input                   | Comments                                                                                                                                                                                                             | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Xero connection to use.                                                                                                                                                                                          |                 |
+| URL                     | Input the path only (/Accounts), The base URL is already included (https://api.xero.com/api.xro/2.0). For example, to connect to https://api.xero.com/api.xro/2.0/Accounts, only /Accounts is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                              |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                            |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                 | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                     | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                               | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                  | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                          | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                             | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                  |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                  | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                     | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                  | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                        | false           |
 
 ### Reverse Payment {#reversepayment}
 
@@ -495,18 +496,18 @@ Send an existing accounts receivable invoice through email.
 
 Update the information and metadata of an existing account by ID.
 
-| Input                      | Comments                                                                                                                                              | Default |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                 | The Xero connection to use.                                                                                                                           |         |
-| Account ID                 | The unique identifier for the account.                                                                                                                |         |
-| Account Code               | A customer-defined alphanumeric code that identifies the account.                                                                                     |         |
-| Account Name               | The display name shown for the account.                                                                                                               |         |
-| Account Type               | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts).    |         |
-| Purchase Tax Type          | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |         |
-| Description                | A summary that describes the item.                                                                                                                    |         |
-| Enable Payments To Account | When true, allows payments to be made to the account.                                                                                                 | false   |
-| Optional Values            | For each item, provide a key and value to be used in the request body.                                                                                |         |
-| Show In Expense Claims     | When true, the account appears in expense claims. Required for certain account types.                                                                 | false   |
+| Input                      | Comments                                                                                                                                              | Default         |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                 | The Xero connection to use.                                                                                                                           |                 |
+| Account ID                 | The unique identifier for the account.                                                                                                                |                 |
+| Account Code               | A customer-defined alphanumeric code that identifies the account.                                                                                     |                 |
+| Account Name               | The display name shown for the account.                                                                                                               |                 |
+| Account Type               | The category of the account. Choose a value from the [Xero account types](https://developer.xero.com/documentation/api/accounting/types#accounts).    |                 |
+| Purchase Tax Type          | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |                 |
+| Description                | A summary that describes the item.                                                                                                                    |                 |
+| Enable Payments To Account | When true, allows payments to be made to the account.                                                                                                 | false           |
+| Optional Values            | For each item, provide a key and value to be used in the request body.                                                                                | <code>[]</code> |
+| Show In Expense Claims     | When true, the account appears in expense claims. Required for certain account types.                                                                 | false           |
 
 ### Update Contact {#updatecontact}
 
@@ -539,24 +540,24 @@ Update the information and metadata of a contact by ID.
 
 Update the information and metadata of an item by ID.
 
-| Input                        | Comments                                                                                                                                                      | Default |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                   | The Xero connection to use.                                                                                                                                   |         |
-| Item ID                      | The unique identifier for the item.                                                                                                                           |         |
-| Item Code                    | A user-defined code that identifies the item.                                                                                                                 |         |
-| Item Name                    | The display name of the item.                                                                                                                                 |         |
-| Description                  | A summary that describes the item.                                                                                                                            |         |
-| Is Sold                      | When true, the item is available to sell.                                                                                                                     | false   |
-| Is Purchased                 | When true, the item is available to purchase.                                                                                                                 | false   |
-| Purchase Description         | A summary shown on purchase transactions for the item.                                                                                                        |         |
-| Purchase Unit Price          | The unit price applied when the item is purchased.                                                                                                            |         |
-| Purchase Tax Type            | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types).         |         |
-| Purchase Account Code        | The account code used for purchases of the item.                                                                                                              |         |
-| Sales Account Code           | The account code used for sales of the item.                                                                                                                  |         |
-| Sales Unit Price             | The unit price applied when the item is sold.                                                                                                                 |         |
-| Sales Tax Type               | The tax type applied to sales of the item. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |         |
-| Inventory Asset Account Code | The account code used to track the inventory asset.                                                                                                           |         |
-| Optional Values              | For each item, provide a key and value to be used in the request body.                                                                                        |         |
+| Input                        | Comments                                                                                                                                                      | Default         |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                   | The Xero connection to use.                                                                                                                                   |                 |
+| Item ID                      | The unique identifier for the item.                                                                                                                           |                 |
+| Item Code                    | A user-defined code that identifies the item.                                                                                                                 |                 |
+| Item Name                    | The display name of the item.                                                                                                                                 |                 |
+| Description                  | A summary that describes the item.                                                                                                                            |                 |
+| Is Sold                      | When true, the item is available to sell.                                                                                                                     | false           |
+| Is Purchased                 | When true, the item is available to purchase.                                                                                                                 | false           |
+| Purchase Description         | A summary shown on purchase transactions for the item.                                                                                                        |                 |
+| Purchase Unit Price          | The unit price applied when the item is purchased.                                                                                                            |                 |
+| Purchase Tax Type            | The tax type applied to purchases. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types).         |                 |
+| Purchase Account Code        | The account code used for purchases of the item.                                                                                                              |                 |
+| Sales Account Code           | The account code used for sales of the item.                                                                                                                  |                 |
+| Sales Unit Price             | The unit price applied when the item is sold.                                                                                                                 |                 |
+| Sales Tax Type               | The tax type applied to sales of the item. Choose a value from the [Xero tax types](https://developer.xero.com/documentation/api/accounting/types#tax-types). |                 |
+| Inventory Asset Account Code | The account code used to track the inventory asset.                                                                                                           |                 |
+| Optional Values              | For each item, provide a key and value to be used in the request body.                                                                                        | <code>[]</code> |
 
 ### Void Invoice {#voidinvoice}
 

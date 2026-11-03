@@ -123,12 +123,12 @@ Receive and validate webhook requests from Zendesk for manually configured webho
 
 Associate attachments in bulk to a single article, with a maximum of 20 attachments per request.
 
-| Input          | Comments                                            | Default |
-| -------------- | --------------------------------------------------- | ------- |
-| Connection     | The Zendesk connection to use.                      |         |
-| Locale         | The locale code for the resource.                   | en-us   |
-| Article ID     | The unique identifier for the article.              |         |
-| Attachment IDs | The list of attachment IDs to attach to the object. |         |
+| Input          | Comments                                            | Default         |
+| -------------- | --------------------------------------------------- | --------------- |
+| Connection     | The Zendesk connection to use.                      |                 |
+| Locale         | The locale code for the resource.                   | en-us           |
+| Article ID     | The unique identifier for the article.              |                 |
+| Attachment IDs | The list of attachment IDs to attach to the object. | <code>[]</code> |
 
 ### Create Article {#createarticle}
 
@@ -186,17 +186,17 @@ Create a category in the Help Center.
 
 Create a new post in the Help Center.
 
-| Input              | Comments                                                                                                      | Default |
-| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Zendesk connection to use.                                                                                |         |
-| Topic ID           | The ID of the topic to create the post in.                                                                    |         |
-| Title              | The headline displayed for the post.                                                                          |         |
-| Details            | The main body content of the post.                                                                            |         |
-| Featured           | When true, the post is featured prominently in the community.                                                 | false   |
-| Pinned             | When true, the post is pinned to the top of its topic.                                                        | false   |
-| Status             | The current workflow state of the post.                                                                       |         |
-| Notify Subscribers | When false, suppresses the article creation email to subscribers. Useful when creating many articles at once. | false   |
-| Content Tag IDs    | The list of content tag IDs to attach to the object.                                                          |         |
+| Input              | Comments                                                                                                      | Default         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection         | The Zendesk connection to use.                                                                                |                 |
+| Topic ID           | The ID of the topic to create the post in.                                                                    |                 |
+| Title              | The headline displayed for the post.                                                                          |                 |
+| Details            | The main body content of the post.                                                                            |                 |
+| Featured           | When true, the post is featured prominently in the community.                                                 | false           |
+| Pinned             | When true, the post is pinned to the top of its topic.                                                        | false           |
+| Status             | The current workflow state of the post.                                                                       |                 |
+| Notify Subscribers | When false, suppresses the article creation email to subscribers. Useful when creating many articles at once. | false           |
+| Content Tag IDs    | The list of content tag IDs to attach to the object.                                                          | <code>[]</code> |
 
 ### Create Post Subscription {#createpostsubscription}
 
@@ -237,24 +237,24 @@ Create a section subscription in the Help Center.
 
 Create a new ticket.
 
-| Input                     | Comments                                                                                              | Default |
-| ------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Requester Name            | The full name of the person requesting the ticket.                                                    |         |
-| Requester Email           | The email address of the person requesting the ticket.                                                |         |
-| Assignee ID               | The unique identifier for the user assigned to the ticket.                                            |         |
-| Recipient Email           | The email address of the ticket recipient.                                                            |         |
-| Ticket Subject            | The summary line shown at the top of the ticket.                                                      |         |
-| Classification            | Priority, status, and type of the record.                                                             |         |
-| Ticket Priority           | The urgency level assigned to the ticket.                                                             |         |
-| Ticket Status             | The current workflow status of the ticket.                                                            |         |
-| Ticket Type               | The classification of the ticket.                                                                     |         |
-| Ticket Comment Body       | The plain text description used as the initial comment on the ticket, attributed to the assignee.     |         |
-| Ticket Comment HTML Body  | The HTML-formatted description used as the initial comment on the ticket, attributed to the assignee. |         |
-| Tags                      | The list of tags to attach to the resource.                                                           |         |
-| Requester Organization ID | The unique identifier for the organization the requester belongs to.                                  |         |
-| Followers                 | The list of user IDs to add as followers on the ticket.                                               |         |
-| Connection                | The Zendesk connection to use.                                                                        |         |
-| External ID               | The identifier for the ticket from an external system.                                                |         |
+| Input                     | Comments                                                                                              | Default         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- | --------------- |
+| Requester Name            | The full name of the person requesting the ticket.                                                    |                 |
+| Requester Email           | The email address of the person requesting the ticket.                                                |                 |
+| Assignee ID               | The unique identifier for the user assigned to the ticket.                                            |                 |
+| Recipient Email           | The email address of the ticket recipient.                                                            |                 |
+| Ticket Subject            | The summary line shown at the top of the ticket.                                                      |                 |
+| Classification            | Priority, status, and type of the record.                                                             |                 |
+| Ticket Priority           | The urgency level assigned to the ticket.                                                             |                 |
+| Ticket Status             | The current workflow status of the ticket.                                                            |                 |
+| Ticket Type               | The classification of the ticket.                                                                     |                 |
+| Ticket Comment Body       | The plain text description used as the initial comment on the ticket, attributed to the assignee.     |                 |
+| Ticket Comment HTML Body  | The HTML-formatted description used as the initial comment on the ticket, attributed to the assignee. |                 |
+| Tags                      | The list of tags to attach to the resource.                                                           | <code>[]</code> |
+| Requester Organization ID | The unique identifier for the organization the requester belongs to.                                  |                 |
+| Followers                 | The list of user IDs to add as followers on the ticket.                                               | <code>[]</code> |
+| Connection                | The Zendesk connection to use.                                                                        |                 |
+| External ID               | The identifier for the ticket from an external system.                                                |                 |
 
 ### Create Topic {#createtopic}
 
@@ -302,13 +302,13 @@ Create a new user.
 
 Create a webhook in Zendesk to receive notifications of changes to users, organizations, or tickets.
 
-| Input             | Comments                                                                       | Default |
-| ----------------- | ------------------------------------------------------------------------------ | ------- |
-| Connection        | The Zendesk connection to use.                                                 |         |
-| Callback URL      | The URL of the endpoint that receives the webhook payload.                     |         |
-| Webhook Name      | A unique name used to identify the webhook in the Zendesk admin UI.            |         |
-| Events            | The list of events that trigger the webhook to fire.                           |         |
-| Allow Duplicates? | When true, a webhook is created even if one with the same name already exists. | false   |
+| Input             | Comments                                                                       | Default         |
+| ----------------- | ------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Zendesk connection to use.                                                 |                 |
+| Callback URL      | The URL of the endpoint that receives the webhook payload.                     |                 |
+| Webhook Name      | A unique name used to identify the webhook in the Zendesk admin UI.            |                 |
+| Events            | The list of events that trigger the webhook to fire.                           | <code>[]</code> |
+| Allow Duplicates? | When true, a webhook is created even if one with the same name already exists. | false           |
 
 ### Create Webhook Trigger {#createwebhooktrigger}
 
@@ -591,19 +591,19 @@ List all attachments for an article in the Help Center.
 
 List all articles in the Help Center.
 
-| Input       | Comments                                                                                                                                                                                                                               | Default |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Zendesk connection to use.                                                                                                                                                                                                         |         |
-| Locale      | The locale of the articles to retrieve. Defaults to 'en-us'.                                                                                                                                                                           | en-us   |
-| Fetch All   | When true, automatically fetches all pages of results instead of returning a single page.                                                                                                                                              | false   |
-| Pagination  | Cursor and page-size controls for paging through results.                                                                                                                                                                              |         |
-| Cursor      | The pagination cursor from a previous request. If omitted, the first page is returned.                                                                                                                                                 |         |
-| Page Limit  | The number of results to return per page. The maximum is 100; any greater value is capped at 100.                                                                                                                                      |         |
-| Filters     | Optional query controls to sort and refine the results.                                                                                                                                                                                |         |
-| Sort By     | The field to sort the articles by.                                                                                                                                                                                                     |         |
-| Sort Order  | The direction used to order the results.                                                                                                                                                                                               |         |
-| Start Time  | The start time to filter articles by.                                                                                                                                                                                                  |         |
-| Label Names | Restrict results to articles with the specified labels. A maximum of 10 labels can be supplied. See [label names](https://developer.zendesk.com/api-reference/help_center/help-center-api/articles/#label-names) for more information. |         |
+| Input       | Comments                                                                                                                                                                                                                               | Default         |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  | The Zendesk connection to use.                                                                                                                                                                                                         |                 |
+| Locale      | The locale of the articles to retrieve. Defaults to 'en-us'.                                                                                                                                                                           | en-us           |
+| Fetch All   | When true, automatically fetches all pages of results instead of returning a single page.                                                                                                                                              | false           |
+| Pagination  | Cursor and page-size controls for paging through results.                                                                                                                                                                              |                 |
+| Cursor      | The pagination cursor from a previous request. If omitted, the first page is returned.                                                                                                                                                 |                 |
+| Page Limit  | The number of results to return per page. The maximum is 100; any greater value is capped at 100.                                                                                                                                      |                 |
+| Filters     | Optional query controls to sort and refine the results.                                                                                                                                                                                |                 |
+| Sort By     | The field to sort the articles by.                                                                                                                                                                                                     |                 |
+| Sort Order  | The direction used to order the results.                                                                                                                                                                                               |                 |
+| Start Time  | The start time to filter articles by.                                                                                                                                                                                                  |                 |
+| Label Names | Restrict results to articles with the specified labels. A maximum of 10 labels can be supplied. See [label names](https://developer.zendesk.com/api-reference/help_center/help-center-api/articles/#label-names) for more information. | <code>[]</code> |
 
 ### List Article Subscriptions {#listarticlesubscriptions}
 
@@ -765,49 +765,49 @@ List all webhooks configured in Zendesk.
 
 Send a raw HTTP request to Zendesk.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                   | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Zendesk connection to use.                                                                                                                                                                                                                                             |         |
-| URL                     | Input the path only (/users), The base URL is already included with the configured Zendesk domain (https://YOUR-ZENDESK-DOMAIN.zendesk.com/api/v2). For example, to connect to https://YOUR-ZENDESK-DOMAIN.zendesk.com/api/v2/users, only /users is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                    |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                  |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                       |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                           |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                     |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                        |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                   | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                        |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                       | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                        | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                           | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                        | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                              | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                   | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Zendesk connection to use.                                                                                                                                                                                                                                             |                 |
+| URL                     | Input the path only (/users), The base URL is already included with the configured Zendesk domain (https://YOUR-ZENDESK-DOMAIN.zendesk.com/api/v2). For example, to connect to https://YOUR-ZENDESK-DOMAIN.zendesk.com/api/v2/users, only /users is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                    |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                  |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                       | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                           | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                     | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                        | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                   | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                        |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                                       | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                        | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                           | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                        | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                              | false           |
 
 ### Search Articles {#searcharticles}
 
 Search for articles in the Help Center.
 
-| Input              | Comments                                                                                                         | Default |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Zendesk connection to use.                                                                                   |         |
-| Search Query       | The text or search string used to match results.                                                                 |         |
-| Locales            | The locale to filter the results by.                                                                             |         |
-| Brand IDs          | Restrict the search to articles or posts within these brands.                                                    |         |
-| Category IDs       | Restrict the search to articles or posts within these categories.                                                |         |
-| Filters            | Optional query controls to sort and refine the results.                                                          |         |
-| Section ID         | The unique identifier for the section used to filter the results.                                                |         |
-| Multibrand         | When true, results are filtered across all brands in the account.                                                | false   |
-| Sort By            | The field used to sort the results.                                                                              |         |
-| Sort Order         | The direction used to order the results.                                                                         |         |
-| Date Range Filters | Optional date filters. Narrow results by exact creation or update date, or by inclusive before and after bounds. |         |
-| Created At         | The exact creation date used to filter the results. Format: YYYY-MM-DD.                                          |         |
-| Created After      | The lower bound used to filter results by creation date. Format: YYYY-MM-DD.                                     |         |
-| Created Before     | The upper bound used to filter results by creation date. Format: YYYY-MM-DD.                                     |         |
-| Updated At         | The exact update date used to filter the results. Format: YYYY-MM-DD.                                            |         |
-| Updated After      | The lower bound used to filter results by update date. Format: YYYY-MM-DD.                                       |         |
-| Updated Before     | The upper bound used to filter results by update date. Format: YYYY-MM-DD.                                       |         |
-| Label Names        | The list of label names used to filter the results.                                                              |         |
+| Input              | Comments                                                                                                         | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection         | The Zendesk connection to use.                                                                                   |                 |
+| Search Query       | The text or search string used to match results.                                                                 |                 |
+| Locales            | The locale to filter the results by.                                                                             | <code>[]</code> |
+| Brand IDs          | Restrict the search to articles or posts within these brands.                                                    | <code>[]</code> |
+| Category IDs       | Restrict the search to articles or posts within these categories.                                                | <code>[]</code> |
+| Filters            | Optional query controls to sort and refine the results.                                                          |                 |
+| Section ID         | The unique identifier for the section used to filter the results.                                                |                 |
+| Multibrand         | When true, results are filtered across all brands in the account.                                                | false           |
+| Sort By            | The field used to sort the results.                                                                              |                 |
+| Sort Order         | The direction used to order the results.                                                                         |                 |
+| Date Range Filters | Optional date filters. Narrow results by exact creation or update date, or by inclusive before and after bounds. |                 |
+| Created At         | The exact creation date used to filter the results. Format: YYYY-MM-DD.                                          |                 |
+| Created After      | The lower bound used to filter results by creation date. Format: YYYY-MM-DD.                                     |                 |
+| Created Before     | The upper bound used to filter results by creation date. Format: YYYY-MM-DD.                                     |                 |
+| Updated At         | The exact update date used to filter the results. Format: YYYY-MM-DD.                                            |                 |
+| Updated After      | The lower bound used to filter results by update date. Format: YYYY-MM-DD.                                       |                 |
+| Updated Before     | The upper bound used to filter results by update date. Format: YYYY-MM-DD.                                       |                 |
+| Label Names        | The list of label names used to filter the results.                                                              | <code>[]</code> |
 
 ### Search Posts {#searchposts}
 
@@ -843,43 +843,43 @@ Return an array of users who meet the search criteria.
 
 Search for knowledge base articles, community posts, and external records in the Help Center.
 
-| Input               | Comments                                                                                          | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Zendesk connection to use.                                                                    |         |
-| Search Query        | The text or search string used to match results.                                                  |         |
-| Locales             | Restrict the search to articles or posts within these locales.                                    |         |
-| Pagination          | Cursor and page-size controls for paging through results.                                         |         |
-| Cursor              | The pagination cursor from a previous request. If omitted, the first page is returned.            |         |
-| Page Limit          | The number of results to return per page. The maximum is 100; any greater value is capped at 100. |         |
-| Brand IDs           | Restrict the search to articles or posts within these brands.                                     |         |
-| Category IDs        | Restrict the search to articles or posts within these categories.                                 |         |
-| Content Types       | Restrict the search to one of these content types: ARTICLE, POST.                                 |         |
-| External Source IDs | Restrict the search results to the specified external source or sources.                          |         |
-| Section IDs         | Restrict the search to articles or posts within these sections.                                   |         |
-| Topic IDs           | Restrict the search to posts within these topics.                                                 |         |
+| Input               | Comments                                                                                          | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Zendesk connection to use.                                                                    |                 |
+| Search Query        | The text or search string used to match results.                                                  |                 |
+| Locales             | Restrict the search to articles or posts within these locales.                                    | <code>[]</code> |
+| Pagination          | Cursor and page-size controls for paging through results.                                         |                 |
+| Cursor              | The pagination cursor from a previous request. If omitted, the first page is returned.            |                 |
+| Page Limit          | The number of results to return per page. The maximum is 100; any greater value is capped at 100. |                 |
+| Brand IDs           | Restrict the search to articles or posts within these brands.                                     | <code>[]</code> |
+| Category IDs        | Restrict the search to articles or posts within these categories.                                 | <code>[]</code> |
+| Content Types       | Restrict the search to one of these content types: ARTICLE, POST.                                 | <code>[]</code> |
+| External Source IDs | Restrict the search results to the specified external source or sources.                          | <code>[]</code> |
+| Section IDs         | Restrict the search to articles or posts within these sections.                                   | <code>[]</code> |
+| Topic IDs           | Restrict the search to posts within these topics.                                                 | <code>[]</code> |
 
 ### Update Article {#updatearticle}
 
 Update an existing article's metadata in the Help Center.
 
-| Input               | Comments                                                                                                         | Default |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Zendesk connection to use.                                                                                   |         |
-| Locale              | The locale code for the resource.                                                                                | en-us   |
-| Article ID          | The unique identifier for the article.                                                                           |         |
-| Assignment IDs      | Write-action IDs that associate a record with related entities (sections, authors, permission groups, segments). |         |
-| Section ID          | The unique identifier for the section.                                                                           |         |
-| Author ID           | The unique identifier for the author.                                                                            |         |
-| Permission Group ID | The unique identifier for the permission group.                                                                  |         |
-| User Segment ID     | The unique identifier for the user segment.                                                                      |         |
-| Title               | The headline displayed for the article.                                                                          |         |
-| Body                | The main content of the article.                                                                                 |         |
-| Display Options     | Whether the record is promoted, its ordering position, and whether comments are disabled.                        |         |
-| Promoted            | When true, the object is highlighted at the top of its list.                                                     |         |
-| Position            | The numeric ordering position of the object within its list.                                                     |         |
-| Comments Disabled   | When true, prevents users from leaving comments on the object.                                                   |         |
-| Content Tag IDs     | The list of content tag IDs to attach to the object.                                                             |         |
-| Label Names         | The list of label names to attach to the object.                                                                 |         |
+| Input               | Comments                                                                                                         | Default         |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Zendesk connection to use.                                                                                   |                 |
+| Locale              | The locale code for the resource.                                                                                | en-us           |
+| Article ID          | The unique identifier for the article.                                                                           |                 |
+| Assignment IDs      | Write-action IDs that associate a record with related entities (sections, authors, permission groups, segments). |                 |
+| Section ID          | The unique identifier for the section.                                                                           |                 |
+| Author ID           | The unique identifier for the author.                                                                            |                 |
+| Permission Group ID | The unique identifier for the permission group.                                                                  |                 |
+| User Segment ID     | The unique identifier for the user segment.                                                                      |                 |
+| Title               | The headline displayed for the article.                                                                          |                 |
+| Body                | The main content of the article.                                                                                 |                 |
+| Display Options     | Whether the record is promoted, its ordering position, and whether comments are disabled.                        |                 |
+| Promoted            | When true, the object is highlighted at the top of its list.                                                     |                 |
+| Position            | The numeric ordering position of the object within its list.                                                     |                 |
+| Comments Disabled   | When true, prevents users from leaving comments on the object.                                                   |                 |
+| Content Tag IDs     | The list of content tag IDs to attach to the object.                                                             | <code>[]</code> |
+| Label Names         | The list of label names to attach to the object.                                                                 | <code>[]</code> |
 
 ### Update Category {#updatecategory}
 
@@ -898,19 +898,19 @@ Update a category in the Help Center.
 
 Update a post in the Help Center.
 
-| Input            | Comments                                                           | Default |
-| ---------------- | ------------------------------------------------------------------ | ------- |
-| Connection       | The Zendesk connection to use.                                     |         |
-| Post ID          | The unique identifier for the post.                                |         |
-| Title            | The headline displayed for the post.                               |         |
-| Details          | The main body content of the post.                                 |         |
-| Status           | The current workflow state of the post.                            |         |
-| Topic ID         | The unique identifier for the topic.                               |         |
-| Moderation Flags | Whether the record is featured, pinned, or closed to new comments. |         |
-| Featured         | When true, the post is featured prominently in the community.      |         |
-| Pinned           | When true, the post is pinned to the top of its topic.             |         |
-| Closed           | When true, the post is closed to new comments.                     |         |
-| Content Tag IDs  | The list of content tag IDs to attach to the object.               |         |
+| Input            | Comments                                                           | Default         |
+| ---------------- | ------------------------------------------------------------------ | --------------- |
+| Connection       | The Zendesk connection to use.                                     |                 |
+| Post ID          | The unique identifier for the post.                                |                 |
+| Title            | The headline displayed for the post.                               |                 |
+| Details          | The main body content of the post.                                 |                 |
+| Status           | The current workflow state of the post.                            |                 |
+| Topic ID         | The unique identifier for the topic.                               |                 |
+| Moderation Flags | Whether the record is featured, pinned, or closed to new comments. |                 |
+| Featured         | When true, the post is featured prominently in the community.      |                 |
+| Pinned           | When true, the post is pinned to the top of its topic.             |                 |
+| Closed           | When true, the post is closed to new comments.                     |                 |
+| Content Tag IDs  | The list of content tag IDs to attach to the object.               | <code>[]</code> |
 
 ### Update Section {#updatesection}
 
@@ -931,23 +931,23 @@ Update a section in the Help Center.
 
 Update a ticket by ID.
 
-| Input                     | Comments                                                                                              | Default |
-| ------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Ticket ID                 | The unique identifier for the ticket.                                                                 |         |
-| Ticket Comment Body       | The plain text description used as the initial comment on the ticket, attributed to the assignee.     |         |
-| Ticket Comment HTML Body  | The HTML-formatted description used as the initial comment on the ticket, attributed to the assignee. |         |
-| File                      | The file contents to attach to the comment, accepted as either a string or a binary payload.          |         |
-| File Name                 | The display name to use for the uploaded file.                                                        |         |
-| Classification            | Priority, status, and type of the record.                                                             |         |
-| Ticket Priority           | The urgency level assigned to the ticket.                                                             |         |
-| Ticket Status             | The current workflow status of the ticket.                                                            |         |
-| Ticket Type               | The classification of the ticket.                                                                     |         |
-| Assignee Email            | The email address of the user assigned to the ticket.                                                 |         |
-| Assignee ID               | The unique identifier for the user assigned to the ticket.                                            |         |
-| Tags                      | The list of tags to attach to the resource.                                                           |         |
-| Ticket Subject            | The summary line shown at the top of the ticket.                                                      |         |
-| Requester Organization ID | The unique identifier for the organization the requester belongs to.                                  |         |
-| Connection                | The Zendesk connection to use.                                                                        |         |
+| Input                     | Comments                                                                                              | Default         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- | --------------- |
+| Ticket ID                 | The unique identifier for the ticket.                                                                 |                 |
+| Ticket Comment Body       | The plain text description used as the initial comment on the ticket, attributed to the assignee.     |                 |
+| Ticket Comment HTML Body  | The HTML-formatted description used as the initial comment on the ticket, attributed to the assignee. |                 |
+| File                      | The file contents to attach to the comment, accepted as either a string or a binary payload.          |                 |
+| File Name                 | The display name to use for the uploaded file.                                                        |                 |
+| Classification            | Priority, status, and type of the record.                                                             |                 |
+| Ticket Priority           | The urgency level assigned to the ticket.                                                             |                 |
+| Ticket Status             | The current workflow status of the ticket.                                                            |                 |
+| Ticket Type               | The classification of the ticket.                                                                     |                 |
+| Assignee Email            | The email address of the user assigned to the ticket.                                                 |                 |
+| Assignee ID               | The unique identifier for the user assigned to the ticket.                                            |                 |
+| Tags                      | The list of tags to attach to the resource.                                                           | <code>[]</code> |
+| Ticket Subject            | The summary line shown at the top of the ticket.                                                      |                 |
+| Requester Organization ID | The unique identifier for the organization the requester belongs to.                                  |                 |
+| Connection                | The Zendesk connection to use.                                                                        |                 |
 
 ### Update Topic {#updatetopic}
 

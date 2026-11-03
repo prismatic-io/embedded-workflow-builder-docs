@@ -137,17 +137,18 @@ Receive base change notifications from Airtable. Automatically creates and manag
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks an Airtable table for new and updated records on a configured schedule, using `LAST_MODIFIED_TIME()` as the server-side filter. Records are partitioned by `createdTime` versus `lastPolledAt`: records whose `createdTime` is after `lastPolledAt` go to the `created` bucket, while older records modified since `lastPolledAt` go to the `updated` bucket.
+Retrieves existing and ongoing records in a specified Airtable table. Load history once, check for changes on a schedule, or both.
 
-| Input                     | Comments                                                                                                   | Default |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                | The Airtable connection to use.                                                                            |         |
-| Base ID                   | The ID of the base containing the table to poll.                                                           |         |
-| Table Name                | The name of the table to access.                                                                           |         |
-| View                      | Optional view (name or ID) to scope the poll to. When set, only records in that view are considered.       |         |
-| Additional Filter Formula | Optional Airtable formula combined (AND) with the modification-time filter applied by the trigger.         |         |
-| Show New Records          | When true, records with a `createdTime` after the last poll are included in the trigger results.           | true    |
-| Show Updated Records      | When true, records modified after the last poll (but created earlier) are included in the trigger results. | true    |
+| Input                     | Comments                                                                                                                                                                                                                                                                  | Default |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                | The Airtable connection to use.                                                                                                                                                                                                                                           |         |
+| Base ID                   | The ID of the base containing the table to poll.                                                                                                                                                                                                                          |         |
+| Table Name                | The name of the table to access.                                                                                                                                                                                                                                          |         |
+| Look-back Date            | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| View                      | Optional view (name or ID) to scope the poll to. When set, only records in that view are considered.                                                                                                                                                                      |         |
+| Additional Filter Formula | Optional Airtable formula combined (AND) with the modification-time filter applied by the trigger.                                                                                                                                                                        |         |
+| Show New Records          | When true, records with a `createdTime` after the last poll are included in the trigger results.                                                                                                                                                                          | true    |
+| Show Updated Records      | When true, records modified after the last poll (but created earlier) are included in the trigger results.                                                                                                                                                                | true    |
 
 ### Webhook {#webhook}
 
@@ -159,13 +160,13 @@ Receive and validate webhook requests from Airtable for manually configured webh
 
 Create a new record in the specified table.
 
-| Input          | Comments                                                                                                                                                             | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Airtable connection to use.                                                                                                                                      |         |
-| Base ID        | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection.                  |         |
-| Table Name     | The name of the table to access.                                                                                                                                     |         |
-| Record Fields  | The key-value pairs to set on the record. Each key maps to a column name in the table.                                                                               |         |
-| Dynamic Fields | A JSON array of key-value pairs that can be configured at deploy time with a key-value config variable. When provided, the default 'Record Fields' input is ignored. |         |
+| Input          | Comments                                                                                                                                                             | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Airtable connection to use.                                                                                                                                      |                 |
+| Base ID        | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection.                  |                 |
+| Table Name     | The name of the table to access.                                                                                                                                     |                 |
+| Record Fields  | The key-value pairs to set on the record. Each key maps to a column name in the table.                                                                               | <code>[]</code> |
+| Dynamic Fields | A JSON array of key-value pairs that can be configured at deploy time with a key-value config variable. When provided, the default 'Record Fields' input is ignored. |                 |
 
 ### Create Webhook {#createwebhook}
 
@@ -239,14 +240,14 @@ List all bases within the Airtable account.
 
 List all records within the specified table.
 
-| Input             | Comments                                                                                                                                            | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Airtable connection to use.                                                                                                                     |         |
-| Base ID           | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection. |         |
-| Table Name        | The name of the table to access.                                                                                                                    |         |
-| View              | The name or ID of a view in the table. When set, only records in that view are returned, sorted in the order defined by the view.                   |         |
-| Fields            | The names (or IDs) of the fields to return. When omitted, all fields are returned.                                                                  |         |
-| Filter By Formula | An Airtable formula used to limit results to records matching specific criteria.                                                                    |         |
+| Input             | Comments                                                                                                                                            | Default         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Airtable connection to use.                                                                                                                     |                 |
+| Base ID           | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection. |                 |
+| Table Name        | The name of the table to access.                                                                                                                    |                 |
+| View              | The name or ID of a view in the table. When set, only records in that view are returned, sorted in the order defined by the view.                   |                 |
+| Fields            | The names (or IDs) of the fields to return. When omitted, all fields are returned.                                                                  | <code>[]</code> |
+| Filter By Formula | An Airtable formula used to limit results to records matching specific criteria.                                                                    |                 |
 
 ### List Webhooks {#listwebhooks}
 
@@ -261,23 +262,23 @@ List all webhook subscriptions registered for a base.
 
 Send a raw HTTP request to Airtable.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                            | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Airtable connection to use.                                                                                                                                                                                                                                                                     |         |
-| URL                     | The request path only (e.g., `/v0/meta/bases/{BASE_ID}/tables`). The base URL [https://api.airtable.com](https://api.airtable.com) is already included. For example, to call `https://api.airtable.com/v0/meta/bases/{BASE_ID}/tables`, enter only `/v0/meta/bases/{BASE_ID}/tables` in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                             |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                           |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                    |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                              |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                 |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                         |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                            | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                 |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                 | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                    | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                 | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                       | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                            | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Airtable connection to use.                                                                                                                                                                                                                                                                     |                 |
+| URL                     | The request path only (e.g., `/v0/meta/bases/{BASE_ID}/tables`). The base URL [https://api.airtable.com](https://api.airtable.com) is already included. For example, to call `https://api.airtable.com/v0/meta/bases/{BASE_ID}/tables`, enter only `/v0/meta/bases/{BASE_ID}/tables` in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                             |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                           |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                    | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                              | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                 | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                         | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                            | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                 |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                 | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                    | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                 | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                       | false           |
 
 ### Refresh Webhook {#refreshwebhook}
 
@@ -293,11 +294,11 @@ Extend the expiration of an existing webhook subscription.
 
 Update the field values of a record in the specified table.
 
-| Input          | Comments                                                                                                                                                             | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Airtable connection to use.                                                                                                                                      |         |
-| Base ID        | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection.                  |         |
-| Table Name     | The name of the table to access.                                                                                                                                     |         |
-| Record ID      | The unique identifier for the record. Functions as the primary key for the row in the table.                                                                         |         |
-| Record Fields  | The key-value pairs to set on the record. Each key maps to a column name in the table.                                                                               |         |
-| Dynamic Fields | A JSON array of key-value pairs that can be configured at deploy time with a key-value config variable. When provided, the default 'Record Fields' input is ignored. |         |
+| Input          | Comments                                                                                                                                                             | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Airtable connection to use.                                                                                                                                      |                 |
+| Base ID        | The ID of the base to interact with. Required if you use an OAuth connection, and optional if you specify base ID with a legacy API Key connection.                  |                 |
+| Table Name     | The name of the table to access.                                                                                                                                     |                 |
+| Record ID      | The unique identifier for the record. Functions as the primary key for the row in the table.                                                                         |                 |
+| Record Fields  | The key-value pairs to set on the record. Each key maps to a column name in the table.                                                                               | <code>[]</code> |
+| Dynamic Fields | A JSON array of key-value pairs that can be configured at deploy time with a key-value config variable. When provided, the default 'Record Fields' input is ignored. |                 |

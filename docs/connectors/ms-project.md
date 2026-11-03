@@ -104,13 +104,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Projects {#pollchangestrigger}
 
-Checks for new and updated projects in Microsoft Project on a configured schedule.
+Retrieves existing and ongoing projects from Microsoft Project. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                           | Default |
-| -------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                    |         |
-| Show New Records     | When true, newly created records are included in the trigger output.               | true    |
-| Show Updated Records | When true, records updated after the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                                     |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                                                                | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
 
 ## Actions
 

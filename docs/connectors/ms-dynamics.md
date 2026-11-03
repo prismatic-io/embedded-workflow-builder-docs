@@ -185,14 +185,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Checks for new and updated records of a Microsoft Dynamics 365 entity type on a configured schedule.
 
-| Input                | Comments                                                                                                                                                                                                                                       | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Microsoft Dynamics 365 connection to use.                                                                                                                                                                                                  |         |
-| Entity Type          | The type of Entity to query, usually a pluralized name.                                                                                                                                                                                        |         |
-| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the first poll returns all records created or modified on or after this date. |         |
-| Filter Expression    | The filter expression used for querying entity collections.                                                                                                                                                                                    |         |
-| Show New Records     | When enabled, newly created records will be included in the trigger output.                                                                                                                                                                    | true    |
-| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output.                                                                                                                                                      | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Microsoft Dynamics 365 connection to use.                                                                                                                                                                                                                             |         |
+| Entity Type          | The type of Entity to query, usually a pluralized name.                                                                                                                                                                                                                   |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Filter Expression    | The filter expression used for querying entity collections.                                                                                                                                                                                                               |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.                                                                                                                                                                                               | true    |
+| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output.                                                                                                                                                                                 | true    |
 
 ### Webhook {#dynamicswebhooktrigger}
 
@@ -218,12 +218,12 @@ Creates a CRM attribute on an entity.
 
 Creates a new Microsoft Dynamics 365 CRM entity record.
 
-| Input          | Comments                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------- | ------- |
-| Entity Type    | The type of Entity to query, usually a pluralized name.                          |         |
-| Dynamic Values |                                                                                  |         |
-| Field Value    | The names of the fields and their values to use when creating/updating a record. |         |
-| Connection     | The Microsoft Dynamics 365 connection to use.                                    |         |
+| Input          | Comments                                                                         | Default         |
+| -------------- | -------------------------------------------------------------------------------- | --------------- |
+| Entity Type    | The type of Entity to query, usually a pluralized name.                          |                 |
+| Dynamic Values |                                                                                  |                 |
+| Field Value    | The names of the fields and their values to use when creating/updating a record. | <code>[]</code> |
+| Connection     | The Microsoft Dynamics 365 connection to use.                                    |                 |
 
 ### Delete Entity {#deleteentity}
 
@@ -239,13 +239,13 @@ Deletes the specified Microsoft Dynamics 365 CRM entity record.
 
 Retrieves a single CRM attribute.
 
-| Input                | Comments                                                                             | Default |
-| -------------------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection           | The Microsoft Dynamics 365 connection to use.                                        |         |
-| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |         |
-| Attribute Key        | The Attribute Metadata id.                                                           |         |
-| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. |         |
-| Expand Property Name | The OData $expand properties to include linked records inline.                       |         |
+| Input                | Comments                                                                             | Default         |
+| -------------------- | ------------------------------------------------------------------------------------ | --------------- |
+| Connection           | The Microsoft Dynamics 365 connection to use.                                        |                 |
+| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |                 |
+| Attribute Key        | The Attribute Metadata id.                                                           |                 |
+| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. | <code>[]</code> |
+| Expand Property Name | The OData $expand properties to include linked records inline.                       | <code>[]</code> |
 
 ### Get Current User {#getcurrentuser}
 
@@ -259,25 +259,25 @@ Retrieves information about the currently logged-in CRM user.
 
 Retrieves a configurable subset of Dynamics 365 CRM entity types and their attributes.
 
-| Input                               | Comments                                                                                                                        | Default |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                          | The Microsoft Dynamics 365 connection to use.                                                                                   |         |
-| Default Selected Entity Types       | The names of the Entity Types to default in a selected state.                                                                   |         |
-| Entity Type Filter                  | The names or labels of the Entity Types to include; if blank then all types are included. Uses case-insensitive matching.       |         |
-| Include All Custom Entity Types     | When true, will include all Custom Entity Types, even those not included in Record Type Name Filter.                            | true    |
-| Include Only Top Level Record Types | When true, will include only Entity Types that are top-level, meaning not subtypes of other Types, regardless of other filters. | false   |
+| Input                               | Comments                                                                                                                        | Default         |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                          | The Microsoft Dynamics 365 connection to use.                                                                                   |                 |
+| Default Selected Entity Types       | The names of the Entity Types to default in a selected state.                                                                   | <code>[]</code> |
+| Entity Type Filter                  | The names or labels of the Entity Types to include; if blank then all types are included. Uses case-insensitive matching.       | <code>[]</code> |
+| Include All Custom Entity Types     | When true, will include all Custom Entity Types, even those not included in Record Type Name Filter.                            | true            |
+| Include Only Top Level Record Types | When true, will include only Entity Types that are top-level, meaning not subtypes of other Types, regardless of other filters. | false           |
 
 ### Get Entity {#getentity}
 
 Retrieves a single Microsoft Dynamics 365 CRM entity record.
 
-| Input                | Comments                                                                             | Default |
-| -------------------- | ------------------------------------------------------------------------------------ | ------- |
-| Entity Type          | The type of Entity to query, usually a pluralized name.                              |         |
-| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |         |
-| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. |         |
-| Expand Property Name | The OData $expand properties to include linked records inline.                       |         |
-| Connection           | The Microsoft Dynamics 365 connection to use.                                        |         |
+| Input                | Comments                                                                             | Default         |
+| -------------------- | ------------------------------------------------------------------------------------ | --------------- |
+| Entity Type          | The type of Entity to query, usually a pluralized name.                              |                 |
+| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |                 |
+| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. | <code>[]</code> |
+| Expand Property Name | The OData $expand properties to include linked records inline.                       | <code>[]</code> |
+| Connection           | The Microsoft Dynamics 365 connection to use.                                        |                 |
 
 ### Get Entity Metadata {#getentitymetadata}
 
@@ -327,52 +327,52 @@ Retrieves a paginated list of entity types available in the Microsoft Dynamics 3
 
 Queries CRM attributes that satisfy the filter expression.
 
-| Input                | Comments                                                                             | Default |
-| -------------------- | ------------------------------------------------------------------------------------ | ------- |
-| Connection           | The Microsoft Dynamics 365 connection to use.                                        |         |
-| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |         |
-| Attribute Type       | The CRM attribute type to filter by, e.g., 'Money', 'String', 'Picklist'.            |         |
-| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. |         |
-| Filter Expression    | The filter expression used for querying entity collections.                          |         |
-| Expand Property Name | The OData $expand properties to include linked records inline.                       |         |
+| Input                | Comments                                                                             | Default         |
+| -------------------- | ------------------------------------------------------------------------------------ | --------------- |
+| Connection           | The Microsoft Dynamics 365 connection to use.                                        |                 |
+| Entity ID            | The unique identifier (GUID) of the entity record to operate on.                     |                 |
+| Attribute Type       | The CRM attribute type to filter by, e.g., 'Money', 'String', 'Picklist'.            |                 |
+| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields. | <code>[]</code> |
+| Filter Expression    | The filter expression used for querying entity collections.                          |                 |
+| Expand Property Name | The OData $expand properties to include linked records inline.                       | <code>[]</code> |
 
 ### Query Entities {#queryentities}
 
 Queries Microsoft Dynamics 365 CRM entity records that satisfy the filter expression.
 
-| Input                | Comments                                                                                                   | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Microsoft Dynamics 365 connection to use.                                                              |         |
-| Entity Type          | The type of Entity to query, usually a pluralized name.                                                    |         |
-| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields.                       |         |
-| Filter Expression    | The filter expression used for querying entity collections.                                                |         |
-| Order By Field Name  | The OData $orderby fields. Suffix with 'desc' for descending order, e.g., 'createdon desc'.                |         |
-| Expand Property Name | The OData $expand properties to include linked records inline.                                             |         |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                    | false   |
-| Records Per Page     | The number of record to retrieve per page.                                                                 | 100     |
-| Next Page ID         | The pagination cookie returned in 'oDataNextLink' from a previous request. Leave empty for the first page. |         |
+| Input                | Comments                                                                                                   | Default         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection           | The Microsoft Dynamics 365 connection to use.                                                              |                 |
+| Entity Type          | The type of Entity to query, usually a pluralized name.                                                    |                 |
+| Field Name           | The OData $select fields to include in the result. Leave empty to return all fields.                       | <code>[]</code> |
+| Filter Expression    | The filter expression used for querying entity collections.                                                |                 |
+| Order By Field Name  | The OData $orderby fields. Suffix with 'desc' for descending order, e.g., 'createdon desc'.                | <code>[]</code> |
+| Expand Property Name | The OData $expand properties to include linked records inline.                                             | <code>[]</code> |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                    | false           |
+| Records Per Page     | The number of record to retrieve per page.                                                                 | 100             |
+| Next Page ID         | The pagination cookie returned in 'oDataNextLink' from a previous request. Leave empty for the first page. |                 |
 
 ### Raw Request {#rawrequestv2}
 
 Sends a raw HTTP request to Microsoft Dynamics 365.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                    | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Microsoft Dynamics 365 connection to use.                                                                                                                                                                                                                                                               |         |
-| URL                     | Input the path only (/api/data/v9.2/accounts?$select=name), The base URL is already included (https://my-org.api.crm.dynamics.com). For example, to connect to https://my-org.api.crm.dynamics.com/api/data/v9.2/accounts?$select=name, only /api/data/v9.2/accounts?$select=name is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                     |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                   |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                        |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                            |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                      |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                         |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                 |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                    | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                         |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                         | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                            | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                         | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                               | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                    | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Microsoft Dynamics 365 connection to use.                                                                                                                                                                                                                                                               |                 |
+| URL                     | Input the path only (/api/data/v9.2/accounts?$select=name), The base URL is already included (https://my-org.api.crm.dynamics.com). For example, to connect to https://my-org.api.crm.dynamics.com/api/data/v9.2/accounts?$select=name, only /api/data/v9.2/accounts?$select=name is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                     |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                   |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                        | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                            | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                      | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                         | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                 | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                    | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                         |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                         | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                            | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                         | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                               | false           |
 
 ### Run Batch Operations {#batchentityactions}
 
@@ -413,22 +413,22 @@ Updates an existing CRM attribute on an entity.
 
 Updates a Microsoft Dynamics 365 CRM entity record.
 
-| Input          | Comments                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------- | ------- |
-| Entity Type    | The type of Entity to query, usually a pluralized name.                          |         |
-| Entity ID      | The unique identifier (GUID) of the entity record to operate on.                 |         |
-| Field Value    | The names of the fields and their values to use when creating/updating a record. |         |
-| Dynamic Values |                                                                                  |         |
-| Connection     | The Microsoft Dynamics 365 connection to use.                                    |         |
+| Input          | Comments                                                                         | Default         |
+| -------------- | -------------------------------------------------------------------------------- | --------------- |
+| Entity Type    | The type of Entity to query, usually a pluralized name.                          |                 |
+| Entity ID      | The unique identifier (GUID) of the entity record to operate on.                 |                 |
+| Field Value    | The names of the fields and their values to use when creating/updating a record. | <code>[]</code> |
+| Dynamic Values |                                                                                  |                 |
+| Connection     | The Microsoft Dynamics 365 connection to use.                                    |                 |
 
 ### Upsert Entity {#upsertentity}
 
 Upserts a Microsoft Dynamics 365 CRM entity record.
 
-| Input          | Comments                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------- | ------- |
-| Entity Type    | The type of Entity to query, usually a pluralized name.                          |         |
-| Entity ID      | The unique identifier (GUID) of the entity record to operate on.                 |         |
-| Field Value    | The names of the fields and their values to use when creating/updating a record. |         |
-| Dynamic Values |                                                                                  |         |
-| Connection     | The Microsoft Dynamics 365 connection to use.                                    |         |
+| Input          | Comments                                                                         | Default         |
+| -------------- | -------------------------------------------------------------------------------- | --------------- |
+| Entity Type    | The type of Entity to query, usually a pluralized name.                          |                 |
+| Entity ID      | The unique identifier (GUID) of the entity record to operate on.                 |                 |
+| Field Value    | The names of the fields and their values to use when creating/updating a record. | <code>[]</code> |
+| Dynamic Values |                                                                                  |                 |
+| Connection     | The Microsoft Dynamics 365 connection to use.                                    |                 |

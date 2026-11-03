@@ -47,14 +47,15 @@ To [generate a Client ID and Client Secret](https://developer.domo.com/portal/8b
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected Domo resource type on a configured schedule.
+Retrieves existing and ongoing records for a specified Domo resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                       | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Domo connection to use.                                                                                                                    |         |
-| Resource Type        | The type of resource to monitor for changes.                                                                                                   |         |
-| Show New Records     | When true, includes newly created records in the results.                                                                                      | true    |
-| Show Updated Records | When true, includes updated records in the results. Only available for resource types that support update tracking (DataSets, Streams, Users). | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Domo connection to use.                                                                                                                                                                                                                                                          |         |
+| Resource Type        | The type of resource to monitor for changes.                                                                                                                                                                                                                                         |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created or modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, includes newly created records in the results.                                                                                                                                                                                                                            | true    |
+| Show Updated Records | When true, includes updated records in the results. Only available for resource types that support update tracking (DataSets, Streams, Users).                                                                                                                                       | true    |
 
 ## Actions
 
@@ -150,45 +151,45 @@ Creates a new list within a given project.
 
 Creates a new page in a Domo instance.
 
-| Input      | Comments                                                                                      | Default |
-| ---------- | --------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Domo connection to use.                                                                   |         |
-| Name       | The name of the page.                                                                         |         |
-| Parent ID  | The unique identifier of the parent page. If provided, the page will be created as a subpage. |         |
-| Locked     | When true, restricts other users the ability to make edits to page or its content.            |         |
-| Card ID    | The ID of the card to add to the page.                                                        |         |
-| User ID    | The ID of the user that will be given access to view the page.                                |         |
-| Group ID   | The ID of the group that will be given access to view the page.                               |         |
+| Input      | Comments                                                                                      | Default         |
+| ---------- | --------------------------------------------------------------------------------------------- | --------------- |
+| Connection | The Domo connection to use.                                                                   |                 |
+| Name       | The name of the page.                                                                         |                 |
+| Parent ID  | The unique identifier of the parent page. If provided, the page will be created as a subpage. |                 |
+| Locked     | When true, restricts other users the ability to make edits to page or its content.            |                 |
+| Card ID    | The ID of the card to add to the page.                                                        | <code>[]</code> |
+| User ID    | The ID of the user that will be given access to view the page.                                | <code>[]</code> |
+| Group ID   | The ID of the group that will be given access to view the page.                               | <code>[]</code> |
 
 ### Create Project {#createproject}
 
 Creates a new project in a Domo instance.
 
-| Input       | Comments                                                               | Default |
-| ----------- | ---------------------------------------------------------------------- | ------- |
-| Connection  | The Domo connection to use.                                            |         |
-| Members     | Array of user IDs that will be assigned as members of the project.     |         |
-| Name        | The name of the project.                                               |         |
-| Public      | When true, the project will be publicly available to other Domo users. | true    |
-| Description | The description of the project.                                        |         |
-| Due Date    | The due date for the project. Format: ISO 8601.                        |         |
-| Member ID   | User IDs of members to include in the project.                         |         |
-| Public Body | When true, makes the resource publicly visible to other Domo users.    |         |
-| Name        | Body name                                                              |         |
+| Input       | Comments                                                               | Default         |
+| ----------- | ---------------------------------------------------------------------- | --------------- |
+| Connection  | The Domo connection to use.                                            |                 |
+| Members     | Array of user IDs that will be assigned as members of the project.     |                 |
+| Name        | The name of the project.                                               |                 |
+| Public      | When true, the project will be publicly available to other Domo users. | true            |
+| Description | The description of the project.                                        |                 |
+| Due Date    | The due date for the project. Format: ISO 8601.                        |                 |
+| Member ID   | User IDs of members to include in the project.                         | <code>[]</code> |
+| Public Body | When true, makes the resource publicly visible to other Domo users.    |                 |
+| Name        | Body name                                                              |                 |
 
 ### Create Stream {#createstream}
 
 Creates a new stream and its associated DataSet in Domo.
 
-| Input          | Comments                                                                                          | Default |
-| -------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Domo connection to use.                                                                       |         |
-| DataSet Object | The DataSet object associated with this Stream.                                                   |         |
-| Update Method  | The data import behavior.                                                                         |         |
-| Name           | The display name for the resource.                                                                |         |
-| Description    | A summary of the stream DataSet contents and purpose.                                             |         |
-| Columns        | The column schema definition for the stream DataSet, specified as a JSON array of column objects. |         |
-| Update Method  | Update method for body.                                                                           |         |
+| Input          | Comments                                                                                          | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Domo connection to use.                                                                       |                 |
+| DataSet Object | The DataSet object associated with this Stream.                                                   | <code>[]</code> |
+| Update Method  | The data import behavior.                                                                         |                 |
+| Name           | The display name for the resource.                                                                |                 |
+| Description    | A summary of the stream DataSet contents and purpose.                                             |                 |
+| Columns        | The column schema definition for the stream DataSet, specified as a JSON array of column objects. |                 |
+| Update Method  | Update method for body.                                                                           |                 |
 
 ### Create Stream Execution {#createstreamexecution}
 
@@ -631,23 +632,23 @@ Queries the data in an existing Domo DataSet.
 
 Sends a raw HTTP request to the Domo API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Domo connection to use.                                                                                                                                                                      |         |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Domo connection to use.                                                                                                                                                                      |                 |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Remove User From Group {#removeuserfromgroup}
 
@@ -673,11 +674,11 @@ Searches for streams that match the specified criteria.
 
 Shares an account with one or more users.
 
-| Input      | Comments                            | Default |
-| ---------- | ----------------------------------- | ------- |
-| Connection | The Domo connection to use.         |         |
-| User       | The User to share the Account with. |         |
-| Account ID | The ID of the Account.              |         |
+| Input      | Comments                            | Default         |
+| ---------- | ----------------------------------- | --------------- |
+| Connection | The Domo connection to use.         |                 |
+| User       | The User to share the Account with. | <code>[]</code> |
+| Account ID | The ID of the Account.              |                 |
 
 ### Update Account {#updateaccount}
 

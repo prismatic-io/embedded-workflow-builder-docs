@@ -53,27 +53,30 @@ Receive and validate webhook requests from ShipStation for manually configured w
 
 ### New and Updated Orders {#pollorders}
 
-Checks for new and updated orders in ShipStation on a configured schedule.
+Retrieves existing and ongoing orders for a specified ShipStation account. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection | The ShipStation connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                        | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The ShipStation connection to use.                                                                                                                                                                                              |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record on or after this date once. |         |
 
 ### New and Updated Products {#pollproducts}
 
-Checks for new and updated products in ShipStation on a configured schedule.
+Retrieves existing and ongoing products for a specified ShipStation account. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection | The ShipStation connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                        | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The ShipStation connection to use.                                                                                                                                                                                              |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record on or after this date once. |         |
 
 ### New and Updated Shipments {#pollshipments}
 
-Checks for new and updated shipments in ShipStation on a configured schedule.
+Retrieves existing and ongoing shipments for a specified ShipStation account. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection | The ShipStation connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                        | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The ShipStation connection to use.                                                                                                                                                                                              |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record on or after this date once. |         |
 
 ### Webhook Event Subscription {#webhookeventsubscription}
 

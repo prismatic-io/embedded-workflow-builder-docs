@@ -172,15 +172,16 @@ Receive and validate webhook requests from Business Central for manually configu
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records of a Microsoft Dynamics 365 Business Central entity on a configured schedule.
+Retrieves existing and ongoing records of a Microsoft Dynamics 365 Business Central entity. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                         | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection           | The Microsoft Business Central connection to use.                                                |         |
-| Company ID           | The ID of the company you want to interact with.                                                 |         |
-| Resource Type        | The Business Central entity to poll for changes.                                                 |         |
-| Additional Filter    | Optional OData filter to combine (AND) with the modification-time filter applied by the trigger. |         |
-| Show Updated Records | When enabled, records modified after the last poll are included in the trigger output.           | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                 | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Microsoft Business Central connection to use.                                                                                                                                                                                                                        |         |
+| Company ID           | The ID of the company you want to interact with.                                                                                                                                                                                                                         |         |
+| Resource Type        | The Business Central entity to poll for changes.                                                                                                                                                                                                                         |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filter. |         |
+| Additional Filter    | Optional OData filter to combine (AND) with the modification-time filter applied by the trigger.                                                                                                                                                                         |         |
+| Show Updated Records | When enabled, records modified after the last poll are included in the trigger output.                                                                                                                                                                                   | true    |
 
 ## Actions
 

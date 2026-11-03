@@ -191,14 +191,14 @@ For more information on Gmail API scopes, refer to the [Gmail API documentation]
 
 Receive mailbox event notifications from Gmail. Automatically creates and manages a Push Notifications subscription for mailbox events when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input           | Comments                                                                                                                                                                                                                                                     | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection      | The connection to use for Gmail authorization.                                                                                                                                                                                                               |         |
-| Project ID      | The Google Cloud project ID containing the Pub/Sub resources.                                                                                                                                                                                                |         |
-| Topic ID        | The ID of the Pub/Sub topic to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'. |         |
-| Subscription ID | The ID of the subscription to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'.  |         |
-| Label ID        | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface.                                                                                                                    |         |
-| Gmail User ID   | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                              | me      |
+| Input           | Comments                                                                                                                                                                                                                                                     | Default         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection      | The connection to use for Gmail authorization.                                                                                                                                                                                                               |                 |
+| Project ID      | The Google Cloud project ID containing the Pub/Sub resources.                                                                                                                                                                                                |                 |
+| Topic ID        | The ID of the Pub/Sub topic to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'. |                 |
+| Subscription ID | The ID of the subscription to be created. Must be between 3 and 15 characters long, start with a letter, and contain only letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with 'goog'.  |                 |
+| Label ID        | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface.                                                                                                                    | <code>[]</code> |
+| Gmail User ID   | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                              | me              |
 
 ### Manual Push Notifications {#pushnotificationwebhook}
 
@@ -206,14 +206,15 @@ Receive and validate webhook requests from Gmail for manually configured Push No
 
 ### New and Updated Emails {#pollchangestrigger}
 
-Checks for new and updated email messages on a configured schedule.
+Retrieves existing and ongoing email messages for a specified Gmail mailbox. Load history once, check for changes on a schedule, or both.
 
-| Input               | Comments                                                                                          | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The connection to use for Gmail authorization.                                                    |         |
-| Gmail User ID       | The user ID or email address to query. Use 'me' for the currently authenticated user (default).   | me      |
-| Label ID            | The label ID to filter history messages by.                                                       |         |
-| Get Message Details | When true, includes the message details in the response. <b>This will increase response time.</b> | false   |
+| Input               | Comments                                                                                                                                                                                                                                  | Default |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection          | The connection to use for Gmail authorization.                                                                                                                                                                                            |         |
+| Look-back Date      | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each message received on or after this date once. |         |
+| Gmail User ID       | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                           | me      |
+| Label ID            | The label ID to filter history messages by.                                                                                                                                                                                               |         |
+| Get Message Details | When true, includes the message details in the response. <b>This will increase response time.</b>                                                                                                                                         | false   |
 
 ## Actions
 
@@ -221,12 +222,12 @@ Checks for new and updated email messages on a configured schedule.
 
 Enables the ability to send update notifications like new messages received.
 
-| Input         | Comments                                                                                                                                  | Default |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The connection to use for Gmail authorization.                                                                                            |         |
-| Gmail User ID | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                           | me      |
-| Topic Name    | The full Pub/Sub topic name in the format: projects/{project-id}/topics/{topic-id}                                                        |         |
-| Label ID      | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface. |         |
+| Input         | Comments                                                                                                                                  | Default         |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection    | The connection to use for Gmail authorization.                                                                                            |                 |
+| Gmail User ID | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                           | me              |
+| Topic Name    | The full Pub/Sub topic name in the format: projects/{project-id}/topics/{topic-id}                                                        |                 |
+| Label ID      | Gmail labels to filter notifications. System labels (INBOX, SENT, DRAFT, etc.) correspond to pre-defined elements in the Gmail interface. | <code>[]</code> |
 
 ### Delete Push Notification (Stop Mailbox Updates) {#deletepushnotification}
 
@@ -291,56 +292,56 @@ List all labels within this account
 
 Get a list of messages
 
-| Input         | Comments                                                                                           | Default |
-| ------------- | -------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The connection to use for Gmail authorization.                                                     |         |
-| Gmail User ID | The user ID or email address to query. Use 'me' for the currently authenticated user (default).    | me      |
-| Page Token    | Page token from the previous response when looping through paginated results.                      |         |
-| Fetch All     | When true, fetches all pages of results using pagination.                                          | false   |
-| Query String  | Filter messages using Gmail search syntax. Supports the same query format as the Gmail search box. |         |
-| Max Results   | The maximum number of results to return per page.                                                  |         |
-| Labels        | Filter messages by Gmail label IDs.                                                                |         |
-| Add Metadata  | When true, includes additional metadata for each message. This will increase response time.        | false   |
+| Input         | Comments                                                                                           | Default         |
+| ------------- | -------------------------------------------------------------------------------------------------- | --------------- |
+| Connection    | The connection to use for Gmail authorization.                                                     |                 |
+| Gmail User ID | The user ID or email address to query. Use 'me' for the currently authenticated user (default).    | me              |
+| Page Token    | Page token from the previous response when looping through paginated results.                      |                 |
+| Fetch All     | When true, fetches all pages of results using pagination.                                          | false           |
+| Query String  | Filter messages using Gmail search syntax. Supports the same query format as the Gmail search box. |                 |
+| Max Results   | The maximum number of results to return per page.                                                  |                 |
+| Labels        | Filter messages by Gmail label IDs.                                                                | <code>[]</code> |
+| Add Metadata  | When true, includes additional metadata for each message. This will increase response time.        | false           |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Google Gmail
 
-| Input                   | Comments                                                                                                                                                                                                                                                                       | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The connection to use for Gmail authorization.                                                                                                                                                                                                                                 |         |
-| URL                     | Input the path only (/v1/users/{userId}/messages), The base URL is already included (https://gmail.googleapis.com/gmail). For example, to connect to https://gmail.googleapis.com/gmail/v1/users/{userId}/messages, only /v1/users/{userId}/messages is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                            |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                            | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                               | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                  | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                       | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The connection to use for Gmail authorization.                                                                                                                                                                                                                                 |                 |
+| URL                     | Input the path only (/v1/users/{userId}/messages), The base URL is already included (https://gmail.googleapis.com/gmail). For example, to connect to https://gmail.googleapis.com/gmail/v1/users/{userId}/messages, only /v1/users/{userId}/messages is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                        |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                      |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                           | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                               | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                         | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                            | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                    | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                       | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                            |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                            | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                               | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                            | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                  | false           |
 
 ### Send Message {#sendmessage}
 
 Send a new message
 
-| Input               | Comments                                                                                                                                                                                                                                                                                                             | Default |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The connection to use for Gmail authorization.                                                                                                                                                                                                                                                                       |         |
-| To                  | Recipient email addresses.                                                                                                                                                                                                                                                                                           |         |
-| From                | The sender email address or alias. This is the email address that will appear in the From field.                                                                                                                                                                                                                     |         |
-| CC                  | Carbon copy (CC) email addresses.                                                                                                                                                                                                                                                                                    |         |
-| BCC                 | Blind carbon copy (BCC) email addresses.                                                                                                                                                                                                                                                                             |         |
-| Subject             | The subject line of the email.                                                                                                                                                                                                                                                                                       |         |
-| Plain Text Body     | Plain text version of the email body. Used as fallback for email clients that do not support HTML.                                                                                                                                                                                                                   |         |
-| HTML Body           | HTML version of the email body. For email clients that support HTML.                                                                                                                                                                                                                                                 |         |
-| Attachments         | Email attachments as key-value pairs. The key is the file name (e.g., 'document.pdf') and the value is the file data.                                                                                                                                                                                                |         |
-| Dynamic Attachments | An array of objects with 'key' and 'value' properties, where 'key' is the file name and 'value' is the binary file data. Typically used as a reference from a previous step. Ex. [{key: "my-attachment.pdf", value: <BINARY FILE DATA TO ATTACH>},{key: "another-attachment.xlsx", value: <BINARY EXCEL FILE DATA>}] |         |
-| Gmail User ID       | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                                                                                      | me      |
+| Input               | Comments                                                                                                                                                                                                                                                                                                             | Default         |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The connection to use for Gmail authorization.                                                                                                                                                                                                                                                                       |                 |
+| To                  | Recipient email addresses.                                                                                                                                                                                                                                                                                           | <code>[]</code> |
+| From                | The sender email address or alias. This is the email address that will appear in the From field.                                                                                                                                                                                                                     |                 |
+| CC                  | Carbon copy (CC) email addresses.                                                                                                                                                                                                                                                                                    | <code>[]</code> |
+| BCC                 | Blind carbon copy (BCC) email addresses.                                                                                                                                                                                                                                                                             | <code>[]</code> |
+| Subject             | The subject line of the email.                                                                                                                                                                                                                                                                                       |                 |
+| Plain Text Body     | Plain text version of the email body. Used as fallback for email clients that do not support HTML.                                                                                                                                                                                                                   |                 |
+| HTML Body           | HTML version of the email body. For email clients that support HTML.                                                                                                                                                                                                                                                 |                 |
+| Attachments         | Email attachments as key-value pairs. The key is the file name (e.g., 'document.pdf') and the value is the file data.                                                                                                                                                                                                | <code>[]</code> |
+| Dynamic Attachments | An array of objects with 'key' and 'value' properties, where 'key' is the file name and 'value' is the binary file data. Typically used as a reference from a previous step. Ex. [{key: "my-attachment.pdf", value: <BINARY FILE DATA TO ATTACH>},{key: "another-attachment.xlsx", value: <BINARY EXCEL FILE DATA>}] |                 |
+| Gmail User ID       | The user ID or email address to query. Use 'me' for the currently authenticated user (default).                                                                                                                                                                                                                      | me              |
 
 ### Trash Message {#trashmessagebyid}
 
@@ -366,10 +367,10 @@ Remove a message from the trash
 
 Add or remove labels from a message
 
-| Input            | Comments                                                                                        | Default |
-| ---------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The connection to use for Gmail authorization.                                                  |         |
-| Message ID       | The unique identifier of the Gmail message.                                                     |         |
-| Gmail User ID    | The user ID or email address to query. Use 'me' for the currently authenticated user (default). | me      |
-| Labels to Add    | Gmail labels to add to the message.                                                             |         |
-| Labels to Remove | Gmail labels to remove from the message.                                                        |         |
+| Input            | Comments                                                                                        | Default         |
+| ---------------- | ----------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The connection to use for Gmail authorization.                                                  |                 |
+| Message ID       | The unique identifier of the Gmail message.                                                     |                 |
+| Gmail User ID    | The user ID or email address to query. Use 'me' for the currently authenticated user (default). | me              |
+| Labels to Add    | Gmail labels to add to the message.                                                             | <code>[]</code> |
+| Labels to Remove | Gmail labels to remove from the message.                                                        | <code>[]</code> |

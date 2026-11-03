@@ -265,16 +265,16 @@ Retrieves a list of JSON descriptions for all forms in your Typeform account (pu
 
 Returns form responses and date and time of form landing and submission.
 
-| Input               | Comments                                                                    | Default |
-| ------------------- | --------------------------------------------------------------------------- | ------- |
-| Form Id             | Unique ID for the form.                                                     |         |
-| Fetch All           | If true, it will fetch all the records ignoring the rest of the parameters. | false   |
-| Pagination          | Page, page-size, and search controls.                                       |         |
-| Page                | The page of results to retrieve.                                            |         |
-| Page Size           | Number of results to retrieve per page. Default is 10. Maximum is 200.      |         |
-| Search              | Returns items that contain the specified string.                            |         |
-| Custom Query Params | Custom fields filter                                                        |         |
-| Connection          |                                                                             |         |
+| Input               | Comments                                                                    | Default         |
+| ------------------- | --------------------------------------------------------------------------- | --------------- |
+| Form Id             | Unique ID for the form.                                                     |                 |
+| Fetch All           | If true, it will fetch all the records ignoring the rest of the parameters. | false           |
+| Pagination          | Page, page-size, and search controls.                                       |                 |
+| Page                | The page of results to retrieve.                                            |                 |
+| Page Size           | Number of results to retrieve per page. Default is 10. Maximum is 200.      |                 |
+| Search              | Returns items that contain the specified string.                            |                 |
+| Custom Query Params | Custom fields filter                                                        | <code>[]</code> |
+| Connection          |                                                                             |                 |
 
 ### List Webhooks {#listwebhooks}
 
@@ -302,23 +302,23 @@ Retrieve all workspaces the user has access to.
 
 Send raw HTTP request to Typeform API
 
-| Input                   | Comments                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                |         |
-| URL                     | Input the path only (/forms), The base URL is already included (https://api.typeform.com). For example, to connect to https://api.typeform.com/api/v3/forms, only /forms is entered in this field. e.g. /forms |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                            |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                            | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.               | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                  | false   |
+| Input                   | Comments                                                                                                                                                                                                       | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                |                 |
+| URL                     | Input the path only (/forms), The base URL is already included (https://api.typeform.com). For example, to connect to https://api.typeform.com/api/v3/forms, only /forms is entered in this field. e.g. /forms |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                        |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                      |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                           | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                               | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                         | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                            | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                    | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                       | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                            |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                            | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.               | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                            | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                  | false           |
 
 ### Update Form {#updateform}
 

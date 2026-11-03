@@ -220,12 +220,12 @@ Register a new Event Notification Service (ENS) callback endpoint.
 
 Create a new Event Notification Service (ENS) subscription for specific event types.
 
-| Input             | Comments                                                                                                                          | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Subscription Name | A descriptive name for the ENS event subscription.                                                                                |         |
-| Callback ID       | The unique identifier of the ENS callback registration.                                                                           |         |
-| Event Types       | The event types to subscribe to. Select one or more Marketing Cloud event categories.                                             |         |
+| Input             | Comments                                                                                                                          | Default         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |                 |
+| Subscription Name | A descriptive name for the ENS event subscription.                                                                                |                 |
+| Callback ID       | The unique identifier of the ENS callback registration.                                                                           |                 |
+| Event Types       | The event types to subscribe to. Select one or more Marketing Cloud event categories.                                             | <code>[]</code> |
 
 ### Create Journey {#createjourney}
 
@@ -283,10 +283,10 @@ Delete a Content Builder category (folder) by ID.
 
 Delete one or more contacts by contact key. This operation is asynchronous and may take time to complete. Returns an operation ID for status tracking.
 
-| Input        | Comments                                                                                                                          | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Contact Keys | One or more contact keys (subscriber keys) to delete. Deletion is asynchronous and may take time to complete.                     |         |
+| Input        | Comments                                                                                                                          | Default         |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection   | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |                 |
+| Contact Keys | One or more contact keys (subscriber keys) to delete. Deletion is asynchronous and may take time to complete.                     | <code>[]</code> |
 
 ### Delete Email Definition {#deleteemaildefinition}
 
@@ -604,23 +604,23 @@ Search Content Builder assets using the query API with filters and sorting.
 
 Send a raw HTTP request to the Salesforce Marketing Cloud REST API.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                                                                                                                                                                                       |         |
-| URL                     | Input the path only (/interaction/v1/interactions). The base URL is already included (https://{your_subdomain}.rest.marketingcloudapis.com/). For example, to connect to https://{your_subdomain}.rest.marketingcloudapis.com//interaction/v1/interactions, only /interaction/v1/interactions is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                 |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                               |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                    |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                        |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                  |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                     |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                             |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                     |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                        | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                     | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                           | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                                | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server).                                                                                                                                                                                       |                 |
+| URL                     | Input the path only (/interaction/v1/interactions). The base URL is already included (https://{your_subdomain}.rest.marketingcloudapis.com/). For example, to connect to https://{your_subdomain}.rest.marketingcloudapis.com//interaction/v1/interactions, only /interaction/v1/interactions is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                 |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                               |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                    | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                        | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                  | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                     | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                             | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                     |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                     | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                        | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                     | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                           | false           |
 
 ### Search Contacts {#searchcontacts}
 
@@ -759,12 +759,12 @@ Update an Event Notification Service (ENS) callback endpoint. Changes may take u
 
 Update an Event Notification Service (ENS) subscription. Can modify the subscription name, event types, or status.
 
-| Input             | Comments                                                                                                                          | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |         |
-| Subscription ID   | The unique identifier of the ENS event subscription.                                                                              |         |
-| Subscription Name | A descriptive name for the ENS event subscription.                                                                                |         |
-| Event Types       | The event types to subscribe to. Select one or more Marketing Cloud event categories.                                             |         |
+| Input             | Comments                                                                                                                          | Default         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Salesforce Marketing Cloud OAuth connection (Authorization Code for user context or Client Credentials for server-to-server). |                 |
+| Subscription ID   | The unique identifier of the ENS event subscription.                                                                              |                 |
+| Subscription Name | A descriptive name for the ENS event subscription.                                                                                |                 |
+| Event Types       | The event types to subscribe to. Select one or more Marketing Cloud event categories.                                             | <code>[]</code> |
 
 ### Update Journey {#updatejourney}
 

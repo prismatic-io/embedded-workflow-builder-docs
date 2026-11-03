@@ -72,12 +72,13 @@ This connection type is used for:
 
 ### Employee Changes {#pollemployeechanges}
 
-Checks for new and updated employee records (hires, terminations, transfers, promotions) on a configured schedule.
+Retrieves existing and ongoing employee records (hires, terminations, transfers, promotions) for a specified UKG Pro company (or all companies, if omitted). Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                                                              | Default |
-| ---------- | --------------------------------------------------------------------- | ------- |
-| Connection | Select your UKG Pro connection.                                       |         |
-| Company ID | Optional company ID to filter changes. Leave empty for all companies. |         |
+| Input          | Comments                                                                                                                                                                                                                                      | Default |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | Select your UKG Pro connection.                                                                                                                                                                                                               |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each employee change made on or after this date once. |         |
+| Company ID     | Optional company ID to filter changes. Leave empty for all companies.                                                                                                                                                                         |         |
 
 ### Employee Lifecycle Events {#webhookemployeelifecycle}
 

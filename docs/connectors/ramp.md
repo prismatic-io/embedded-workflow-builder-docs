@@ -61,14 +61,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected Ramp resource type on a configured schedule.
+Retrieves existing and ongoing records for a selected Ramp resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                  | Default |
-| -------------------- | --------------------------------------------------------- | ------- |
-| Connection           |                                                           |         |
-| Resource Type        | The type of resource to poll for new and updated records. |         |
-| Show New Records     | Include newly created records in trigger results.         | true    |
-| Show Updated Records | Include updated records in trigger results.               | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                                                                                                                                                                           | Default |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                                                                                                                                                                                    |         |
+| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                                                                                                                                                                                                          |         |
+| Show New Records     | Include newly created records in trigger results.                                                                                                                                                                                                                                                                                                                                                                                  | true    |
+| Show Updated Records | Include updated records in trigger results.                                                                                                                                                                                                                                                                                                                                                                                        | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. On resources without timestamps (Departments, Locations, Business Entities), the first poll always emits all current records regardless of this setting. |         |
 
 ## Actions
 

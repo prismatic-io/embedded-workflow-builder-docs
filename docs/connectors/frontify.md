@@ -58,14 +58,15 @@ Personal Developer Tokens are used for private applications or during developmen
 
 ### New and Updated Assets {#pollchangestrigger}
 
-Checks for new and updated Assets in Frontify on a configured schedule.
+Retrieves existing and ongoing Assets from Frontify. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                           | Default |
-| -------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Frontify Connection  |                                                                                    |         |
-| Library ID           | ID of the Library entity.                                                          |         |
-| Show New Records     | When true, assets created since the last poll are included in the trigger output.  | true    |
-| Show Updated Records | When true, assets modified since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Frontify Connection  |                                                                                                                                                                                                                                                                                     |         |
+| Library ID           | ID of the Library entity.                                                                                                                                                                                                                                                           |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
+| Show New Records     | When true, assets created since the last poll are included in the trigger output.                                                                                                                                                                                                   | true    |
+| Show Updated Records | When true, assets modified since the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
 
 ## Actions
 
@@ -73,22 +74,22 @@ Checks for new and updated Assets in Frontify on a configured schedule.
 
 Create an Asset.
 
-| Input               | Comments                                                                                                                                                                                            | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Frontify Connection |                                                                                                                                                                                                     |         |
-| File ID             | A file's Signed ID, returned by the Upload File action.                                                                                                                                             |         |
-| Title               | Asset title or display name.                                                                                                                                                                        |         |
-| Parent ID           | The parent Id, where the Asset should be located in. Should either be a Library, WorkspaceProject or Folder Id. Important: Cannot be used in conjunction with directory if the Id is from a Folder. |         |
-| External ID         | Asset external ID.                                                                                                                                                                                  |         |
-| Tags                | List of tags to create with the Asset.                                                                                                                                                              |         |
-| Directory           | An array of strings representing the directory, if a folder does not exist, it is created. Important: Cannot be used in conjunction with parentId that is from a Folder.                            |         |
-| Additional Fields   | Additional optional fields: includes Description, Copyright Status, Copyright Notice, Skip File Metadata, Expires At, and Author.                                                                   |         |
-| Description         | Asset description.                                                                                                                                                                                  |         |
-| Copyright Status    | Asset copyright status.                                                                                                                                                                             |         |
-| Copyright Notice    | Asset copyright notice. Supports medium text length.                                                                                                                                                |         |
-| Skip File Metadata  | Skip file's EXIF metadata. When true, it will ignore all file metadata contents.                                                                                                                    | false   |
-| Expires At          | Asset will expire once the defined date is reached.                                                                                                                                                 |         |
-| Author              | Represents the Author of the Asset.                                                                                                                                                                 |         |
+| Input               | Comments                                                                                                                                                                                            | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Frontify Connection |                                                                                                                                                                                                     |                 |
+| File ID             | A file's Signed ID, returned by the Upload File action.                                                                                                                                             |                 |
+| Title               | Asset title or display name.                                                                                                                                                                        |                 |
+| Parent ID           | The parent Id, where the Asset should be located in. Should either be a Library, WorkspaceProject or Folder Id. Important: Cannot be used in conjunction with directory if the Id is from a Folder. |                 |
+| External ID         | Asset external ID.                                                                                                                                                                                  |                 |
+| Tags                | List of tags to create with the Asset.                                                                                                                                                              | <code>[]</code> |
+| Directory           | An array of strings representing the directory, if a folder does not exist, it is created. Important: Cannot be used in conjunction with parentId that is from a Folder.                            | <code>[]</code> |
+| Additional Fields   | Additional optional fields: includes Description, Copyright Status, Copyright Notice, Skip File Metadata, Expires At, and Author.                                                                   |                 |
+| Description         | Asset description.                                                                                                                                                                                  |                 |
+| Copyright Status    | Asset copyright status.                                                                                                                                                                             |                 |
+| Copyright Notice    | Asset copyright notice. Supports medium text length.                                                                                                                                                |                 |
+| Skip File Metadata  | Skip file's EXIF metadata. When true, it will ignore all file metadata contents.                                                                                                                    | false           |
+| Expires At          | Asset will expire once the defined date is reached.                                                                                                                                                 |                 |
+| Author              | Represents the Author of the Asset.                                                                                                                                                                 |                 |
 
 ### Create Attachment {#createattachment}
 
@@ -156,12 +157,12 @@ Delete an existing Collection.
 
 Delete existing Folders.
 
-| Input               | Comments                    | Default |
-| ------------------- | --------------------------- | ------- |
-| Frontify Connection |                             |         |
-| Brand ID            | ID of the Brand entity.     |         |
-| Library ID          | ID of the Library entity.   |         |
-| Folder IDs          | ID of the Folder to delete. |         |
+| Input               | Comments                    | Default         |
+| ------------------- | --------------------------- | --------------- |
+| Frontify Connection |                             |                 |
+| Brand ID            | ID of the Brand entity.     |                 |
+| Library ID          | ID of the Library entity.   |                 |
+| Folder IDs          | ID of the Folder to delete. | <code>[]</code> |
 
 ### Get Account ID {#getaccountid}
 
@@ -184,10 +185,10 @@ Retrieve an Asset by ID.
 
 Retrieve a list of Assets by IDs.
 
-| Input               | Comments                       | Default |
-| ------------------- | ------------------------------ | ------- |
-| Frontify Connection |                                |         |
-| Asset IDs           | List of Asset IDs to retrieve. |         |
+| Input               | Comments                       | Default         |
+| ------------------- | ------------------------------ | --------------- |
+| Frontify Connection |                                |                 |
+| Asset IDs           | List of Asset IDs to retrieve. | <code>[]</code> |
 
 ### Get Brand {#getbrand}
 
@@ -427,33 +428,33 @@ Retrieve a list of the top-level folders in a Workspace Project. To browse furth
 
 Move existing Asset item(s) to the given Library, Workspace or Folder destination. Only moves within the same Library/Workspace are supported by this operation.
 
-| Input               | Comments                                       | Default |
-| ------------------- | ---------------------------------------------- | ------- |
-| Frontify Connection |                                                |         |
-| Asset IDs           | IDs of the Assets to move.                     |         |
-| Destination ID      | Only allows Library, Workspace, or Folder IDs. |         |
+| Input               | Comments                                       | Default         |
+| ------------------- | ---------------------------------------------- | --------------- |
+| Frontify Connection |                                                |                 |
+| Asset IDs           | IDs of the Assets to move.                     | <code>[]</code> |
+| Destination ID      | Only allows Library, Workspace, or Folder IDs. |                 |
 
 ### Move Folders {#movefolders}
 
 Move existing Folder item(s) to the given Library, Workspace or Folder destination. Only moves within the same Library/Workspace are supported by this operation.
 
-| Input               | Comments                                       | Default |
-| ------------------- | ---------------------------------------------- | ------- |
-| Frontify Connection |                                                |         |
-| Brand ID            | ID of the Brand entity.                        |         |
-| Library ID          | ID of the Library entity.                      |         |
-| Folder IDs          | ID of the Folder items to move.                |         |
-| Destination ID      | Only allows Library, Workspace, or Folder IDs. |         |
+| Input               | Comments                                       | Default         |
+| ------------------- | ---------------------------------------------- | --------------- |
+| Frontify Connection |                                                |                 |
+| Brand ID            | ID of the Brand entity.                        |                 |
+| Library ID          | ID of the Library entity.                      |                 |
+| Folder IDs          | ID of the Folder items to move.                | <code>[]</code> |
+| Destination ID      | Only allows Library, Workspace, or Folder IDs. |                 |
 
 ### Raw GraphQL Request {#rawrequest}
 
 Send a raw GraphQL request to Frontify.
 
-| Input               | Comments                                                    | Default |
-| ------------------- | ----------------------------------------------------------- | ------- |
-| Frontify Connection |                                                             |         |
-| Query or Mutation   | Provide a query or mutation for the GraphQL request.        |         |
-| GraphQL Variables   | These should match the variables of your query or mutation. |         |
+| Input               | Comments                                                    | Default         |
+| ------------------- | ----------------------------------------------------------- | --------------- |
+| Frontify Connection |                                                             |                 |
+| Query or Mutation   | Provide a query or mutation for the GraphQL request.        |                 |
+| GraphQL Variables   | These should match the variables of your query or mutation. | <code>[]</code> |
 
 ### Uninstall Webhook {#uninstallwebhook}
 

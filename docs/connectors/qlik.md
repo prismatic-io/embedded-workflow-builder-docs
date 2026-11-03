@@ -61,14 +61,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in Qlik on a configured schedule.
+Retrieves existing and ongoing records from Qlik. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                  | Default |
-| -------------------- | ----------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                           |         |
-| Resource Type        | The type of Qlik resource to poll for changes.                                            |         |
-| Show New Records     | When enabled, newly created records will be included in the trigger output.               | true    |
-| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                                     |         |
+| Resource Type        | The type of Qlik resource to poll for changes.                                                                                                                                                                                                                                      |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
+| Show New Records     | When enabled, newly created records will be included in the trigger output.                                                                                                                                                                                                         | true    |
+| Show Updated Records | When enabled, records updated after the last poll will be included in the trigger output.                                                                                                                                                                                           | true    |
 
 ## Actions
 

@@ -83,14 +83,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Items {#pollchangestrigger}
 
-Polls a Monday.com board for items created or updated since the last execution, separated into new and updated buckets.
+Retrieves existing and ongoing items for a specified Monday.com board. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                         | Default |
-| -------------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection           | The Monday.com connection to use.                                                |         |
-| Board ID             | The unique identifier for the Monday.com board that the action targets.          |         |
-| Show New Records     | When true, newly created items are included in the trigger output.               | true    |
-| Show Updated Records | When true, items updated since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Monday.com connection to use.                                                                                                                                                                                                                                       |         |
+| Board ID             | The unique identifier for the Monday.com board that the action targets.                                                                                                                                                                                                 |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each item modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, newly created items are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Records | When true, items updated since the last poll are included in the trigger output.                                                                                                                                                                                        | true    |
 
 ### Webhook {#webhook}
 
@@ -158,7 +159,7 @@ Issues any GraphQL query or mutation with variables.
 | ----------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
 | Connection        | The Monday.com connection to use.                                                                            |                                                           |
 | Query or Mutation | The GraphQL query or mutation to execute against the Monday.com API.                                         | <code>{<br />me {<br />id<br />email<br />}<br />}</code> |
-| Variables         | Key-value pairs of variables to pass to the GraphQL query or mutation. Use this for simple variable input.   |                                                           |
+| Variables         | Key-value pairs of variables to pass to the GraphQL query or mutation. Use this for simple variable input.   | <code>[]</code>                                           |
 | Variables Object  | A JSON object of variables to pass to the GraphQL query or mutation. Use this for structured variable input. |                                                           |
 | API Version       | The Monday.com API version to use. If not provided, the default 2026-07 version will be used.                |                                                           |
 
@@ -175,13 +176,13 @@ Gets the information and metadata of a board by ID.
 
 Fetches items that have a certain column value.
 
-| Input         | Comments                                                                                                                                                                                           | Default |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Monday.com connection to use.                                                                                                                                                                  |         |
-| Board ID      | The unique identifier for the Monday.com board that the action targets.                                                                                                                            |         |
-| Column ID     | The ID of the column to filter by. For possible values see the [Monday.com column types reference](https://developer.monday.com/api-reference/reference/column-types-reference#supported-columns). |         |
-| Column Value  | The value to match against the specified column when searching for items.                                                                                                                          |         |
-| Get All Items | When true, automatically fetches all pages of items matching the column value. When false, a maximum of 500 items will be returned.                                                                | false   |
+| Input        | Comments                                                                                                                                                                                           | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection   | The Monday.com connection to use.                                                                                                                                                                  |         |
+| Board ID     | The unique identifier for the Monday.com board that the action targets.                                                                                                                            |         |
+| Column ID    | The ID of the column to filter by. For possible values see the [Monday.com column types reference](https://developer.monday.com/api-reference/reference/column-types-reference#supported-columns). |         |
+| Column Value | The value to match against the specified column when searching for items.                                                                                                                          |         |
+| Fetch All    | When true, automatically fetches all pages of items matching the column value. When false, a maximum of 500 items will be returned.                                                                | false   |
 
 ### List Boards {#listboards}
 

@@ -182,14 +182,14 @@ Starts an existing crawler in AWS Glue.
 
 Starts a job run using an AWS Glue job definition.
 
-| Input                  | Comments                                                                                                                                                                           | Default |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| AWS Region             | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                            |         |
-| Name                   | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN.                                                                                      |         |
-| Allocated Capacity     | The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. If this is omitted, Glue will use the default number of DPUs configured for the job. |         |
-| Security Configuration | The name of the SecurityConfiguration structure to be used with this job. This can be left blank if there is no security configuration.                                            |         |
-| Arguments              | Optional key value parameters to pass into a job.                                                                                                                                  |         |
-| Connection             | The AWS Glue connection to use.                                                                                                                                                    |         |
+| Input                  | Comments                                                                                                                                                                           | Default         |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| AWS Region             | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                                                                                                            |                 |
+| Name                   | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN.                                                                                      |                 |
+| Allocated Capacity     | The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. If this is omitted, Glue will use the default number of DPUs configured for the job. |                 |
+| Security Configuration | The name of the SecurityConfiguration structure to be used with this job. This can be left blank if there is no security configuration.                                            |                 |
+| Arguments              | Optional key value parameters to pass into a job.                                                                                                                                  | <code>[]</code> |
+| Connection             | The AWS Glue connection to use.                                                                                                                                                    |                 |
 
 ### Start Trigger {#starttrigger}
 
@@ -215,12 +215,12 @@ Stops the specified crawler if it is currently running.
 
 Stops one or more job runs for a specified job definition.
 
-| Input       | Comments                                                                                      | Default |
-| ----------- | --------------------------------------------------------------------------------------------- | ------- |
-| AWS Region  | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |         |
-| Name        | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |         |
-| Job Run IDs | The job run identifiers to stop for the specified job.                                        |         |
-| Connection  | The AWS Glue connection to use.                                                               |         |
+| Input       | Comments                                                                                      | Default         |
+| ----------- | --------------------------------------------------------------------------------------------- | --------------- |
+| AWS Region  | AWS provides services in multiple regions, like us-west-2 or eu-west-1.                       |                 |
+| Name        | The name of the resource (job, crawler, or trigger) to act on. Provide the name, not the ARN. |                 |
+| Job Run IDs | The job run identifiers to stop for the specified job.                                        | <code>[]</code> |
+| Connection  | The AWS Glue connection to use.                                                               |                 |
 
 ### Stop Trigger {#stoptrigger}
 

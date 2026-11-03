@@ -140,13 +140,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Sheets {#pollchangestrigger}
 
-Polls Smartsheet for sheets created or modified since the last execution, separated into new and updated buckets.
+Retrieves existing and ongoing Sheets from Smartsheet. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                            | Default |
-| -------------------- | ----------------------------------------------------------------------------------- | ------- |
-| Connection           | The Smartsheet connection to use.                                                   |         |
-| Show New Records     | When true, sheets created since the last poll are returned in the trigger payload.  | true    |
-| Show Updated Records | When true, sheets modified since the last poll are returned in the trigger payload. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Smartsheet connection to use.                                                                                                                                                                                                                                                   |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |         |
+| Show New Records     | When true, sheets created since the last poll are returned in the trigger payload.                                                                                                                                                                                                  | true    |
+| Show Updated Records | When true, sheets modified since the last poll are returned in the trigger payload.                                                                                                                                                                                                 | true    |
 
 ### Webhook {#smartsheetwebhook}
 

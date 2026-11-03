@@ -108,23 +108,25 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### Atom Feed Notifications {#pollchangestrigger}
 
-Checks for new and updated records from a selected Oracle HCM Atom feed on a configured schedule.
+Retrieves existing and ongoing records from a selected Oracle HCM Atom feed. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                                                                                                                               | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Oracle Fusion Cloud HCM connection to use.                                                                                         |         |
-| Feed Name  | The Oracle HCM Atom feed to subscribe to. Additional feeds can be discovered via the Interface Catalog URL on the Oracle HCM instance. |         |
-| Page Size  | The maximum number of Atom feed entries to process per trigger invocation. Oracle HCM caps this at 1000.                               | 100     |
+| Input          | Comments                                                                                                                                               | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The Oracle Fusion Cloud HCM connection to use.                                                                                                         |         |
+| Feed Name      | The Oracle HCM Atom feed to subscribe to. Additional feeds can be discovered via the Interface Catalog URL on the Oracle HCM instance.                 |         |
+| Page Size      | The maximum number of Atom feed entries to process per trigger invocation. Oracle HCM caps this at 1000.                                               | 100     |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. |         |
 
 ### New and Updated Records {#pollrecordstrigger}
 
-Checks for new and updated records in a selected Oracle HCM resource type on a configured schedule.
+Retrieves existing and ongoing records in a selected Oracle HCM resource type. Load history once, check for changes on a schedule, or both.
 
-| Input         | Comments                                                                                                                                                            | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The Oracle Fusion Cloud HCM connection to use.                                                                                                                      |         |
-| Resource Type | The Oracle HCM data resource to sync. Each trigger instance polls one resource type and emits all records updated since the last run.                               |         |
-| Page Size     | The maximum number of records to fetch per API page. Multiple pages are fetched automatically until all updated records are retrieved. Oracle HCM caps this at 500. | 100     |
+| Input          | Comments                                                                                                                                                            | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Oracle Fusion Cloud HCM connection to use.                                                                                                                      |         |
+| Resource Type  | The Oracle HCM data resource to sync. Each trigger instance polls one resource type and emits all records updated since the last run.                               |         |
+| Page Size      | The maximum number of records to fetch per API page. Multiple pages are fetched automatically until all updated records are retrieved. Oracle HCM caps this at 500. | 100     |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill.              |         |
 
 ## Actions
 

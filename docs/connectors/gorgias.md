@@ -71,14 +71,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected Gorgias resource type on a configured schedule.
+Retrieves existing and ongoing records for a specified Gorgias resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                 | Default |
-| -------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| Connection           | Select the Gorgias connection type for this request: OAuth2 or API Key.                  |         |
-| Resource Type        | The Gorgias resource type to poll for newly created or updated records.                  |         |
-| Show New Records     | When true, newly created records since the last poll are included in the trigger output. | true    |
-| Show Updated Records | When true, records updated since the last poll are included in the trigger output.       | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                                                                             |         |
+| Resource Type        | The Gorgias resource type to poll for newly created or updated records.                                                                                                                                                                                                             |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the trigger's visibility filters. |         |
+| Show New Records     | When true, newly created records since the last poll are included in the trigger output.                                                                                                                                                                                            | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
 
 ## Actions
 

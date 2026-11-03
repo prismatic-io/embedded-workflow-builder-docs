@@ -86,25 +86,25 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Retrieves existing and ongoing campaigns for a specified Klaviyo message channel. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                 | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Klaviyo connection to use.                                                                                                                                                                                                           |         |
-| Message Channel      | Klaviyo requires a channel filter to list campaigns. Select which channel's campaigns the trigger should return.                                                                                                                         |         |
-| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once. |         |
-| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                     | true    |
-| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                                                                                                                                                       | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Klaviyo connection to use.                                                                                                                                                                                                                                            |         |
+| Message Channel      | Klaviyo requires a channel filter to list campaigns. Select which channel's campaigns the trigger should return.                                                                                                                                                          |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                                                                                                                                                                                        | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
 
 ### New and Updated Profiles and Lists {#pollprofileandlistchangestrigger}
 
 Retrieves existing and ongoing profiles and lists in Klaviyo. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                 | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Klaviyo connection to use.                                                                                                                                                                                                           |         |
-| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                |         |
-| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once. |         |
-| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                     | true    |
-| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                                                                                                                                                       | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The Klaviyo connection to use.                                                                                                                                                                                                                                            |         |
+| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                                                 |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Records | When true, records updated since the last poll are included in the trigger output.                                                                                                                                                                                        | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
 
 ## Actions
 
@@ -121,33 +121,33 @@ Create a batch of events for one or more profiles.
 
 Creates a campaign given a set of parameters, then returns it.
 
-| Input                  | Comments                                                                                   | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection             | The Klaviyo connection to use.                                                             |         |
-| Campaign Name          | A display name to identify the campaign.                                                   |         |
-| Campaign Messages      | The message(s) to send in the campaign.                                                    |         |
-| Included Audiences     | The IDs of lists or segments to receive the campaign.                                      |         |
-| Excluded Audiences     | The IDs of lists or segments to exclude from the campaign.                                 |         |
-| Campaign Configuration | Tracking options, send options, and send strategy.                                         |         |
-| Tracking Options       | UTM parameters, click tracking, and open tracking configuration. Provide as a JSON object. |         |
-| Send Options           | Smart-sending and related delivery preferences. Provide as a JSON object.                  |         |
-| Send Strategy          | Scheduling method and timing for campaign delivery. Provide as a JSON object.              |         |
+| Input                  | Comments                                                                                                                                                                                                             | Default         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection             | The Klaviyo connection to use.                                                                                                                                                                                       |                 |
+| Campaign Name          | A display name to identify the campaign.                                                                                                                                                                             |                 |
+| Campaign Messages      | The message(s) to send in the campaign. Messages that place channel, label and content directly under attributes, as API revision 2024-06-15 did, are converted to the current definition shape.                     |                 |
+| Included Audiences     | The IDs of lists or segments to receive the campaign.                                                                                                                                                                | <code>[]</code> |
+| Excluded Audiences     | The IDs of lists or segments to exclude from the campaign.                                                                                                                                                           | <code>[]</code> |
+| Campaign Configuration | Tracking options, send options, and send strategy.                                                                                                                                                                   |                 |
+| Tracking Options       | UTM parameters, click tracking, and open tracking configuration. Provide as a JSON object. The isAddUtm and utmParams fields of API revision 2024-06-15 are converted to addTrackingParams and customTrackingParams. |                 |
+| Send Options           | Smart-sending and related delivery preferences. Provide as a JSON object.                                                                                                                                            |                 |
+| Send Strategy          | Scheduling method and timing for campaign delivery. Provide as a JSON object. The optionsStatic, optionsThrottled and optionsSto blocks of API revision 2024-06-15 are converted to the current shape.               |                 |
 
 ### Create Event {#createevent}
 
-Create a new event to track a profiles activity.
+Create a new event to track a profile's activity.
 
-| Input                | Comments                                                                              | Default |
-| -------------------- | ------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Klaviyo connection to use.                                                        |         |
-| Event Name           | The metric name that identifies this event type.                                      |         |
-| Event Profile        | The profile associated with this event.                                               |         |
-| Event Properties     | A JSON object of custom key-value pairs to attach to the event.                       |         |
-| Event Details        | Timestamp, monetary value, currency, and unique ID for the event.                     |         |
-| Event Time           | When this event occurred. By default, the time the request was received will be used. |         |
-| Event Value          | A numeric, monetary value to associate with this event.                               |         |
-| Event Value Currency | The ISO 4217 currency code of the value associated with the event.                    |         |
-| Event Unique ID      | A unique identifier for this event.                                                   |         |
+| Input            | Comments                                                                                                                                    | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection       | The Klaviyo connection to use.                                                                                                              |         |
+| Event Name       | The metric name that identifies this event type.                                                                                            |         |
+| Event Profile    | The profile the event is attributed to, as a JSON object of profile attributes. Include email or phoneNumber to identify the profile.       |         |
+| Event Properties | A JSON object of custom key-value pairs to attach to the event.                                                                             |         |
+| Event Details    | Timestamp, monetary value, currency, and unique ID.                                                                                         |         |
+| Time             | When this event occurred, as an ISO 8601 datetime. By default, the time the request was received will be used.                              |         |
+| Value            | A numeric, monetary value to associate with this event.                                                                                     |         |
+| Value Currency   | The ISO 4217 currency code of the value associated with the event.                                                                          |         |
+| Unique ID        | A deduplication key for the event. When the same unique ID is sent again for the same profile and metric, only the first event is recorded. |         |
 
 ### Create List {#createlist}
 
@@ -162,21 +162,21 @@ Create a new list.
 
 Create a new profile.
 
-| Input               | Comments                                                                                                                                                                             | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection          | The Klaviyo connection to use.                                                                                                                                                       |         |
-| Contact Information | Email, phone, and other contact channel details.                                                                                                                                     |         |
-| Email               | The primary email address used to reach this profile.                                                                                                                                |         |
-| Phone Number        | Individual's phone number in E.164 format.                                                                                                                                           |         |
-| First Name          | The given name of the profile contact.                                                                                                                                               |         |
-| Last Name           | The family name of the profile contact.                                                                                                                                              |         |
-| Additional Fields   | Additional optional fields: includes External ID, Organization, Title, Image, Location, and Properties.                                                                              |         |
-| External ID         | A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system. |         |
-| Organization        | Name of the company or organization within the company for whom the individual works                                                                                                 |         |
-| Title               | The job title or role at the individual's organization.                                                                                                                              |         |
-| Image               | URL pointing to the location of a profile image.                                                                                                                                     |         |
-| Location            | Location information for the profile.                                                                                                                                                |         |
-| Properties          | An object containing key/value pairs for any custom properties assigned to this profile.                                                                                             |         |
+| Input                      | Comments                                                                                                                                                                             | Default |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection                 | The Klaviyo connection to use.                                                                                                                                                       |         |
+| Name & Contact Information | Name, email, phone, and other contact channel details.                                                                                                                               |         |
+| Email                      | The primary email address used to reach this profile.                                                                                                                                |         |
+| Phone Number               | Individual's phone number in E.164 format.                                                                                                                                           |         |
+| First Name                 | The given name of the profile contact.                                                                                                                                               |         |
+| Last Name                  | The family name of the profile contact.                                                                                                                                              |         |
+| Additional Fields          | Additional optional fields: includes External ID, Organization, Title, Image, Location, and Properties.                                                                              |         |
+| External ID                | A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system. |         |
+| Organization               | Name of the company or organization within the company for whom the individual works                                                                                                 |         |
+| Title                      | The job title or role at the individual's organization.                                                                                                                              |         |
+| Image                      | URL pointing to the location of a profile image.                                                                                                                                     |         |
+| Location                   | The profile's postal address, coordinates, timezone, and IP address, as a JSON object.                                                                                               |         |
+| Properties                 | An object containing key/value pairs for any custom properties assigned to this profile.                                                                                             |         |
 
 ### Create Segment {#createsegment}
 
@@ -241,194 +241,194 @@ Delete a template with the given template ID.
 
 Retrieve a single account object by its account ID.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Account ID | The unique identifier for the account. |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Account ID | The unique identifier for the account. |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### Get Campaign {#getcampaign}
 
 Returns a specific campaign based on a required id.
 
-| Input       | Comments                                | Default |
-| ----------- | --------------------------------------- | ------- |
-| Connection  | The Klaviyo connection to use.          |         |
-| Campaign ID | The unique identifier for the campaign. |         |
-| Fields      | The fields to include in the response.  |         |
+| Input       | Comments                                | Default         |
+| ----------- | --------------------------------------- | --------------- |
+| Connection  | The Klaviyo connection to use.          |                 |
+| Campaign ID | The unique identifier for the campaign. |                 |
+| Fields      | The fields to include in the response.  | <code>[]</code> |
 
 ### Get Event {#getevent}
 
 Get an event with the given event ID.
 
-| Input          | Comments                                   | Default |
-| -------------- | ------------------------------------------ | ------- |
-| Connection     | The Klaviyo connection to use.             |         |
-| Event ID       | The unique identifier for the event.       |         |
-| Event Fields   | Event fields to include in the response.   |         |
-| Metric Fields  | Metric fields to include in the response.  |         |
-| Profile Fields | Profile fields to include in the response. |         |
+| Input          | Comments                                   | Default         |
+| -------------- | ------------------------------------------ | --------------- |
+| Connection     | The Klaviyo connection to use.             |                 |
+| Event ID       | The unique identifier for the event.       |                 |
+| Event Fields   | Event fields to include in the response.   | <code>[]</code> |
+| Metric Fields  | Metric fields to include in the response.  | <code>[]</code> |
+| Profile Fields | Profile fields to include in the response. | <code>[]</code> |
 
 ### Get Image {#getimage}
 
 Get the image with the given image ID.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Image ID   | The unique identifier for the image.   |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Image ID   | The unique identifier for the image.   |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### Get List {#getlist}
 
 Get a list with the given list ID.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| List ID    | The unique identifier of the list.     |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| List ID    | The unique identifier of the list.     |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### Get Profile {#getprofile}
 
 Get the profile with the given profile ID.
 
-| Input                     | Comments                                                           | Default |
-| ------------------------- | ------------------------------------------------------------------ | ------- |
-| Connection                | The Klaviyo connection to use.                                     |         |
-| Profile ID                | Unique identifier for the profile.                                 |         |
-| Fields                    | The fields to include in the response.                             |         |
-| Additional Profile Fields | Request additional fields not included by default in the response. |         |
+| Input                     | Comments                                                           | Default         |
+| ------------------------- | ------------------------------------------------------------------ | --------------- |
+| Connection                | The Klaviyo connection to use.                                     |                 |
+| Profile ID                | Unique identifier for the profile.                                 |                 |
+| Fields                    | The fields to include in the response.                             | <code>[]</code> |
+| Additional Profile Fields | Request additional fields not included by default in the response. | <code>[]</code> |
 
 ### Get Segment {#getsegment}
 
 Get a segment with the given segment ID.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Segment ID | The unique identifier for the segment. |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Segment ID | The unique identifier for the segment. |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### Get Template {#gettemplate}
 
 Get a template with the given template ID.
 
-| Input       | Comments                                | Default |
-| ----------- | --------------------------------------- | ------- |
-| Connection  | The Klaviyo connection to use.          |         |
-| Template ID | The unique identifier for the template. |         |
-| Fields      | The fields to include in the response.  |         |
+| Input       | Comments                                | Default         |
+| ----------- | --------------------------------------- | --------------- |
+| Connection  | The Klaviyo connection to use.          |                 |
+| Template ID | The unique identifier for the template. |                 |
+| Fields      | The fields to include in the response.  | <code>[]</code> |
 
 ### List Accounts {#listaccounts}
 
 Retrieve the account(s) associated with a given private API key.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### List Campaigns {#listcampaigns}
 
 Returns some or all campaigns based on filters.
 
-| Input            | Comments                                                          | Default |
-| ---------------- | ----------------------------------------------------------------- | ------- |
-| Connection       | The Klaviyo connection to use.                                    |         |
-| Filter Campaigns | A Klaviyo JSON:API filter expression to narrow the campaign list. |         |
-| Fields           | The fields to include in the response.                            |         |
+| Input            | Comments                                                          | Default         |
+| ---------------- | ----------------------------------------------------------------- | --------------- |
+| Connection       | The Klaviyo connection to use.                                    |                 |
+| Filter Campaigns | A Klaviyo JSON:API filter expression to narrow the campaign list. |                 |
+| Fields           | The fields to include in the response.                            | <code>[]</code> |
 
 ### List Events {#listevents}
 
 Get all events in an account.
 
-| Input          | Comments                                   | Default |
-| -------------- | ------------------------------------------ | ------- |
-| Connection     | The Klaviyo connection to use.             |         |
-| Event Fields   | Event fields to include in the response.   |         |
-| Metric Fields  | Metric fields to include in the response.  |         |
-| Profile Fields | Profile fields to include in the response. |         |
+| Input          | Comments                                   | Default         |
+| -------------- | ------------------------------------------ | --------------- |
+| Connection     | The Klaviyo connection to use.             |                 |
+| Event Fields   | Event fields to include in the response.   | <code>[]</code> |
+| Metric Fields  | Metric fields to include in the response.  | <code>[]</code> |
+| Profile Fields | Profile fields to include in the response. | <code>[]</code> |
 
 ### List Images {#listimages}
 
 Get all images in an account.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### List List Profiles {#listlistprofiles}
 
 Get all profiles within a list with the given list ID.
 
-| Input                     | Comments                                                           | Default |
-| ------------------------- | ------------------------------------------------------------------ | ------- |
-| Connection                | The Klaviyo connection to use.                                     |         |
-| List ID                   | The unique identifier of the list.                                 |         |
-| Additional Profile Fields | Request additional fields not included by default in the response. |         |
-| Fields                    | The fields to include in the response.                             |         |
+| Input                     | Comments                                                           | Default         |
+| ------------------------- | ------------------------------------------------------------------ | --------------- |
+| Connection                | The Klaviyo connection to use.                                     |                 |
+| List ID                   | The unique identifier of the list.                                 |                 |
+| Additional Profile Fields | Request additional fields not included by default in the response. | <code>[]</code> |
+| Fields                    | The fields to include in the response.                             | <code>[]</code> |
 
 ### List Lists {#listlists}
 
 Get all lists in an account.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### List Profiles {#listprofile}
 
 Get all profiles in an account.
 
-| Input                     | Comments                                                           | Default |
-| ------------------------- | ------------------------------------------------------------------ | ------- |
-| Connection                | The Klaviyo connection to use.                                     |         |
-| Fields                    | The fields to include in the response.                             |         |
-| Additional Profile Fields | Request additional fields not included by default in the response. |         |
+| Input                     | Comments                                                           | Default         |
+| ------------------------- | ------------------------------------------------------------------ | --------------- |
+| Connection                | The Klaviyo connection to use.                                     |                 |
+| Fields                    | The fields to include in the response.                             | <code>[]</code> |
+| Additional Profile Fields | Request additional fields not included by default in the response. | <code>[]</code> |
 
 ### List Segments {#listsegments}
 
 Get all segments in an account.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### List Templates {#listtemplates}
 
 Get all templates in an account.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.         |         |
-| Fields     | The fields to include in the response. |         |
+| Input      | Comments                               | Default         |
+| ---------- | -------------------------------------- | --------------- |
+| Connection | The Klaviyo connection to use.         |                 |
+| Fields     | The fields to include in the response. | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Klaviyo.
 
-| Input                   | Comments                                                                                                                                                                                                   | Default |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Klaviyo connection to use.                                                                                                                                                                             |         |
-| Exclude Authorization   | Exclude the Authorization header from the request. Turn this on and include the company_id query param when calling public endpoints (/client).                                                            | false   |
-| URL                     | Input the path only (/api/accounts), The base URL is already included (https://a.klaviyo.com). For example, to connect to https://a.klaviyo.com/api/accounts, only /api/accounts is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                    |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                  |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                       |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                           |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                     |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                        |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                   | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                        |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                        | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.           | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                        | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                              | false   |
+| Input                   | Comments                                                                                                                                                                                                   | Default         |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Klaviyo connection to use.                                                                                                                                                                             |                 |
+| Exclude Authorization   | When true, omits the Authorization header from the request. Turn this on and include the company_id query param when calling public endpoints (/client).                                                   | false           |
+| URL                     | Input the path only (/api/accounts), The base URL is already included (https://a.klaviyo.com). For example, to connect to https://a.klaviyo.com/api/accounts, only /api/accounts is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                    |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                  |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                       | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                           | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                     | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                        | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                   | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                        |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                        | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.           | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                        | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                              | false           |
 
 ### Subscribe Profiles {#subscribeprofiles}
 
@@ -441,7 +441,7 @@ Subscribe one or more profiles to email marketing, SMS marketing, or both.
 
 ### Unsubscribe Profiles {#unsubscribeprofiles}
 
-Unsubscribe one or more profiles to email marketing, SMS marketing, or both.
+Unsubscribe one or more profiles from email marketing, SMS marketing, or both.
 
 | Input      | Comments                          | Default |
 | ---------- | --------------------------------- | ------- |
@@ -452,17 +452,17 @@ Unsubscribe one or more profiles to email marketing, SMS marketing, or both.
 
 Update a campaign with the given campaign ID.
 
-| Input                  | Comments                                                                                   | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection             | The Klaviyo connection to use.                                                             |         |
-| Campaign ID            | The unique identifier for the campaign.                                                    |         |
-| Campaign Name          | A display name to identify the campaign.                                                   |         |
-| Included Audiences     | The IDs of lists or segments to receive the campaign.                                      |         |
-| Excluded Audiences     | The IDs of lists or segments to exclude from the campaign.                                 |         |
-| Campaign Configuration | Tracking options, send options, and send strategy.                                         |         |
-| Tracking Options       | UTM parameters, click tracking, and open tracking configuration. Provide as a JSON object. |         |
-| Send Options           | Smart-sending and related delivery preferences. Provide as a JSON object.                  |         |
-| Send Strategy          | Scheduling method and timing for campaign delivery. Provide as a JSON object.              |         |
+| Input                  | Comments                                                                                                                                                                                                             | Default         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection             | The Klaviyo connection to use.                                                                                                                                                                                       |                 |
+| Campaign ID            | The unique identifier for the campaign.                                                                                                                                                                              |                 |
+| Campaign Name          | A display name to identify the campaign.                                                                                                                                                                             |                 |
+| Included Audiences     | The IDs of lists or segments to receive the campaign.                                                                                                                                                                | <code>[]</code> |
+| Excluded Audiences     | The IDs of lists or segments to exclude from the campaign.                                                                                                                                                           | <code>[]</code> |
+| Campaign Configuration | Tracking options, send options, and send strategy.                                                                                                                                                                   |                 |
+| Tracking Options       | UTM parameters, click tracking, and open tracking configuration. Provide as a JSON object. The isAddUtm and utmParams fields of API revision 2024-06-15 are converted to addTrackingParams and customTrackingParams. |                 |
+| Send Options           | Smart-sending and related delivery preferences. Provide as a JSON object.                                                                                                                                            |                 |
+| Send Strategy          | Scheduling method and timing for campaign delivery. Provide as a JSON object. The optionsStatic, optionsThrottled and optionsSto blocks of API revision 2024-06-15 are converted to the current shape.               |                 |
 
 ### Update Image {#updateimage}
 
@@ -489,22 +489,22 @@ Update the name of a list with the given list ID.
 
 Update the profile with the given profile ID.
 
-| Input               | Comments                                                                                                                                                                             | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection          | The Klaviyo connection to use.                                                                                                                                                       |         |
-| Profile ID          | Unique identifier for the profile.                                                                                                                                                   |         |
-| Contact Information | Email, phone, and other contact channel details.                                                                                                                                     |         |
-| Email               | The primary email address used to reach this profile.                                                                                                                                |         |
-| Phone Number        | Individual's phone number in E.164 format.                                                                                                                                           |         |
-| First Name          | The given name of the profile contact.                                                                                                                                               |         |
-| Last Name           | The family name of the profile contact.                                                                                                                                              |         |
-| Additional Fields   | Additional optional fields: includes External ID, Organization, Title, Image, Location, and Properties.                                                                              |         |
-| External ID         | A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system. |         |
-| Organization        | Name of the company or organization within the company for whom the individual works                                                                                                 |         |
-| Title               | The job title or role at the individual's organization.                                                                                                                              |         |
-| Image               | URL pointing to the location of a profile image.                                                                                                                                     |         |
-| Location            | Location information for the profile.                                                                                                                                                |         |
-| Properties          | An object containing key/value pairs for any custom properties assigned to this profile.                                                                                             |         |
+| Input                      | Comments                                                                                                                                                                             | Default |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection                 | The Klaviyo connection to use.                                                                                                                                                       |         |
+| Profile ID                 | Unique identifier for the profile.                                                                                                                                                   |         |
+| Name & Contact Information | Name, email, phone, and other contact channel details.                                                                                                                               |         |
+| Email                      | The primary email address used to reach this profile.                                                                                                                                |         |
+| Phone Number               | Individual's phone number in E.164 format.                                                                                                                                           |         |
+| First Name                 | The given name of the profile contact.                                                                                                                                               |         |
+| Last Name                  | The family name of the profile contact.                                                                                                                                              |         |
+| Additional Fields          | Additional optional fields: includes External ID, Organization, Title, Image, Location, and Properties.                                                                              |         |
+| External ID                | A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system. |         |
+| Organization               | Name of the company or organization within the company for whom the individual works                                                                                                 |         |
+| Title                      | The job title or role at the individual's organization.                                                                                                                              |         |
+| Image                      | URL pointing to the location of a profile image.                                                                                                                                     |         |
+| Location                   | The profile's postal address, coordinates, timezone, and IP address, as a JSON object.                                                                                               |         |
+| Properties                 | An object containing key/value pairs for any custom properties assigned to this profile.                                                                                             |         |
 
 ### Update Segment {#updatesegment}
 
@@ -534,9 +534,9 @@ Update a template with the given template ID.
 
 Import an image from a url or file.
 
-| Input      | Comments                                                                                                                                                                                                                   | Default |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Klaviyo connection to use.                                                                                                                                                                                             |         |
-| Image URL  | An existing image url to import the image from. Alternatively, you may specify a base-64 encoded data-uri (`data:image/...`). Supported image formats: jpeg,png,gif. Maximum image size: 5MB. Use this field or File Data. |         |
-| Image Name | A name for the image. Defaults to the filename if not provided. If the name matches an existing image, a suffix will be added.                                                                                             |         |
-| File Data  | The contents to write to a file. Binary data generated from a previous step.                                                                                                                                               |         |
+| Input      | Comments                                                                                                                                                                                                     | Default |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection | The Klaviyo connection to use.                                                                                                                                                                               |         |
+| Image URL  | An existing image url to import the image from. A base-64 encoded data URI (`data:image/...`) is also accepted. Supported image formats: jpeg,png,gif. Maximum image size: 5MB. Use this field or File Data. |         |
+| Image Name | A name for the image. Defaults to the filename if not provided. If the name matches an existing image, a suffix will be added.                                                                               |         |
+| File Data  | The image to upload, as binary data from a previous step. Use this field or Image URL.                                                                                                                       |         |

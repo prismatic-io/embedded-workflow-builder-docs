@@ -44,11 +44,11 @@ Create a connection of type **Basic Authentication** and enter:
 - **Password**: Enter the Salesforce password, or the password concatenated with the security token if security tokens are enabled
 - **Login URL**: Enter the Salesforce My Domain URL (e.g., `https://my-company.my.salesforce.com/`)
 
-| Input     | Comments                                                                                                          | Default |
-| --------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| Username  | The username of the Salesforce account                                                                            |         |
-| Password  | The password of the Salesforce account                                                                            |         |
-| Login URL | The Salesforce Login URL for Basic Authentication (e.g., https://login.salesforce.com or a custom My Domain URL). |         |
+| Input     | Comments                                                                                                                                                                                              | Default                      |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| Login URL | The Salesforce Login URL for Basic Authentication (e.g., `https://login.salesforce.com` or a custom My Domain URL).                                                                                   | https://login.salesforce.com |
+| Username  | The username of the Salesforce account                                                                                                                                                                |                              |
+| Password  | The Salesforce password, or the password with the security token appended if security tokens are enabled. Reset the security token from **My Settings** > **Personal** > **Reset My Security Token**. |                              |
 
 ### OAuth 2.0 {#oauth2}
 
@@ -62,24 +62,16 @@ To use OAuth 2.0, create and configure an External Client App (recommended) or a
 - A Salesforce account with Administrator access
 - Permission to create External Client Apps or Connected Apps in the Salesforce org
 
-:::warning[Connected App Creation Restricted as of Spring '26]
-Salesforce restricted the creation of new Connected Apps in the Spring '26 release. To create a new Connected App, contact Salesforce Support. Salesforce recommends using External Client Apps for new integrations.
-
-Existing Connected Apps continue to work and do not require changes.
-:::
+Salesforce restricted the creation of new Connected Apps in the Spring '26 release and recommends External Client Apps for new integrations. See [Connected App Setup (Existing Apps)](#connected-app-setup-existing-apps).
 
 #### Choose the Setup
 
 Before creating an External Client App, decide which Salesforce orgs need to authorize the connection. This determines the app's **Distribution State** and whether additional packaging is required.
 
 - **Connecting a single Salesforce org**, where the same org that creates the app also authorizes the connection: create the app with the **Local** distribution state. No packaging is required. Skip the [Distribute to Other Orgs](#distribute-to-other-orgs-with-a-managed-package) section.
-- **Connecting multiple Salesforce orgs**, such as separate customer orgs: create the app with the **Packaged** distribution state, then package and distribute it. A **Local** app cannot be authorized from any org other than the one that created it.
+- **Connecting multiple Salesforce orgs**, such as separate customer orgs: create the app with the **Packaged** distribution state, then package it and install it in each target org as a managed package. A **Local** app cannot be authorized from any org other than the one that created it: the connection fails.
 
-:::warning[A Local app only works in its own org]
-An External Client App with the **Local** distribution state can be used only in the context of its own org. If users in a different Salesforce org attempt to authorize a Local app, the connection fails. To support other orgs, the app must use the **Packaged** distribution state and be installed in each target org as a managed package.
-:::
-
-### External Client App Setup (Recommended for New Integrations)
+#### External Client App Setup (Recommended for New Integrations)
 
 1. Log in to the Salesforce account
 1. Navigate to **Setup** by clicking the gear icon in the upper right corner
@@ -98,24 +90,11 @@ An External Client App with the **Local** distribution state can be used only in
 1. Under security settings, select:
    - **Require Secret for the Web Server Flow**
    - **Require Secret for Refresh Token Flow**
-   - **Require Proof Key for Code Exchange (PKCE) Extension**
+   - **Require Proof Key for Code Exchange (PKCE) Extension**: recommended. This connection sends a SHA-256 PKCE challenge on every authorization, so requiring it protects against authorization code interception at no cost
 1. Leave **Enable Client Credentials Flow** unselected. That is a separate connection type
 1. Click **Save**
 
-:::note[Enable the PKCE requirement]
-This connection sends a PKCE challenge using the SHA-256 method on every authorization, so requiring PKCE adds protection against authorization code interception at no cost. Requiring it is recommended rather than optional.
-:::
-
-:::note[Where the settings live after saving]
-The create form presents these settings together, but after saving they are split across two tabs on the app detail page. OAuth and security settings such as the callback URL, scopes, and the PKCE and secret requirements are under **Settings**, while access policies such as **Permitted Users** and **IP Relaxation** are under **Policies**. Expect to visit both when editing an existing app.
-:::
-
-:::note[Local vs. Packaged]
-The **Distribution State** controls which orgs can use the app:
-
-- **Local**: usable only in the org that creates it. Choose this for connecting a single org.
-- **Packaged**: can be added to a second-generation (2GP) managed package and installed in other orgs. Choose this when other Salesforce orgs need to authorize the connection.
-  :::
+After saving, the settings are split across two tabs on the app detail page. OAuth and security settings such as the callback URL, scopes, and the PKCE and secret requirements are under **Settings**, while access policies such as **Permitted Users** and **IP Relaxation** are under **Policies**. Expect to visit both when editing an existing app.
 
 To retrieve the app credentials after saving:
 
@@ -125,9 +104,7 @@ To retrieve the app credentials after saving:
 
 Take note of the **Consumer Key** and **Consumer Secret**. Both are required when configuring the connection.
 
-:::note[A packaged app has one set of credentials for every org]
 For an app with the **Packaged** distribution state, retrieve the Consumer Key and Consumer Secret **once**, from the org that created and packaged the app. Salesforce resolves these credentials globally, so the same pair authorizes users in every org that installs the package. Administrators of the orgs that install the package do not retrieve their own credentials, and the connection does not need to be configured differently per org.
-:::
 
 #### Distribute to Other Orgs with a Managed Package
 
@@ -135,9 +112,7 @@ This section applies only when other Salesforce orgs need to authorize the conne
 
 A **Packaged** External Client App is distributed by adding it to a second-generation (2GP) managed package and installing that package in each target org. This is done with the [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli).
 
-:::note[No security review for direct distribution]
 Installing a managed package directly in each target org, with an install URL or `sf package install`, does not require a Salesforce review. The package can be installed as soon as it is built. A mandatory AppExchange security review applies only when publicly listing an app on the Salesforce AppExchange, which is a separate distribution path and is not required for the direct distribution described here.
-:::
 
 #### Packaging Prerequisites
 
@@ -212,11 +187,9 @@ Add the following to `.forceignore` so these files are excluded from the package
 **/*.ecaOauthPlcy-meta.xml
 ```
 
-:::note[What this means for access policies]
 Because access policies are not packaged, the settings configured on the source app do not carry over to the orgs that install the package. Each installing org receives its own default policy record and manages it locally. See [After Installing in a Target Org](#after-installing-in-a-target-org) for the settings an administrator should review.
 
 The callback URL and consumer key are also not packaged, but they are resolved globally from the source app, so they do apply in every org that installs the package.
-:::
 
 #### Create and Version the Package
 
@@ -230,9 +203,7 @@ The callback URL and consumer key are also not packaged, but they are resolved g
      --target-dev-hub MyDevHub
    ```
 
-   :::note[Check the default package directory]
    This command rewrites `sfdx-project.json` and may set `"default": false` on the package directory. If later commands report that no default package directory is configured, set the value back to `true`.
-   :::
 
 1. Create a package version. This command is asynchronous and returns a request ID that begins with `08c`:
 
@@ -246,12 +217,7 @@ The callback URL and consumer key are also not packaged, but they are resolved g
    ```
 
    :::warning[Include --code-coverage or the version cannot be released]
-   Code coverage is calculated during version creation and cannot be added afterward. A version built
-   without `--code-coverage` can never be promoted, and promotion is required before the package can be
-   installed in production orgs. Omitting the flag means rebuilding the version from scratch.
-
-   An External Client App package contains no Apex, so the coverage check passes with nothing to
-   measure. The flag is still required.
+   Code coverage is calculated only during version creation, and a version built without `--code-coverage` can never be promoted, which is required before installing in production orgs. Omitting the flag means rebuilding the version from scratch. The package contains no Apex, so the check passes with nothing to measure, but the flag is still required.
    :::
 
 1. Retrieve the **subscriber package version ID**, which begins with `04t`, once the version finishes building. Use either the request ID from the previous step or list all versions:
@@ -266,13 +232,9 @@ The callback URL and consumer key are also not packaged, but they are resolved g
 
 Take note of the `04t` subscriber package version ID. It identifies the package version to install in each target org.
 
-:::note[Version builds are rate limited]
 Orgs allow a limited number of package version builds per day, and failed attempts count against that limit. Confirm the package directory contains only the two supported metadata types before building.
-:::
 
-:::note[Installation keys]
 `--installation-key-bypass` creates a version that anyone with the ID can install. To restrict installation, replace it with `--installation-key <key>` and share the key only with the orgs that should install the package.
-:::
 
 #### Promote the Package Version for Production Installs
 
@@ -295,9 +257,7 @@ sf package version list --target-dev-hub MyDevHub
 Reverting a released version back to beta requires a Salesforce Support case. Confirm the package name, the app label shown to users, and the callback URL are all correct before promoting, because they are what customers will see.
 :::
 
-:::note[Beta versions cannot be upgraded]
 Because a beta version cannot be upgraded in place, avoid installing one into any sandbox that forms part of a release pipeline. Use a scratch org for testing, then promote and install the released version.
-:::
 
 #### Install the Managed Package in a Target Org
 
@@ -325,14 +285,10 @@ Steps for the installing administrator:
 1. Choose the access level for the package. **Install for Admins Only** restricts access to administrators, and **Install for All Users** grants access to all users in the org. This is the same choice the CLI exposes as `--security-type`
 1. Click **Install** and wait for the confirmation. Salesforce sends an email when an install takes long enough to be processed in the background
 
-:::note[Installing into a sandbox]
 Change `login.salesforce.com` to `test.salesforce.com` in the installation URL when installing into a sandbox. This is the same substitution used for the connection's Authorize, Token, and Revoke URLs.
-:::
 
-:::note[Reaching the same screen from the org's own domain]
 An administrator already logged in to the target org can instead open
 `https://MyDomainName.lightning.force.com/packagingSetupUI/ipLanding.app?apvId=04t...`, replacing `MyDomainName` with their org's My Domain. Both routes open the same installation screen. The `InstallUrl` above is usually easier to distribute because it is identical for every org.
-:::
 
 Refer to Salesforce's [Use a URL to Install a Second-Generation Managed Package](https://developer.salesforce.com/docs/atlas.en-us.pkg2_dev.meta/pkg2_dev/sfdx_dev_dev2gp_install_pkg_ui.htm) documentation for details.
 
@@ -351,11 +307,7 @@ sf package install \
 - `--security-type AdminsOnly` grants access to administrators only. Use `AllUsers` to grant access to all users in the target org
 - Add `--installation-key <key>` if the version was created with an installation key
 
-:::warning[Packaging orgs cannot install the package]
-A managed 2GP package cannot be installed into an org that is itself a managed first-generation (1GP) packaging org. The install fails with an error stating that a managed 2GP package cannot be installed into a managed 1GP packaging org. Overriding this behavior requires contacting Salesforce Partner Support. Choose a different target org for testing.
-
-An org that owns the package's namespace also cannot install the package.
-:::
+A managed 2GP package cannot be installed into an org that is itself a managed first-generation (1GP) packaging org. The install fails with an error stating that a managed 2GP package cannot be installed into a managed 1GP packaging org. Overriding this behavior requires contacting Salesforce Partner Support. Choose a different target org for testing. An org that owns the package's namespace also cannot install the package.
 
 #### After Installing in a Target Org
 
@@ -370,7 +322,7 @@ Once the package is installed and these settings are reviewed, users in that org
 
 The person configuring the integration is often not a Salesforce administrator, and the package has to be installed before their **Connect** step will succeed. Adding the install link directly to the configuration wizard removes a support round trip: the user can forward the instructions to their administrator without needing to be told what to ask for.
 
-Add a **Raw HTML** element to the configuration page, above the connection, and adapt the following. Replace the company name with your own and `04t...` with the subscriber package version ID:
+Add a **Raw HTML** element to the configuration page, above the connection, and adapt the following. Replace `Acme` with the company name and `04t...` with the subscriber package version ID:
 
 ```html
 <h2>Salesforce Connection</h2>
@@ -397,11 +349,9 @@ Notes on adapting it:
 - **Install for All Users** is suggested because any user who needs to authorize the connection must have access to the package. Say **Install for Admins Only** instead if only administrators will ever authorize.
 - If a customer is installing into a sandbox, they need `test.salesforce.com` in place of `login.salesforce.com`. Mention this only if sandbox installs are expected, since it is a common source of confusion when it is not relevant.
 
-### Connected App Setup (Existing Apps)
+#### Connected App Setup (Existing Apps)
 
-:::note[For existing Connected Apps only]
-Connected App creation is restricted as of Spring '26. These steps apply only if a Connected App was created before Spring '26 or if Salesforce Support has granted permission to create new ones.
-:::
+Connected App creation is restricted as of Spring '26. These steps apply only if a Connected App was created before Spring '26 or if Salesforce Support has granted permission to create new ones; to create a new Connected App, contact Salesforce Support. Existing Connected Apps continue to work and do not require changes.
 
 1. Log in to the Salesforce account
 1. Navigate to **Setup** by clicking the gear icon in the upper right corner
@@ -420,6 +370,18 @@ Connected App creation is restricted as of Spring '26. These steps apply only if
 Take note of these keys:
 
 To update callback URLs later, select **Apps** > **App Manager**, click the dropdown next to the app, and select **Edit**.
+
+#### Configure the Connection
+
+Create a connection of type **OAuth 2.0** and enter:
+
+- **Consumer Key**: Enter the Consumer Key from the External Client App or Connected App
+- **Consumer Secret**: Enter the Consumer Secret from the External Client App or Connected App
+- **Authorize URL**: Keep the default for a production org
+- **Token URL**: Keep the default for a production org
+- **Revoke URL**: Keep the default for a production org
+
+To connect to a sandbox org, replace `login.salesforce.com` with `test.salesforce.com` in all three URLs.
 
 #### OAuth Policies and Troubleshooting
 
@@ -488,7 +450,7 @@ This connection requires a Connected App configured for Client Credentials. If a
    3. Under **API (Enable OAuth Settings)**, check **Enable Client Credentials Flow**
    4. Click **Save**
 
-2. **Configure Run As User** — the Client Credentials flow requires specifying which user the integration will authenticate as:
+2. **Configure Run As User**: the Client Credentials flow requires specifying which user the integration will authenticate as:
 
    1. From the Connected App, select **Manage** from the dropdown menu
    2. Click **Edit Policies**
@@ -511,18 +473,18 @@ For sandbox environments, use the sandbox My Domain URL format: `https://your-co
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input           | Comments                                                                                                                                               | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Instance URL    | The Salesforce My Domain URL (e.g., https://your-company.my.salesforce.com). For sandbox, use https://your-company--sandbox.sandbox.my.salesforce.com. |         |
-| Consumer Key    | The Consumer Key from the Salesforce Connected App.                                                                                                    |         |
-| Consumer Secret | The Consumer Secret from the Salesforce Connected App.                                                                                                 |         |
-| Scopes          | Scopes are configured in the Salesforce Connected App settings.                                                                                        |         |
+| Input           | Comments                                                                                                                                                   | Default |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Instance URL    | The Salesforce My Domain URL (e.g., `https://your-company.my.salesforce.com`). For sandbox, use `https://your-company--sandbox.sandbox.my.salesforce.com`. |         |
+| Consumer Key    | The Consumer Key from the Salesforce Connected App.                                                                                                        |         |
+| Consumer Secret | The Consumer Secret from the Salesforce Connected App.                                                                                                     |         |
+| Scopes          | Scopes are configured in the Salesforce Connected App settings.                                                                                            |         |
 
 ## Triggers
 
 ### Flow Outbound Message Webhook {#flowoutboundmessagetrigger}
 
-Receive Flow-based outbound messages from Salesforce.
+Receive Flow-based outbound messages from Salesforce. Automatically creates and manages a record-triggered flow and outbound message when the instance is deployed, and removes them when the instance is deleted.
 
 | Input               | Comments                                                                                                                                                         | Default         |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
@@ -541,10 +503,10 @@ Retrieves existing and ongoing records for a specified Salesforce object type. L
 
 | Input                | Comments                                                                                                                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the field and visibility filters.                                                              |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                                                                                                                               |         |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                                                                          | 63.0    |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                                                                                                                               |         |
 | Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                                                                                 |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the field and visibility filters.                                                              |         |
 | Show New Records     | When true, newly created records are included in the results.                                                                                                                                                                                                                                                                                   | true    |
 | Show Updated Records | When true, recently modified records are included in the results.                                                                                                                                                                                                                                                                               | true    |
 | Show Deleted Records | When true, recently deleted records are included in the results.                                                                                                                                                                                                                                                                                | false   |
@@ -561,7 +523,7 @@ Receive and validate webhook requests from Salesforce for manually configured we
 
 ### Workflow Outbound Message Webhook (Deprecated) {#workflowtrigger}
 
-Receive workflow rule outbound messages from Salesforce.
+Receive workflow rule outbound messages from Salesforce. Automatically creates and manages a workflow rule and outbound message when the instance is deployed, and removes them when the instance is deleted.
 
 | Input                 | Comments                                                                                                                                                                                                                                                                                | Default      |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
@@ -593,8 +555,8 @@ Abort a bulk query job.
 | Input        | Comments                                               | Default |
 | ------------ | ------------------------------------------------------ | ------- |
 | Connection   | The Salesforce connection to use.                      |         |
-| Version      | The Salesforce API version number to use for requests. | 63.0    |
 | Query Job ID | The ID of the query job to abort                       |         |
+| Version      | The Salesforce API version number to use for requests. | 63.0    |
 
 ### Activate Flow {#activateflow}
 
@@ -613,10 +575,10 @@ Attach a file to a parent record object (Account, Opportunity, etc.).
 | Input         | Comments                                                         | Default |
 | ------------- | ---------------------------------------------------------------- | ------- |
 | Connection    | The Salesforce connection to use.                                |         |
-| Version       | The Salesforce API version number to use for requests.           | 63.0    |
 | Record ID     | The unique identifier for a Salesforce record.                   |         |
 | File Name     | The name of the file to upload, including the file extension.    |         |
 | File Contents | Reference a file from a previous step, or enter plain text here. |         |
+| Version       | The Salesforce API version number to use for requests.           | 63.0    |
 
 ### Add User Permission Set {#adduserpermissionset}
 
@@ -667,33 +629,33 @@ Notify Salesforce that the upload of job data is complete and ready for processi
 
 Create a Salesforce account record.
 
-| Input                  | Comments                                                                                                      | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Name                   | The name assigned to the Salesforce record.                                                                   |         |
-| Account Type           | The type of account record.                                                                                   |         |
-| Industry               | The industry of the account record.                                                                           |         |
-| Dynamic Fields         | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values           | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Shipping Address       | Street, city, state, postal code, and country for the shipping address.                                       |         |
-| Street Address         | The street address of the object.                                                                             |         |
-| State                  | The state of the object's address.                                                                            |         |
-| City                   | The city of the object's address.                                                                             |         |
-| Postal Code            | The zip code of the object's address.                                                                         |         |
-| Country                | The country of the object's address.                                                                          |         |
-| Billing Address        | Street, city, state, postal code, and country for the billing address.                                        |         |
-| Billing Street Address | The street address of the billing object.                                                                     |         |
-| Billing State          | The state of the object's billing address.                                                                    |         |
-| Billing City           | The city of the object's billing address.                                                                     |         |
-| Billing Postal Code    | The zip code of the object's billing address.                                                                 |         |
-| Billing Country        | The country of the object's billing address.                                                                  |         |
-| Additional Fields      | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
-| Phone                  | The primary phone number for the object.                                                                      |         |
-| Website                | The website URL associated with the record.                                                                   |         |
-| Description            | A text description of the object.                                                                             |         |
-| Number of Employees    | The number of employees associated with the object.                                                           |         |
-| Annual Revenue         | The estimated annual revenue of the account, in the organization's default currency.                          |         |
-| Connection             | The Salesforce connection to use.                                                                             |         |
+| Input               | Comments                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Name                | The name assigned to the Salesforce record.                                                                   |         |
+| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |         |
+| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |         |
+| Version             | The Salesforce API version number to use for requests.                                                        | 63.0    |
+| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
+| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
+| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |         |
+| Street Address      | Street address line, including the building number and street name.                                           |         |
+| City                | The city, town, or locality name.                                                                             |         |
+| State               | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code         | The ZIP or postal code.                                                                                       |         |
+| Country             | The country name or two-letter ISO country code.                                                              |         |
+| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |         |
+| Street Address      | Street address line, including the building number and street name.                                           |         |
+| City                | The city, town, or locality name.                                                                             |         |
+| State               | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code         | The ZIP or postal code.                                                                                       |         |
+| Country             | The country name or two-letter ISO country code.                                                              |         |
+| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
+| Phone               | The primary phone number for the object.                                                                      |         |
+| Website             | The record's website, such as a company or personal homepage.                                                 |         |
+| Description         | A text description of the object.                                                                             |         |
+| Number of Employees | The total number of people the account employs, as a whole number.                                            |         |
+| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |         |
+| Connection          | The Salesforce connection to use.                                                                             |         |
 
 ### Create Bulk Job {#createbulkjob}
 
@@ -702,9 +664,9 @@ Create a bulk ingest job representing an operation and its associated data for a
 | Input                  | Comments                                                                                                                            | Default |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection             | The Salesforce connection to use.                                                                                                   |         |
-| Version                | The Salesforce API version number to use for requests.                                                                              | 63.0    |
 | Operation              | The data manipulation operation for the bulk job (e.g., insert, update, upsert, delete, or hardDelete).                             | insert  |
-| Line Ending            | The line ending character sequence used in the bulk query results file.                                                             | LF      |
+| Line Ending            | The line ending used in the uploaded CSV job data.                                                                                  | LF      |
+| Version                | The Salesforce API version number to use for requests.                                                                              | 63.0    |
 | Object                 | The object type for the data being processed. Use only a single object type per job.                                                |         |
 | External ID Field Name | The external ID field in the object being updated. Only needed for upsert operations. Field values must also exist in CSV job data. |         |
 | Assignment Rule ID     | The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or inactive.                            |         |
@@ -717,10 +679,10 @@ Create a bulk query job.
 | Input            | Comments                                                                                                                        | Default |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Salesforce connection to use.                                                                                               |         |
-| Version          | The Salesforce API version number to use for requests.                                                                          | 63.0    |
 | Operation        | The Salesforce Bulk API operation type. Use 'query' for standard queries and 'queryAll' to include deleted or archived records. | query   |
 | Query            | The SOQL query to execute against the Salesforce Bulk API.                                                                      |         |
 | Line Ending      | The line ending character sequence used in the bulk query results file.                                                         | LF      |
+| Version          | The Salesforce API version number to use for requests.                                                                          | 63.0    |
 | Column Delimiter | The character delimiter used to separate column values in the bulk query results file.                                          | COMMA   |
 
 ### Create Contact {#createcontact}
@@ -729,29 +691,29 @@ Create a Salesforce contact.
 
 | Input                      | Comments                                                                                                      | Default |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0    |
 | Email Address              | The email address for the object.                                                                             |         |
+| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0    |
 | Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
 | Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
 | Name & Contact Information | First and last name, phone, fax, and mobile contact channels, and birthdate.                                  |         |
 | First Name                 | The first name of the contact at the company                                                                  |         |
 | Last Name                  | The last name of the contact at the company                                                                   |         |
 | Phone                      | The primary phone number for the object.                                                                      |         |
-| Fax                        | The fax number associated with the record.                                                                    |         |
-| Mobile Phone               | The mobile phone number for the object.                                                                       |         |
+| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |         |
+| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |         |
 | Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |         |
 | Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |         |
-| Street Address             | The street address of the object.                                                                             |         |
-| State                      | The state of the object's address.                                                                            |         |
-| City                       | The city of the object's address.                                                                             |         |
-| Postal Code                | The zip code of the object's address.                                                                         |         |
-| Country                    | The country of the object's address.                                                                          |         |
+| Street Address             | Street address line, including the building number and street name.                                           |         |
+| City                       | The city, town, or locality name.                                                                             |         |
+| State                      | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code                | The ZIP or postal code.                                                                                       |         |
+| Country                    | The country name or two-letter ISO country code.                                                              |         |
 | Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |         |
-| Billing Street Address     | The street address of the billing object.                                                                     |         |
-| Billing State              | The state of the object's billing address.                                                                    |         |
-| Billing City               | The city of the object's billing address.                                                                     |         |
-| Billing Postal Code        | The zip code of the object's billing address.                                                                 |         |
-| Billing Country            | The country of the object's billing address.                                                                  |         |
+| Street Address             | Street address line, including the building number and street name.                                           |         |
+| City                       | The city, town, or locality name.                                                                             |         |
+| State                      | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code                | The ZIP or postal code.                                                                                       |         |
+| Country                    | The country name or two-letter ISO country code.                                                              |         |
 | Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |         |
 | Department                 | The department name associated with the contact.                                                              |         |
 | Title                      | The job title or professional title associated with the contact or lead.                                      |         |
@@ -766,9 +728,9 @@ Create a Salesforce customer.
 
 | Input                | Comments                                                                                                                                                                   | Default |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                     | 63.0    |
 | Name                 | Name of this customer.                                                                                                                                                     |         |
 | Party ID             | The unique identifier of the individual object related to this customer record.                                                                                            |         |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                     | 63.0    |
 | Customer Status Type | The status of the customer account.                                                                                                                                        | Active  |
 | Last Reference Date  | The timestamp for when the current user last viewed a record related to this record.                                                                                       |         |
 | Last Viewed Date     | The timestamp for when the current user last viewed this record. If this value is null, it's possible that this record was referenced (LastReferencedDate) and not viewed. |         |
@@ -782,8 +744,8 @@ Create a draft Flow in Salesforce.
 
 | Input         | Comments                                                                                                                                                                              | Default     |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Version       | The Salesforce API version number to use for requests.                                                                                                                                | 63.0        |
 | Flow Name     | The name for the Flow. Accepts both display names and API names. Display names are automatically converted to API format, while API names are used as is.                             |             |
+| Version       | The Salesforce API version number to use for requests.                                                                                                                                | 63.0        |
 | Description   | A text description of the object.                                                                                                                                                     |             |
 | Run In Mode   | The context user mode the Flow runs as. DefaultMode respects user permissions and sharing rules. SystemModeWithoutSharing grants broad data access but may lead to security warnings. | DefaultMode |
 | Flow Metadata | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                                       |             |
@@ -795,28 +757,28 @@ Create a Salesforce lead record.
 
 | Input                      | Comments                                                                                                               | Default |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0    |
 | Company                    | The name of the company associated with the record.                                                                    |         |
 | Lead Status                | The status of the lead. Examples of valid values include: Open, Working, Closed - Converted, Closed - Not Converted.   |         |
 | Email Address              | The email address for the object.                                                                                      |         |
+| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0    |
 | Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.          |         |
 | Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                 |         |
 | Name & Contact Information | First and last name, phone, and website.                                                                               |         |
 | First Name                 | The first name of the contact at the company                                                                           |         |
 | Last Name                  | The last name of the contact at the company                                                                            |         |
 | Phone                      | The primary phone number for the object.                                                                               |         |
-| Website                    | The website URL associated with the record.                                                                            |         |
+| Website                    | The record's website, such as a company or personal homepage.                                                          |         |
 | Address                    | Street, city, state, postal code, and country for the address.                                                         |         |
-| Street Address             | The street address of the object.                                                                                      |         |
-| State                      | The state of the object's address.                                                                                     |         |
-| City                       | The city of the object's address.                                                                                      |         |
-| Postal Code                | The zip code of the object's address.                                                                                  |         |
-| Country                    | The country of the object's address.                                                                                   |         |
+| Street Address             | Street address line, including the building number and street name.                                                    |         |
+| City                       | The city, town, or locality name.                                                                                      |         |
+| State                      | Two-letter state or province code, or full name.                                                                       |         |
+| Postal Code                | The ZIP or postal code.                                                                                                |         |
+| Country                    | The country name or two-letter ISO country code.                                                                       |         |
 | Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |         |
 | Title                      | The job title or professional title associated with the contact or lead.                                               |         |
 | Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |         |
-| Rating                     | The rating for the lead.                                                                                               |         |
-| Number of Employees        | The number of employees associated with the object.                                                                    |         |
+| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |         |
+| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |         |
 | Description                | A text description of the object.                                                                                      |         |
 | Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |         |
 | Connection                 | The Salesforce connection to use.                                                                                      |         |
@@ -828,8 +790,8 @@ Create new metadata components.
 | Input         | Comments                                                                                                                 | Default                                                                                                                                                                                                                                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection    | The Salesforce connection to use.                                                                                        |                                                                                                                                                                                                                                                                                                               |
-| Version       | The Salesforce API version number to use for requests.                                                                   | 63.0                                                                                                                                                                                                                                                                                                          |
 | Metadata      | See [JSforce Metadata API documentation](https://jsforce.github.io/document/#create-metadata) for related documentation. | <code>[<br /> {<br /> "fullName": "TestObject1__c",<br /> "label": "Test Object 1",<br /> "pluralLabel": "Test Object 1",<br /> "nameField": {<br /> "type": "Text",<br /> "label": "Test Object Name"<br /> },<br /> "deploymentStatus": "Deployed",<br /> "sharingModel": "ReadWrite"<br /> }<br />]</code> |
+| Version       | The Salesforce API version number to use for requests.                                                                   | 63.0                                                                                                                                                                                                                                                                                                          |
 | Metadata Type | The type of metadata to act upon.                                                                                        | CustomObject                                                                                                                                                                                                                                                                                                  |
 
 ### Create Metadata Fields {#createfieldsfrommetadata}
@@ -839,30 +801,31 @@ Create custom fields from metadata.
 | Input         | Comments                                                                                                                 | Default                                                                                                                                                                                                                         |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection    | The Salesforce connection to use.                                                                                        |                                                                                                                                                                                                                                 |
-| Version       | The Salesforce API version number to use for requests.                                                                   | 63.0                                                                                                                                                                                                                            |
 | Metadata      | See [JSforce Metadata API documentation](https://jsforce.github.io/document/#create-metadata) for related documentation. | <code>[<br /> {<br /> "fullName": "Contact.FieldName1__c",<br /> "label": "Field Name 1",<br /> "type": "Text",<br /> "length": 80,<br /> "inlineHelpText": "Text that appears in the ? next to a field."<br /> }<br />]</code> |
+| Version       | The Salesforce API version number to use for requests.                                                                   | 63.0                                                                                                                                                                                                                            |
 | Metadata Type | The type of metadata to act upon.                                                                                        | CustomField                                                                                                                                                                                                                     |
 
 ### Create Opportunity {#createopportunity}
 
 Create a Salesforce opportunity record representing a sale or pending deal.
 
-| Input            | Comments                                                                                                      | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version          | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Stage            | The stage the sale is currently in.                                                                           |         |
-| Opportunity Type | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
-| Close Date       | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
-| Name             | The name assigned to the Salesforce record.                                                                   |         |
-| Next Step        | A description of the next action or milestone for the opportunity.                                            |         |
-| Dynamic Fields   | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values     | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Amount           | The monetary amount associated with the opportunity.                                                          |         |
-| Account ID       | The ID of the account to reference.                                                                           |         |
-| Lead Source      | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
-| Probability      | The probability of the success of the sale.                                                                   |         |
-| Description      | A text description of the object.                                                                             |         |
-| Connection       | The Salesforce connection to use.                                                                             |         |
+| Input             | Comments                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Stage             | The stage the sale is currently in.                                                                           |         |
+| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
+| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
+| Name              | The name assigned to the Salesforce record.                                                                   |         |
+| Version           | The Salesforce API version number to use for requests.                                                        | 63.0    |
+| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
+| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
+| Account ID        | The ID of the account to reference.                                                                           |         |
+| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |         |
+| Amount            | The monetary amount associated with the opportunity.                                                          |         |
+| Next Step         | A description of the next action or milestone for the opportunity.                                            |         |
+| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
+| Probability       | The probability of the success of the sale.                                                                   |         |
+| Description       | A text description of the object.                                                                             |         |
+| Connection        | The Salesforce connection to use.                                                                             |         |
 
 ### Create Outbound Message {#createworkflowoutboundmessage}
 
@@ -886,10 +849,10 @@ Create a Salesforce profile.
 
 | Input        | Comments                                                                                                                                                                            | Default |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version      | The Salesforce API version number to use for requests.                                                                                                                              | 63.0    |
 | Name         | The name of the profile.                                                                                                                                                            |         |
-| Description  | Description of the profile.                                                                                                                                                         |         |
-| User License | Identifier for associated UserLicense.                                                                                                                                              |         |
+| Description  | A short summary of what the profile grants and who it is intended for.                                                                                                              |         |
+| User License | The ID of the UserLicense the profile is based on, which determines the features its users can access. A 15- or 18-character Salesforce ID starting with 100.                       |         |
+| Version      | The Salesforce API version number to use for requests.                                                                                                                              | 63.0    |
 | Permissions  | Key/value object with permission name keys and boolean value indicating if a permission is granted or not. Use 'Describe Permissions' to retrieve the permissions of a Record Type. |         |
 | Connection   | The Salesforce connection to use.                                                                                                                                                   |         |
 
@@ -911,12 +874,12 @@ Create a Salesforce user.
 
 | Input          | Comments                                                                                                      | Default |
 | -------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
 | Profile        | The name of the Salesforce User Profile that defines the user's permissions and settings.                     |         |
 | User Name      | The username of the Salesforce user to reference.                                                             |         |
 | Time Zone      | The time zone for the user. Uses IANA format (e.g., America/New_York).                                        |         |
 | Alias          | A short identifier for the Salesforce user, typically used in reports and list views.                         |         |
 | Email Address  | The email address for the object.                                                                             |         |
+| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
 | Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
 | Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
 | First Name     | The first name of the contact at the company                                                                  |         |
@@ -936,7 +899,7 @@ Create a Workflow Rule. Workflow Rules are deprecated by Salesforce; migrate to 
 | Active                   | When true, the workflow rule is active and will fire when its criteria are met.                                                                                                                                                                                                         | true         |
 | Description              | A text description of the object.                                                                                                                                                                                                                                                       |              |
 | Rule Criteria Filter     | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure.                                   |              |
-| Formula                  | Formula to evaluate. Use this input or Filter Criteria                                                                                                                                                                                                                                  |              |
+| Formula                  | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                                                             |              |
 | Outbound Message Actions | Full Names of the Outbound Message Actions for this Rule to fire.                                                                                                                                                                                                                       |              |
 | Connection               | The Salesforce connection to use.                                                                                                                                                                                                                                                       |              |
 
@@ -956,8 +919,8 @@ Delete an existing account record.
 
 | Input        | Comments                                                                               | Default |
 | ------------ | -------------------------------------------------------------------------------------- | ------- |
-| Version      | The Salesforce API version number to use for requests.                                 | 63.0    |
 | Record ID    | The unique identifier for a Salesforce record.                                         |         |
+| Version      | The Salesforce API version number to use for requests.                                 | 63.0    |
 | Field Values | Key-value pairs mapping Salesforce field API names to the values to set on the record. |         |
 | Connection   | The Salesforce connection to use.                                                      |         |
 
@@ -978,8 +941,8 @@ Delete a bulk query job.
 | Input        | Comments                                               | Default |
 | ------------ | ------------------------------------------------------ | ------- |
 | Connection   | The Salesforce connection to use.                      |         |
-| Version      | The Salesforce API version number to use for requests. | 63.0    |
 | Query Job ID | The ID of the query job to delete                      |         |
+| Version      | The Salesforce API version number to use for requests. | 63.0    |
 
 ### Delete Contact {#deletecontact}
 
@@ -1017,8 +980,8 @@ Delete all instanced flows and outbound messages for a given endpoint URL.
 
 | Input        | Comments                                                                  | Default |
 | ------------ | ------------------------------------------------------------------------- | ------- |
-| Version      | The Salesforce API version number to use for requests.                    | 63.0    |
 | Endpoint URL | The endpoint URL to delete the instanced flows and outbound messages for. |         |
+| Version      | The Salesforce API version number to use for requests.                    | 63.0    |
 | Connection   | The Salesforce connection to use.                                         |         |
 
 ### Delete Lead {#deletelead}
@@ -1038,8 +1001,8 @@ Delete one or more metadata components.
 | Input             | Comments                                                                                | Default      |
 | ----------------- | --------------------------------------------------------------------------------------- | ------------ |
 | Connection        | The Salesforce connection to use.                                                       |              |
-| Version           | The Salesforce API version number to use for requests.                                  | 63.0         |
 | Object Full Names | The full API names of the Salesforce metadata objects to act on (e.g., TestObject1__c). |              |
+| Version           | The Salesforce API version number to use for requests.                                  | 63.0         |
 | Metadata Type     | The type of metadata to act upon.                                                       | CustomObject |
 
 ### Delete Opportunity {#deleteopportunity}
@@ -1079,8 +1042,8 @@ Delete a Workflow Outbound Message.
 
 | Input                | Comments                                                                                       | Default |
 | -------------------- | ---------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                         | 63.0    |
 | Full Name Identifier | The unique full name identifier for Salesforce Metadata objects (e.g., CustomObject API name). |         |
+| Version              | The Salesforce API version number to use for requests.                                         | 63.0    |
 | Connection           | The Salesforce connection to use.                                                              |         |
 
 ### Delete Workflow Rule {#deleteworkflowrule}
@@ -1089,8 +1052,8 @@ Delete a Workflow Rule. Workflow Rules are deprecated by Salesforce; migrate to 
 
 | Input                | Comments                                                                                       | Default |
 | -------------------- | ---------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                         | 63.0    |
 | Full Name Identifier | The unique full name identifier for Salesforce Metadata objects (e.g., CustomObject API name). |         |
+| Version              | The Salesforce API version number to use for requests.                                         | 63.0    |
 | Connection           | The Salesforce connection to use.                                                              |         |
 
 ### Describe Customer SObject {#describecustomersobject}
@@ -1143,7 +1106,7 @@ Find and fetch Salesforce records.
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
 | Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                 |         |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1161,8 +1124,8 @@ Get a file attachment from an account, opportunity, or contact.
 | Input      | Comments                                               | Default |
 | ---------- | ------------------------------------------------------ | ------- |
 | Connection | The Salesforce connection to use.                      |         |
-| Version    | The Salesforce API version number to use for requests. | 63.0    |
 | File ID    | The unique identifier of the file to retrieve.         |         |
+| Version    | The Salesforce API version number to use for requests. | 63.0    |
 
 ### Get Bulk Job Failed Record Results {#getjobfailedrecordresults}
 
@@ -1201,8 +1164,8 @@ Get information about a single bulk query job.
 | Input        | Comments                                                                                    | Default |
 | ------------ | ------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Salesforce connection to use.                                                           |         |
-| Version      | The Salesforce API version number to use for requests.                                      | 63.0    |
 | Query Job ID | The unique identifier of the bulk query job returned from the Create Bulk Query Job action. |         |
+| Version      | The Salesforce API version number to use for requests.                                      | 63.0    |
 
 ### Get Bulk Query Job Results {#getqueryjobresults}
 
@@ -1211,8 +1174,9 @@ Retrieve the results for a completed bulk query job.
 | Input        | Comments                                                                                                                         | Default |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection   | The Salesforce connection to use.                                                                                                |         |
-| Version      | The Salesforce API version number to use for requests.                                                                           | 63.0    |
 | Query Job ID | The unique identifier of the bulk query job returned from the Create Bulk Query Job action.                                      |         |
+| Version      | The Salesforce API version number to use for requests.                                                                           | 63.0    |
+| Pagination   | Cursor and page-size controls for paging through results.                                                                        |         |
 | Locator      | A string that identifies a specific set of query results. Providing a value for this parameter returns only that set of results. |         |
 | Max Records  | The maximum number of records to retrieve per set of results for the query. The request is still subject to the size limits.     |         |
 
@@ -1241,8 +1205,8 @@ Retrieve a file from Salesforce ContentVersion.
 
 | Input              | Comments                                                                     | Default |
 | ------------------ | ---------------------------------------------------------------------------- | ------- |
-| Version            | The Salesforce API version number to use for requests.                       | 63.0    |
 | Content Version ID | The unique identifier of the ContentVersion record for the file to retrieve. |         |
+| Version            | The Salesforce API version number to use for requests.                       | 63.0    |
 | Connection         | The Salesforce connection to use.                                            |         |
 
 ### Get Flow {#getflow}
@@ -1262,8 +1226,8 @@ Get the metadata of an object by full name.
 | Input            | Comments                                                             | Default      |
 | ---------------- | -------------------------------------------------------------------- | ------------ |
 | Connection       | The Salesforce connection to use.                                    |              |
-| Version          | The Salesforce API version number to use for requests.               | 63.0         |
 | Object Full Name | The full API name of the Salesforce custom object (e.g., Widget__c). |              |
+| Version          | The Salesforce API version number to use for requests.               | 63.0         |
 | Metadata Type    | The type of metadata to act upon.                                    | CustomObject |
 
 ### Get Record {#getrecord}
@@ -1318,7 +1282,7 @@ List all contact records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1336,7 +1300,7 @@ List all customer records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1363,7 +1327,7 @@ List all lead records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1391,7 +1355,7 @@ List all opportunity records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1418,7 +1382,7 @@ List all profile records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1436,7 +1400,7 @@ List all user records.
 | Input                | Comments                                                                                                                                                                                                                                        | Default |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results instead of a single page.                                                                                                                                                                 | false   |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
 | Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
 | Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
 | Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
@@ -1462,32 +1426,32 @@ Run an SOQL query against Salesforce.
 
 | Input      | Comments                                                                               | Default |
 | ---------- | -------------------------------------------------------------------------------------- | ------- |
-| Version    | The Salesforce API version number to use for requests.                                 | 63.0    |
 | SOQL Query | A Salesforce Object Query Language (SOQL) query to execute against the Salesforce API. |         |
+| Version    | The Salesforce API version number to use for requests.                                 | 63.0    |
 | Connection | The Salesforce connection to use.                                                      |         |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Salesforce.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                   | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Salesforce connection to use.                                                                                                                                                                                                                                                                                          |         |
-| Version                 | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                                                     | 63.0    |
-| URL                     | Input the path only (/chatter/feeds/record/), The base URL is already included (https://<YOUR_INSTANCE_URL_COMING_FROM_CONNECTION>/services/data/v<YOUR_INPUT_VERSION>). For example, to connect to https://instance_name/services/data/v58.0/chatter/feeds/record/, only /chatter/feeds/record/ is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                    |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                  |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                       |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                           |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                     |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                        |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                   | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                        |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                        | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                           | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                        | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                              | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                         | Default |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection              | The Salesforce connection to use.                                                                                                                                                                                                                                                                |         |
+| URL                     | The path only, for example /chatter/feeds/record/. The base URL (the connection's instance URL followed by /services/data/v and the Version input) is already included. For example, to call https://instance_name/services/data/v58.0/chatter/feeds/record/, enter only /chatter/feeds/record/. |         |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |         |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |         |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                             |         |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                 |         |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                           |         |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                              |         |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                      |         |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                         | json    |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                              |         |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                              | 0       |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false   |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0       |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false   |
+| Version                 | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                           | 63.0    |
 
 ### Remove User Permission Set {#removeuserpermissionset}
 
@@ -1507,8 +1471,8 @@ Send multiple requests in a single HTTP call.
 | Input               | Comments                                                                                                                                                                       | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection          | The Salesforce connection to use.                                                                                                                                              |         |
-| Version             | The Salesforce API version number to use for requests.                                                                                                                         | 63.0    |
 | Composite Request   | The JSON array of subrequests to execute in a single Composite API call. Each entry must include method, url, referenceId, and optionally body.                                |         |
+| Version             | The Salesforce API version number to use for requests.                                                                                                                         | 63.0    |
 | All Or None         | When true, any error in a subrequest causes the entire composite request to be rolled back. The top-level request returns HTTP 200 and includes responses for each subrequest. | true    |
 | Collate Subrequests | When true, the API collates unrelated subrequests to bulkify them for improved performance.                                                                                    | false   |
 
@@ -1518,11 +1482,11 @@ Send a transactional email message to a single recipient via Salesforce.
 
 | Input                 | Comments                                                                           | Default |
 | --------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Version               | The Salesforce API version number to use for requests.                             | 63.0    |
 | Message Key           | The unique key identifying the transactional message template to send.             |         |
 | Definition Key        | The unique key of the message template definition used for the transactional send. |         |
 | Recipient Contact Key | The unique key identifying the recipient contact in Salesforce Marketing Cloud.    |         |
 | Recipient Email       | The email address of the recipient for the transactional send.                     |         |
+| Version               | The Salesforce API version number to use for requests.                             | 63.0    |
 | Connection            | The Salesforce connection to use.                                                  |         |
 | Recipient Attributes  | Key-value pairs to personalize the message.                                        |         |
 
@@ -1538,7 +1502,7 @@ Create a Workflow Rule to subscribe to record changes in Salesforce. Workflow Ru
 | Trigger Event          | The event condition that causes this workflow rule to fire.                                                                                                                                                                                           | onAllChanges |
 | Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                                                                                                                                                                            |              |
 | Rule Criteria Filter   | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure. |              |
-| Formula                | Formula to evaluate. Use this input or Filter Criteria                                                                                                                                                                                                |              |
+| Formula                | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                           |              |
 | Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used                                                                                                                                                 |              |
 | Description            | A text description of the object.                                                                                                                                                                                                                     |              |
 | Fields                 | Fields to include in the Outbound Message.                                                                                                                                                                                                            |              |
@@ -1566,34 +1530,34 @@ Subscribe to Record Changes in Salesforce using an outbound message action.
 
 Update an existing account record.
 
-| Input                  | Comments                                                                                                      | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record ID              | The unique identifier for a Salesforce record.                                                                |         |
-| Name                   | The name assigned to the Salesforce record.                                                                   |         |
-| Account Type           | The type of account record.                                                                                   |         |
-| Industry               | The industry of the account record.                                                                           |         |
-| Dynamic Fields         | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values           | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Shipping Address       | Street, city, state, postal code, and country for the shipping address.                                       |         |
-| Street Address         | The street address of the object.                                                                             |         |
-| State                  | The state of the object's address.                                                                            |         |
-| City                   | The city of the object's address.                                                                             |         |
-| Postal Code            | The zip code of the object's address.                                                                         |         |
-| Country                | The country of the object's address.                                                                          |         |
-| Billing Address        | Street, city, state, postal code, and country for the billing address.                                        |         |
-| Billing Street Address | The street address of the billing object.                                                                     |         |
-| Billing State          | The state of the object's billing address.                                                                    |         |
-| Billing City           | The city of the object's billing address.                                                                     |         |
-| Billing Postal Code    | The zip code of the object's billing address.                                                                 |         |
-| Billing Country        | The country of the object's billing address.                                                                  |         |
-| Additional Fields      | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
-| Phone                  | The primary phone number for the object.                                                                      |         |
-| Website                | The website URL associated with the record.                                                                   |         |
-| Description            | A text description of the object.                                                                             |         |
-| Number of Employees    | The number of employees associated with the object.                                                           |         |
-| Annual Revenue         | The estimated annual revenue of the account, in the organization's default currency.                          |         |
-| Connection             | The Salesforce connection to use.                                                                             |         |
+| Input               | Comments                                                                                                      | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Record ID           | The unique identifier for a Salesforce record.                                                                |         |
+| Name                | The name assigned to the Salesforce record.                                                                   |         |
+| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |         |
+| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |         |
+| Version             | The Salesforce API version number to use for requests.                                                        | 63.0    |
+| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
+| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
+| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |         |
+| Street Address      | Street address line, including the building number and street name.                                           |         |
+| City                | The city, town, or locality name.                                                                             |         |
+| State               | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code         | The ZIP or postal code.                                                                                       |         |
+| Country             | The country name or two-letter ISO country code.                                                              |         |
+| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |         |
+| Street Address      | Street address line, including the building number and street name.                                           |         |
+| City                | The city, town, or locality name.                                                                             |         |
+| State               | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code         | The ZIP or postal code.                                                                                       |         |
+| Country             | The country name or two-letter ISO country code.                                                              |         |
+| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
+| Phone               | The primary phone number for the object.                                                                      |         |
+| Website             | The record's website, such as a company or personal homepage.                                                 |         |
+| Description         | A text description of the object.                                                                             |         |
+| Number of Employees | The total number of people the account employs, as a whole number.                                            |         |
+| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |         |
+| Connection          | The Salesforce connection to use.                                                                             |         |
 
 ### Update Contact {#updatecontact}
 
@@ -1610,21 +1574,21 @@ Update an existing contact record.
 | First Name                 | The first name of the contact at the company                                                                  |         |
 | Last Name                  | The last name of the contact at the company                                                                   |         |
 | Phone                      | The primary phone number for the object.                                                                      |         |
-| Fax                        | The fax number associated with the record.                                                                    |         |
-| Mobile Phone               | The mobile phone number for the object.                                                                       |         |
+| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |         |
+| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |         |
 | Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |         |
 | Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |         |
-| Street Address             | The street address of the object.                                                                             |         |
-| State                      | The state of the object's address.                                                                            |         |
-| City                       | The city of the object's address.                                                                             |         |
-| Postal Code                | The zip code of the object's address.                                                                         |         |
-| Country                    | The country of the object's address.                                                                          |         |
+| Street Address             | Street address line, including the building number and street name.                                           |         |
+| City                       | The city, town, or locality name.                                                                             |         |
+| State                      | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code                | The ZIP or postal code.                                                                                       |         |
+| Country                    | The country name or two-letter ISO country code.                                                              |         |
 | Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |         |
-| Billing Street Address     | The street address of the billing object.                                                                     |         |
-| Billing State              | The state of the object's billing address.                                                                    |         |
-| Billing City               | The city of the object's billing address.                                                                     |         |
-| Billing Postal Code        | The zip code of the object's billing address.                                                                 |         |
-| Billing Country            | The country of the object's billing address.                                                                  |         |
+| Street Address             | Street address line, including the building number and street name.                                           |         |
+| City                       | The city, town, or locality name.                                                                             |         |
+| State                      | Two-letter state or province code, or full name.                                                              |         |
+| Postal Code                | The ZIP or postal code.                                                                                       |         |
+| Country                    | The country name or two-letter ISO country code.                                                              |         |
 | Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |         |
 | Department                 | The department name associated with the contact.                                                              |         |
 | Title                      | The job title or professional title associated with the contact or lead.                                      |         |
@@ -1680,18 +1644,18 @@ Update a Salesforce lead record.
 | First Name                 | The first name of the contact at the company                                                                           |         |
 | Last Name                  | The last name of the contact at the company                                                                            |         |
 | Phone                      | The primary phone number for the object.                                                                               |         |
-| Website                    | The website URL associated with the record.                                                                            |         |
+| Website                    | The record's website, such as a company or personal homepage.                                                          |         |
 | Address                    | Street, city, state, postal code, and country for the address.                                                         |         |
-| Street Address             | The street address of the object.                                                                                      |         |
-| State                      | The state of the object's address.                                                                                     |         |
-| City                       | The city of the object's address.                                                                                      |         |
-| Postal Code                | The zip code of the object's address.                                                                                  |         |
-| Country                    | The country of the object's address.                                                                                   |         |
+| Street Address             | Street address line, including the building number and street name.                                                    |         |
+| City                       | The city, town, or locality name.                                                                                      |         |
+| State                      | Two-letter state or province code, or full name.                                                                       |         |
+| Postal Code                | The ZIP or postal code.                                                                                                |         |
+| Country                    | The country name or two-letter ISO country code.                                                                       |         |
 | Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |         |
 | Title                      | The job title or professional title associated with the contact or lead.                                               |         |
 | Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |         |
-| Rating                     | The rating for the lead.                                                                                               |         |
-| Number of Employees        | The number of employees associated with the object.                                                                    |         |
+| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |         |
+| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |         |
 | Description                | A text description of the object.                                                                                      |         |
 | Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |         |
 | Connection                 | The Salesforce connection to use.                                                                                      |         |
@@ -1703,31 +1667,32 @@ Update one or more metadata components.
 | Input         | Comments                                                                            | Default     |
 | ------------- | ----------------------------------------------------------------------------------- | ----------- |
 | Connection    | The Salesforce connection to use.                                                   |             |
-| Version       | The Salesforce API version number to use for requests.                              | 63.0        |
 | Metadata      | Check https://jsforce.github.io/document/#update-metadata for related documentation |             |
+| Version       | The Salesforce API version number to use for requests.                              | 63.0        |
 | Metadata Type | The type of metadata to act upon.                                                   | CustomField |
 
 ### Update Opportunity {#updateopportunity}
 
 Update an existing opportunity record.
 
-| Input            | Comments                                                                                                      | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version          | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record ID        | The unique identifier for a Salesforce record.                                                                |         |
-| Stage            | The stage the sale is currently in.                                                                           |         |
-| Opportunity Type | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
-| Close Date       | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
-| Name             | The name assigned to the Salesforce record.                                                                   |         |
-| Next Step        | A description of the next action or milestone for the opportunity.                                            |         |
-| Dynamic Fields   | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values     | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Amount           | The monetary amount associated with the opportunity.                                                          |         |
-| Account ID       | The ID of the account to reference.                                                                           |         |
-| Lead Source      | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
-| Probability      | The probability of the success of the sale.                                                                   |         |
-| Description      | A text description of the object.                                                                             |         |
-| Connection       | The Salesforce connection to use.                                                                             |         |
+| Input             | Comments                                                                                                      | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
+| Version           | The Salesforce API version number to use for requests.                                                        | 63.0    |
+| Record ID         | The unique identifier for a Salesforce record.                                                                |         |
+| Stage             | The stage the sale is currently in.                                                                           |         |
+| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
+| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
+| Name              | The name assigned to the Salesforce record.                                                                   |         |
+| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
+| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
+| Account ID        | The ID of the account to reference.                                                                           |         |
+| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |         |
+| Amount            | The monetary amount associated with the opportunity.                                                          |         |
+| Next Step         | A description of the next action or milestone for the opportunity.                                            |         |
+| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
+| Probability       | The probability of the success of the sale.                                                                   |         |
+| Description       | A text description of the object.                                                                             |         |
+| Connection        | The Salesforce connection to use.                                                                             |         |
 
 ### Update Profile {#updateprofile}
 
@@ -1738,7 +1703,7 @@ Update a Salesforce profile.
 | Version     | The Salesforce API version number to use for requests.                                                                                                                              | 63.0    |
 | Record ID   | The unique identifier for a Salesforce record.                                                                                                                                      |         |
 | Name        | The name of the profile.                                                                                                                                                            |         |
-| Description | Description of the profile.                                                                                                                                                         |         |
+| Description | A short summary of what the profile grants and who it is intended for.                                                                                                              |         |
 | Permissions | Key/value object with permission name keys and boolean value indicating if a permission is granted or not. Use 'Describe Permissions' to retrieve the permissions of a Record Type. |         |
 | Connection  | The Salesforce connection to use.                                                                                                                                                   |         |
 
@@ -1784,10 +1749,10 @@ Upload a file to Salesforce ContentVersion.
 
 | Input          | Comments                                                                                                                                                                                            | Default |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version        | The Salesforce API version number to use for requests.                                                                                                                                              | 63.0    |
 | Connection     | The Salesforce connection to use.                                                                                                                                                                   |         |
 | File           | The binary file data to upload as a Salesforce Content Version.                                                                                                                                     |         |
 | Path On Client | The complete path of the document. One of the fields that determines the FileType. Specify a complete path including the path extension in order for the document to be visible in the Preview tab. |         |
+| Version        | The Salesforce API version number to use for requests.                                                                                                                                              | 63.0    |
 
 ### Upsert Record {#upsertrecord}
 

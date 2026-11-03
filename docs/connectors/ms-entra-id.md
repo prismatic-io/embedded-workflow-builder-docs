@@ -345,6 +345,8 @@ Retrieve the list of applications in the organization.
 | Input                             | Comments                                                                                                                                   | Default |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                        | The Microsoft Entra ID connection to use.                                                                                                  |         |
+| Fetch All                         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
+| OData Query Parameters            | OData system query options for filtering, sorting, selecting, and expanding results.                                                       |         |
 | Count                             | When true, retrieves the total count of matching resources. Requires 'Eventual Consistency Level Header' to be enabled.                    | false   |
 | Expand                            | A comma-separated list of OData relationships to expand and include in the response.                                                       |         |
 | Filter                            | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                      |         |
@@ -352,22 +354,22 @@ Retrieve the list of applications in the organization.
 | Search                            | An OData search expression to return results matching the criteria. Requires Eventual Consistency Level Header.                            |         |
 | Select                            | A comma-separated list of OData properties to include in the response, reducing payload size.                                              |         |
 | Top                               | The maximum number of items to return in the result set (OData $top).                                                                      |         |
-| Get All Paginated Results         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
 | Eventual Consistency Level Header | When true, adds the ConsistencyLevel: eventual header to the request. Required for some OData query parameters such as $count and $search. | false   |
 
 ### List Changes {#listchanges}
 
 Retrieves a list of changes in an object and its children over time.
 
-| Input          | Comments                                                                                                                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Microsoft Entra ID connection to use.                                                                                                                                        |         |
-| Delta URL      | The URL to track changes in an object and its children over time. Use @odata.nextLink or @odata.deltaLink to get the next set of changes.                                        |         |
-| Skip Token     | A state token returned in the @odata.nextLink URL of the previous delta function call, indicating there are further changes to be tracked in the same user collection.           |         |
-| Delta Token    | A state token returned in the @odata.deltaLink URL of the previous delta function call for the same user collection, indicating the completion of that round of change tracking. |         |
-| Select         | A comma-separated list of OData properties to include in the response, reducing payload size.                                                                                    |         |
-| Filter         | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                                                            |         |
-| Return Minimal | When true, returns only the object properties that have changed since the last round when using @odata.deltaLink.                                                                | false   |
+| Input                  | Comments                                                                                                                                                                         | Default |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection             | The Microsoft Entra ID connection to use.                                                                                                                                        |         |
+| Delta URL              | The URL to track changes in an object and its children over time. Use @odata.nextLink or @odata.deltaLink to get the next set of changes.                                        |         |
+| OData Query Parameters | OData system query options for filtering, selecting, and tracking changes across pages.                                                                                          |         |
+| Delta Token            | A state token returned in the @odata.deltaLink URL of the previous delta function call for the same user collection, indicating the completion of that round of change tracking. |         |
+| Skip Token             | A state token returned in the @odata.nextLink URL of the previous delta function call, indicating there are further changes to be tracked in the same user collection.           |         |
+| Select                 | A comma-separated list of OData properties to include in the response, reducing payload size.                                                                                    |         |
+| Filter                 | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                                                            |         |
+| Return Minimal         | When true, returns only the object properties that have changed since the last round when using @odata.deltaLink.                                                                | false   |
 
 ### List Group Members {#listgroupmembers}
 
@@ -377,13 +379,15 @@ Retrieves the direct members of a group.
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                        | The Microsoft Entra ID connection to use.                                                                                                  |         |
 | Group ID                          | The unique identifier of the group.                                                                                                        |         |
-| Filter                            | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                      |         |
+| Fetch All                         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
+| OData Query Parameters            | OData system query options for filtering, sorting, selecting, and expanding results.                                                       |         |
 | Count                             | When true, retrieves the total count of matching resources. Requires 'Eventual Consistency Level Header' to be enabled.                    | false   |
-| Select                            | A comma-separated list of OData properties to include in the response, reducing payload size.                                              |         |
-| Search                            | An OData search expression to return results matching the criteria. Requires Eventual Consistency Level Header.                            |         |
-| Top                               | The maximum number of items to return in the result set (OData $top).                                                                      |         |
-| Get All Paginated Results         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
 | Expand                            | A comma-separated list of OData relationships to expand and include in the response.                                                       |         |
+| Filter                            | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                      |         |
+| Order By                          | An OData expression to sort results, such as 'displayName desc' or 'createdDateTime asc'.                                                  |         |
+| Search                            | An OData search expression to return results matching the criteria. Requires Eventual Consistency Level Header.                            |         |
+| Select                            | A comma-separated list of OData properties to include in the response, reducing payload size.                                              |         |
+| Top                               | The maximum number of items to return in the result set (OData $top).                                                                      |         |
 | Eventual Consistency Level Header | When true, adds the ConsistencyLevel: eventual header to the request. Required for some OData query parameters such as $count and $search. | false   |
 
 ### List Groups {#listgroup}
@@ -393,6 +397,8 @@ List group objects and their properties.
 | Input                             | Comments                                                                                                                                   | Default |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                        | The Microsoft Entra ID connection to use.                                                                                                  |         |
+| Fetch All                         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
+| OData Query Parameters            | OData system query options for filtering, sorting, selecting, and expanding results.                                                       |         |
 | Count                             | When true, retrieves the total count of matching resources. Requires 'Eventual Consistency Level Header' to be enabled.                    | false   |
 | Expand                            | A comma-separated list of OData relationships to expand and include in the response.                                                       |         |
 | Filter                            | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                      |         |
@@ -400,17 +406,16 @@ List group objects and their properties.
 | Search                            | An OData search expression to return results matching the criteria. Requires Eventual Consistency Level Header.                            |         |
 | Select                            | A comma-separated list of OData properties to include in the response, reducing payload size.                                              |         |
 | Top                               | The maximum number of items to return in the result set (OData $top).                                                                      |         |
-| Get All Paginated Results         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
 | Eventual Consistency Level Header | When true, adds the ConsistencyLevel: eventual header to the request. Required for some OData query parameters such as $count and $search. | false   |
 
 ### List Subscriptions {#listsubscriptions}
 
 Retrieves a list of active subscriptions.
 
-| Input                     | Comments                                                     | Default |
-| ------------------------- | ------------------------------------------------------------ | ------- |
-| Connection                | The Microsoft Entra ID connection to use.                    |         |
-| Get All Paginated Results | When true, automatically fetches all pages of subscriptions. | false   |
+| Input      | Comments                                                     | Default |
+| ---------- | ------------------------------------------------------------ | ------- |
+| Connection | The Microsoft Entra ID connection to use.                    |         |
+| Fetch All  | When true, automatically fetches all pages of subscriptions. | false   |
 
 ### List Users {#listusers}
 
@@ -419,6 +424,8 @@ Retrieve a list of user objects.
 | Input                             | Comments                                                                                                                                   | Default |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | Connection                        | The Microsoft Entra ID connection to use.                                                                                                  |         |
+| Fetch All                         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
+| OData Query Parameters            | OData system query options for filtering, sorting, selecting, and expanding results.                                                       |         |
 | Count                             | When true, retrieves the total count of matching resources. Requires 'Eventual Consistency Level Header' to be enabled.                    | false   |
 | Expand                            | A comma-separated list of OData relationships to expand and include in the response.                                                       |         |
 | Filter                            | An OData filter expression to narrow results. For example: startswith(givenName,'J').                                                      |         |
@@ -426,7 +433,6 @@ Retrieve a list of user objects.
 | Search                            | An OData search expression to return results matching the criteria. Requires Eventual Consistency Level Header.                            |         |
 | Select                            | A comma-separated list of OData properties to include in the response, reducing payload size.                                              |         |
 | Top                               | The maximum number of items to return in the result set (OData $top).                                                                      |         |
-| Get All Paginated Results         | When true, automatically fetches all pages of results using pagination. Ignores the 'Top' input.                                           | false   |
 | Eventual Consistency Level Header | When true, adds the ConsistencyLevel: eventual header to the request. Required for some OData query parameters such as $count and $search. | false   |
 
 ### Raw Request {#rawrequest}
@@ -481,6 +487,7 @@ Update the properties of a User object.
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                              |         |
 | User ID               | Unique Identifier for the user to update. This can be the user's id or userPrincipalName.                                                                                                                              |         |
+| User Fields           | User profile fields to update.                                                                                                                                                                                         |         |
 | Account Enabled       | When true, the account is enabled.                                                                                                                                                                                     |         |
 | Display Name          | The display name of the user.                                                                                                                                                                                          |         |
 | User Principal Name   | The updated user principal name of the user. Required if 'Domain' input is provided.                                                                                                                                   |         |
@@ -511,6 +518,7 @@ Create a new group if it doesn't exist, or update the properties of an existing 
 | Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                |         |
 | Unique Name           | The unique name of the group to update or create.                                                                                                                                                                        |         |
 | Use as Upsert         | When true, creates a new group if it does not exist. When false, only updates an existing group.                                                                                                                         | true    |
+| Group Fields          | Group configuration fields.                                                                                                                                                                                              |         |
 | Display Name          | The name to display in the address book for the group.                                                                                                                                                                   |         |
 | Mail Enabled          | When true, the group is mail-enabled.                                                                                                                                                                                    |         |
 | Mail Nickname         | The mail alias for the group, unique for Microsoft 365 groups in the organization. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () \ [] " ; : <> , SPACE.        |         |

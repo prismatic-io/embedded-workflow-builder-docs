@@ -14,6 +14,31 @@ This component was built using the [ServiceNow REST API](https://developer.servi
 
 ## Connections
 
+### API Key {#apikey}
+
+Authenticate using an API key sent in the x-sn-apikey header.
+
+ServiceNow supports API key authentication, which sends the key in the `x-sn-apikey` HTTP header with each request.
+
+#### Prerequisites
+
+- The **API Key and HMAC Authentication** plugin (`com.glide.tokenbased_auth`) must be activated on the ServiceNow instance
+- The `api_service_admin` and `adaptive_auth_policy_admin` roles are required
+
+#### Setup Steps
+
+1. **Create an inbound authentication profile.** Navigate to **All > System Web Services > API Access Policies > Inbound Authentication Profiles**, select **New**, then choose **Create API Key authentication profiles**. Fill in the **Name**, **Application** scope, and select `x-sn-apikey: Auth Header` as the **Auth Parameter**. Submit the form.
+2. **Create a REST API Key.** Navigate to **All > System Web Services > API Access Policies > REST API Key** and select **New**. Fill in the **Name**, associate a **User**, and optionally set an **Expiry**. Submit the form, then open the created record to view the generated **Token**. Copy this token — it is used as the API key in the connection configuration.
+3. **Create a REST API Access Policy.** Navigate to **All > System Web Services > REST API Access Policies** and select **New**. Select the **REST API** to grant access to (e.g., Table API), configure the **HTTP Method**, **Version**, and **Resource** fields as needed, and add the authentication profile created in step 1. Submit the form. Repeat for each REST API the key should be able to access.
+
+#### Configure the Connection
+
+- **API Key**: The token generated from the ServiceNow REST API Key record created in step 2
+
+| Input   | Comments                                                    | Default |
+| ------- | ----------------------------------------------------------- | ------- |
+| API Key | The API key generated from a ServiceNow REST API Key record |         |
+
 ### Basic Username/Password {#basic}
 
 Basic Username and Password connection
@@ -160,40 +185,40 @@ Creates a single configuration item (CI) with the specified outbound and inbound
 
 Creates an Incident with the specified field names and values
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   | The ServiceNow connection to use.                                      |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API to use                               |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
+| Input        | Comments                                                               | Default         |
+| ------------ | ---------------------------------------------------------------------- | --------------- |
+| Connection   | The ServiceNow connection to use.                                      |                 |
+| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version  | The version of the ServiceNow API to use                               |                 |
+| Values       | The names of the fields and their values to use when creating a record | <code>[]</code> |
 
 ### Create Table Record {#createtablerecord}
 
 Creates a record in the specified table with the specified field names and values.
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   | The ServiceNow connection to use.                                      |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API to use                               |         |
-| Table        | The name of the ServiceNow table in which to create a record           |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
+| Input        | Comments                                                               | Default         |
+| ------------ | ---------------------------------------------------------------------- | --------------- |
+| Connection   | The ServiceNow connection to use.                                      |                 |
+| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version  | The version of the ServiceNow API to use                               |                 |
+| Table        | The name of the ServiceNow table in which to create a record           |                 |
+| Values       | The names of the fields and their values to use when creating a record | <code>[]</code> |
 
 ### Create User {#createuser}
 
 Creates a user with the specified field names and values.
 
-| Input                      | Comments                                                               | Default |
-| -------------------------- | ---------------------------------------------------------------------- | ------- |
-| Connection                 | The ServiceNow connection to use.                                      |         |
-| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version                | The version of the ServiceNow API to use                               |         |
-| Values                     | The names of the fields and their values to use when creating a record |         |
-| Name & Contact Information | First name, last name, and email address.                              |         |
-| First Name                 | The given name of the user.                                            |         |
-| Last Name                  | The family name of the user.                                           |         |
-| Email                      | The email address used to contact the user.                            |         |
-| Username                   | The login username used to authenticate the user.                      |         |
+| Input                      | Comments                                                               | Default         |
+| -------------------------- | ---------------------------------------------------------------------- | --------------- |
+| Connection                 | The ServiceNow connection to use.                                      |                 |
+| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version                | The version of the ServiceNow API to use                               |                 |
+| Values                     | The names of the fields and their values to use when creating a record | <code>[]</code> |
+| Name & Contact Information | First name, last name, and email address.                              |                 |
+| First Name                 | The given name of the user.                                            |                 |
+| Last Name                  | The family name of the user.                                           |                 |
+| Email                      | The email address used to contact the user.                            |                 |
+| Username                   | The login username used to authenticate the user.                      |                 |
 
 ### Delete Attachment {#deleteattachment}
 
@@ -537,26 +562,26 @@ Uploads a multipart file attachment.
 
 Send raw HTTP request to ServiceNow.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The ServiceNow connection to use.                                                                                                                                                                |         |
-| Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                              |         |
-| API Version             | The version of the ServiceNow API to use                                                                                                                                                         |         |
-| Table                   | The name of the ServiceNow table in which to create a record                                                                                                                                     |         |
-| Sys ID                  | The Sys ID of the record being queried                                                                                                                                                           |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The ServiceNow connection to use.                                                                                                                                                                |                 |
+| Instance URL            | The URL of the specific ServiceNow instance to use for API requests                                                                                                                              |                 |
+| API Version             | The version of the ServiceNow API to use                                                                                                                                                         |                 |
+| Table                   | The name of the ServiceNow table in which to create a record                                                                                                                                     |                 |
+| Sys ID                  | The Sys ID of the record being queried                                                                                                                                                           |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Update Configuration Item {#updateconfigurationitem}
 
@@ -576,43 +601,43 @@ Updates a single configuration item (CI) with the specified outbound and inbound
 
 Updates an Incident with the specified field names and values
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   | The ServiceNow connection to use.                                      |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API to use                               |         |
-| Sys ID       | The Sys ID of the record being queried                                 |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
+| Input        | Comments                                                               | Default         |
+| ------------ | ---------------------------------------------------------------------- | --------------- |
+| Connection   | The ServiceNow connection to use.                                      |                 |
+| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version  | The version of the ServiceNow API to use                               |                 |
+| Sys ID       | The Sys ID of the record being queried                                 |                 |
+| Values       | The names of the fields and their values to use when creating a record | <code>[]</code> |
 
 ### Update Table Record {#updatetablerecord}
 
 Updates a record in the specified table with the specified field names and values.
 
-| Input        | Comments                                                               | Default |
-| ------------ | ---------------------------------------------------------------------- | ------- |
-| Connection   | The ServiceNow connection to use.                                      |         |
-| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version  | The version of the ServiceNow API to use                               |         |
-| Table        | The name of the ServiceNow table in which to create a record           |         |
-| Sys ID       | The Sys ID of the record being queried                                 |         |
-| Values       | The names of the fields and their values to use when creating a record |         |
+| Input        | Comments                                                               | Default         |
+| ------------ | ---------------------------------------------------------------------- | --------------- |
+| Connection   | The ServiceNow connection to use.                                      |                 |
+| Instance URL | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version  | The version of the ServiceNow API to use                               |                 |
+| Table        | The name of the ServiceNow table in which to create a record           |                 |
+| Sys ID       | The Sys ID of the record being queried                                 |                 |
+| Values       | The names of the fields and their values to use when creating a record | <code>[]</code> |
 
 ### Update User {#updateuser}
 
 Updates a user with the specified field names and values.
 
-| Input                      | Comments                                                               | Default |
-| -------------------------- | ---------------------------------------------------------------------- | ------- |
-| Connection                 | The ServiceNow connection to use.                                      |         |
-| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |         |
-| API Version                | The version of the ServiceNow API to use                               |         |
-| Sys ID                     | The Sys ID of the record being queried                                 |         |
-| Values                     | The names of the fields and their values to use when creating a record |         |
-| Username                   | The login username used to authenticate the user.                      |         |
-| Name & Contact Information | First name, last name, and email address.                              |         |
-| First Name                 | The given name of the user.                                            |         |
-| Last Name                  | The family name of the user.                                           |         |
-| Email                      | The email address used to contact the user.                            |         |
+| Input                      | Comments                                                               | Default         |
+| -------------------------- | ---------------------------------------------------------------------- | --------------- |
+| Connection                 | The ServiceNow connection to use.                                      |                 |
+| Instance URL               | The URL of the specific ServiceNow instance to use for API requests    |                 |
+| API Version                | The version of the ServiceNow API to use                               |                 |
+| Sys ID                     | The Sys ID of the record being queried                                 |                 |
+| Values                     | The names of the fields and their values to use when creating a record | <code>[]</code> |
+| Username                   | The login username used to authenticate the user.                      |                 |
+| Name & Contact Information | First name, last name, and email address.                              |                 |
+| First Name                 | The given name of the user.                                            |                 |
+| Last Name                  | The family name of the user.                                           |                 |
+| Email                      | The email address used to contact the user.                            |                 |
 
 ### Upload Attachment {#uploadattachment}
 

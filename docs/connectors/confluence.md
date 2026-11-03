@@ -7,6 +7,10 @@ description: Confluence is an open and shared workspace platform provided by Atl
 ![Confluence](./assets/confluence.png#connector-icon)
 [Confluence](https://www.atlassian.com/es/software/confluence) is an open and shared workspace platform provided by Atlassian. Use the Confluence component to manage spaces, pages, and content properties.
 
+## API Documentation
+
+This component was built using the [Confluence Cloud REST API v2](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/).
+
 ## Connections
 
 ### Basic Authentication {#basic}
@@ -183,7 +187,7 @@ Creates a page in the space.
 | Body             | The page body content, as a representation object (e.g. storage format).                                             | <code>{<br /> "representation": "storage",<br /> "value": "<string>"<br />}</code> |
 | Embedded         | When true, tags the content as embedded and creates content in NCS.                                                  | false                                                                              |
 | Private          | When true, the page will be private and only the user who creates the page will have permission to view and edit it. | false                                                                              |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                       |                                                                                    |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                       | <code>[]</code>                                                                    |
 
 ### Delete Attachment {#deleteattachment}
 
@@ -240,24 +244,24 @@ Delete a page by id.
 
 Returns a specific attachment.
 
-| Input            | Comments                                                                                       | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                              |         |
-| Attachment ID    | The unique identifier of the attachment.                                                       |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. |         |
+| Input            | Comments                                                                                       | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                              |                 |
+| Attachment ID    | The unique identifier of the attachment.                                                       |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. | <code>[]</code> |
 
 ### Get Attachments for Page {#getpageattachment}
 
 Returns the attachments of a specific page.
 
-| Input            | Comments                                                                                                                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Page ID          | The unique identifier of the page.                                                                                                                                                 |         |
-| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input            | Comments                                                                                                                                                                           | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                                                                                                                  |                 |
+| Page ID          | The unique identifier of the page.                                                                                                                                                 |                 |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### Get Content Properties for Custom Content {#getcontentpropertiesforcustomcontent}
 
@@ -313,69 +317,69 @@ Returns a specific Page.
 
 Returns a specific space.
 
-| Input            | Comments                                                                                       | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                              |         |
-| Space ID         | The unique identifier of the space.                                                            |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. |         |
+| Input            | Comments                                                                                       | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                              |                 |
+| Space ID         | The unique identifier of the space.                                                            |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`. | <code>[]</code> |
 
 ### List Attachments {#listattachments}
 
 Returns all attachments.
 
-| Input            | Comments                                                                                                                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
-| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input            | Comments                                                                                                                                                                           | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                                                                                                                  |                 |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false           |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### List Content Properties for Attachments {#listcontentpropertiesforattachments}
 
 Retrieves all Content Properties tied to a specified attachment.
 
-| Input            | Comments                                                                                                                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Attachment ID    | The unique identifier of the attachment.                                                                                                                                           |         |
-| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
-| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Sort             | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input            | Comments                                                                                                                                                                           | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                                                                                                                  |                 |
+| Attachment ID    | The unique identifier of the attachment.                                                                                                                                           |                 |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false           |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Sort             | Used to sort the result by a particular field.                                                                                                                                     |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### List Content Properties for Custom Content {#listcontentpropertiesforcustomcontent}
 
 Retrieves Content Properties tied to a specified Custom Content.
 
-| Input             | Comments                                                                                                                                                                           | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The Confluence connection to use.                                                                                                                                                  |         |
-| Custom Content ID | The unique identifier of the custom content.                                                                                                                                       |         |
-| Fetch All         | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
-| Pagination        | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit             | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor            | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Sort              | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters  | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input             | Comments                                                                                                                                                                           | Default         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Confluence connection to use.                                                                                                                                                  |                 |
+| Custom Content ID | The unique identifier of the custom content.                                                                                                                                       |                 |
+| Fetch All         | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false           |
+| Pagination        | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit             | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor            | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Sort              | Used to sort the result by a particular field.                                                                                                                                     |                 |
+| Query Parameters  | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### List Content Properties for Page {#listcontentpropertiesforpage}
 
 Retrieves Content Properties tied to a specified page.
 
-| Input            | Comments                                                                                                                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Page ID          | The unique identifier of the page.                                                                                                                                                 |         |
-| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
-| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Sort             | Used to sort the result by a particular field.                                                                                                                                     |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input            | Comments                                                                                                                                                                           | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                                                                                                                  |                 |
+| Page ID          | The unique identifier of the page.                                                                                                                                                 |                 |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false           |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Sort             | Used to sort the result by a particular field.                                                                                                                                     |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### List Pages {#listpages}
 
@@ -417,14 +421,14 @@ Returns all pages in a space.
 
 Returns all spaces.
 
-| Input            | Comments                                                                                                                                                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection       | The Confluence connection to use.                                                                                                                                                  |         |
-| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false   |
-| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |         |
-| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25      |
-| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |         |
-| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     |         |
+| Input            | Comments                                                                                                                                                                           | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection       | The Confluence connection to use.                                                                                                                                                  |                 |
+| Fetch All        | When true, automatically fetches all pages of results. When false, returns a single page.                                                                                          | false           |
+| Pagination       | Cursor and page-size controls for paging through results.                                                                                                                          |                 |
+| Limit            | Maximum number of pages per result to return. If more results exist, use the Link header to retrieve a relative URL that will return the next set of results.                      | 25              |
+| Cursor           | Used for pagination, this opaque cursor will be returned in the next URL in the Link response header. Use the relative URL in the Link header to retrieve the next set of results. |                 |
+| Query Parameters | Query parameters to pass in to the request. For example, key `include-versions`, value `true`.                                                                                     | <code>[]</code> |
 
 ### Raw GraphQL Request {#graphqlrequest}
 
@@ -434,30 +438,30 @@ Send raw GraphQL request to Confluence.
 | ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        | The Confluence connection to use.              |                                                                                                                                                                                                         |
 | Query or Mutation |                                                | query ($customerName: String!) {<br />    customers(name: $customerName) {<br /> nodes {<br /> id<br /> labels<br /> users {<br /> nodes {<br /> id<br /> email<br /> }<br /> }<br /> }<br /> }<br /> } |
-| Variables         | Variables to pass in to the query or mutation. |                                                                                                                                                                                                         |
-| Headers           | Custom headers to send along with the request. |                                                                                                                                                                                                         |
+| Variables         | Variables to pass in to the query or mutation. | <code>[]</code>                                                                                                                                                                                         |
+| Headers           | Custom headers to send along with the request. | <code>[]</code>                                                                                                                                                                                         |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Confluence.
 
-| Input                   | Comments                                                                                                                                                                                                                                                            | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Confluence connection to use.                                                                                                                                                                                                                                   |         |
-| URL                     | Input the path only (/wiki/api/v2/attachments/attachments), The base URL is already included (https://{your-domain}). For example, to connect to https://{your-domain}/wiki/api/v2/attachments, only /wiki/api/v2/attachments/attachments is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                             |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                           |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                    |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                              |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                 |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                         |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                            | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                 |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                 | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                    | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                 | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                       | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                            | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Confluence connection to use.                                                                                                                                                                                                                                   |                 |
+| URL                     | Input the path only (/wiki/api/v2/attachments/attachments), The base URL is already included (https://{your-domain}). For example, to connect to https://{your-domain}/wiki/api/v2/attachments, only /wiki/api/v2/attachments/attachments is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                             |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                           |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                    | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                              | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                 | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                         | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                            | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                 |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                 | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                    | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                 | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                       | false           |
 
 ### Update Content Property for Attachment {#updatecontentpropertyforattachment}
 

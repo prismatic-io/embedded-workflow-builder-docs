@@ -32,11 +32,12 @@ Authenticate using email and password.
 
 ### New and Updated Sites {#neworupdatedsitestrigger}
 
-Checks for new and updated sites in System Surveyor on a configured schedule.
+Retrieves existing and ongoing sites from System Surveyor. Load history once, check for changes on a schedule, or both.
 
-| Input      | Comments                               | Default |
-| ---------- | -------------------------------------- | ------- |
-| Connection | The System Surveyor connection to use. |         |
+| Input          | Comments                                                                                                                                                                                                                               | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The System Surveyor connection to use.                                                                                                                                                                                                 |         |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each site modified on or after this date once. |         |
 
 ## Actions
 

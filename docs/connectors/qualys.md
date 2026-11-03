@@ -82,26 +82,26 @@ Create a new tag in Qualys using the Asset Management & Tagging (QPS) API.
 
 Bulk-delete remediation tickets by filter. Defaults to dry-run mode — set Dry Run to false to perform the actual deletion. Up to 20,000 tickets per call. Requires Manager or Unit Manager role. There is no undo.
 
-| Input          | Comments                                                                                                                                               | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     | The Qualys connection to use.                                                                                                                          |         |
-| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                                                                                         |         |
-| Assignee       | Filter tickets assigned to this user's email address.                                                                                                  |         |
-| Ticket State   | Filter tickets by their current workflow state.                                                                                                        |         |
-| Severity       | Filter tickets by vulnerability severity (1-5).                                                                                                        |         |
-| Dry Run        | When true (default), returns the tickets that would be deleted without actually deleting them. Set to false to perform the deletion. There is no undo. | true    |
+| Input          | Comments                                                                                                                                               | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection     | The Qualys connection to use.                                                                                                                          |                 |
+| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                                                                                         | <code>[]</code> |
+| Assignee       | Filter tickets assigned to this user's email address.                                                                                                  |                 |
+| Ticket State   | Filter tickets by their current workflow state.                                                                                                        |                 |
+| Severity       | Filter tickets by vulnerability severity (1-5).                                                                                                        |                 |
+| Dry Run        | When true (default), returns the tickets that would be deleted without actually deleting them. Set to false to perform the deletion. There is no undo. | true            |
 
 ### Edit Remediation Tickets {#editremediationtickets}
 
 Bulk-edit remediation tickets: reassign, change state, or add comments. Up to 20,000 tickets per call. Requires Manager or Unit Manager role — Scanner or Reader credentials silently fail to act on tickets outside the caller's own account.
 
-| Input          | Comments                                                                                                     | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection     | The Qualys connection to use.                                                                                |         |
-| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                                               |         |
-| New Assignee   | Reassign selected tickets to this user.                                                                      |         |
-| New State      | Change the state of selected tickets. A Closed/Fixed or Closed/Ignored ticket cannot be changed to Resolved. |         |
-| Comment        | Add a comment to the selected tickets.                                                                       |         |
+| Input          | Comments                                                                                                     | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection     | The Qualys connection to use.                                                                                |                 |
+| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                                               | <code>[]</code> |
+| New Assignee   | Reassign selected tickets to this user.                                                                      |                 |
+| New State      | Change the state of selected tickets. A Closed/Fixed or Closed/Ignored ticket cannot be changed to Resolved. |                 |
+| Comment        | Add a comment to the selected tickets.                                                                       |                 |
 
 ### Get Asset {#getasset}
 
@@ -116,24 +116,24 @@ Retrieve a single asset by ID from the Qualys inventory using the Gateway asset 
 
 Retrieve detailed information for specific remediation tickets by ticket number or by last-modified timestamp.
 
-| Input          | Comments                                                                         | Default |
-| -------------- | -------------------------------------------------------------------------------- | ------- |
-| Connection     | The Qualys connection to use.                                                    |         |
-| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                   |         |
-| Since          | Return tickets updated on or after this date/time. Format: YYYY-MM-DDTHH:MM:SSZ. |         |
+| Input          | Comments                                                                         | Default         |
+| -------------- | -------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Qualys connection to use.                                                    |                 |
+| Ticket Numbers | Specific ticket numbers to retrieve or act on.                                   | <code>[]</code> |
+| Since          | Return tickets updated on or after this date/time. Format: YYYY-MM-DDTHH:MM:SSZ. |                 |
 
 ### Launch VM Scan {#launchscan}
 
 Launch a vulnerability management scan against asset groups or tags. Asynchronous — returns a scan reference immediately, not results. Use List Scans to track status. Requires an existing scan option profile and at least one online scanner appliance or Cloud Agent scoped to the targets.
 
-| Input             | Comments                                                                                   | Default |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------- |
-| Connection        | The Qualys connection to use.                                                              |         |
-| Scan Title        | A descriptive name to identify the scan in Qualys.                                         |         |
-| Option Profile ID | ID of the scan option profile to use. Select from the Option Profile data source.          |         |
-| Scanner Appliance | Name or ID of the scanner appliance. Required when targets are not covered by Cloud Agent. |         |
-| Target Tag IDs    | Tag IDs identifying the assets to scan.                                                    |         |
-| Asset Group IDs   | Asset group IDs identifying the assets to scan.                                            |         |
+| Input             | Comments                                                                                   | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection        | The Qualys connection to use.                                                              |                 |
+| Scan Title        | A descriptive name to identify the scan in Qualys.                                         |                 |
+| Option Profile ID | ID of the scan option profile to use. Select from the Option Profile data source.          |                 |
+| Scanner Appliance | Name or ID of the scanner appliance. Required when targets are not covered by Cloud Agent. |                 |
+| Target Tag IDs    | Tag IDs identifying the assets to scan.                                                    | <code>[]</code> |
+| Asset Group IDs   | Asset group IDs identifying the assets to scan.                                            | <code>[]</code> |
 
 ### List Asset Risk Data {#listassetriskdata}
 
@@ -149,16 +149,16 @@ Retrieve TruRisk scores, vulnerability counts, and derived risk bands from the C
 
 Search for assets in the Qualys inventory using the Gateway asset search API. Supports keyset cursor pagination and field selection.
 
-| Input               | Comments                                                                                                              | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Qualys connection to use.                                                                                         |         |
-| Fetch All           | When true, automatically fetches all pages of results.                                                                | false   |
-| Pagination          | Page size and cursor controls for keyset pagination.                                                                  |         |
-| Page Size           | The maximum number of results to return per page. The API default applies when omitted.                               |         |
-| Last ID             | Start results after this asset ID (keyset cursor). Returned in the previous response when more results are available. |         |
-| Last Modified Since | Filter assets modified after this date/time (ISO 8601). Used as an incremental sync watermark.                        |         |
-| Include Fields      | Fields to include in the response. When set, only these fields are returned.                                          |         |
-| Exclude Fields      | Field names to omit from the response payload, reducing response size.                                                |         |
+| Input               | Comments                                                                                                              | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Qualys connection to use.                                                                                         |                 |
+| Fetch All           | When true, automatically fetches all pages of results.                                                                | false           |
+| Pagination          | Page size and cursor controls for keyset pagination.                                                                  |                 |
+| Page Size           | The maximum number of results to return per page. The API default applies when omitted.                               |                 |
+| Last ID             | Start results after this asset ID (keyset cursor). Returned in the previous response when more results are available. |                 |
+| Last Modified Since | Filter assets modified after this date/time (ISO 8601). Used as an incremental sync watermark.                        |                 |
+| Include Fields      | Fields to include in the response. When set, only these fields are returned.                                          | <code>[]</code> |
+| Exclude Fields      | Field names to omit from the response payload, reducing response size.                                                | <code>[]</code> |
 
 ### List Remediation Tickets {#listremediationtickets}
 
@@ -199,24 +199,24 @@ Search for tags in Qualys using the Asset Management & Tagging (QPS) API.
 
 Send a raw HTTP request to the Qualys API. Select the API plane (Gateway or Classic) since they differ in host, authentication, and content type.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Qualys connection to use.                                                                                                                                                                    |         |
-| API Plane               | Select which Qualys API plane to send the request to. Gateway uses JWT auth and JSON. Classic uses Basic auth with X-Requested-With and may return XML.                                          |         |
-| URL                     | Input the path only (e.g., /rest/2.0/search/am/asset). The base URL is determined by the selected API plane.                                                                                     |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Qualys connection to use.                                                                                                                                                                    |                 |
+| API Plane               | Select which Qualys API plane to send the request to. Gateway uses JWT auth and JSON. Classic uses Basic auth with X-Requested-With and may return XML.                                          |                 |
+| URL                     | Input the path only (e.g., /rest/2.0/search/am/asset). The base URL is determined by the selected API plane.                                                                                     |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Sync Asset {#syncasset}
 
@@ -236,12 +236,12 @@ Import third-party assets into Qualys by pushing data through the Gateway connec
 
 Add or remove tags on an asset. Consolidates assign and remove into one action. Static tags only — Qualys rejects dynamic tags. When changing a value-bearing tag (e.g., LS:DomainRole=X), remove the old tag before adding the new one to avoid stale entries.
 
-| Input          | Comments                                                                        | Default |
-| -------------- | ------------------------------------------------------------------------------- | ------- |
-| Connection     | The Qualys connection to use.                                                   |         |
-| Asset ID       | The unique identifier for the asset in Qualys.                                  |         |
-| Tags to Add    | Tag IDs to assign to the asset. Static tags only — Qualys rejects dynamic tags. |         |
-| Tags to Remove | Tag IDs to remove from the asset.                                               |         |
+| Input          | Comments                                                                        | Default         |
+| -------------- | ------------------------------------------------------------------------------- | --------------- |
+| Connection     | The Qualys connection to use.                                                   |                 |
+| Asset ID       | The unique identifier for the asset in Qualys.                                  |                 |
+| Tags to Add    | Tag IDs to assign to the asset. Static tags only — Qualys rejects dynamic tags. | <code>[]</code> |
+| Tags to Remove | Tag IDs to remove from the asset.                                               | <code>[]</code> |
 
 ### Update Tag {#updatetag}
 

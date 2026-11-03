@@ -52,7 +52,7 @@ Save the integration and run any Stripe action (such as **List Customers**) to c
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in Stripe on a configured schedule. Events with a type ending in `.created` are partitioned into the `created` bucket; all other event types (such as `.updated`, `.deleted`, or `.succeeded`) are partitioned into the `updated` bucket.
+Polls for new and updated Stripe events on a schedule. Stripe retains events for up to 30 days.
 
 | Input                | Comments                                                                                                                                                                               | Default |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |

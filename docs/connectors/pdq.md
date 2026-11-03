@@ -35,12 +35,13 @@ Follow these steps to [generate a new API key](https://connect.pdq.com/hc/en-us/
 
 ### New Records {#pollchangestrigger}
 
-Checks for new Devices or Groups added to PDQ on a configured schedule.
+Retrieves existing and ongoing records for a specified PDQ resource type. Load history once, check for changes on a schedule, or both.
 
-| Input         | Comments                                                                                     | Default |
-| ------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Connection    | The PDQ connection to use.                                                                   |         |
-| Resource Type | Select the PDQ resource to poll for newly added records. Choose Devices or Groups. Required. | Devices |
+| Input          | Comments                                                                                                                                               | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection     | The PDQ connection to use.                                                                                                                             |         |
+| Resource Type  | Select the PDQ resource to poll for newly added records. Choose Devices or Groups. Required.                                                           | Devices |
+| Look-back Date | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. |         |
 
 ## Actions
 

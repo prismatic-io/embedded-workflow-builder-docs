@@ -55,14 +55,15 @@ For additional information regarding authentication, refer to the [Tableau docs]
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in a selected Tableau resource type on a configured schedule.
+Retrieves existing and ongoing records for a selected Tableau resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                     | Default   |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Connection           |                                                                                                                              |           |
-| Resource Type        | The Tableau resource collection to poll for new and updated records.                                                         | workbooks |
-| Show New Records     | When true, records whose `createdAt` falls after the last poll are emitted on the `created` branch.                          | true      |
-| Show Updated Records | When true, records whose `updatedAt` falls after the last poll but were created earlier are emitted on the `updated` branch. | true      |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default   |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Connection           |                                                                                                                                                                                                                                                                                     |           |
+| Resource Type        | The Tableau resource collection to poll for new and updated records.                                                                                                                                                                                                                | workbooks |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the field and visibility filters. |           |
+| Show New Records     | When true, records whose `createdAt` falls after the last poll are emitted on the `created` branch.                                                                                                                                                                                 | true      |
+| Show Updated Records | When true, records whose `updatedAt` falls after the last poll but were created earlier are emitted on the `updated` branch.                                                                                                                                                        | true      |
 
 ### Webhook Events {#tableautrigger}
 
