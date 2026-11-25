@@ -1,7 +1,7 @@
 ---
 title: Ramp Connector
 sidebar_label: Ramp
-description: Ramp is a spend management platform focused on automating accounts payable and procurement processes. Use the Ramp component to manage transactions related to vendors, bills, reimbursements and more.
+description: Manage Ramp transactions, bills, reimbursements, vendors, departments, locations, and accounting fields, and react to new and updated records with a polling trigger.
 ---
 
 ![Ramp](./assets/ramp.png#connector-icon)
@@ -234,132 +234,132 @@ Retrieve a vendor by ID
 
 Retrieve a list of all bills
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Business Entities {#listbusinessentities}
 
 Retrieve a list of all business entities
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Custom Accounting Field Options {#listcustomaccountingfieldoptions}
 
 List options for a given custom accounting field
 
-| Input                      | Comments                                                                                         | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Custom Accounting Field ID | The ID of the custom accounting field to list options for                                        |         |
-| Connection                 |                                                                                                  |         |
-| Fetch All                  | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination                 | Page size and starting point for paginated results.                                              |         |
-| Start                      | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size                  | Number of results to retrieve per page                                                           |         |
-| Custom Query Params        | Custom query parameters to be included in the request                                            |         |
+| Input                      | Comments                                                                                         | Default         |
+| -------------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Custom Accounting Field ID | The ID of the custom accounting field to list options for                                        |                 |
+| Connection                 |                                                                                                  |                 |
+| Fetch All                  | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination                 | Page size and starting point for paginated results.                                              |                 |
+| Start                      | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size                  | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params        | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Custom Accounting Fields {#listcustomaccountingfield}
 
 List custom accounting fields
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Departments {#listdepartments}
 
 Retrieve a list of all Departments
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List General Ledger Accounts {#listgeneralledgeraccounts}
 
 Retrieve a list of all general ledger accounts
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Locations {#listlocations}
 
 Retrieve a list of all locations
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Reimbursements {#listreimbursements}
 
 Retrieve a list of all reimbursements
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Transactions {#listtransactions}
 
 Retrieve a list of all transactions
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### List Vendors {#listvendors}
 
 Retrieve a list of all vendors
 
-| Input               | Comments                                                                                         | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| Connection          |                                                                                                  |         |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false   |
-| Pagination          | Page size and starting point for paginated results.                                              |         |
-| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |         |
-| Page Size           | Number of results to retrieve per page                                                           |         |
-| Custom Query Params | Custom query parameters to be included in the request                                            |         |
+| Input               | Comments                                                                                         | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| Connection          |                                                                                                  |                 |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                          | false           |
+| Pagination          | Page size and starting point for paginated results.                                              |                 |
+| Start               | The starting point for the list of results. If Fetch All is enabled, this option will be ignored |                 |
+| Page Size           | Number of results to retrieve per page                                                           |                 |
+| Custom Query Params | Custom query parameters to be included in the request                                            | <code>[]</code> |
 
 ### Post Sync Status {#postsyncstatus}
 
@@ -377,23 +377,23 @@ Notify Ramp of a list of accounting sync results
 
 Send raw HTTP request to Ramp API
 
-| Input                   | Comments                                                                                                                                                                                                                                           | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                    |         |
-| URL                     | Input the path only (/departments), The base URL is already included (https://api.ramp.com/developer/v1/). For example, to connect to https://api.ramp.com/developer/v1/departments, only /departments is entered in this field. e.g. /departments |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                            |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                          |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                               |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                   |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                             |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                        |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                           | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                   | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                      | false   |
+| Input                   | Comments                                                                                                                                                                                                                                           | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                                    |                 |
+| URL                     | Input the path only (/departments), The base URL is already included (https://api.ramp.com/developer/v1/). For example, to connect to https://api.ramp.com/developer/v1/departments, only /departments is entered in this field. e.g. /departments |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                            |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                          |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                               | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                   | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                             | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                        | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                           | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                   | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                      | false           |
 
 ### Update Custom Accounting Field {#updatecustomaccountingfield}
 

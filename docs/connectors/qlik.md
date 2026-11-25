@@ -1,7 +1,7 @@
 ---
 title: Qlik Connector
 sidebar_label: Qlik
-description: Qlik is a business analytics platform. Use the Qlik component to manage your Data Sets, Assets, and Apps.
+description: Manage Qlik Cloud apps, spaces, data sets, data assets, data files, data stores, and reports, and react to new and updated records with a polling trigger.
 ---
 
 ![Qlik](./assets/qlik.png#connector-icon)
@@ -142,10 +142,10 @@ Deletes a specific app.
 
 Batch delete data assets by IDs.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Data Asset IDs | The IDs of the data assets you would like to delete. |         |
+| Input          | Comments                                             | Default         |
+| -------------- | ---------------------------------------------------- | --------------- |
+| Connection     |                                                      |                 |
+| Data Asset IDs | The IDs of the data assets you would like to delete. | <code>[]</code> |
 
 ### Delete Data File {#deletedatafile}
 
@@ -160,29 +160,29 @@ Deletes a specific Data File.
 
 Delete data set by ID.
 
-| Input        | Comments                                           | Default |
-| ------------ | -------------------------------------------------- | ------- |
-| Connection   |                                                    |         |
-| Data Set IDs | The IDs of the data sets you would like to delete. |         |
+| Input        | Comments                                           | Default         |
+| ------------ | -------------------------------------------------- | --------------- |
+| Connection   |                                                    |                 |
+| Data Set IDs | The IDs of the data sets you would like to delete. | <code>[]</code> |
 
 ### Delete Data Stores {#deletedatastores}
 
 Batch delete data stores by IDs.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Data Store IDs | The IDs of the data stores you would like to delete. |         |
+| Input          | Comments                                             | Default         |
+| -------------- | ---------------------------------------------------- | --------------- |
+| Connection     |                                                      |                 |
+| Data Store IDs | The IDs of the data stores you would like to delete. | <code>[]</code> |
 
 ### Delete Data Stores Assets {#deletedatastoresassets}
 
 Batch delete data stores by IDs.
 
-| Input          | Comments                                             | Default |
-| -------------- | ---------------------------------------------------- | ------- |
-| Connection     |                                                      |         |
-| Data Store IDs | The IDs of the data stores you would like to delete. |         |
-| Data Asset IDs | The IDs of the data assets you would like to delete. |         |
+| Input          | Comments                                             | Default         |
+| -------------- | ---------------------------------------------------- | --------------- |
+| Connection     |                                                      |                 |
+| Data Store IDs | The IDs of the data stores you would like to delete. | <code>[]</code> |
+| Data Asset IDs | The IDs of the data assets you would like to delete. | <code>[]</code> |
 
 ### Delete Space {#deletespace}
 
@@ -206,11 +206,11 @@ Retrieves information for a specific app.
 
 Get data asset by ID.
 
-| Input          | Comments                                           | Default |
-| -------------- | -------------------------------------------------- | ------- |
-| Connection     |                                                    |         |
-| Data Assets ID | The ID of the data set you would like to retrieve. |         |
-| Projections    | Fields name to return in the response.             |         |
+| Input          | Comments                                           | Default         |
+| -------------- | -------------------------------------------------- | --------------- |
+| Connection     |                                                    |                 |
+| Data Assets ID | The ID of the data set you would like to retrieve. |                 |
+| Projections    | Fields name to return in the response.             | <code>[]</code> |
 
 ### Get Data File {#getdatafile}
 
@@ -225,11 +225,11 @@ Get descriptive info for the specified data file.
 
 Get data set by ID.
 
-| Input       | Comments                                           | Default |
-| ----------- | -------------------------------------------------- | ------- |
-| Connection  |                                                    |         |
-| Data Set ID | The ID of the data set you would like to retrieve. |         |
-| Projections | Fields name to return in the response.             |         |
+| Input       | Comments                                           | Default         |
+| ----------- | -------------------------------------------------- | --------------- |
+| Connection  |                                                    |                 |
+| Data Set ID | The ID of the data set you would like to retrieve. |                 |
+| Projections | Fields name to return in the response.             | <code>[]</code> |
 
 ### Get Data Store {#getdatastore}
 
@@ -270,68 +270,68 @@ Retrieves a single space by ID.
 
 Get all data files.
 
-| Input        | Comments                                                              | Default |
-| ------------ | --------------------------------------------------------------------- | ------- |
-| Connection   |                                                                       |         |
-| Limit        | If present, the maximum number of data files to return.               | 20      |
-| Page         | If present, the cursor that starts the page of data that is returned. |         |
-| Query Params | A list of params to send with the request.                            |         |
+| Input        | Comments                                                              | Default         |
+| ------------ | --------------------------------------------------------------------- | --------------- |
+| Connection   |                                                                       |                 |
+| Limit        | If present, the maximum number of data files to return.               | 20              |
+| Page         | If present, the cursor that starts the page of data that is returned. |                 |
+| Query Params | A list of params to send with the request.                            | <code>[]</code> |
 
 ### List Data Stores {#listdatastores}
 
 Get all data stores.
 
-| Input       | Comments                                                                                            | Default |
-| ----------- | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                     |         |
-| Limit       | If present, the maximum number of data files to return.                                             | 20      |
-| Page        | If present, the cursor that starts the page of data that is returned.                               |         |
-| Projections | Fields name to return in the response.                                                              |         |
-| Sort        | Comma-separated fields and field start with '-' character sorts the result set in descending order. |         |
+| Input       | Comments                                                                                            | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  |                                                                                                     |                 |
+| Limit       | If present, the maximum number of data files to return.                                             | 20              |
+| Page        | If present, the cursor that starts the page of data that is returned.                               |                 |
+| Projections | Fields name to return in the response.                                                              | <code>[]</code> |
+| Sort        | Comma-separated fields and field start with '-' character sorts the result set in descending order. | <code>[]</code> |
 
 ### List Spaces {#listspaces}
 
 Get all Spaces.
 
-| Input        | Comments                                                                                            | Default |
-| ------------ | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                     |         |
-| Limit        | If present, the maximum number of data files to return.                                             | 20      |
-| Sort         | Comma-separated fields and field start with '-' character sorts the result set in descending order. |         |
-| Query Params | A list of params to send with the request.                                                          |         |
+| Input        | Comments                                                                                            | Default         |
+| ------------ | --------------------------------------------------------------------------------------------------- | --------------- |
+| Connection   |                                                                                                     |                 |
+| Limit        | If present, the maximum number of data files to return.                                             | 20              |
+| Sort         | Comma-separated fields and field start with '-' character sorts the result set in descending order. | <code>[]</code> |
+| Query Params | A list of params to send with the request.                                                          | <code>[]</code> |
 
 ### List Users {#listusers}
 
 Get all Users.
 
-| Input        | Comments                                                                                            | Default |
-| ------------ | --------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                     |         |
-| Limit        | If present, the maximum number of data files to return.                                             | 20      |
-| Sort         | Comma-separated fields and field start with '-' character sorts the result set in descending order. |         |
-| Query Params | A list of params to send with the request.                                                          |         |
+| Input        | Comments                                                                                            | Default         |
+| ------------ | --------------------------------------------------------------------------------------------------- | --------------- |
+| Connection   |                                                                                                     |                 |
+| Limit        | If present, the maximum number of data files to return.                                             | 20              |
+| Sort         | Comma-separated fields and field start with '-' character sorts the result set in descending order. | <code>[]</code> |
+| Query Params | A list of params to send with the request.                                                          | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Qlik
 
-| Input                   | Comments                                                                                                                                                                                                                                | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                         |         |
-| URL                     | Input the path only (/employees), The base URL is already included (https://{tenant}.us.qlikcloud.com/api/v1). For example, to connect to https://{tenant}.us.qlikcloud.com/api/v1/employees, only /employees is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                 |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                               |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                    |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                        |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                  |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                     |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                             |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                     |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                        | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                     | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                           | false   |
+| Input                   | Comments                                                                                                                                                                                                                                | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                         |                 |
+| URL                     | Input the path only (/employees), The base URL is already included (https://{tenant}.us.qlikcloud.com/api/v1). For example, to connect to https://{tenant}.us.qlikcloud.com/api/v1/employees, only /employees is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                 |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                               |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                    | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                        | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                  | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                     | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                             | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                     |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                     | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                        | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                     | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                           | false           |
 
 ### Update Data Asset {#updatedataassets}
 

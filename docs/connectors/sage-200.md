@@ -1,7 +1,7 @@
 ---
 title: Sage 200 Connector
 sidebar_label: Sage 200
-description: Sage 200 is an online business management solution designed to help businesses manage their finances, customers, and business insight in one solution.
+description: Manage customers, contacts, delivery addresses, products, price bands, sales orders, and sales invoices in Sage 200.
 ---
 
 ![Sage 200](./assets/sage-200.png#connector-icon)
@@ -51,16 +51,17 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in Sage 200 on a configured schedule.
+Retrieves existing and ongoing records for a specified Sage 200 resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                 | Default |
-| -------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           |                                                                                                          |         |
-| Site                 | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.    |         |
-| Company              | The company ID. You can get and reference this value from the 'Get Site and Company Information' action. |         |
-| Resource Type        | The Sage 200 resource type to poll for new or updated records.                                           |         |
-| Show New Records     | When true, newly created records are included in the trigger output.                                     | true    |
-| Show Updated Records | When true, records updated after the last poll are included in the trigger output.                       | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                           |         |
+| Site                 | The site ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                                                                                                                                     |         |
+| Company              | The company ID. You can get and reference this value from the 'Get Site and Company Information' action.                                                                                                                                                                  |         |
+| Resource Type        | The Sage 200 resource type to poll for new or updated records.                                                                                                                                                                                                            |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, newly created records are included in the trigger output.                                                                                                                                                                                                      | true    |
+| Show Updated Records | When true, records updated after the last poll are included in the trigger output.                                                                                                                                                                                        | true    |
 
 ## Actions
 
@@ -540,24 +541,24 @@ Retrieve a list of tax codes
 
 Send raw HTTP request to Sage 200
 
-| Input                   | Comments                                                                                                                                                                                                                                                      | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                                               |         |
-| URL                     | Input the path only (/sites), The base URL is already included (https://api.columbus.sage.com/uk/sage200extra/accounts/v1). For example, to connect to https://api.columbus.sage.com/uk/sage200extra/accounts/v1/sites, only /sites is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                       |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                     |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                          |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                              |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                        |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                           |         |
-| Header                  | A list of headers to send with the request. Subscription key and Authorization headers are already included.                                                                                                                                                  |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                      | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                           |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                          | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                           | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                              | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                           | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                 | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                      | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                                               |                 |
+| URL                     | Input the path only (/sites), The base URL is already included (https://api.columbus.sage.com/uk/sage200extra/accounts/v1). For example, to connect to https://api.columbus.sage.com/uk/sage200extra/accounts/v1/sites, only /sites is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                       |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                     |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                          | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                              | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                        | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                           | <code>[]</code> |
+| Header                  | A list of headers to send with the request. Subscription key and Authorization headers are already included.                                                                                                                                                  | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                      | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                           |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                                                          | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                           | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                              | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                           | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                 | false           |
 
 ### Search Customers {#searchcustomers}
 

@@ -1,7 +1,7 @@
 ---
 title: IMAP Connector
 sidebar_label: IMAP
-description: Interact with your IMAP email account
+description: Search, read, and manage messages and mailboxes on an IMAP email server, and react to new emails.
 ---
 
 ![IMAP](./assets/imap.png#connector-icon)

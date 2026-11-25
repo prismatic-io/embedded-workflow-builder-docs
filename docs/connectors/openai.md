@@ -1,7 +1,7 @@
 ---
 title: OpenAI Connector
 sidebar_label: OpenAI
-description: Interact with OpenAI's models and build AI Agents
+description: Create chat completions, responses, and images with OpenAI models, manage files, and build agents with tools, MCP servers, and human approvals.
 ---
 
 ![OpenAI](./assets/openai.png#connector-icon)
@@ -37,54 +37,54 @@ Marks this flow as a tool that can be called by AI agents
 
 Configure a local MCP server that runs via command line
 
-| Input        | Comments                                                                | Default |
-| ------------ | ----------------------------------------------------------------------- | ------- |
-| Server Label | Unique identifier for the MCP server                                    |         |
-| Command      | Command to execute the MCP server (currently only npx is supported)     | npx     |
-| Arguments    | Arguments to pass to the command                                        |         |
-| Tool Filter  | List of specific tool names to expose. If empty, all tools are exposed. |         |
+| Input        | Comments                                                                | Default         |
+| ------------ | ----------------------------------------------------------------------- | --------------- |
+| Server Label | Unique identifier for the MCP server                                    |                 |
+| Command      | Command to execute the MCP server (currently only npx is supported)     | npx             |
+| Arguments    | Arguments to pass to the command                                        | <code>[]</code> |
+| Tool Filter  | List of specific tool names to expose. If empty, all tools are exposed. | <code>[]</code> |
 
 ### Agent: Add Remote MCP Server {#addremotemcpserver}
 
 Configure a remote MCP server accessed via HTTP
 
-| Input        | Comments                                                                                | Default |
-| ------------ | --------------------------------------------------------------------------------------- | ------- |
-| Server Label | Unique identifier for the MCP server                                                    |         |
-| Server URL   | URL endpoint for the MCP server                                                         |         |
-| Headers      | HTTP headers for authentication or other needs. Key = header name, Value = header value |         |
-| Tool Filter  | List of specific tool names to expose. If empty, all tools are exposed.                 |         |
+| Input        | Comments                                                                                | Default         |
+| ------------ | --------------------------------------------------------------------------------------- | --------------- |
+| Server Label | Unique identifier for the MCP server                                                    |                 |
+| Server URL   | URL endpoint for the MCP server                                                         |                 |
+| Headers      | HTTP headers for authentication or other needs. Key = header name, Value = header value | <code>[]</code> |
+| Tool Filter  | List of specific tool names to expose. If empty, all tools are exposed.                 | <code>[]</code> |
 
 ### Agent: Classify and Branch {#classifyandbranch}
 
 Use AI to analyze input and route to the appropriate branch
 
-| Input                       | Comments                                                                                                              | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| OpenAI Connection           | Connection to OpenAI API with your API key                                                                            |         |
-| Model                       | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. |         |
-| Classification Instructions | Additional instructions for how to classify the input                                                                 |         |
-| Branch Definitions          | Define branches and their classification criteria. Key = branch name, Value = description of when to use this branch  |         |
-| Input Text                  | The text to analyze and classify (e.g., email content)                                                                |         |
-| Tools                       | List of tools available to the agent. Each tool should be the output from a Create Tool action.                       |         |
-| MCP Servers                 | List of MCP server configurations. Each should be the output from an Add MCP Server action.                           |         |
-| File IDs                    | File IDs from previously uploaded files to OpenAI. Use the Upload File action to get these IDs.                       |         |
+| Input                       | Comments                                                                                                              | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------- |
+| OpenAI Connection           | Connection to OpenAI API with your API key                                                                            |                 |
+| Model                       | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. |                 |
+| Classification Instructions | Additional instructions for how to classify the input                                                                 |                 |
+| Branch Definitions          | Define branches and their classification criteria. Key = branch name, Value = description of when to use this branch  | <code>[]</code> |
+| Input Text                  | The text to analyze and classify (e.g., email content)                                                                |                 |
+| Tools                       | List of tools available to the agent. Each tool should be the output from a Create Tool action.                       | <code>[]</code> |
+| MCP Servers                 | List of MCP server configurations. Each should be the output from an Add MCP Server action.                           | <code>[]</code> |
+| File IDs                    | File IDs from previously uploaded files to OpenAI. Use the Upload File action to get these IDs.                       | <code>[]</code> |
 
 ### Agent: Create {#createagent}
 
 Create an AI agent with customizable instructions.
 
-| Input                | Comments                                                                                                              | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Model                | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. |         |
-| Name                 | The name of the agent                                                                                                 |         |
-| Instructions         | System instructions that define the agent's behavior and capabilities                                                 |         |
-| Handoff Description  | Description for handoff routing. Used by other agents to understand when to hand off to this agent.                   |         |
-| Tools                | List of tools available to the agent. Each tool should be the output from a Create Tool action.                       |         |
-| MCP Servers          | List of MCP server configurations. Each should be the output from an Add MCP Server action.                           |         |
-| Output Schema        | JSON Schema for structured output. Forces the agent to respond with data matching this schema.                        |         |
-| Output Schema Name   | Name for the output schema                                                                                            | output  |
-| Output Schema Strict | If true, enforces strict schema validation                                                                            | false   |
+| Input                | Comments                                                                                                              | Default         |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Model                | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. |                 |
+| Name                 | The name of the agent                                                                                                 |                 |
+| Instructions         | System instructions that define the agent's behavior and capabilities                                                 |                 |
+| Handoff Description  | Description for handoff routing. Used by other agents to understand when to hand off to this agent.                   |                 |
+| Tools                | List of tools available to the agent. Each tool should be the output from a Create Tool action.                       | <code>[]</code> |
+| MCP Servers          | List of MCP server configurations. Each should be the output from an Add MCP Server action.                           | <code>[]</code> |
+| Output Schema        | JSON Schema for structured output. Forces the agent to respond with data matching this schema.                        |                 |
+| Output Schema Name   | Name for the output schema                                                                                            | output          |
+| Output Schema Strict | If true, enforces strict schema validation                                                                            | false           |
 
 ### Agent: Create Code Interpreter Tool {#createcodeinterpretertool}
 
@@ -95,20 +95,20 @@ Create a code interpreter tool that allows agents to execute Python code
 | Tool Name      | Custom name for the code interpreter tool                        | Code Interpreter |
 | Container Type | Container type for code execution                                | auto             |
 | Container ID   | Specific container ID (only used if containerType is 'specific') |                  |
-| File IDs       | Comma-separated list of file IDs to include in the container     |                  |
+| File IDs       | Comma-separated list of file IDs to include in the container     | <code>[]</code>  |
 
 ### Agent: Create File Search Tool {#createfilesearchtool}
 
 Create a file search tool that searches through vector stores
 
-| Input                  | Comments                                           | Default     |
-| ---------------------- | -------------------------------------------------- | ----------- |
-| Tool Name              | Custom name for the file search tool               | File Search |
-| Vector Store IDs       | Comma-separated list of vector store IDs to search |             |
-| Max Results            | Maximum number of results to return                |             |
-| Include Search Results | Include search results in the LLM output           | true        |
-| Ranking Algorithm      | Algorithm for ranking search results               |             |
-| Score Threshold        | Minimum score threshold for results (0-1)          |             |
+| Input                  | Comments                                           | Default         |
+| ---------------------- | -------------------------------------------------- | --------------- |
+| Tool Name              | Custom name for the file search tool               | File Search     |
+| Vector Store IDs       | Comma-separated list of vector store IDs to search | <code>[]</code> |
+| Max Results            | Maximum number of results to return                |                 |
+| Include Search Results | Include search results in the LLM output           | true            |
+| Ranking Algorithm      | Algorithm for ranking search results               |                 |
+| Score Threshold        | Minimum score threshold for results (0-1)          |                 |
 
 ### Agent: Create Flow Tool {#createflowtool}
 
@@ -135,18 +135,18 @@ Create a tool that requires human approval before the agent can proceed
 
 Create an image generation tool that allows agents to generate images
 
-| Input              | Comments                                            | Default          |
-| ------------------ | --------------------------------------------------- | ---------------- |
-| Tool Name          | Custom name for the image generation tool           | Image Generation |
-| Background         | Background type for generated images                | auto             |
-| Input Fidelity     | Input fidelity level                                |                  |
-| Model              | Model to use for generation                         | gpt-image-1      |
-| Moderation         | Moderation level for content filtering              | auto             |
-| Output Compression | Compression level 0-100 (higher = more compression) |                  |
-| Output Format      | Image output format                                 | png              |
-| Partial Images     | Number of partial images to generate                |                  |
-| Quality            | Quality level for generated images                  | auto             |
-| Size               | Image dimensions                                    | auto             |
+| Input              | Comments                                            | Default             |
+| ------------------ | --------------------------------------------------- | ------------------- |
+| Tool Name          | Custom name for the image generation tool           | Image Generation    |
+| Background         | Background type for generated images                | auto                |
+| Input Fidelity     | Input fidelity level                                |                     |
+| Model              | Model to use for generation                         | gpt-image-2.5-flare |
+| Moderation         | Moderation level for content filtering              | auto                |
+| Output Compression | Compression level 0-100 (higher = more compression) |                     |
+| Output Format      | Image output format                                 | png                 |
+| Partial Images     | Number of partial images to generate                |                     |
+| Quality            | Quality level for generated images                  | auto                |
+| Size               | Image dimensions                                    | auto                |
 
 ### Agent: Create Web Search Tool {#createwebsearchtool}
 
@@ -165,29 +165,29 @@ Create a web search tool that allows agents to search the web
 
 Resume an interrupted agent run with approval decisions
 
-| Input               | Comments                                                                                                        | Default |
-| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------- |
-| OpenAI Connection   | Connection to OpenAI API with your API key                                                                      |         |
-| Agent Configuration | Agent configuration object from Create Agent action. Should be the same configuration used in the original run. |         |
-| Run State           | State from the interrupted run, containing the execution context and interruptions.                             |         |
-| Approval Responses  | Array of approval responses with updated approvalRequest objects containing functionId and approved status.     |         |
-| Max Turns           | Maximum number of conversation turns the agent can take from this point. Prevents infinite loops.               | 10      |
-| Handoff Agents      | Same handoff agents configuration used in the original run, if any.                                             |         |
+| Input               | Comments                                                                                                        | Default         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
+| OpenAI Connection   | Connection to OpenAI API with your API key                                                                      |                 |
+| Agent Configuration | Agent configuration object from Create Agent action. Should be the same configuration used in the original run. |                 |
+| Run State           | State from the interrupted run, containing the execution context and interruptions.                             |                 |
+| Approval Responses  | Array of approval responses with updated approvalRequest objects containing functionId and approved status.     |                 |
+| Max Turns           | Maximum number of conversation turns the agent can take from this point. Prevents infinite loops.               | 10              |
+| Handoff Agents      | Same handoff agents configuration used in the original run, if any.                                             | <code>[]</code> |
 
 ### Agent: Run {#runagent}
 
 Run an agent
 
-| Input                | Comments                                                                                                                                              | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| OpenAI Connection    | Connection to OpenAI API with your API key                                                                                                            |         |
-| Agent Configuration  | Agent configuration object from Create Agent action                                                                                                   |         |
-| User Input           | The message or question to send to the agent                                                                                                          |         |
-| History              | Previous conversation history. Use this to continue a conversation from a previous run. Should be the history array from a previous agent run result. |         |
-| File IDs             | File IDs from previously uploaded files to OpenAI. Use the Upload File action to get these IDs.                                                       |         |
-| Previous Response ID | ID of the previous response to continue the conversation. Alternative to passing full history array.                                                  |         |
-| Max Turns            | Maximum number of conversation turns the agent can take. Prevents infinite loops.                                                                     | 10      |
-| Handoff Agents       | List of agent configurations that can be handed off to. Each should be the output from a Create Agent action.                                         |         |
+| Input                | Comments                                                                                                                                              | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| OpenAI Connection    | Connection to OpenAI API with your API key                                                                                                            |                 |
+| Agent Configuration  | Agent configuration object from Create Agent action                                                                                                   |                 |
+| User Input           | The message or question to send to the agent                                                                                                          |                 |
+| History              | Previous conversation history. Use this to continue a conversation from a previous run. Should be the history array from a previous agent run result. |                 |
+| File IDs             | File IDs from previously uploaded files to OpenAI. Use the Upload File action to get these IDs.                                                       | <code>[]</code> |
+| Previous Response ID | ID of the previous response to continue the conversation. Alternative to passing full history array.                                                  |                 |
+| Max Turns            | Maximum number of conversation turns the agent can take. Prevents infinite loops.                                                                     | 10              |
+| Handoff Agents       | List of agent configurations that can be handed off to. Each should be the output from a Create Agent action.                                         | <code>[]</code> |
 
 ### Create Chat Completion {#createchatcompletion}
 
@@ -196,7 +196,7 @@ Create a completion for the chat message
 | Input             | Comments                                                                                                                                                                                                                                    | Default                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection        |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Model             | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account.                                                                                                                       | gpt-3.5-turbo                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Model             | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account.                                                                                                                       | gpt-6-luna                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Messages          |                                                                                                                                                                                                                                             | <code>[<br /> {<br /> "role": "system",<br /> "content": "You are a helpful assistant."<br /> },<br /> {<br /> "role": "user",<br /> "content": "Who won the world series in 2020?"<br /> },<br /> {<br /> "role": "assistant",<br /> "content": "The Los Angeles Dodgers won the World Series in 2020."<br /> },<br /> {<br /> "role": "user",<br /> "content": "Where was it played?"<br /> }<br />]</code> |
 | Temperature       | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.                                                        | 1                                                                                                                                                                                                                                                                                                                                                                                                             |
 | top_p             | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. | 1                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -219,12 +219,12 @@ Create image(s) given a prompt
 
 Create a response using the responses endpoint
 
-| Input        | Comments                                                                                                              | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                       |         |
-| Model        | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. | gpt-4.1 |
-| Input        | The input text to process                                                                                             |         |
-| Timeout (ms) | The maximum amount of time (in MS) to wait for a response.                                                            | 10000   |
+| Input        | Comments                                                                                                              | Default    |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Connection   |                                                                                                                       |            |
+| Model        | Select an OpenAI model to use for the request. The list of available models will be fetched from your OpenAI account. | gpt-6-luna |
+| Input        | The input text to process                                                                                             |            |
+| Timeout (ms) | The maximum amount of time (in MS) to wait for a response.                                                            | 10000      |
 
 ### Delete File {#deletefile}
 
@@ -269,23 +269,23 @@ List all available models
 
 Send raw HTTP request to OpenAI
 
-| Input                   | Comments                                                                                                                                                                                                                                | Default    |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Connection              |                                                                                                                                                                                                                                         |            |
-| URL                     | Input the path only (/v1/images/generations), The base URL is already included (https://api.openai.com). For example, to connect to https://api.openai.com/v1/images/generations, only /v1/images/generations is entered in this field. | /v1/models |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                 |            |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                               |            |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                    |            |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                        |            |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                  |            |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                     |            |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                             |            |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                | json       |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                     |            |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                     | 0          |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                        | false      |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                     | 0          |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                           | false      |
+| Input                   | Comments                                                                                                                                                                                                                                | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                         |                 |
+| URL                     | Input the path only (/v1/images/generations), The base URL is already included (https://api.openai.com). For example, to connect to https://api.openai.com/v1/images/generations, only /v1/images/generations is entered in this field. | /v1/models      |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                 |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                               |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                    | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                        | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                  | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                     | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                             | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                     |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                     | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                        | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                     | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                           | false           |
 
 ### Retrieve File {#retrievefile}
 

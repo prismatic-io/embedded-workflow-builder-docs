@@ -1,7 +1,7 @@
 ---
 title: Sage HR Connector
 sidebar_label: Sage HR
-description: Sage HR is all inclusive Human Resource management solution. Use the Sage HR component to manage Employees, Teams, Projects, and more.
+description: Manage Sage HR employees, documents, projects, teams, positions, and time off requests, and react to new records with a polling trigger.
 ---
 
 ![Sage HR](./assets/sage-hr.png#connector-icon)
@@ -293,23 +293,23 @@ Lists employee time off Requests
 
 Send raw HTTP request to Sage HR
 
-| Input                   | Comments                                                                                                                                                                                                           | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                                    |         |
-| URL                     | Input the path only (/employees), The base URL is already included (https://subdomain.sage.hr/api/). For example, to connect to https://subdomain.sage.hr/api/employees, only /employees is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                            |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                          |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                               |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                   |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                             |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                        |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                           | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                   | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                      | false   |
+| Input                   | Comments                                                                                                                                                                                                           | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                                    |                 |
+| URL                     | Input the path only (/employees), The base URL is already included (https://subdomain.sage.hr/api/). For example, to connect to https://subdomain.sage.hr/api/employees, only /employees is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                            |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                          |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                               | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                   | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                             | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                        | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                           | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                   | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                      | false           |
 
 ### Rehire Employee {#rehireemployee}
 

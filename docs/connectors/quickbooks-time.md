@@ -1,7 +1,7 @@
 ---
 title: QuickBooks Time Connector
 sidebar_label: QuickBooks Time
-description: Manage Employee Time Tracking within Intuit QuickBooks Time
+description: Manage timesheets, users, and job codes in Intuit QuickBooks Time, and react to new records with a polling trigger.
 ---
 
 ![QuickBooks Time](./assets/quickbooks-time.png#connector-icon)
@@ -49,13 +49,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New Records {#pollchangestrigger}
 
-Checks for new timesheets, users, or job codes in QuickBooks Time on a configured schedule.
+Retrieves existing and ongoing records for a specified QuickBooks Time resource type. Load history once, check for changes on a schedule, or both.
 
-| Input            | Comments                                          | Default |
-| ---------------- | ------------------------------------------------- | ------- |
-| Connection       |                                                   |         |
-| Resource Type    | The type of resource to poll for new records.     |         |
-| Show New Records | Include newly created records in trigger results. | true    |
+| Input            | Comments                                                                                                                                                                                                                                                                                         | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection       |                                                                                                                                                                                                                                                                                                  |         |
+| Resource Type    | The type of resource to poll for new records.                                                                                                                                                                                                                                                    |         |
+| Show New Records | Include newly created records in trigger results.                                                                                                                                                                                                                                                | true    |
+| Look-back Date   | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created (for timesheets, dated) on or after this date once, ignoring the visibility filters. |         |
 
 ## Actions
 
@@ -63,26 +64,26 @@ Checks for new timesheets, users, or job codes in QuickBooks Time on a configure
 
 Creates a Timesheet
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| User ID                     | The Id of the record to modify                                                                                                                                                                                                    |         |
-| Jobcode ID                  | The Jobcode Id                                                                                                                                                                                                                    |         |
-| Start Date                  | Start time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                           |         |
-| End Date                    | End time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                             |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| User ID                     | The Id of the record to modify                                                                                                                                                                                                    |                 |
+| Jobcode ID                  | The Jobcode Id                                                                                                                                                                                                                    |                 |
+| Start Date                  | Start time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                           |                 |
+| End Date                    | End time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                             |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Create User {#createuser}
 
 Creates a User from the provided data
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Username                    | Username of the user                                                                                                                                                                                                              |         |
-| First Name                  | First name of the user                                                                                                                                                                                                            |         |
-| Last Name                   | Last name of the user                                                                                                                                                                                                             |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Username                    | Username of the user                                                                                                                                                                                                              |                 |
+| First Name                  | First name of the user                                                                                                                                                                                                            |                 |
+| Last Name                   | Last name of the user                                                                                                                                                                                                             |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Delete Timesheet {#deletetimesheet}
 
@@ -97,75 +98,75 @@ Deletes a Timesheet
 
 Gets a list of Job Codes and their associated Users
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |         |
-| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |         |
-| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |         |
-| User IDs                    | A comma separated list of User Ids to filter on                                                                                                                                                                                   |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |                 |
+| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |                 |
+| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |                 |
+| User IDs                    | A comma separated list of User Ids to filter on                                                                                                                                                                                   |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Get Job Codes {#getjobcodes}
 
 Gets a list of Job Codes
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |         |
-| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |         |
-| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |                 |
+| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |                 |
+| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Get Time Sheets {#gettimesheets}
 
 Gets a list of Time Sheets
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |         |
-| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |         |
-| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |         |
-| User IDs                    | A comma separated list of User Ids to filter on                                                                                                                                                                                   |         |
-| Job Code IDs                | A comma separated list of Job Code Ids to filter on                                                                                                                                                                               |         |
-| Start Date                  | YYYY-MM-DD formatted date                                                                                                                                                                                                         |         |
-| End Date                    | YYYY-MM-DD formatted date                                                                                                                                                                                                         |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |                 |
+| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |                 |
+| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |                 |
+| User IDs                    | A comma separated list of User Ids to filter on                                                                                                                                                                                   |                 |
+| Job Code IDs                | A comma separated list of Job Code Ids to filter on                                                                                                                                                                               |                 |
+| Start Date                  | YYYY-MM-DD formatted date                                                                                                                                                                                                         |                 |
+| End Date                    | YYYY-MM-DD formatted date                                                                                                                                                                                                         |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Get Users {#getusers}
 
 Gets a list of Users with optional filters
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |         |
-| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |         |
-| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Active                      | 'yes', 'no', or 'both'. Default is 'yes'                                                                                                                                                                                          |                 |
+| Per Page                    | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50                                                                                                                                   |                 |
+| Page                        | Represents the page of results you'd like to retrieve. Default is 1.                                                                                                                                                              |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Update Timesheet {#updatetimesheet}
 
 Updates a Timesheet
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| Timesheet ID                | The Id of the record to modify                                                                                                                                                                                                    |         |
-| Jobcode ID                  | The Jobcode Id                                                                                                                                                                                                                    |         |
-| Start Date                  | Start time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                           |         |
-| End Date                    | End time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                             |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| Timesheet ID                | The Id of the record to modify                                                                                                                                                                                                    |                 |
+| Jobcode ID                  | The Jobcode Id                                                                                                                                                                                                                    |                 |
+| Start Date                  | Start time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                           |                 |
+| End Date                    | End time of the timesheet, in ISO 8601 format (YYYY-MM-DDThh:mm:ss±hh:mm). Time should reflect the user's local time.                                                                                                             |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |
 
 ### Update User {#updateuser}
 
 Updates a specified User
 
-| Input                       | Comments                                                                                                                                                                                                                          | Default |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                  |                                                                                                                                                                                                                                   |         |
-| ID                          | The Id of the record to modify                                                                                                                                                                                                    |         |
-| Username                    | Username of the user                                                                                                                                                                                                              |         |
-| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. |         |
+| Input                       | Comments                                                                                                                                                                                                                          | Default         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  |                                                                                                                                                                                                                                   |                 |
+| ID                          | The Id of the record to modify                                                                                                                                                                                                    |                 |
+| Username                    | Username of the user                                                                                                                                                                                                              |                 |
+| Additional Query Parameters | Additional query parameters to be provided for use in filtering result sets. For example, when filtering users it is possible to provide 'usernames' as the key and a comma separated list of one or more usernames to filter on. | <code>[]</code> |

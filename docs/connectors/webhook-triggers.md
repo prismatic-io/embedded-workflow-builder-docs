@@ -1,7 +1,7 @@
 ---
 title: Universal Webhook Connector
 sidebar_label: Universal Webhook
-description: The Universal Webhook trigger allows you to invoke a flow by making an HTTP request to the trigger's URL.
+description: Invoke a flow by sending an HTTP request to the trigger's unique webhook URL.
 ---
 
 ![Universal Webhook](./assets/webhook-triggers.png#connector-icon)

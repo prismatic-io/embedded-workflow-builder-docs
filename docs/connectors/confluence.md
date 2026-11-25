@@ -1,7 +1,7 @@
 ---
 title: Confluence Connector
 sidebar_label: Confluence
-description: Confluence is an open and shared workspace platform provided by Atlassian. Use the Confluence component to manage spaces, pages, and content properties.
+description: Manage Confluence spaces, pages, attachments, and content properties, and react to new and updated pages and spaces.
 ---
 
 ![Confluence](./assets/confluence.png#connector-icon)

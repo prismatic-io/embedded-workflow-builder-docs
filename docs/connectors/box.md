@@ -18,11 +18,7 @@ This component was built using the [Box REST API](https://developer.box.com/refe
 
 Authenticate requests using a developer token.
 
-A **Developer Token** is a short-lived (60-minute) token that can be used for testing purposes. Developer tokens allow access to the Box API for a personal Box account only.
-
-:::note[Production Authentication]
-When an integration is ready for production, an [OAuth 2.0](#oauth2) connection is required to authenticate customer Box accounts. Testing can also be performed with OAuth 2.0.
-:::
+A **Developer Token** is a short-lived (60-minute) token that can be used for testing purposes. Developer tokens allow access to the Box API for a personal Box account only. Use an [OAuth 2.0](#oauth2) connection in production to authenticate customer Box accounts.
 
 #### Prerequisites
 
@@ -48,10 +44,6 @@ For more information, refer to the [Box Developer Token documentation](https://d
 
 - Enter the developer token value into the **Developer Token** field of the connection configuration
 
-:::warning[Token Expiration]
-Developer tokens expire after 60 minutes. Generate a new token if authentication fails due to expiration.
-:::
-
 | Input           | Comments                                                                                                                         | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Developer Token | A short-lived developer token for testing purposes. Obtain from [Box Developer Console](https://app.box.com/developers/console). |         |
@@ -68,6 +60,7 @@ Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authen
 
 - A [Box account](https://www.box.com/)
 - Access to the [Box Developer Console](https://app.box.com/developers/console)
+- A Box account on a plan that includes the Box features the integration uses (some features require an Enterprise account)
 
 #### Setup Steps
 
@@ -91,12 +84,9 @@ Refer to the [Box OAuth 2.0 setup guide](https://developer.box.com/guides/authen
 - Enter the **Client ID** and **Client Secret** from the Box app configuration
 - For **Scopes**, either:
   - Leave blank to use the **Application Scopes** configured in the Box app
+  - Keep the default value (`root_readwrite manage_webhook`)
   - Enter specific scopes as a space-separated list (e.g., `root_readwrite manage_webhook`)
   - Refer to [Box scopes documentation](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes) for available scopes
-
-:::note[Box Enterprise Features]
-Some Box features require an Enterprise account. Ensure the Box account has appropriate subscription level for the required functionality.
-:::
 
 #### App Authorization
 
@@ -115,11 +105,7 @@ A Box enterprise administrator must authorize the app using the app's **Client I
 3. Enter the **Client ID** from the Box app's **Configuration** tab
 4. Click **Next**, review the requested scopes, and select **Authorize**
 
-Once authorized, users within the enterprise organization can authenticate with the integration.
-
-:::note[Re-authorization Required After App Recreation]
-If the Box app is deleted and recreated, a new Client ID is generated and admin authorization must be repeated.
-:::
+Once authorized, users within the enterprise organization can authenticate with the integration. If the Box app is deleted and recreated, a new Client ID is generated and the authorization steps above must be repeated.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

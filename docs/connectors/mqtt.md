@@ -1,7 +1,7 @@
 ---
 title: MQTT Connector
 sidebar_label: MQTT
-description: Interact with an MQTT Queue
+description: Publish messages to topics on an MQTT broker.
 ---
 
 ![MQTT](./assets/mqtt.png#connector-icon)

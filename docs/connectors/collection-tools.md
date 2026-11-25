@@ -1,12 +1,12 @@
 ---
 title: Collection Tools Connector
 sidebar_label: Collection Tools
-description: Common collection operations
+description: Filter, sort, map, de-duplicate, chunk, and aggregate lists and objects, and validate data against JSON or XML schemas.
 ---
 
 ![Collection Tools](./assets/collection-tools.png#connector-icon)
-The collection tools component contains actions that let you perform common tasks on collections of data (objects and arrays).
-You can do things like concatenate objects, filter items of lists (arrays), map functions on items, and more.
+The collection tools component contains actions that perform common tasks on collections of data (objects and arrays).
+Actions concatenate objects, filter items of lists (arrays), map functions on items, and more.
 
 ## Actions
 
@@ -14,23 +14,23 @@ You can do things like concatenate objects, filter items of lists (arrays), map 
 
 Add a value to an object with the given key
 
-| Input       | Comments                                                                  | Default |
-| ----------- | ------------------------------------------------------------------------- | ------- |
-| Object      |                                                                           |         |
-| Key         | My Comments                                                               |         |
-| Value       |                                                                           |         |
-| Insert Path | Optionally define a path using dot notation of where to add the key/value |         |
+| Input       | Comments                                                                                                          | Default |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| Object      | The object to add the key/value pairs to. Accepts a JSON object or a reference to an object from an earlier step. |         |
+| Key         | The key to set on the object. When Insert Path is set, the key is added under that path.                          |         |
+| Value       | The value to set for the key on the object.                                                                       |         |
+| Insert Path | Optionally define a path using dot notation of where to add the key/value                                         |         |
 
 ### Add Multiple Key/Value to Object {#addmultiplekeys}
 
 Add multiple key/value pairs to an object
 
-| Input              | Comments                                                                                                                           | Default                                             |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Object             |                                                                                                                                    |                                                     |
-| Insert Path        | Optionally define a path using dot notation of where to add the key/value                                                          |                                                     |
-| Dynamic Key/Values | Add an array of key/value pairs to the object. Please take note that the action will favor this input over the 'Key/Values' input. | <code>{<br /> "someProperty": "value"<br />}</code> |
-| Key/Values         | Key and value of the properties to add to the object. If provided, 'Key' and 'Value' inputs are ignored.                           |                                                     |
+| Input              | Comments                                                                                                                                                         | Default                                             |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Object             | The object to add the key/value pairs to. Accepts a JSON object or a reference to an object from an earlier step.                                                |                                                     |
+| Insert Path        | Optionally define a path using dot notation of where to add the key/value                                                                                        |                                                     |
+| Dynamic Key/Values | A JSON object whose properties are added to the top level of the object. When provided, this input takes precedence over Key/Values, and Insert Path is ignored. | <code>{<br /> "someProperty": "value"<br />}</code> |
+| Key/Values         | Key and value of the properties to add to the object, under Insert Path when it is set. Ignored when Dynamic Key/Values is provided.                             | <code>[]</code>                                     |
 
 ### Aggregate {#aggregate}
 
@@ -51,6 +51,15 @@ Append element to the end of the list
 | List    | Reference to a list of data to operate on |         |
 | Element | The item to append to the end of the list |         |
 
+### Apply Field Mapping {#applyfieldmapping}
+
+Create a new object from a source object, using the rows of a Field Mapping to copy each source field to its destination field.
+
+| Input               | Comments                                                                                                                                                                              | Default |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Field Mapping Rules | The field mapping rules to apply. Expects a Field Mapping config variable: an ordered list of rows, where the key of each row is a source field and the value is a destination field. |         |
+| Source Object       | The object to map data from. Expects a reference to an object, for example the result of an earlier step.                                                                             |         |
+
 ### Chunks {#chunks}
 
 Chunk the list into lists of the specified number of elements
@@ -64,9 +73,9 @@ Chunk the list into lists of the specified number of elements
 
 This version of the action is being deprecated. Please replace action with Create Object.
 
-| Input       | Comments                                                                           | Default |
-| ----------- | ---------------------------------------------------------------------------------- | ------- |
-| Collections | Returns an object with the specified key and corresponding collection as the value |         |
+| Input       | Comments                                                                           | Default         |
+| ----------- | ---------------------------------------------------------------------------------- | --------------- |
+| Collections | Returns an object with the specified key and corresponding collection as the value | <code>[]</code> |
 
 ### Concatenate {#concatenate}
 
@@ -90,17 +99,17 @@ Count the number of occurrences of element in list
 
 Create a new list with the given inputs
 
-| Input      | Comments | Default |
-| ---------- | -------- | ------- |
-| List Items |          |         |
+| Input      | Comments                                        | Default         |
+| ---------- | ----------------------------------------------- | --------------- |
+| List Items | The items to include in the new list, in order. | <code>[]</code> |
 
 ### Create Object {#createobject}
 
 Creates a new object from provided key/value pairs
 
-| Input             | Comments            | Default |
-| ----------------- | ------------------- | ------- |
-| Key & Value Pairs | Key and value pairs |         |
+| Input             | Comments                                                                                     | Default         |
+| ----------------- | -------------------------------------------------------------------------------------------- | --------------- |
+| Key & Value Pairs | The key/value pairs to build the new object from. Each key becomes a property of the object. | <code>[]</code> |
 
 ### De-duplicate {#deduplicate}
 
@@ -114,10 +123,10 @@ De-duplicate the elements of the list
 
 Maps the values from two different collections and returns a key/value list where the 'key' is the value of the Key Mappings input and the 'value' is the value of the Value Mappings input
 
-| Input          | Comments | Default |
-| -------------- | -------- | ------- |
-| Key Mappings   |          |         |
-| Value Mappings |          |         |
+| Input          | Comments                                                                                                                       | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Key Mappings   | A key/value list where each key names a field in Value Mappings and each value is the key to use for that field in the output. |                 |
+| Value Mappings | The source values as key/value pairs, looked up by the keys in Key Mappings.                                                   | <code>[]</code> |
 
 ### Filter {#filter}
 
@@ -148,9 +157,9 @@ Flatten an array of arrays into a single array
 
 Convert a Key Value list to an Object
 
-| Input          | Comments | Default |
-| -------------- | -------- | ------- |
-| Key/Value List |          |         |
+| Input          | Comments                                                                                        | Default |
+| -------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| Key/Value List | A JSON array of objects, each with a key and a value property, to convert into a single object. |         |
 
 ### Last {#last}
 
@@ -183,9 +192,9 @@ Transform a list and its elements
 
 Convert an Object to a Key Value List
 
-| Input  | Comments | Default |
-| ------ | -------- | ------- |
-| Object |          |         |
+| Input  | Comments                                                                              | Default |
+| ------ | ------------------------------------------------------------------------------------- | ------- |
+| Object | The object to convert. Each property becomes one key/value pair in the returned list. |         |
 
 ### Process In Order {#processinorder}
 
@@ -211,10 +220,10 @@ Remove all occurrences of an element from a list
 
 Select an item by index from a list of items, supports nested lists
 
-| Input | Comments                                  | Default |
-| ----- | ----------------------------------------- | ------- |
-| List  | Reference to a list of data to operate on |         |
-| Index |                                           |         |
+| Input | Comments                                                                                                 | Default         |
+| ----- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| List  | Reference to a list of data to operate on                                                                |                 |
+| Index | The zero-based positions of the items to select. Items are returned in the order the indexes are listed. | <code>[]</code> |
 
 ### Sort {#sort}
 
@@ -245,7 +254,7 @@ Take last number of elements from a list
 
 ### Validate JSON Schema {#validatejsonschema}
 
-Validate a JSON input against a given schema, returning errors if not JSON input is not valid.
+Validate a JSON input against a given schema, returning errors if the JSON input is not valid.
 
 | Input       | Comments                                        | Default                                                                                                                                                                              |
 | ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

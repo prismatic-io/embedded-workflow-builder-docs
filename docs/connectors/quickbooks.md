@@ -1,7 +1,7 @@
 ---
 title: QuickBooks Connector
 sidebar_label: QuickBooks
-description: Create and manage customers and invoices within Intuit QuickBooks
+description: Manage invoices, customers, items, purchase orders, sales and refund receipts, and attachments in QuickBooks Online, and query any accounting entity.
 ---
 
 ![QuickBooks](./assets/quickbooks.png#connector-icon)

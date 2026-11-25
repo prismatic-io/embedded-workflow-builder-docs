@@ -1,7 +1,7 @@
 ---
 title: Zip Connector
 sidebar_label: Zip
-description: Provides utility methods for working with zip files
+description: Compress and decompress zip archives and gzip data.
 ---
 
 ![Zip](./assets/zip.png#connector-icon)

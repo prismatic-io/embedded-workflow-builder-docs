@@ -23,9 +23,7 @@ An **admin API access token** from an admin-created custom app can be used for t
 Admin API access tokens are recommended for testing only. For production integrations, use OAuth 2.0 to allow users to authenticate with their own credentials.
 
 :::warning[New Admin-Created Custom Apps Can No Longer Be Created]
-Shopify stopped allowing new admin-created custom apps on **January 1, 2026**. The **Develop apps** flow in a store's settings can no longer create one. Existing admin-created custom apps are unaffected and their tokens continue to work.
-
-To create a new app, use the [Dev Dashboard](https://shopify.dev/docs/apps/build/dev-dashboard/create-apps-using-dev-dashboard) or the [Shopify CLI](https://shopify.dev/docs/apps/build/cli-for-apps) and authenticate with the **OAuth 2.0** connection instead.
+Shopify stopped allowing new admin-created custom apps on **January 1, 2026**; existing ones and their tokens continue to work. To create a new app, use the [Dev Dashboard](https://shopify.dev/docs/apps/build/dev-dashboard/create-apps-using-dev-dashboard) or the [Shopify CLI](https://shopify.dev/docs/apps/build/cli-for-apps) and authenticate with the **OAuth 2.0** connection instead.
 :::
 
 #### Prerequisites
@@ -54,7 +52,7 @@ Refer to [Shopify's admin-created custom apps documentation](https://shopify.dev
 Create a connection of type **Access Token** and configure the following fields:
 
 - Enter the **Admin API Access Token** into the connection configuration.
-- Enter the **Host** (the Shopify domain without `https://`, e.g., `example-store.myshopify.com`).
+- **Host**: the store handle (e.g., `example-store`). The full `example-store.myshopify.com` domain is also accepted, and any `https://` prefix or trailing path is ignored. Custom domains are not supported. Find the handle in the Shopify admin URL bar (`https://<handle>.myshopify.com/admin`) or under **Settings > Domains**.
 - Optionally set the **API Version**. It defaults to the version this component ships with, currently `2026-07`. Refer to [Shopify API versioning](https://shopify.dev/docs/api/usage/versioning) for the versions Shopify currently accepts and how long each remains available.
 
 | Input                  | Comments                                                                                                                                                                                                                                                               | Default                           |
@@ -75,10 +73,6 @@ Shopify uses OAuth 2.0 for app authentication. This connection type simplifies c
 - Access to the [Dev Dashboard](https://dev.shopify.com/dashboard) or [Shopify CLI](https://shopify.dev/docs/apps/build/scaffold-app) for app creation
 - A [development store](https://shopify.dev/docs/apps/build/stores/development-stores) for testing
 
-:::caution[Legacy Custom App Deprecation]
-As of January 1, 2026, merchants can no longer create new legacy custom apps. Existing apps are not affected. Partners can still create new custom apps and transfer stores to merchants, but once transferred, new custom app creation is disabled on the store. Use the Partner Dashboard or Shopify CLI to create apps going forward.
-:::
-
 #### Setup Steps
 
 Choose one of the following methods to create a Shopify app.
@@ -89,8 +83,8 @@ For backend-focused apps (API utilities, webhook handlers, sync jobs), create an
 
 1. Log in to the [Dev Dashboard](https://dev.shopify.com/dashboard), or navigate from the [Partner Dashboard](https://www.shopify.com/partners) via **App Distribution** > **Visit Dev Dashboard**.
 2. Click **Create app**.
-3. Select **Create app manually** and provide an app name.
-4. Navigate to the **Configuration** section of the created app.
+3. Select **Start from Dev Dashboard**, enter an app name, and click **Create**.
+4. Navigate to the **Versions** page of the created app.
 5. Under **App URL**, enter a valid URL (this is required but can be a placeholder).
 6. Under **Allowed redirection URL(s)**, enter:
 
@@ -125,10 +119,9 @@ Refer to [Shopify's scaffold app documentation](https://shopify.dev/docs/apps/bu
 Regardless of the creation method, retrieve the OAuth credentials:
 
 1. Open the app in the [Dev Dashboard](https://dev.shopify.com/dashboard).
-2. Navigate to the **Configuration** section.
-3. Scroll to the **Client credentials** section.
-4. Copy the **Client ID** (labeled as **API key** in Shopify).
-5. Copy the **Client secret** (labeled as **API secret key** in Shopify).
+2. Select **App settings**.
+3. Copy the **Client ID** (labeled as **API key** in Shopify).
+4. Copy the **Client secret** (labeled as **API secret key** in Shopify).
 
 #### Configure the Connection
 
@@ -136,7 +129,7 @@ Create a connection of type **OAuth 2.0** and configure the following fields:
 
 - **Client ID (API Key)**: Enter the **Client ID** copied from the Shopify app credentials (Shopify labels this as "API key").
 - **Client Secret (API Secret)**: Enter the **Client secret** copied from the Shopify app credentials (Shopify labels this as "API secret key").
-- **Shop Name**: Enter the Shopify domain without `.myshopify.com` (e.g., `example-store`).
+- **Shop Name**: Enter the myshopify.com subdomain handle (the part before `.myshopify.com` in the store URL, e.g., `example-store`). Do not paste the `.myshopify.com` suffix, `https://`, a full URL, or a custom domain. Find the handle in the Shopify admin URL bar (`https://<handle>.myshopify.com/admin`) or under **Settings > Domains**.
 - **Scopes**: Configure based on the required permissions. Default scopes include:
   ```
   read_customers read_draft_orders read_fulfillments read_inventory
@@ -397,7 +390,7 @@ Creates a new fulfillment service.
 | Input                    | Comments                                                                                   | Default |
 | ------------------------ | ------------------------------------------------------------------------------------------ | ------- |
 | Connection               | The Shopify connection to use.                                                             |         |
-| Fulfillment Service Name | The name of the fulfillment service.                                                       |         |
+| Fulfillment Service Name | The display name of the fulfillment service, shown to merchants in the Shopify admin.      |         |
 | Callback URL             | The callback URL that the fulfillment service has registered for request.                  |         |
 | Inventory Management     | Whether the fulfillment services tracks product inventory and provides updates to Shopify. | false   |
 | Tracking Support         | Whether the fulfillment service supports tracking numbers for packages.                    | false   |
@@ -420,7 +413,7 @@ Creates a new product.
 | Connection        | The Shopify connection to use.                                                             |                 |
 | Title             | Provide a string value for the title of the product.                                       |                 |
 | Description HTML  | Provide an HTML string for the description of the product.                                 |                 |
-| Product Type      | Provide a value for the type of product.                                                   |                 |
+| Product Type      | A product classification used for filtering, such as T-shirt, Shoes, or Accessories.       |                 |
 | Vendor            | Provide a value for the vendor of the product.                                             |                 |
 | Product Status    | Specify the status of the product.                                                         |                 |
 | Image URL         | Provide a URL for the image of the product.                                                |                 |
@@ -432,12 +425,12 @@ Creates a new product.
 
 Creates a new image for an existing product.
 
-| Input          | Comments                               | Default |
-| -------------- | -------------------------------------- | ------- |
-| Connection     | The Shopify connection to use.         |         |
-| Product ID     | The unique identifier for the product. |         |
-| Image URL      | Provide the URL of the image.          |         |
-| Image Alt Text | Provide the alt text for the image.    |         |
+| Input          | Comments                                                                                    | Default |
+| -------------- | ------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Shopify connection to use.                                                              |         |
+| Product ID     | The unique identifier for the product.                                                      |         |
+| Image URL      | The publicly accessible URL of the image to add to the product.                             |         |
+| Image Alt Text | Alternative text displayed when the image cannot be loaded. Used for accessibility and SEO. |         |
 
 ### Create Variant {#createvariantgql}
 
@@ -734,25 +727,25 @@ Lists all enabled currencies.
 
 Lists all customers.
 
-| Input             | Comments                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All         | When true, fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
-| Pagination        | Page and page-size controls.                                                                                                                  |         |
-| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                               |         |
-| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                         |         |
-| Connection        | The Shopify connection to use.                                                                                                                |         |
+| Input             | Comments                                                                                                                                                    | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All         | When true, automatically fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
+| Pagination        | Page and page-size controls.                                                                                                                                |         |
+| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                                             |         |
+| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                                       |         |
+| Connection        | The Shopify connection to use.                                                                                                                              |         |
 
 ### List Draft Orders {#listdraftorders}
 
 Lists all draft orders.
 
-| Input             | Comments                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All         | When true, fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
-| Pagination        | Page and page-size controls.                                                                                                                  |         |
-| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                               |         |
-| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                         |         |
-| Connection        | The Shopify connection to use.                                                                                                                |         |
+| Input             | Comments                                                                                                                                                    | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All         | When true, automatically fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
+| Pagination        | Page and page-size controls.                                                                                                                                |         |
+| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                                             |         |
+| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                                       |         |
+| Connection        | The Shopify connection to use.                                                                                                                              |         |
 
 ### List Fulfillment Orders {#listfulfillmentorders}
 
@@ -767,14 +760,14 @@ Lists all fulfillment orders for a specific order.
 
 Lists all fulfillments for a specified order.
 
-| Input             | Comments                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Order ID          | The unique ID of the order.                                                                                                                   |         |
-| Fetch All         | When true, fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
-| Pagination        | Page and page-size controls.                                                                                                                  |         |
-| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                               |         |
-| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                         |         |
-| Connection        | The Shopify connection to use.                                                                                                                |         |
+| Input             | Comments                                                                                                                                                    | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Order ID          | The unique ID of the order.                                                                                                                                 |         |
+| Fetch All         | When true, automatically fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
+| Pagination        | Page and page-size controls.                                                                                                                                |         |
+| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                                             |         |
+| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                                       |         |
+| Connection        | The Shopify connection to use.                                                                                                                              |         |
 
 ### List Fulfillment Services {#listfulfillmentservicesgql}
 
@@ -788,14 +781,14 @@ Lists all fulfillment services.
 
 Lists all inventory items.
 
-| Input              | Comments                                                                                                                | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Shopify connection to use.                                                                                          |         |
-| Fetch All          | When true, automatically fetches all pages of results using pagination. The API is limited to 250 records per page max. | false   |
-| Query              | The query to filter the inventory items.                                                                                |         |
-| Pagination         | Page and page-size controls.                                                                                            |         |
-| Limit              | The maximum number of results to return per page. Maximum: 250.                                                         |         |
-| Page Offset Cursor | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                   |         |
+| Input              | Comments                                                                                                                                       | Default |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Shopify connection to use.                                                                                                                 |         |
+| Fetch All          | When true, automatically fetches all pages of results using pagination. The API is limited to 250 records per page max.                        | false   |
+| Query              | The query to filter the inventory items. From API version 2026-10, filtering by a metafield that is not set up for filtering returns an error. |         |
+| Pagination         | Page and page-size controls.                                                                                                                   |         |
+| Limit              | The maximum number of results to return per page. Maximum: 250.                                                                                |         |
+| Page Offset Cursor | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                          |         |
 
 ### List Inventory Levels At Location {#listinventorylevelsgql}
 
@@ -839,14 +832,14 @@ Lists resource metafields. Note: This action currently utilizes an unstable vers
 
 Lists all orders.
 
-| Input              | Comments                                                                                                                | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         | The Shopify connection to use.                                                                                          |         |
-| Fetch All          | When true, automatically fetches all pages of results using pagination. The API is limited to 250 records per page max. | false   |
-| Query              | The query to filter the orders.                                                                                         |         |
-| Pagination         | Page and page-size controls.                                                                                            |         |
-| Limit              | The maximum number of results to return per page. Maximum: 250.                                                         |         |
-| Page Offset Cursor | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                   |         |
+| Input              | Comments                                                                                                                              | Default |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection         | The Shopify connection to use.                                                                                                        |         |
+| Fetch All          | When true, automatically fetches all pages of results using pagination. The API is limited to 250 records per page max.               | false   |
+| Query              | The query to filter the orders. From API version 2026-10, filtering by a metafield that is not set up for filtering returns an error. |         |
+| Pagination         | Page and page-size controls.                                                                                                          |         |
+| Limit              | The maximum number of results to return per page. Maximum: 250.                                                                       |         |
+| Page Offset Cursor | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                 |         |
 
 ### List Product Images {#listproductimages}
 
@@ -861,13 +854,13 @@ Lists all product images for the specified product.
 
 Lists all products.
 
-| Input             | Comments                                                                                                                                      | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All         | When true, fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
-| Pagination        | Page and page-size controls.                                                                                                                  |         |
-| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                               |         |
-| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                         |         |
-| Connection        | The Shopify connection to use.                                                                                                                |         |
+| Input             | Comments                                                                                                                                                    | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Fetch All         | When true, automatically fetches all pages of results instead of a single page. The API returns up to 250 records per page, and the Limit input is ignored. | false   |
+| Pagination        | Page and page-size controls.                                                                                                                                |         |
+| Limit             | The maximum number of results to return per page. Maximum: 250.                                                                                             |         |
+| Page Offset Token | Cursor for pagination. Use the value from the previous response to retrieve the next page of results.                                                       |         |
+| Connection        | The Shopify connection to use.                                                                                                                              |         |
 
 ### List Variants {#listvariantsgql}
 
@@ -895,13 +888,13 @@ Lists all webhooks or webhooks for the current instance.
 
 Sends a raw GraphQL request to Shopify.
 
-| Input             | Comments                                                                                                                                | Default         |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| Connection        | The Shopify connection to use.                                                                                                          |                 |
-| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions. | 2026-07         |
-| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                  |                 |
-| Variables         | Variables to pass to the query or mutation.                                                                                             | <code>[]</code> |
-| Variables Object  | Variables to pass to the query or mutation.                                                                                             |                 |
+| Input             | Comments                                                                                                                                 | Default         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The Shopify connection to use.                                                                                                           |                 |
+| API Version       | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/changelog/release-notes) for a list of available versions. | 2026-07         |
+| Query or Mutation | GraphQL query or mutation. See Shopify's GraphQL API documentation for examples. Ex: { shop { name } }                                   |                 |
+| Variables         | Variables to pass to the query or mutation.                                                                                              | <code>[]</code> |
+| Variables Object  | Variables to pass to the query or mutation.                                                                                              |                 |
 
 ### Raw Request (Deprecated) {#rawrequest}
 
@@ -925,7 +918,7 @@ Sends a raw HTTP request to Shopify. This version of the action uses REST and is
 | Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false           |
 | Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0               |
 | Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false           |
-| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/docs/api/release-notes) for a list of available versions.                                                                                                                                                          | 2026-07         |
+| API Version             | Shopify versions its API. See [Shopify API release notes](https://shopify.dev/changelog/release-notes) for a list of available versions.                                                                                                                                                         | 2026-07         |
 | Return Headers          | When true, response headers will be included in the output object.                                                                                                                                                                                                                               | false           |
 
 ### Set Metafield {#setmetafieldgql}
@@ -945,20 +938,21 @@ Sets a resource metafield. Note: This action currently utilizes an unstable vers
 
 Updates an existing customer by ID.
 
-| Input             | Comments                                                                                   | Default         |
-| ----------------- | ------------------------------------------------------------------------------------------ | --------------- |
-| Connection        | The Shopify connection to use.                                                             |                 |
-| Customer          | The unique identifier for the customer.                                                    |                 |
-| First Name        | The first name of the customer.                                                            |                 |
-| Last Name         | The last name of the customer.                                                             |                 |
-| Email             | The email address of the customer.                                                         |                 |
-| Address List      | Provide a JSON array containing address objects.                                           |                 |
-| Phone             | The phone number of the customer.                                                          |                 |
-| Notes             | A note about the customer.                                                                 |                 |
-| Tags              | For each list item, provide a string to tag the product with.                              | <code>[]</code> |
-| Tax Exempt        | Determines if the customer is tax exempt.                                                  |                 |
-| Metafields        | Provide a JSON array containing metadata objects.                                          |                 |
-| Additional Fields | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
+| Input                      | Comments                                                                                   | Default         |
+| -------------------------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Connection                 | The Shopify connection to use.                                                             |                 |
+| Customer                   | The unique identifier for the customer.                                                    |                 |
+| Name & Contact Information | First and last name, email, and phone.                                                     |                 |
+| First Name                 | The first name of the customer.                                                            |                 |
+| Last Name                  | The last name of the customer.                                                             |                 |
+| Email                      | The email address of the customer.                                                         |                 |
+| Phone                      | The phone number of the customer.                                                          |                 |
+| Address List               | Provide a JSON array containing address objects.                                           |                 |
+| Notes                      | A note about the customer.                                                                 |                 |
+| Tags                       | For each list item, provide a string to tag the product with.                              | <code>[]</code> |
+| Tax Exempt                 | Determines if the customer is tax exempt.                                                  |                 |
+| Metafields                 | Provide a JSON array containing metadata objects.                                          |                 |
+| Additional Fields          | Additional fields that might not be covered by the standard inputs. This is a JSON object. |                 |
 
 ### Update Fulfillment Service {#updatefulfillmentservicegql}
 
@@ -968,7 +962,7 @@ Updates an existing fulfillment service.
 | ------------------------ | ------------------------------------------------------------------------------------------ | ------- |
 | Connection               | The Shopify connection to use.                                                             |         |
 | Fulfillment Service ID   | The unique identifier for the fulfillment service.                                         |         |
-| Fulfillment Service Name | The name of the fulfillment service.                                                       |         |
+| Fulfillment Service Name | The display name of the fulfillment service, shown to merchants in the Shopify admin.      |         |
 | Callback URL             | The callback URL that the fulfillment service has registered for request.                  |         |
 | Inventory Management     | Whether the fulfillment services tracks product inventory and provides updates to Shopify. |         |
 | Tracking Support         | Whether the fulfillment service supports tracking numbers for packages.                    |         |
@@ -995,7 +989,7 @@ Updates an existing product by ID.
 | Product ID        | The unique identifier for the product.                                                     |                 |
 | Title             | Provide a string value for the title of the product.                                       |                 |
 | Description HTML  | Provide an HTML string for the description of the product.                                 |                 |
-| Product Type      | Provide a value for the type of product.                                                   |                 |
+| Product Type      | A product classification used for filtering, such as T-shirt, Shoes, or Accessories.       |                 |
 | Vendor            | Provide a value for the vendor of the product.                                             |                 |
 | Product Status    | Specify the status of the product.                                                         |                 |
 | Image URL         | Provide a URL for the image of the product.                                                |                 |

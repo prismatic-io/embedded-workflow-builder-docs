@@ -1,7 +1,7 @@
 ---
 title: ArcGIS Connector
 sidebar_label: ArcGIS
-description: Use the Esri ArcGIS component to manage map layers, and update locations.
+description: Manage Esri ArcGIS feature services, layers, features, and web maps, and geocode addresses.
 ---
 
 ![ArcGIS](./assets/arcgis.png#connector-icon)

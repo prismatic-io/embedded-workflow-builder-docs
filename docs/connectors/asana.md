@@ -1,7 +1,7 @@
 ---
 title: Asana Connector
 sidebar_label: Asana
-description: Manage users, projects, and teams in an Asana workspace.
+description: Manage Asana tasks, projects, sections, portfolios, tags, teams, and users, and react to task and project changes with triggers.
 ---
 
 ![Asana](./assets/asana.png#connector-icon)

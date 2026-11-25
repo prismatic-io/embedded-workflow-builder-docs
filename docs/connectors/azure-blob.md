@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage Connector
 sidebar_label: Azure Blob Storage
-description: Manage files and folders within Azure Blob Storage
+description: Manage containers and blobs in Azure Blob Storage, including uploads, downloads, and shared access signature URLs.
 ---
 
 ![Azure Blob Storage](./assets/azure-blob.png#connector-icon)

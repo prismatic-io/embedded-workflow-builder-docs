@@ -188,14 +188,15 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated records in SAP S/4HANA on a configured schedule.
+Retrieves existing and ongoing records for a specified SAP S/4HANA resource type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                  | Default |
-| -------------------- | --------------------------------------------------------- | ------- |
-| Connection           |                                                           |         |
-| Resource Type        | The type of resource to poll for new and updated records. |         |
-| Show New Records     | Include newly created records in trigger results.         | true    |
-| Show Updated Records | Include updated records in trigger results.               | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                            | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           |                                                                                                                                                                                                                                                                                     |         |
+| Resource Type        | The type of resource to poll for new and updated records.                                                                                                                                                                                                                           |         |
+| Show New Records     | Include newly created records in trigger results.                                                                                                                                                                                                                                   | true    |
+| Show Updated Records | Include updated records in trigger results.                                                                                                                                                                                                                                         | true    |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the trigger's visibility filters. |         |
 
 ## Actions
 
@@ -295,66 +296,66 @@ Deletes an existing record in SAP S/4HANA OData V2. For OData V4 APIs, use Raw R
 
 Reads the attachments associated with a document info record.
 
-| Input                                 | Comments                              | Default |
-| ------------------------------------- | ------------------------------------- | ------- |
-| Connection                            |                                       |         |
-| Document Info Record Document Type    | Document Info Record Document Type    |         |
-| Document Info Record Document Number  | Document Info Record Document Number  |         |
-| Document Info Record Document Version | Document Info Record Document Version |         |
-| Document Info Record Document Part    | Document Info Record Document Part    |         |
-| Filter                                | Filter items by property values       |         |
-| Inline Count                          |                                       |         |
-| Order By                              | Order items by property value         |         |
-| Select                                | Select property to be returned        |         |
+| Input                                 | Comments                              | Default         |
+| ------------------------------------- | ------------------------------------- | --------------- |
+| Connection                            |                                       |                 |
+| Document Info Record Document Type    | Document Info Record Document Type    |                 |
+| Document Info Record Document Number  | Document Info Record Document Number  |                 |
+| Document Info Record Document Version | Document Info Record Document Version |                 |
+| Document Info Record Document Part    | Document Info Record Document Part    |                 |
+| Filter                                | Filter items by property values       |                 |
+| Inline Count                          |                                       |                 |
+| Order By                              | Order items by property value         | <code>[]</code> |
+| Select                                | Select property to be returned        | <code>[]</code> |
 
 ### Get Change Records {#getchangerecord}
 
 Reads data of a specific change record based on its universally unique identifier (UUID).
 
-| Input              | Comments                       | Default |
-| ------------------ | ------------------------------ | ------- |
-| Connection         |                                |         |
-| Change Record UUID | NodeID                         |         |
-| Select             | Select property to be returned |         |
-| Expand             | Expand property to be returned |         |
+| Input              | Comments                       | Default         |
+| ------------------ | ------------------------------ | --------------- |
+| Connection         |                                |                 |
+| Change Record UUID | NodeID                         |                 |
+| Select             | Select property to be returned | <code>[]</code> |
+| Expand             | Expand property to be returned | <code>[]</code> |
 
 ### Get Project {#getproject}
 
 Returns details about a customer or internal project.
 
-| Input      | Comments                           | Default |
-| ---------- | ---------------------------------- | ------- |
-| Connection |                                    |         |
-| Project ID | Project ID                         |         |
-| Select     | Select property to be returned     |         |
-| Expand     | Expand to include related entities |         |
+| Input      | Comments                           | Default         |
+| ---------- | ---------------------------------- | --------------- |
+| Connection |                                    |                 |
+| Project ID | Project ID                         |                 |
+| Select     | Select property to be returned     | <code>[]</code> |
+| Expand     | Expand to include related entities | <code>[]</code> |
 
 ### Get Purchase Requisition {#getpurchaserequisition}
 
 Gets the header details of a purchase requisition using the purchase requisition number provided.
 
-| Input                       | Comments                       | Default |
-| --------------------------- | ------------------------------ | ------- |
-| Connection                  |                                |         |
-| Select                      | Select property to be returned |         |
-| Expand                      | Expand property to be returned |         |
-| Purchase Requisition Number | Purchase Requisition Number    |         |
+| Input                       | Comments                       | Default         |
+| --------------------------- | ------------------------------ | --------------- |
+| Connection                  |                                |                 |
+| Select                      | Select property to be returned | <code>[]</code> |
+| Expand                      | Expand property to be returned | <code>[]</code> |
+| Purchase Requisition Number | Purchase Requisition Number    |                 |
 
 ### Get Purchase Requisition Item Details {#getpurchaserequisitionitemdetails}
 
 Gets the item details of all the items in a purchase requisition
 
-| Input                       | Comments                        | Default |
-| --------------------------- | ------------------------------- | ------- |
-| Connection                  |                                 |         |
-| Top                         | Show only the first n items     |         |
-| Skip                        | Skip the first n items          |         |
-| Filter                      | Filter items by property values |         |
-| Inline Count                |                                 |         |
-| Order By                    | Order items by property value   |         |
-| Select                      | Select property to be returned  |         |
-| Expand                      | Expand property to be returned  |         |
-| Purchase Requisition Number | Purchase Requisition Number     |         |
+| Input                       | Comments                        | Default         |
+| --------------------------- | ------------------------------- | --------------- |
+| Connection                  |                                 |                 |
+| Top                         | Show only the first n items     |                 |
+| Skip                        | Skip the first n items          |                 |
+| Filter                      | Filter items by property values |                 |
+| Inline Count                |                                 |                 |
+| Order By                    | Order items by property value   | <code>[]</code> |
+| Select                      | Select property to be returned  | <code>[]</code> |
+| Expand                      | Expand property to be returned  | <code>[]</code> |
+| Purchase Requisition Number | Purchase Requisition Number     |                 |
 
 ### Get Record {#getrecord}
 
@@ -377,16 +378,16 @@ Retrieve a single record from SAP S/4HANA OData V2. For OData V4 APIs, use Raw R
 
 Retrieves the list of change records in the system.
 
-| Input        | Comments                        | Default |
-| ------------ | ------------------------------- | ------- |
-| Connection   |                                 |         |
-| Top          | Show only the first n items     |         |
-| Skip         | Skip the first n items          |         |
-| Filter       | Filter items by property values |         |
-| Inline Count |                                 |         |
-| Order By     | Order items by property value   |         |
-| Select       | Select property to be returned  |         |
-| Expand       | Expand property to be returned  |         |
+| Input        | Comments                        | Default         |
+| ------------ | ------------------------------- | --------------- |
+| Connection   |                                 |                 |
+| Top          | Show only the first n items     |                 |
+| Skip         | Skip the first n items          |                 |
+| Filter       | Filter items by property values |                 |
+| Inline Count |                                 |                 |
+| Order By     | Order items by property value   | <code>[]</code> |
+| Select       | Select property to be returned  | <code>[]</code> |
+| Expand       | Expand property to be returned  | <code>[]</code> |
 
 ### List Files {#listfiles}
 
@@ -403,113 +404,113 @@ Retrieves list of prepared files, based on specific filter conditions.
 
 Returns details about all customer and internal projects in the system.
 
-| Input        | Comments                        | Default |
-| ------------ | ------------------------------- | ------- |
-| Connection   |                                 |         |
-| Filter       | Filter items by property values |         |
-| Inline Count |                                 |         |
-| Order By     | Order by property               |         |
-| Select       | Select property to be returned  |         |
-| Expand       | Expand property to be returned  |         |
+| Input        | Comments                        | Default         |
+| ------------ | ------------------------------- | --------------- |
+| Connection   |                                 |                 |
+| Filter       | Filter items by property values |                 |
+| Inline Count |                                 |                 |
+| Order By     | Order by property               | <code>[]</code> |
+| Select       | Select property to be returned  | <code>[]</code> |
+| Expand       | Expand property to be returned  | <code>[]</code> |
 
 ### List Purchase Requisitions {#listpurchaserequisitions}
 
 Gets the header details of all the purchase requisitions in the system.
 
-| Input        | Comments                        | Default |
-| ------------ | ------------------------------- | ------- |
-| Connection   |                                 |         |
-| Top          | Show only the first n items     |         |
-| Skip         | Skip the first n items          |         |
-| Filter       | Filter items by property values |         |
-| Inline Count |                                 |         |
-| Order By     | Order items by property value   |         |
-| Select       | Select property to be returned  |         |
-| Expand       | Expand property to be returned  |         |
+| Input        | Comments                        | Default         |
+| ------------ | ------------------------------- | --------------- |
+| Connection   |                                 |                 |
+| Top          | Show only the first n items     |                 |
+| Skip         | Skip the first n items          |                 |
+| Filter       | Filter items by property values |                 |
+| Inline Count |                                 |                 |
+| Order By     | Order items by property value   | <code>[]</code> |
+| Select       | Select property to be returned  | <code>[]</code> |
+| Expand       | Expand property to be returned  | <code>[]</code> |
 
 ### List Records {#listrecords}
 
 Retrieve a list of records from SAP S/4HANA OData V2. For OData V4 APIs, use Raw Request.
 
-| Input        | Comments                                     | Default     |
-| ------------ | -------------------------------------------- | ----------- |
-| Connection   |                                              |             |
-| Top          | Show only the first n items                  |             |
-| Skip         | Skip the first n items                       |             |
-| Filter       | Filter items by property values              |             |
-| Inline Count |                                              |             |
-| Order By     | Order items by property value                |             |
-| Select       | Select property to be returned               |             |
-| Expand       | Expand related entities                      |             |
-| Record Type  | Type of SAP S/4HANA Record, e.g: WorkItemSet | WorkItemSet |
+| Input        | Comments                                     | Default         |
+| ------------ | -------------------------------------------- | --------------- |
+| Connection   |                                              |                 |
+| Top          | Show only the first n items                  |                 |
+| Skip         | Skip the first n items                       |                 |
+| Filter       | Filter items by property values              |                 |
+| Inline Count |                                              |                 |
+| Order By     | Order items by property value                | <code>[]</code> |
+| Select       | Select property to be returned               | <code>[]</code> |
+| Expand       | Expand related entities                      | <code>[]</code> |
+| Record Type  | Type of SAP S/4HANA Record, e.g: WorkItemSet | WorkItemSet     |
 
 ### List Subscriptions {#listsubscriptions}
 
 Reads subscription information for business events.
 
-| Input        | Comments                        | Default |
-| ------------ | ------------------------------- | ------- |
-| Connection   |                                 |         |
-| Top          | Show only the first n items     |         |
-| Skip         | Skip the first n items          |         |
-| Search       | Search items by search phrases  |         |
-| Filter       | Filter items by property values |         |
-| Inline Count |                                 |         |
-| Order By     | Order by property               |         |
-| Select       | Select property to be returned  |         |
+| Input        | Comments                        | Default         |
+| ------------ | ------------------------------- | --------------- |
+| Connection   |                                 |                 |
+| Top          | Show only the first n items     |                 |
+| Skip         | Skip the first n items          |                 |
+| Search       | Search items by search phrases  |                 |
+| Filter       | Filter items by property values |                 |
+| Inline Count |                                 |                 |
+| Order By     | Order by property               | <code>[]</code> |
+| Select       | Select property to be returned  | <code>[]</code> |
 
 ### List Timesheet Entry Collection {#listtimesheetentrycollection}
 
 Reads data for all workforce’s timesheet entries. It retrieves information about the time recording made by each workforce’s on a particular task and on a particular day.
 
-| Input        | Comments                        | Default |
-| ------------ | ------------------------------- | ------- |
-| Connection   |                                 |         |
-| Top          | Show only the first n items     |         |
-| Skip         | Skip the first n items          |         |
-| Filter       | Filter items by property values |         |
-| Inline Count |                                 |         |
-| Order By     | Order by property               |         |
-| Select       | Select property to be returned  |         |
+| Input        | Comments                        | Default         |
+| ------------ | ------------------------------- | --------------- |
+| Connection   |                                 |                 |
+| Top          | Show only the first n items     |                 |
+| Skip         | Skip the first n items          |                 |
+| Filter       | Filter items by property values |                 |
+| Inline Count |                                 |                 |
+| Order By     | Order by property               | <code>[]</code> |
+| Select       | Select property to be returned  | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to SAP S/4HANA
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | Input the path only. The base URL from your connection is automatically prepended. For example: /sap/opu/odata4/sap/api_purchaseorder_2/srvd_a2x/sap/purchaseorder/0001/PurchaseOrder            |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | Input the path only. The base URL from your connection is automatically prepended. For example: /sap/opu/odata4/sap/api_purchaseorder_2/srvd_a2x/sap/purchaseorder/0001/PurchaseOrder            |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Raw Request - OData {#rawrequestodata}
 
 Send an OData GET request to SAP S/4HANA with query parameters
 
-| Input        | Comments                                                                                                                                                               | Default |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                        |         |
-| URL Path     | Input the path only. The base URL from your connection is automatically prepended. Example: /sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader |         |
-| Top          | Show only the first n items                                                                                                                                            |         |
-| Skip         | Skip the first n items                                                                                                                                                 |         |
-| Search       | Search items by search phrases                                                                                                                                         |         |
-| Filter       | Filter items by property values                                                                                                                                        |         |
-| Inline Count |                                                                                                                                                                        |         |
-| Order By     | Order by property                                                                                                                                                      |         |
-| Select       | Select property to be returned                                                                                                                                         |         |
-| Expand       | Expand property to be returned                                                                                                                                         |         |
+| Input        | Comments                                                                                                                                                               | Default         |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection   |                                                                                                                                                                        |                 |
+| URL Path     | Input the path only. The base URL from your connection is automatically prepended. Example: /sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader |                 |
+| Top          | Show only the first n items                                                                                                                                            |                 |
+| Skip         | Skip the first n items                                                                                                                                                 |                 |
+| Search       | Search items by search phrases                                                                                                                                         |                 |
+| Filter       | Filter items by property values                                                                                                                                        |                 |
+| Inline Count |                                                                                                                                                                        |                 |
+| Order By     | Order by property                                                                                                                                                      | <code>[]</code> |
+| Select       | Select property to be returned                                                                                                                                         | <code>[]</code> |
+| Expand       | Expand property to be returned                                                                                                                                         | <code>[]</code> |
 
 ### Update Change Record {#updatechangerecord}
 

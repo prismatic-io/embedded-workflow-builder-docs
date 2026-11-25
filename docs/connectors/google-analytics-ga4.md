@@ -1,7 +1,7 @@
 ---
 title: Google Analytics - GA4 Connector
 sidebar_label: Google Analytics - GA4
-description: Manage Google Analytics GA4 accounts and data
+description: Run Google Analytics 4 (GA4) Data API reports, list accounts and properties, and send Measurement Protocol events.
 ---
 
 ![Google Analytics - GA4](./assets/google-analytics-ga4.png#connector-icon)

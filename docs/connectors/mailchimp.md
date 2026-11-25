@@ -1,7 +1,7 @@
 ---
 title: Mailchimp Connector
 sidebar_label: Mailchimp
-description: Interact with email campaign lists and e-commerce resources.
+description: Manage Mailchimp lists, members, and webhooks, send campaigns, and manage e-commerce stores, customers, products, carts, and orders.
 ---
 
 ![Mailchimp](./assets/mailchimp.png#connector-icon)
@@ -92,12 +92,12 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive list event notifications from Mailchimp. Automatically creates and manages a webhook subscription for selected event types when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input      | Comments                                                                                                                                                                                                        | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The Mailchimp connection to use.                                                                                                                                                                                |         |
-| List Id    | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |         |
-| Events     | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 |         |
-| Sources    | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. |         |
+| Input      | Comments                                                                                                                                                                                                        | Default         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection | The Mailchimp connection to use.                                                                                                                                                                                |                 |
+| List Id    | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |                 |
+| Events     | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 | <code>[]</code> |
+| Sources    | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. | <code>[]</code> |
 
 ### Webhook {#webhook}
 
@@ -156,30 +156,30 @@ Create a new list in your Mailchimp account
 
 Add a new member to a list
 
-| Input        | Comments                                                                                                                                                                                      | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| List Id      | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                      |         |
-| Email        | The email address of the subscriber.                                                                                                                                                          |         |
-| Language     | The default language for this list's forms (use ISO 639-1 language code).                                                                                                                     |         |
-| Status       | The subscriber's current status. Possible values: "subscribed", "unsubscribed", "cleaned", "pending", or "transactional".                                                                     |         |
-| Email Type   | The type of email format the member prefers: 'html' or 'text'.                                                                                                                                |         |
-| Merge Fields | Merge fields (audience fields) as key-value pairs where the key is the merge tag. See [Mailchimp's merge fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/). |         |
-| Tags         | Tags associated with the member. Provide a list of tag names.                                                                                                                                 |         |
-| Interests    | Interest categories as key-value pairs where the key is the interest ID and the value is true/false.                                                                                          |         |
-| VIP          | When true, marks the subscriber as a VIP member with priority status.                                                                                                                         | false   |
-| Connection   | The Mailchimp connection to use.                                                                                                                                                              |         |
+| Input        | Comments                                                                                                                                                                                      | Default         |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| List Id      | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                      |                 |
+| Email        | The email address of the subscriber.                                                                                                                                                          |                 |
+| Language     | The default language for this list's forms (use ISO 639-1 language code).                                                                                                                     |                 |
+| Status       | The subscriber's current status. Possible values: "subscribed", "unsubscribed", "cleaned", "pending", or "transactional".                                                                     |                 |
+| Email Type   | The type of email format the member prefers: 'html' or 'text'.                                                                                                                                |                 |
+| Merge Fields | Merge fields (audience fields) as key-value pairs where the key is the merge tag. See [Mailchimp's merge fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/). | <code>[]</code> |
+| Tags         | Tags associated with the member. Provide a list of tag names.                                                                                                                                 | <code>[]</code> |
+| Interests    | Interest categories as key-value pairs where the key is the interest ID and the value is true/false.                                                                                          | <code>[]</code> |
+| VIP          | When true, marks the subscriber as a VIP member with priority status.                                                                                                                         | false           |
+| Connection   | The Mailchimp connection to use.                                                                                                                                                              |                 |
 
 ### Add Webhook {#addwebhook}
 
 Create a new webhook for a specific list/audience.
 
-| Input       | Comments                                                                                                                                                                                                        | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Mailchimp connection to use.                                                                                                                                                                                |         |
-| List Id     | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |         |
-| Webhook URL | The URL where the webhook will send requests. You can use this input to configure a component trigger.                                                                                                          |         |
-| Events      | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 |         |
-| Sources     | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. |         |
+| Input       | Comments                                                                                                                                                                                                        | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  | The Mailchimp connection to use.                                                                                                                                                                                |                 |
+| List Id     | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |                 |
+| Webhook URL | The URL where the webhook will send requests. You can use this input to configure a component trigger.                                                                                                          |                 |
+| Events      | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 | <code>[]</code> |
+| Sources     | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. | <code>[]</code> |
 
 ### Archive Member {#archivemember}
 
@@ -530,23 +530,23 @@ Send a ping to determine the status of the Mailchimp servers
 
 Send raw HTTP request to Mailchimp
 
-| Input                   | Comments                                                                                                                                                                                                                                                             | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Mailchimp connection to use.                                                                                                                                                                                                                                     |         |
-| URL                     | Input the path only (/reporting/facebook-ads), The base URL is already included (https://${dc}.api.mailchimp.com/3.0). For example, to connect to https://${dc}.api.mailchimp.com/3.0/reporting/facebook-ads, only /reporting/facebook-ads is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                              |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                            |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                 |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                     |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                               |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                  |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                          |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                             | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                  |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                  | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                     | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                  | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                        | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                             | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Mailchimp connection to use.                                                                                                                                                                                                                                     |                 |
+| URL                     | Input the path only (/reporting/facebook-ads), The base URL is already included (https://${dc}.api.mailchimp.com/3.0). For example, to connect to https://${dc}.api.mailchimp.com/3.0/reporting/facebook-ads, only /reporting/facebook-ads is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                              |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                            |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                 | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                     | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                               | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                  | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                          | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                             | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                  |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                  | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                     | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                  | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                        | false           |
 
 ### Send Campaign {#sendcampaign}
 
@@ -608,30 +608,30 @@ Update the information or metadata of a list
 
 Update a specific member in a given list
 
-| Input                 | Comments                                                                                                                                                                                      | Default |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Skip Merge Fields     | When true, member data will be accepted without merge field values, even if the merge field is usually required.                                                                              | false   |
-| List Id               | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                      |         |
-| SubscriberHash        | The MD5 hash of the lowercase version of the list member's email address (32-character hex string). This endpoint also accepts plain email addresses in place of the hash.                    |         |
-| Email                 | The email address of the subscriber.                                                                                                                                                          |         |
-| Language              | The default language for this list's forms (use ISO 639-1 language code).                                                                                                                     |         |
-| Status                | The subscriber's current status. Possible values: "subscribed", "unsubscribed", "cleaned", "pending", or "transactional".                                                                     |         |
-| Email Type            | The type of email format the member prefers: 'html' or 'text'.                                                                                                                                |         |
-| Merge Fields          | Merge fields (audience fields) as key-value pairs where the key is the merge tag. See [Mailchimp's merge fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/). |         |
-| Interests             | Interest categories as key-value pairs where the key is the interest ID and the value is true/false.                                                                                          |         |
-| VIP                   | When true, marks the subscriber as a VIP member with priority status.                                                                                                                         | false   |
-| Marketing Permissions | The marketing permissions for the subscriber as an array of objects. Each object should contain 'marketing_permission_id' and 'enabled' fields.                                               |         |
-| Connection            | The Mailchimp connection to use.                                                                                                                                                              |         |
+| Input                 | Comments                                                                                                                                                                                      | Default         |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Skip Merge Fields     | When true, member data will be accepted without merge field values, even if the merge field is usually required.                                                                              | false           |
+| List Id               | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                      |                 |
+| SubscriberHash        | The MD5 hash of the lowercase version of the list member's email address (32-character hex string). This endpoint also accepts plain email addresses in place of the hash.                    |                 |
+| Email                 | The email address of the subscriber.                                                                                                                                                          |                 |
+| Language              | The default language for this list's forms (use ISO 639-1 language code).                                                                                                                     |                 |
+| Status                | The subscriber's current status. Possible values: "subscribed", "unsubscribed", "cleaned", "pending", or "transactional".                                                                     |                 |
+| Email Type            | The type of email format the member prefers: 'html' or 'text'.                                                                                                                                |                 |
+| Merge Fields          | Merge fields (audience fields) as key-value pairs where the key is the merge tag. See [Mailchimp's merge fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/). | <code>[]</code> |
+| Interests             | Interest categories as key-value pairs where the key is the interest ID and the value is true/false.                                                                                          | <code>[]</code> |
+| VIP                   | When true, marks the subscriber as a VIP member with priority status.                                                                                                                         | false           |
+| Marketing Permissions | The marketing permissions for the subscriber as an array of objects. Each object should contain 'marketing_permission_id' and 'enabled' fields.                                               |                 |
+| Connection            | The Mailchimp connection to use.                                                                                                                                                              |                 |
 
 ### Update Webhook {#updatewebhook}
 
 Update an existing webhook for a specific list/audience.
 
-| Input       | Comments                                                                                                                                                                                                        | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Mailchimp connection to use.                                                                                                                                                                                |         |
-| List Id     | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |         |
-| Webhook ID  | The unique identifier for the webhook (10-character alphanumeric string).                                                                                                                                       |         |
-| Webhook URL | The URL where the webhook will send requests. You can use this input to configure a component trigger.                                                                                                          |         |
-| Events      | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 |         |
-| Sources     | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. |         |
+| Input       | Comments                                                                                                                                                                                                        | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  | The Mailchimp connection to use.                                                                                                                                                                                |                 |
+| List Id     | The unique identifier for the audience list. Find this in your Mailchimp account under Audience > Settings > Audience name and defaults.                                                                        |                 |
+| Webhook ID  | The unique identifier for the webhook (10-character alphanumeric string).                                                                                                                                       |                 |
+| Webhook URL | The URL where the webhook will send requests. You can use this input to configure a component trigger.                                                                                                          |                 |
+| Events      | Select the events that will trigger the webhook (e.g., subscribe, unsubscribe, profile update).                                                                                                                 | <code>[]</code> |
+| Sources     | Select the sources that should trigger the webhook. <strong>User:</strong> changes made by subscribers, <strong>Admin:</strong> changes made by account admins, <strong>API:</strong> changes made via the API. | <code>[]</code> |

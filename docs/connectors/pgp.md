@@ -1,7 +1,7 @@
 ---
 title: Pretty Good Privacy Connector
 sidebar_label: Pretty Good Privacy
-description: Create and translate encrypted messages
+description: Encrypt and decrypt messages and files with PGP (Pretty Good Privacy) keys.
 ---
 
 ![Pretty Good Privacy](./assets/pgp.png#connector-icon)

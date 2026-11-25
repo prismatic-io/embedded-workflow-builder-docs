@@ -1,7 +1,7 @@
 ---
 title: Customer.io Connector
 sidebar_label: Customer.io
-description: Manage customers on the Customer.io platform.
+description: Identify and delete Customer.io customers, and track customer events and page views.
 ---
 
 ![Customer.io](./assets/customer-io.png#connector-icon)

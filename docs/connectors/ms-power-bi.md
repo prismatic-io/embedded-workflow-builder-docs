@@ -1,7 +1,7 @@
 ---
 title: Microsoft Power BI Connector
 sidebar_label: Microsoft Power BI
-description: Interact with and modify Power BI datasets
+description: Manage Power BI datasets, tables, and rows, list groups and reports, and react to new records.
 ---
 
 ![Microsoft Power BI](./assets/ms-power-bi.png#connector-icon)

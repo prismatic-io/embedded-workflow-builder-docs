@@ -1,7 +1,7 @@
 ---
 title: ServiceNow Connector
 sidebar_label: ServiceNow
-description: Create records and incidents within ServiceNow.
+description: Manage ServiceNow table records, incidents, configuration items, users, attachments, and knowledge articles, and react to new and updated records with a polling trigger.
 ---
 
 ![ServiceNow](./assets/servicenow.png#connector-icon)

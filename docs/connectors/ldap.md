@@ -1,7 +1,7 @@
 ---
 title: Active Directory Connector
 sidebar_label: Active Directory
-description: Connect to an Active Directory server.
+description: Manage users, groups, and directory entries in Active Directory or another LDAP server.
 ---
 
 ![Active Directory](./assets/ldap.png#connector-icon)
@@ -171,26 +171,26 @@ Searches for entries in Active Directory.
 | Search Base        | The base DN to start the search operation from.                                               |                  |
 | Scope              | The scope of the search operation.                                                            | sub              |
 | Filter             | The filter to apply to the search operation.                                                  | (objectClass=\*) |
-| Attributes         | The attributes to retrieve from the search operation. Leave empty to retrieve all attributes. |                  |
+| Attributes         | The attributes to retrieve from the search operation. Leave empty to retrieve all attributes. | <code>[]</code>  |
 | Include References | When true, includes references in the search results.                                         | false            |
 
 ### Search Groups {#searchgroups}
 
 Searches for groups in Active Directory.
 
-| Input                 | Comments                                                | Default |
-| --------------------- | ------------------------------------------------------- | ------- |
-| Connection            | The LDAP connection to use.                             |         |
-| Additional Attributes | Additional attributes to include in the search results. |         |
+| Input                 | Comments                                                | Default         |
+| --------------------- | ------------------------------------------------------- | --------------- |
+| Connection            | The LDAP connection to use.                             |                 |
+| Additional Attributes | Additional attributes to include in the search results. | <code>[]</code> |
 
 ### Search Users {#searchusers}
 
 Searches for users in Active Directory.
 
-| Input                 | Comments                                                | Default |
-| --------------------- | ------------------------------------------------------- | ------- |
-| Connection            | The LDAP connection to use.                             |         |
-| Additional Attributes | Additional attributes to include in the search results. |         |
+| Input                 | Comments                                                | Default         |
+| --------------------- | ------------------------------------------------------- | --------------- |
+| Connection            | The LDAP connection to use.                             |                 |
+| Additional Attributes | Additional attributes to include in the search results. | <code>[]</code> |
 
 ### Set Password to User {#setpasswordtouser}
 

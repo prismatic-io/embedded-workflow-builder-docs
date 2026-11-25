@@ -1,7 +1,7 @@
 ---
 title: SOAP Connector
 sidebar_label: SOAP
-description: Interact with a SOAP-based API
+description: Send requests to SOAP web services and inspect their WSDL definitions.
 ---
 
 ![SOAP](./assets/soap.png#connector-icon)

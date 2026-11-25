@@ -1,17 +1,21 @@
 ---
 title: Gusto Connector
 sidebar_label: Gusto
-description: Manage payroll, benefits, and human resource within Gusto
+description: Manage companies, employees, pay schedules, and webhook subscriptions in Gusto.
 ---
 
 ![Gusto](./assets/gusto.png#connector-icon)
-[Gusto](https://gusto.com) is a company that provides a cloud-based payroll, benefits, and human resource management software for businesses based in the United States.
+[Gusto](https://gusto.com/) is a company that provides a cloud-based payroll, benefits, and human resource management software for businesses based in the United States.
+
+## API Documentation
+
+[Gusto API Documentation](https://docs.gusto.com/embedded-payroll/docs/introduction)
 
 ## Connections
 
 ### OAuth 2.0 {#gustooauth}
 
-OAuth 2.0 connection for Gusto
+Authenticate using OAuth 2.0.
 
 To create an OAuth 2.0 app for Gusto, sign up for a Gusto developer account and create a new application.
 
@@ -30,8 +34,8 @@ For detailed information, refer to the [Gusto Developer Documentation](https://d
 
 #### Configure the Connection
 
-- Copy the **Client ID** and **Secret** from the application settings in the Gusto Developer Portal
-- Enter the **Client ID** and **Client Secret** into the connection configuration
+- Select the **Authorize URL** and **Token URL** matching the environment. Choose **Production** for live Gusto accounts or **Developer Sandbox** for testing
+- Copy the **Client ID** and **Client Secret** from the application settings in the Gusto Developer Portal and enter them into the connection configuration
 
 #### Production Access
 
@@ -44,6 +48,8 @@ Gusto apps pass through two states before they are ready for deployment.
 **Production (after approval):** The integration connects to `api.gusto.com`. Real Gusto accounts and live payroll data become accessible.
 
 **Complete the production access process before deploying to end users.** Gusto apps begin in the demo environment (`api.gusto-demo.com`) and can only access demo data. They cannot connect to real Gusto accounts until production access is granted. To gain production access, the integration must complete a two-stage approval process.
+
+Once both the pre-approval and security review are complete, update the connection's **Authorize URL** and **Token URL** to the Production values, and enter the production **Client ID** and **Client Secret** to connect to live Gusto accounts (`api.gusto.com`).
 
 #### Production Pre-Approval
 
@@ -58,17 +64,15 @@ In addition to the production access request, Gusto requires a security review. 
 
 Submit documentation demonstrating compliance as part of the production access process.
 
-Once both the pre-approval and security review are complete, Gusto provides production credentials. Update the connection configuration with the production **Client ID** and **Client Secret** to connect to live Gusto accounts (`api.gusto.com`).
-
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
 
-| Input         | Comments                                  | Default                               |
-| ------------- | ----------------------------------------- | ------------------------------------- |
-| Authorize URL | The OAuth 2.0 Authorization URL for Gusto | https://api.gusto.com/oauth/authorize |
-| Token URL     | The OAuth 2.0 Token URL for Gusto         | https://api.gusto.com/oauth/token     |
-| Client ID     | Client Identifier of your app for the API |                                       |
-| Client Secret | Client Secret of your app for the API     |                                       |
+| Input         | Comments                                                                                                                                                               | Default                               |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| Authorize URL | Select Production for live accounts or Developer Sandbox for testing. See [Getting Started](https://docs.gusto.com/embedded-payroll/docs/getting-started) for details. | https://api.gusto.com/oauth/authorize |
+| Token URL     | Select the token URL matching the environment chosen for the Authorize URL.                                                                                            | https://api.gusto.com/oauth/token     |
+| Client ID     | The Client ID from the application created in the [Gusto Developer Portal](https://docs.gusto.com/embedded-payroll/docs/getting-started).                              |                                       |
+| Client Secret | The Client Secret from the application created in the [Gusto Developer Portal](https://docs.gusto.com/embedded-payroll/docs/getting-started).                          |                                       |
 
 ## Triggers
 
@@ -84,7 +88,7 @@ Receive and validate webhook requests from Gusto for webhooks you configure.
 
 ### Create Employee {#createemployee}
 
-Create an employee of a company
+Creates an employee of a company.
 
 | Input                  | Comments                                                                                                                              | Default |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -113,14 +117,14 @@ Creates a Webhook Subscription to receive notifications when entities change for
 
 Deletes the Webhook Subscription associated with the provided UUID for Gusto.
 
-| Input                     | Comments                       | Default |
-| ------------------------- | ------------------------------ | ------- |
-| Connection                |                                |         |
-| Webhook Subscription UUID | The webhook subscription UUID. |         |
+| Input                     | Comments                                                                 | Default |
+| ------------------------- | ------------------------------------------------------------------------ | ------- |
+| Connection                |                                                                          |         |
+| Webhook Subscription UUID | The unique identifier of the webhook subscription to retrieve or modify. |         |
 
 ### Find Employee by Email {#findemployeebyemail}
 
-Get an employee by personal email address.
+Gets an employee by personal email address.
 
 | Input         | Comments                               | Default |
 | ------------- | -------------------------------------- | ------- |
@@ -130,7 +134,7 @@ Get an employee by personal email address.
 
 ### Get Company by ID {#getcompany}
 
-Get company metadata by ID
+Gets company metadata by ID.
 
 | Input      | Comments                       | Default |
 | ---------- | ------------------------------ | ------- |
@@ -139,16 +143,16 @@ Get company metadata by ID
 
 ### Get Employee {#getemployee}
 
-Get an employee by ID
+Gets an employee by ID.
 
-| Input       | Comments                        | Default |
-| ----------- | ------------------------------- | ------- |
-| Connection  |                                 |         |
-| Employee ID | A UUID representing a employee. |         |
+| Input       | Comments                         | Default |
+| ----------- | -------------------------------- | ------- |
+| Connection  |                                  |         |
+| Employee ID | A UUID representing an employee. |         |
 
 ### Get Pay Schedule by ID {#getpayschedule}
 
-Get a pay schedules for a company by pay schedule ID
+Gets a pay schedule for a company by pay schedule ID.
 
 | Input           | Comments                            | Default |
 | --------------- | ----------------------------------- | ------- |
@@ -158,7 +162,7 @@ Get a pay schedules for a company by pay schedule ID
 
 ### Get Webhook Events {#getwebhookevents}
 
-Get webhook events based on the partner application's scopes for Gusto.
+Gets webhook events based on the partner application's scopes for Gusto.
 
 | Input               | Comments                                                                                                      | Default |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
@@ -167,6 +171,7 @@ Get webhook events based on the partner application's scopes for Gusto.
 | Event Type          | A string containing the exact event name or use a wildcard match to filter for a group of events.             |         |
 | Sort Order          | Sort resulting events in ascending (asc) or descending (desc) chronological order.                            |         |
 | Fetch All           | When enabled, automatically fetches all pages of results. Pagination inputs are ignored when this is enabled. | false   |
+| Pagination          | Cursor and page-size controls for paging through results.                                                     |         |
 | Starting After UUID | Serves as a cursor, returns all events occurring after specified UUID (exclusive).                            |         |
 | Limit               | Limits the number of objects returned in a single response, between 1 and 100. Defaults to 25.                |         |
 
@@ -174,14 +179,14 @@ Get webhook events based on the partner application's scopes for Gusto.
 
 Returns the Webhook Subscription associated with the provided UUID for Gusto.
 
-| Input                     | Comments                       | Default |
-| ------------------------- | ------------------------------ | ------- |
-| Connection                |                                |         |
-| Webhook Subscription UUID | The webhook subscription UUID. |         |
+| Input                     | Comments                                                                 | Default |
+| ------------------------- | ------------------------------------------------------------------------ | ------- |
+| Connection                |                                                                          |         |
+| Webhook Subscription UUID | The unique identifier of the webhook subscription to retrieve or modify. |         |
 
 ### List Companies {#listcompanies}
 
-List all companies that the currently authenticated user is a part of
+Lists all companies that the currently authenticated user is a part of.
 
 | Input           | Comments                                                                                                                                     | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -191,7 +196,7 @@ List all companies that the currently authenticated user is a part of
 
 ### List Company Admins {#listcompanyadmins}
 
-List all admin users at a company
+Lists all admin users at a company.
 
 | Input           | Comments                                                                                                                                     | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -202,7 +207,7 @@ List all admin users at a company
 
 ### List Employees {#listemployees}
 
-List employees of a company
+Lists employees of a company.
 
 | Input           | Comments                                                                                                                                     | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -213,7 +218,7 @@ List employees of a company
 
 ### List Pay Schedules {#listpayschedules}
 
-List pay schedules for a company
+Lists pay schedules for a company.
 
 | Input           | Comments                                                                                                                                     | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -232,12 +237,12 @@ Returns all webhook subscriptions associated with the provided Partner API token
 
 ### Raw Request {#rawrequest}
 
-Send raw HTTP request to Gusto
+Sends a raw HTTP request to Gusto.
 
 | Input                   | Comments                                                                                                                                                                                                | Default         |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | Connection              |                                                                                                                                                                                                         |                 |
-| API Version             | The API version to use.                                                                                                                                                                                 | 2026-02-01      |
+| API Version             | The Gusto API version sent in the X-Gusto-API-Version header.                                                                                                                                           | 2026-06-15      |
 | URL                     | Input the path only (/provision), The base URL is already included (https://api.gusto.com/v1). For example, to connect to https://api.gusto.com/v1/provision, only /provision is entered in this field. |                 |
 | Method                  | The HTTP method to use.                                                                                                                                                                                 |                 |
 | Data                    | The HTTP body payload to send to the URL.                                                                                                                                                               |                 |
@@ -255,12 +260,12 @@ Send raw HTTP request to Gusto
 
 ### Terminate Employee {#terminateemployee}
 
-End an employee's employment
+Ends an employee's employment.
 
 | Input                    | Comments                                               | Default |
 | ------------------------ | ------------------------------------------------------ | ------- |
 | Connection               |                                                        |         |
-| Employee ID              | A UUID representing a employee.                        |         |
+| Employee ID              | A UUID representing an employee.                       |         |
 | Termination Date         | The date the employee was terminated.                  |         |
 | Run Termination Payroll? | Whether to run a termination payroll for the employee. | false   |
 
@@ -271,5 +276,5 @@ Updates the Webhook Subscription associated with the provided UUID for Gusto.
 | Input                     | Comments                                                                                 | Default |
 | ------------------------- | ---------------------------------------------------------------------------------------- | ------- |
 | Connection                |                                                                                          |         |
-| Webhook Subscription UUID | The webhook subscription UUID.                                                           |         |
+| Webhook Subscription UUID | The unique identifier of the webhook subscription to retrieve or modify.                 |         |
 | Subscription Types        | Types of notifications to receive when entities change. Enter as comma-separated values. |         |

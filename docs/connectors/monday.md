@@ -1,7 +1,7 @@
 ---
 title: Monday Connector
 sidebar_label: Monday
-description: Manage boards, tasks and workflows within Monday.
+description: Manage monday.com boards and webhooks, find items by column value, send GraphQL requests, and react to new and updated items.
 ---
 
 ![Monday](./assets/monday.png#connector-icon)
@@ -60,7 +60,7 @@ To use OAuth 2.0 authentication with Monday, [register a Monday app](https://dev
    - Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as the **Redirect URL** in the app's OAuth configuration
 3. Under **Permissions**, select the required OAuth scopes for the integration
 4. Copy the **Client ID** and **Client Secret** from the app's **OAuth** section
-5. For scope reference, see [Monday's OAuth 2.0 documentation](https://developer.monday.com/apps/docs/oauth#set-up-permission-scopes)
+5. For scope reference, see [Monday's OAuth 2.0 documentation](https://developer.monday.com/apps/docs/oauth#permission-scopes)
 
 #### Configure the Connection
 
@@ -68,7 +68,7 @@ Create a connection of type **OAuth 2.0** and enter:
 
 - **Client ID**: The Client ID from the Monday app
 - **Client Secret**: The Client Secret from the Monday app
-- **Scopes**: The OAuth permission scopes required for the integration (space-separated). Refer to [Monday's OAuth 2.0 documentation](https://developer.monday.com/apps/docs/oauth#set-up-permission-scopes) for available scopes
+- **Scopes**: The OAuth permission scopes required for the integration (space-separated). Refer to [Monday's OAuth 2.0 documentation](https://developer.monday.com/apps/docs/oauth#permission-scopes) for available scopes
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -97,13 +97,13 @@ Retrieves existing and ongoing items for a specified Monday.com board. Load hist
 
 Receive webhook events from Monday. Automatically creates and manages webhook subscriptions on instance deploy and removes them on instance delete.
 
-| Input          | Comments                                                                                                                                                                                                                                              | Default |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     | The Monday.com connection to use.                                                                                                                                                                                                                     |         |
-| Board ID       | The unique identifier for the Monday.com board that the action targets.                                                                                                                                                                               |         |
-| Event          | The type of board event to subscribe to.                                                                                                                                                                                                              |         |
-| Config         | Optional event-specific configuration as a JSON object. For example, {"columnId": "status"} for change_specific_column_value events.                                                                                                                  |         |
-| Signing Secret | The Signing Secret from the Monday.com app. When provided, webhook payloads are verified against this secret. See [Monday.com Authorization docs](https://developer.monday.com/apps/docs/integration-authorization#authorization-header) for details. |         |
+| Input          | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Default |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection     | The Monday.com connection to use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |         |
+| Board ID       | The unique identifier for the Monday.com board that the action targets.                                                                                                                                                                                                                                                                                                                                                                                                                                  |         |
+| Event          | The type of board event to subscribe to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |         |
+| Config         | Optional event-specific configuration as a JSON object. For example, {"columnId": "status"} for change_specific_column_value events.                                                                                                                                                                                                                                                                                                                                                                     |         |
+| Signing Secret | The Signing Secret from the Monday.com app whose OAuth token creates the webhook. When provided, the JWT in each delivery's Authorization header is verified against this secret, and unsigned or invalid deliveries are rejected. Monday.com signs board webhooks only when they are created with an integration app's OAuth token, so leave this empty otherwise. See [Monday.com JWT verification docs](https://developer.monday.com/apps/docs/integration-authorization#verify-the-jwt) for details. |         |
 
 ## Actions
 

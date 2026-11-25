@@ -58,10 +58,10 @@ Delete one or more Custom Objects.
 
 Delete one or more Leads by their Marketo id.
 
-| Input      | Comments                                      | Default |
-| ---------- | --------------------------------------------- | ------- |
-| Connection |                                               |         |
-| Ids        | The Marketo id(s) of the record(s) to delete. |         |
+| Input      | Comments                                      | Default         |
+| ---------- | --------------------------------------------- | --------------- |
+| Connection |                                               |                 |
+| Ids        | The Marketo id(s) of the record(s) to delete. | <code>[]</code> |
 
 ### Delete Named Accounts {#deletenamedaccounts}
 
@@ -146,91 +146,91 @@ Returns metadata about Sales Persons and the fields available for interaction vi
 
 Retrieves company records from the destination instance based on the submitted filter.
 
-| Input           | Comments                                                                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                          |         |
-| Filter Type     | The field to filter on                                                                                                                                   |         |
-| Filter Values   | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields          | List of field names to include                                                                                                                           |         |
-| Batch Size      | The batch size to return                                                                                                                                 |         |
-| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
-| Fetch All       | Whether to fetch all records or just the first page.                                                                                                     | false   |
+| Input           | Comments                                                                                                                                                 | Default         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                          |                 |
+| Filter Type     | The field to filter on                                                                                                                                   |                 |
+| Filter Values   | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields          | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size      | The batch size to return                                                                                                                                 |                 |
+| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
+| Fetch All       | Whether to fetch all records or just the first page.                                                                                                     | false           |
 
 ### Get Custom Objects By Filter {#getcustomobjectsbyfilter}
 
 Retrieves a list of custom objects records based on filter and set of values.
 
-| Input              | Comments                                                                                                                                                 | Default |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection         |                                                                                                                                                          |         |
-| Custom Object Name | The name of the Custom Object                                                                                                                            |         |
-| Filter Type        | The field to filter on                                                                                                                                   |         |
-| Filter Values      | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields             | List of field names to include                                                                                                                           |         |
-| Batch Size         | The batch size to return                                                                                                                                 |         |
-| Next Page Token    | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
+| Input              | Comments                                                                                                                                                 | Default         |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection         |                                                                                                                                                          |                 |
+| Custom Object Name | The name of the Custom Object                                                                                                                            |                 |
+| Filter Type        | The field to filter on                                                                                                                                   |                 |
+| Filter Values      | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields             | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size         | The batch size to return                                                                                                                                 |                 |
+| Next Page Token    | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
 
 ### Get Lead By Id {#getleadbyid}
 
 Retrieves a single lead record through its Marketo id.
 
-| Input      | Comments                       | Default |
-| ---------- | ------------------------------ | ------- |
-| Connection |                                |         |
-| Lead Id    | The Marketo lead id.           |         |
-| Fields     | List of field names to include |         |
+| Input      | Comments                       | Default         |
+| ---------- | ------------------------------ | --------------- |
+| Connection |                                |                 |
+| Lead Id    | The Marketo lead id.           |                 |
+| Fields     | List of field names to include | <code>[]</code> |
 
 ### Get Leads By Filter {#getleadsbyfilter}
 
 Returns a list of up to 300 leads based on a list of values in a particular field.
 
-| Input           | Comments                                                                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                          |         |
-| Filter Type     | The field to filter on                                                                                                                                   |         |
-| Filter Values   | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields          | List of field names to include                                                                                                                           |         |
-| Batch Size      | The batch size to return                                                                                                                                 |         |
-| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
+| Input           | Comments                                                                                                                                                 | Default         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                          |                 |
+| Filter Type     | The field to filter on                                                                                                                                   |                 |
+| Filter Values   | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields          | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size      | The batch size to return                                                                                                                                 |                 |
+| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
 
 ### Get Named Accounts By Filter {#getnamedaccountsbyfilter}
 
 Retrieves Named Account records from the destination instance based on the submitted filter.
 
-| Input           | Comments                                                                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                          |         |
-| Filter Type     | The field to filter on                                                                                                                                   |         |
-| Filter Values   | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields          | List of field names to include                                                                                                                           |         |
-| Batch Size      | The batch size to return                                                                                                                                 |         |
-| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
+| Input           | Comments                                                                                                                                                 | Default         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                          |                 |
+| Filter Type     | The field to filter on                                                                                                                                   |                 |
+| Filter Values   | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields          | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size      | The batch size to return                                                                                                                                 |                 |
+| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
 
 ### Get Opportunities By Filter {#getopportunitiesbyfilter}
 
 Retrieves Opportunity records from the destination instance based on the submitted filter.
 
-| Input           | Comments                                                                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                          |         |
-| Filter Type     | The field to filter on                                                                                                                                   |         |
-| Filter Values   | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields          | List of field names to include                                                                                                                           |         |
-| Batch Size      | The batch size to return                                                                                                                                 |         |
-| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
+| Input           | Comments                                                                                                                                                 | Default         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                          |                 |
+| Filter Type     | The field to filter on                                                                                                                                   |                 |
+| Filter Values   | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields          | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size      | The batch size to return                                                                                                                                 |                 |
+| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
 
 ### Get Sales Persons By Filter {#getsalespersonsbyfilter}
 
 Retrieves Sales Person records from the destination instance based on the submitted filter.
 
-| Input           | Comments                                                                                                                                                 | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                          |         |
-| Filter Type     | The field to filter on                                                                                                                                   |         |
-| Filter Values   | A list of values to filter on for the specified field                                                                                                    |         |
-| Fields          | List of field names to include                                                                                                                           |         |
-| Batch Size      | The batch size to return                                                                                                                                 |         |
-| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |         |
+| Input           | Comments                                                                                                                                                 | Default         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                          |                 |
+| Filter Type     | The field to filter on                                                                                                                                   |                 |
+| Filter Values   | A list of values to filter on for the specified field                                                                                                    | <code>[]</code> |
+| Fields          | List of field names to include                                                                                                                           | <code>[]</code> |
+| Batch Size      | The batch size to return                                                                                                                                 |                 |
+| Next Page Token | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter |                 |
 
 ### Get Searchable Lead Fields {#getsearchableleadfields}
 
@@ -252,23 +252,23 @@ Returns a list of Custom Object types available in the target instance, along wi
 
 Send raw HTTP request to Marketo
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Sync Companies (Create, Update, Upsert) {#synccompanies}
 

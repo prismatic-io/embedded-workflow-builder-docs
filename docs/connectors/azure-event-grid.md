@@ -1,7 +1,7 @@
 ---
 title: Azure Event Grid Connector
 sidebar_label: Azure Event Grid
-description: Azure Event Grid is an event routing service that can be used to build event driven applications by distributing events from various sources to subscribers.
+description: Publish events to Azure Event Grid, manage event subscriptions, and receive Event Grid events with a webhook trigger.
 ---
 
 ![Azure Event Grid](./assets/azure-event-grid.png#connector-icon)
@@ -60,9 +60,9 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Handle validation and delivery of Event Grid events
 
-| Input                      | Comments                           | Default |
-| -------------------------- | ---------------------------------- | ------- |
-| Event Topics to Listen For | The topics to listen for events on |         |
+| Input                      | Comments                           | Default         |
+| -------------------------- | ---------------------------------- | --------------- |
+| Event Topics to Listen For | The topics to listen for events on | <code>[]</code> |
 
 ## Actions
 

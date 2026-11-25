@@ -49,13 +49,13 @@ Authenticate using OAuth 2.0 Client Credentials with private_key_jwt method
 
 Receive event hooks from Okta when a specified event occurs.
 
-| Input                    | Comments                                                | Default |
-| ------------------------ | ------------------------------------------------------- | ------- |
-| Event Hook Items         | The list of event types to subscribe to.                |         |
-| Dynamic Event Hook Items | The list of event types to subscribe to in code format. |         |
-| Event Hook URL Headers   | Optional headers to include in the webhook request.     |         |
-| Event Hook Filters       | The optional filter defined on a specific event type.   |         |
-| Connection               | The Okta connection to use.                             |         |
+| Input                    | Comments                                                | Default         |
+| ------------------------ | ------------------------------------------------------- | --------------- |
+| Event Hook Items         | The list of event types to subscribe to.                | <code>[]</code> |
+| Dynamic Event Hook Items | The list of event types to subscribe to in code format. |                 |
+| Event Hook URL Headers   | Optional headers to include in the webhook request.     | <code>[]</code> |
+| Event Hook Filters       | The optional filter defined on a specific event type.   |                 |
+| Connection               | The Okta connection to use.                             |                 |
 
 ### New System Logs {#newsystemlogspollingtrigger}
 
@@ -146,17 +146,17 @@ Clears all active sessions for a user, forcing re-authentication on next access.
 
 Create a new event hook.
 
-| Input                     | Comments                                                                                     | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------- | ------- |
-| Event Hook Name           | The name of the event hook.                                                                  |         |
-| Event Hook URL            | The URL of the event hook.                                                                   |         |
-| Do Not Activate on Create | When true, the event hook will not be activated and a verification request will not be sent. | false   |
-| Event Hook Items          | The list of event types to subscribe to.                                                     |         |
-| Dynamic Event Hook Items  | The list of event types to subscribe to in code format.                                      |         |
-| Event Hook URL Headers    | Optional headers to include in the webhook request.                                          |         |
-| Event Hook Filters        | The optional filter defined on a specific event type.                                        |         |
-| Event Hook Description    | The description of the event hook.                                                           |         |
-| Connection                | The Okta connection to use.                                                                  |         |
+| Input                     | Comments                                                                                     | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------- | --------------- |
+| Event Hook Name           | The name of the event hook.                                                                  |                 |
+| Event Hook URL            | The URL of the event hook.                                                                   |                 |
+| Do Not Activate on Create | When true, the event hook will not be activated and a verification request will not be sent. | false           |
+| Event Hook Items          | The list of event types to subscribe to.                                                     | <code>[]</code> |
+| Dynamic Event Hook Items  | The list of event types to subscribe to in code format.                                      |                 |
+| Event Hook URL Headers    | Optional headers to include in the webhook request.                                          | <code>[]</code> |
+| Event Hook Filters        | The optional filter defined on a specific event type.                                        |                 |
+| Event Hook Description    | The description of the event hook.                                                           |                 |
+| Connection                | The Okta connection to use.                                                                  |                 |
 
 ### Create Group {#creategroup}
 
@@ -365,21 +365,21 @@ Retrieves all users who are members of the specified group.
 
 List groups with optional search and filtering.
 
-| Input            | Comments                                                                                                                                                                                                                                                               | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
-| Filters          | Search, filter, and query controls to refine the results.                                                                                                                                                                                                              |         |
-| Search           | A search string to filter results. See Okta's documentation for supported search fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=search&t=request).      |         |
-| Filter           | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |         |
-| Query            | Searches for apps with name or label properties that starts with the q value using the startsWith operation.                                                                                                                                                           |         |
-| Pagination       | Cursor and limit controls for paging through results.                                                                                                                                                                                                                  |         |
-| After            | The cursor for the next page of results. This value is obtained from the `Link` header of the response.                                                                                                                                                                |         |
-| Limit            | Specifies the number of results returned. Defaults to 200.                                                                                                                                                                                                             |         |
-| Sorting          | Field and direction to sort results by (for search queries only).                                                                                                                                                                                                      |         |
-| Sort By          | Specifies field to sort by (for search queries only). This can be any single property, for example sortBy=profile.lastName. Users with the same value for the sortBy property will be ordered by id.                                                                   |         |
-| Sort Order       | Specifies the sort order: asc or desc (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn't case sensitive. sortOrder is ignored if sortBy isn't present.                                                      |         |
-| Extra Parameters | List of additional parameters to include in the request. This can be used to include parameters that are not explicitly supported by this component. See Okta's API documentation for a list of supported parameters.                                                  |         |
-| Connection       | The Okta connection to use.                                                                                                                                                                                                                                            |         |
+| Input            | Comments                                                                                                                                                                                                                                                               | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false           |
+| Filters          | Search, filter, and query controls to refine the results.                                                                                                                                                                                                              |                 |
+| Search           | A search string to filter results. See Okta's documentation for supported search fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=search&t=request).      |                 |
+| Filter           | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |                 |
+| Query            | Searches for apps with name or label properties that starts with the q value using the startsWith operation.                                                                                                                                                           |                 |
+| Pagination       | Cursor and limit controls for paging through results.                                                                                                                                                                                                                  |                 |
+| After            | The cursor for the next page of results. This value is obtained from the `Link` header of the response.                                                                                                                                                                |                 |
+| Limit            | Specifies the number of results returned. Defaults to 200.                                                                                                                                                                                                             |                 |
+| Sorting          | Field and direction to sort results by (for search queries only).                                                                                                                                                                                                      |                 |
+| Sort By          | Specifies field to sort by (for search queries only). This can be any single property, for example sortBy=profile.lastName. Users with the same value for the sortBy property will be ordered by id.                                                                   |                 |
+| Sort Order       | Specifies the sort order: asc or desc (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn't case sensitive. sortOrder is ignored if sortBy isn't present.                                                      |                 |
+| Extra Parameters | List of additional parameters to include in the request. This can be used to include parameters that are not explicitly supported by this component. See Okta's API documentation for a list of supported parameters.                                                  | <code>[]</code> |
+| Connection       | The Okta connection to use.                                                                                                                                                                                                                                            |                 |
 
 ### List Policies {#listpolicies}
 
@@ -446,21 +446,21 @@ List groups for a specific user.
 
 List users with optional search and filtering.
 
-| Input            | Comments                                                                                                                                                                                                                                                               | Default |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false   |
-| Filters          | Search, filter, and query controls to refine the results.                                                                                                                                                                                                              |         |
-| Search           | A search string to filter results. See Okta's documentation for supported search fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=search&t=request).      |         |
-| Filter           | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |         |
-| Query            | Searches for apps with name or label properties that starts with the q value using the startsWith operation.                                                                                                                                                           |         |
-| Pagination       | Cursor and limit controls for paging through results.                                                                                                                                                                                                                  |         |
-| After            | The cursor for the next page of results. This value is obtained from the `Link` header of the response.                                                                                                                                                                |         |
-| Limit            | Specifies the number of results returned. Defaults to 200.                                                                                                                                                                                                             |         |
-| Sorting          | Field and direction to sort results by (for search queries only).                                                                                                                                                                                                      |         |
-| Sort By          | Specifies field to sort by (for search queries only). This can be any single property, for example sortBy=profile.lastName. Users with the same value for the sortBy property will be ordered by id.                                                                   |         |
-| Sort Order       | Specifies the sort order: asc or desc (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn't case sensitive. sortOrder is ignored if sortBy isn't present.                                                      |         |
-| Extra Parameters | List of additional parameters to include in the request. This can be used to include parameters that are not explicitly supported by this component. See Okta's API documentation for a list of supported parameters.                                                  |         |
-| Connection       | The Okta connection to use.                                                                                                                                                                                                                                            |         |
+| Input            | Comments                                                                                                                                                                                                                                                               | Default         |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Fetch All        | When true, fetches all pages of results using pagination.                                                                                                                                                                                                              | false           |
+| Filters          | Search, filter, and query controls to refine the results.                                                                                                                                                                                                              |                 |
+| Search           | A search string to filter results. See Okta's documentation for supported search fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=search&t=request).      |                 |
+| Filter           | A filter string to narrow down results. See Okta's documentation for supported filter fields and operators [click here](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/listUsers!in=query&path=filter&t=request). |                 |
+| Query            | Searches for apps with name or label properties that starts with the q value using the startsWith operation.                                                                                                                                                           |                 |
+| Pagination       | Cursor and limit controls for paging through results.                                                                                                                                                                                                                  |                 |
+| After            | The cursor for the next page of results. This value is obtained from the `Link` header of the response.                                                                                                                                                                |                 |
+| Limit            | Specifies the number of results returned. Defaults to 200.                                                                                                                                                                                                             |                 |
+| Sorting          | Field and direction to sort results by (for search queries only).                                                                                                                                                                                                      |                 |
+| Sort By          | Specifies field to sort by (for search queries only). This can be any single property, for example sortBy=profile.lastName. Users with the same value for the sortBy property will be ordered by id.                                                                   |                 |
+| Sort Order       | Specifies the sort order: asc or desc (for search queries only). Sorting is done in ASCII sort order (that is, by ASCII character value), but isn't case sensitive. sortOrder is ignored if sortBy isn't present.                                                      |                 |
+| Extra Parameters | List of additional parameters to include in the request. This can be used to include parameters that are not explicitly supported by this component. See Okta's API documentation for a list of supported parameters.                                                  | <code>[]</code> |
+| Connection       | The Okta connection to use.                                                                                                                                                                                                                                            |                 |
 
 ### List User Types {#listusertypes}
 
@@ -474,23 +474,23 @@ Lists all user types in your org.
 
 Send raw HTTP request to Okta.
 
-| Input                   | Comments                                                                                                                                                                                                          | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Okta connection to use.                                                                                                                                                                                       |         |
-| URL                     | Input the path only (/users), The base URL is already included (https://{yourOktaDomain}.com/api/v1). For example, to connect to https://{yourOktaDomain}.com/api/v1/users, only /users is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                           |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                         |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                              |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                  |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                            |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                               |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                       |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                          | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                               |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                               | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                  | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                               | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                     | false   |
+| Input                   | Comments                                                                                                                                                                                                          | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Okta connection to use.                                                                                                                                                                                       |                 |
+| URL                     | Input the path only (/users), The base URL is already included (https://{yourOktaDomain}.com/api/v1). For example, to connect to https://{yourOktaDomain}.com/api/v1/users, only /users is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                           |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                         |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                              | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                  | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                            | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                               | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                       | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                          | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                               |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                               | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                  | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                               | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                     | false           |
 
 ### Reactivate User {#reactivateuser}
 

@@ -1,11 +1,11 @@
 ---
 title: Duro PLM Connector
 sidebar_label: Duro PLM
-description: Manage products, components, and change orders in Duro PLM.
+description: Manage components and change orders in Duro PLM.
 ---
 
 ![Duro PLM](./assets/duro-plm.png#connector-icon)
-[Duro PLM](https://durolabs.co/) is a cloud based Product Lifecycle Management (PLM) platform for managing part data, change orders, and product development workflows. This component allows managing products, components, change orders, and other resources in a Duro workspace.
+[Duro PLM](https://durolabs.co/) is a cloud based Product Lifecycle Management (PLM) platform for managing part data, change orders, and product development workflows. This component allows managing components, change orders, and other resources in a Duro workspace.
 
 ## API Documentation
 
@@ -77,8 +77,8 @@ Creates a draft change order.
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Duro PLM connection to use.                                                                                                       |         |
 | Name        | The name of the change order to create.                                                                                               |         |
-| Description | A detailed description of the change order, including the reason for the change and expected impact.                                  |         |
 | Type        | The type of change order to create. ECO (Engineering Change Order), MCO (Manufacturing Change Order), or DCO (Document Change Order). | ECO     |
+| Description | A detailed description of the change order, including the reason for the change and expected impact.                                  |         |
 
 ### Get Component by ID {#getcomponentbyid}
 

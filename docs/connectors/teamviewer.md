@@ -1,7 +1,7 @@
 ---
 title: TeamViewer Connector
 sidebar_label: TeamViewer
-description: Connect to TeamViewer to automate your remote support tasks.
+description: Manage TeamViewer devices, managed devices, groups, contacts, users, and remote support sessions, and react to new records with a polling trigger.
 ---
 
 ![TeamViewer](./assets/teamviewer.png#connector-icon)
@@ -297,73 +297,73 @@ Retrieves the user associated with the used API token.
 
 Lists one page of company-managed devices of the company that is associated with the currently logged-in session.
 
-| Input            | Comments                                                                                                                                                     | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Pagination Token | To fetch the next batch of result items, provide the value received as 'nextPaginationToken' from the previous call. Will fetch the first page if not given. |         |
-| Fetch All        | Whether to fetch all records or just the first page.                                                                                                         | false   |
-| Query Parameters | The query parameters to include in the request.                                                                                                              |         |
-| Connection       |                                                                                                                                                              |         |
+| Input            | Comments                                                                                                                                                     | Default         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Pagination Token | To fetch the next batch of result items, provide the value received as 'nextPaginationToken' from the previous call. Will fetch the first page if not given. |                 |
+| Fetch All        | Whether to fetch all records or just the first page.                                                                                                         | false           |
+| Query Parameters | The query parameters to include in the request.                                                                                                              | <code>[]</code> |
+| Connection       |                                                                                                                                                              |                 |
 
 ### List Contacts {#listcontacts}
 
 Returns a list of contacts.
 
-| Input            | Comments                                        | Default |
-| ---------------- | ----------------------------------------------- | ------- |
-| Query Parameters | The query parameters to include in the request. |         |
-| Connection       |                                                 |         |
+| Input            | Comments                                        | Default         |
+| ---------------- | ----------------------------------------------- | --------------- |
+| Query Parameters | The query parameters to include in the request. | <code>[]</code> |
+| Connection       |                                                 |                 |
 
 ### List Devices {#listdevices}
 
 Returns a list of devices.
 
-| Input             | Comments                                              | Default |
-| ----------------- | ----------------------------------------------------- | ------- |
-| Name              | The name of the device.                               |         |
-| Group ID          | The ID of the group to which the device belongs.      |         |
-| Remote Control ID | The ID of the remote control to assign to the device. |         |
-| Query Parameters  | The query parameters to include in the request.       |         |
-| Connection        |                                                       |         |
+| Input             | Comments                                              | Default         |
+| ----------------- | ----------------------------------------------------- | --------------- |
+| Name              | The name of the device.                               |                 |
+| Group ID          | The ID of the group to which the device belongs.      |                 |
+| Remote Control ID | The ID of the remote control to assign to the device. |                 |
+| Query Parameters  | The query parameters to include in the request.       | <code>[]</code> |
+| Connection        |                                                       |                 |
 
 ### List Groups {#listgroups}
 
 Returns a list of groups.
 
-| Input            | Comments                                        | Default |
-| ---------------- | ----------------------------------------------- | ------- |
-| Query Parameters | The query parameters to include in the request. |         |
-| Connection       |                                                 |         |
+| Input            | Comments                                        | Default         |
+| ---------------- | ----------------------------------------------- | --------------- |
+| Query Parameters | The query parameters to include in the request. | <code>[]</code> |
+| Connection       |                                                 |                 |
 
 ### List Managed Devices {#listmanageddevices}
 
 Returns a list of managed devices.
 
-| Input            | Comments                                                                                                                                                     | Default |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Pagination Token | To fetch the next batch of result items, provide the value received as 'nextPaginationToken' from the previous call. Will fetch the first page if not given. |         |
-| Fetch All        | Whether to fetch all records or just the first page.                                                                                                         | false   |
-| Query Parameters | The query parameters to include in the request.                                                                                                              |         |
-| Connection       |                                                                                                                                                              |         |
+| Input            | Comments                                                                                                                                                     | Default         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Pagination Token | To fetch the next batch of result items, provide the value received as 'nextPaginationToken' from the previous call. Will fetch the first page if not given. |                 |
+| Fetch All        | Whether to fetch all records or just the first page.                                                                                                         | false           |
+| Query Parameters | The query parameters to include in the request.                                                                                                              | <code>[]</code> |
+| Connection       |                                                                                                                                                              |                 |
 
 ### List Patch Management Device {#listpatchmagementdevices}
 
 Returns a list of patch management devices.
 
-| Input              | Comments                                             | Default |
-| ------------------ | ---------------------------------------------------- | ------- |
-| Fetch All          | Whether to fetch all records or just the first page. | false   |
-| Continuation Token | The continuation token from the previous response.   |         |
-| Query Parameters   | The query parameters to include in the request.      |         |
-| Connection         |                                                      |         |
+| Input              | Comments                                             | Default         |
+| ------------------ | ---------------------------------------------------- | --------------- |
+| Fetch All          | Whether to fetch all records or just the first page. | false           |
+| Continuation Token | The continuation token from the previous response.   |                 |
+| Query Parameters   | The query parameters to include in the request.      | <code>[]</code> |
+| Connection         |                                                      |                 |
 
 ### List Sessions {#listsessions}
 
 Returns a list of sessions.
 
-| Input            | Comments                                        | Default |
-| ---------------- | ----------------------------------------------- | ------- |
-| Query Parameters | The query parameters to include in the request. |         |
-| Connection       |                                                 |         |
+| Input            | Comments                                        | Default         |
+| ---------------- | ----------------------------------------------- | --------------- |
+| Query Parameters | The query parameters to include in the request. | <code>[]</code> |
+| Connection       |                                                 |                 |
 
 ### List Users {#listusers}
 
@@ -381,23 +381,23 @@ Retrieves all users with given filter criteria.
 
 Send raw HTTP request to Teamviewer API
 
-| Input                   | Comments                                                                                                                                                                                                                                     | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                                              |         |
-| URL                     | Input the path only (/contacts), The base URL is already included (https://webapi.teamviewer.com/api/v1/). For example, to connect to https://webapi.teamviewer.com/api/v1/contacts, only /contacts is entered in this field. e.g. /contacts |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                      |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                    |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                         |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                             |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                       |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                          |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                  |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                     | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                          |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                          | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                             | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                          | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                | false   |
+| Input                   | Comments                                                                                                                                                                                                                                     | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                                              |                 |
+| URL                     | Input the path only (/contacts), The base URL is already included (https://webapi.teamviewer.com/api/v1/). For example, to connect to https://webapi.teamviewer.com/api/v1/contacts, only /contacts is entered in this field. e.g. /contacts |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                      |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                    |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                         | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                             | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                       | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                          | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                  | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                     | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                          |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                          | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                             | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                          | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                | false           |
 
 ### Scan Results Count {#scanresultscount}
 

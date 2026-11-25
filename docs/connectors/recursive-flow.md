@@ -1,11 +1,11 @@
 ---
 title: Recursive Flow Connector
 sidebar_label: Recursive Flow
-description: This component allows a flow to call itself with a cursor in order to process large amounts of data in serial.
+description: Make a flow invoke itself with a cursor to process large amounts of data serially across executions.
 ---
 
 ![Recursive Flow](./assets/recursive-flow.png#connector-icon)
-This component allows a flow to call itself with a cursor in order to process large amounts of data in serial.
+Make a flow invoke itself with a cursor to process large amounts of data serially across executions.
 
 ## Triggers
 

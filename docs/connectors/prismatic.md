@@ -1,11 +1,11 @@
 ---
 title: Prismatic Connector
 sidebar_label: Prismatic
-description: Interact with the Prismatic internal API
+description: Manage Prismatic customers, integrations, instances, and flows, deploy and test instances, and publish integration versions through the Prismatic GraphQL API.
 ---
 
 ![Prismatic](./assets/prismatic.png#connector-icon)
-Interact with the Prismatic internal API
+Manage Prismatic customers, integrations, instances, and flows, deploy and test instances, and publish integration versions through the Prismatic GraphQL API.
 
 ## Connections
 
@@ -245,7 +245,7 @@ Send raw GraphQL request to Prismatic
 | ----------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Connection        |                                                             |                                                                                                                       |
 | Query or Mutation | Provide a query or mutation for the GraphQL request         | query ($myCustomerId: ID!) {<br />  customer(id: $myCustomerId) {<br /> id<br /> name<br /> externalId<br /> }<br />} |
-| GraphQL Variables | These should match the variables of your query or mutation. |                                                                                                                       |
+| GraphQL Variables | These should match the variables of your query or mutation. | <code>[]</code>                                                                                                       |
 
 ### Test Flow {#testflow}
 

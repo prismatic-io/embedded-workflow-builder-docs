@@ -49,10 +49,6 @@ Use the standard account password for authentication. No additional setup is req
 
 For more information on generating API tokens from Jira Cloud, refer to the [Atlassian documentation](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
 
-:::note[Self-Hosted vs Cloud Authentication]
-Jira Cloud requires an API token for Basic Authentication, while self-hosted instances can use the account password. For security reasons, it is recommended to use API tokens whenever possible.
-:::
-
 | Input    | Comments                                                                                                                                                                           | Default |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Username | The Jira username or email address used for authentication.                                                                                                                        |         |
@@ -90,10 +86,6 @@ Jira's Cloud API supports OAuth 2.0 (3LO) flows for secure authentication. For m
    - Refer to [Jira OAuth 2.0 scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for a complete list of available scopes
 9. Click **Save** to apply the configuration
 
-:::warning[Scope Consistency]
-The scopes configured in the Atlassian Developer Console must match the scopes entered in the connection configuration. Inconsistent scopes will cause authentication failures.
-:::
-
 #### Configure the Connection
 
 - For **Authorize URL** and **Token URL**, keep the pre-populated defaults (`https://auth.atlassian.com/authorize?audience=api.atlassian.com&prompt=consent` and `https://auth.atlassian.com/oauth/token`) unless instructed otherwise by Atlassian
@@ -105,9 +97,9 @@ The scopes configured in the Atlassian Developer Console must match the scopes e
   ```
   - The `offline_access` scope is required to obtain a refresh token
   - Customize the scopes to match the use case requirements
-  - Ensure the scopes match those configured in the Atlassian Developer Console
+  - Ensure the scopes match those configured in the Atlassian Developer Console. Mismatched scopes cause authentication failures.
   - Refer to [Jira scopes documentation](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) for additional scope information
-- For **Jira Site Name** (optional):
+- For **Atlassian Site Name** (optional):
   - By default, the connection uses the first Jira site the authenticated user has access to
   - To specify a different site, enter the site name (e.g., `example`) or full URL (e.g., `example.atlassian.net`)
 - For **Version**, select the API version (typically `3` for Jira Cloud)

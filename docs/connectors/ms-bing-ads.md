@@ -243,72 +243,72 @@ Applies offline conversions to a Microsoft Advertising account. Utilizes the SOA
 
 Deletes one or more ad groups from the specified campaign.
 
-| Input        | Comments                                          | Default |
-| ------------ | ------------------------------------------------- | ------- |
-| Connection   | The Microsoft Advertising connection to use.      |         |
-| Account ID   | The unique identifier for the advertiser account. |         |
-| Customer ID  | The unique identifier for the customer.           |         |
-| Campaign ID  | The identifier of the campaign.                   |         |
-| Ad Group IDs | An array of ad group identifiers to delete.       |         |
+| Input        | Comments                                          | Default         |
+| ------------ | ------------------------------------------------- | --------------- |
+| Connection   | The Microsoft Advertising connection to use.      |                 |
+| Account ID   | The unique identifier for the advertiser account. |                 |
+| Customer ID  | The unique identifier for the customer.           |                 |
+| Campaign ID  | The identifier of the campaign.                   |                 |
+| Ad Group IDs | An array of ad group identifiers to delete.       | <code>[]</code> |
 
 ### Delete Ads {#deleteads}
 
 Deletes one or more ads from the specified ad group.
 
-| Input       | Comments                                          | Default |
-| ----------- | ------------------------------------------------- | ------- |
-| Connection  | The Microsoft Advertising connection to use.      |         |
-| Account ID  | The unique identifier for the advertiser account. |         |
-| Customer ID | The unique identifier for the customer.           |         |
-| Campaign ID | The identifier of the campaign.                   |         |
-| Ad Group ID | The identifier of the ad group.                   |         |
-| Ad IDs      | An array of ad identifiers to delete.             |         |
+| Input       | Comments                                          | Default         |
+| ----------- | ------------------------------------------------- | --------------- |
+| Connection  | The Microsoft Advertising connection to use.      |                 |
+| Account ID  | The unique identifier for the advertiser account. |                 |
+| Customer ID | The unique identifier for the customer.           |                 |
+| Campaign ID | The identifier of the campaign.                   |                 |
+| Ad Group ID | The identifier of the ad group.                   |                 |
+| Ad IDs      | An array of ad identifiers to delete.             | <code>[]</code> |
 
 ### Delete Audiences {#deleteaudiences}
 
 Deletes one or more audiences from the account.
 
-| Input        | Comments                                          | Default |
-| ------------ | ------------------------------------------------- | ------- |
-| Connection   | The Microsoft Advertising connection to use.      |         |
-| Account ID   | The unique identifier for the advertiser account. |         |
-| Customer ID  | The unique identifier for the customer.           |         |
-| Audience IDs | An array of audience identifiers to delete.       |         |
+| Input        | Comments                                          | Default         |
+| ------------ | ------------------------------------------------- | --------------- |
+| Connection   | The Microsoft Advertising connection to use.      |                 |
+| Account ID   | The unique identifier for the advertiser account. |                 |
+| Customer ID  | The unique identifier for the customer.           |                 |
+| Audience IDs | An array of audience identifiers to delete.       | <code>[]</code> |
 
 ### Delete Budgets {#deletebudgets}
 
 Deletes one or more shared budgets from the account.
 
-| Input       | Comments                                          | Default |
-| ----------- | ------------------------------------------------- | ------- |
-| Connection  | The Microsoft Advertising connection to use.      |         |
-| Account ID  | The unique identifier for the advertiser account. |         |
-| Customer ID | The unique identifier for the customer.           |         |
-| Budget IDs  | An array of budget identifiers to delete.         |         |
+| Input       | Comments                                          | Default         |
+| ----------- | ------------------------------------------------- | --------------- |
+| Connection  | The Microsoft Advertising connection to use.      |                 |
+| Account ID  | The unique identifier for the advertiser account. |                 |
+| Customer ID | The unique identifier for the customer.           |                 |
+| Budget IDs  | An array of budget identifiers to delete.         | <code>[]</code> |
 
 ### Delete Campaigns {#deletecampaigns}
 
 Deletes one or more campaigns from the specified account.
 
-| Input        | Comments                                          | Default |
-| ------------ | ------------------------------------------------- | ------- |
-| Connection   | The Microsoft Advertising connection to use.      |         |
-| Account ID   | The unique identifier for the advertiser account. |         |
-| Customer ID  | The unique identifier for the customer.           |         |
-| Campaign IDs | An array of campaign identifiers to delete.       |         |
+| Input        | Comments                                          | Default         |
+| ------------ | ------------------------------------------------- | --------------- |
+| Connection   | The Microsoft Advertising connection to use.      |                 |
+| Account ID   | The unique identifier for the advertiser account. |                 |
+| Customer ID  | The unique identifier for the customer.           |                 |
+| Campaign IDs | An array of campaign identifiers to delete.       | <code>[]</code> |
 
 ### Delete Keywords {#deletekeywords}
 
 Deletes one or more keywords from the specified ad group.
 
-| Input       | Comments                                          | Default |
-| ----------- | ------------------------------------------------- | ------- |
-| Connection  | The Microsoft Advertising connection to use.      |         |
-| Account ID  | The unique identifier for the advertiser account. |         |
-| Customer ID | The unique identifier for the customer.           |         |
-| Campaign ID | The identifier of the campaign.                   |         |
-| Ad Group ID | The identifier of the ad group.                   |         |
-| Keyword IDs | An array of keyword identifiers to delete.        |         |
+| Input       | Comments                                          | Default         |
+| ----------- | ------------------------------------------------- | --------------- |
+| Connection  | The Microsoft Advertising connection to use.      |                 |
+| Account ID  | The unique identifier for the advertiser account. |                 |
+| Customer ID | The unique identifier for the customer.           |                 |
+| Campaign ID | The identifier of the campaign.                   |                 |
+| Ad Group ID | The identifier of the ad group.                   |                 |
+| Keyword IDs | An array of keyword identifiers to delete.        | <code>[]</code> |
 
 ### Get Accounts Info {#getaccountsinfo}
 
@@ -335,92 +335,92 @@ Gets the ad groups that belong to the specified campaign.
 
 Gets the specified ad groups within the specified campaign.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign ID              | The identifier of the campaign.                                                                                                            |         |
-| Ad Group IDs             | An array of ad group identifiers to retrieve.                                                                                              |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign ID              | The identifier of the campaign.                                                                                                            |                 |
+| Ad Group IDs             | An array of ad group identifiers to retrieve.                                                                                              | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Ads By Ad Group ID {#getadsbyadgroupid}
 
 Gets the ads that belong to the specified ad group.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign ID              | The identifier of the campaign.                                                                                                            |         |
-| Ad Group ID              | The identifier of the ad group.                                                                                                            |         |
-| Ad Types                 | The type(s) of ads to return for the specified ad group.                                                                                   |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign ID              | The identifier of the campaign.                                                                                                            |                 |
+| Ad Group ID              | The identifier of the ad group.                                                                                                            |                 |
+| Ad Types                 | The type(s) of ads to return for the specified ad group.                                                                                   | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Ads By IDs {#getadsbyids}
 
 Gets the specified ads within the specified ad group.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign ID              | The identifier of the campaign.                                                                                                            |         |
-| Ad Group ID              | The identifier of the ad group.                                                                                                            |         |
-| Ad IDs                   | An array of ad identifiers to retrieve.                                                                                                    |         |
-| Ad Types                 | The type(s) of ads to return for the specified ad group.                                                                                   |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign ID              | The identifier of the campaign.                                                                                                            |                 |
+| Ad Group ID              | The identifier of the ad group.                                                                                                            |                 |
+| Ad IDs                   | An array of ad identifiers to retrieve.                                                                                                    | <code>[]</code> |
+| Ad Types                 | The type(s) of ads to return for the specified ad group.                                                                                   | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Audiences By IDs {#getaudiencesbyids}
 
 Gets the specified audiences. When Audience IDs is empty, an Audience Type is required and all audiences of that type in the account are returned.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Audience IDs             | An array of audience identifiers. Leave empty to return all customer- and account-scoped audiences in the account.                         |         |
-| Audience Type            | The audience type to return. Required when Audience IDs is empty — the API needs a type to know which audiences to return.                 |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Audience IDs             | An array of audience identifiers. Leave empty to return all customer- and account-scoped audiences in the account.                         | <code>[]</code> |
+| Audience Type            | The audience type to return. Required when Audience IDs is empty — the API needs a type to know which audiences to return.                 |                 |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Budgets By IDs {#getbudgetsbyids}
 
 Gets the specified budgets. Leave Budget IDs empty to return all budgets available in the account.
 
-| Input       | Comments                                                                                    | Default |
-| ----------- | ------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The Microsoft Advertising connection to use.                                                |         |
-| Account ID  | The unique identifier for the advertiser account.                                           |         |
-| Customer ID | The unique identifier for the customer.                                                     |         |
-| Budget IDs  | An array of budget identifiers. Leave empty to return all budgets available in the account. |         |
+| Input       | Comments                                                                                    | Default         |
+| ----------- | ------------------------------------------------------------------------------------------- | --------------- |
+| Connection  | The Microsoft Advertising connection to use.                                                |                 |
+| Account ID  | The unique identifier for the advertiser account.                                           |                 |
+| Customer ID | The unique identifier for the customer.                                                     |                 |
+| Budget IDs  | An array of budget identifiers. Leave empty to return all budgets available in the account. | <code>[]</code> |
 
 ### Get Campaigns By Account ID {#getcampaignsbyaccountid}
 
 Gets the campaigns that belong to the specified account.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign Type            | The type(s) of campaigns to return. Defaults to Search when omitted. Specify additional types to include non-Search campaigns.             |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign Type            | The type(s) of campaigns to return. Defaults to Search when omitted. Specify additional types to include non-Search campaigns.             | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Campaigns By IDs {#getcampaignsbyids}
 
 Gets the specified campaigns within the specified account.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign IDs             | An array of campaign identifiers to retrieve.                                                                                              |         |
-| Campaign Type            | The type(s) of campaigns to return. Defaults to Search when omitted. Specify additional types to include non-Search campaigns.             |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign IDs             | An array of campaign identifiers to retrieve.                                                                                              | <code>[]</code> |
+| Campaign Type            | The type(s) of campaigns to return. Defaults to Search when omitted. Specify additional types to include non-Search campaigns.             | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Customer {#getcustomer}
 
@@ -458,15 +458,15 @@ Gets the keywords that belong to the specified ad group.
 
 Gets the specified keywords within the specified ad group.
 
-| Input                    | Comments                                                                                                                                   | Default |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection               | The Microsoft Advertising connection to use.                                                                                               |         |
-| Account ID               | The unique identifier for the advertiser account.                                                                                          |         |
-| Customer ID              | The unique identifier for the customer.                                                                                                    |         |
-| Campaign ID              | The identifier of the campaign.                                                                                                            |         |
-| Ad Group ID              | The identifier of the ad group.                                                                                                            |         |
-| Keyword IDs              | An array of keyword identifiers to retrieve.                                                                                               |         |
-| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |         |
+| Input                    | Comments                                                                                                                                   | Default         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection               | The Microsoft Advertising connection to use.                                                                                               |                 |
+| Account ID               | The unique identifier for the advertiser account.                                                                                          |                 |
+| Customer ID              | The unique identifier for the customer.                                                                                                    |                 |
+| Campaign ID              | The identifier of the campaign.                                                                                                            |                 |
+| Ad Group ID              | The identifier of the ad group.                                                                                                            |                 |
+| Keyword IDs              | An array of keyword identifiers to retrieve.                                                                                               | <code>[]</code> |
+| Return Additional Fields | A space-delimited list of additional properties to include in each returned entity. Allowed values depend on the resource and API version. |                 |
 
 ### Get Linked Accounts And Customers Info {#getlinkedaccountsandcustomersinfo}
 
@@ -482,23 +482,23 @@ Gets the customer and account hierarchy under the specified customer. Utilizes t
 
 Send a raw HTTP request to the Microsoft Advertising REST API.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                                                                     | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Microsoft Advertising connection to use.                                                                                                                                                                                                                                                                                                 |         |
-| URL                     | Input the path only (/Campaigns/QueryByAccountId), The base URL is already included (https://campaign.api.bingads.microsoft.com/CampaignManagement/v13). For example, to connect to https://campaign.api.bingads.microsoft.com/CampaignManagement/v13/Campaigns/QueryByAccountId, only /Campaigns/QueryByAccountId is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                      |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                    |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                         |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                             |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                       |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                          |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                  |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                     | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                          |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                          | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                             | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                          | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                | false   |
+| Input                   | Comments                                                                                                                                                                                                                                                                                                                                     | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Microsoft Advertising connection to use.                                                                                                                                                                                                                                                                                                 |                 |
+| URL                     | Input the path only (/Campaigns/QueryByAccountId), The base URL is already included (https://campaign.api.bingads.microsoft.com/CampaignManagement/v13). For example, to connect to https://campaign.api.bingads.microsoft.com/CampaignManagement/v13/Campaigns/QueryByAccountId, only /Campaigns/QueryByAccountId is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                                                                      |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                                                                    |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                         | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                                                             | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                                                                       | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                                                                          | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                                                                  | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                                                                     | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                                                                          |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                                                                          | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                                                             | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                                                                          | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                                                                | false           |
 
 ### Raw Request (SOAP) {#rawrequest}
 
@@ -545,16 +545,16 @@ Searches for the client links for the customer of the current authenticated user
 
 Sends an email invitation for a user to sign up for Microsoft Advertising. The invitation limits account access and permissions. Utilizes the SOAP API.
 
-| Input       | Comments                                                                                                                                                                                      | Default   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Account ID  | An array of identifiers of the accounts that the user can manage. To specify that the user can manage all current and future accounts of the customer to which the user belongs, set to NULL. |           |
-| Connection  | The Microsoft Advertising connection to use.                                                                                                                                                  |           |
-| Customer ID | The identifier of the customer this user is invited to manage. The AccountIds element determines which customer accounts the user can manage.                                                 |           |
-| Email       | The email address corresponding to the user's Microsoft account. The address can contain a maximum of 100 characters.                                                                         |           |
-| First Name  | The first name of the user. The first name is limited to 40 characters.                                                                                                                       |           |
-| Last Name   | The last name of the user. The last name is limited to 40 characters.                                                                                                                         |           |
-| LCID        | The locale to use when sending correspondence to the user by email or postal mail.                                                                                                            | EnglishUS |
-| Role ID     | The role that the user has for each customer or list of accounts.                                                                                                                             |           |
+| Input       | Comments                                                                                                                                                                                      | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Account ID  | An array of identifiers of the accounts that the user can manage. To specify that the user can manage all current and future accounts of the customer to which the user belongs, set to NULL. | <code>[]</code> |
+| Connection  | The Microsoft Advertising connection to use.                                                                                                                                                  |                 |
+| Customer ID | The identifier of the customer this user is invited to manage. The AccountIds element determines which customer accounts the user can manage.                                                 |                 |
+| Email       | The email address corresponding to the user's Microsoft account. The address can contain a maximum of 100 characters.                                                                         |                 |
+| First Name  | The first name of the user. The first name is limited to 40 characters.                                                                                                                       |                 |
+| Last Name   | The last name of the user. The last name is limited to 40 characters.                                                                                                                         |                 |
+| LCID        | The locale to use when sending correspondence to the user by email or postal mail.                                                                                                            | EnglishUS       |
+| Role ID     | The role that the user has for each customer or list of accounts.                                                                                                                             |                 |
 
 ### Update Ad Groups {#updateadgroups}
 

@@ -1,7 +1,7 @@
 ---
 title: SAP SuccessFactors Connector
 sidebar_label: SAP SuccessFactors
-description: SAP SuccessFactors is a human resources platform that provides cloud-based solutions to manage various HR functions such as business alignment, people performance, recruitment, and learning activities.
+description: Manage SAP SuccessFactors candidates, job requisitions, job applications, onboarding candidate info, and other OData entity records.
 ---
 
 ![SAP SuccessFactors](./assets/sap-successfactors.png#connector-icon)
@@ -272,114 +272,114 @@ Retrieve a single record from SAP SuccessFactors.
 
 List candidates.
 
-| Input               | Comments                                                                                                                | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                         |         |
-| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false   |
-| Top                 | The maximum number of records to return.                                                                                |         |
-| Skip                | The number of records to skip before returning results.                                                                 |         |
-| Search              | The search phrase used to filter the returned items.                                                                    |         |
-| Select              | The comma-separated list of properties to include in the response.                                                      |         |
-| Filter              | The OData filter expression used to narrow results by property values.                                                  |         |
-| Count               | When true, includes a count of the matching items in the response.                                                      | false   |
-| Order By            | The property and direction used to sort the returned items.                                                             |         |
-| Expand              | The related entities to expand and include in the response.                                                             |         |
-| Custom Query Params | The additional query string parameters to append to the request.                                                        |         |
+| Input               | Comments                                                                                                                | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          |                                                                                                                         |                 |
+| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false           |
+| Top                 | The maximum number of records to return.                                                                                |                 |
+| Skip                | The number of records to skip before returning results.                                                                 |                 |
+| Search              | The search phrase used to filter the returned items.                                                                    |                 |
+| Select              | The comma-separated list of properties to include in the response.                                                      |                 |
+| Filter              | The OData filter expression used to narrow results by property values.                                                  |                 |
+| Count               | When true, includes a count of the matching items in the response.                                                      | false           |
+| Order By            | The property and direction used to sort the returned items.                                                             |                 |
+| Expand              | The related entities to expand and include in the response.                                                             |                 |
+| Custom Query Params | The additional query string parameters to append to the request.                                                        | <code>[]</code> |
 
 ### List Job Applications {#listjobapplications}
 
 List job applications.
 
-| Input               | Comments                                                                                                                | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                         |         |
-| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false   |
-| Top                 | The maximum number of records to return.                                                                                |         |
-| Skip                | The number of records to skip before returning results.                                                                 |         |
-| Search              | The search phrase used to filter the returned items.                                                                    |         |
-| Select              | The comma-separated list of properties to include in the response.                                                      |         |
-| Filter              | The OData filter expression used to narrow results by property values.                                                  |         |
-| Count               | When true, includes a count of the matching items in the response.                                                      | false   |
-| Order By            | The property and direction used to sort the returned items.                                                             |         |
-| Expand              | The related entities to expand and include in the response.                                                             |         |
-| Custom Query Params | The additional query string parameters to append to the request.                                                        |         |
+| Input               | Comments                                                                                                                | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          |                                                                                                                         |                 |
+| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false           |
+| Top                 | The maximum number of records to return.                                                                                |                 |
+| Skip                | The number of records to skip before returning results.                                                                 |                 |
+| Search              | The search phrase used to filter the returned items.                                                                    |                 |
+| Select              | The comma-separated list of properties to include in the response.                                                      |                 |
+| Filter              | The OData filter expression used to narrow results by property values.                                                  |                 |
+| Count               | When true, includes a count of the matching items in the response.                                                      | false           |
+| Order By            | The property and direction used to sort the returned items.                                                             |                 |
+| Expand              | The related entities to expand and include in the response.                                                             |                 |
+| Custom Query Params | The additional query string parameters to append to the request.                                                        | <code>[]</code> |
 
 ### List Job Requisitions {#listjobrequisitions}
 
 List job requisitions.
 
-| Input               | Comments                                                                                                                | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                         |         |
-| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false   |
-| Top                 | The maximum number of records to return.                                                                                |         |
-| Skip                | The number of records to skip before returning results.                                                                 |         |
-| Search              | The search phrase used to filter the returned items.                                                                    |         |
-| Select              | The comma-separated list of properties to include in the response.                                                      |         |
-| Filter              | The OData filter expression used to narrow results by property values.                                                  |         |
-| Count               | When true, includes a count of the matching items in the response.                                                      | false   |
-| Order By            | The property and direction used to sort the returned items.                                                             |         |
-| Expand              | The related entities to expand and include in the response.                                                             |         |
-| Custom Query Params | The additional query string parameters to append to the request.                                                        |         |
+| Input               | Comments                                                                                                                | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          |                                                                                                                         |                 |
+| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false           |
+| Top                 | The maximum number of records to return.                                                                                |                 |
+| Skip                | The number of records to skip before returning results.                                                                 |                 |
+| Search              | The search phrase used to filter the returned items.                                                                    |                 |
+| Select              | The comma-separated list of properties to include in the response.                                                      |                 |
+| Filter              | The OData filter expression used to narrow results by property values.                                                  |                 |
+| Count               | When true, includes a count of the matching items in the response.                                                      | false           |
+| Order By            | The property and direction used to sort the returned items.                                                             |                 |
+| Expand              | The related entities to expand and include in the response.                                                             |                 |
+| Custom Query Params | The additional query string parameters to append to the request.                                                        | <code>[]</code> |
 
 ### List Onboarding Candidate Info {#listonboardingcandidateinfo}
 
 List onboarding candidate info.
 
-| Input               | Comments                                                                                                                | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                         |         |
-| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false   |
-| Top                 | The maximum number of records to return.                                                                                |         |
-| Skip                | The number of records to skip before returning results.                                                                 |         |
-| Search              | The search phrase used to filter the returned items.                                                                    |         |
-| Select              | The comma-separated list of properties to include in the response.                                                      |         |
-| Filter              | The OData filter expression used to narrow results by property values.                                                  |         |
-| Count               | When true, includes a count of the matching items in the response.                                                      | false   |
-| Order By            | The property and direction used to sort the returned items.                                                             |         |
-| Expand              | The related entities to expand and include in the response.                                                             |         |
-| Custom Query Params | The additional query string parameters to append to the request.                                                        |         |
+| Input               | Comments                                                                                                                | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          |                                                                                                                         |                 |
+| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false           |
+| Top                 | The maximum number of records to return.                                                                                |                 |
+| Skip                | The number of records to skip before returning results.                                                                 |                 |
+| Search              | The search phrase used to filter the returned items.                                                                    |                 |
+| Select              | The comma-separated list of properties to include in the response.                                                      |                 |
+| Filter              | The OData filter expression used to narrow results by property values.                                                  |                 |
+| Count               | When true, includes a count of the matching items in the response.                                                      | false           |
+| Order By            | The property and direction used to sort the returned items.                                                             |                 |
+| Expand              | The related entities to expand and include in the response.                                                             |                 |
+| Custom Query Params | The additional query string parameters to append to the request.                                                        | <code>[]</code> |
 
 ### List Records {#listrecords}
 
 Retrieve a list of records from SAP SuccessFactors.
 
-| Input               | Comments                                                                                                                | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          |                                                                                                                         |         |
-| Record Type         | The OData entity name identifying the kind of record to operate on.                                                     |         |
-| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false   |
-| Top                 | The maximum number of records to return.                                                                                |         |
-| Skip                | The number of records to skip before returning results.                                                                 |         |
-| Search              | The search phrase used to filter the returned items.                                                                    |         |
-| Select              | The comma-separated list of properties to include in the response.                                                      |         |
-| Filter              | The OData filter expression used to narrow results by property values.                                                  |         |
-| Count               | When true, includes a count of the matching items in the response.                                                      | false   |
-| Order By            | The property and direction used to sort the returned items.                                                             |         |
-| Expand              | The related entities to expand and include in the response.                                                             |         |
-| Custom Query Params | The additional query string parameters to append to the request.                                                        |         |
+| Input               | Comments                                                                                                                | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          |                                                                                                                         |                 |
+| Record Type         | The OData entity name identifying the kind of record to operate on.                                                     |                 |
+| Fetch All           | When true, automatically fetches all pages of results. When false, the other inputs control which records are returned. | false           |
+| Top                 | The maximum number of records to return.                                                                                |                 |
+| Skip                | The number of records to skip before returning results.                                                                 |                 |
+| Search              | The search phrase used to filter the returned items.                                                                    |                 |
+| Select              | The comma-separated list of properties to include in the response.                                                      |                 |
+| Filter              | The OData filter expression used to narrow results by property values.                                                  |                 |
+| Count               | When true, includes a count of the matching items in the response.                                                      | false           |
+| Order By            | The property and direction used to sort the returned items.                                                             |                 |
+| Expand              | The related entities to expand and include in the response.                                                             |                 |
+| Custom Query Params | The additional query string parameters to append to the request.                                                        | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to the SAP SuccessFactors API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | The request path only (for example, /Candidate). The base API server URL is already included, so to reach <API_SERVER_URL>/Candidate, enter only /Candidate in this field.                       |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | The request path only (for example, /Candidate). The base API server URL is already included, so to reach <API_SERVER_URL>/Candidate, enter only /Candidate in this field.                       |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Update Candidate {#updatecandidate}
 

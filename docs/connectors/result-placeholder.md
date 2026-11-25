@@ -1,7 +1,7 @@
 ---
 title: Result Placeholder Connector
 sidebar_label: Result Placeholder
-description: Generate a step output
+description: Return a mock step result with a specified value, for use as a placeholder while building or testing a flow.
 ---
 
 ![Result Placeholder](./assets/result-placeholder.png#connector-icon)

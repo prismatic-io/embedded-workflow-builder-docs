@@ -1,7 +1,7 @@
 ---
 title: Typeform Connector
 sidebar_label: Typeform
-description: Typeform is an online form builder that enables users to create interactive and engaging surveys, forms, and quizzes.
+description: Manage Typeform forms, responses, workspaces, and webhooks, and react to Typeform events with a webhook trigger.
 ---
 
 ![Typeform](./assets/typeform.png#connector-icon)
@@ -66,7 +66,7 @@ To Generate a Personal Access Token:
 
 ### Typeform Webhook Trigger {#formtrigger}
 
-Get notified when a project is created, updated, or deleted in a workspace.
+Receive webhook notifications from Typeform when responses are submitted to a specified form.
 
 | Input                 | Comments                                                                                                      | Default |
 | --------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |

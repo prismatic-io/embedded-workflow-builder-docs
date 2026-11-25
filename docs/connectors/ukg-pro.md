@@ -104,43 +104,43 @@ Checks for new and updated new hire onboarding records on a configured schedule.
 
 Retrieve contract details for all employees.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get All Employment Details by Company {#getallemploymentdetailsbycompany}
 
 Retrieve employment details for all employees within a specific company.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get All Person Details {#getallpersondetails}
 
 Retrieve person details for all employees across all companies.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get Employee Changes by Date {#getemployeechangesbydate}
 
@@ -169,50 +169,50 @@ Retrieve change history for a specific employee.
 
 Retrieve demographic details for employees, optionally filtered by date range.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get Employee Employment Details {#getemployeeemploymentdetails}
 
 Retrieve employee's employment details according to the specified query parameters.
 
-| Input                      | Comments                                                                                                                                                | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                 | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID                 | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Employee ID                | The unique identifier for the employee in UKG Pro.                                                                                                      |         |
-| Primary Job Code           | Filter by one or more primary job codes (comma-separated). Example: SW-ENG,MKT-MGR                                                                      |         |
-| Primary Work Location Code | Filter by one or more work location codes (comma-separated). Example: ATL-HQ,SF-WEST                                                                    |         |
-| Primary Project Code       | Filter by one or more project codes (comma-separated). Example: PROJ-001,PROJ-002                                                                       |         |
-| Deduction Group Code       | Filter by one or more deduction group codes (comma-separated).                                                                                          |         |
-| Earning Group Code         | Filter by one or more earning group codes (comma-separated).                                                                                            |         |
-| Pagination                 | Page and page-size controls.                                                                                                                            |         |
-| Page                       | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page                   | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All                  | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters          | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input                      | Comments                                                                                                                                                | Default         |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                 | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID                 | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Employee ID                | The unique identifier for the employee in UKG Pro.                                                                                                      |                 |
+| Primary Job Code           | Filter by one or more primary job codes (comma-separated). Example: SW-ENG,MKT-MGR                                                                      |                 |
+| Primary Work Location Code | Filter by one or more work location codes (comma-separated). Example: ATL-HQ,SF-WEST                                                                    |                 |
+| Primary Project Code       | Filter by one or more project codes (comma-separated). Example: PROJ-001,PROJ-002                                                                       |                 |
+| Deduction Group Code       | Filter by one or more deduction group codes (comma-separated).                                                                                          |                 |
+| Earning Group Code         | Filter by one or more earning group codes (comma-separated).                                                                                            |                 |
+| Pagination                 | Page and page-size controls.                                                                                                                            |                 |
+| Page                       | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page                   | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All                  | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters          | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get Employee Employment Details by Employee ID and Company ID {#getemployeeemploymentdetailsbyemployeeidandcompanyid}
 
 Retrieve employment details for a specific employee by company and employee ID.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Employee ID       | The unique identifier for the employee in UKG Pro.                                                                                                      |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Employee ID       | The unique identifier for the employee in UKG Pro.                                                                                                      |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get Employee Job History {#getemployeejobhistory}
 
@@ -267,15 +267,15 @@ Retrieve detailed information for a specific job definition.
 
 Retrieve person details for all employees within a specific company.
 
-| Input             | Comments                                                                                                                                                | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | Select your UKG Pro connection.                                                                                                                         |         |
-| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |         |
-| Pagination        | Page and page-size controls.                                                                                                                            |         |
-| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |         |
-| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |         |
-| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false   |
-| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        |         |
+| Input             | Comments                                                                                                                                                | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | Select your UKG Pro connection.                                                                                                                         |                 |
+| Company ID        | The 5-digit company identifier in UKG Pro. See [Company Access Code documentation](https://developer.ukg.com/hcm/docs/company-access-code) for details. |                 |
+| Pagination        | Page and page-size controls.                                                                                                                            |                 |
+| Page              | The page number to retrieve (1-indexed). Defaults to 1.                                                                                                 |                 |
+| Per Page          | Number of records to return per page. Defaults to API default (usually 100).                                                                            |                 |
+| Fetch All         | When true, automatically fetches all pages of results using pagination.                                                                                 | false           |
+| Filter Parameters | Additional filter parameters as key-value pairs.                                                                                                        | <code>[]</code> |
 
 ### Get Single Location {#getsinglelocation}
 
@@ -369,20 +369,20 @@ Retrieve a list of positions defined in the organization.
 
 Send raw HTTP request to UKG Pro API.
 
-| Input                   | Comments                                                                                                                                                                                                | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | Select your UKG Pro connection.                                                                                                                                                                         |         |
-| URL                     | Input the path only (/personnel/v1/employee-changes). The base URL is already included from the connection. For example, to call the employee changes endpoint, enter `/personnel/v1/employee-changes`. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                 |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                               |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                    |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                        |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                  |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                     |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                             |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                     |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                     | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.        | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                     | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                           | false   |
+| Input                   | Comments                                                                                                                                                                                                | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | Select your UKG Pro connection.                                                                                                                                                                         |                 |
+| URL                     | Input the path only (/personnel/v1/employee-changes). The base URL is already included from the connection. For example, to call the employee changes endpoint, enter `/personnel/v1/employee-changes`. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                 |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                               |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                    | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                        | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                  | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                     | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                             | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                     |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                     | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.        | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                     | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                           | false           |

@@ -1,7 +1,7 @@
 ---
 title: Fluent Commerce Connector
 sidebar_label: Fluent Commerce
-description: Manage orders within Fluent Commerce
+description: Create customers and products, run GraphQL queries and mutations, and detect new and updated records in Fluent Commerce.
 ---
 
 ![Fluent Commerce](./assets/fluent-commerce.png#connector-icon)

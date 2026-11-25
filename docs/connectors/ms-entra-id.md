@@ -1,7 +1,7 @@
 ---
 title: Microsoft Entra ID Connector
 sidebar_label: Microsoft Entra ID
-description: Manage users, groups, and applications in Microsoft Entra ID (formerly Azure Active Directory).
+description: Manage users, groups, and applications in Microsoft Entra ID (formerly Azure Active Directory), and react to user and group changes with webhook triggers.
 ---
 
 ![Microsoft Entra ID](./assets/ms-entra-id.png#connector-icon)
@@ -40,7 +40,7 @@ The **Microsoft Entra ID** component authenticates requests through the [Microso
 6. In the App, navigate to **Certificates & Secrets** and select **New client secret**. Copy and save the **Value** for use in the connection configuration of the integration (the value will not be shown again).
 7. Next, navigate to the **Overview** section and copy the **Application (client) ID**.
 8. Navigate to the **API Permissions** section to assign the proper permissions for the integration. Select **Add Permission** and select all permissions that are required for the desired integration. A full list of scopes can be found on the [Microsoft Graph API documentation](https://learn.microsoft.com/en-us/graph/permissions-reference).
-   - Recommended scopes for Active Directory can be found in Microsoft Graph > Delegated permissions:
+   - Recommended scopes for Active Directory can be found in **Microsoft Graph** > **Delegated permissions**:
    - `Group.ReadWrite.All GroupMember.ReadWrite.All Application.ReadWrite.All User.Read.All offline_access`
 
 #### Configure the Connection
@@ -65,7 +65,7 @@ Azure AD app registrations have two distinct verification concepts that affect h
 
 To verify the publisher:
 
-1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/)
+1. Ensure the organization has a [Microsoft Partner Network (MPN) account](https://partner.microsoft.com/en-US/)
 2. In the [Microsoft Entra Admin Center](https://entra.microsoft.com/), open the app registration
 3. Under **Branding & properties**, click **Add a verified publisher**
 4. Enter the MPN ID and confirm
@@ -74,25 +74,21 @@ Once verified, the consent screen displays the organization name with a verified
 
 #### Admin Consent
 
-Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. Without admin consent, users see a **"Need admin approval"** error.
+Apps requesting **application permissions** (permissions that act without a signed-in user) or high-privilege **delegated permissions** require admin consent before any user in a Microsoft 365 tenant can authenticate. The [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) lists which permissions require it. Without admin consent, users see a **"Need admin approval"** error.
 
 A tenant administrator can grant consent using either method:
 
-**Method 1 — Admin Consent URL:**
+**Method 1: Admin Consent URL**
 
 Navigate to the following URL, replacing `{tenant}` with the Directory tenant ID and `{client_id}` with the Application client ID:
 
     https://login.microsoftonline.com/{tenant}/adminconsent?client_id={client_id}
 
-**Method 2 — Microsoft Entra Admin Center:**
+**Method 2: Microsoft Entra Admin Center**
 
 1. Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com/) → **Enterprise applications**
 2. Select the app registration
 3. Under **Permissions**, click **Grant admin consent for [organization name]**
-
-:::note[Delegated vs. Application Permissions]
-Delegated permissions (user-level) typically do not require admin consent unless they are classified as high privilege. Application permissions always require admin consent. Review the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) to identify which permissions require consent.
-:::
 
 <Vimeo video="907604023" />
 
@@ -149,9 +145,7 @@ Supply the following values to the **OAuth 2.0 Client Credentials** connection:
 - **Base URL**: The Microsoft Graph API base URL. Defaults to `https://graph.microsoft.com`. Adjust this value for sovereign or national cloud environments.
 - **Scopes**: The Microsoft Graph API scope. Defaults to `https://graph.microsoft.com/.default`, which requests all application permissions configured on the App Registration.
 
-:::note[Client Credentials Flow Requirement]
-The client credentials flow requires a tenant-specific token endpoint and application-level permissions granted through admin consent. Actions performed using this connection execute under the application's identity rather than on behalf of a specific user.
-:::
+Requests made with this connection run under the application's own identity, not on behalf of a signed-in user.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -171,21 +165,21 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive group change notifications from Microsoft Entra ID. Automatically creates and manages a webhook subscription for groups when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input                | Comments                                                                                                                                                                                                          | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Microsoft Entra ID connection to use.                                                                                                                                                                         |         |
-| Change Type          | The type of change on the subscribed resource that triggers a notification. 'Created / Updated / Soft Deleted' covers created, updated, and soft-deleted events. 'Permanently Deleted' covers permanent deletion. |         |
-| Expiration Date Time | The date and time when the trigger subscription expires. If not specified, the subscription defaults to 29 days from the current date and time. This trigger must be reactivated after expiration.                |         |
+| Input                | Comments                                                                                                                                                                                                          | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection           | The Microsoft Entra ID connection to use.                                                                                                                                                                         |                 |
+| Change Type          | The type of change on the subscribed resource that triggers a notification. 'Created / Updated / Soft Deleted' covers created, updated, and soft-deleted events. 'Permanently Deleted' covers permanent deletion. | <code>[]</code> |
+| Expiration Date Time | The date and time when the trigger subscription expires. If not specified, the subscription defaults to 29 days from the current date and time. This trigger must be reactivated after expiration.                |                 |
 
 ### User Changes {#usertrigger}
 
 Receive user change notifications from Microsoft Entra ID. Automatically creates and manages a webhook subscription for users when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input                | Comments                                                                                                                                                                                                          | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The Microsoft Entra ID connection to use.                                                                                                                                                                         |         |
-| Change Type          | The type of change on the subscribed resource that triggers a notification. 'Created / Updated / Soft Deleted' covers created, updated, and soft-deleted events. 'Permanently Deleted' covers permanent deletion. |         |
-| Expiration Date Time | The date and time when the trigger subscription expires. If not specified, the subscription defaults to 29 days from the current date and time. This trigger must be reactivated after expiration.                |         |
+| Input                | Comments                                                                                                                                                                                                          | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection           | The Microsoft Entra ID connection to use.                                                                                                                                                                         |                 |
+| Change Type          | The type of change on the subscribed resource that triggers a notification. 'Created / Updated / Soft Deleted' covers created, updated, and soft-deleted events. 'Permanently Deleted' covers permanent deletion. | <code>[]</code> |
+| Expiration Date Time | The date and time when the trigger subscription expires. If not specified, the subscription defaults to 29 days from the current date and time. This trigger must be reactivated after expiration.                |                 |
 
 ### Webhook {#webhook}
 
@@ -207,54 +201,54 @@ Add a member to a group.
 
 Creates (registers) a new application.
 
-| Input                 | Comments                                                                                                                                                                                                                                        | Default |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                       |         |
-| Display Name          | The display name of the application.                                                                                                                                                                                                            |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Application API](https://learn.microsoft.com/en-us/graph/api/application-post-applications). |         |
+| Input                 | Comments                                                                                                                                                                                                                                                            | Default |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                                           |         |
+| Display Name          | The name shown for the application in the Microsoft Entra admin center and on consent prompts.                                                                                                                                                                      |         |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Application API](https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0). |         |
 
 ### Create Group {#creategroup}
 
 Create a new group. It can be a Microsoft 365 group, dynamic group, or security group.
 
-| Input                 | Comments                                                                                                                                                                                                                      | Default |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                     |         |
-| Display Name          | The name to display in the address book for the group.                                                                                                                                                                        |         |
-| Mail Enabled          | When true, the group is mail-enabled.                                                                                                                                                                                         | true    |
-| Mail Nickname         | The mail alias for the group, unique for Microsoft 365 groups in the organization. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () \ [] " ; : <> , SPACE.             |         |
-| Security Enabled      | When true, the group is security-enabled, including Microsoft 365 groups. Groups created using the Microsoft Entra admin center or the Azure portal always have securityEnabled initially set to true.                        | true    |
-| Group Types           | The type of group and its membership.                                                                                                                                                                                         |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Group API](https://learn.microsoft.com/en-us/graph/api/group-post-groups). |         |
+| Input                 | Comments                                                                                                                                                                                                                                          | Default |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                         |         |
+| Display Name          | The name to display in the address book for the group.                                                                                                                                                                                            |         |
+| Mail Enabled          | When true, the group is mail-enabled.                                                                                                                                                                                                             | true    |
+| Mail Nickname         | The mail alias for the group, unique for Microsoft 365 groups in the organization. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () \ [] " ; : <> , SPACE.                                 |         |
+| Security Enabled      | When true, the group is security-enabled, including Microsoft 365 groups. Groups created using the Microsoft Entra admin center or the Azure portal always have securityEnabled initially set to true.                                            | true    |
+| Group Types           | The type of group and its membership.                                                                                                                                                                                                             |         |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Group API](https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0). |         |
 
 ### Create Subscription {#createsubscription}
 
 Create a subscription to receive notifications when changes occur in the specified object.
 
-| Input                 | Comments                                                                                                                                                                                                                                           | Default |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                          |         |
-| Change Type           | Indicates the type of change in the subscribed resource that raises a change notification. The supported values are: created, updated, deleted. Multiple values can be combined using a comma-separated list.                                      |         |
-| Notification URL      | The URL of the endpoint that receives the change notifications.                                                                                                                                                                                    |         |
-| Resource              | The resource that will be monitored for changes. See [supported resources](https://learn.microsoft.com/en-us/graph/api/resources/change-notifications-api-overview?view=graph-rest-1.0) for a full list.                                           |         |
-| Expiration Date Time  | Specifies the date and time when the webhook subscription expires. The time is in UTC, and can be an amount of time from subscription creation that varies for the resource subscribed to. Format: ISO 8601 (e.g., 2016-11-20T18:23:45.9356913Z).  |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Subscription API](https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions). |         |
-| Header                | A list of headers to send with the request.                                                                                                                                                                                                        |         |
+| Input                 | Comments                                                                                                                                                                                                                                                               | Default         |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                                              |                 |
+| Change Type           | Indicates the type of change in the subscribed resource that raises a change notification. The supported values are: created, updated, deleted. Multiple values can be combined using a comma-separated list.                                                          |                 |
+| Notification URL      | The URL of the endpoint that receives the change notifications.                                                                                                                                                                                                        |                 |
+| Resource              | The resource that will be monitored for changes. See [supported resources](https://learn.microsoft.com/en-us/graph/api/resources/change-notifications-api-overview?view=graph-rest-1.0) for a full list.                                                               |                 |
+| Expiration Date Time  | Specifies the date and time when the webhook subscription expires. The time is in UTC, and can be an amount of time from subscription creation that varies for the resource subscribed to. Format: ISO 8601 (e.g., 2016-11-20T18:23:45.9356913Z).                      |                 |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create Subscription API](https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0). |                 |
+| Header                | A list of headers to send with the request.                                                                                                                                                                                                                            | <code>[]</code> |
 
 ### Create User {#createuser}
 
 Create a new user.
 
-| Input                              | Comments                                                                                                                                                                                                                   | Default |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                         | The Microsoft Entra ID connection to use.                                                                                                                                                                                  |         |
-| Account Enabled                    | When true, the account is enabled.                                                                                                                                                                                         | true    |
-| Display Name                       | The display name of the user.                                                                                                                                                                                              |         |
-| Force Change Password Next Sign In | When true, the user is required to change their password on the next sign-in.                                                                                                                                              | true    |
-| Password                           | The initial password for the user account. Must meet the tenant's password complexity requirements.                                                                                                                        |         |
-| User Principal Name                | The user principal name (UPN) for the account, in the format alias@domain. The domain must be a verified domain in the tenant.                                                                                             |         |
-| Domain                             | The domain for the user, this must be an existing domain in the tenant.                                                                                                                                                    |         |
-| Additional Properties              | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create User API](https://learn.microsoft.com/en-us/graph/api/user-post-users). |         |
+| Input                              | Comments                                                                                                                                                                                                                                       | Default |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection                         | The Microsoft Entra ID connection to use.                                                                                                                                                                                                      |         |
+| Account Enabled                    | When true, the account is enabled.                                                                                                                                                                                                             | true    |
+| Display Name                       | The name shown for the user in the address book, usually the user's first name, middle initial, and last name.                                                                                                                                 |         |
+| Force Change Password Next Sign In | When true, the user is required to change their password on the next sign-in.                                                                                                                                                                  | true    |
+| Password                           | The initial password for the user account. Must meet the tenant's password complexity requirements.                                                                                                                                            |         |
+| User Principal Name                | The user principal name (UPN) for the account, in the format alias@domain. The domain must be a verified domain in the tenant.                                                                                                                 |         |
+| Domain                             | The domain for the user, this must be an existing domain in the tenant.                                                                                                                                                                        |         |
+| Additional Properties              | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Create User API](https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0). |         |
 
 ### Delete Application {#deleteapplication}
 
@@ -439,24 +433,24 @@ Retrieve a list of user objects.
 
 Send raw HTTP request to Microsoft Entra ID.
 
-| Input                   | Comments                                                                                                                                                                                                    | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Microsoft Entra ID connection to use.                                                                                                                                                                   |         |
-| URL                     | Input the path only (/users), The base URL is already included (https://graph.microsoft.com/v1.0). For example, to connect to https://graph.microsoft.com/v1.0/users, only /users is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                     |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                   |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                        |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                            |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                      |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                         |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                 |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                    | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                         |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                        | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                         | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.            | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                         | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                               | false   |
+| Input                   | Comments                                                                                                                                                                                                    | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Microsoft Entra ID connection to use.                                                                                                                                                                   |                 |
+| URL                     | Input the path only (/users), The base URL is already included (https://graph.microsoft.com/v1.0). For example, to connect to https://graph.microsoft.com/v1.0/users, only /users is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                     |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                   |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                        | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                            | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                      | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                         | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                 | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                    | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                         |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                        | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                         | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.            | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                         | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                               | false           |
 
 ### Remove Member From Group {#removememberofgroup}
 
@@ -483,45 +477,45 @@ Updates a subscription expiration time for renewal and/or updates the notificati
 
 Update the properties of a User object.
 
-| Input                 | Comments                                                                                                                                                                                                               | Default |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                              |         |
-| User ID               | Unique Identifier for the user to update. This can be the user's id or userPrincipalName.                                                                                                                              |         |
-| User Fields           | User profile fields to update.                                                                                                                                                                                         |         |
-| Account Enabled       | When true, the account is enabled.                                                                                                                                                                                     |         |
-| Display Name          | The display name of the user.                                                                                                                                                                                          |         |
-| User Principal Name   | The updated user principal name of the user. Required if 'Domain' input is provided.                                                                                                                                   |         |
-| Domain                | The updated domain for the user, this must be an existing domain in the tenant. Required if 'User Principal Name' input is provided.                                                                                   |         |
-| First Name            | The updated first name of the user.                                                                                                                                                                                    |         |
-| Last Name             | The updated last name of the user.                                                                                                                                                                                     |         |
-| Job Title             | The updated job title of the user.                                                                                                                                                                                     |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Update User API](https://learn.microsoft.com/en-us/graph/api/user-update). |         |
+| Input                 | Comments                                                                                                                                                                                                                                   | Default |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                  |         |
+| User ID               | Unique Identifier for the user to update. This can be the user's id or userPrincipalName.                                                                                                                                                  |         |
+| User Fields           | Account status, display and principal names, domain, first and last name, and job title.                                                                                                                                                   |         |
+| Account Enabled       | When true, the account is enabled.                                                                                                                                                                                                         |         |
+| Display Name          | The name shown for the user in the address book, usually the user's first name, middle initial, and last name.                                                                                                                             |         |
+| User Principal Name   | The updated user principal name of the user. Required if 'Domain' input is provided.                                                                                                                                                       |         |
+| Domain                | The updated domain for the user, this must be an existing domain in the tenant. Required if 'User Principal Name' input is provided.                                                                                                       |         |
+| First Name            | The user's given name. Leave blank to keep the current value.                                                                                                                                                                              |         |
+| Last Name             | The user's surname (family name). Leave blank to keep the current value.                                                                                                                                                                   |         |
+| Job Title             | The user's job title as shown in the directory. Leave blank to keep the current value.                                                                                                                                                     |         |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Update User API](https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0). |         |
 
 ### Upsert Application {#upsertapplication}
 
 Create a new application if it doesn't exist, or update the properties of an existing application.
 
-| Input                 | Comments                                                                                                                                                                                                                             | Default |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                            |         |
-| Unique Name           | The unique name of the application to update or create.                                                                                                                                                                              |         |
-| Use as Upsert         | When true, creates a new application if it does not exist. When false, only updates an existing application.                                                                                                                         | true    |
-| Display Name          | The display name of the application.                                                                                                                                                                                                 |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Upsert Application API](https://learn.microsoft.com/en-us/graph/api/application-upsert). |         |
+| Input                 | Comments                                                                                                                                                                                                                                                 | Default |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                                |         |
+| Unique Name           | The unique name of the application to update or create.                                                                                                                                                                                                  |         |
+| Use as Upsert         | When true, creates a new application if it does not exist. When false, only updates an existing application.                                                                                                                                             | true    |
+| Display Name          | The name shown for the application in the Microsoft Entra admin center and on consent prompts.                                                                                                                                                           |         |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Upsert Application API](https://learn.microsoft.com/en-us/graph/api/application-upsert?view=graph-rest-1.0). |         |
 
 ### Upsert Group {#upsertgroup}
 
 Create a new group if it doesn't exist, or update the properties of an existing group.
 
-| Input                 | Comments                                                                                                                                                                                                                 | Default |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                |         |
-| Unique Name           | The unique name of the group to update or create.                                                                                                                                                                        |         |
-| Use as Upsert         | When true, creates a new group if it does not exist. When false, only updates an existing group.                                                                                                                         | true    |
-| Group Fields          | Group configuration fields.                                                                                                                                                                                              |         |
-| Display Name          | The name to display in the address book for the group.                                                                                                                                                                   |         |
-| Mail Enabled          | When true, the group is mail-enabled.                                                                                                                                                                                    |         |
-| Mail Nickname         | The mail alias for the group, unique for Microsoft 365 groups in the organization. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () \ [] " ; : <> , SPACE.        |         |
-| Security Enabled      | When true, the group is security-enabled, including Microsoft 365 groups. Groups created using the Microsoft Entra admin center or the Azure portal always have securityEnabled initially set to true.                   |         |
-| Group Types           | The type of group and its membership.                                                                                                                                                                                    |         |
-| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Upsert Group API](https://learn.microsoft.com/en-us/graph/api/group-upsert). |         |
+| Input                 | Comments                                                                                                                                                                                                                                     | Default |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection            | The Microsoft Entra ID connection to use.                                                                                                                                                                                                    |         |
+| Unique Name           | The unique name of the group to update or create.                                                                                                                                                                                            |         |
+| Use as Upsert         | When true, creates a new group if it does not exist. When false, only updates an existing group.                                                                                                                                             | true    |
+| Group Fields          | Display name, mail nickname, mail and security settings, and type.                                                                                                                                                                           |         |
+| Display Name          | The name to display in the address book for the group.                                                                                                                                                                                       |         |
+| Mail Enabled          | When true, the group is mail-enabled.                                                                                                                                                                                                        |         |
+| Mail Nickname         | The mail alias for the group, unique for Microsoft 365 groups in the organization. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () \ [] " ; : <> , SPACE.                            |         |
+| Security Enabled      | When true, the group is security-enabled, including Microsoft 365 groups. Groups created using the Microsoft Entra admin center or the Azure portal always have securityEnabled initially set to true.                                       |         |
+| Group Types           | The type of group and its membership.                                                                                                                                                                                                        |         |
+| Additional Properties | Additional properties that are not covered by the other inputs. This should be a JSON object and will be merged with the other inputs. See [Upsert Group API](https://learn.microsoft.com/en-us/graph/api/group-upsert?view=graph-rest-1.0). |         |

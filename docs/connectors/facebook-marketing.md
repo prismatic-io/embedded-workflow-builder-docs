@@ -1,7 +1,7 @@
 ---
 title: Meta Ads Connector
 sidebar_label: Meta Ads
-description: Interact with ads and adsets in your Meta Ads account.
+description: Manage Meta (Facebook) Ads campaigns, ad sets, ads, creatives, leads, and conversions.
 ---
 
 ![Meta Ads](./assets/facebook-marketing.png#connector-icon)

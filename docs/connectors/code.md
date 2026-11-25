@@ -1,11 +1,11 @@
 ---
 title: Code Connector
 sidebar_label: Code
-description: Author and run your own code
+description: Write and run custom JavaScript code as an integration step, trigger, or data source.
 ---
 
 ![Code](./assets/code.png#connector-icon)
-Author and run your own code
+Write and run custom JavaScript code as an integration step, trigger, or data source.
 
 ## Connections
 

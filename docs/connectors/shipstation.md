@@ -95,16 +95,16 @@ Receive webhook event notifications from ShipStation. Automatically creates and 
 
 Creates a shipping label for a specified order.
 
-| Input             | Comments                                                                                             | Default |
-| ----------------- | ---------------------------------------------------------------------------------------------------- | ------- |
-| Connection        | The ShipStation connection to use.                                                                   |         |
-| Order ID          | The unique identifier for the order.                                                                 |         |
-| Carrier Code      | The carrier code for the shipping label.                                                             |         |
-| Service Code      | The shipping service code for the label.                                                             |         |
-| Confirmation      | The delivery confirmation type (e.g., none, delivery, signature, adult_signature, direct_signature). |         |
-| Ship Date         | The date the order should be shipped in YYYY-MM-DD format.                                           |         |
-| Test Label        | When true, creates a test label.                                                                     | false   |
-| Additional Fields | A list of additional fields to include in the label for order.                                       |         |
+| Input             | Comments                                                                                             | Default         |
+| ----------------- | ---------------------------------------------------------------------------------------------------- | --------------- |
+| Connection        | The ShipStation connection to use.                                                                   |                 |
+| Order ID          | The unique identifier for the order.                                                                 |                 |
+| Carrier Code      | The carrier code for the shipping label.                                                             |                 |
+| Service Code      | The shipping service code for the label.                                                             |                 |
+| Confirmation      | The delivery confirmation type (e.g., none, delivery, signature, adult_signature, direct_signature). |                 |
+| Ship Date         | The date the order should be shipped in YYYY-MM-DD format.                                           |                 |
+| Test Label        | When true, creates a test label.                                                                     | false           |
+| Additional Fields | A list of additional fields to include in the label for order.                                       | <code>[]</code> |
 
 ### Create or Update Multiple Orders {#createorupdatemultipleorders}
 
@@ -128,7 +128,7 @@ Creates a new order or updates an existing one.
 | Order Key         | The unique order key. If provided, the create order method will either create a new order if the key is not found, or update the existing order if found. |                                                                                                                                                                                                                                                                          |
 | Billing Address   | Provide the billing address in JSON format.                                                                                                               | <code>{<br /> "name": "John Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
 | Shipping Address  | Provide the shipping address in JSON format.                                                                                                              | <code>{<br /> "name": "Jane Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code> |
-| Additional Fields | A list of additional fields to include in the order.                                                                                                      |                                                                                                                                                                                                                                                                          |
+| Additional Fields | A list of additional fields to include in the order.                                                                                                      | <code>[]</code>                                                                                                                                                                                                                                                          |
 
 ### Create Shipment Label {#createshipmentlabel}
 
@@ -144,7 +144,7 @@ Creates a shipping label.
 | Shipment's Weight | The weight of the shipment, following the Weight model. Note: WeightUnits is read-only. | <code>{<br /> "value": 3,<br /> "units": "ounces",<br /> "WeightUnits": 2<br />}</code>                                                                                                                                                                                           |
 | Shipping Address  | Provide the shipping address in JSON format.                                            | <code>{<br /> "name": "Jane Doe",<br /> "company": "JD Company",<br /> "street1": "123 Main St",<br /> "city": "Austin",<br /> "state": "TX",<br /> "postalCode": "78701",<br /> "country": "US",<br /> "phone": "123-456-7890",<br /> "residential": true<br />}</code>          |
 | Origin Address    | Provide the origin address in JSON format.                                              | <code>{<br /> "name": "John Smith",<br /> "company": "JS Company",<br /> "street1": "456 Elm St",<br /> "city": "San Francisco",<br /> "state": "CA",<br /> "postalCode": "94107",<br /> "country": "US",<br /> "phone": "987-654-3210",<br /> "residential": false<br />}</code> |
-| Additional Fields | A list of additional fields to include in the shipment.                                 |                                                                                                                                                                                                                                                                                   |
+| Additional Fields | A list of additional fields to include in the shipment.                                 | <code>[]</code>                                                                                                                                                                                                                                                                   |
 
 ### Create Warehouse {#createwarehouse}
 
@@ -387,23 +387,23 @@ Retrieves a list of registered webhooks for the account.
 
 Sends a raw HTTP request to the ShipStation API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
-| Connection              | The ShipStation connection to use.                                                                                                                                                               |         |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
+| Connection              | The ShipStation connection to use.                                                                                                                                                               |                 |
 
 ### Subscribe to Webhook {#subscribetowebhook}
 

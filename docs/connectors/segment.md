@@ -1,7 +1,7 @@
 ---
 title: Segment Connector
 sidebar_label: Segment
-description: Segment is a customer data platform (CDP) service that simplifies collecting and using data from users of your digital properties (websites, apps, etc.) Use the Segment component to manage your Sources, Warehouses, and Destinations.
+description: Manage Segment sources, destinations, warehouses, destination subscriptions, functions, transformations, and workspace users through the Segment Public API.
 ---
 
 ![Segment](./assets/segment.png#connector-icon)
@@ -42,31 +42,31 @@ Connects a Source to a Warehouse.
 
 Creates a new Destination.
 
-| Input       | Comments                                                                                                                                           | Default |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                                                    |         |
-| Region      | The region of the Segment API to use.                                                                                                              | api     |
-| Source ID   | The Source ID to use.                                                                                                                              |         |
-| Metadata ID | The Warehouse metadata to use.                                                                                                                     |         |
-| Name        | Defines the display name of the Destination.                                                                                                       |         |
-| Enabled     | Whether this Destination should receive data.                                                                                                      |         |
-| Settings    | An optional object that contains settings for the Destination based on the 'required' and 'advanced' settings present in the Destination metadata. |         |
+| Input       | Comments                                                                                                                                           | Default         |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  |                                                                                                                                                    |                 |
+| Region      | The region of the Segment API to use.                                                                                                              | api             |
+| Source ID   | The Source ID to use.                                                                                                                              |                 |
+| Metadata ID | The Warehouse metadata to use.                                                                                                                     |                 |
+| Name        | Defines the display name of the Destination.                                                                                                       |                 |
+| Enabled     | Whether this Destination should receive data.                                                                                                      |                 |
+| Settings    | An optional object that contains settings for the Destination based on the 'required' and 'advanced' settings present in the Destination metadata. | <code>[]</code> |
 
 ### Create Destination Subscription {#createdestinationsubscription}
 
 Creates a new Destination subscription.
 
-| Input          | Comments                                                                                                                                                                                            | Default |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                                                                     |         |
-| Region         | The region of the Segment API to use.                                                                                                                                                               | api     |
-| Destination ID | The Destination ID to use.                                                                                                                                                                          |         |
-| Name           | The user-defined name for the subscription.                                                                                                                                                         |         |
-| Action ID      | The associated action id the subscription should trigger.                                                                                                                                           |         |
-| Trigger        | The fql statement.                                                                                                                                                                                  |         |
-| Enabled        | Is the subscription enabled.                                                                                                                                                                        |         |
-| Settings       | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. |         |
-| Trigger        | When creating a Reverse ETL connection, indicates the Model being used to extract data.                                                                                                             |         |
+| Input          | Comments                                                                                                                                                                                            | Default         |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     |                                                                                                                                                                                                     |                 |
+| Region         | The region of the Segment API to use.                                                                                                                                                               | api             |
+| Destination ID | The Destination ID to use.                                                                                                                                                                          |                 |
+| Name           | The user-defined name for the subscription.                                                                                                                                                         |                 |
+| Action ID      | The associated action id the subscription should trigger.                                                                                                                                           |                 |
+| Trigger        | The fql statement.                                                                                                                                                                                  |                 |
+| Enabled        | Is the subscription enabled.                                                                                                                                                                        |                 |
+| Settings       | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. | <code>[]</code> |
+| Trigger        | When creating a Reverse ETL connection, indicates the Model being used to extract data.                                                                                                             |                 |
 
 ### Create Function {#createfunction}
 
@@ -87,14 +87,14 @@ Creates a Function.
 
 Creates a new Source.
 
-| Input       | Comments                                                                                                                                                                                            | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  |                                                                                                                                                                                                     |         |
-| Region      | The region of the Segment API to use.                                                                                                                                                               | api     |
-| Slug        | The slug by which to identify the Source in the Segment app.                                                                                                                                        |         |
-| Enabled     | Enable to allow this Source to send data. Defaults to true.                                                                                                                                         | true    |
-| Metadata ID | The Warehouse metadata to use.                                                                                                                                                                      |         |
-| Settings    | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. |         |
+| Input       | Comments                                                                                                                                                                                            | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  |                                                                                                                                                                                                     |                 |
+| Region      | The region of the Segment API to use.                                                                                                                                                               | api             |
+| Slug        | The slug by which to identify the Source in the Segment app.                                                                                                                                        |                 |
+| Enabled     | Enable to allow this Source to send data. Defaults to true.                                                                                                                                         | true            |
+| Metadata ID | The Warehouse metadata to use.                                                                                                                                                                      |                 |
+| Settings    | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. | <code>[]</code> |
 
 ### Create Transformation {#createtransformation}
 
@@ -249,7 +249,7 @@ Enumerates the Workspace event volumes over time in minute increments.
 | Granularity | The size of each bucket in the requested window.                                                                                                                                                                               |                         |
 | Start Time  | The ISO8601 formatted timestamp that corresponds to the beginning of the requested time frame, inclusive.                                                                                                                      |                         |
 | End Time    | The ISO8601 formatted timestamp that corresponds to the end of the requested time frame, noninclusive. Segment recommends that you lag queries 1 minute behind clock time to reduce the risk for latency to impact the counts. |                         |
-| Group By    | The ids of the users to remove.                                                                                                                                                                                                |                         |
+| Group By    | The ids of the users to remove.                                                                                                                                                                                                | <code>[]</code>         |
 | Source IDs  | A list of strings which filters the results to the given EventNames.                                                                                                                                                           | <code>["000xxx"]</code> |
 | Event Name  | A list of strings which filters the results to the given EventNames.                                                                                                                                                           | <code>["000xxx"]</code> |
 | Event Type  | A list of strings which filters the results to the given EventNames.                                                                                                                                                           | <code>["000xxx"]</code> |
@@ -452,24 +452,24 @@ Returns a list of Warehouses.
 
 Send raw HTTP request to Segment
 
-| Input                   | Comments                                                                                                                                                                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              |                                                                                                                                                                                                                |         |
-| Region                  | The region of the Segment API to use.                                                                                                                                                                          | api     |
-| URL                     | Input the path only (/employees), The base URL is already included (https://apí.segmentapis.com/). For example, to connect to https://apí.segmentapis.com/employees, only /employees is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                        |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                      |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                           |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                               |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                         |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                            |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                    |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                       | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                            |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                            | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.               | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                            | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                  | false   |
+| Input                   | Comments                                                                                                                                                                                                       | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              |                                                                                                                                                                                                                |                 |
+| Region                  | The region of the Segment API to use.                                                                                                                                                                          | api             |
+| URL                     | Input the path only (/employees), The base URL is already included (https://apí.segmentapis.com/). For example, to connect to https://apí.segmentapis.com/employees, only /employees is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                        |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                      |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                           | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                               | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                         | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                            | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                    | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                       | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                            |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                            | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.               | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                            | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                  | false           |
 
 ### Remove Source Connection from Warehouse {#removesourceconnectionfromwarehouse}
 
@@ -486,29 +486,29 @@ Disconnects a Source from a Warehouse.
 
 Updates an existing Destination.
 
-| Input          | Comments                                                                                                                                           | Default |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection     |                                                                                                                                                    |         |
-| Region         | The region of the Segment API to use.                                                                                                              | api     |
-| Destination ID | The Destination ID to use.                                                                                                                         |         |
-| Name           | Defines the display name of the Destination.                                                                                                       |         |
-| Enabled        | Whether this Destination should receive data.                                                                                                      |         |
-| Settings       | An optional object that contains settings for the Destination based on the 'required' and 'advanced' settings present in the Destination metadata. |         |
+| Input          | Comments                                                                                                                                           | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection     |                                                                                                                                                    |                 |
+| Region         | The region of the Segment API to use.                                                                                                              | api             |
+| Destination ID | The Destination ID to use.                                                                                                                         |                 |
+| Name           | Defines the display name of the Destination.                                                                                                       |                 |
+| Enabled        | Whether this Destination should receive data.                                                                                                      |                 |
+| Settings       | An optional object that contains settings for the Destination based on the 'required' and 'advanced' settings present in the Destination metadata. | <code>[]</code> |
 
 ### Update Destination Subscription {#updatedestinationsubscription}
 
 Updates an existing Destination subscription.
 
-| Input           | Comments                                                                                                                                                                                            | Default |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      |                                                                                                                                                                                                     |         |
-| Region          | The region of the Segment API to use.                                                                                                                                                               | api     |
-| Destination ID  | The Destination ID to use.                                                                                                                                                                          |         |
-| Subscription ID | The Subscription ID to use.                                                                                                                                                                         |         |
-| Name            | The user-defined name for the subscription.                                                                                                                                                         |         |
-| Trigger         | The fql statement.                                                                                                                                                                                  |         |
-| Enabled         | Is the subscription enabled.                                                                                                                                                                        |         |
-| Settings        | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. |         |
+| Input           | Comments                                                                                                                                                                                            | Default         |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      |                                                                                                                                                                                                     |                 |
+| Region          | The region of the Segment API to use.                                                                                                                                                               | api             |
+| Destination ID  | The Destination ID to use.                                                                                                                                                                          |                 |
+| Subscription ID | The Subscription ID to use.                                                                                                                                                                         |                 |
+| Name            | The user-defined name for the subscription.                                                                                                                                                         |                 |
+| Trigger         | The fql statement.                                                                                                                                                                                  |                 |
+| Enabled         | Is the subscription enabled.                                                                                                                                                                        |                 |
+| Settings        | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. | <code>[]</code> |
 
 ### Update Function {#updatefunction}
 
@@ -529,15 +529,15 @@ Updates a Function.
 
 Updates an existing Source.
 
-| Input      | Comments                                                                                                                                                                                            | Default |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection |                                                                                                                                                                                                     |         |
-| Region     | The region of the Segment API to use.                                                                                                                                                               | api     |
-| Source ID  | The Source ID to use.                                                                                                                                                                               |         |
-| Slug       | The slug by which to identify the Source in the Segment app.                                                                                                                                        |         |
-| Enabled    | Enable to allow this Source to send data. Defaults to true.                                                                                                                                         |         |
-| Name       | An optional human-readable name to associate with this Source.                                                                                                                                      |         |
-| Settings   | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. |         |
+| Input      | Comments                                                                                                                                                                                            | Default         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection |                                                                                                                                                                                                     |                 |
+| Region     | The region of the Segment API to use.                                                                                                                                                               | api             |
+| Source ID  | The Source ID to use.                                                                                                                                                                               |                 |
+| Slug       | The slug by which to identify the Source in the Segment app.                                                                                                                                        |                 |
+| Enabled    | Enable to allow this Source to send data. Defaults to true.                                                                                                                                         |                 |
+| Name       | An optional human-readable name to associate with this Source.                                                                                                                                      |                 |
+| Settings   | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. | <code>[]</code> |
 
 ### Update Transformation {#updatetransformation}
 
@@ -562,11 +562,11 @@ Updates an existing Transformation.
 
 Updates an existing Warehouse.
 
-| Input        | Comments                                                                                                                                                                                            | Default |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection   |                                                                                                                                                                                                     |         |
-| Region       | The region of the Segment API to use.                                                                                                                                                               | api     |
-| Warehouse ID | The id of the warehouse to retrieve.                                                                                                                                                                |         |
-| Settings     | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. |         |
-| Name         | An optional human-readable name to associate with this Warehouse.                                                                                                                                   |         |
-| Enabled      | Enable to allow this Warehouse to receive data.                                                                                                                                                     |         |
+| Input        | Comments                                                                                                                                                                                            | Default         |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection   |                                                                                                                                                                                                     |                 |
+| Region       | The region of the Segment API to use.                                                                                                                                                               | api             |
+| Warehouse ID | The id of the warehouse to retrieve.                                                                                                                                                                |                 |
+| Settings     | A key-value object that contains instance-specific settings for a Warehouse. You can find the full list of Warehouse metadata and related settings information in the /catalog/warehouses endpoint. | <code>[]</code> |
+| Name         | An optional human-readable name to associate with this Warehouse.                                                                                                                                   |                 |
+| Enabled      | Enable to allow this Warehouse to receive data.                                                                                                                                                     |                 |

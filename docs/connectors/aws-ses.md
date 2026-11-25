@@ -1,7 +1,7 @@
 ---
 title: Amazon SES Connector
 sidebar_label: Amazon SES
-description: Send Emails through Amazon (AWS) SES
+description: Send emails and list verified identities with Amazon Simple Email Service (SES).
 ---
 
 ![Amazon SES](./assets/aws-ses.png#connector-icon)

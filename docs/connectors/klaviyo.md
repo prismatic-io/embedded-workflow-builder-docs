@@ -69,7 +69,7 @@ Create a connection of type **OAuth 2.0**.
 | ----------------- | ------------------------------------------------ |
 | **Scopes**        | Space-separated list of OAuth scopes, if needed. |
 | **Client ID**     | The Client ID from the Klaviyo app.              |
-| **Client secret** | The Client secret from the Klaviyo app.          |
+| **Client Secret** | The Client Secret from the Klaviyo app.          |
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

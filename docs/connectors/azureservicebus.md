@@ -1,11 +1,11 @@
 ---
 title: Azure Service Bus Connector
 sidebar_label: Azure Service Bus
-description: Interact with message queues and publish-subscribe topics (in a namespace)
+description: Send and receive Azure Service Bus queue messages, and manage namespaces, queues, topics, subscriptions, and rules.
 ---
 
 ![Azure Service Bus](./assets/azureservicebus.png#connector-icon)
-Interact with message queues and publish-subscribe topics (in a namespace)
+Send and receive Azure Service Bus queue messages, and manage namespaces, queues, topics, subscriptions, and rules.
 
 ## Connections
 

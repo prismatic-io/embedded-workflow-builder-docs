@@ -1,7 +1,7 @@
 ---
 title: Microsoft Dynamics 365 Connector
 sidebar_label: Microsoft Dynamics 365
-description: Query, create, update, or delete Microsoft Dynamics 365 entity records.
+description: Query, create, update, and delete entity records and metadata in Microsoft Dynamics 365 (Dataverse Web API), including FetchXML queries and batch operations.
 ---
 
 ![Microsoft Dynamics 365](./assets/ms-dynamics.png#connector-icon)

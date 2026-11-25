@@ -77,70 +77,70 @@ Retrieve a package by ID.
 
 Retrieve a list of devices.
 
-| Input               | Comments                                                                                                                                  | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
-| Pagination          | Page number and page size to control result paging.                                                                                       |         |
-| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
-| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
-| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
-| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
-| Includes            | Include related resources.                                                                                                                |         |
-| Group ID            | The id of the group to filter by.                                                                                                         |         |
-| Connection          | The PDQ connection to use.                                                                                                                |         |
+| Input               | Comments                                                                                                                                  | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false           |
+| Pagination          | Page number and page size to control result paging.                                                                                       |                 |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |                 |
+| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |                 |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |                 |
+| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |                 |
+| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |                 |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    | <code>[]</code> |
+| Includes            | Include related resources.                                                                                                                |                 |
+| Group ID            | The id of the group to filter by.                                                                                                         |                 |
+| Connection          | The PDQ connection to use.                                                                                                                |                 |
 
 ### List Groups {#listgroups}
 
 Retrieve a list of groups.
 
-| Input               | Comments                                                                                                                                  | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
-| Pagination          | Page number and page size to control result paging.                                                                                       |         |
-| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
-| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
-| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
-| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
-| Connection          | The PDQ connection to use.                                                                                                                |         |
+| Input               | Comments                                                                                                                                  | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false           |
+| Pagination          | Page number and page size to control result paging.                                                                                       |                 |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |                 |
+| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |                 |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |                 |
+| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |                 |
+| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |                 |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    | <code>[]</code> |
+| Connection          | The PDQ connection to use.                                                                                                                |                 |
 
 ### List Packages {#listpackages}
 
 Retrieve a list of packages.
 
-| Input               | Comments                                                                                                                                  | Default |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false   |
-| Pagination          | Page number and page size to control result paging.                                                                                       |         |
-| Page                | The page number to return. Page numbering starts at 1.                                                                                    |         |
-| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |         |
-| Filters             | Optional query controls to sort and refine the results.                                                                                   |         |
-| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |         |
-| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |         |
-| Custom Query Params | Additional query parameters to include in the request.                                                                                    |         |
-| Connection          | The PDQ connection to use.                                                                                                                |         |
+| Input               | Comments                                                                                                                                  | Default         |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Fetch All           | When true, automatically fetches all pages of results using pagination.                                                                   | false           |
+| Pagination          | Page number and page size to control result paging.                                                                                       |                 |
+| Page                | The page number to return. Page numbering starts at 1.                                                                                    |                 |
+| Page Size           | The number of records to return per page. Maximum is 100.                                                                                 |                 |
+| Filters             | Optional query controls to sort and refine the results.                                                                                   |                 |
+| Sort                | Sort by a field in camel case. By default a field name sorts with 'Asc'. Add the suffix 'Desc' to sort by that field in descending order. |                 |
+| Filter              | String filter values will filter on exact values unless a supported operator is provided.                                                 |                 |
+| Custom Query Params | Additional query parameters to include in the request.                                                                                    | <code>[]</code> |
+| Connection          | The PDQ connection to use.                                                                                                                |                 |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to the PDQ API.
 
-| Input                   | Comments                                                                                                                                                                                                                            | Default |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The PDQ connection to use.                                                                                                                                                                                                          |         |
-| URL                     | Input the path only (/deployments), The base URL is already included (https://app.pdq.com/v1/api). For example, to connect to https://app.pdq.com/v1/api/deployments, only /deployments is entered in this field. e.g. /deployments |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                             |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                           |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                    |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                              |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                 |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                         |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                            | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                 |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                 | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                    | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                 | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                       | false   |
+| Input                   | Comments                                                                                                                                                                                                                            | Default         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The PDQ connection to use.                                                                                                                                                                                                          |                 |
+| URL                     | Input the path only (/deployments), The base URL is already included (https://app.pdq.com/v1/api). For example, to connect to https://app.pdq.com/v1/api/deployments, only /deployments is entered in this field. e.g. /deployments |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                             |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                           |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                    | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                              | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                 | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                         | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                            | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                 |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                 | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                    | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                 | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                       | false           |

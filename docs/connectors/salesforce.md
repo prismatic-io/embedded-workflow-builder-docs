@@ -1,7 +1,7 @@
 ---
 title: Salesforce Connector
 sidebar_label: Salesforce
-description: Query, create, update, or delete Salesforce records.
+description: Query and manage Salesforce CRM records, bulk jobs, metadata, users, and flows, and react to record changes with outbound message and polling triggers.
 ---
 
 ![Salesforce](./assets/salesforce.png#connector-icon)
@@ -492,7 +492,7 @@ Receive Flow-based outbound messages from Salesforce. Automatically creates and 
 | Prefix              | Sets a prefix to the Flow Name and Outbound Messages created. Must start with a letter, can contain letters, numbers, underscores, and be at most 15 characters. |                 |
 | Trigger Record Type | The Salesforce object API name (e.g., Account, Contact) whose record changes will trigger this flow.                                                             |                 |
 | Trigger On          | When to trigger the flow (record creation, update, or both).                                                                                                     | CreateAndUpdate |
-| Fields              | Fields to include in the Outbound Message.                                                                                                                       |                 |
+| Fields              | Fields to include in the Outbound Message.                                                                                                                       | <code>[]</code> |
 | Flow Metadata       | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                  |                 |
 | Filter Formula      | Optional formula to filter which records trigger the flow.                                                                                                       |                 |
 | Connection          | The Salesforce connection to use.                                                                                                                                |                 |
@@ -501,21 +501,21 @@ Receive Flow-based outbound messages from Salesforce. Automatically creates and 
 
 Retrieves existing and ongoing records for a specified Salesforce object type. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                                                                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                                                                          | 63.0    |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                                                                                                                               |         |
-| Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                                                                                 |         |
-| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the field and visibility filters.                                                              |         |
-| Show New Records     | When true, newly created records are included in the results.                                                                                                                                                                                                                                                                                   | true    |
-| Show Updated Records | When true, recently modified records are included in the results.                                                                                                                                                                                                                                                                               | true    |
-| Show Deleted Records | When true, recently deleted records are included in the results.                                                                                                                                                                                                                                                                                | false   |
-| Selected Fields      | Specific field API names to include in results. Leave empty to return all fields. Id, CreatedDate, and LastModifiedDate are always included automatically.                                                                                                                                                                                      |         |
-| Return IDs Only      | When true, only record IDs and date fields are returned (Id, CreatedDate, LastModifiedDate). Overrides Selected Fields. Use this to minimize data returned by the trigger.                                                                                                                                                                      | false   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                                                                                                                         |         |
-| Max Records To Fetch | The maximum number of records the trigger will fetch per recurrence. When more records have changed than this, the trigger records its position and continues on the next recurrence. Applies during an initial sync and when batching is enabled: it caps each page rather than the total a recurrence can report. Defaults to 20,000 records. | 20000   |
+| Input                | Comments                                                                                                                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                                                                          | 63.0            |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                                                                                                                               |                 |
+| Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                                                                                 |                 |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record created on or after this date once, ignoring the field and visibility filters.                                                              |                 |
+| Show New Records     | When true, newly created records are included in the results.                                                                                                                                                                                                                                                                                   | true            |
+| Show Updated Records | When true, recently modified records are included in the results.                                                                                                                                                                                                                                                                               | true            |
+| Show Deleted Records | When true, recently deleted records are included in the results.                                                                                                                                                                                                                                                                                | false           |
+| Selected Fields      | Specific field API names to include in results. Leave empty to return all fields. Id, CreatedDate, and LastModifiedDate are always included automatically.                                                                                                                                                                                      | <code>[]</code> |
+| Return IDs Only      | When true, only record IDs and date fields are returned (Id, CreatedDate, LastModifiedDate). Overrides Selected Fields. Use this to minimize data returned by the trigger.                                                                                                                                                                      | false           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                                                                                                                         | <code>[]</code> |
+| Max Records To Fetch | The maximum number of records the trigger will fetch per recurrence. When more records have changed than this, the trigger records its position and continues on the next recurrence. Applies during an initial sync and when batching is enabled: it caps each page rather than the total a recurrence can report. Defaults to 20,000 records. | 20000           |
 
 ### Webhook {#webhook}
 
@@ -525,16 +525,16 @@ Receive and validate webhook requests from Salesforce for manually configured we
 
 Receive workflow rule outbound messages from Salesforce. Automatically creates and manages a workflow rule and outbound message when the instance is deployed, and removes them when the instance is deleted.
 
-| Input                 | Comments                                                                                                                                                                                                                                                                                | Default      |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Connection            | The Salesforce connection to use.                                                                                                                                                                                                                                                       |              |
-| Version               | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                  | 63.0         |
-| Record Type           | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                         |              |
-| Trigger Type          | Conditions in which the trigger fires. On All Changes: The workflow rule is considered on all changes. On Create Only: Considered on creation. On Create or Meets Rule Criteria: Considered on create and when it is updated to meet any Rule Criteria configured to the workflow rule. | onAllChanges |
-| Outbound Message Name | The name of the outbound message to be used.                                                                                                                                                                                                                                            |              |
-| Workflow Rule Name    | The name of the workflow rule to be used.                                                                                                                                                                                                                                               |              |
-| Description           | A text description of the object.                                                                                                                                                                                                                                                       |              |
-| Fields                | Fields to include in the Outbound Message.                                                                                                                                                                                                                                              |              |
+| Input                 | Comments                                                                                                                                                                                                                                                                                | Default         |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection            | The Salesforce connection to use.                                                                                                                                                                                                                                                       |                 |
+| Version               | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                  | 63.0            |
+| Record Type           | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                         |                 |
+| Trigger Type          | Conditions in which the trigger fires. On All Changes: The workflow rule is considered on all changes. On Create Only: Considered on creation. On Create or Meets Rule Criteria: Considered on create and when it is updated to meet any Rule Criteria configured to the workflow rule. | onAllChanges    |
+| Outbound Message Name | The name of the outbound message to be used.                                                                                                                                                                                                                                            |                 |
+| Workflow Rule Name    | The name of the workflow rule to be used.                                                                                                                                                                                                                                               |                 |
+| Description           | A text description of the object.                                                                                                                                                                                                                                                       |                 |
+| Fields                | Fields to include in the Outbound Message.                                                                                                                                                                                                                                              | <code>[]</code> |
 
 ## Actions
 
@@ -629,33 +629,33 @@ Notify Salesforce that the upload of job data is complete and ready for processi
 
 Create a Salesforce account record.
 
-| Input               | Comments                                                                                                      | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Name                | The name assigned to the Salesforce record.                                                                   |         |
-| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |         |
-| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |         |
-| Version             | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |         |
-| Street Address      | Street address line, including the building number and street name.                                           |         |
-| City                | The city, town, or locality name.                                                                             |         |
-| State               | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code         | The ZIP or postal code.                                                                                       |         |
-| Country             | The country name or two-letter ISO country code.                                                              |         |
-| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |         |
-| Street Address      | Street address line, including the building number and street name.                                           |         |
-| City                | The city, town, or locality name.                                                                             |         |
-| State               | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code         | The ZIP or postal code.                                                                                       |         |
-| Country             | The country name or two-letter ISO country code.                                                              |         |
-| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
-| Phone               | The primary phone number for the object.                                                                      |         |
-| Website             | The record's website, such as a company or personal homepage.                                                 |         |
-| Description         | A text description of the object.                                                                             |         |
-| Number of Employees | The total number of people the account employs, as a whole number.                                            |         |
-| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |         |
-| Connection          | The Salesforce connection to use.                                                                             |         |
+| Input               | Comments                                                                                                      | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Name                | The name assigned to the Salesforce record.                                                                   |                 |
+| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |                 |
+| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |                 |
+| Version             | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |                 |
+| Street Address      | Street address line, including the building number and street name.                                           |                 |
+| City                | The city, town, or locality name.                                                                             |                 |
+| State               | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code         | The ZIP or postal code.                                                                                       |                 |
+| Country             | The country name or two-letter ISO country code.                                                              |                 |
+| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |                 |
+| Street Address      | Street address line, including the building number and street name.                                           |                 |
+| City                | The city, town, or locality name.                                                                             |                 |
+| State               | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code         | The ZIP or postal code.                                                                                       |                 |
+| Country             | The country name or two-letter ISO country code.                                                              |                 |
+| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |                 |
+| Phone               | The primary phone number for the object.                                                                      |                 |
+| Website             | The record's website, such as a company or personal homepage.                                                 |                 |
+| Description         | A text description of the object.                                                                             |                 |
+| Number of Employees | The total number of people the account employs, as a whole number.                                            |                 |
+| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |                 |
+| Connection          | The Salesforce connection to use.                                                                             |                 |
 
 ### Create Bulk Job {#createbulkjob}
 
@@ -689,38 +689,38 @@ Create a bulk query job.
 
 Create a Salesforce contact.
 
-| Input                      | Comments                                                                                                      | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Email Address              | The email address for the object.                                                                             |         |
-| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Name & Contact Information | First and last name, phone, fax, and mobile contact channels, and birthdate.                                  |         |
-| First Name                 | The first name of the contact at the company                                                                  |         |
-| Last Name                  | The last name of the contact at the company                                                                   |         |
-| Phone                      | The primary phone number for the object.                                                                      |         |
-| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |         |
-| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |         |
-| Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |         |
-| Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |         |
-| Street Address             | Street address line, including the building number and street name.                                           |         |
-| City                       | The city, town, or locality name.                                                                             |         |
-| State                      | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code                | The ZIP or postal code.                                                                                       |         |
-| Country                    | The country name or two-letter ISO country code.                                                              |         |
-| Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |         |
-| Street Address             | Street address line, including the building number and street name.                                           |         |
-| City                       | The city, town, or locality name.                                                                             |         |
-| State                      | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code                | The ZIP or postal code.                                                                                       |         |
-| Country                    | The country name or two-letter ISO country code.                                                              |         |
-| Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |         |
-| Department                 | The department name associated with the contact.                                                              |         |
-| Title                      | The job title or professional title associated with the contact or lead.                                      |         |
-| Assistant                  | The name of the contact's assistant.                                                                          |         |
-| Assistant's Phone          | The phone number of the contact's assistant.                                                                  |         |
-| Description                | A text description of the object.                                                                             |         |
-| Connection                 | The Salesforce connection to use.                                                                             |         |
+| Input                      | Comments                                                                                                      | Default         |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Email Address              | The email address for the object.                                                                             |                 |
+| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Name & Contact Information | First and last name, phone, fax, and mobile contact channels, and birthdate.                                  |                 |
+| First Name                 | The first name of the contact at the company                                                                  |                 |
+| Last Name                  | The last name of the contact at the company                                                                   |                 |
+| Phone                      | The primary phone number for the object.                                                                      |                 |
+| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |                 |
+| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |                 |
+| Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |                 |
+| Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |                 |
+| Street Address             | Street address line, including the building number and street name.                                           |                 |
+| City                       | The city, town, or locality name.                                                                             |                 |
+| State                      | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code                | The ZIP or postal code.                                                                                       |                 |
+| Country                    | The country name or two-letter ISO country code.                                                              |                 |
+| Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |                 |
+| Street Address             | Street address line, including the building number and street name.                                           |                 |
+| City                       | The city, town, or locality name.                                                                             |                 |
+| State                      | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code                | The ZIP or postal code.                                                                                       |                 |
+| Country                    | The country name or two-letter ISO country code.                                                              |                 |
+| Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |                 |
+| Department                 | The department name associated with the contact.                                                              |                 |
+| Title                      | The job title or professional title associated with the contact or lead.                                      |                 |
+| Assistant                  | The name of the contact's assistant.                                                                          |                 |
+| Assistant's Phone          | The phone number of the contact's assistant.                                                                  |                 |
+| Description                | A text description of the object.                                                                             |                 |
+| Connection                 | The Salesforce connection to use.                                                                             |                 |
 
 ### Create Customer {#createcustomer}
 
@@ -755,33 +755,33 @@ Create a draft Flow in Salesforce.
 
 Create a Salesforce lead record.
 
-| Input                      | Comments                                                                                                               | Default |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Company                    | The name of the company associated with the record.                                                                    |         |
-| Lead Status                | The status of the lead. Examples of valid values include: Open, Working, Closed - Converted, Closed - Not Converted.   |         |
-| Email Address              | The email address for the object.                                                                                      |         |
-| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0    |
-| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.          |         |
-| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                 |         |
-| Name & Contact Information | First and last name, phone, and website.                                                                               |         |
-| First Name                 | The first name of the contact at the company                                                                           |         |
-| Last Name                  | The last name of the contact at the company                                                                            |         |
-| Phone                      | The primary phone number for the object.                                                                               |         |
-| Website                    | The record's website, such as a company or personal homepage.                                                          |         |
-| Address                    | Street, city, state, postal code, and country for the address.                                                         |         |
-| Street Address             | Street address line, including the building number and street name.                                                    |         |
-| City                       | The city, town, or locality name.                                                                                      |         |
-| State                      | Two-letter state or province code, or full name.                                                                       |         |
-| Postal Code                | The ZIP or postal code.                                                                                                |         |
-| Country                    | The country name or two-letter ISO country code.                                                                       |         |
-| Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |         |
-| Title                      | The job title or professional title associated with the contact or lead.                                               |         |
-| Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |         |
-| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |         |
-| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |         |
-| Description                | A text description of the object.                                                                                      |         |
-| Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |         |
-| Connection                 | The Salesforce connection to use.                                                                                      |         |
+| Input                      | Comments                                                                                                               | Default         |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Company                    | The name of the company associated with the record.                                                                    |                 |
+| Lead Status                | The status of the lead. Examples of valid values include: Open, Working, Closed - Converted, Closed - Not Converted.   |                 |
+| Email Address              | The email address for the object.                                                                                      |                 |
+| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0            |
+| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.          |                 |
+| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                 | <code>[]</code> |
+| Name & Contact Information | First and last name, phone, and website.                                                                               |                 |
+| First Name                 | The first name of the contact at the company                                                                           |                 |
+| Last Name                  | The last name of the contact at the company                                                                            |                 |
+| Phone                      | The primary phone number for the object.                                                                               |                 |
+| Website                    | The record's website, such as a company or personal homepage.                                                          |                 |
+| Address                    | Street, city, state, postal code, and country for the address.                                                         |                 |
+| Street Address             | Street address line, including the building number and street name.                                                    |                 |
+| City                       | The city, town, or locality name.                                                                                      |                 |
+| State                      | Two-letter state or province code, or full name.                                                                       |                 |
+| Postal Code                | The ZIP or postal code.                                                                                                |                 |
+| Country                    | The country name or two-letter ISO country code.                                                                       |                 |
+| Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |                 |
+| Title                      | The job title or professional title associated with the contact or lead.                                               |                 |
+| Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |                 |
+| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |                 |
+| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |                 |
+| Description                | A text description of the object.                                                                                      |                 |
+| Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |                 |
+| Connection                 | The Salesforce connection to use.                                                                                      |                 |
 
 ### Create Metadata {#createobjectsfrommetadata}
 
@@ -809,39 +809,39 @@ Create custom fields from metadata.
 
 Create a Salesforce opportunity record representing a sale or pending deal.
 
-| Input             | Comments                                                                                                      | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Stage             | The stage the sale is currently in.                                                                           |         |
-| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
-| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
-| Name              | The name assigned to the Salesforce record.                                                                   |         |
-| Version           | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Account ID        | The ID of the account to reference.                                                                           |         |
-| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |         |
-| Amount            | The monetary amount associated with the opportunity.                                                          |         |
-| Next Step         | A description of the next action or milestone for the opportunity.                                            |         |
-| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
-| Probability       | The probability of the success of the sale.                                                                   |         |
-| Description       | A text description of the object.                                                                             |         |
-| Connection        | The Salesforce connection to use.                                                                             |         |
+| Input             | Comments                                                                                                      | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Stage             | The stage the sale is currently in.                                                                           |                 |
+| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |                 |
+| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |                 |
+| Name              | The name assigned to the Salesforce record.                                                                   |                 |
+| Version           | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Account ID        | The ID of the account to reference.                                                                           |                 |
+| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |                 |
+| Amount            | The monetary amount associated with the opportunity.                                                          |                 |
+| Next Step         | A description of the next action or milestone for the opportunity.                                            |                 |
+| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |                 |
+| Probability       | The probability of the success of the sale.                                                                   |                 |
+| Description       | A text description of the object.                                                                             |                 |
+| Connection        | The Salesforce connection to use.                                                                             |                 |
 
 ### Create Outbound Message {#createworkflowoutboundmessage}
 
 Create an Outbound Message in Salesforce.
 
-| Input                  | Comments                                                                                              | Default |
-| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| Version                | The Salesforce API version number to use for requests.                                                | 63.0    |
-| Record Type            | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                       |         |
-| Outbound Message Name  | The name of the Salesforce Outbound Message to create or reference.                                   |         |
-| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                            |         |
-| Description            | A text description of the object.                                                                     |         |
-| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used |         |
-| Fields                 | Fields to include in the Outbound Message.                                                            |         |
-| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message      |         |
-| Connection             | The Salesforce connection to use.                                                                     |         |
+| Input                  | Comments                                                                                              | Default         |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | --------------- |
+| Version                | The Salesforce API version number to use for requests.                                                | 63.0            |
+| Record Type            | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                       |                 |
+| Outbound Message Name  | The name of the Salesforce Outbound Message to create or reference.                                   |                 |
+| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                            |                 |
+| Description            | A text description of the object.                                                                     |                 |
+| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used |                 |
+| Fields                 | Fields to include in the Outbound Message.                                                            | <code>[]</code> |
+| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message      |                 |
+| Connection             | The Salesforce connection to use.                                                                     |                 |
 
 ### Create Profile {#createprofile}
 
@@ -860,48 +860,48 @@ Create a Salesforce profile.
 
 Create a Salesforce record.
 
-| Input          | Comments                                                                                                      | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record Type    | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                               |         |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Connection     | The Salesforce connection to use.                                                                             |         |
+| Input          | Comments                                                                                                      | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version        | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Record Type    | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                               |                 |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Connection     | The Salesforce connection to use.                                                                             |                 |
 
 ### Create User {#createuser}
 
 Create a Salesforce user.
 
-| Input          | Comments                                                                                                      | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Profile        | The name of the Salesforce User Profile that defines the user's permissions and settings.                     |         |
-| User Name      | The username of the Salesforce user to reference.                                                             |         |
-| Time Zone      | The time zone for the user. Uses IANA format (e.g., America/New_York).                                        |         |
-| Alias          | A short identifier for the Salesforce user, typically used in reports and list views.                         |         |
-| Email Address  | The email address for the object.                                                                             |         |
-| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| First Name     | The first name of the contact at the company                                                                  |         |
-| Last Name      | The last name of the contact at the company                                                                   |         |
-| Connection     | The Salesforce connection to use.                                                                             |         |
+| Input          | Comments                                                                                                      | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Profile        | The name of the Salesforce User Profile that defines the user's permissions and settings.                     |                 |
+| User Name      | The username of the Salesforce user to reference.                                                             |                 |
+| Time Zone      | The time zone for the user. Uses IANA format (e.g., America/New_York).                                        |                 |
+| Alias          | A short identifier for the Salesforce user, typically used in reports and list views.                         |                 |
+| Email Address  | The email address for the object.                                                                             |                 |
+| Version        | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| First Name     | The first name of the contact at the company                                                                  |                 |
+| Last Name      | The last name of the contact at the company                                                                   |                 |
+| Connection     | The Salesforce connection to use.                                                                             |                 |
 
 ### Create Workflow Rule {#createworkflowrule}
 
 Create a Workflow Rule. Workflow Rules are deprecated by Salesforce; migrate to Flow-based actions.
 
-| Input                    | Comments                                                                                                                                                                                                                                                                                | Default      |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Version                  | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                  | 63.0         |
-| Record Type              | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                         |              |
-| Rule Name                | The name of the Salesforce Workflow Rule to create or reference.                                                                                                                                                                                                                        |              |
-| Trigger Type             | Conditions in which the trigger fires. On All Changes: The workflow rule is considered on all changes. On Create Only: Considered on creation. On Create or Meets Rule Criteria: Considered on create and when it is updated to meet any Rule Criteria configured to the workflow rule. | onAllChanges |
-| Active                   | When true, the workflow rule is active and will fire when its criteria are met.                                                                                                                                                                                                         | true         |
-| Description              | A text description of the object.                                                                                                                                                                                                                                                       |              |
-| Rule Criteria Filter     | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure.                                   |              |
-| Formula                  | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                                                             |              |
-| Outbound Message Actions | Full Names of the Outbound Message Actions for this Rule to fire.                                                                                                                                                                                                                       |              |
-| Connection               | The Salesforce connection to use.                                                                                                                                                                                                                                                       |              |
+| Input                    | Comments                                                                                                                                                                                                                                                                                | Default         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version                  | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                  | 63.0            |
+| Record Type              | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                                                         |                 |
+| Rule Name                | The name of the Salesforce Workflow Rule to create or reference.                                                                                                                                                                                                                        |                 |
+| Trigger Type             | Conditions in which the trigger fires. On All Changes: The workflow rule is considered on all changes. On Create Only: Considered on creation. On Create or Meets Rule Criteria: Considered on create and when it is updated to meet any Rule Criteria configured to the workflow rule. | onAllChanges    |
+| Active                   | When true, the workflow rule is active and will fire when its criteria are met.                                                                                                                                                                                                         | true            |
+| Description              | A text description of the object.                                                                                                                                                                                                                                                       |                 |
+| Rule Criteria Filter     | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure.                                   |                 |
+| Formula                  | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                                                             |                 |
+| Outbound Message Actions | Full Names of the Outbound Message Actions for this Rule to fire.                                                                                                                                                                                                                       | <code>[]</code> |
+| Connection               | The Salesforce connection to use.                                                                                                                                                                                                                                                       |                 |
 
 ### Deactivate Flow {#deactivateflow}
 
@@ -917,12 +917,12 @@ Deactivate a Flow in Salesforce by name.
 
 Delete an existing account record.
 
-| Input        | Comments                                                                               | Default |
-| ------------ | -------------------------------------------------------------------------------------- | ------- |
-| Record ID    | The unique identifier for a Salesforce record.                                         |         |
-| Version      | The Salesforce API version number to use for requests.                                 | 63.0    |
-| Field Values | Key-value pairs mapping Salesforce field API names to the values to set on the record. |         |
-| Connection   | The Salesforce connection to use.                                                      |         |
+| Input        | Comments                                                                               | Default         |
+| ------------ | -------------------------------------------------------------------------------------- | --------------- |
+| Record ID    | The unique identifier for a Salesforce record.                                         |                 |
+| Version      | The Salesforce API version number to use for requests.                                 | 63.0            |
+| Field Values | Key-value pairs mapping Salesforce field API names to the values to set on the record. | <code>[]</code> |
+| Connection   | The Salesforce connection to use.                                                      |                 |
 
 ### Delete Bulk Job {#deletebulkjob}
 
@@ -1089,33 +1089,33 @@ Describe permissions of a Salesforce record type.
 
 Find a single Salesforce record.
 
-| Input             | Comments                                                                                                                                | Default |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version           | The Salesforce API version number to use for requests.                                                                                  | 63.0    |
-| Record Type       | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                         |         |
-| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                           |         |
-| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                  |         |
-| Field Value Types | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String. |         |
-| Connection        | The Salesforce connection to use.                                                                                                       |         |
+| Input             | Comments                                                                                                                                | Default         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version           | The Salesforce API version number to use for requests.                                                                                  | 63.0            |
+| Record Type       | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                         |                 |
+| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                           |                 |
+| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                  | <code>[]</code> |
+| Field Value Types | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String. | <code>[]</code> |
+| Connection        | The Salesforce connection to use.                                                                                                       |                 |
 
 ### Find Records {#findrecords}
 
 Find and fetch Salesforce records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                 |         |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Record Type          | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                 |                 |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### Get Attachment {#getattachment}
 
@@ -1279,37 +1279,37 @@ Retrieve a list of URIs for available composite resources.
 
 List all contact records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Customers {#listcustomers}
 
 List all customer records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Flows {#listflows}
 
@@ -1324,19 +1324,19 @@ List all Flows in the Salesforce org.
 
 List all lead records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Metadata {#listobjectmetadata}
 
@@ -1352,19 +1352,19 @@ List all metadata components in Salesforce.
 
 List all opportunity records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Outbound Messages {#listworkflowoutboundmessages}
 
@@ -1379,37 +1379,37 @@ Retrieve all Outbound Messages in the Salesforce org.
 
 List all profile records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Users {#listusers}
 
 List all user records.
 
-| Input                | Comments                                                                                                                                                                                                                                        | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0    |
-| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false   |
-| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |         |
-| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |         |
-| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |         |
-| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000   |
-| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |         |
-| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          |         |
-| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         |         |
-| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |         |
-| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |         |
+| Input                | Comments                                                                                                                                                                                                                                        | Default         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version              | The Salesforce API version number to use for requests.                                                                                                                                                                                          | 63.0            |
+| Fetch All            | When true, automatically fetches all pages of results using pagination.                                                                                                                                                                         | false           |
+| Pagination           | Page and page-size controls.                                                                                                                                                                                                                    |                 |
+| Page Size            | The maximum number of results to return per page when paginating results.                                                                                                                                                                       |                 |
+| Page Number          | The page number to retrieve when paginating results. Uses 1-based indexing.                                                                                                                                                                     |                 |
+| Max Records To Fetch | The maximum number of records to fetch when Fetch All is enabled. Defaults to 20,000 records.                                                                                                                                                   | 20000           |
+| Dynamic Fields       | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.                                                                                                                                   |                 |
+| Field Values         | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                                                                                                                                          | <code>[]</code> |
+| Field Value Types    | For each item, provide the key and the type corresponding to the field value entered above. Valid types are Boolean, Number, or String.                                                                                                         | <code>[]</code> |
+| Sort Criteria        | The criteria by which to sort the records. Use a string to specify the field and order. Prefix with '-' for descending order. For example, '-CreatedDate Name' will sort by 'CreatedDate' in descending order and by 'Name' in ascending order. |                 |
+| Connection           | The Salesforce connection to use.                                                                                                                                                                                                               |                 |
 
 ### List Workflow Rules {#listworkflowrules}
 
@@ -1434,24 +1434,24 @@ Run an SOQL query against Salesforce.
 
 Send raw HTTP request to Salesforce.
 
-| Input                   | Comments                                                                                                                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Salesforce connection to use.                                                                                                                                                                                                                                                                |         |
-| URL                     | The path only, for example /chatter/feeds/record/. The base URL (the connection's instance URL followed by /services/data/v and the Version input) is already included. For example, to call https://instance_name/services/data/v58.0/chatter/feeds/record/, enter only /chatter/feeds/record/. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false   |
-| Version                 | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                           | 63.0    |
+| Input                   | Comments                                                                                                                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Salesforce connection to use.                                                                                                                                                                                                                                                                |                 |
+| URL                     | The path only, for example /chatter/feeds/record/. The base URL (the connection's instance URL followed by /services/data/v and the Version input) is already included. For example, to call https://instance_name/services/data/v58.0/chatter/feeds/record/, enter only /chatter/feeds/record/. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                                                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                                                                                                 | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                                                                                                    | false           |
+| Version                 | The Salesforce API version number to use for requests.                                                                                                                                                                                                                                           | 63.0            |
 
 ### Remove User Permission Set {#removeuserpermissionset}
 
@@ -1480,34 +1480,34 @@ Send multiple requests in a single HTTP call.
 
 Send a transactional email message to a single recipient via Salesforce.
 
-| Input                 | Comments                                                                           | Default |
-| --------------------- | ---------------------------------------------------------------------------------- | ------- |
-| Message Key           | The unique key identifying the transactional message template to send.             |         |
-| Definition Key        | The unique key of the message template definition used for the transactional send. |         |
-| Recipient Contact Key | The unique key identifying the recipient contact in Salesforce Marketing Cloud.    |         |
-| Recipient Email       | The email address of the recipient for the transactional send.                     |         |
-| Version               | The Salesforce API version number to use for requests.                             | 63.0    |
-| Connection            | The Salesforce connection to use.                                                  |         |
-| Recipient Attributes  | Key-value pairs to personalize the message.                                        |         |
+| Input                 | Comments                                                                           | Default         |
+| --------------------- | ---------------------------------------------------------------------------------- | --------------- |
+| Message Key           | The unique key identifying the transactional message template to send.             |                 |
+| Definition Key        | The unique key of the message template definition used for the transactional send. |                 |
+| Recipient Contact Key | The unique key identifying the recipient contact in Salesforce Marketing Cloud.    |                 |
+| Recipient Email       | The email address of the recipient for the transactional send.                     |                 |
+| Version               | The Salesforce API version number to use for requests.                             | 63.0            |
+| Connection            | The Salesforce connection to use.                                                  |                 |
+| Recipient Attributes  | Key-value pairs to personalize the message.                                        | <code>[]</code> |
 
 ### Subscribe to Record Change {#subscribetorecordchange}
 
 Create a Workflow Rule to subscribe to record changes in Salesforce. Workflow Rules are deprecated by Salesforce; migrate to Flow-based actions.
 
-| Input                  | Comments                                                                                                                                                                                                                                              | Default      |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Version                | The Salesforce API version number to use for requests.                                                                                                                                                                                                | 63.0         |
-| Outbound Message Name  | The name of the Salesforce Outbound Message to create or reference.                                                                                                                                                                                   |              |
-| Record Type            | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                       |              |
-| Trigger Event          | The event condition that causes this workflow rule to fire.                                                                                                                                                                                           | onAllChanges |
-| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                                                                                                                                                                            |              |
-| Rule Criteria Filter   | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure. |              |
-| Formula                | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                           |              |
-| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used                                                                                                                                                 |              |
-| Description            | A text description of the object.                                                                                                                                                                                                                     |              |
-| Fields                 | Fields to include in the Outbound Message.                                                                                                                                                                                                            |              |
-| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message                                                                                                                                                      |              |
-| Connection             | The Salesforce connection to use.                                                                                                                                                                                                                     |              |
+| Input                  | Comments                                                                                                                                                                                                                                              | Default         |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version                | The Salesforce API version number to use for requests.                                                                                                                                                                                                | 63.0            |
+| Outbound Message Name  | The name of the Salesforce Outbound Message to create or reference.                                                                                                                                                                                   |                 |
+| Record Type            | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                                                                                                                                                                       |                 |
+| Trigger Event          | The event condition that causes this workflow rule to fire.                                                                                                                                                                                           | onAllChanges    |
+| Endpoint URL           | The endpoint URL to send the outbound message / webhook to                                                                                                                                                                                            |                 |
+| Rule Criteria Filter   | Filter criteria data structure to use with the rule, use this or Formula. See [Salesforce Metadata API - FilterItem](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/customfield.htm#filteritem) for the expected structure. |                 |
+| Formula                | Formula to evaluate. Use this input or Rule Criteria Filter                                                                                                                                                                                           |                 |
+| Integration User Email | The email of the user under which the payload is sent. If not provided, the current user will be used                                                                                                                                                 |                 |
+| Description            | A text description of the object.                                                                                                                                                                                                                     |                 |
+| Fields                 | Fields to include in the Outbound Message.                                                                                                                                                                                                            | <code>[]</code> |
+| Dynamic Fields         | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message                                                                                                                                                      |                 |
+| Connection             | The Salesforce connection to use.                                                                                                                                                                                                                     |                 |
 
 ### Subscribe to Record Changes {#subscribetorecordchanges}
 
@@ -1520,7 +1520,7 @@ Subscribe to Record Changes in Salesforce using an outbound message action.
 | Endpoint URL        | The endpoint URL to send the outbound message / webhook to                                                                                                       |                 |
 | Trigger Record Type | The Salesforce object API name (e.g., Account, Contact) whose record changes will trigger this flow.                                                             |                 |
 | Trigger On          | When to trigger the flow (record creation, update, or both).                                                                                                     | CreateAndUpdate |
-| Fields              | Fields to include in the Outbound Message.                                                                                                                       |                 |
+| Fields              | Fields to include in the Outbound Message.                                                                                                                       | <code>[]</code> |
 | Dynamic Fields      | Dynamic Fields, provided by value collection config variable, to include in the Outbound Message                                                                 |                 |
 | Flow Metadata       | Additional Flow metadata in JSON format. This will be merged with other inputs.                                                                                  |                 |
 | Filter Formula      | Optional formula to filter which records trigger the flow.                                                                                                       |                 |
@@ -1530,72 +1530,72 @@ Subscribe to Record Changes in Salesforce using an outbound message action.
 
 Update an existing account record.
 
-| Input               | Comments                                                                                                      | Default |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Record ID           | The unique identifier for a Salesforce record.                                                                |         |
-| Name                | The name assigned to the Salesforce record.                                                                   |         |
-| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |         |
-| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |         |
-| Version             | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |         |
-| Street Address      | Street address line, including the building number and street name.                                           |         |
-| City                | The city, town, or locality name.                                                                             |         |
-| State               | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code         | The ZIP or postal code.                                                                                       |         |
-| Country             | The country name or two-letter ISO country code.                                                              |         |
-| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |         |
-| Street Address      | Street address line, including the building number and street name.                                           |         |
-| City                | The city, town, or locality name.                                                                             |         |
-| State               | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code         | The ZIP or postal code.                                                                                       |         |
-| Country             | The country name or two-letter ISO country code.                                                              |         |
-| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |         |
-| Phone               | The primary phone number for the object.                                                                      |         |
-| Website             | The record's website, such as a company or personal homepage.                                                 |         |
-| Description         | A text description of the object.                                                                             |         |
-| Number of Employees | The total number of people the account employs, as a whole number.                                            |         |
-| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |         |
-| Connection          | The Salesforce connection to use.                                                                             |         |
+| Input               | Comments                                                                                                      | Default         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Record ID           | The unique identifier for a Salesforce record.                                                                |                 |
+| Name                | The name assigned to the Salesforce record.                                                                   |                 |
+| Account Type        | The account's relationship to the organization, such as Customer, Partner, or Competitor.                     |                 |
+| Industry            | The primary industry the account operates in, used for segmentation and reporting.                            |                 |
+| Version             | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Dynamic Fields      | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values        | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Shipping Address    | Street, city, state, postal code, and country for the shipping address.                                       |                 |
+| Street Address      | Street address line, including the building number and street name.                                           |                 |
+| City                | The city, town, or locality name.                                                                             |                 |
+| State               | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code         | The ZIP or postal code.                                                                                       |                 |
+| Country             | The country name or two-letter ISO country code.                                                              |                 |
+| Billing Address     | Street, city, state, postal code, and country for the billing address.                                        |                 |
+| Street Address      | Street address line, including the building number and street name.                                           |                 |
+| City                | The city, town, or locality name.                                                                             |                 |
+| State               | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code         | The ZIP or postal code.                                                                                       |                 |
+| Country             | The country name or two-letter ISO country code.                                                              |                 |
+| Additional Fields   | Additional optional fields: includes Phone, Website, Description, Number of Employees, and Annual Revenue.    |                 |
+| Phone               | The primary phone number for the object.                                                                      |                 |
+| Website             | The record's website, such as a company or personal homepage.                                                 |                 |
+| Description         | A text description of the object.                                                                             |                 |
+| Number of Employees | The total number of people the account employs, as a whole number.                                            |                 |
+| Annual Revenue      | The estimated annual revenue of the account, in the organization's default currency.                          |                 |
+| Connection          | The Salesforce connection to use.                                                                             |                 |
 
 ### Update Contact {#updatecontact}
 
 Update an existing contact record.
 
-| Input                      | Comments                                                                                                      | Default |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record ID                  | The unique identifier for a Salesforce record.                                                                |         |
-| Email Address              | The email address for the object.                                                                             |         |
-| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Name & Contact Information | First and last name, phone, fax, and mobile contact channels, and birthdate.                                  |         |
-| First Name                 | The first name of the contact at the company                                                                  |         |
-| Last Name                  | The last name of the contact at the company                                                                   |         |
-| Phone                      | The primary phone number for the object.                                                                      |         |
-| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |         |
-| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |         |
-| Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |         |
-| Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |         |
-| Street Address             | Street address line, including the building number and street name.                                           |         |
-| City                       | The city, town, or locality name.                                                                             |         |
-| State                      | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code                | The ZIP or postal code.                                                                                       |         |
-| Country                    | The country name or two-letter ISO country code.                                                              |         |
-| Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |         |
-| Street Address             | Street address line, including the building number and street name.                                           |         |
-| City                       | The city, town, or locality name.                                                                             |         |
-| State                      | Two-letter state or province code, or full name.                                                              |         |
-| Postal Code                | The ZIP or postal code.                                                                                       |         |
-| Country                    | The country name or two-letter ISO country code.                                                              |         |
-| Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |         |
-| Department                 | The department name associated with the contact.                                                              |         |
-| Title                      | The job title or professional title associated with the contact or lead.                                      |         |
-| Assistant                  | The name of the contact's assistant.                                                                          |         |
-| Assistant's Phone          | The phone number of the contact's assistant.                                                                  |         |
-| Description                | A text description of the object.                                                                             |         |
-| Connection                 | The Salesforce connection to use.                                                                             |         |
+| Input                      | Comments                                                                                                      | Default         |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version                    | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Record ID                  | The unique identifier for a Salesforce record.                                                                |                 |
+| Email Address              | The email address for the object.                                                                             |                 |
+| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Name & Contact Information | First and last name, phone, fax, and mobile contact channels, and birthdate.                                  |                 |
+| First Name                 | The first name of the contact at the company                                                                  |                 |
+| Last Name                  | The last name of the contact at the company                                                                   |                 |
+| Phone                      | The primary phone number for the object.                                                                      |                 |
+| Mobile Phone               | The mobile phone number, used for calls and text messages.                                                    |                 |
+| Fax                        | The fax number for sending documents to the record, including the country or area code.                       |                 |
+| Birthdate                  | The birthdate of the contact. Format: YYYY-MM-DD.                                                             |                 |
+| Mailing Address            | Street, city, state, postal code, and country for the mailing address.                                        |                 |
+| Street Address             | Street address line, including the building number and street name.                                           |                 |
+| City                       | The city, town, or locality name.                                                                             |                 |
+| State                      | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code                | The ZIP or postal code.                                                                                       |                 |
+| Country                    | The country name or two-letter ISO country code.                                                              |                 |
+| Other Address              | Street, city, state, postal code, and country for the secondary address.                                      |                 |
+| Street Address             | Street address line, including the building number and street name.                                           |                 |
+| City                       | The city, town, or locality name.                                                                             |                 |
+| State                      | Two-letter state or province code, or full name.                                                              |                 |
+| Postal Code                | The ZIP or postal code.                                                                                       |                 |
+| Country                    | The country name or two-letter ISO country code.                                                              |                 |
+| Additional Fields          | Additional optional fields: includes Department, Title, Assistant, Assistant's Phone, and Description.        |                 |
+| Department                 | The department name associated with the contact.                                                              |                 |
+| Title                      | The job title or professional title associated with the contact or lead.                                      |                 |
+| Assistant                  | The name of the contact's assistant.                                                                          |                 |
+| Assistant's Phone          | The phone number of the contact's assistant.                                                                  |                 |
+| Description                | A text description of the object.                                                                             |                 |
+| Connection                 | The Salesforce connection to use.                                                                             |                 |
 
 ### Update Customer {#updatecustomer}
 
@@ -1631,34 +1631,34 @@ Update an existing Flow in Salesforce by name.
 
 Update a Salesforce lead record.
 
-| Input                      | Comments                                                                                                               | Default |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0    |
-| Record ID                  | The unique identifier for a Salesforce record.                                                                         |         |
-| Company                    | The name of the company associated with the record.                                                                    |         |
-| Lead Status                | The status of the lead. Examples of valid values include: Open, Working, Closed - Converted, Closed - Not Converted.   |         |
-| Email Address              | The email address for the object.                                                                                      |         |
-| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.          |         |
-| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                 |         |
-| Name & Contact Information | First and last name, phone, and website.                                                                               |         |
-| First Name                 | The first name of the contact at the company                                                                           |         |
-| Last Name                  | The last name of the contact at the company                                                                            |         |
-| Phone                      | The primary phone number for the object.                                                                               |         |
-| Website                    | The record's website, such as a company or personal homepage.                                                          |         |
-| Address                    | Street, city, state, postal code, and country for the address.                                                         |         |
-| Street Address             | Street address line, including the building number and street name.                                                    |         |
-| City                       | The city, town, or locality name.                                                                                      |         |
-| State                      | Two-letter state or province code, or full name.                                                                       |         |
-| Postal Code                | The ZIP or postal code.                                                                                                |         |
-| Country                    | The country name or two-letter ISO country code.                                                                       |         |
-| Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |         |
-| Title                      | The job title or professional title associated with the contact or lead.                                               |         |
-| Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |         |
-| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |         |
-| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |         |
-| Description                | A text description of the object.                                                                                      |         |
-| Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |         |
-| Connection                 | The Salesforce connection to use.                                                                                      |         |
+| Input                      | Comments                                                                                                               | Default         |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version                    | The Salesforce API version number to use for requests.                                                                 | 63.0            |
+| Record ID                  | The unique identifier for a Salesforce record.                                                                         |                 |
+| Company                    | The name of the company associated with the record.                                                                    |                 |
+| Lead Status                | The status of the lead. Examples of valid values include: Open, Working, Closed - Converted, Closed - Not Converted.   |                 |
+| Email Address              | The email address for the object.                                                                                      |                 |
+| Dynamic Fields             | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable.          |                 |
+| Field Values               | Key-value pairs mapping Salesforce field API names to the values to set on the record.                                 | <code>[]</code> |
+| Name & Contact Information | First and last name, phone, and website.                                                                               |                 |
+| First Name                 | The first name of the contact at the company                                                                           |                 |
+| Last Name                  | The last name of the contact at the company                                                                            |                 |
+| Phone                      | The primary phone number for the object.                                                                               |                 |
+| Website                    | The record's website, such as a company or personal homepage.                                                          |                 |
+| Address                    | Street, city, state, postal code, and country for the address.                                                         |                 |
+| Street Address             | Street address line, including the building number and street name.                                                    |                 |
+| City                       | The city, town, or locality name.                                                                                      |                 |
+| State                      | Two-letter state or province code, or full name.                                                                       |                 |
+| Postal Code                | The ZIP or postal code.                                                                                                |                 |
+| Country                    | The country name or two-letter ISO country code.                                                                       |                 |
+| Additional Fields          | Additional optional fields: includes Title, Lead Source, Rating, Number of Employees, Description, and Annual Revenue. |                 |
+| Title                      | The job title or professional title associated with the contact or lead.                                               |                 |
+| Lead Source                | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                                     |                 |
+| Rating                     | The sales priority of the lead: Hot, Warm, or Cold.                                                                    |                 |
+| Number of Employees        | The total number of people the account employs, as a whole number.                                                     |                 |
+| Description                | A text description of the object.                                                                                      |                 |
+| Annual Revenue             | The estimated annual revenue of the account, in the organization's default currency.                                   |                 |
+| Connection                 | The Salesforce connection to use.                                                                                      |                 |
 
 ### Update Metadata {#updatemetadata}
 
@@ -1675,24 +1675,24 @@ Update one or more metadata components.
 
 Update an existing opportunity record.
 
-| Input             | Comments                                                                                                      | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version           | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record ID         | The unique identifier for a Salesforce record.                                                                |         |
-| Stage             | The stage the sale is currently in.                                                                           |         |
-| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |         |
-| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |         |
-| Name              | The name assigned to the Salesforce record.                                                                   |         |
-| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Account ID        | The ID of the account to reference.                                                                           |         |
-| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |         |
-| Amount            | The monetary amount associated with the opportunity.                                                          |         |
-| Next Step         | A description of the next action or milestone for the opportunity.                                            |         |
-| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |         |
-| Probability       | The probability of the success of the sale.                                                                   |         |
-| Description       | A text description of the object.                                                                             |         |
-| Connection        | The Salesforce connection to use.                                                                             |         |
+| Input             | Comments                                                                                                      | Default         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version           | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Record ID         | The unique identifier for a Salesforce record.                                                                |                 |
+| Stage             | The stage the sale is currently in.                                                                           |                 |
+| Opportunity Type  | The category of the opportunity, indicating whether it is for a new or existing customer.                     |                 |
+| Close Date        | The date the sale is expected to close. Format: YYYY-MM-DD.                                                   |                 |
+| Name              | The name assigned to the Salesforce record.                                                                   |                 |
+| Dynamic Fields    | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values      | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Account ID        | The ID of the account to reference.                                                                           |                 |
+| Additional Fields | Additional optional fields: includes Amount, Next Step, Lead Source, Probability, and Description.            |                 |
+| Amount            | The monetary amount associated with the opportunity.                                                          |                 |
+| Next Step         | A description of the next action or milestone for the opportunity.                                            |                 |
+| Lead Source       | The origin or channel from which the lead was generated (e.g., Web, Phone, Email).                            |                 |
+| Probability       | The probability of the success of the sale.                                                                   |                 |
+| Description       | A text description of the object.                                                                             |                 |
+| Connection        | The Salesforce connection to use.                                                                             |                 |
 
 ### Update Profile {#updateprofile}
 
@@ -1711,26 +1711,26 @@ Update a Salesforce profile.
 
 Update an existing Salesforce record.
 
-| Input          | Comments                                                                                                      | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| Record Type    | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                               |         |
-| Record ID      | The unique identifier for a Salesforce record.                                                                |         |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Connection     | The Salesforce connection to use.                                                                             |         |
+| Input          | Comments                                                                                                      | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version        | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| Record Type    | The Salesforce object API name to act on (e.g., Account, Contact, Opportunity).                               |                 |
+| Record ID      | The unique identifier for a Salesforce record.                                                                |                 |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Connection     | The Salesforce connection to use.                                                                             |                 |
 
 ### Update User {#updateuser}
 
 Update a Salesforce user.
 
-| Input          | Comments                                                                                                      | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| Version        | The Salesforce API version number to use for requests.                                                        | 63.0    |
-| User Name      | The username of the Salesforce user to reference.                                                             |         |
-| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |         |
-| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        |         |
-| Connection     | The Salesforce connection to use.                                                                             |         |
+| Input          | Comments                                                                                                      | Default         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | --------------- |
+| Version        | The Salesforce API version number to use for requests.                                                        | 63.0            |
+| User Name      | The username of the Salesforce user to reference.                                                             |                 |
+| Dynamic Fields | A field for dynamic inputs that can be configured at deploy time with the use of a key value config variable. |                 |
+| Field Values   | Key-value pairs mapping Salesforce field API names to the values to set on the record.                        | <code>[]</code> |
+| Connection     | The Salesforce connection to use.                                                                             |                 |
 
 ### Upload Bulk Job Data {#uploadjobdata}
 

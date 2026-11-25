@@ -1,7 +1,7 @@
 ---
 title: PagerDuty Connector
 sidebar_label: PagerDuty
-description: PagerDuty is a platform for managing on-call operations. This component supports PagerDuty REST API V2.
+description: Manage PagerDuty incidents, alerts, services, users, templates, and webhook subscriptions, and send events and change events.
 ---
 
 ![PagerDuty](./assets/pagerduty.png#connector-icon)
@@ -92,13 +92,13 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 Receive incident webhook notifications from PagerDuty when a selected incident event occurs.
 
-| Input               | Comments                                                | Default |
-| ------------------- | ------------------------------------------------------- | ------- |
-| Connection          | The PagerDuty connection to use.                        |         |
-| Incident Events     | The incident events that trigger the webhook.           |         |
-| Webhook Description | A descriptive label used to identify the webhook.       |         |
-| Filter ID           | The unique identifier of the object used as the filter. |         |
-| Filter Type         | The type of object used as the filter.                  |         |
+| Input               | Comments                                                | Default         |
+| ------------------- | ------------------------------------------------------- | --------------- |
+| Connection          | The PagerDuty connection to use.                        |                 |
+| Incident Events     | The incident events that trigger the webhook.           | <code>[]</code> |
+| Webhook Description | A descriptive label used to identify the webhook.       |                 |
+| Filter ID           | The unique identifier of the object used as the filter. |                 |
+| Filter Type         | The type of object used as the filter.                  |                 |
 
 ### New Incidents {#pollchangestrigger}
 
@@ -114,13 +114,13 @@ Retrieves existing and ongoing incidents from PagerDuty. Load history once, chec
 
 Receive service webhook notifications from PagerDuty when a selected service event occurs.
 
-| Input               | Comments                                                | Default |
-| ------------------- | ------------------------------------------------------- | ------- |
-| Connection          | The PagerDuty connection to use.                        |         |
-| Service Events      | The service events that trigger the webhook.            |         |
-| Webhook Description | A descriptive label used to identify the webhook.       |         |
-| Filter ID           | The unique identifier of the object used as the filter. |         |
-| Filter Type         | The type of object used as the filter.                  |         |
+| Input               | Comments                                                | Default         |
+| ------------------- | ------------------------------------------------------- | --------------- |
+| Connection          | The PagerDuty connection to use.                        |                 |
+| Service Events      | The service events that trigger the webhook.            | <code>[]</code> |
+| Webhook Description | A descriptive label used to identify the webhook.       |                 |
+| Filter ID           | The unique identifier of the object used as the filter. |                 |
+| Filter Type         | The type of object used as the filter.                  |                 |
 
 ## Actions
 
@@ -303,34 +303,34 @@ Retrieve a webhook subscription by ID.
 
 List change events with optional filters.
 
-| Input           | Comments                                                                                                                                       | Default |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection      | The PagerDuty connection to use.                                                                                                               |         |
-| Fetch All       | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false   |
-| Limit           | The maximum number of results to return per page.                                                                                              |         |
-| Offset          | The number of results to skip before starting to return results. Used for pagination.                                                          |         |
-| Total           | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false   |
-| Team IDs        | The unique identifiers of the teams to filter results by.                                                                                      |         |
-| Integration IDs | The unique identifiers of the integrations to filter results by.                                                                               |         |
-| Since           | The start of the date range over which to search, as a UTC ISO 8601 datetime string.                                                           |         |
-| Until           | The end of the date range over which to search, as a UTC ISO 8601 datetime string.                                                             |         |
+| Input           | Comments                                                                                                                                       | Default         |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection      | The PagerDuty connection to use.                                                                                                               |                 |
+| Fetch All       | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false           |
+| Limit           | The maximum number of results to return per page.                                                                                              |                 |
+| Offset          | The number of results to skip before starting to return results. Used for pagination.                                                          |                 |
+| Total           | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false           |
+| Team IDs        | The unique identifiers of the teams to filter results by.                                                                                      | <code>[]</code> |
+| Integration IDs | The unique identifiers of the integrations to filter results by.                                                                               | <code>[]</code> |
+| Since           | The start of the date range over which to search, as a UTC ISO 8601 datetime string.                                                           |                 |
+| Until           | The end of the date range over which to search, as a UTC ISO 8601 datetime string.                                                             |                 |
 
 ### List Incident Alerts {#listincidentalerts}
 
 List alerts for an incident.
 
-| Input       | Comments                                                                                                                                       | Default |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection  | The PagerDuty connection to use.                                                                                                               |         |
-| Incident ID | The unique identifier for the incident.                                                                                                        |         |
-| Fetch All   | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false   |
-| Limit       | The maximum number of results to return per page.                                                                                              |         |
-| Offset      | The number of results to skip before starting to return results. Used for pagination.                                                          |         |
-| Total       | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false   |
-| Alert Key   | The de-duplication key used to prevent duplicate alerts from being created.                                                                    |         |
-| Statuses    | The statuses to filter incidents by.                                                                                                           |         |
-| Sort By     | The field and direction used to sort results. Field options: created_at, resolved_at. Direction: asc or desc.                                  |         |
-| Include     | The additional details to include in the response.                                                                                             |         |
+| Input       | Comments                                                                                                                                       | Default         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection  | The PagerDuty connection to use.                                                                                                               |                 |
+| Incident ID | The unique identifier for the incident.                                                                                                        |                 |
+| Fetch All   | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false           |
+| Limit       | The maximum number of results to return per page.                                                                                              |                 |
+| Offset      | The number of results to skip before starting to return results. Used for pagination.                                                          |                 |
+| Total       | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false           |
+| Alert Key   | The de-duplication key used to prevent duplicate alerts from being created.                                                                    |                 |
+| Statuses    | The statuses to filter incidents by.                                                                                                           | <code>[]</code> |
+| Sort By     | The field and direction used to sort results. Field options: created_at, resolved_at. Direction: asc or desc.                                  |                 |
+| Include     | The additional details to include in the response.                                                                                             | <code>[]</code> |
 
 ### List Incident Notes {#listincidentnotes}
 
@@ -345,25 +345,25 @@ List notes for an incident.
 
 List incidents with optional filters.
 
-| Input        | Comments                                                                                                                                                                 | Default |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection   | The PagerDuty connection to use.                                                                                                                                         |         |
-| Fetch All    | When true, automatically fetches all pages of results. When false, only the first page is returned.                                                                      | false   |
-| Limit        | The maximum number of results to return per page.                                                                                                                        |         |
-| Offset       | The number of results to skip before starting to return results. Used for pagination.                                                                                    |         |
-| Total        | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times.                           | false   |
-| Date Range   | When set to 'all', the since and until parameters and defaults are ignored.                                                                                              |         |
-| Incident Key | The de-duplication key used to prevent duplicate incidents from being created.                                                                                           |         |
-| Service IDs  | The unique identifiers of the services to filter incidents by. Only incidents associated with the listed services are returned.                                          |         |
-| Team IDs     | The unique identifiers of the teams to filter results by.                                                                                                                |         |
-| User IDs     | The unique identifiers of the users currently assigned to the incidents to return.                                                                                       |         |
-| Urgencies    | The urgency levels to filter incidents by.                                                                                                                               |         |
-| Time Zone    | The TZInfo-formatted time zone in which results are rendered. Example: 'America/Los_Angeles'.                                                                            |         |
-| Statuses     | The statuses to filter incidents by.                                                                                                                                     |         |
-| Sort By      | The field and direction used to sort results. Field options: incident_number, created_at, resolved_at, urgency. Direction: asc or desc. Example: 'incident_number:desc'. |         |
-| Include      | The additional details to include in the response.                                                                                                                       |         |
-| Since        | The start of the date range over which to search, as a UTC ISO 8601 datetime string.                                                                                     |         |
-| Until        | The end of the date range over which to search, as a UTC ISO 8601 datetime string.                                                                                       |         |
+| Input        | Comments                                                                                                                                                                 | Default         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection   | The PagerDuty connection to use.                                                                                                                                         |                 |
+| Fetch All    | When true, automatically fetches all pages of results. When false, only the first page is returned.                                                                      | false           |
+| Limit        | The maximum number of results to return per page.                                                                                                                        |                 |
+| Offset       | The number of results to skip before starting to return results. Used for pagination.                                                                                    |                 |
+| Total        | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times.                           | false           |
+| Date Range   | When set to 'all', the since and until parameters and defaults are ignored.                                                                                              |                 |
+| Incident Key | The de-duplication key used to prevent duplicate incidents from being created.                                                                                           |                 |
+| Service IDs  | The unique identifiers of the services to filter incidents by. Only incidents associated with the listed services are returned.                                          | <code>[]</code> |
+| Team IDs     | The unique identifiers of the teams to filter results by.                                                                                                                | <code>[]</code> |
+| User IDs     | The unique identifiers of the users currently assigned to the incidents to return.                                                                                       | <code>[]</code> |
+| Urgencies    | The urgency levels to filter incidents by.                                                                                                                               | <code>[]</code> |
+| Time Zone    | The TZInfo-formatted time zone in which results are rendered. Example: 'America/Los_Angeles'.                                                                            |                 |
+| Statuses     | The statuses to filter incidents by.                                                                                                                                     | <code>[]</code> |
+| Sort By      | The field and direction used to sort results. Field options: incident_number, created_at, resolved_at, urgency. Direction: asc or desc. Example: 'incident_number:desc'. |                 |
+| Include      | The additional details to include in the response.                                                                                                                       | <code>[]</code> |
+| Since        | The start of the date range over which to search, as a UTC ISO 8601 datetime string.                                                                                     |                 |
+| Until        | The end of the date range over which to search, as a UTC ISO 8601 datetime string.                                                                                       |                 |
 
 ### List Notifications {#listnotifications}
 
@@ -398,19 +398,19 @@ List available incident priorities.
 
 List services with optional filters.
 
-| Input      | Comments                                                                                                                                       | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The PagerDuty connection to use.                                                                                                               |         |
-| Fetch All  | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false   |
-| Query      | The search query used to filter results. Only records whose name matches the query are returned.                                               |         |
-| Limit      | The maximum number of results to return per page.                                                                                              |         |
-| Offset     | The number of results to skip before starting to return results. Used for pagination.                                                          |         |
-| Total      | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false   |
-| Team IDs   | The unique identifiers of the teams to filter results by.                                                                                      |         |
-| Time Zone  | The TZInfo-formatted time zone in which results are rendered. Example: 'America/Los_Angeles'.                                                  |         |
-| Sort By    | The field used to sort the results.                                                                                                            |         |
-| Include    | The additional details to include in the response.                                                                                             |         |
-| Name       | The name to filter results by. Only services with the specified name are returned.                                                             |         |
+| Input      | Comments                                                                                                                                       | Default         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection | The PagerDuty connection to use.                                                                                                               |                 |
+| Fetch All  | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false           |
+| Query      | The search query used to filter results. Only records whose name matches the query are returned.                                               |                 |
+| Limit      | The maximum number of results to return per page.                                                                                              |                 |
+| Offset     | The number of results to skip before starting to return results. Used for pagination.                                                          |                 |
+| Total      | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false           |
+| Team IDs   | The unique identifiers of the teams to filter results by.                                                                                      | <code>[]</code> |
+| Time Zone  | The TZInfo-formatted time zone in which results are rendered. Example: 'America/Los_Angeles'.                                                  |                 |
+| Sort By    | The field used to sort the results.                                                                                                            |                 |
+| Include    | The additional details to include in the response.                                                                                             |                 |
+| Name       | The name to filter results by. Only services with the specified name are returned.                                                             |                 |
 
 ### List Templates {#gettemplates}
 
@@ -431,16 +431,16 @@ List all templates with optional filters.
 
 List all users with optional filters.
 
-| Input      | Comments                                                                                                                                       | Default |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection | The PagerDuty connection to use.                                                                                                               |         |
-| Fetch All  | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false   |
-| Query      | The search query used to filter results. Only records whose name matches the query are returned.                                               |         |
-| Team IDs   | The unique identifiers of the teams to filter results by.                                                                                      |         |
-| Limit      | The maximum number of results to return per page.                                                                                              |         |
-| Offset     | The number of results to skip before starting to return results. Used for pagination.                                                          |         |
-| Total      | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false   |
-| Include    | The additional models to include in the response.                                                                                              |         |
+| Input      | Comments                                                                                                                                       | Default         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection | The PagerDuty connection to use.                                                                                                               |                 |
+| Fetch All  | When true, automatically fetches all pages of results. When false, only the first page is returned.                                            | false           |
+| Query      | The search query used to filter results. Only records whose name matches the query are returned.                                               |                 |
+| Team IDs   | The unique identifiers of the teams to filter results by.                                                                                      | <code>[]</code> |
+| Limit      | The maximum number of results to return per page.                                                                                              |                 |
+| Offset     | The number of results to skip before starting to return results. Used for pagination.                                                          |                 |
+| Total      | When true, the total field in pagination responses is populated. By default this field is null to provide the fastest possible response times. | false           |
+| Include    | The additional models to include in the response.                                                                                              |                 |
 
 ### List Webhook Subscriptions {#listwebhooksubscriptions}
 
@@ -485,24 +485,24 @@ Acknowledge, resolve, or update multiple incidents in bulk.
 
 Issue a raw HTTP request
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Render Template {#rendertemplate}
 

@@ -10,7 +10,7 @@ This component enables interaction with the BambooHR API.
 
 ## API Documentation
 
-This component was built using the [BambooHR API Documentation](https://documentation.bamboohr.com/reference).
+This component was built using the [BambooHR API Documentation](https://documentation.bamboohr.com/docs/getting-started).
 
 ## Connections
 
@@ -31,7 +31,7 @@ Authenticate requests to BambooHR using an API key.
 2. Click the user profile image in the upper-right corner.
 3. Select **API Keys**.
 4. Click **Add New Key**.
-5. Copy the generated key — it will be an approximately 40-character alphanumeric string. Store it securely; it will not be shown again.
+5. Copy the generated key. It will be an approximately 40-character alphanumeric string. Store it securely; it will not be shown again.
 
 #### Configure the Connection
 
@@ -68,12 +68,12 @@ Receive and validate webhook requests from BambooHR for manually configured webh
 
 Add a row to the specified table for an employee.
 
-| Input              | Comments                                                                                                                                                                         | Default         |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| Connection         | The BambooHR connection to use.                                                                                                                                                  |                 |
-| Employee ID        | The unique identifier for the employee.                                                                                                                                          |                 |
-| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                     |                 |
-| Table Fields       | The names of the fields and their values to use when creating/updating a row in a table. Use the "List Tabular Fields (Tables)" action to list possible field names for a table. | <code>[]</code> |
+| Input              | Comments                                                                                                                                                                                                                                                                                                                                                | Default         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection         | The BambooHR connection to use.                                                                                                                                                                                                                                                                                                                         |                 |
+| Employee ID        | The unique identifier for the employee.                                                                                                                                                                                                                                                                                                                 |                 |
+| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                                                                                                                                                                                            |                 |
+| Table Fields       | The names of the fields and their values to use when creating or updating a row in a table. Use the "List Tabular Fields" action to list the field names for a table. Values for list-type fields (for example jobTitle, employmentStatus, or relationship) must exactly match an existing option in BambooHR; a value that does not match is rejected. | <code>[]</code> |
 
 ### Create Company File Category {#addcompanyfilecategory}
 
@@ -115,7 +115,7 @@ Create a new webhook.
 | Callback URL              | The URL where BambooHR should send webhook payloads.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                 |
 | Fields to Monitor         | One or more fields to trigger this webhook on. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle.                           | <code>[]</code> |
 | Fields to Send to Webhook | The list of fields to include in the payload posted to the callback URL. This can be any of the following: firstName, lastName, hireDate, department, middleName, dateOfBirth, ssn, address1, address2, city, state, zipcode, mobilePhone, homePhone, workEmail, jobTitle, location, gender, maritalStatus, payType, eeo, status, workPhone, workPhoneExtension, employeeNumber, ethnicity, division, homeEmail, preferredName, employeeStatusDate, country, payChangeReason, payRateEffectiveDate, exempt, twitterFeed, facebook, linkedIn, pinterest, acaStatus, payPer, originalHireDate, paySchedule, instagram, allergies, dietaryRestrictions, hoursPerPayCycle. | <code>[]</code> |
-| Allow Duplicates          | When true, allows the creation of duplicate webhooks. By default this action checks if a webhook with this callback and sheet ID already exists and, if so, skips configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | false           |
+| Allow Duplicates          | When true, allows the creation of duplicate webhooks. By default this action checks if a webhook with the same callback URL already exists and, if so, returns that webhook instead of creating a new one.                                                                                                                                                                                                                                                                                                                                                                                                                                                             | false           |
 
 ### Delete Company File {#deletecompanyfile}
 
@@ -292,13 +292,13 @@ Update an existing employee.
 
 Update a specific row in an employee table.
 
-| Input              | Comments                                                                                                                                                                         | Default         |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| Connection         | The BambooHR connection to use.                                                                                                                                                  |                 |
-| Employee ID        | The unique identifier for the employee.                                                                                                                                          |                 |
-| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                     |                 |
-| Row ID             | The unique identifier for the row in the table.                                                                                                                                  |                 |
-| Table Fields       | The names of the fields and their values to use when creating/updating a row in a table. Use the "List Tabular Fields (Tables)" action to list possible field names for a table. | <code>[]</code> |
+| Input              | Comments                                                                                                                                                                                                                                                                                                                                                | Default         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection         | The BambooHR connection to use.                                                                                                                                                                                                                                                                                                                         |                 |
+| Employee ID        | The unique identifier for the employee.                                                                                                                                                                                                                                                                                                                 |                 |
+| Table Name (Alias) | The alias of the BambooHR table to read or modify (for example, jobInfo, compensation, or employmentStatus).                                                                                                                                                                                                                                            |                 |
+| Row ID             | The unique identifier for the row in the table.                                                                                                                                                                                                                                                                                                         |                 |
+| Table Fields       | The names of the fields and their values to use when creating or updating a row in a table. Use the "List Tabular Fields" action to list the field names for a table. Values for list-type fields (for example jobTitle, employmentStatus, or relationship) must exactly match an existing option in BambooHR; a value that does not match is rejected. | <code>[]</code> |
 
 ### Upload Company File {#uploadcompanyfile}
 

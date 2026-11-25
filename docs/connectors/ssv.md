@@ -184,23 +184,23 @@ Retrieve all teams the current user is a member of.
 
 Send raw HTTP request to System Surveyor.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The System Surveyor connection to use.                                                                                                                                                           |         |
-| URL                     | Input the path only (/v3/sites). For example, to access the sites endpoint (https://openapi.systemsurveyor.com/v3/sites), enter /v3/sites.                                                       |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The System Surveyor connection to use.                                                                                                                                                           |                 |
+| URL                     | Input the path only (/v3/sites). For example, to access the sites endpoint (https://openapi.systemsurveyor.com/v3/sites), enter /v3/sites.                                                       |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Register Webhook {#registerwebhook}
 
@@ -218,15 +218,15 @@ Register a new webhook endpoint.
 
 Schedule a report to be generated and uploaded to the reports storage.
 
-| Input                | Comments                                                                                                               | Default |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection           | The System Surveyor connection to use.                                                                                 |         |
-| Report Definition ID | The external ID of the report definition the new report belongs to.                                                    |         |
-| Site ID              | The unique identifier (UUID) of the site.                                                                              |         |
-| Survey IDs           | A list of survey UUID identifiers to include in the request.                                                           |         |
-| Report Name          | The display name assigned to the generated report output.                                                              |         |
-| Report Type          | The format for the generated report.                                                                                   | xls     |
-| Is Site Report       | Whether the report is generated at the site level. Set to true for site-level reports, false for survey-level reports. | true    |
+| Input                | Comments                                                                                                               | Default         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection           | The System Surveyor connection to use.                                                                                 |                 |
+| Report Definition ID | The external ID of the report definition the new report belongs to.                                                    |                 |
+| Site ID              | The unique identifier (UUID) of the site.                                                                              |                 |
+| Survey IDs           | A list of survey UUID identifiers to include in the request.                                                           | <code>[]</code> |
+| Report Name          | The display name assigned to the generated report output.                                                              |                 |
+| Report Type          | The format for the generated report.                                                                                   | xls             |
+| Is Site Report       | Whether the report is generated at the site level. Set to true for site-level reports, false for survey-level reports. | true            |
 
 ### Sync Element Profile {#syncelementprofile}
 

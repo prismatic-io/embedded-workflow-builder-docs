@@ -143,10 +143,10 @@ Checks for new and updated applications in Greenhouse on a configured schedule.
 
 Receive and validate webhook requests from Greenhouse for webhooks you configure.
 
-| Input          | Comments                                                                                           | Default |
-| -------------- | -------------------------------------------------------------------------------------------------- | ------- |
-| Enabled Events | The list of webhook event names to accept in the integration. When empty, all events are accepted. |         |
-| Secret Key     | The shared secret used to sign and verify the webhook payload signature.                           |         |
+| Input          | Comments                                                                                           | Default         |
+| -------------- | -------------------------------------------------------------------------------------------------- | --------------- |
+| Enabled Events | The list of webhook event names to accept in the integration. When empty, all events are accepted. | <code>[]</code> |
+| Secret Key     | The shared secret used to sign and verify the webhook payload signature.                           |                 |
 
 ## Actions
 
@@ -194,7 +194,7 @@ Creates a new candidate, optionally with an application.
 | Website Addresses      | The JSON array of website addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.                                                                                                                                                                                         |                         |
 | Social Media Addresses | The JSON array of social media addresses for the candidate. Passing an empty array will clear all. Format: JSON array of objects.                                                                                                                                                                                    |                         |
 | Tags                   | The tags to assign to the candidate as an array of strings. Passing an empty array will clear all.                                                                                                                                                                                                                   | <code>["000xxx"]</code> |
-| Linked User IDs        | Array of Greenhouse user IDs to link to this candidate. Replaces all existing linked users when provided.                                                                                                                                                                                                            |                         |
+| Linked User IDs        | Array of Greenhouse user IDs to link to this candidate. Replaces all existing linked users when provided.                                                                                                                                                                                                            | <code>[]</code>         |
 | Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                                                                                                                                                                                       |                         |
 | Application            | Optional JSON object to create an application alongside the candidate. For a job applicant, include 'job_id' (integer). For a prospect, include 'prospect: true'. Recruiter, coordinator, source, and stage IDs live here in v3 (not on the top-level candidate). Omit to create a candidate without an application. |                         |
 
@@ -226,21 +226,21 @@ Creates a new candidate.
 
 Creates a new job from an existing template.
 
-| Input                  | Comments                                                                                                                                                                 | Default |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection             | The Greenhouse connection to use.                                                                                                                                        |         |
-| Template Job ID        | The unique identifier for the job used as a template. The new job will inherit most settings from this template job. The On-Behalf-Of user must have access to this job. |         |
-| Number of Openings     | The number of openings to create for this job. The total open openings across the job cannot exceed 100.                                                                 |         |
-| Job Name               | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                     |         |
-| Job Post Name          | The display name for the new job post. When omitted, the job post names from the base job are copied.                                                                    |         |
-| Notes                  | The free-form notes attached to the hiring plan.                                                                                                                         |         |
-| Requisition ID         | Partner-supplied external identifier for this job. Free-form string; non-unique across the organization.                                                                 |         |
-| Department ID          | The Greenhouse department ID to assign to this job. In v3 each job has a single department (not an array). If omitted, inherits from the template.                       |         |
-| External Department ID | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                             |         |
-| Office IDs             | Greenhouse office IDs to assign to the new job. In v3 this is an integer array. If omitted, inherits from the template. Mutually exclusive with External Office IDs.     |         |
-| External Office IDs    | Partner external identifiers for offices. Mutually exclusive with Office IDs; provide one or the other, never both.                                                      |         |
-| Opening IDs            | Partner identifiers for each opening created, positionally paired with the openings. Must match the Number of Openings count when provided.                              |         |
-| Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                                           |         |
+| Input                  | Comments                                                                                                                                                                 | Default         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection             | The Greenhouse connection to use.                                                                                                                                        |                 |
+| Template Job ID        | The unique identifier for the job used as a template. The new job will inherit most settings from this template job. The On-Behalf-Of user must have access to this job. |                 |
+| Number of Openings     | The number of openings to create for this job. The total open openings across the job cannot exceed 100.                                                                 |                 |
+| Job Name               | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                     |                 |
+| Job Post Name          | The display name for the new job post. When omitted, the job post names from the base job are copied.                                                                    |                 |
+| Notes                  | The free-form notes attached to the hiring plan.                                                                                                                         |                 |
+| Requisition ID         | Partner-supplied external identifier for this job. Free-form string; non-unique across the organization.                                                                 |                 |
+| Department ID          | The Greenhouse department ID to assign to this job. In v3 each job has a single department (not an array). If omitted, inherits from the template.                       |                 |
+| External Department ID | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                             |                 |
+| Office IDs             | Greenhouse office IDs to assign to the new job. In v3 this is an integer array. If omitted, inherits from the template. Mutually exclusive with External Office IDs.     | <code>[]</code> |
+| External Office IDs    | Partner external identifiers for offices. Mutually exclusive with Office IDs; provide one or the other, never both.                                                      | <code>[]</code> |
+| Opening IDs            | Partner identifiers for each opening created, positionally paired with the openings. Must match the Number of Openings count when provided.                              | <code>[]</code> |
+| Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                                           |                 |
 
 ### Create Job (Harvest v1/v2) {#createjob}
 
@@ -266,21 +266,21 @@ Creates a new job.
 
 Creates a new user in Greenhouse.
 
-| Input                   | Comments                                                                                                                                            | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Greenhouse connection to use.                                                                                                                   |         |
-| First Name              | The user's first name (max 255 characters).                                                                                                         |         |
-| Last Name               | The user's last name (max 255 characters).                                                                                                          |         |
-| Primary Email           | Primary email address for the new user — used as the sign-in identifier and for Greenhouse invitation mail. Must be unique within the organization. |         |
-| Send Email Invite       | When true, Greenhouse sends the new user an invitation email to set a password and sign in. Defaults to false.                                      | false   |
-| Job Title               | Free-form job title displayed on the user's Greenhouse profile (max 255 characters).                                                                |         |
-| Employee ID             | External employee identifier (e.g. HRIS or payroll ID, max 255 characters). Must be unique within the organization.                                 |         |
-| Office IDs              | Greenhouse office IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Office IDs.                        |         |
-| External Office IDs     | External office identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Office IDs.                                 |         |
-| Department IDs          | Greenhouse department IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Department IDs.                |         |
-| External Department IDs | External department identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Department IDs.                         |         |
-| Interviewer Tag IDs     | IDs of interviewer tags to apply to this user. For edit operations, replaces all current tags.                                                      |         |
-| Custom Fields           | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                      |         |
+| Input                   | Comments                                                                                                                                            | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Greenhouse connection to use.                                                                                                                   |                 |
+| First Name              | The user's first name (max 255 characters).                                                                                                         |                 |
+| Last Name               | The user's last name (max 255 characters).                                                                                                          |                 |
+| Primary Email           | Primary email address for the new user — used as the sign-in identifier and for Greenhouse invitation mail. Must be unique within the organization. |                 |
+| Send Email Invite       | When true, Greenhouse sends the new user an invitation email to set a password and sign in. Defaults to false.                                      | false           |
+| Job Title               | Free-form job title displayed on the user's Greenhouse profile (max 255 characters).                                                                |                 |
+| Employee ID             | External employee identifier (e.g. HRIS or payroll ID, max 255 characters). Must be unique within the organization.                                 |                 |
+| Office IDs              | Greenhouse office IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Office IDs.                        | <code>[]</code> |
+| External Office IDs     | External office identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Office IDs.                                 | <code>[]</code> |
+| Department IDs          | Greenhouse department IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Department IDs.                | <code>[]</code> |
+| External Department IDs | External department identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Department IDs.                         | <code>[]</code> |
+| Interviewer Tag IDs     | IDs of interviewer tags to apply to this user. For edit operations, replaces all current tags.                                                      | <code>[]</code> |
+| Custom Fields           | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.                      |                 |
 
 ### Create User (Harvest v1/v2) {#createuser}
 
@@ -429,7 +429,7 @@ Updates an existing candidate.
 | Can Email              | Whether the candidate consented to receive email communication. Defaults to true when omitted.                                    | false                   |
 | Is Private             | When true, the candidate will be marked as private.                                                                               | false                   |
 | Tags                   | The tags to assign to the candidate as an array of strings. Passing an empty array will clear all.                                | <code>["000xxx"]</code> |
-| Linked User IDs        | Array of Greenhouse user IDs to link to this candidate. Replaces all existing linked users when provided.                         |                         |
+| Linked User IDs        | Array of Greenhouse user IDs to link to this candidate. Replaces all existing linked users when provided.                         | <code>[]</code>         |
 | Custom Fields          | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.    |                         |
 
 ### Edit Candidate (Harvest v1/v2) {#editcandidate}
@@ -461,21 +461,21 @@ Updates an existing candidate.
 
 Updates an existing job by ID.
 
-| Input                     | Comments                                                                                                                                                                                                                                              | Default |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                | The Greenhouse connection to use.                                                                                                                                                                                                                     |         |
-| Job ID                    | The numeric ID of the job.                                                                                                                                                                                                                            |         |
-| Job Name                  | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                                                                                                  |         |
-| Notes                     | The free-form notes attached to the hiring plan.                                                                                                                                                                                                      |         |
-| Requisition ID            | Partner-supplied external identifier. Pass null to clear. Free-form string; non-unique across the organization.                                                                                                                                       |         |
-| Team and Responsibilities | The description of the team the candidate would join and the responsibilities of the role.                                                                                                                                                            |         |
-| How to Sell This Job      | The recruiter-facing description of the desirable aspects of the job.                                                                                                                                                                                 |         |
-| Anywhere                  | When true, marks the job as remote-anywhere and clears office assignments. Cannot be combined with office_ids.                                                                                                                                        | false   |
-| Office IDs                | Greenhouse office IDs to assign to this job. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied list entirely replaces the existing office set. Send the complete desired list, not a delta.                                                    |         |
-| External Office IDs       | Partner external identifiers for offices; wholesale replacement. Mutually exclusive with Office IDs.                                                                                                                                                  |         |
-| Department ID             | The Greenhouse department ID to assign. In v3 each job has a single department. Pass null to clear.                                                                                                                                                   |         |
-| External Department ID    | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                                                                                                          |         |
-| Custom Fields             | JSON array of custom field values. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied array entirely replaces the existing custom field collection. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |         |
+| Input                     | Comments                                                                                                                                                                                                                                              | Default         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                | The Greenhouse connection to use.                                                                                                                                                                                                                     |                 |
+| Job ID                    | The numeric ID of the job.                                                                                                                                                                                                                            |                 |
+| Job Name                  | The internal name of the new job. When omitted, the name of the new job will be "Copy Of (the template job's name)".                                                                                                                                  |                 |
+| Notes                     | The free-form notes attached to the hiring plan.                                                                                                                                                                                                      |                 |
+| Requisition ID            | Partner-supplied external identifier. Pass null to clear. Free-form string; non-unique across the organization.                                                                                                                                       |                 |
+| Team and Responsibilities | The description of the team the candidate would join and the responsibilities of the role.                                                                                                                                                            |                 |
+| How to Sell This Job      | The recruiter-facing description of the desirable aspects of the job.                                                                                                                                                                                 |                 |
+| Anywhere                  | When true, marks the job as remote-anywhere and clears office assignments. Cannot be combined with office_ids.                                                                                                                                        | false           |
+| Office IDs                | Greenhouse office IDs to assign to this job. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied list entirely replaces the existing office set. Send the complete desired list, not a delta.                                                    | <code>[]</code> |
+| External Office IDs       | Partner external identifiers for offices; wholesale replacement. Mutually exclusive with Office IDs.                                                                                                                                                  | <code>[]</code> |
+| Department ID             | The Greenhouse department ID to assign. In v3 each job has a single department. Pass null to clear.                                                                                                                                                   |                 |
+| External Department ID    | Partner external identifier for the department. Mutually exclusive with Department ID; provide one or the other, never both.                                                                                                                          |                 |
+| Custom Fields             | JSON array of custom field values. IMPORTANT: this is a WHOLESALE REPLACEMENT; the supplied array entirely replaces the existing custom field collection. Each item must include either name_key (string) or custom_field_id (integer), plus a value. |                 |
 
 ### Edit Job (Harvest v1/v2) {#editjob}
 
@@ -503,21 +503,21 @@ Updates a job by ID.
 
 Updates an existing user in Greenhouse.
 
-| Input                   | Comments                                                                                                                             | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Greenhouse connection to use.                                                                                                    |         |
-| User ID                 | The numeric Greenhouse user ID.                                                                                                      |         |
-| First Name              | The user's first name (max 255 characters). If provided, cannot be blank.                                                            |         |
-| Last Name               | The user's last name (max 255 characters). If provided, cannot be blank.                                                             |         |
-| Primary Email           | New primary email — must already be a verified email address on the user's account.                                                  |         |
-| Job Title               | Free-form job title displayed on the user's Greenhouse profile (max 255 characters).                                                 |         |
-| Employee ID             | External employee identifier (e.g. HRIS or payroll ID, max 255 characters). Must be unique within the organization.                  |         |
-| Office IDs              | Greenhouse office IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Office IDs.         |         |
-| External Office IDs     | External office identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Office IDs.                  |         |
-| Department IDs          | Greenhouse department IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Department IDs. |         |
-| External Department IDs | External department identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Department IDs.          |         |
-| Interviewer Tag IDs     | IDs of interviewer tags to apply to this user. For edit operations, replaces all current tags.                                       |         |
-| Custom Fields           | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.       |         |
+| Input                   | Comments                                                                                                                             | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Greenhouse connection to use.                                                                                                    |                 |
+| User ID                 | The numeric Greenhouse user ID.                                                                                                      |                 |
+| First Name              | The user's first name (max 255 characters). If provided, cannot be blank.                                                            |                 |
+| Last Name               | The user's last name (max 255 characters). If provided, cannot be blank.                                                             |                 |
+| Primary Email           | New primary email — must already be a verified email address on the user's account.                                                  |                 |
+| Job Title               | Free-form job title displayed on the user's Greenhouse profile (max 255 characters).                                                 |                 |
+| Employee ID             | External employee identifier (e.g. HRIS or payroll ID, max 255 characters). Must be unique within the organization.                  |                 |
+| Office IDs              | Greenhouse office IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Office IDs.         | <code>[]</code> |
+| External Office IDs     | External office identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Office IDs.                  | <code>[]</code> |
+| Department IDs          | Greenhouse department IDs to assign to this user. Replaces all current assignments. Mutually exclusive with External Department IDs. | <code>[]</code> |
+| External Department IDs | External department identifiers (from your HRIS). Replaces all current assignments. Mutually exclusive with Department IDs.          | <code>[]</code> |
+| Interviewer Tag IDs     | IDs of interviewer tags to apply to this user. For edit operations, replaces all current tags.                                       | <code>[]</code> |
+| Custom Fields           | JSON array of custom field values. Each item must include either name_key (string) or custom_field_id (integer), plus a value.       |                 |
 
 ### Edit User (Harvest v1/v2) {#edituser}
 
@@ -830,46 +830,46 @@ Retrieves a list of users.
 
 Sends a raw HTTP request to Greenhouse.
 
-| Input                   | Comments                                                                                                                                                                                                 | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Greenhouse connection to use.                                                                                                                                                                        |         |
-| URL                     | Input the path only (/jobs), The base URL is already included (https://harvest.greenhouse.io/v3). For example, to connect to https://harvest.greenhouse.io/v3/jobs, only /jobs is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                  |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                     |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                         |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                   |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                      |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                              |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                 | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                      |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                      | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.         | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                      | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                            | false   |
+| Input                   | Comments                                                                                                                                                                                                 | Default         |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Greenhouse connection to use.                                                                                                                                                                        |                 |
+| URL                     | Input the path only (/jobs), The base URL is already included (https://harvest.greenhouse.io/v3). For example, to connect to https://harvest.greenhouse.io/v3/jobs, only /jobs is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                  |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                     | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                         | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                   | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                      | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                              | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                 | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                      |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                      | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.         | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                      | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                            | false           |
 
 ### Raw Request (Harvest v1/v2) {#rawrequest}
 
 Sends a raw HTTP request to Greenhouse.
 
-| Input                   | Comments                                                                                                                                                                                                        | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | The Greenhouse connection to use.                                                                                                                                                                               |         |
-| API Version             | The version of the Greenhouse Harvest API to use. Defaults to "v1".                                                                                                                                             | v1      |
-| URL                     | Input the path only (/jobs), The base URL is already included (https://harvest.greenhouse.io/{version}). For example, to connect to https://harvest.greenhouse.io/v1/jobs, only /jobs is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                         |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                       |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                            |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                          |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                             |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                     |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                        | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                             |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                             | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                             | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                   | false   |
+| Input                   | Comments                                                                                                                                                                                                        | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | The Greenhouse connection to use.                                                                                                                                                                               |                 |
+| API Version             | The version of the Greenhouse Harvest API to use. Defaults to "v1".                                                                                                                                             | v1              |
+| URL                     | Input the path only (/jobs), The base URL is already included (https://harvest.greenhouse.io/{version}). For example, to connect to https://harvest.greenhouse.io/v1/jobs, only /jobs is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                         |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                       |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                            | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                          | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                             | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                     | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                        | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                             |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                             | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                             | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                   | false           |
 
 ### Reject Application {#rejectapplicationv3}
 

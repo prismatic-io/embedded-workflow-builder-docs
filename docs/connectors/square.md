@@ -79,13 +79,14 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Payments {#pollchangestrigger}
 
-Fetches Square payments created or updated since the last execution, separated into new and updated buckets.
+Retrieves existing and ongoing payments from Square. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                            | Default |
-| -------------------- | ----------------------------------------------------------------------------------- | ------- |
-| Connection           | The Square connection to use.                                                       |         |
-| Show New Records     | When true, newly created payments are included in the trigger output.               | true    |
-| Show Updated Records | When true, payments updated since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                             | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Connection           | The Square connection to use.                                                                                                                                                                                                                                                        |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each payment created or updated on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, newly created payments are included in the trigger output.                                                                                                                                                                                                                | true    |
+| Show Updated Records | When true, payments updated since the last poll are included in the trigger output.                                                                                                                                                                                                  | true    |
 
 ### Webhook {#squarewebhooktrigger}
 
@@ -106,7 +107,7 @@ Applies adjustments and counts to the provided item quantities.
 
 ### Batch Delete Catalog Objects {#batchdeletecatalogobjects}
 
-Deletes a set of CatalogItems based on the provided list of target IDs and returns a set of successfully deleted IDs in the response.
+Deletes a set of catalog objects based on the provided list of target IDs and returns a set of successfully deleted IDs in the response.
 
 | Input      | Comments                                                | Default                                                                                                                    |
 | ---------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -115,7 +116,7 @@ Deletes a set of CatalogItems based on the provided list of target IDs and retur
 
 ### Batch Retrieve Catalog Objects {#batchretrievecatalogobjects}
 
-Returns a set of objects based on the provided ID.
+Returns a set of catalog objects based on the provided IDs.
 
 | Input                   | Comments                                                                                                                                                                                   | Default                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
@@ -127,13 +128,14 @@ Returns a set of objects based on the provided ID.
 
 ### Batch Retrieve Inventory Counts {#batchretrieveinventorycounts}
 
-Returns current counts for the provided CatalogObjects at the requested Locations.
+Returns current inventory counts for the provided catalog objects at the requested locations.
 
 | Input              | Comments                                                                                                           | Default                                                                                  |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Connection         | The Square connection to use.                                                                                      |                                                                                          |
 | Catalog Object IDs | An array of catalog object IDs in JSON format used to filter inventory results.                                    | <code>[<br /> "W62UWFY35CWMYGVWK6TWJDNI",<br /> "X73VXGZ46DXNZHXWL7UXKENJ"<br />]</code> |
 | Location IDs       | An array of location IDs in JSON format used to filter results to specific locations.                              | <code>[<br /> "LH2G9VFHJRWKR",<br /> "LK3H8WGIKSMLA"<br />]</code>                       |
+| Pagination         | Cursor and page-size controls for paging through results.                                                          |                                                                                          |
 | Cursor             | The pagination cursor returned by a previous call to this endpoint.                                                |                                                                                          |
 | Limit              | The maximum number of results to return in a single page.                                                          |                                                                                          |
 | Updated After      | The timestamp filter used to return results whose calculated_at value is after the given time. Format: RFC 3339.   |                                                                                          |
@@ -151,7 +153,7 @@ Retrieves a set of orders by their IDs.
 
 ### Batch Upsert Catalog Objects {#batchupsertcatalogobjects}
 
-Creates or updates up to 10,000 target objects based on the provided list of objects.
+Creates or updates up to 10,000 catalog objects based on the provided list of objects.
 
 | Input           | Comments                                                                                                                                                 | Default                                                                                                                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -269,7 +271,7 @@ Creates a webhook subscription.
 
 ### Delete Catalog Object {#deletecatalogobject}
 
-Deletes a single CatalogObject based on the provided ID and returns the set of successfully deleted IDs in the response.
+Deletes a single catalog object based on the provided ID and returns the set of successfully deleted IDs in the response.
 
 | Input      | Comments                                      | Default |
 | ---------- | --------------------------------------------- | ------- |
@@ -340,11 +342,12 @@ Retrieves a specific refund using the refund_id.
 
 ### List Catalog {#listcatalog}
 
-Returns a list of all CatalogObjects of the specified types in the catalog.
+Returns a list of all catalog objects of the specified types in the catalog.
 
 | Input           | Comments                                                                                                                                                                                                                            | Default                                                                       |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Connection      | The Square connection to use.                                                                                                                                                                                                       |                                                                               |
+| Fetch All       | When true, automatically fetches all pages of results using cursor pagination.                                                                                                                                                      | false                                                                         |
 | Cursor          | The pagination cursor returned by a previous call to this endpoint.                                                                                                                                                                 |                                                                               |
 | Types           | An optional case-insensitive, comma-separated list of object types to retrieve. Valid values are defined in the CatalogObjectType enum, for example, ITEM, ITEM_VARIATION, CATEGORY, DISCOUNT, TAX, MODIFIER, MODIFIER_LIST, IMAGE. | ITEM, ITEM_VARIATION, CATEGORY, DISCOUNT, TAX, MODIFIER, MODIFIER_LIST, IMAGE |
 | Catalog Version | The specific version of the catalog objects to include in the response. Used to retrieve historical versions of objects. The value is matched against the CatalogObject version attribute.                                          |                                                                               |
@@ -353,24 +356,29 @@ Returns a list of all CatalogObjects of the specified types in the catalog.
 
 Lists customer profiles associated with a Square account.
 
-| Input      | Comments                                                            | Default |
-| ---------- | ------------------------------------------------------------------- | ------- |
-| Connection | The Square connection to use.                                       |         |
-| Cursor     | The pagination cursor returned by a previous call to this endpoint. |         |
-| Limit      | The maximum number of results to return in a single page.           |         |
-| Sort Field | The field used to sort the results.                                 |         |
-| Sort Order | The order in which results are sorted.                              |         |
+| Input      | Comments                                                                       | Default |
+| ---------- | ------------------------------------------------------------------------------ | ------- |
+| Connection | The Square connection to use.                                                  |         |
+| Fetch All  | When true, automatically fetches all pages of results using cursor pagination. | false   |
+| Pagination | Cursor and page-size controls for paging through results.                      |         |
+| Cursor     | The pagination cursor returned by a previous call to this endpoint.            |         |
+| Limit      | The maximum number of results to return in a single page.                      |         |
+| Sorting    | Field and order to sort results by.                                            |         |
+| Sort Field | The field used to sort the results.                                            |         |
+| Sort Order | The order in which results are sorted.                                         |         |
 
 ### List Invoices {#listinvoices}
 
 Returns a list of invoices for a given location.
 
-| Input       | Comments                                                            | Default |
-| ----------- | ------------------------------------------------------------------- | ------- |
-| Connection  | The Square connection to use.                                       |         |
-| Location ID | The unique identifier for the location.                             |         |
-| Cursor      | The pagination cursor returned by a previous call to this endpoint. |         |
-| Limit       | The maximum number of results to return in a single page.           |         |
+| Input       | Comments                                                                       | Default |
+| ----------- | ------------------------------------------------------------------------------ | ------- |
+| Connection  | The Square connection to use.                                                  |         |
+| Location ID | The unique identifier for the location.                                        |         |
+| Fetch All   | When true, automatically fetches all pages of results using cursor pagination. | false   |
+| Pagination  | Cursor and page-size controls for paging through results.                      |         |
+| Cursor      | The pagination cursor returned by a previous call to this endpoint.            |         |
+| Limit       | The maximum number of results to return in a single page.                      |         |
 
 ### List Jobs {#listjobs}
 
@@ -398,10 +406,12 @@ Retrieves a list of refunds for the account making the request.
 | ----------- | ----------------------------------------------------------------------------------------------------------- | ------- |
 | Connection  | The Square connection to use.                                                                               |         |
 | Begin Time  | The timestamp marking the start of the time range. Format: RFC 3339.                                        |         |
+| End Time    | The end of the time range used to retrieve payments. Filtered using the created_at field. Format: RFC 3339. |         |
 | Location ID | The unique identifier for the location.                                                                     |         |
+| Fetch All   | When true, automatically fetches all pages of results using cursor pagination.                              | false   |
+| Pagination  | Cursor and page-size controls for paging through results.                                                   |         |
 | Cursor      | The pagination cursor returned by a previous call to this endpoint.                                         |         |
 | Limit       | The maximum number of results to return in a single page.                                                   |         |
-| End Time    | The end of the time range used to retrieve payments. Filtered using the created_at field. Format: RFC 3339. |         |
 | Sort Order  | The order in which results are sorted.                                                                      |         |
 | Status      | When provided, only refunds with the given status are returned.                                             |         |
 | Source Type | When provided, only refunds whose payments have the indicated source type are returned.                     |         |
@@ -414,10 +424,12 @@ Retrieves a list of payments taken by the account making the request.
 | --------------------- | ----------------------------------------------------------------------------------------------------------- | ------- |
 | Connection            | The Square connection to use.                                                                               |         |
 | Begin Time            | The timestamp marking the start of the time range. Format: RFC 3339.                                        |         |
+| End Time              | The end of the time range used to retrieve payments. Filtered using the created_at field. Format: RFC 3339. |         |
 | Location ID           | The unique identifier for the location.                                                                     |         |
+| Fetch All             | When true, automatically fetches all pages of results using cursor pagination.                              | false   |
+| Pagination            | Cursor and page-size controls for paging through results.                                                   |         |
 | Cursor                | The pagination cursor returned by a previous call to this endpoint.                                         |         |
 | Limit                 | The maximum number of results to return in a single page.                                                   |         |
-| End Time              | The end of the time range used to retrieve payments. Filtered using the created_at field. Format: RFC 3339. |         |
 | Sort Order            | The order in which results are sorted.                                                                      |         |
 | Total                 | The exact payment amount in cents (smallest currency unit). For example, 1500 for $15.00.                   |         |
 | Last 4 Digits of Card | The last four digits of the payment card used.                                                              |         |
@@ -430,6 +442,8 @@ Lists all webhook subscriptions owned by your application.
 | Input            | Comments                                                                                                            | Default |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
 | Connection       | The Square connection to use.                                                                                       |         |
+| Fetch All        | When true, automatically fetches all pages of results using cursor pagination.                                      | false   |
+| Pagination       | Cursor and page-size controls for paging through results.                                                           |         |
 | Cursor           | The pagination cursor returned by a previous call to this endpoint.                                                 |         |
 | Limit            | The maximum number of results to return in a single page.                                                           |         |
 | Include Disabled | When true, disabled subscriptions are included in the results. By default, only enabled subscriptions are returned. | false   |
@@ -449,27 +463,27 @@ Publishes an invoice.
 
 Sends a raw HTTP request to the Square API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
-| Connection              | The Square connection to use.                                                                                                                                                                    |         |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
+| Connection              | The Square connection to use.                                                                                                                                                                    |                 |
 
 ### Refund Payment {#refundpayment}
 
-Refunds a payment. You can refund the entire payment amount or a portion of it.
+Refunds a payment, either the entire amount or a portion of it.
 
 | Input           | Comments                                                                                                                               | Default |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -481,7 +495,7 @@ Refunds a payment. You can refund the entire payment amount or a portion of it.
 
 ### Retrieve Catalog Object {#retrievecatalogobject}
 
-Returns a single CatalogObject based on the provided ID.
+Returns a single catalog object based on the provided ID.
 
 | Input                   | Comments                                                                                                                                                                                   | Default |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
@@ -519,7 +533,7 @@ Retrieves details of a specific location.
 
 ### Retrieve Order {#retrieveorder}
 
-Retrieves an Order by its ID.
+Retrieves an order by its ID.
 
 | Input      | Comments                             | Default |
 | ---------- | ------------------------------------ | ------- |
@@ -551,6 +565,7 @@ Searches for catalog items or item variations by matching supported search attri
 | Input                    | Comments                                                                                                 | Default                                                                                                                                                                                  |
 | ------------------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection               | The Square connection to use.                                                                            |                                                                                                                                                                                          |
+| Pagination               | Cursor and page-size controls for paging through results.                                                |                                                                                                                                                                                          |
 | Cursor                   | The pagination cursor returned by a previous call to this endpoint.                                      |                                                                                                                                                                                          |
 | Limit                    | The maximum number of results to return in a single page.                                                |                                                                                                                                                                                          |
 | Text Filter              | The text filter expression used to return items or item variations containing the specified text.        |                                                                                                                                                                                          |
@@ -563,7 +578,7 @@ Searches for catalog items or item variations by matching supported search attri
 
 ### Search Catalog Objects {#searchcatalogobjects}
 
-Searches for CatalogObject of any type by matching supported search attribute values, excluding custom attribute values on items or item variations, against one or more of the specified query filters.
+Searches for catalog objects of any type by matching supported search attribute values, excluding custom attribute values on items or item variations, against one or more of the specified query filters.
 
 | Input                   | Comments                                                                                                                                                                    | Default                                                                                                                                                                                                                                                         |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -573,6 +588,7 @@ Searches for CatalogObject of any type by matching supported search attribute va
 | Include Related Objects | When true, the response includes additional objects that are related to the requested objects.                                                                              | false                                                                                                                                                                                                                                                           |
 | Begin Time              | The timestamp marking the start of the time range. Format: RFC 3339.                                                                                                        |                                                                                                                                                                                                                                                                 |
 | Catalog Query           | Query to filter or sort catalog results in JSON format. See [Square Catalog Query](https://developer.squareup.com/reference/square/objects/CatalogQuery) for query options. | <code>{<br /> "sorted_attribute_query": {<br /> "attribute_name": "name",<br /> "initial_attribute_value": "A",<br /> "sort_order": "ASC"<br /> },<br /> "exact_query": {<br /> "attribute_name": "type",<br /> "attribute_value": "ITEM"<br /> }<br />}</code> |
+| Pagination              | Cursor and page-size controls for paging through results.                                                                                                                   |                                                                                                                                                                                                                                                                 |
 | Cursor                  | The pagination cursor returned by a previous call to this endpoint.                                                                                                         |                                                                                                                                                                                                                                                                 |
 | Limit                   | The maximum number of results to return in a single page.                                                                                                                   |                                                                                                                                                                                                                                                                 |
 
@@ -584,6 +600,7 @@ Searches for customer profiles.
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection | The Square connection to use.                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Query      | The query to search for customers. See [Square Search Customers](https://developer.squareup.com/docs/customers-api/use-the-api/search-customers) for filter and sort options. | <code>{<br /> "query": {<br /> "filter": {<br /> "creation_source": {<br /> "values": [<br /> "THIRD_PARTY"<br /> ],<br /> "rule": "INCLUDE"<br /> },<br /> "created_at": {<br /> "start_at": "2024-01-01T00:00:00-00:00",<br /> "end_at": "2024-02-01T00:00:00-00:00"<br /> },<br /> "email_address": {<br /> "fuzzy": "example.com"<br /> },<br /> "group_ids": {<br /> "all": [<br /> "JDKYHBWT1D4F8MFH63DBMEN8Y4"<br /> ]<br /> }<br /> },<br /> "sort": {<br /> "field": "CREATED_AT",<br /> "order": "ASC"<br /> }<br /> }<br />}</code> |
+| Pagination | Cursor and page-size controls for paging through results.                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Cursor     | The pagination cursor returned by a previous call to this endpoint.                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Limit      | The maximum number of results to return in a single page.                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
@@ -595,6 +612,7 @@ Searches for invoices from a location specified in the filter.
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Connection | The Square connection to use.                                                                                                                                             |                                                                                                                                                                                                                                                              |
 | Query      | The query to search for invoices. See [Square Search Invoices](https://developer.squareup.com/reference/square/invoices-api/search-invoices) for filter and sort options. | <code>{<br /> "filter": {<br /> "location_ids": [<br /> "LH2G9VFHJRWKR"<br /> ],<br /> "customer_ids": [<br /> "JDKYHBWT1D4F8MFH63DBMEN8Y4"<br /> ]<br /> },<br /> "sort": {<br /> "field": "INVOICE_SORT_DATE",<br /> "order": "DESC"<br /> }<br />}</code> |
+| Pagination | Cursor and page-size controls for paging through results.                                                                                                                 |                                                                                                                                                                                                                                                              |
 | Cursor     | The pagination cursor returned by a previous call to this endpoint.                                                                                                       |                                                                                                                                                                                                                                                              |
 | Limit      | The maximum number of results to return in a single page.                                                                                                                 |                                                                                                                                                                                                                                                              |
 
@@ -608,6 +626,7 @@ Searches all orders for one or more locations.
 | Location IDs   | An array of location IDs in JSON format used to filter results to specific locations.                                                                             | <code>[<br /> "LH2G9VFHJRWKR",<br /> "LK3H8WGIKSMLA"<br />]</code>                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Query          | The query to search for orders. See [Square Search Orders](https://developer.squareup.com/reference/square/orders-api/search-orders) for filter and sort options. | <code>{<br /> "filter": {<br /> "state_filter": {<br /> "states": [<br /> "COMPLETED"<br /> ]<br /> },<br /> "date_time_filter": {<br /> "closed_at": {<br /> "start_at": "2024-01-01T00:00:00+00:00",<br /> "end_at": "2024-12-31T23:59:59+00:00"<br /> }<br /> },<br /> "customer_filter": {<br /> "customer_ids": [<br /> "JDKYHBWT1D4F8MFH63DBMEN8Y4"<br /> ]<br /> }<br /> },<br /> "sort": {<br /> "sort_field": "CLOSED_AT",<br /> "sort_order": "DESC"<br /> }<br />}</code> |
 | Return Entries | When true, the entries associated with the orders are returned.                                                                                                   | true                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Pagination     | Cursor and page-size controls for paging through results.                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Cursor         | The pagination cursor returned by a previous call to this endpoint.                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Limit          | The maximum number of results to return in a single page.                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
@@ -619,6 +638,7 @@ Searches for team members based on the given filters.
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Connection   | The Square connection to use.                                                                                                                                                   |                                                                                                                                                          |
 | Search Query | The query parameters to filter team members. See [Square Search Team Members](https://developer.squareup.com/reference/square/team-api/search-team-members) for filter options. | <code>{<br /> "filter": {<br /> "location_ids": [<br /> "LH2G9VFHJRWKR"<br /> ],<br /> "status": "ACTIVE",<br /> "is_owner": false<br /> }<br />}</code> |
+| Pagination   | Cursor and page-size controls for paging through results.                                                                                                                       |                                                                                                                                                          |
 | Cursor       | The pagination cursor returned by a previous call to this endpoint.                                                                                                             |                                                                                                                                                          |
 | Limit        | The maximum number of results to return in a single page.                                                                                                                       |                                                                                                                                                          |
 
@@ -718,7 +738,7 @@ Updates a webhook subscription.
 
 ### Upsert Catalog Object {#upsertcatalogobject}
 
-Creates a new or updates the specified CatalogObject.
+Creates or updates the specified catalog object.
 
 | Input           | Comments                                                                                                                                                  | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -132,25 +132,26 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 
 ### New and Updated Records {#pollchangestrigger}
 
-Checks for new and updated survey responses in SurveyMonkey on a configured schedule. New responses are emitted on the created branch and previously created responses that changed are emitted on the updated branch. Requires the responses_read_detail scope, available on paid SurveyMonkey plans.
+Retrieves existing and ongoing survey responses from SurveyMonkey. Load history once, check for changes on a schedule, or both. New responses are emitted on the created branch and previously created responses that changed are emitted on the updated branch. Requires the responses_read_detail scope, available on paid SurveyMonkey plans.
 
-| Input                | Comments                                                                                                           | Default |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection           | The SurveyMonkey connection to use.                                                                                |         |
-| Survey ID            | The unique identifier of the survey.                                                                               |         |
-| Show New Records     | Include newly created survey responses in the results, emitted on the created branch.                              | true    |
-| Show Updated Records | Include previously created survey responses that were modified since the last poll, emitted on the updated branch. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                    | Default |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The SurveyMonkey connection to use.                                                                                                                                                                                                                                         |         |
+| Survey ID            | The unique identifier of the survey.                                                                                                                                                                                                                                        |         |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each response modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | Include newly created survey responses in the results, emitted on the created branch.                                                                                                                                                                                       | true    |
+| Show Updated Records | Include previously created survey responses that were modified since the last poll, emitted on the updated branch.                                                                                                                                                          | true    |
 
 ### Webhook Events {#eventswebhook}
 
 Receive real-time notifications for SurveyMonkey events. Automatically creates and manages a webhook subscription when the instance is deployed, and removes the subscription when the instance is deleted.
 
-| Input       | Comments                                                               | Default |
-| ----------- | ---------------------------------------------------------------------- | ------- |
-| Connection  | The SurveyMonkey connection to use.                                    |         |
-| Event Type  | The event type to subscribe to.                                        |         |
-| Object Type | Filter events by object type.                                          |         |
-| Object IDs  | List of survey or collector IDs to filter events. Leave empty for all. |         |
+| Input       | Comments                                                               | Default         |
+| ----------- | ---------------------------------------------------------------------- | --------------- |
+| Connection  | The SurveyMonkey connection to use.                                    |                 |
+| Event Type  | The event type to subscribe to.                                        |                 |
+| Object Type | Filter events by object type.                                          |                 |
+| Object IDs  | List of survey or collector IDs to filter events. Leave empty for all. | <code>[]</code> |
 
 ## Actions
 
@@ -175,14 +176,14 @@ Create a new collector for a survey. Non-weblink collectors require a paid plan.
 
 Create a new contact.
 
-| Input             | Comments                                                           | Default |
-| ----------------- | ------------------------------------------------------------------ | ------- |
-| Connection        | The SurveyMonkey connection to use.                                |         |
-| Email             | The contact's email address.                                       |         |
-| First Name        | The contact's first name.                                          |         |
-| Last Name         | The contact's last name.                                           |         |
-| Custom Fields     | Custom field values as key-value pairs.                            |         |
-| Extra Body Fields | Additional body fields to include in the request as a JSON object. |         |
+| Input             | Comments                                                           | Default         |
+| ----------------- | ------------------------------------------------------------------ | --------------- |
+| Connection        | The SurveyMonkey connection to use.                                |                 |
+| Email             | The contact's email address.                                       |                 |
+| First Name        | The contact's first name.                                          |                 |
+| Last Name         | The contact's last name.                                           |                 |
+| Custom Fields     | Custom field values as key-value pairs.                            | <code>[]</code> |
+| Extra Body Fields | Additional body fields to include in the request as a JSON object. |                 |
 
 ### Create Contact List {#createcontactlist}
 
@@ -221,14 +222,14 @@ Create a new survey. Can be blank, from a template, or copied from an existing s
 
 Create a new webhook subscription. The URL must be unique and handle HEAD requests.
 
-| Input            | Comments                                                                   | Default |
-| ---------------- | -------------------------------------------------------------------------- | ------- |
-| Connection       | The SurveyMonkey connection to use.                                        |         |
-| Webhook Name     | The name of the webhook.                                                   |         |
-| Subscription URL | URL to receive webhook callbacks. Must be unique and handle HEAD requests. |         |
-| Event Type       | The event type to subscribe to.                                            |         |
-| Object Type      | Filter events by object type.                                              |         |
-| Object IDs       | List of survey or collector IDs to filter events. Leave empty for all.     |         |
+| Input            | Comments                                                                   | Default         |
+| ---------------- | -------------------------------------------------------------------------- | --------------- |
+| Connection       | The SurveyMonkey connection to use.                                        |                 |
+| Webhook Name     | The name of the webhook.                                                   |                 |
+| Subscription URL | URL to receive webhook callbacks. Must be unique and handle HEAD requests. |                 |
+| Event Type       | The event type to subscribe to.                                            |                 |
+| Object Type      | Filter events by object type.                                              |                 |
+| Object IDs       | List of survey or collector IDs to filter events. Leave empty for all.     | <code>[]</code> |
 
 ### Delete Collector {#deletecollector}
 
@@ -469,23 +470,23 @@ List all webhooks in your account.
 
 Send raw HTTP request to SurveyMonkey API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The SurveyMonkey connection to use.                                                                                                                                                              |         |
-| URL                     | Input the path only (e.g., /surveys). The base URL is already included based on the configured region (e.g., https://api.surveymonkey.com/v3).                                                   |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The SurveyMonkey connection to use.                                                                                                                                                              |                 |
+| URL                     | Input the path only (e.g., /surveys). The base URL is already included based on the configured region (e.g., https://api.surveymonkey.com/v3).                                                   |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Update Collector {#updatecollector}
 
@@ -507,15 +508,15 @@ Update an existing collector's settings.
 
 Update an existing contact's information.
 
-| Input             | Comments                                                           | Default |
-| ----------------- | ------------------------------------------------------------------ | ------- |
-| Connection        | The SurveyMonkey connection to use.                                |         |
-| Contact ID        | The unique identifier of the contact.                              |         |
-| Email             | The contact's email address.                                       |         |
-| First Name        | The contact's first name.                                          |         |
-| Last Name         | The contact's last name.                                           |         |
-| Custom Fields     | Custom field values as key-value pairs.                            |         |
-| Extra Body Fields | Additional body fields to include in the request as a JSON object. |         |
+| Input             | Comments                                                           | Default         |
+| ----------------- | ------------------------------------------------------------------ | --------------- |
+| Connection        | The SurveyMonkey connection to use.                                |                 |
+| Contact ID        | The unique identifier of the contact.                              |                 |
+| Email             | The contact's email address.                                       |                 |
+| First Name        | The contact's first name.                                          |                 |
+| Last Name         | The contact's last name.                                           |                 |
+| Custom Fields     | Custom field values as key-value pairs.                            | <code>[]</code> |
+| Extra Body Fields | Additional body fields to include in the request as a JSON object. |                 |
 
 ### Update Contact List {#updatecontactlist}
 
@@ -545,12 +546,12 @@ Update response metadata such as status.
 
 Update an existing webhook's settings.
 
-| Input            | Comments                                                                   | Default |
-| ---------------- | -------------------------------------------------------------------------- | ------- |
-| Connection       | The SurveyMonkey connection to use.                                        |         |
-| Webhook ID       | The unique identifier of the webhook.                                      |         |
-| Webhook Name     | The name of the webhook.                                                   |         |
-| Subscription URL | URL to receive webhook callbacks. Must be unique and handle HEAD requests. |         |
-| Event Type       | The event type to subscribe to.                                            |         |
-| Object Type      | Filter events by object type.                                              |         |
-| Object IDs       | List of survey or collector IDs to filter events. Leave empty for all.     |         |
+| Input            | Comments                                                                   | Default         |
+| ---------------- | -------------------------------------------------------------------------- | --------------- |
+| Connection       | The SurveyMonkey connection to use.                                        |                 |
+| Webhook ID       | The unique identifier of the webhook.                                      |                 |
+| Webhook Name     | The name of the webhook.                                                   |                 |
+| Subscription URL | URL to receive webhook callbacks. Must be unique and handle HEAD requests. |                 |
+| Event Type       | The event type to subscribe to.                                            |                 |
+| Object Type      | Filter events by object type.                                              |                 |
+| Object IDs       | List of survey or collector IDs to filter events. Leave empty for all.     | <code>[]</code> |

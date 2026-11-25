@@ -189,27 +189,27 @@ Adds a comment to a discussion.
 
 Adds or updates a row on a sheet.
 
-| Input                       | Comments                                                                                                                                       | Default  |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Connection                  | The Smartsheet connection to use.                                                                                                              |          |
-| Sheet ID                    | The unique identifier for the sheet.                                                                                                           |          |
-| Row ID                      | The unique identifier of an existing row to update. Omit to add a new row instead.                                                             |          |
-| Dynamic Columns Values      | A JSON array of objects mapping column titles to cell values for the row. Use this when column titles are easier to reference than column IDs. |          |
-| Column Values               | A list of column names mapped to the values to write into them.                                                                                |          |
-| Row Position (for new rows) | The position where new rows are added to the sheet.                                                                                            | toBottom |
-| Allow Partial Success       | When true, allows the bulk operation to partially succeed if some rows fail validation rather than failing the entire request.                 | false    |
-| Override Validation         | When true, allows cell values outside of the validation limits defined on the column.                                                          | false    |
+| Input                       | Comments                                                                                                                                       | Default         |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                  | The Smartsheet connection to use.                                                                                                              |                 |
+| Sheet ID                    | The unique identifier for the sheet.                                                                                                           |                 |
+| Row ID                      | The unique identifier of an existing row to update. Omit to add a new row instead.                                                             |                 |
+| Dynamic Columns Values      | A JSON array of objects mapping column titles to cell values for the row. Use this when column titles are easier to reference than column IDs. |                 |
+| Column Values               | A list of column names mapped to the values to write into them.                                                                                | <code>[]</code> |
+| Row Position (for new rows) | The position where new rows are added to the sheet.                                                                                            | toBottom        |
+| Allow Partial Success       | When true, allows the bulk operation to partially succeed if some rows fail validation rather than failing the entire request.                 | false           |
+| Override Validation         | When true, allows cell values outside of the validation limits defined on the column.                                                          | false           |
 
 ### Copy Rows {#copyrows}
 
 Copies rows to another sheet.
 
-| Input                | Comments                                                                  | Default |
-| -------------------- | ------------------------------------------------------------------------- | ------- |
-| Connection           | The Smartsheet connection to use.                                         |         |
-| Source Sheet ID      | The unique identifier of the sheet to copy or move rows from.             |         |
-| Row IDs              | The unique identifiers of the rows to move or copy from the source sheet. |         |
-| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into.             |         |
+| Input                | Comments                                                                  | Default         |
+| -------------------- | ------------------------------------------------------------------------- | --------------- |
+| Connection           | The Smartsheet connection to use.                                         |                 |
+| Source Sheet ID      | The unique identifier of the sheet to copy or move rows from.             |                 |
+| Row IDs              | The unique identifiers of the rows to move or copy from the source sheet. | <code>[]</code> |
+| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into.             |                 |
 
 ### Copy Sheet {#copysheet}
 
@@ -261,14 +261,14 @@ Creates a new sheet with specified columns.
 
 Creates and enables a webhook for a specified resource.
 
-| Input               | Comments                                                                                                                                                                                       | Default |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection          | The Smartsheet connection to use.                                                                                                                                                              |         |
-| Callback URL        | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                             |         |
-| Webhook Name        | A descriptive label to identify the webhook in the dashboard.                                                                                                                                  |         |
-| Sheet ID            | The unique identifier for the sheet.                                                                                                                                                           |         |
-| Subscope Column IDs | When provided, the webhook only fires when these specific columns are modified. Leave empty to trigger on any change to the sheet. Use the List Columns action to find column IDs for a sheet. |         |
-| Allow Duplicates    | When true, allows the creation of duplicate webhooks. By default the action checks if a webhook with this callback and sheet ID already exists and skips creation if one is found.             | false   |
+| Input               | Comments                                                                                                                                                                                       | Default         |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection          | The Smartsheet connection to use.                                                                                                                                                              |                 |
+| Callback URL        | The URL that Smartsheet sends webhook notifications to. This is usually a reference to another flow's webhook URL.                                                                             |                 |
+| Webhook Name        | A descriptive label to identify the webhook in the dashboard.                                                                                                                                  |                 |
+| Sheet ID            | The unique identifier for the sheet.                                                                                                                                                           |                 |
+| Subscope Column IDs | When provided, the webhook only fires when these specific columns are modified. Leave empty to trigger on any change to the sheet. Use the List Columns action to find column IDs for a sheet. | <code>[]</code> |
+| Allow Duplicates    | When true, allows the creation of duplicate webhooks. By default the action checks if a webhook with this callback and sheet ID already exists and skips creation if one is found.             | false           |
 
 ### Create Workspace {#createworkspace}
 
@@ -743,12 +743,12 @@ Moves a folder to a specified destination.
 
 Moves rows to another sheet.
 
-| Input                | Comments                                                                  | Default |
-| -------------------- | ------------------------------------------------------------------------- | ------- |
-| Connection           | The Smartsheet connection to use.                                         |         |
-| Sheet ID             | The unique identifier for the sheet.                                      |         |
-| Row IDs              | The unique identifiers of the rows to move or copy from the source sheet. |         |
-| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into.             |         |
+| Input                | Comments                                                                  | Default         |
+| -------------------- | ------------------------------------------------------------------------- | --------------- |
+| Connection           | The Smartsheet connection to use.                                         |                 |
+| Sheet ID             | The unique identifier for the sheet.                                      |                 |
+| Row IDs              | The unique identifiers of the rows to move or copy from the source sheet. | <code>[]</code> |
+| Destination Sheet ID | The unique identifier of the sheet to move or copy rows into.             |                 |
 
 ### Move Sheet {#movesheet}
 
@@ -765,24 +765,24 @@ Moves a sheet to a specified destination.
 
 Sends a raw HTTP request to the Smartsheet API.
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The Smartsheet connection to use.                                                                                                                                                                |         |
-| URL                     | The path to append to the Smartsheet API base URL (https://api.smartsheet.com/2.0). For example, to reach https://api.smartsheet.com/2.0/reports, enter /reports.                                |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The Smartsheet connection to use.                                                                                                                                                                |                 |
+| URL                     | The path to append to the Smartsheet API base URL (https://api.smartsheet.com/2.0). For example, to reach https://api.smartsheet.com/2.0/reports, enter /reports.                                |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                             | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Search Sheets {#searchsheet}
 
@@ -798,17 +798,17 @@ Searches sheets for a specified phrase.
 
 Sends a sheet via email to specified recipients.
 
-| Input      | Comments                                                   | Default |
-| ---------- | ---------------------------------------------------------- | ------- |
-| Connection | The Smartsheet connection to use.                          |         |
-| Sheet ID   | The unique identifier for the sheet.                       |         |
-| Format     | The file format to use when sending the sheet.             | EXCEL   |
-| Paper Size | The paper size to use when generating the PDF.             | LETTER  |
-| Emails     | The email addresses of recipients to send the document to. |         |
-| Group IDs  | The group IDs of recipients to send the document to.       |         |
-| CC Me      | When true, sends a copy of the email to the sender.        | false   |
-| Message    | The message of the email.                                  |         |
-| Subject    | The subject line of the email.                             |         |
+| Input      | Comments                                                   | Default         |
+| ---------- | ---------------------------------------------------------- | --------------- |
+| Connection | The Smartsheet connection to use.                          |                 |
+| Sheet ID   | The unique identifier for the sheet.                       |                 |
+| Format     | The file format to use when sending the sheet.             | EXCEL           |
+| Paper Size | The paper size to use when generating the PDF.             | LETTER          |
+| Emails     | The email addresses of recipients to send the document to. | <code>[]</code> |
+| Group IDs  | The group IDs of recipients to send the document to.       | <code>[]</code> |
+| CC Me      | When true, sends a copy of the email to the sender.        | false           |
+| Message    | The message of the email.                                  |                 |
+| Subject    | The subject line of the email.                             |                 |
 
 ### Set Sheet Publish Status {#setsheetpublish}
 

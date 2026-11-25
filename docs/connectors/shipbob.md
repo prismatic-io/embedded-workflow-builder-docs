@@ -1,7 +1,7 @@
 ---
 title: ShipBob Connector
 sidebar_label: ShipBob
-description: Shipbob offers an end to end fulfillment services for Ecommerce vendors.
+description: Manage ShipBob orders, shipments, products, inventory, warehouse receiving orders, and webhooks, and react to order events with webhook and polling triggers.
 ---
 
 ![ShipBob](./assets/shipbob.png#connector-icon)
@@ -44,23 +44,24 @@ First you should use your PAT to hit the [GET Channel](https://developer.shipbob
 
 Get notified when a specific event occurs
 
-| Input                      | Comments                                                                                      | Default |
-| -------------------------- | --------------------------------------------------------------------------------------------- | ------- |
-| Connection                 | The ShipBob connection to use.                                                                |         |
-| Version                    | The version of the ShipBob API to use                                                         | 1.0     |
-| Topics to Subscribe        | List of webhook topics to subscribe to                                                        |         |
-| Overwrite Webhook Settings | When true, deletes existing webhook settings pointing to this flow's URL and creates new ones | false   |
+| Input                      | Comments                                                                                      | Default         |
+| -------------------------- | --------------------------------------------------------------------------------------------- | --------------- |
+| Connection                 | The ShipBob connection to use.                                                                |                 |
+| Version                    | The version of the ShipBob API to use                                                         | 1.0             |
+| Topics to Subscribe        | List of webhook topics to subscribe to                                                        | <code>[]</code> |
+| Overwrite Webhook Settings | When true, deletes existing webhook settings pointing to this flow's URL and creates new ones | false           |
 
 ### New and Updated Orders {#pollchangestrigger}
 
-Checks for new and updated orders in ShipBob on a configured schedule.
+Retrieves existing and ongoing orders from ShipBob. Load history once, check for changes on a schedule, or both.
 
-| Input                | Comments                                                                          | Default |
-| -------------------- | --------------------------------------------------------------------------------- | ------- |
-| Connection           | The ShipBob connection to use.                                                    |         |
-| Version              | The version of the ShipBob API to use                                             | 1.0     |
-| Show New Records     | When true, orders created since the last poll are included in the trigger output. | true    |
-| Show Updated Records | When true, orders updated since the last poll are included in the trigger output. | true    |
+| Input                | Comments                                                                                                                                                                                                                                                                  | Default |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Connection           | The ShipBob connection to use.                                                                                                                                                                                                                                            |         |
+| Version              | The version of the ShipBob API to use                                                                                                                                                                                                                                     | 1.0     |
+| Look-back Date       | The date the initial sync starts from, in YYYY-MM-DD format. Cannot be a future date. Leave empty to start from the first recurrence with no backfill. When set, the initial sync seeds each record modified on or after this date once, ignoring the visibility filters. |         |
+| Show New Records     | When true, orders created since the last poll are included in the trigger output.                                                                                                                                                                                         | true    |
+| Show Updated Records | When true, orders updated since the last poll are included in the trigger output.                                                                                                                                                                                         | true    |
 
 ### Webhook {#webhook}
 
@@ -104,24 +105,24 @@ Cancels a Warehouse Receiving Order by Order ID
 
 Create a new Order
 
-| Input                 | Comments                                                                                                                                                                                                                               | Default |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection            | The ShipBob connection to use.                                                                                                                                                                                                         |         |
-| Version               | The version of the ShipBob API to use                                                                                                                                                                                                  | 1.0     |
-| ShipBob Channel ID    | Channel ID for operation                                                                                                                                                                                                               |         |
-| Shipping Method       | Client-defined shipping method matching what the user has listed as the shipping method on the Ship Option Mapping setup page in the ShipBob Merchant Portal. If they don't match, a new one will be created and defaulted to Standard |         |
-| Recipient             | Information about the recipient of an order                                                                                                                                                                                            |         |
-| Products              | Products included in the order. Products identified by reference_id must also include the product name if there is no matching ShipBob product                                                                                         |         |
-| Reference ID          | Unique and immutable order identifier from your upstream system                                                                                                                                                                        |         |
-| Shipping Terms        | Shipping properties to be used for fulfilling an order                                                                                                                                                                                 |         |
-| Retailer Program Data | Retailer-specific program data for fulfilling orders                                                                                                                                                                                   |         |
-| Financials            | Sum of all line item prices, discounts, and taxes in USD                                                                                                                                                                               |         |
-| Order Number          | User-friendly order ID or store order number that will be shown on the Orders Page. If not provided, reference ID will be used                                                                                                         |         |
-| Type                  | Order type. Options: DTC (Direct to Consumer), DropShip. Defaults to DTC if not provided. Note: B2B is not currently supported                                                                                                         |         |
-| Tags                  | Key-value pairs to store extra information at the order level for API purposes. ShipBob won't display the info in the ShipBob Merchant Portal or react based on this data                                                              |         |
-| Purchase Date         | Date this order was purchased by the end user (YYYY-MM-DD)                                                                                                                                                                             |         |
-| Location ID           | Desired fulfillment center location ID. If not specified, ShipBob will determine the location that fulfills this order                                                                                                                 |         |
-| Gift Message          | Gift message to include with the order                                                                                                                                                                                                 |         |
+| Input                 | Comments                                                                                                                                                                                                                               | Default         |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection            | The ShipBob connection to use.                                                                                                                                                                                                         |                 |
+| Version               | The version of the ShipBob API to use                                                                                                                                                                                                  | 1.0             |
+| ShipBob Channel ID    | Channel ID for operation                                                                                                                                                                                                               |                 |
+| Shipping Method       | Client-defined shipping method matching what the user has listed as the shipping method on the Ship Option Mapping setup page in the ShipBob Merchant Portal. If they don't match, a new one will be created and defaulted to Standard |                 |
+| Recipient             | Information about the recipient of an order                                                                                                                                                                                            |                 |
+| Products              | Products included in the order. Products identified by reference_id must also include the product name if there is no matching ShipBob product                                                                                         |                 |
+| Reference ID          | Unique and immutable order identifier from your upstream system                                                                                                                                                                        |                 |
+| Shipping Terms        | Shipping properties to be used for fulfilling an order                                                                                                                                                                                 |                 |
+| Retailer Program Data | Retailer-specific program data for fulfilling orders                                                                                                                                                                                   |                 |
+| Financials            | Sum of all line item prices, discounts, and taxes in USD                                                                                                                                                                               |                 |
+| Order Number          | User-friendly order ID or store order number that will be shown on the Orders Page. If not provided, reference ID will be used                                                                                                         |                 |
+| Type                  | Order type. Options: DTC (Direct to Consumer), DropShip. Defaults to DTC if not provided. Note: B2B is not currently supported                                                                                                         |                 |
+| Tags                  | Key-value pairs to store extra information at the order level for API purposes. ShipBob won't display the info in the ShipBob Merchant Portal or react based on this data                                                              | <code>[]</code> |
+| Purchase Date         | Date this order was purchased by the end user (YYYY-MM-DD)                                                                                                                                                                             |                 |
+| Location ID           | Desired fulfillment center location ID. If not specified, ShipBob will determine the location that fulfills this order                                                                                                                 |                 |
+| Gift Message          | Gift message to include with the order                                                                                                                                                                                                 |                 |
 
 ### Create Warehouse Receiving Order {#createwarehousereceivingorder}
 
@@ -396,24 +397,24 @@ Get a list of active Webhooks
 
 Send raw HTTP request to ShipBob
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              | The ShipBob connection to use.                                                                                                                                                                   |         |
-| Version                 | The version of the ShipBob API to use                                                                                                                                                            | 1.0     |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              | The ShipBob connection to use.                                                                                                                                                                   |                 |
+| Version                 | The version of the ShipBob API to use                                                                                                                                                            | 1.0             |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Update Product {#updateproduct}
 

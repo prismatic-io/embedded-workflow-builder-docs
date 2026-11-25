@@ -5,13 +5,80 @@ description: Manage plans, buckets, tasks, and task details in Microsoft Planner
 ---
 
 ![Microsoft Planner](./assets/ms-planner.png#connector-icon)
-Manage plans, buckets, tasks, and task details in Microsoft Planner.
+[Microsoft Planner](https://www.microsoft.com/en-us/microsoft-365/planner/planner-app) is a task and work management service for Microsoft 365 teams, organizing work into plans, buckets, and tasks.
+This component allows creating, reading, updating, and deleting plans, buckets, and tasks, managing task descriptions, checklists, and links, assigning work to people, and detecting newly created tasks on a schedule.
+
+## API Documentation
+
+This component was built using the [Microsoft Graph Planner API](https://learn.microsoft.com/en-us/graph/api/resources/planner-overview?view=graph-rest-1.0) currently utilizing v1.0
+
+## Change Detection
+
+Planner does not publish change notifications, and its plans, buckets, and tasks carry no modification timestamp.
+The **New Tasks** trigger therefore detects tasks that are added to a plan, and cannot detect tasks that are edited, completed, or deleted.
+Flows that need to react to those events should poll with the **List Tasks in Plan** action and compare against their own records.
+
+## Migrating from Microsoft Project
+
+Microsoft retired Project Online, including Project Web App, on September 30, 2026.
+Its REST and OData reporting endpoints are no longer available, so integrations built on the **Microsoft Project** component no longer return data.
+Microsoft lists Planner as one destination, alongside Project desktop, Project Server Subscription Edition, and Dynamics 365 Project Operations; see [Prepare for Project Online retirement](https://learn.microsoft.com/en-us/planner/prepare-for-project-online-retirement).
+
+To move an integration from the **Microsoft Project** component to this component:
+
+1. Confirm the destination plans are basic plans. Work moved into premium plans is not reachable through this component.
+2. Map Project records to Planner resources: projects to plans, phases or summary tasks to buckets, tasks to tasks, and assignments to task assignees.
+3. Replace Project reporting queries with the list actions, such as **List Plans in Group**, **List Buckets in Plan**, and **List Tasks in Plan**.
+4. Replace scheduled checks for new work with the **New Tasks** trigger, within the change detection limits described above.
+5. Store Project data that has no Planner equivalent, such as custom fields, baselines, dependencies, timesheets, and resource data, in another system before migrating.
 
 ## Connections
 
 ### OAuth 2.0 Authorization Code {#templatedoauth}
 
 Authenticates actions in all Microsoft's Graph API services.
+
+To connect to Microsoft Planner with a connection of type **OAuth 2.0 Authorization Code**, create an App Registration in Microsoft Entra (formerly Azure Active Directory).
+
+This is the recommended connection. Planner operations that act on "the signed-in user" (listing the plans shared with a user, or the tasks assigned to them) require a user to authorize, and are only available through this flow.
+
+#### Prerequisites
+
+- Access to the [Microsoft Entra admin center](https://entra.microsoft.com/) or the [Azure Portal](https://portal.azure.com/#home)
+- Permissions to create App Registrations
+- A Microsoft 365 group that contains the plans to work with
+- A work or school account to authorize with. Planner is unavailable to personal Microsoft accounts
+
+#### Setup Steps
+
+1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**
+2. Set **Supported account types**:
+   - Choose **Accounts in any organizational directory (Any Azure AD directory - Multitenant)** to allow users from other organizations to authenticate
+3. Under **Platforms**, add the **Web** platform:
+   - Add `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as a **Redirect URI**
+4. Navigate to **Certificates & Secrets** and create a new **Client Secret**:
+   - Copy the **Value** of the client secret (this is only shown once)
+5. Navigate to the **Overview** page and copy the **Application (client) ID**
+
+#### Configure the Connection
+
+- **Base URL** defaults to `https://graph.microsoft.com`. Change it only for a national cloud deployment
+- Set the **Tenant URL** to `login.microsoftonline.com/organizations` rather than the default `login.microsoftonline.com/common`, so that a personal account cannot complete an authorization that would then fail on every action
+- Enter the **Application (client) ID** value into the **Client ID** field
+- Enter the client secret **Value** into the **Client secret value** field
+- The default **Scopes** are pre-configured:
+  ```
+  https://graph.microsoft.com/Tasks.ReadWrite https://graph.microsoft.com/User.Read https://graph.microsoft.com/User.ReadBasic.All offline_access
+  ```
+  - `https://graph.microsoft.com/Tasks.ReadWrite` - Read and write plans, buckets, and tasks
+  - `https://graph.microsoft.com/User.Read` - Sign in, and read the groups the signed-in user belongs to, which is how the **Group ID** dropdown is populated
+  - `https://graph.microsoft.com/User.ReadBasic.All` - List the organization's users, which is how the **Select User** dropdown is populated
+  - `offline_access` - Maintain the connection and receive refresh tokens
+  - To list every group in the organization in the **Group ID** dropdown, rather than only the signed-in user's groups, add `https://graph.microsoft.com/Group.Read.All`. That scope requires admin consent
+  - Refer to the [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference) for additional scope information
+- **Additional Authorization Parameters** (optional) - Query string parameters appended to the OAuth authorization URL:
+  - Use `prompt=consent` to force the consent screen, which is useful when the requested scopes have changed
+  - Use `login_hint=user@example.com` to pre-fill the sign-in page
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -28,6 +95,40 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#oauthclientcredentials}
 
 Authenticates actions in all Microsoft's Graph API services.
+
+To connect to Microsoft Planner without a signed-in user, create a connection of type **OAuth 2.0 Client Credentials** backed by an App Registration with application permissions in Microsoft Entra.
+
+The Client Credentials flow is used for unattended server-to-server synchronization. Because no user signs in, every request is made on behalf of the application and a **User ID** must be supplied to stand in for "the current user".
+
+Listing the plans shared with a user does not accept application permissions, so the **List Plans for User** action works only with the **OAuth 2.0 Authorization Code** connection. Use **List Plans in Group** instead. **List Tasks for User** works with either connection.
+
+#### Prerequisites
+
+- Access to the [Microsoft Entra admin center](https://entra.microsoft.com/)
+- Permissions to create App Registrations and grant admin consent
+- The Tenant ID for the organization
+
+#### Setup Steps
+
+1. Navigate to [Microsoft Entra](https://entra.microsoft.com/) **Identity** > **Applications** > **App registrations** and select **New registration**
+2. From the App menu, navigate to **Certificates & Secrets** and add a new **Client Secret**:
+   - Copy the **Value** of the client secret (this is only shown once)
+3. Navigate to the **Overview** page and copy the **Application (client) ID**
+4. Navigate to **API Permissions** and configure application permissions:
+   - Select **Add Permission** > **Microsoft Graph** > **Application permissions**
+   - Add `Tasks.Read.All` for read-only access, or `Tasks.ReadWrite.All` to create and modify plans, buckets, and tasks
+   - Add `Group.Read.All` to populate the **Group ID** dropdown
+   - Add `User.Read.All` to populate the **Select User** dropdown used for task assignment
+5. Select **Grant Admin Consent** to authorize the application permissions
+
+#### Configure the Connection
+
+- **Base URL** defaults to `https://graph.microsoft.com` and **Microsoft Entra ID Endpoint** defaults to `https://login.microsoftonline.com`. Change them only for a national cloud deployment
+- Enter the Tenant ID for the organization being accessed into the **Tenant** field. A client credentials token cannot be issued against the `common` endpoint, so a specific tenant is required
+- Enter the **Application (client) ID** value into the **Client ID** field
+- Enter the **Client Secret** value into the same named field
+- Enter the **User ID** (object ID or user principal name) of the user whose Planner data is accessed. Requests for "my plans" or "my tasks" target this user
+- The default **Scopes** value `https://graph.microsoft.com/.default` is pre-configured
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

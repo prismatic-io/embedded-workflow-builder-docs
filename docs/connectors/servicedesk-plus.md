@@ -1,7 +1,7 @@
 ---
 title: ServiceDesk Plus Connector
 sidebar_label: ServiceDesk Plus
-description: ServiceDesk Plus is a comprehensive service desk software that offers a suite of IT Service management, IT asset management, CBDM, and more.
+description: Manage ServiceDesk Plus requests, problems, tasks, notes, assets, products, and configuration items, and react to new records with a polling trigger.
 ---
 
 ![ServiceDesk Plus](./assets/servicedesk-plus.png#connector-icon)
@@ -81,7 +81,7 @@ Create a new asset
 | Asset Tag              | Asset tag used to identify the asset                                              |                                                                                   |
 | State History Comments | A text in a plain format. No rich text or new line characters allowed.            |                                                                                   |
 | Bar Code               | Unique barcode used to identify the asset                                         |                                                                                   |
-| Extra parameters       | Additional parameters to add to the request                                       |                                                                                   |
+| Extra parameters       | Additional parameters to add to the request                                       | <code>[]</code>                                                                   |
 | Connection             |                                                                                   |                                                                                   |
 
 ### Create Configuration Item {#createconfigurationitem}
@@ -176,15 +176,15 @@ Create a new product type
 
 Create a new request
 
-| Input                     | Comments                                                                                                                                                                                                         | Default |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                                                                                  |         |
-| Request Subject           | Subject of this request.                                                                                                                                                                                         |         |
-| Request Description       | Description of this request.                                                                                                                                                                                     |         |
-| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |         |
-| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      |         |
-| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false   |
-| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |         |
+| Input                     | Comments                                                                                                                                                                                                         | Default         |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                                                                                                                                  |                 |
+| Request Subject           | Subject of this request.                                                                                                                                                                                         |                 |
+| Request Description       | Description of this request.                                                                                                                                                                                     |                 |
+| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |                 |
+| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      | <code>[]</code> |
+| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false           |
+| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |                 |
 
 ### Create Request Task {#createrequesttask}
 
@@ -217,11 +217,11 @@ Delete an existing asset
 
 Delete an existing configuration item on the CMDB
 
-| Input            | Comments                                               | Default |
-| ---------------- | ------------------------------------------------------ | ------- |
-| CI Type API Name | Denotes the unique identifier used to identify the CI. |         |
-| CI IDs           | Unique identifier used to identify the CI.             |         |
-| Connection       |                                                        |         |
+| Input            | Comments                                               | Default         |
+| ---------------- | ------------------------------------------------------ | --------------- |
+| CI Type API Name | Denotes the unique identifier used to identify the CI. |                 |
+| CI IDs           | Unique identifier used to identify the CI.             | <code>[]</code> |
+| Connection       |                                                        |                 |
 
 ### Delete Problem {#deleteproblem}
 
@@ -378,154 +378,154 @@ Get a request task by ID
 
 Retrieve a list of assets
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Connection                |                                                                                                          |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Connection                |                                                                                                          |                 |
 
 ### List Configuration Items {#listconfigurationitems}
 
 Retrieve a list of all configuration items on the CMDB
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| CI Type API Name          | Denotes the unique identifier used to identify the CI.                                                   |         |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Connection                |                                                                                                          |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| CI Type API Name          | Denotes the unique identifier used to identify the CI.                                                   |                 |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Connection                |                                                                                                          |                 |
 
 ### List Problem Notes {#listproblemnotes}
 
 Retrieve a list of problem notes
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                          |         |
-| Problem ID                | ID of the problem.                                                                                       |         |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                          |                 |
+| Problem ID                | ID of the problem.                                                                                       |                 |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
 
 ### List Problems {#listproblems}
 
 Retrieve a list of problems
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                          |         |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                          |                 |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
 
 ### List Problem Tasks {#listproblemtasks}
 
 Retrieve a list of problem tasks
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                          |         |
-| Problem ID                | ID of the problem.                                                                                       |         |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                          |                 |
+| Problem ID                | ID of the problem.                                                                                       |                 |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
 
 ### List Products {#listproducts}
 
 Retrieve a list of products
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Connection                |                                                                                                          |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Connection                |                                                                                                          |                 |
 
 ### List Product Types {#listproducttypes}
 
 Retrieve a list of product types
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Connection                |                                                                                                          |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Connection                |                                                                                                          |                 |
 
 ### List Requests {#listrequests}
 
 Retrieve a list of requests
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                          |         |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                          |                 |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
 
 ### List Request Tasks {#listrequesttasks}
 
 Retrieve a list of request tasks
 
-| Input                     | Comments                                                                                                 | Default |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                          |         |
-| Request ID                | ID of the request.                                                                                       |         |
-| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true    |
-| Pagination                | Page number and number of rows to return per page.                                                       |         |
-| Page                      | Page number to be returned                                                                               | 1       |
-| Row Count                 | Number of rows to be returned                                                                            | 100     |
-| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. |         |
-| Conditions Criteria Value | The value of the field to be compared.                                                                   |         |
+| Input                     | Comments                                                                                                 | Default         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                          |                 |
+| Request ID                | ID of the request.                                                                                       |                 |
+| Fetch All                 | Fetch all the data. If true, it will ignore Row Count and Page inputs.                                   | true            |
+| Pagination                | Page number and number of rows to return per page.                                                       |                 |
+| Page                      | Page number to be returned                                                                               | 1               |
+| Row Count                 | Number of rows to be returned                                                                            | 100             |
+| Conditions Criteria       | Conditions are the operators for criteria construction. Select the condition to be applied to the field. | <code>[]</code> |
+| Conditions Criteria Value | The value of the field to be compared.                                                                   | <code>[]</code> |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to ServiceDesk Plus
 
-| Input                   | Comments                                                                                                                                                                                         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| Connection              |                                                                                                                                                                                                  |         |
-| URL                     | This is the URL to call.                                                                                                                                                                         |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                          |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                      |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |         |
-| Debug Request           | Enable this to log the request and response                                                                                                                                                      | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false   |
+| Input                   | Comments                                                                                                                                                                                         | Default         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Connection              |                                                                                                                                                                                                  |                 |
+| URL                     | This is the URL to call.                                                                                                                                                                         |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                          |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                        |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                             | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                 | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                           | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                              | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                      | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                         | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                              |                 |
+| Debug Request           | Enable this to log the request and response                                                                                                                                                      | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                              | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors. | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                              | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                    | false           |
 
 ### Update Asset {#updateasset}
 
@@ -639,16 +639,16 @@ Updates an existing product type
 
 Update a request
 
-| Input                     | Comments                                                                                                                                                                                                         | Default |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection                |                                                                                                                                                                                                                  |         |
-| To Update Request ID      | ID of the request to be updated.                                                                                                                                                                                 |         |
-| Request Subject           | Subject of this request.                                                                                                                                                                                         |         |
-| Request Description       | Description of this request.                                                                                                                                                                                     |         |
-| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |         |
-| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      |         |
-| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false   |
-| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |         |
+| Input                     | Comments                                                                                                                                                                                                         | Default         |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection                |                                                                                                                                                                                                                  |                 |
+| To Update Request ID      | ID of the request to be updated.                                                                                                                                                                                 |                 |
+| Request Subject           | Subject of this request.                                                                                                                                                                                         |                 |
+| Request Description       | Description of this request.                                                                                                                                                                                     |                 |
+| Impact Details            | Description about the impact of this request.                                                                                                                                                                    |                 |
+| Email IDs To Notify       | Email ids, which needs to be notified about the happenings of this request.                                                                                                                                      | <code>[]</code> |
+| Delete Pre Template Tasks | Boolean value indicating whether the pre template tasks need to be deleted.                                                                                                                                      | false           |
+| Additional Fields         | Additional fields that might not be covered by the standard inputs. See [ServiceDesk Plus API documentation](https://www.manageengine.com/products/service-desk/sdpod-v3-api/requests/request.html) for details. |                 |
 
 ### Update Request Task {#updaterequesttask}
 

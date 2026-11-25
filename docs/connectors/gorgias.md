@@ -1,7 +1,7 @@
 ---
 title: Gorgias Connector
 sidebar_label: Gorgias
-description: Gorgias is a customer support platform designed to help e-commerce businesses manage customer inquiries and support tickets efficiently.
+description: Manage customers, tickets, ticket messages, and ticket custom fields in the Gorgias helpdesk.
 ---
 
 ![Gorgias](./assets/gorgias.png#connector-icon)
@@ -101,33 +101,33 @@ Create a customer.
 
 Create a new ticket.
 
-| Input                          | Comments                                                                                                                                                                                                                   | Default |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Messages                       | Messages of the ticket.                                                                                                                                                                                                    |         |
-| External ID                    | External ID of the ticket in a foreign system. This field is not used by Gorgias, feel free to set it as you wish.                                                                                                         |         |
-| Meta                           | Data associated with the ticket. You can use this field to store structured information (key-value data) about the ticket.                                                                                                 |         |
-| Status                         | The status of the ticket.                                                                                                                                                                                                  | open    |
-| Subject                        | The subject of the ticket.                                                                                                                                                                                                 |         |
-| Tags                           | Tags linked to the ticket.                                                                                                                                                                                                 |         |
-| Ticket Timestamps              | Datetime fields for tracking ticket lifecycle events such as open, close, snooze, and last message times.                                                                                                                  |         |
-| Closed Datetime                | When the ticket was closed.                                                                                                                                                                                                |         |
-| Created Datetime               | When the ticket was created.                                                                                                                                                                                               |         |
-| Last Message Datetime          | When the last message was sent.                                                                                                                                                                                            |         |
-| Last Received Message Datetime | When the last customer's message was sent.                                                                                                                                                                                 |         |
-| Opened Datetime                | When the ticket was opened for the first time by a user.                                                                                                                                                                   |         |
-| Snooze Datetime                | When the ticket will be re-opened.                                                                                                                                                                                         |         |
-| Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |         |
-| Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |         |
-| Additional Fields              | Additional optional fields: includes Assignee Team, Assignee User, Channel, Customer, From Agent, Language, Spam, and Via.                                                                                                 |         |
-| Assignee Team                  | The team assigned to the ticket.                                                                                                                                                                                           |         |
-| Assignee User                  | The user assigned to the ticket.                                                                                                                                                                                           |         |
-| Channel                        | The channel used to initiate the conversation with the customer.                                                                                                                                                           |         |
-| Customer                       | The customer linked to the ticket.                                                                                                                                                                                         |         |
-| From Agent                     | Whether the first message of the ticket was sent by your company to a customer, or the opposite.                                                                                                                           |         |
-| Language                       | The language primarily used in the ticket. The language is automatically detected on the first messages by Gorgias if not set explicitly.Once the language has been set, it won't be updated according to future messages. |         |
-| Spam                           | Whether the ticket is considered as spam or not.                                                                                                                                                                           |         |
-| Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |         |
-| Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |         |
+| Input                          | Comments                                                                                                                                                                                                                   | Default         |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Messages                       | Messages of the ticket.                                                                                                                                                                                                    |                 |
+| External ID                    | External ID of the ticket in a foreign system. This field is not used by Gorgias, feel free to set it as you wish.                                                                                                         |                 |
+| Meta                           | Data associated with the ticket. You can use this field to store structured information (key-value data) about the ticket.                                                                                                 | <code>[]</code> |
+| Status                         | The status of the ticket.                                                                                                                                                                                                  | open            |
+| Subject                        | The subject of the ticket.                                                                                                                                                                                                 |                 |
+| Tags                           | Tags linked to the ticket.                                                                                                                                                                                                 | <code>[]</code> |
+| Ticket Timestamps              | Datetime fields for tracking ticket lifecycle events such as open, close, snooze, and last message times.                                                                                                                  |                 |
+| Closed Datetime                | When the ticket was closed.                                                                                                                                                                                                |                 |
+| Created Datetime               | When the ticket was created.                                                                                                                                                                                               |                 |
+| Last Message Datetime          | When the last message was sent.                                                                                                                                                                                            |                 |
+| Last Received Message Datetime | When the last customer's message was sent.                                                                                                                                                                                 |                 |
+| Opened Datetime                | When the ticket was opened for the first time by a user.                                                                                                                                                                   |                 |
+| Snooze Datetime                | When the ticket will be re-opened.                                                                                                                                                                                         |                 |
+| Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |                 |
+| Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |                 |
+| Additional Fields              | Additional optional fields: includes Assignee Team, Assignee User, Channel, Customer, From Agent, Language, Spam, and Via.                                                                                                 |                 |
+| Assignee Team                  | The team assigned to the ticket.                                                                                                                                                                                           |                 |
+| Assignee User                  | The user assigned to the ticket.                                                                                                                                                                                           |                 |
+| Channel                        | The channel used to initiate the conversation with the customer.                                                                                                                                                           |                 |
+| Customer                       | The customer linked to the ticket.                                                                                                                                                                                         |                 |
+| From Agent                     | Whether the first message of the ticket was sent by your company to a customer, or the opposite.                                                                                                                           |                 |
+| Language                       | The language primarily used in the ticket. The language is automatically detected on the first messages by Gorgias if not set explicitly.Once the language has been set, it won't be updated according to future messages. |                 |
+| Spam                           | Whether the ticket is considered as spam or not.                                                                                                                                                                           |                 |
+| Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |                 |
+| Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |                 |
 
 ### Create Ticket Message {#createticketmessage}
 
@@ -225,11 +225,11 @@ Retrieve an event.
 
 Retrieve a ticket.
 
-| Input         | Comments                                                                | Default |
-| ------------- | ----------------------------------------------------------------------- | ------- |
-| Ticket ID     | The ID of the ticket.                                                   |         |
-| Relationships | Names of relations that should be included in returned data.            |         |
-| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |         |
+| Input         | Comments                                                                | Default         |
+| ------------- | ----------------------------------------------------------------------- | --------------- |
+| Ticket ID     | The ID of the ticket.                                                   |                 |
+| Relationships | Names of relations that should be included in returned data.            | <code>[]</code> |
+| Connection    | Select the Gorgias connection type for this request: OAuth2 or API Key. |                 |
 
 ### Get Ticket Message {#getticketmessage}
 
@@ -264,19 +264,19 @@ List customers, paginated, and ordered by their name (alphabetical order).
 
 List events, paginated, and ordered by their creation date, with the most recently created first.
 
-| Input            | Comments                                                                                                                                                              | Default |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Created Datetime | Comparators used to filter events on their creation date. See [Gorgias API documentation](https://developers.gorgias.com/reference/list-events) for more information. |         |
-| Object ID        | ID of the object associated with the events to return.                                                                                                                |         |
-| Object Type      | Type of the object associated with the events to return.                                                                                                              |         |
-| Types            | Types of the events to return.                                                                                                                                        |         |
-| User IDs         | IDs of the users who triggered the events to return.                                                                                                                  |         |
-| Fetch All        | When enabled, all events will be fetched. This can be slow if you have a lot of events. Cursor and limit will be ignored.                                             | false   |
-| Pagination       | Cursor and limit controls for paging through results.                                                                                                                 |         |
-| Cursor           | Value indicating your position in the list of all events. If omitted, the first events of the list will be returned.                                                  |         |
-| Limit            | Maximum number of customers to return. The max number allowed is 100.                                                                                                 |         |
-| Order By         | Attribute used to order events.                                                                                                                                       |         |
-| Connection       | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                               |         |
+| Input            | Comments                                                                                                                                                              | Default         |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Created Datetime | Comparators used to filter events on their creation date. See [Gorgias API documentation](https://developers.gorgias.com/reference/list-events) for more information. |                 |
+| Object ID        | ID of the object associated with the events to return.                                                                                                                |                 |
+| Object Type      | Type of the object associated with the events to return.                                                                                                              |                 |
+| Types            | Types of the events to return.                                                                                                                                        | <code>[]</code> |
+| User IDs         | IDs of the users who triggered the events to return.                                                                                                                  | <code>[]</code> |
+| Fetch All        | When enabled, all events will be fetched. This can be slow if you have a lot of events. Cursor and limit will be ignored.                                             | false           |
+| Pagination       | Cursor and limit controls for paging through results.                                                                                                                 |                 |
+| Cursor           | Value indicating your position in the list of all events. If omitted, the first events of the list will be returned.                                                  |                 |
+| Limit            | Maximum number of customers to return. The max number allowed is 100.                                                                                                 |                 |
+| Order By         | Attribute used to order events.                                                                                                                                       |                 |
+| Connection       | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                               |                 |
 
 ### List Messages {#listmessages}
 
@@ -305,42 +305,42 @@ List all custom fields for a ticket.
 
 List tickets, paginated and ordered by the attribute of the given view.
 
-| Input       | Comments                                                                                                                    | Default |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Customer ID | The ID of a customer used to select their tickets.                                                                          |         |
-| External ID | ID of the ticket in a foreign system you're looking for.                                                                    |         |
-| View ID     | The ID of a view used to select tickets matching the filters of this one.                                                   |         |
-| Rule ID     | The ID of a rule used to select tickets matching the filters of this one.                                                   |         |
-| Ticket IDs  | The IDs of tickets to select.                                                                                               |         |
-| Fetch All   | When enabled, all tickets will be fetched. This can be slow if you have a lot of tickets. Cursor and limit will be ignored. | false   |
-| Pagination  | Cursor and limit controls for paging through results.                                                                       |         |
-| Cursor      | Value indicating your position in the list of all tickets. If omitted, the first tickets of the list will be returned.      |         |
-| Limit       | Maximum number of tickets to return. The max number allowed is 100.                                                         |         |
-| Order By    | Attribute used to order tickets.                                                                                            |         |
-| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                     |         |
+| Input       | Comments                                                                                                                    | Default         |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Customer ID | The ID of a customer used to select their tickets.                                                                          |                 |
+| External ID | ID of the ticket in a foreign system you're looking for.                                                                    |                 |
+| View ID     | The ID of a view used to select tickets matching the filters of this one.                                                   |                 |
+| Rule ID     | The ID of a rule used to select tickets matching the filters of this one.                                                   |                 |
+| Ticket IDs  | The IDs of tickets to select.                                                                                               | <code>[]</code> |
+| Fetch All   | When enabled, all tickets will be fetched. This can be slow if you have a lot of tickets. Cursor and limit will be ignored. | false           |
+| Pagination  | Cursor and limit controls for paging through results.                                                                       |                 |
+| Cursor      | Value indicating your position in the list of all tickets. If omitted, the first tickets of the list will be returned.      |                 |
+| Limit       | Maximum number of tickets to return. The max number allowed is 100.                                                         |                 |
+| Order By    | Attribute used to order tickets.                                                                                            |                 |
+| Connection  | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                     |                 |
 
 ### Raw Request {#rawrequest}
 
 Send raw HTTP request to Gorgias API.
 
-| Input                   | Comments                                                                                                                                                                                                                    | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Connection              | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                     |         |
-| URL                     | Input the path only (/tickets), The base URL is already included (https://<YOUR_DOMAIN>.gorgias.com/api). For example, to connect to https://<YOUR_DOMAIN>.gorgias.com/api/tickets, only /tickets is entered in this field. |         |
-| Method                  | The HTTP method to use.                                                                                                                                                                                                     |         |
-| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                   |         |
-| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                        |         |
-| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                            |         |
-| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                      |         |
-| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                         |         |
-| Header                  | A list of headers to send with the request.                                                                                                                                                                                 |         |
-| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                    | json    |
-| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                         |         |
-| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                        | false   |
-| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                         | 0       |
-| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                            | false   |
-| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                         | 0       |
-| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                               | false   |
+| Input                   | Comments                                                                                                                                                                                                                    | Default         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Connection              | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                     |                 |
+| URL                     | Input the path only (/tickets), The base URL is already included (https://<YOUR_DOMAIN>.gorgias.com/api). For example, to connect to https://<YOUR_DOMAIN>.gorgias.com/api/tickets, only /tickets is entered in this field. |                 |
+| Method                  | The HTTP method to use.                                                                                                                                                                                                     |                 |
+| Data                    | The HTTP body payload to send to the URL.                                                                                                                                                                                   |                 |
+| Form Data               | The Form Data to be sent as a multipart form upload.                                                                                                                                                                        | <code>[]</code> |
+| File Data               | File Data to be sent as a multipart form upload.                                                                                                                                                                            | <code>[]</code> |
+| File Data File Names    | File names to apply to the file data inputs. Keys must match the file data keys above.                                                                                                                                      | <code>[]</code> |
+| Query Parameter         | A list of query parameters to send with the request. This is the portion at the end of the URL similar to ?key1=value1&key2=value2.                                                                                         | <code>[]</code> |
+| Header                  | A list of headers to send with the request.                                                                                                                                                                                 | <code>[]</code> |
+| Response Type           | The type of data you expect in the response. You can request json, text, or binary data.                                                                                                                                    | json            |
+| Timeout                 | The maximum time that a client will await a response to its request                                                                                                                                                         |                 |
+| Debug Request           | Enabling this flag will log out the current request.                                                                                                                                                                        | false           |
+| Retry Delay (ms)        | The delay in milliseconds between retries. This is used when 'Use Exponential Backoff' is disabled.                                                                                                                         | 0               |
+| Retry On All Errors     | If true, retries on all erroneous responses regardless of type. This is helpful when retrying after HTTP 429 or other 3xx or 4xx errors. Otherwise, only retries on HTTP 5xx and network errors.                            | false           |
+| Max Retry Count         | The maximum number of retries to attempt. Specify 0 for no retries.                                                                                                                                                         | 0               |
+| Use Exponential Backoff | Specifies whether to use a pre-defined exponential backoff strategy for retries. When enabled, 'Retry Delay (ms)' is ignored.                                                                                               | false           |
 
 ### Search {#search}
 
@@ -383,32 +383,32 @@ Set a customer's data.
 
 Update a ticket.
 
-| Input                          | Comments                                                                                                                                                                                                                   | Default |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Ticket ID                      | The ID of the ticket.                                                                                                                                                                                                      |         |
-| External ID                    | External ID of the ticket in a foreign system. This field is not used by Gorgias, feel free to set it as you wish.                                                                                                         |         |
-| Meta                           | Data associated with the ticket. You can use this field to store structured information (key-value data) about the ticket.                                                                                                 |         |
-| Status                         | The status of the ticket.                                                                                                                                                                                                  | open    |
-| Tags                           | Tags linked to the ticket.                                                                                                                                                                                                 |         |
-| Ticket Timestamps              | Datetime fields for tracking ticket lifecycle events such as open, close, snooze, and last message times.                                                                                                                  |         |
-| Closed Datetime                | When the ticket was closed.                                                                                                                                                                                                |         |
-| Last Message Datetime          | When the last message was sent.                                                                                                                                                                                            |         |
-| Last Received Message Datetime | When the last customer's message was sent.                                                                                                                                                                                 |         |
-| Opened Datetime                | When the ticket was opened for the first time by a user.                                                                                                                                                                   |         |
-| Snooze Datetime                | When the ticket will be re-opened.                                                                                                                                                                                         |         |
-| Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |         |
-| Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |         |
-| Additional Fields              | Additional optional fields: includes Assignee Team, Assignee User, Channel, Customer, From Agent, Is Unread, Language, Spam, and Via.                                                                                      |         |
-| Assignee Team                  | The team assigned to the ticket.                                                                                                                                                                                           |         |
-| Assignee User                  | The user assigned to the ticket.                                                                                                                                                                                           |         |
-| Channel                        | The channel used to initiate the conversation with the customer.                                                                                                                                                           |         |
-| Customer                       | The customer linked to the ticket.                                                                                                                                                                                         |         |
-| From Agent                     | Whether the first message of the ticket was sent by your company to a customer, or the opposite.                                                                                                                           |         |
-| Is Unread                      | Whether the ticket is unread for you.                                                                                                                                                                                      |         |
-| Language                       | The language primarily used in the ticket. The language is automatically detected on the first messages by Gorgias if not set explicitly.Once the language has been set, it won't be updated according to future messages. |         |
-| Spam                           | Whether the ticket is considered as spam or not.                                                                                                                                                                           |         |
-| Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |         |
-| Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |         |
+| Input                          | Comments                                                                                                                                                                                                                   | Default         |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| Ticket ID                      | The ID of the ticket.                                                                                                                                                                                                      |                 |
+| External ID                    | External ID of the ticket in a foreign system. This field is not used by Gorgias, feel free to set it as you wish.                                                                                                         |                 |
+| Meta                           | Data associated with the ticket. You can use this field to store structured information (key-value data) about the ticket.                                                                                                 | <code>[]</code> |
+| Status                         | The status of the ticket.                                                                                                                                                                                                  | open            |
+| Tags                           | Tags linked to the ticket.                                                                                                                                                                                                 | <code>[]</code> |
+| Ticket Timestamps              | Datetime fields for tracking ticket lifecycle events such as open, close, snooze, and last message times.                                                                                                                  |                 |
+| Closed Datetime                | When the ticket was closed.                                                                                                                                                                                                |                 |
+| Last Message Datetime          | When the last message was sent.                                                                                                                                                                                            |                 |
+| Last Received Message Datetime | When the last customer's message was sent.                                                                                                                                                                                 |                 |
+| Opened Datetime                | When the ticket was opened for the first time by a user.                                                                                                                                                                   |                 |
+| Snooze Datetime                | When the ticket will be re-opened.                                                                                                                                                                                         |                 |
+| Trashed Datetime               | When the ticket was moved to the trash.                                                                                                                                                                                    |                 |
+| Updated Datetime               | When the ticket was lastly updated.                                                                                                                                                                                        |                 |
+| Additional Fields              | Additional optional fields: includes Assignee Team, Assignee User, Channel, Customer, From Agent, Is Unread, Language, Spam, and Via.                                                                                      |                 |
+| Assignee Team                  | The team assigned to the ticket.                                                                                                                                                                                           |                 |
+| Assignee User                  | The user assigned to the ticket.                                                                                                                                                                                           |                 |
+| Channel                        | The channel used to initiate the conversation with the customer.                                                                                                                                                           |                 |
+| Customer                       | The customer linked to the ticket.                                                                                                                                                                                         |                 |
+| From Agent                     | Whether the first message of the ticket was sent by your company to a customer, or the opposite.                                                                                                                           |                 |
+| Is Unread                      | Whether the ticket is unread for you.                                                                                                                                                                                      |                 |
+| Language                       | The language primarily used in the ticket. The language is automatically detected on the first messages by Gorgias if not set explicitly.Once the language has been set, it won't be updated according to future messages. |                 |
+| Spam                           | Whether the ticket is considered as spam or not.                                                                                                                                                                           |                 |
+| Via                            | How the first message of the ticket has been received or sent from Gorgias.                                                                                                                                                |                 |
+| Connection                     | Select the Gorgias connection type for this request: OAuth2 or API Key.                                                                                                                                                    |                 |
 
 ### Update Ticket Custom Fields {#updateticketcustomfields}
 

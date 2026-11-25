@@ -5,13 +5,62 @@ description: Read content fragments, assets, and published pages from Adobe Expe
 ---
 
 ![Adobe Experience Manager](./assets/adobe-experience-manager.png#connector-icon)
-Read content fragments, assets, and published pages from Adobe Experience Manager as a Cloud Service, and detect content changes.
+[Adobe Experience Manager as a Cloud Service](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/introduction) is Adobe's cloud-native content management system for websites, headless content, and digital assets.
+This component allows reading content fragments, assets, folders, and published pages, managing assets and folders, and receiving content changes through polling triggers or Adobe I/O Events.
+
+## API Documentation
+
+This component was built using the following API References:
+
+- [AEM Sites API](https://developer.adobe.com/experience-cloud/experience-manager-apis/api/stable/sites/)
+- [AEM Assets Author API](https://developer.adobe.com/experience-cloud/experience-manager-apis/api/stable/assets/author/)
+- [AEM Folders API](https://developer.adobe.com/experience-cloud/experience-manager-apis/api/stable/folders/)
+- [Adobe I/O Events Registration API](https://developer.adobe.com/events/docs/guides/api/registration-api)
 
 ## Connections
 
 ### OAuth 2.0 {#aemoauthwebapp}
 
 Authenticate to AEM as a Cloud Service as an Adobe user with an OAuth Web App credential from the Adobe Developer Console. Requests run with that user's AEM permissions.
+
+The OAuth 2.0 connection authenticates to Adobe Experience Manager as a Cloud Service as an Adobe user, with an [OAuth Web App credential](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/aem-apis/openapis/invoke-api-using-oauth-web-app) from the Adobe Developer Console. Requests run with that user's AEM permissions, so a user without access to an asset, folder, or content fragment gets a 403 for it.
+
+Use this connection for the asset, folder, and page actions and the **New and Updated Assets** trigger. The content fragment actions and the **New and Updated Fragments** trigger need the **OAuth 2.0 Client Credentials** connection: the Developer Console grants a Web App credential only the Assets Author API scopes, and AEM answers content fragment requests made with it with `403 The access token is missing required scopes`. The **AEM Sites Event Subscription** and **AEM Assets Event Subscription** triggers also require the **OAuth 2.0 Client Credentials** connection: Adobe documents Adobe I/O Events registrations for OAuth Server-to-Server credentials only, so the trigger refuses this connection at deploy.
+
+#### Prerequisites
+
+- An Adobe Experience Manager as a Cloud Service environment with [OpenAPI-based APIs](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/open-api-based-apis) available
+- Administrator access to the Adobe Developer Console for the organization
+- Access to the environment's AEM code repository, to allow the credential's client ID in `config/api.yaml`
+- An Adobe user with AEM access to the content the integration reads or changes
+
+#### Setup Steps
+
+1. In the **Adobe Developer Console**, open or create a project and click **Add API**
+2. Filter by **Experience Cloud**, select the **AEM Assets Author API** card, and click **Next**
+3. Select **User Authentication**, then **OAuth Web App**, and click **Next**
+4. Enter `https://oauth2.%WHITE_LABEL_BASE_URL%/callback` as both the **Default redirect URI** and the **Redirect URI pattern**. The pattern is a regular expression, so escape each `.` in it with a backslash
+5. Review the scopes and click **Save configured API**. The Assets Author API grants both the `aem.assets.author` and `aem.folders` scopes, so one credential covers asset and folder requests
+6. From the credential's page, copy the **Client ID** and **Client Secret**
+7. Add the **Client ID** to `allowedClientIDs.author` in the environment's `config/api.yaml` and deploy it through the Cloud Manager Config Pipeline, as described in Adobe's [OpenAPI setup guide](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/aem-apis/openapis/setup). Until this is deployed, AEM rejects every request with a 403
+
+#### Configure the Connection
+
+- **AEM Author Host**: The author host from Cloud Manager, without `https://` (for example `author-p12345-e123456.adobeaemcloud.com`)
+- **Client ID** and **Client Secret**: From the OAuth Web App credential. The client ID is also sent as the `X-Api-Key` header
+- **Scopes**: Enter the scopes exactly as the credential's **Scopes** tab lists them. Adobe rejects the authorization with `invalid_scope` when a scope the credential does not list is requested. The default matches an Assets Author API credential:
+  ```
+  openid,AdobeID,aem.assets.author,aem.folders
+  ```
+- **Authorize URL** and **Token URL**: Keep the default Adobe IMS endpoints unless Adobe directs different ones
+
+Save the configuration and authorize the connection by signing in with the Adobe user the integration acts as.
+
+#### Verify Connection
+
+Run **List Folder Contents** against the connection. A 403 response means either the client ID is not yet allowed in `config/api.yaml` (step 7) or the signed-in user lacks access to the content requested.
+
+Adobe issues a refresh token only when `offline_access` is requested and the user consents to it ([Adobe IMS user authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/ims)). The Developer Console does not list `offline_access` for an AEM Web App credential and IMS rejects a request that includes it, so no refresh token is issued and the connection must be re-authorized each time its access token expires, after 24 hours by default.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).
@@ -28,6 +77,36 @@ Read about how OAuth 2.0 works [here](../oauth2.md).
 ### OAuth 2.0 Client Credentials {#aemoauthservertoserver}
 
 Authenticate to AEM as a Cloud Service with an OAuth Server-to-Server credential from the Adobe Developer Console.
+
+The OAuth 2.0 Client Credentials connection authenticates to Adobe Experience Manager as a Cloud Service with an [OAuth Server-to-Server credential](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/aem-apis/openapis/invoke-api-using-oauth-s2s) from the Adobe Developer Console. Every action and trigger in this component works with it, and it is the only credential type Adobe documents for the Adobe I/O Events registrations the **AEM Sites Event Subscription** and **AEM Assets Event Subscription** triggers create. Requests run as the credential's technical account, with the permissions of the product profiles assigned to it. To run requests as a specific Adobe user instead, use the **OAuth 2.0** connection.
+
+#### Prerequisites
+
+- An Adobe Experience Manager as a Cloud Service environment with [OpenAPI-based APIs](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/open-api-based-apis) available
+- Administrator access to Cloud Manager, the Adobe Admin Console, and the Adobe Developer Console for the organization
+- Access to the environment's AEM code repository, to allow the credential's client ID in `config/api.yaml`
+
+#### Setup Steps
+
+Adobe's [OpenAPI setup guide](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/aem-apis/openapis/setup) covers each step in detail.
+
+1. In **Cloud Manager**, modernize the environment so its AEM API services can be assigned to product profiles (**Add Product Profiles** on the environment)
+2. In the **Adobe Admin Console**, add the AEM API services for Sites and Assets to a product profile. The profile's permissions decide what the connection can read and change ([credentials and product profiles](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/aem-apis/openapis/how-to/credentials-and-product-profile-management))
+3. In the **Adobe Developer Console**, create a project and add the AEM Sites, Assets Author, and Folders APIs, choosing **OAuth Server-to-Server** and the product profile from step 2
+4. For the **AEM Sites Event Subscription** and **AEM Assets Event Subscription** triggers only, also add **I/O Management API** to the same credential and [enable AEM Events](https://developer.adobe.com/experience-cloud/experience-manager-apis/guides/events/) for the environment. Note the project's **Consumer Organization ID**, **Project ID**, and **Workspace ID**, and the **Event Provider ID** each trigger asks for: Adobe creates one AEM Sites event provider and one AEM Assets event provider per environment
+5. From the credential's page in the Developer Console, copy the **Client ID**, **Client Secret**, and **Scopes**
+6. Add the **Client ID** to `allowedClientIDs.author` in the environment's `config/api.yaml` and deploy it through the Cloud Manager Config Pipeline. Until this is deployed, AEM rejects every request with a 403
+
+#### Configure the Connection
+
+- **AEM Author Host**: The author host from Cloud Manager, without `https://` (for example `author-p12345-e123456.adobeaemcloud.com`)
+- **Client ID** and **Client Secret**: From the OAuth Server-to-Server credential. The client ID is also sent as the `X-Api-Key` header
+- **Scopes**: Paste the scopes exactly as the credential lists them. Adobe issues them per credential, so they vary with the APIs added in step 3 ([Server-to-Server token reference](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/ims))
+- **Token URL**: Keep the default Adobe IMS endpoint unless Adobe directs a different one
+
+#### Verify Connection
+
+Run **List Content Fragment Models** or **List Folder Contents** against the connection. A 403 response usually has one of two causes, and the error message names both: the client ID is not yet allowed in `config/api.yaml` (step 6), or the product profile from step 2 lacks access to the API or content requested. The `detail` field in Adobe's response tells them apart: `IMS Client ID not allowlisted` points to step 6, and `The user is not assigned to the right Product Profile in Adobe Admin Console.` points to step 2. A 403 whose body reads `Api Key is invalid` comes from Adobe's API gateway instead: the Developer Console project from step 3 does not include the AEM API that serves the request.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

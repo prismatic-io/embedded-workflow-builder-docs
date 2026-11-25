@@ -1,7 +1,7 @@
 ---
 title: New Relic Connector
 sidebar_label: New Relic
-description: Send metrics, logs, and events to New Relic observability platform.
+description: Send metrics, logs, and events to the New Relic observability platform.
 ---
 
 ![New Relic](./assets/new-relic.png#connector-icon)
