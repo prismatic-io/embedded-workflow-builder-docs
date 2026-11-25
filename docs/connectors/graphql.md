@@ -5,19 +5,13 @@ description: Make GraphQL requests (queries and mutations) to a GraphQL-based AP
 ---
 
 ![GraphQL](./assets/graphql.png#connector-icon)
-The **GraphQL** component allows you to make requests to a [GraphQL](https://graphql.org/)-based API.
-
-## API Documentation
-
-For further information on GraphQL please refer to the following guide: [Introduction to GraphQL](https://graphql.org/learn/)
+Make GraphQL requests (queries and mutations) to a GraphQL-based API
 
 ## Connections
 
 ### API Key {#apikey}
 
 API Key connection
-
-If an API Key connection is supplied, an `Authorization: Basic ${APIKEY}` header is used in the HTTP request.
 
 | Input                 | Comments                         | Default |
 | --------------------- | -------------------------------- | ------- |
@@ -28,8 +22,6 @@ If an API Key connection is supplied, an `Authorization: Basic ${APIKEY}` header
 
 Basic Username and Password connection
 
-If a Basic Auth connection is supplied, an `Authorization: Basic ${base64(USERNAME:PASSWORD)}` header is used in the HTTP request.
-
 | Input    | Comments | Default |
 | -------- | -------- | ------- |
 | Username | Username |         |
@@ -38,8 +30,6 @@ If a Basic Auth connection is supplied, an `Authorization: Basic ${base64(USERNA
 ### OAuth 2.0 Authorization Code {#authorizationcode}
 
 OAuth 2.0 Authorization Code flow
-
-If an OAuth 2.0 connection are supplied, an `Authorization: Bearer ${KEY}` header is used in the HTTP request, where `KEY` is the client key that is fetched from the OAuth provider.
 
 This connection uses OAuth 2.0, a common authentication mechanism for integrations.
 Read about how OAuth 2.0 works [here](../oauth2.md).

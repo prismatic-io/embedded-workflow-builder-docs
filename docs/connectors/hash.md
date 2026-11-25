@@ -5,7 +5,7 @@ description: Compute hashes of strings using common hash functions
 ---
 
 ![Hash](./assets/hash.png#connector-icon)
-The **Hash** component allows you to compute the hash of a string using a variety of common hash functions (MD5, SHA256, etc).
+Compute hashes of strings using common hash functions
 
 ## Triggers
 

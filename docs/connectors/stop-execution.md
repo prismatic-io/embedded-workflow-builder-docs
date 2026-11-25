@@ -5,7 +5,7 @@ description: Stop the execution of an instance
 ---
 
 ![Stop Execution](./assets/stop-execution.png#connector-icon)
-The **stop execution** component stops the execution of an integration.
+Stop the execution of an instance
 
 ## Actions
 

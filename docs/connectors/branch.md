@@ -5,9 +5,7 @@ description: Choose which step to execute next based on a condition or value
 ---
 
 ![Branch](./assets/branch.png#connector-icon)
-The **branch** component allows you to add branching logic to your integration.
-Think of **branches** like if/then or [switch/case](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) programming statements.
-Your integration can follow one branch or another depending on the values of some config variables or results from previous steps.
+Choose which step to execute next based on a condition or value
 
 ## Actions
 

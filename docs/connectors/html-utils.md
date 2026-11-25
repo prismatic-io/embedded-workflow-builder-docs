@@ -5,7 +5,7 @@ description: Format HTML, inline CSS for HTML emails, convert HTML to plain text
 ---
 
 ![HTML Utils](./assets/html-utils.png#connector-icon)
-The **HTML Utils** component provides helpful functions for building and formatting HTML documents.
+Format HTML, inline CSS for HTML emails, convert HTML to plain text, strip HTML tags, and fetch HTML from a URL.
 
 ## Actions
 

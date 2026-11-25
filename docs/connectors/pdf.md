@@ -5,8 +5,7 @@ description: Search and extract data from PDF documents
 ---
 
 ![PDF](./assets/pdf.png#connector-icon)
-PDF (Portable Document Format) is a file format developed by Adobe for presenting documents independently of software, hardware, or operating systems.
-The **pdf** component allows finding text in PDF documents, listing page numbers, and extracting specific pages from a document.
+Search and extract data from PDF documents
 
 ## Actions
 

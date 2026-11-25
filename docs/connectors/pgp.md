@@ -5,8 +5,7 @@ description: Encrypt and decrypt messages and files with PGP (Pretty Good Privac
 ---
 
 ![Pretty Good Privacy](./assets/pgp.png#connector-icon)
-[Pretty Good Privacy](https://project.microsoft.com/en-US/) is an encryption program that provides cryptographic privacy and authentication for data communication.
-This component allows you to encrypt and decrypt strings in an integration.
+Encrypt and decrypt messages and files with PGP (Pretty Good Privacy) keys.
 
 ## Actions
 

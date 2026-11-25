@@ -5,8 +5,7 @@ description: Filter, sort, map, de-duplicate, chunk, and aggregate lists and obj
 ---
 
 ![Collection Tools](./assets/collection-tools.png#connector-icon)
-The collection tools component contains actions that perform common tasks on collections of data (objects and arrays).
-Actions concatenate objects, filter items of lists (arrays), map functions on items, and more.
+Filter, sort, map, de-duplicate, chunk, and aggregate lists and objects, and validate data against JSON or XML schemas.
 
 ## Actions
 

@@ -5,7 +5,7 @@ description: Compress and decompress zip archives and gzip data.
 ---
 
 ![Zip](./assets/zip.png#connector-icon)
-The **Zip** component helps with handling and manipulating `.zip` files.
+Compress and decompress zip archives and gzip data.
 
 ## Actions
 
