@@ -5,38 +5,13 @@ description: Manage Expensify reports, expenses, policies, expense rules, and em
 ---
 
 ![Expensify](./assets/expensify.png#connector-icon)
-[Expensify](https://www.expensify.com) provides an industry leading expense management system.
-
-Use the Expensify component to programmatically download expense report data for analysis or insertion into an accounting package, provision accounts for new hires, and much more.
-
-## API Documentation
-
-This component was built using the [Expensify API Reference](https://integrations.expensify.com/Integration-Server/doc/).
+Manage Expensify reports, expenses, policies, expense rules, and employees, and export report data.
 
 ## Connections
 
 ### Basic Connection {#basic}
 
 Basic connection for Expensify
-
-Create a new authentication connection. Refer to the following [guide](https://integrations.expensify.com/Integration-Server/doc/#authentication) for more information.
-
-#### Prerequisites
-
-- Access to the Expensify integrations page at `https://www.expensify.com/tools/integrations/`
-
-#### Setup Steps
-
-1. Navigate to `https://www.expensify.com/tools/integrations/` and select the option that creates a new set of credentials.
-2. A pair of credentials, `partnerUserID` and `partnerUserSecret`, is generated and shown on the page.
-   1. Store the `partnerUserID` and `partnerUserSecret` pair in a secure location, as they are not shown again.
-
-#### Configure the Connection
-
-Create a connection of type **Basic Connection** and enter the following values:
-
-- Enter the `partnerUserID` value into **Partner User ID**.
-- Enter the `partnerUserSecret` value into **Partner User Secret**.
 
 | Input               | Comments                                                                                                                                                                                       | Default |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
