@@ -66,16 +66,27 @@ async function generateConnectorDocs({
       JSON.stringify(connectors, null, 2),
     );
 
+    const componentsDir = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "components",
+      "components",
+    );
+    // Component keys don't always match the case of their directory names
+    // (e.g. "Expensify" lives in "expensify/"). Resolve directories
+    // case-insensitively so results are the same on case-insensitive (macOS)
+    // and case-sensitive (Linux) filesystems.
+    const componentDirsByLowerCaseName = new Map(
+      fs.readdirSync(componentsDir).map((dir) => [dir.toLowerCase(), dir]),
+    );
+
     for (const connector of connectors) {
       const connectorDocsDir = path.join(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "..",
-        "components",
-        "components",
-        connector.key,
+        componentsDir,
+        componentDirsByLowerCaseName.get(connector.key.toLowerCase()) ?? connector.key,
         "documentation",
       );
       const descriptionPath = path.join(connectorDocsDir, "description.mdx");
